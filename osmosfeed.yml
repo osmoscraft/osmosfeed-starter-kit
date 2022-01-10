@@ -7,7 +7,6 @@ sources:
   - url: https://gomakethings.com/feed/index.xml
   - url: https://logicmag.io/rss.xml
   - url: https://increment.com/feed.xml
-  - url: https://ishadeed.com/feed.xml
   - url: https://wdrl.info/feed
   - url: https://alistapart.com/main/feed/
   - url: https://developer.chrome.com/feeds/blog.xml
