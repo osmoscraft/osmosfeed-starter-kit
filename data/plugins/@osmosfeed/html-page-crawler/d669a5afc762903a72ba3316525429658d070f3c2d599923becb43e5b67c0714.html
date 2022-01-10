@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" />
+  <title>
+    Building A Stepper Component -
+    Ahmad Shadeed
+  </title>
+
+  
+  <meta name="description" content="Building a horizontal and vertical stepper component with CSS flexbox" />
+   
+  <meta name="keywords" content="stepper, wizard, css" />
+  
+
+  <meta name="author" content="iShadeed" />
+  <meta property="og:title" content="Building A Stepper Component - Ahmad Shadeed" />
+  
+  <meta property="og:url" content="http://ishadeed.com/article/stepper-component-html-css/" />
+  
+  <meta property="og:type" content="website" />
+
+  
+  <meta property="og:image" content="https://ishadeed.com/assets/stepper/twitter-card.jpg" />
+  
+
+  <meta property="og:description" content="Building a horizontal and vertical stepper component with CSS flexbox" />
+  <meta property="og:site_name" content="Ahmad Shadeed Blog" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@shadeed9" />
+  <meta name="twitter:title" content="Building A Stepper Component - Ahmad Shadeed" />
+
+  
+  <meta name="twitter:url" content="http://ishadeed.com/article/stepper-component-html-css/" />
+  
+
+  <meta name="twitter:description" content="Building a horizontal and vertical stepper component with CSS flexbox" />
+
+  
+  <meta name="twitter:image" content="https://ishadeed.com/assets/stepper/twitter-card.jpg" />
+   <link rel="stylesheet" href="/css/main.css?v=1.0.7">
+  <link href="//plus.google.com/+AhmadShadeed" rel="author" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="alternate" type="application/rss+xml" title="Ahmad Shadeed Blog"
+  href="http://ishadeed.com/feed.xml" />
+</head>
+
+
+  <body>
+    <div class="c-banner">
+      <p>
+        <span aria-hidden="true">🎉</span>I published a book about debugging
+        CSS.
+        <a class="c-link" href="https://debuggingcss.com/"
+          >Buy now<svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            style="margin-right: 3px"
+          >
+            <use xlink:href="#arrow-right"></use></svg
+        ></a>
+      </p>
+    </div>
+    <svg style="display: none">
+      <symbol
+        id="arrow-right"
+        width="23.114"
+        height="23.114"
+        viewBox="0 0 23.114 23.114"
+      >
+        <g id="np_arrow_1921082_000000" transform="translate(-2.5 -2.5)">
+          <path
+            id="Path_18"
+            data-name="Path 18"
+            d="M25.614,14.057A11.557,11.557,0,1,0,14.057,25.614,11.568,11.568,0,0,0,25.614,14.057Zm-21.46,0a9.9,9.9,0,1,1,9.9,9.9,9.927,9.927,0,0,1-9.9-9.9Z"
+          />
+          <path
+            id="Path_19"
+            data-name="Path 19"
+            d="M45.262,34.182a.821.821,0,0,0,0-1.167L40.81,28.562a.826.826,0,0,0-1.168,1.168L43.486,33.6l-3.845,3.845a.791.791,0,0,0-.243.584.754.754,0,0,0,.243.584.837.837,0,0,0,1.168,0Z"
+            transform="translate(-27.921 -19.541)"
+          />
+        </g>
+      </symbol>
+      <symbol
+        id="link-external"
+        width="16.067"
+        height="16.078"
+        viewBox="0 0 16.067 16.078"
+      >
+        <g fill="#3863d9">
+          <path
+            data-name="Path 20"
+            d="M14.137 1.15h-3.159a.774.774 0 0 1-.093-.013.551.551 0 0 1-.2-.09.565.565 0 0 1-.235-.488.531.531 0 0 1 .031-.153.543.543 0 0 1 .091-.164.552.552 0 0 1 .167-.141.572.572 0 0 1 .177-.062c.028 0 .035 0 .063-.007q2.262-.063 4.524 0h.049a.491.491 0 0 1 .082.016l.035.01h.011l.019.007h.006a.523.523 0 0 1 .078.041.563.563 0 0 1 .175.174.512.512 0 0 1 .044.084.553.553 0 0 1 .032.108v.075c.042 1.5 0 3.006 0 4.51a.459.459 0 0 1 0 .063.579.579 0 0 1-.052.18.56.56 0 0 1-.131.174.531.531 0 0 1-.131.087.565.565 0 0 1-.567-.048.558.558 0 0 1-.228-.363.517.517 0 0 1-.007-.093V1.943L7.663 9.198a.5.5 0 0 1-.063.054.56.56 0 0 1-.147.078.549.549 0 0 1-.205.031.566.566 0 0 1-.453-.261.574.574 0 0 1-.067-.153.554.554 0 0 1-.019-.166.562.562 0 0 1 .086-.277.656.656 0 0 1 .078-.1l7.255-7.255z"
+            fill-rule="evenodd"
+          />
+          <path
+            data-name="Path 21"
+            d="M7.331 1.526a.505.505 0 0 1 .1.021.557.557 0 0 1 .265.17.522.522 0 0 1 .086.134.554.554 0 0 1 .045.153.565.565 0 0 1-.131.446.548.548 0 0 1-.166.131.556.556 0 0 1-.2.06H6.1c-.634 0-1.269.008-1.9.043a10.457 10.457 0 0 0-1.052.1q-.141.022-.283.05-.1.02-.19.045a1.954 1.954 0 0 0-.816.389 1.26 1.26 0 0 0-.121.123 1.6 1.6 0 0 0-.263.452 3.281 3.281 0 0 0-.17.607 7.787 7.787 0 0 0-.112.883c-.04.5-.053 1-.062 1.5-.007.45-.008.9-.008 1.35v1.224c0 .569 0 1.139.017 1.709.013.5.033 1 .09 1.495a8.5 8.5 0 0 0 .054.39 3.713 3.713 0 0 0 .179.7 1.646 1.646 0 0 0 .3.516 1.9 1.9 0 0 0 1.021.522 6.066 6.066 0 0 0 .534.096 14.66 14.66 0 0 0 1.54.1c.606.017 1.214.019 1.82.019H7.89c.49 0 .979 0 1.469-.011s.982-.024 1.47-.068a7.177 7.177 0 0 0 .857-.119 2.844 2.844 0 0 0 .7-.228 1.445 1.445 0 0 0 .355-.247 1.921 1.921 0 0 0 .474-.95 6.313 6.313 0 0 0 .092-.491 9.4 9.4 0 0 0 .049-.411c.043-.439.061-.881.072-1.323.02-.771.017-1.542.017-2.314v-.053c0-.018 0-.035.007-.053a.547.547 0 0 1 .079-.2.536.536 0 0 1 .1-.12.563.563 0 0 1 .446-.131.545.545 0 0 1 .153.045.561.561 0 0 1 .317.4.579.579 0 0 1 .01.106v1.18c0 .387-.006.774-.015 1.161-.007.264-.016.528-.031.792q-.017.305-.046.61a9.298 9.298 0 0 1-.083.639 3.761 3.761 0 0 1-.581 1.571 2.38 2.38 0 0 1-.451.48 2.633 2.633 0 0 1-.5.315 4.49 4.49 0 0 1-1.275.368c-.315.049-.634.079-.952.1s-.668.035-1 .043c-.481.012-.961.015-1.442.017H6.675c-.577 0-1.154 0-1.732-.017a18.4 18.4 0 0 1-1.592-.094 8.742 8.742 0 0 1-.362-.049 3.862 3.862 0 0 1-1.658-.592 2.552 2.552 0 0 1-.2-.159 2.431 2.431 0 0 1-.256-.263 2.234 2.234 0 0 1-.154-.206 3.836 3.836 0 0 1-.539-1.51 8.474 8.474 0 0 1-.092-.737 14.337 14.337 0 0 1-.042-.62c-.016-.31-.024-.62-.031-.929-.007-.4-.01-.8-.011-1.2v-1.51c0-.538 0-1.077.013-1.614.007-.3.016-.609.033-.913a14.246 14.246 0 0 1 .099-1.075c.012-.088.026-.174.042-.261a3.673 3.673 0 0 1 .562-1.485 2.38 2.38 0 0 1 .451-.48 2.664 2.664 0 0 1 .534-.33 4.435 4.435 0 0 1 1.153-.336c.277-.047.557-.077.837-.1s.57-.037.857-.047c.413-.015.828-.021 1.241-.023h1.509z"
+          />
+        </g>
+      </symbol>
+      <symbol
+        id="send"
+        width="36.258"
+        height="35.835"
+        viewBox="0 0 36.258 35.835"
+      >
+        <path
+          d="M25.339 13.557a.836.836 0 0 0-1.2-1.153L9.151 25.155l-7.915-3.062a1.925 1.925 0 0 1-.223-3.492L33.871.194a1.619 1.619 0 0 1 2.38 1.579l-2.882 30.045a1.989 1.989 0 0 1-2.72 1.66l-9.633-3.729-6.048 5.665a1.561 1.561 0 0 1-2.628-1.153v-4.45z"
+        />
+      </symbol>
+      <symbol
+        id="arrow-up"
+        width="24.737"
+        height="23.502"
+        viewBox="0 0 24.737 23.502"
+      >
+        <path
+          data-name="Path 25"
+          d="M13.244.362a1.236 1.236 0 0 0-1.749 0L.363 11.494a1.237 1.237 0 1 0 1.749 1.749l9.019-9.019v18.041a1.237 1.237 0 1 0 2.474 0V4.224l9.019 9.019a1.237 1.237 0 1 0 1.751-1.747z"
+          fill="#fff"
+        />
+      </symbol>
+    </svg>
+
+    <header id="header" class="c-header" role="banner">
+    <a href="/" class="c-logo">
+        <img src="../../assets/shadeed.jpg" alt="Photo of Ahmad Shadeed">
+        <span>Ahmad <strong>Shadeed</strong></span>
+        <div class="c-lamp"></div>
+    </a>
+    <nav class="c-nav">
+        <div class="c-nav__wrapper">
+            <ul>
+                
+                
+                <li class="c-nav__item">
+                    <a href="/">Home</a>
+                </li>
+                
+                
+                
+                <li class="c-nav__item">
+                    <a href="/articles">Articles</a>
+                </li>
+                
+                
+                
+                <li class="c-nav__item">
+                    <a href="/snippets">Snippets</a>
+                </li>
+                
+                
+                
+                <li class="c-nav__item">
+                    <a href="/journal">Journal</a>
+                </li>
+                
+                
+                
+                <li class="c-nav__item">
+                    <a href="/about">About</a>
+                </li>
+                
+                
+                
+                <li class="c-nav__item">
+                    <a href="/hire-me">Hire me</a>
+                </li>
+                
+                
+
+                <button class="c-nav__close">
+                    <svg width="17" height="17" viewBox="0 0 17 17">
+                        <path d="M16.91 2.663a1.487 1.487 0 0 0 0-2.1l-.131-.131a1.483 1.483 0 0 0-2.1 0L8.936 6.179a.371.371 0 0 1-.528 0L2.663.434a1.487 1.487 0 0 0-2.1 0L.432.565a1.483 1.483 0 0 0 0 2.1L6.177 8.41a.371.371 0 0 1 0 .528L.432 14.683a1.487 1.487 0 0 0 0 2.1l.131.131a1.483 1.483 0 0 0 2.1 0l5.745-5.745a.371.371 0 0 1 .528 0l5.745 5.745a1.487 1.487 0 0 0 2.1 0l.131-.131a1.483 1.483 0 0 0 0-2.1l-5.747-5.747a.371.371 0 0 1 0-.528z" fill="#60c46f"/>
+                    </svg>
+                </button>
+            </ul>
+            <div class="c-nav__overlay"></div>
+        </div>
+        <button class="c-nav__toggle">
+            <span></span>
+        </button>
+    </nav>
+    <a class="c-header__follow" target="_blank" href="https://twitter.com/shadeed9">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="22.75" viewBox="0 0 28 22.75">
+            <g data-name="Group 1">
+                <path data-name="Path 1" d="M28 2.693a11.968 11.968 0 0 1-3.307.907A5.708 5.708 0 0 0 27.218.427a11.472 11.472 0 0 1-3.64 1.389 5.74 5.74 0 0 0-9.93 3.925 5.911 5.911 0 0 0 .133 1.309 16.248 16.248 0 0 1-11.832-6 5.742 5.742 0 0 0 1.764 7.672 5.669 5.669 0 0 1-2.594-.707v.063a5.767 5.767 0 0 0 4.6 5.64 5.729 5.729 0 0 1-1.5.189 5.075 5.075 0 0 1-1.087-.1 5.8 5.8 0 0 0 5.364 4 11.534 11.534 0 0 1-7.117 2.448A10.755 10.755 0 0 1 0 20.174a16.16 16.16 0 0 0 8.806 2.576c10.563 0 16.338-8.75 16.338-16.335 0-.254-.009-.5-.021-.742A11.451 11.451 0 0 0 28 2.693z"/>
+            </g>
+        </svg>
+        <span>@shadeed9</span>
+    </a>
+</header>
+ <div class="c-section c-section--article">
+	<header class="post-header">
+		<h1 class="post-header__title">Building A Stepper Component</h1>
+		<div class="post-header__date">31 Aug 2021</div>
+		<div class="post-header__reading-time" style="display: none;">
+			
+
+			
+			Reading time: ~ 15 mins
+		</div>
+	</header>
+
+	<div class="post-content">
+		<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DV277&placement=wwwishadeedcom" id="_carbonads_js"></script>
+		<p>The other day, I got a question about how to build a responsive stepper component and how to take care of the separator lines. The demo I got from the developer was a bit complex and have lots of unnecessary CSS stuff. As a result, I got the idea of writing about it.</p>
+
+<p>In this article, I will explore different designs for a stepping component and see the best way to implement each one in HTML and CSS. Are you ready? Let’s dive in.</p>
+
+<h2 id="introduction">Introduction</h2>
+<p>A stepper component can be used to make it easy to navigate through a long web page by dividing related elements and grouping them together.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/intro.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>When I started learning CSS, this was a challenging thing for me, and I understand why some newcomers might feel the same too. In the next few sections, I will take case-by-case examples and try to simplify and explain how to solve each one.</p>
+
+<h2 id="horizontal-stepper-example-1">Horizontal Stepper: Example 1</h2>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>For this example, we have a horizontal stepper with a line between the items. Here are the expectations for the stepper:</p>
+<ul>
+  <li>Responsive</li>
+  <li>Easy to be resized</li>
+  <li>Magic numbers aren’t allowed</li>
+  <li>Work with both light and dark modes</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">"c-stepper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"c-stepper__item"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"c-stepper__title"</span><span class="nt">&gt;</span>Step 1<span class="nt">&lt;/h3&gt;</span>
+        <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"c-stepper__desc"</span><span class="nt">&gt;</span>Some desc text<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="c">&lt;!-- Other steps --&gt;</span>
+<span class="nt">&lt;/ol&gt;</span>
+</code></pre></div></div>
+
+<p>In CSS, we need to use flexbox to layout the items horizontally.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span> <span class="p">{</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">flex-direction</span><span class="p">:</span> <span class="n">column</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="py">--size</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">);</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">);</span>
+    <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">margin</span><span class="p">:</span> <span class="m">1rem</span> <span class="nb">auto</span> <span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With that, we will have the following result.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-2.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>As you see, the content is centered and each item is equal to other siblings thanks to <code class="highlighter-rouge">flex: 1</code>. Next, we need to explore how to add a line between them.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">2px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e0e0e0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-3.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>You might wonder how the pseudo-element is taking the full width when it doesn’t actually have an explicit <code class="highlighter-rouge">width</code>? Well, it’s stretching to fill the full horizontal space because it’s a flex item.</p>
+
+<p>First, we need to move it to the top. Since it’s a flex item, we can get the benefit of the <code class="highlighter-rouge">order</code> property.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">2px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e0e0e0</span><span class="p">;</span>
+    <span class="nl">order</span><span class="p">:</span> <span class="m">-1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now, we want to position it properly but without using <code class="highlighter-rouge">position: absolute</code>, since it’s not needed.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">1.5rem</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">2px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e0e0e0</span><span class="p">;</span>
+    <span class="nl">order</span><span class="p">:</span> <span class="m">-1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Here is an explanation of the above CSS:</p>
+<ul>
+  <li><code class="highlighter-rouge">position: relative</code> to control the line without removing it from the document flow.</li>
+  <li>The <code class="highlighter-rouge">top</code> value is equal to half of the circle’s height.</li>
+  <li><code class="highlighter-rouge">left: 50%</code> to make the line <strong>starts</strong> from the center of the circle all the way to the center of the next item’s circle. This will allow us to color each line as per the progress if needed.</li>
+</ul>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-4.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<h3 id="a-version-where-there-is-spacing-before-and-after-the-line">A version where there is spacing before and after the line</h3>
+<p>We can either add a stroke around each circle with the same background underneath the items, or we can work a bit more with a better solution that works great for both dark and light modes.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>Before diving into the solution, I want to show you that the separator lines we have are actually hidden under each circle. I reduced the <code class="highlighter-rouge">opacity</code> for the number circles so you can see them.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5-2.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>This is due to using <code class="highlighter-rouge">left: 50%</code> for the line. Let’s explore how to give it an offset from the left and right.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5-3-1.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>Since the line has <code class="highlighter-rouge">left: 50%</code>, it will start from the center of its parent.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5-3-2.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>We use <code class="highlighter-rouge">calc()</code> to add the circle’s radius, this will make the separator line start from the end of the circle.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5-3-3.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>By adding the spacing we want (In this case it’s 8px) to the <code class="highlighter-rouge">calc()</code> function, we end up with a space on the left side of the separator line.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5-3-4.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>Finally, we need to create the spacing on the other side. The width is 100%, so we deduct the circle width along with the left and right spacing values.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5-3-5.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>To make it better, we can get the benefit of CSS variables so we can alter the size without manually editing the values.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.c-stepper {
+    --size: 3rem;
+    --spacing: 0.5rem;
+}
+
+.c-stepper__item:not(:last-child):after {
+    width: calc(100% - var(--size) - calc(var(--spacing) * 2));
+    left: calc(50% + calc(var(--size) / 2 + var(--spacing)));
+}
+</code></pre></div></div>
+
+<p>Check out the below video for a demonstration.</p>
+
+<video controls="" style="width: initial;">
+    <source src="../../assets/stepper/sol-1-spacing.mp4" type="video/mp4" />
+</video>
+
+<p>Finally, implementing the separator like that can make the stepper works in a dark mode without adding a border to each circle to fake the effect.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-1-5-dark.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="ZEyQqQX" data-user="shadeed" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/shadeed/pen/ZEyQqQX">
+  Horizontal Stepper: Example 1</a> by Ahmad Shadeed (<a href="https://codepen.io/shadeed">@shadeed</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="horizontal-stepper-example-2">Horizontal Stepper: Example 2</h2>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-2.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>In this example, the separator line comes directly after the step title. The difference thing here is that the separator length varies based on the step title length.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">"c-stepper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"c-stepper__item"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"c-stepper__title"</span><span class="nt">&gt;</span>Step 1<span class="nt">&lt;/h3&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="c">&lt;!-- Other steps --&gt;</span>
+<span class="nt">&lt;/ol&gt;</span>
+</code></pre></div></div>
+
+<p>Similar to the previous example, we’ll use flexbox to lay out the steps horizontally. Notice that we want to apply <code class="highlighter-rouge">flex: 1</code> only to the first and second steps.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">flex-wrap</span><span class="p">:</span> <span class="n">wrap</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="nl">align-items</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+    <span class="py">gap</span><span class="p">:</span> <span class="m">0.5rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="py">--size</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">);</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">);</span>
+    <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-2-1.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>The separator line will be added as a pseudo-element. It will have <code class="highlighter-rouge">flex: 1</code> so it can fill the remaining space.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">2px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e0e0e0</span><span class="p">;</span>
+    <span class="py">margin-inline-end</span><span class="p">:</span> <span class="m">0.5rem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-2-2.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>By using the <code class="highlighter-rouge">gap</code> on the <code class="highlighter-rouge">.c-stepper__item</code> and the <code class="highlighter-rouge">margin-inline-end</code> logical property for the separator line, we can ensure that the component will work on both LTR and RTL documents.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-2-3.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="oNwbaYV" data-user="shadeed" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/shadeed/pen/oNwbaYV">
+  Horizontal Stepper: Example 2</a> by Ahmad Shadeed (<a href="https://codepen.io/shadeed">@shadeed</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+
+<h2 id="vertical-stepper-example-3">Vertical Stepper: Example 3</h2>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-3.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>This is similar to the initial example, but the direction is vertical. I will use flexbox to layout the items.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">"c-stepper"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"c-stepper__item"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"c-stepper__content"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"c-stepper__title"</span><span class="nt">&gt;</span>Step 2<span class="nt">&lt;/h3&gt;</span>
+            <span class="nt">&lt;p&gt;</span>Some desc text<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="c">&lt;!-- Other steps --&gt;</span>
+<span class="nt">&lt;/ol&gt;</span>
+</code></pre></div></div>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper__item</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="py">gap</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="py">--size</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">);</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">);</span>
+    <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="no">lightgrey</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now to the interesting part, which is the separator line. The line should be a bit taller than the content. How we can achieve that while avoid using fixed height or margin?</p>
+
+<p>We can add a large <code class="highlighter-rouge">padding-bottom</code> for that purpose.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper__item</span> <span class="p">{</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">relative</span><span class="p">;</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="py">gap</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+    <span class="nl">padding-bottom</span><span class="p">:</span> <span class="m">4rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">transform</span><span class="p">:</span> <span class="n">translateX</span><span class="p">(</span><span class="m">1.5rem</span><span class="p">);</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">2px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#e0e0e0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To create a space between the separator line and the numbers, we can apply the same formula used in the horizontal stepper example or simply use <code class="highlighter-rouge">top</code> and <code class="highlighter-rouge">bottom</code> properties. Thanks to <a href="https://twitter.com/DrMonochromer/status/1433087452776910849">monochromer</a> for pointing out about using the <code class="highlighter-rouge">bottom</code> property.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-3-1.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-stepper</span> <span class="p">{</span>
+    <span class="py">--size</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+    <span class="py">--spacing</span><span class="p">:</span> <span class="m">0.5rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-stepper__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="n">calc</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">)</span> <span class="err">+</span> <span class="n">var</span><span class="p">(</span><span class="n">--spacing</span><span class="p">));</span>
+    <span class="nl">transform</span><span class="p">:</span> <span class="n">translateX</span><span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="n">--size</span><span class="p">)</span> <span class="p">/</span> <span class="m">2</span><span class="p">));</span>
+    <span class="nl">bottom</span><span class="p">:</span> <span class="n">var</span><span class="p">(</span><span class="n">--spacing</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With that, we can have spacing between the line and the circle.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-3-2.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="LYLGgev" data-user="shadeed" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/shadeed/pen/LYLGgev">
+  Vertical Stepper: Example 1</a> by Ahmad Shadeed (<a href="https://codepen.io/shadeed">@shadeed</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+
+<h2 id="vertical-stepper-example-4">Vertical Stepper: Example 4</h2>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-4.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>This might not look like a stepper, it’s more of a timeline. Regardless of the naming, implementing this one can be done using flexbox.</p>
+
+<p>First, the HTML markup looks like the below. Notice that the elements are ordered as per their semantics and importance, not as per the design mockup.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;ol</span> <span class="na">class=</span><span class="s">"c-timeline"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"c-timeline__item"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"c-timeline__content"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"c-timeline__title"</span><span class="nt">&gt;</span>Paris<span class="nt">&lt;/h3&gt;</span>
+            <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"c-timeline__desc"</span><span class="nt">&gt;</span>On time<span class="nt">&lt;/p&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;time</span> <span class="na">class=</span><span class="s">"c-timeline__time"</span><span class="nt">&gt;</span>10:03<span class="nt">&lt;/time&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+    <span class="c">&lt;!-- Other items --&gt;</span>
+<span class="nt">&lt;/ol&gt;</span>
+</code></pre></div></div>
+
+<p>Here is the basic CSS.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-timeline__item</span> <span class="p">{</span>
+    <span class="nl">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+    <span class="py">gap</span><span class="p">:</span> <span class="m">1.5rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-timeline__content</span> <span class="p">{</span>
+    <span class="nl">order</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+    <span class="c">/* Reorder the content as per the design. */</span>
+    <span class="nl">padding-bottom</span><span class="p">:</span> <span class="m">3rem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With that, we will have the following result. Good start!</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-4-2.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>Next, we want to decide on where to include the separator line and the little circle. I thought that the <code class="highlighter-rouge">.c-timeline__content</code> is perfect for that job. We can use two pseudo-elements for both the separator and circle.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* The separator line */</span>
+<span class="nc">.c-timeline__item</span><span class="nd">:not</span><span class="o">(</span><span class="nd">:last-child</span><span class="o">)</span> <span class="nc">.c-timeline__content</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">right</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">2px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#d3d3d3</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* The circle */</span>
+<span class="nc">.c-timeline__content</span><span class="nd">:after</span> <span class="p">{</span>
+    <span class="nl">content</span><span class="p">:</span> <span class="s1">""</span><span class="p">;</span>
+    <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+    <span class="nl">left</span><span class="p">:</span> <span class="m">-12px</span><span class="p">;</span>
+    <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">width</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+    <span class="nl">height</span><span class="p">:</span> <span class="m">20px</span><span class="p">;</span>
+    <span class="nl">background-color</span><span class="p">:</span> <span class="m">#fff</span><span class="p">;</span>
+    <span class="nl">z-index</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+    <span class="nl">border</span><span class="p">:</span> <span class="m">2px</span> <span class="nb">solid</span> <span class="m">#d3d3d3</span><span class="p">;</span>
+    <span class="nl">border-radius</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-4-3.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>Next, we need to limit the width of the time element. Also, the timeline content should fill the rest of the available space, thus we will use <code class="highlighter-rouge">flex: 1</code>.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-timeline__time</span> <span class="p">{</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">100px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.c-timeline__content</span> <span class="p">{</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The next step is to align the <code class="highlighter-rouge">c-timeline__time</code> content to the right, or the <code class="highlighter-rouge">end</code> in the <a href="https://ishadeed.com/article/css-logical-properties/">logical CSS</a> world.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-timeline__time</span> <span class="p">{</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="n">end</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-4-4.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>I want to highlight an important bit regarding the time of each item. In some cases, we don’t have control over the content an author might add a very long content either on purpose or by mistake.</p>
+
+<p>By default, flex items won’t shrink below their minimum content size. If the <code class="highlighter-rouge">.c-timeline__time</code> element has a very long content, it will look like this even though it has <code class="highlighter-rouge">flex: 0 0 100px</code>.</p>
+
+<figure>
+    
+        <img src="../../assets/stepper/stepper-h-eg-4-5.jpg" alt="" />
+    
+    
+        <figcaption></figcaption>
+    
+</figure>
+
+<p>To fix that, we need to force flexbox to shrink below their minimum content size by adding <code class="highlighter-rouge">min-width: 0</code> to the element, and also <code class="highlighter-rouge">overflow-wrap</code> to break long words.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.c-timeline__time</span> <span class="p">{</span>
+    <span class="nl">flex</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">100px</span><span class="p">;</span>
+    <span class="nl">text-align</span><span class="p">:</span> <span class="n">end</span><span class="p">;</span>
+    <span class="nl">min-width</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nl">overflow-wrap</span><span class="p">:</span> <span class="n">break-word</span><span class="p">;</span>
+    <span class="nl">padding-bottom</span><span class="p">:</span> <span class="m">1rem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="xxrZyvo" data-user="shadeed" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/shadeed/pen/xxrZyvo">
+  Vertical Stepper: Example 2</a> by Ahmad Shadeed (<a href="https://codepen.io/shadeed">@shadeed</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+
+<p>I hope you enjoyed the article. Thanks for reading!</p>
+
+	</div>
+
+	<div class="o-wrapper o-wrapper--small">
+		<div class="coffee" style="padding: 2rem;
+		background: #f7f7f7;
+		margin-bottom: 2rem;
+		border-radius: 5px;
+		line-height: 1.4;">
+			Do you like my content? You can support and <a href="https://www.buymeacoffee.com/EmbDfQoF6" style="color: #3863d9;">buy me a coffee</a>. Thank you so much!
+		</div>
+	</div>
+
+	<div class="o-wrapper o-wrapper--small">
+		<section class="c-section--more">
+			<h2 class="visually-hidden">More articles</h2>
+			<div class="c-section--more__content">
+				<div class="c-section--more__item prev">
+					
+					<h3>Previous Article</h3>
+					<a class="c-block--more__link prev" href="/article/star-rating-svg/"> Star Rating: An SVG Solution</a>
+					
+				</div>
+				<div class="c-section--more__item next">
+					
+					<h3>Next Article</h3>
+					<a class="c-block--more__link next" href="/article/less-absolute-positioning-modern-css/"> Less Absolute Positioning With Modern CSS </a>
+					
+				</div>
+			</div>
+		</section>
+
+		<p class="rss-feed">Subscribe to my <a class="u-link" href="https://ishadeed.com/feed.xml">RSS feed</a></p>
+
+		<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+	#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+	/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+</style>
+<div id="mc_embed_signup">
+<form action="https://ishadeed.us8.list-manage.com/subscribe/post?u=30743dd25d7a680eed0b535d3&amp;id=38d30cb86b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+	<h2 class="mc-title">Subscribe to the newsletter</h2>
+	<p class="mc-desc">Get the latest CSS articles published by Ahmad Shadeed, a UX Designer and Front End Developer.</p>
+	<div class="mc-input-group">
+		<div class="mc-field-group">
+			<label for="mce-EMAIL">Email Address</label>
+			<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+		</div>
+		<div class="mc-field-group">
+			<label for="mce-FNAME">First Name </label>
+			<input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+		</div>
+	</div>
+	<div id="mce-responses">
+		<div class="response" id="mce-error-response" style="display:none">erorr</div>
+		<div class="response" id="mce-success-response" style="display:none">success</div>
+	</div>
+	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_30743dd25d7a680eed0b535d3_38d30cb86b" tabindex="-1" value=""></div>
+	<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+	
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+
+	
+	</div>
+
+	
+
+	<footer class="post-footer">
+  <div class="post-author">
+    <img src="../../assets/shadeed.jpg" alt="Avatar: Ahmad Shadeed" class="post-author__avatar">
+    <div>
+      <h2 class="post-author__name">Ahmad Shadeed</h2>
+      <p class="post-author__bio">UI, UX Designer &amp; Front-End Developer. <strong>You can <a href="/hire-me">hire me</a></strong>. I Write about web accessibility on <a href="https://twitter.com/weba11ymatters">@weba11ymatters</a> and share articles on my blog.</p>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<footer class="c-section c-section--footer full footer-simple">
+  <div class="footer-row">
+    <h3 class="c-section__title footer-copyrights">
+      The online studio of Ahmad Shadeed.
+      <span>© 2012–2021 Copyright Ahmad Shadeed. All rights reserved.</span>
+    </h3>
+
+    <div>
+      <h3 class="social-title">Find me online</h3>
+      <ul>
+        <li>
+          <a
+            href="https://www.instagram.com/ishadeed"
+            class="instagram"
+            target="_blank"
+            >Instagram</a
+          >
+        </li>
+        <li>
+          <a href="https://twitter.com/shadeed9" class="twitter">Twitter</a>
+        </li>
+        <li>
+          <a href="https://www.behance.net/ishadeed" class="behance">Behance</a>
+        </li>
+        <li>
+          <a href="https://codepen.io/shadeed/" class="linkedin">CodePen</a>
+        </li>
+        <li>
+          <a href="https://github.com/shadeed" class="instagram">Github</a>
+        </li>
+        <li><a href="https://ishadeed.com/feed.xml">RSS Feed</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="#header" class="go-up" aria-label="Go up">
+    <svg width="20" height="20" viewBox="0 0 24 24">
+      <use xlink:href="#arrow-up"></use>
+    </svg>
+  </a>
+</footer>
+
+
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        (i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
+      );
+
+      ga("create", "UA-42479265-2", "auto");
+      ga("send", "pageview");
+    </script>
+    <script>
+      var menuToggle = document.querySelector(".c-nav__toggle");
+      var navWrapper = document.querySelector(".c-nav__wrapper");
+      var closeNav = document.querySelector(".c-nav__close");
+
+      menuToggle.addEventListener("click", function () {
+        navWrapper.classList.add("is-active");
+      });
+
+      closeNav.addEventListener("click", function () {
+        navWrapper.classList.remove("is-active");
+      });
+
+      /*let targetElement = document.querySelector('.c-section--footer');
+    let cricketsAudio = document.querySelector('#crickets');
+
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0
+    };
+
+    function callback (entries, observer) {
+        //console.log(observer);
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                cricketsAudio.play();
+            } else {
+                cricketsAudio.pause();
+            }
+        });
+    }
+
+    let observer = new IntersectionObserver(callback, options);
+    observer.observe(targetElement);*/
+    </script>
+  </body>
+</html>

@@ -1,0 +1,335 @@
+
+
+<!doctype html>
+<html lang="en-US">
+<head data-template-path="https://hacks.mozilla.org/wp-content/themes/Hax">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="w2ocEMd5yV9IsGCjhq-7ls67r4VH-Ob6oWdiZpqjN8U">
+
+  
+  <meta name="title" content="Lots to see in Firefox 93! – Mozilla Hacks - the Web developer blog">
+
+    <meta property="og:site_name" content="Mozilla Hacks &#8211; the Web developer blog">
+  <meta property="og:url" content="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93">
+  <meta property="og:title" content="Lots to see in Firefox 93! – Mozilla Hacks - the Web developer blog">
+  <meta property="og:description" content="Firefox 93 comes with lots of lovely updates including AVIF image format support, filling of XFA-based forms in its PDF viewer and protection.">
+  <meta property="og:image" content="https://hacks.mozilla.org/files/2021/04/firefox-generic-hero-2.png">
+  <meta property="og:image:width" content="1643">
+  <meta property="og:image:height" content="924">
+
+    <meta property="twitter:title" content="Lots to see in Firefox 93! – Mozilla Hacks - the Web developer blog">
+  <meta property="twitter:description" content="Firefox 93 comes with lots of lovely updates including AVIF image format support, filling of XFA-based forms in its PDF viewer and protection.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://hacks.mozilla.org/files/2021/04/firefox-generic-hero-2.png">
+  <meta name="twitter:site" content="@mozhacks">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
+
+  <script type="text/javascript">
+    window.hacks = {};
+    // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+    var removeUtms  =   function(){
+        var l = window.location;
+        if( l.hash.indexOf( "utm" ) != -1 ){
+            var anchor = l.hash.match(/#(?!utm)[^&]+/);
+            anchor  =   anchor? anchor[0]: '';
+            if(!anchor && window.history.replaceState){
+                history.replaceState({},'', l.pathname + l.search);
+            } else {
+                l.hash = anchor;
+            }
+        };
+    };
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35433268-8'],
+              ['_setAllowAnchor', true]);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push( removeUtms );
+    (function(d, k) {
+      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
+    })(document, 'script');
+  </script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="blog-name" content="Mozilla Hacks - the Web developer blog" />
+<link rel="alternate" hreflang="en" href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/" />
+<link rel="alternate" hreflang="x-default" href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Lots to see in Firefox 93! - Mozilla Hacks - the Web developer blog</title>
+	<meta name="description" content="Firefox 93 comes with lots of lovely updates including AVIF image format support, filling of XFA-based forms in its PDF viewer and protection." />
+	<link rel="canonical" href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Ruth John" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="3 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://hacks.mozilla.org/#website","url":"https://hacks.mozilla.org/","name":"Mozilla Hacks - the Web developer blog","description":"hacks.mozilla.org","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://hacks.mozilla.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#primaryimage","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2021/04/firefox-generic-hero-2.png","contentUrl":"https://hacks.mozilla.org/files/2021/04/firefox-generic-hero-2.png","width":1643,"height":924},{"@type":"WebPage","@id":"https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#webpage","url":"https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/","name":"Lots to see in Firefox 93! - Mozilla Hacks - the Web developer blog","isPartOf":{"@id":"https://hacks.mozilla.org/#website"},"primaryImageOfPage":{"@id":"https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#primaryimage"},"datePublished":"2021-10-08T16:45:37+00:00","dateModified":"2021-10-11T15:17:16+00:00","author":{"@id":"https://hacks.mozilla.org/#/schema/person/ff65ba8b46e92108a6a113970db971ca"},"description":"Firefox 93 comes with lots of lovely updates including AVIF image format support, filling of XFA-based forms in its PDF viewer and protection.","breadcrumb":{"@id":"https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/"]}]},{"@type":"BreadcrumbList","@id":"https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hacks.mozilla.org/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://hacks.mozilla.org/articles/"},{"@type":"ListItem","position":3,"name":"Lots to see in Firefox 93!"}]},{"@type":"Person","@id":"https://hacks.mozilla.org/#/schema/person/ff65ba8b46e92108a6a113970db971ca","name":"Ruth John","image":{"@type":"ImageObject","@id":"https://hacks.mozilla.org/#personlogo","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2021/07/rumyra-96x96.png","contentUrl":"https://hacks.mozilla.org/files/2021/07/rumyra-96x96.png","caption":"Ruth John"},"description":"Ruth John works as a Technical Writer at Mozilla. A recent addition to the MDN team, she's a big fan of web technologies, and not only enjoys writing about them, but building demos with them as well.","sameAs":["https://twitter.com/Rumyra"],"url":"https://hacks.mozilla.org/author/rjohnmozilla-com/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//blog.mozilla.org' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Feed" href="https://hacks.mozilla.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Comments Feed" href="https://hacks.mozilla.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Lots to see in Firefox 93! Comments Feed" href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/feed/" />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='wpml-legacy-post-translations-0-css'  href='//blog.mozilla.org/hacks/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-post-translations/style.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/analytics.js?ver=5.8.2' id='analytics-js'></script>
+<link rel="https://api.w.org/" href="https://hacks.mozilla.org/wp-json/" /><link rel="alternate" type="application/json" href="https://hacks.mozilla.org/wp-json/wp/v2/posts/47407" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hacks.mozilla.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://hacks.mozilla.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='shortlink' href='https://hacks.mozilla.org/?p=47407' />
+<link rel="alternate" type="application/json+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F10%2Flots-to-see-in-firefox-93%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F10%2Flots-to-see-in-firefox-93%2F&#038;format=xml" />
+<meta name="generator" content="WPML ver:4.5.1 stt:59,61,1,2;" />
+<link rel="shortcut icon" type="image/x-icon" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" /><style>#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}li#wp-admin-bar-site-name a { background: url( "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }
+</style></head>
+<body>
+  <div class="outer-wrapper">
+    <header class="section section--fullwidth header">
+      <div class="masthead row">
+        <div class="branding block block--3">
+          <h1>
+            <a href="https://hacks.mozilla.org">
+              <img class="branding__logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
+        </div>
+        <div class="search block block--2">
+          <form class="search__form" method="get" action="https://hacks.mozilla.org/">
+            <input type="search" name="s" class="search__input" placeholder="Search Mozilla Hacks" value="">
+            <i class="fa fa-search search__badge"></i>
+          </form>
+        </div>
+        <nav class="social">
+          <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i><span>Hacks on YouTube</span></a>
+          <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>@mozhacks on Twitter</span></a>
+          <a class="social__link rss" href="https://hacks.mozilla.org/feed/" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><span>Hacks RSS Feed</span></a>
+          <a class="fx-button" href="https://www.mozilla.org/firefox/download/thanks/?utm_source=hacks.mozilla.org&utm_medium=referral&utm_campaign=header-download-button&utm_content=header-download-button">Download Firefox</a>
+        </nav>
+      </div>
+    </header>
+
+  
+<div id="content-head" class="section">
+  <h1 class="post__title">Lots to see in Firefox 93!</h1>
+  <div class="byline">
+    <h3 class="post__author">
+                      <img alt='' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2021/07/rumyra-64x64.png' srcset='https://hacks.mozilla.org/files/2021/07/rumyra-128x128.png 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>        By
+                                        <a class="url" href="https://hacks.mozilla.org/author/rjohnmozilla-com/">Ruth John</a>                            </h2>
+    <div class="post__meta">
+      Posted on
+      <abbr class="published" title="2021-10-08T09:45:37-07:00">
+        October 8, 2021      </abbr>
+      <span class="entry-cat">in
+        <a href="https://hacks.mozilla.org/category/developer-tools/" rel="category tag" title="View all posts in Developer Tools" >Developer Tools</a>, <a href="https://hacks.mozilla.org/category/featured/" rel="category tag" title="View all posts in Featured Article" >Featured Article</a>, <a href="https://hacks.mozilla.org/category/firefox/" rel="category tag" title="View all posts in Firefox" >Firefox</a>,  and <a href="https://hacks.mozilla.org/category/javascript/" rel="category tag" title="View all posts in JavaScript" >JavaScript</a>      </span>
+            <div class="socialshare" data-type="bubbles"></div>
+    </div>
+  </div>
+</div>
+
+<main id="content-main" class="section article">
+  <article class="post" role="article">
+    <p>Firefox 93 comes with lots of lovely updates including AVIF image format support, filling of XFA-based forms in its PDF viewer and protection against insecure downloads by blocking downloads relying on insecure connections.</p>
+<p>Web developers are now able to use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Class_static_initialization_blocks">static initialization blocks</a> within JavaScript classes, and there are some Shadow DOM and Custom Elements updates. The SHA-256 algorithm is now supported for <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication">HTTP Authentication</a> using digests. This allows much more secure authentication than previously available using the MD5 algorithm.</p>
+<p>This blog post provides merely a set of highlights; for all the details, check out the following:</p>
+<ul>
+<li aria-level="1"><a href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/93">Firefox 93 for developers on MDN</a></li>
+<li aria-level="1"><a href="https://www.mozilla.org/en-US/firefox/93.0/releasenotes/">Firefox 93 end-user release notes</a></li>
+</ul>
+<h2><b>AVIF Image Support</b></h2>
+<p>The AV1 Image File Format (AVIF) is a powerful, open source, royalty-free file format. AVIF has the potential to become the &#8220;next big thing&#8221; for sharing images in web content. It offers state-of-the-art features and performance, without the encumbrance of complicated licensing and patent royalties that have hampered comparable alternatives.</p>
+<p>It offers much better lossless compression compared to PNG or JPEG formats, with support for higher color depths and transparency. As support is not yet comprehensive, you should include fallbacks to formats with better browser support (i.e. using the <code>&lt;picture&gt;</code> element).</p>
+<p>Read more about the AVIF image format in the<a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types#avif_image"> Image file type and format guide on MDN</a>.</p>
+<h2><b>Static initialization blocks</b></h2>
+<p>Support for static initialization blocks in JavaScript classes is now available in Firefox 93. This enables more flexibility as it allows developers to run blocks of code when initializing static fields. This is handy if you want to set multiple fields from a single value or evaluate statements.</p>
+<p>You can have multiple static blocks within a class and they come with their own scope. As they are declared within a class, they have access to a class&#8217;s private fields. You can find more information about<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Class_static_initialization_blocks"> static initialization blocks on MDN</a>.</p>
+<h2><b>Custom Elements &amp; </b><b>Shadow DOM</b><b></b></h2>
+<p>In Firefox 92 the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/assign">Imperative Slotting API</a> was implemented giving developers more control over assigning slots within a custom element. Firefox 93 included support for the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/slotchange_event"><code>slotchange</code></a> event that fires when the nodes within a slot change.</p>
+<p>Also implemented in Firefox 93 is the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/attachInternals"><code>HTMLElement.attachInternals()</code></a> method. This returns an instance of <code>ElementInternals</code>, allowing control over an HTML element&#8217;s internal features. The <a href="https://developer.mozilla.org/en-US/docs/Web/API/ElementInternals/shadowRoot"><code>ElementInternals.shadowRoot</code></a> property was also added, meaning developers can gain access to the shadow root of elements, even if they themselves didn&#8217;t create the element.</p>
+<p>If you want to learn more about Custom Elements and the Shadow DOM, check out<a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements"> MDN&#8217;s guides on the topics</a>.</p>
+<h2><b>Other highlights</b></h2>
+<p>A few other features worth noting include:</p>
+<ul>
+<li aria-level="1">The <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/meter_role">ARIA meter role</a> has been implemented.</li>
+<li aria-level="1">The UI for <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local"><code>&lt;input type="datetime-local"&gt;</code></a> has been added.</li>
+<li aria-level="1">In CSS, the <code>small-caps</code> keyword is is now supported for the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-synthesis"><code>font-synthesis</code></a> property.</li>
+<li aria-level="1">The <code>options</code> object parameter for the <a href="https://developer.mozilla.org/en-US/docs/Web/API/createImageBitmap"><code>createImageBitmap()</code></a> method now supports <code>imageOrientation</code> and <code>premultiplyAlpha</code> properties.</li>
+</ul>
+    <section class="about">
+                                <h2 class="about__header">About
+                          Ruth John                      </h3>
+                      <p>Ruth John works as a Technical Writer at Mozilla. A recent addition to the MDN team, she's a big fan of web technologies, and not only enjoys writing about them, but building demos with them as well.</p>
+                    <ul class="author-meta fa-ul"><li><i class="fa-li fa fa-twitter"></i><a href="http://twitter.com/Rumyra" class="twitter" rel="me">@Rumyra</a></li></ul>            <p><a class="url" href="https://hacks.mozilla.org/author/rjohnmozilla-com/">More articles by Ruth John&hellip;</a></p>
+                  </section>
+  </article>
+  <section class="promo">
+    <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+  <h2 class="heading">Discover great resources for web development</h2>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
+  <input id="fmt" name="fmt" value="H" type="hidden">
+  <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
+
+  <div id="newsletterErrors" class="newsletter__errors"></div>
+
+  <div id="newsletterEmail" class="form__row">
+    <label for="newsletterEmailInput" class="offscreen">E-mail</label>
+    <input id="newsletterEmailInput" name="email" class="newsletter__input" required="" placeholder="you@example.com" size="30" type="email">
+  </div>
+
+  <div id="newsletterPrivacy" class="form__row form__fineprint">
+    <input id="newsletterPrivacyInput" name="privacy" required="" type="checkbox">
+    <label for="newsletterPrivacyInput">
+      I'm okay with Mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/">Privacy Policy</a>.
+    </label>
+  </div>
+  <button id="newsletter-submit" type="submit" class="button positive">Sign up now</button>
+</form>
+<div id="newsletterThanks" class="newsletter newsletter--thanks block block--1 block--polite hidden">
+  <h2 class="heading">Thanks! Please check your inbox to confirm your subscription.</h2>
+  <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us.
+  </p>
+</div>
+  </section>
+  
+
+<section class="discussion">
+  <hr class="dino">
+  <div class="comments">
+    <header class="comments__head">
+      <h3>3 comments</h3>
+    </header>
+
+          <ol class="comments__list" class="hfeed">
+      
+ <li id="comment-27246" class="comment even thread-even depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Thomas</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Is there a spelling mistake here, in &#8220;synthesis&#8221;? </p>
+<p>&#8220;supported for the font-sythesis property.&#8221;</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#comment-27246" rel="bookmark" title="Permanent link to this comment by Thomas"><abbr class="published" title="2021-10-09">October 9th, 2021</abbr> at 00:32</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27249" class="comment byuser comment-author-rjohnmozilla-com bypostauthor odd alt depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">Ruth John</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Yes &#8211; thanks Thomas! Updated :)</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#comment-27249" rel="bookmark" title="Permanent link to this comment by Ruth John"><abbr class="published" title="2021-10-11">October 11th, 2021</abbr> at 08:19</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+
+ <li id="comment-27274" class="comment even thread-odd thread-alt depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Abayomi Oyewumi</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Great to see firefox always pulling the strides.<br />
+You guys deserve more clapps</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/lots-to-see-in-firefox-93/#comment-27274" rel="bookmark" title="Permanent link to this comment by Abayomi Oyewumi"><abbr class="published" title="2021-10-19">October 19th, 2021</abbr> at 14:37</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+      </ol>
+      </div>
+
+<p class="comments__closed"><b>Comments are closed for this article.</b></p>
+
+
+</main><!-- /#content-main -->
+
+  
+
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        <p class="block block--1">
+          Except where otherwise noted, content on this site is licensed
+          under the
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
+          or any later version.
+        </p>
+        <img class="footer__logo" alt="the Mozilla dino logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/dino.svg">
+      </div>
+    </footer>
+  </div>
+  <link rel='stylesheet' id='hljstheme-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/styles/solarized-light.css?ver=0.6.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.common.pack.js?ver=0.6.2' id='hljs_preload-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.custom.pack.js?ver=0.6.2' id='hljs-js'></script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+  <script>
+    // External links should open in a new tab.
+    (function () {
+      var postLinks = document.querySelectorAll('#content-main a');
+
+      var origin = location.origin;
+
+      for (var i = 0; i < postLinks.length; i++) {
+        var link = postLinks[i];
+        if (link.origin !== origin && !link.getAttribute('target')) {
+          link.setAttribute('target', '_blank');
+        }
+      }
+    })();
+
+    window.addEventListener('load', function () {
+      if (document.querySelector('#newsletterForm')) {
+        var script = document.createElement('script');
+        var path = document.head.getAttribute('data-template-path');
+        script.setAttribute('src', path + '/js/newsletter.js');
+        document.head.appendChild(script);
+      }
+    });
+  </script>
+</body>
+</html>

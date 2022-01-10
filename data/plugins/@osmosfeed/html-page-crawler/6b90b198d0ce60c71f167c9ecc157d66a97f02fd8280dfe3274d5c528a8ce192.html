@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<title>The Never-Ending Job of Selling Design Systems &#8211; A List Apart</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="A List Apart &raquo; Feed" href="https://alistapart.com/main/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/alistapart.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.3"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.3' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-monetize-css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/frontend/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-messaging-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/messages/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/style.css?ver=1636974319' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-prism-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.css?ver=1.0' type='text/css' media='all' />
+<!-- `sharedaddy` is included in the concatenated jetpack.css -->
+<link rel='stylesheet' id='social-logos-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=10.5-beta' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/css/jetpack.css?ver=10.5-beta' type='text/css' media='all' />
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://alistapart.com/wp-json/" /><link rel="alternate" type="application/json" href="https://alistapart.com/wp-json/wp/v2/article/7172707" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://alistapart.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://alistapart.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://alistapart.com/article/selling-design-systems/" />
+<link rel="alternate" type="application/json+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fselling-design-systems%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fselling-design-systems%2F&#038;format=xml" />
+<meta name="monetization" content="$ilp.uphold.com/Kh7NgDU9kqp3" />
+<link rel="monetization" href="https://ilp.uphold.com/Kh7NgDU9kqp3" />
+<style type='text/css'>img#wpstats{display:none}</style>
+			<style type="text/css">
+						.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+
+						</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The Never-Ending Job of Selling Design Systems" />
+<meta property="og:url" content="https://alistapart.com/article/selling-design-systems/" />
+<meta property="og:description" content="You didn’t start your web career to be a politician or salesperson. But if you want to work on design systems, you have no choice. Ben Callahan shows you how to convince executives to fund the init…" />
+<meta property="article:published_time" content="2021-02-11T15:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-09T17:37:00+00:00" />
+<meta property="og:site_name" content="A List Apart" />
+<meta property="og:image" content="https://149572954.v2.pressablecdn.com/wp-content/uploads/2021/02/ala-ds-efficiency-1-e1612891151253.png" />
+<meta property="og:image:width" content="1023" />
+<meta property="og:image:height" content="575" />
+<meta property="og:image:alt" content="The Design System Efficiency Curve. Line graph illustrating the curvilinear relationship of productivity over time in terms of overall efficiency, in situations of transition from having no design system in place through in-process set up of the system, to eventually having an established design system. Productivity is represented on the y-axis and Time on the x-axis. Starting at 0,0 productivity dips down as the team diverts resources to set up the system, but eventually surpasses standard productivity once the system is in place." />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@alistapart" />
+<meta name="twitter:text:title" content="The Never-Ending Job of Selling Design Systems" />
+<meta name="twitter:image" content="https://149572954.v2.pressablecdn.com/wp-content/uploads/2021/02/ala-ds-efficiency-1-e1612891151253.png?w=640" />
+<meta name="twitter:image:alt" content="The Design System Efficiency Curve. Line graph illustrating the curvilinear relationship of productivity over time in terms of overall efficiency, in situations of transition from having no design system in place through in-process set up of the system, to eventually having an established design system. Productivity is represented on the y-axis and Time on the x-axis. Starting at 0,0 productivity dips down as the tea…" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=270%2C270&#038;ssl=1" />
+<link rel="stylesheet" type="text/css" id="wp-custom-css" href="https://alistapart.com/?custom-css=2a4ef18516" /></head>
+
+<body class="article-template-default single single-article postid-7172707 wp-custom-logo monetization-not-initialized coil-no-gating coil-hide-excerpt article-selling-design-systems" itemscope itemtype="http://schema.org/Article">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<a href="https://alistapart.com/" class="custom-logo-link" rel="home"><img width="960" height="98" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?fit=960%2C98&amp;ssl=1" class="custom-logo" alt="A List Apart" srcset="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?w=960&amp;ssl=1 960w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=300%2C31&amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=768%2C78&amp;ssl=1 768w" sizes="(max-width: 960px) 100vw, 960px" /></a>				<p class="site-title"><a href="https://alistapart.com/" rel="home"  itemscope itemtype="http://schema.org/ImageObject">A List Apart</a></p>
+								<p class="site-description">For people who make websites</p>
+					</div><!-- .site-branding -->
+
+		<nav id="site-navigation" class="main-navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="screen-reader-text">Primary Menu</span></button>
+			<div class="menu-site-header-container"><ul id="primary-menu" class="menu"><li id="menu-item-6000493" class="ala-home-url menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6000493"><a href="https://alistapart.com" itemprop="url"><span itemprop="name">Home</span></a></li>
+<li id="menu-item-6000494" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-6000494"><a href="https://alistapart.com/articles/" itemprop="url"><span itemprop="name">Articles</span></a></li>
+<li id="menu-item-6000495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000495"><a href="https://alistapart.com/events/" itemprop="url"><span itemprop="name">Events</span></a></li>
+<li id="menu-item-6000496" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000496"><a href="https://alistapart.com/topics/" itemprop="url"><span itemprop="name">Topics</span></a></li>
+<li id="menu-item-6000497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000497"><a href="https://alistapart.com/about/contribute/" itemprop="url"><span itemprop="name">Write for Us</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="mlp-language-nav"><span itemprop="name">Language (English) <i class="arrow-down"></i></span></a><ul class="sub-menu mlp-languages"><li class="site-id-"2" mlp-language-nav-item menu-item menu-item-type-mlp_language menu-item-object-mlp_language"><a rel="alternate" href="https://alistapart.com/it" itemprop="url"><span itemprop="name">Italian</span></a></li></ul></li></ul></div>
+			<form role="search" method="get" class="search-form" action="https://alistapart.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>		</nav><!-- #site-navigation -->
+
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+			
+<article id="post-7172707" class="post-7172707 article type-article status-publish hentry category-business category-design category-web-strategy">
+
+	<figure class="hero-wide" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+		
+	</figure>
+
+	<header class="entry-header">
+		
+		<h1 class="entry-title" itemprop="headline">The Never-Ending Job of Selling Design Systems</h1>		<div class="entry-meta">
+			<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/ben-callahan/" itemprop="url"> <span itemprop="name">Ben Callahan</span></a></span></span><span class="posted-on"><time class="entry-date published" datetime="2021-02-11T10:00:00-05:00">February 11, 2021</time><time class="updated" datetime="2021-02-09T12:37:00-05:00">February 09, 2021</time></span>			<div class="entry-topic">
+				<span class="cat-links">Published in <a href="https://alistapart.com/blog/topic/business/" rel="category tag">Business</a>, <a href="https://alistapart.com/blog/topic/design/" rel="category tag">Design</a>, <a href="https://alistapart.com/blog/topic/web-strategy/" rel="category tag">Web Strategy</a></span>			</div>
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	
+	
+	
+	<div class="entry-content">
+		
+<p>I’m willing to bet that you probably didn’t start your web career because you wanted to be a politician or a salesperson. But here’s the cold, hard truth, friend: if you want to work on design systems, you don’t have a choice. Someone has to pay for your time, and that means someone has to sell what you do to an audience that speaks value in an entirely different language.&nbsp;</p>		<div class="aside-breaker"><span>Article Continues Below</span></div>
+		<div class="ala-single-sidebar-wrapper">
+			<span class="screen-reader-text">Article Continues Below</span>
+			<aside class="ala-single-sidebar-minutiae">
+				<span class="ala-comment-bubble"></span>					<div class="ala-share">
+					<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 id="section1" class="sd-title">Share this:<a class="subhead-anchor" href="#section1">#section1</a></h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-7172707" class="share-facebook sd-button share-icon no-text" href="https://alistapart.com/article/selling-design-systems/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-7172707" class="share-twitter sd-button share-icon no-text" href="https://alistapart.com/article/selling-design-systems/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+										<section id="custom_html-6" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.patreon.com/alistapart" class="patreon-bubble">Become a patron</a></div></section>					
+							</aside>
+
+			<aside class="ala-single-sidebar-1">
+				<section id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div>
+
+<div class="banner ala-banner">
+	<a href="https://abookapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/logo_a-book-apart-color.png?w=960&#038;ssl=1" alt="A Book Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>A Book Apart:<br> Brief books for people who make websites.</p>		
+		</a>
+</div>
+
+<div class="banner">
+	<a href="https://aneventapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/AEA_2017_80x80_2.png?w=960&#038;ssl=1" alt="An Event Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>An Event Apart:<br> 3 days of design, code, and content for web &amp; UX designers &amp; devs.</p>		
+		</a>
+</div></div></section>			</aside>
+
+		</div>
+		
+
+
+
+<p>It’s not exactly easy to connect the benefits of a design system directly to revenue. With an ecomm site, you can add a feature and measure the impact. With other conversion-based digital experiences, if your work is good, your customers will convert more. But because a design system is (usually) an internal tool, it’s just harder to connect those dots.&nbsp;</p>
+
+
+
+<p>This article boils down the methods I’ve put into practice convincing executives not just to fund the initial push of design system work, but to <em>keep funding it</em>. I’ll share how I’ve adjusted the language I use to describe common design system benefits, allowing me to more clearly communicate with decision makers.</p>
+
+
+
+<h2 id="section2">Know your audience<a class="subhead-anchor" href="#section2">#section2</a></h2>
+
+
+
+<p>In my experience, design systems can be owned by information technology teams, marketing and communications departments, or (best case scenario) cross-disciplinary teams that bring many specialists together. The first thing you need to do is determine where the system lives, as in which department owns and cares for it.&nbsp;</p>
+
+
+
+<p>If it’s part of IT, for example, you need to think like a CIO or an IT Director and speak to their objectives and values. These leaders are typically more <em>internally</em> focused; they’ll filter the value of the design system in terms of the employees of the company. In contrast, if the system belongs to Marketing, put on your CMO or Marketing Director hat. Marketing teams are often <em>externally</em> focused; they think in terms of B2B audiences and end users.&nbsp;</p>
+
+
+
+<p>The way organizations structure the ownership of a design system can be more complex, but let’s use these two paths (internal vs external) as frameworks for building a persuasive case for those owners.</p>
+
+
+
+<h2 id="section3">Internal-orientation motivators<a class="subhead-anchor" href="#section3">#section3</a></h2>
+
+
+
+<p><a href="https://designsystemssurvey.seesparkbox.com/2020/">Based on the research we’ve done since 2018</a>, there are three very specific internal motivators for having a design system:</p>
+
+
+
+<ul><li>Efficiency</li><li>Onboarding</li><li>Scale.</li></ul>
+
+
+
+<h3 id="section4">Efficiency benefit<a class="subhead-anchor" href="#section4">#section4</a></h3>
+
+
+
+<p>Design systems allow for the rapid prototyping of new ideas using existing, production-ready components. They allow teams to reuse design and code, and they allow individuals to focus their creative energy on new problems instead of wasting it on old ones. Executives and decision-makers may abstractly understand all that, but you need to be able to tell them what it will take to realize the efficiency benefit.&nbsp;</p>
+
+
+
+<p>There’s a theoretical maximum to how productive a team can be. When you talk about a design system creating more efficiency in your processes, you’re really talking about raising the ceiling on that max. As happens with so many things in life, though, that comes with a trade-off. Early on, while a team is actually building the system, they won’t be as productive on the rest of their work.</p>
+
+
+
+<p>The efficiency curve looks like this:</p>
+
+
+
+<figure id="figure1" class="wp-block-image size-large"><img loading="lazy" width="960" height="540" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/02/ala-ds-efficiency-1-e1612891151253.png?resize=960%2C540&#038;ssl=1" alt="The Design System Efficiency Curve. Line graph illustrating the curvilinear relationship of productivity over time in terms of overall efficiency, in situations of transition from having no design system in place through in-process set up of the system, to eventually having an established design system. Productivity is represented on the y-axis and Time on the x-axis. Starting at 0,0 productivity dips down as the team diverts resources to set up the system, but eventually surpasses standard productivity once the system is in place." class="wp-image-7172722" data-recalc-dims="1" /><figcaption><em><strong>Figure 1.</strong> With Productivity on the y-axis and Time on the x-axis, the Design System Efficiency Curve dips down at the start as the team ramps up on the system, but eventually surpasses standard productivity once the system is in place.</em></figcaption></figure>
+
+
+
+<p>If you’re talking to an executive, it’s important to acknowledge this dip in productivity.&nbsp;</p>
+
+
+
+<p>Spend some time working out these specific calculations for your organization. For example, you might need four team members for three months to reach a point where the system will save everyone on the team approximately two hours per week. You’re candidly acknowledging the necessary investment while demonstrating the eventual benefits. And make sure to mention that the productivity benefits will continue indefinitely! The math will almost always end up on your side.&nbsp;</p>
+
+
+
+<p>Another critical point to raise is that simply having a design system has a cumulative effect on the efficiency of your teams. Since the system is an internal tool that can be used 1) across multiple products or experiences, 2) by many teams throughout the organization, and 3) in many phases of the product design and development process, you are gaining efficiencies on many levels.&nbsp;</p>
+
+
+
+<p>The team working on in-store kiosks can build their interface with a well-tested set of components. Your UX people can use the system to prototype and test with production-ready code. The people responsible for grooming the backlog know there is a stable pattern library upon which they are building new features or fixing old ones. Anyone looking for answers to what, why, or how your organization designs and builds products will find those answers in the living system.</p>
+
+
+
+<p>The efficiency at each of these (and many other) decision points is how we can raise the ceiling on our <em>total</em> possible efficiency. How this plays out is very different in each organization. I’m here to tell you that part of the work is thinking about how a design system will impact <em>every</em> part of your process—not just design or development.</p>
+
+
+
+<h4 id="section5">What to measure<a class="subhead-anchor" href="#section5">#section5</a></h4>
+
+
+
+<p><strong><em>Action: Measure the cost of productivity with and without a design system.</em></strong></p>
+
+
+
+<p>If you aren’t already, start measuring how productive your team is now. The easiest way to do this is to break your team’s work down into measurable cycles. Once you have a rough idea of how much you can get done in a cycle of work, you’ll be able to compare your efficiency before the system was in place with your efficiency after. This kind of measurable benefit will speak volumes to your executive team.</p>
+
+
+
+<h3 id="section6">Onboarding benefits<a class="subhead-anchor" href="#section6">#section6</a></h3>
+
+
+
+<p>Growth is expensive. When you hire a new team member, you don’t just supply a salary and benefits. You need a computer, a desk, a chair, accounts to all the software/services…the list goes on. And all these expenses hit before your new employee is a fully contributing member of the team. You won’t start to recoup your investment for a few months, at least.&nbsp;</p>
+
+
+
+<p>Design systems can reduce the time it takes your new hire to become a productive contributor. Once you have a healthy design system in place, you’re able to provide an employee with a clearly-defined and effective toolset that is well-documented and can be applied across multiple initiatives. More specifically, assigning new hires to start out working on the design system team will allow them to quickly learn how your organization designs and builds digital products.</p>
+
+
+
+<figure id="figure2" class="wp-block-image size-large"><img loading="lazy" width="960" height="540" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/02/ala-ds-onboarding-e1612891563971.png?resize=960%2C540&#038;ssl=1" alt="Onboarding Model. Diagram illustrating the movement and eventual cycling (depicted by arrows pointing to the right) of individuals in a &quot;Hiring Pool&quot;(represented by a cluster of dots on the left of the graphic) into the DS Team (design system team), represented by a diamond shape in the center of the graphic, then exiting the DS Team to join Other Teams (smaller diamond shapes on the right of the graphic), and finally, back into the DS Team (dashed-line arrow looping below and to the left, back into the DS Team diamond shape)." class="wp-image-7172723" data-recalc-dims="1" /><figcaption><em><strong>Figure 2.</strong> A Model for Onboarding</em>. <em>As you bring people into your organization from your hiring pool, consider having them start on your design system team and then rotate out onto other teams. As you grow, folks who haven’t had a turn on the system team can rotate in as well.</em><br><br></figcaption></figure>
+
+
+
+<p>On the left in <strong>Fig. 2</strong>, you have a pool of potential employees. As you hire individuals, you can bring them into the design system team, where they’ll gain a deep understanding of how your organization builds digital products. Once they’re up to speed, you can seamlessly move them to another product, discipline, or feature-based team where they’ll take this knowledge and hit the ground running. Additionally, your organization can benefit from having all team members (even those who have been around for a while) periodically work a rotation with the design system team. This continuously spreads the design system<em> </em>expertise around the organization and makes it part of the fabric of how you work.</p>
+
+
+
+<p>And don’t think this approach is only valuable for designers or developers. A healthy design system team comprises people from many disciplines. In addition to team member rotation, building in time to mentor folks from many different disciplines can prove tremendously valuable in the long run. A highly functional design system team can serve as an ideal model of workflow and can educate many team members dispersed throughout the organization about how to approach their work.</p>
+
+
+
+<p>Believe me, executives’ eyes will light up when you share how a design system can ensure high productivity in record time. As a caution, though, rotating people in and out of any team <em>too</em> often can leave them feeling exhausted and can make it hard for them to be productive. Remember, you have the flexibility to scale this to a level that makes sense for your team. Be smart and use this approach as it works in your context.</p>
+
+
+
+<h4 id="section7">What to measure<a class="subhead-anchor" href="#section7">#section7</a></h4>
+
+
+
+<p><strong><em>Action: Measure the time it takes for teams to become productive.</em></strong></p>
+
+
+
+<p>As new people are added, a team typically returns to the “forming” stage of <a href="https://en.wikipedia.org/wiki/Tuckman%27s_stages_of_group_development">Tuckman’s stages of group development</a>. This is part of the reason that growth is expensive. But with a design system in place and a healthy culture, you can reduce the time it takes the team to get back to “performing.”</p>
+
+
+
+<h3 id="section8">Scale benefits<a class="subhead-anchor" href="#section8">#section8</a></h3>
+
+
+
+<p>Traditionally, you have to hire more people to scale productivity. A design system enables a team to accomplish more with less. <a href="https://designsystemssurvey.seesparkbox.com/2019/#table3a">Reusability is a major reason</a> teams choose to work in a more systematic way. Small teams with an effective system can design, build, and maintain hundreds of sites each year. They’d never come close without a design system to work with.&nbsp;</p>
+
+
+
+<p>UX Pin has a <a href="https://www.uxpin.com/create-design-system-guide/">design system guide</a> that starts by acknowledging something that most of us ignore.</p>
+
+
+
+<blockquote class="wp-block-quote"><p>Scaling design through hiring, without putting standards in place, is a myth. With every new hire, new ideas for color palettes, typography and patterns appear in the product, growing the inconsistency and increasing the maintenance cost. Every new hire increases the design entropy<em>.</em></p></blockquote>
+
+
+
+<p>A well-executed system allows a team to scale while keeping design entropy at bay.</p>
+
+
+
+<h4 id="section9">What to measure<a class="subhead-anchor" href="#section9">#section9</a></h4>
+
+
+
+<p><strong><em>Action: Compare the amount of people on your team to the amount of work they are accomplishing.</em></strong></p>
+
+
+
+<p>Adding people to a team doesn’t necessarily mean they’ll get more work done faster. This is well-documented in historical software books like Fred Brooks’ <a href="https://en.wikipedia.org/wiki/The_Mythical_Man-Month#The_mythical_man-month"><em>The Mythical Man-Month</em></a>. Eventually, you will have to investigate changing other factors (besides just adding more people) to increase productivity. A good design system can be one of these factors that increases the productivity of the team members you already have. It’s this change in productivity over scale that you need to measure and compare in order to prove value for this benefit.</p>
+
+
+
+<h2 id="section10">External-orientation motivators<a class="subhead-anchor" href="#section10">#section10</a></h2>
+
+
+
+<p>Let’s shift to thinking about the benefits that a design system offers to end-users. The four primary external motivators are:</p>
+
+
+
+<ul><li>Consistency</li><li>Trust</li><li>Accessibility</li><li>Usability.</li></ul>
+
+
+
+<h3 id="section11">Consistency and Trust benefits<a class="subhead-anchor" href="#section11">#section11</a></h3>
+
+
+
+<p>Consistency is widely assumed to be the primary benefit of a design system. We identify dozens of button designs, color variations, and inconsistent typefaces in hopes of convincing higher-ups to allow us to build a system to bring it all in line. After working on design systems for the last five or six years, I can say with confidence that a design system will not make your product more consistent.&nbsp;</p>
+
+
+
+<p>You see, us web designers and developers are very scrappy. We can create the most inconsistent experiences within even the most rigid systems. It’s not the system itself that creates consistency, it’s the culture of an organization. It’s all of the unspoken expectations—the filters through which we make decisions—that give us the confidence to pause and ask if the work we’re doing fits <em>culturally</em> with the product we’re building. A good CMO knows this, and they won’t buy the oversimplified idea that a design system will solve the rampant inconsistencies in our work.&nbsp;</p>
+
+
+
+<p>Because of this, these executives often have a different (and easier to measure) question: “Does it convert?” This perspective and line of conversation is not an ideal approach. Believe me, we can create experiences that convert but are not good for our users or our brands. Given this, a conversation with your CMO might go better if you <a href="https://alistapart.com/article/being-real-builds-trust/">shift the language to talk about trust</a> instead.</p>
+
+
+
+<p>With inconsistent experiences, your <a href="https://www.nngroup.com/articles/omnichannel-consistency/">users subconsciously lose trust</a> in your brand. They’ve been conditioned to expect a certain kind of user experience, and that’s what they should be given, even across multiple websites or products. Vanessa Mitchell wrote about <a href="https://www.cmo.com.au/article/642102/why-customer-trust-more-vital-brand-survival-than-it-ever-been/">why brand trust is more vital to survival now</a> than it’s ever been:</p>
+
+
+
+<blockquote class="wp-block-quote"><p>“Brand trust as an ‘“insurance policy”’ against future issues is not a new concept. Most organizations know trust bestowed by the consumer can not only make or break a business, it can also ensure you survive a problem in the future. But few achieve brand trust adequately, preferring to pay lip service rather than delve into what it really means: Authentically caring about customers and their needs.”</p></blockquote>
+
+
+
+<p>When your customer is using your product to accomplish a very specific task, <em>that one task is the only thing that matters to them.</em> Creating a consistent experience that works for everyone and allows them to accomplish their goals <em>is</em> building trust. CMOs need to understand how design systems empower trusted relationships so those relationships contribute to your bottom line.</p>
+
+
+
+<h4 id="section12">What to measure<a class="subhead-anchor" href="#section12">#section12</a></h4>
+
+
+
+<p><strong><em>Action: Measure the engagement of your customers.</em></strong></p>
+
+
+
+<p>Customer engagement can be measured with web analytics platforms. What you’re looking for will vary depending on the context for your organization, but trends in things like time on site, visit frequency, subscription rates, and bounce rates will give you meaningful data to work with. It’s also very common to track customer engagement with metrics like <a href="https://en.wikipedia.org/wiki/Net_Promoter">Net Promoter Score</a> (NPS) by asking simple questions of customers repeatedly over time. There are so many ways to structure tests of the usability of your work, so I’d encourage you to loop in the UX team to help you find tests that will demonstrate the user engagement success of the design system effort.</p>
+
+
+
+<h3 id="section13">Accessibility benefits<a class="subhead-anchor" href="#section13">#section13</a></h3>
+
+
+
+<p>Accessibility can be a tremendous benefit of a design system. Do the work properly the first time, then allow that beautifully accessible component to serve your customers each time it is used. Certainly, it’s not a fail-safe measure—there is still integration-level testing to ensure component accessibility translates to the larger experience—but ensuring the accessibility of individual components will result in more accessible experiences. And integrating good accessibility practices into your system means more folks within your organization are aligned with this important work.&nbsp;</p>
+
+
+
+<p>You might find at first that marketers aren’t all that interested in accessibility, but they should be. Did you know that there were 814 <a href="https://blog.usablenet.com/2018-ada-web-accessibility-lawsuit-recap-report">web accessibility related lawsuits</a> (just in the US!) in 2017? Did you know that there were almost 2,300 in 2018? That’s a <strong>181% increase</strong>. <a href="https://www.census.gov/newsroom/releases/archives/miscellaneous/cb12-134.html">This must be a priority</a>. First, because it’s the right thing to do. Second, because it’s important to the sustainability of the business. A design system can help you address this issue, <em>and</em> it can help you maintain compliance as you grow. This is the kind of message that resonates with leadership.</p>
+
+
+
+<h4 id="section14">What to Measure<a class="subhead-anchor" href="#section14">#section14</a></h4>
+
+
+
+<p><strong><em>Action: Measure your compliance to accessibility guidelines over time.</em></strong></p>
+
+
+
+<p>Many organizations have a regular cadence of accessibility audits across their digital properties. While some of this can be automated, there’s always a manual aspect needed to truly evaluate the accessibility of a site or application. Tracking how often regressions occur in the properties served by your design system can be a great way to demonstrate the value that system is bringing to the organization.</p>
+
+
+
+<h3 id="section15">Usability benefits<a class="subhead-anchor" href="#section15">#section15</a></h3>
+
+
+
+<p>As with so many aspects of a design system, usability benefits come from repetition. Design system pros often hope to focus energy on solving a usability challenge <em>only once</em> before moving on to the next problem. This absolutely is a benefit of a well-constructed system. It’s also very true that “familiarity breeds usability.” Your customers will learn to use your products and begin to subconsciously rely on that familiarity with the experience to lower their cognitive load. This should be just as important to our executive leadership as it is to those of us who are practitioners.&nbsp;</p>
+
+
+
+<p>You can also reframe this benefit in the context of conversion. Helping our users accomplish their goals is helping them convert. They are there to use your product. So make it easy to do, and they’ll do it more. This is what businesses need and what executives want to see—improving the business by helping customers. As mentioned above, we want to make sure we’re doing this in healthy ways for both our users and our brands.</p>
+
+
+
+<h4 id="section16">What to Measure<a class="subhead-anchor" href="#section16">#section16</a></h4>
+
+
+
+<p><strong><em>Action: This might be the easiest one—measure conversion!</em></strong></p>
+
+
+
+<p>Running usability studies will help to validate and measure the success of your work with the system, which many organizations are already doing. Your goal should be to validate that components are usable, which will allow you to build a culture of user-centered design. Setting the bar for what it takes to evolve the system—such as requiring that changes are tested with real users—introduces this idea into the core of all your processes, where it should be.</p>
+
+
+
+<h2 id="section17">Sell investment, not cost<a class="subhead-anchor" href="#section17">#section17</a></h2>
+
+
+
+<p>Knowing how and which internal and external motivators to touch on during conversations is significant, but there’s one last thing I’d like to mention, and it has to do with your way of thinking. A major factor in many of these conversations lies simply in how we frame things: move the conversation about the cost of building a design system into a conversation about the present and residual benefits of the investment you’re making. It’s easy to view the time and effort required to build a system as an investment in ultimately delivering high-quality digital products. But leadership will be more willing to consider realistic budgets and timelines if you talk about it like a long-term investment that has benefits on multiple levels throughout the business. This also leaves you with the ability to regularly remind them that this product will never be done—it will require ongoing funding and support.</p>
+
+
+
+<p>A design system project will not succeed if you don’t convince others that it’s the right thing to do. Successful, sustainable design systems start with the people, so you have to begin by building consensus. Building a design system means you’re asking everyone to change how they work—everyone has to be on board.</p>
+
+
+
+<p>This concept of collaboration is so core to the work of design systems that it led all of us here at Sparkbox to look for opportunities to better understand how teams around the world are designing, building, and using a more systematic approach to digital product design. For the last three years, we’ve been gathering and sharing data in the form of the <a href="https://designsystemssurvey.seesparkbox.com/2020/">Design Systems Survey</a> and the <a href="https://seesparkbox.com/foundry/calendar_for_design_system_support_and_sucessful_design_systems">Design System Calendar</a>. If you are considering a design system for your organization, or if you work with a design system team, the survey and calendar may be helpful in your quest to build better products.</p>
+		<div class="ala-single-sidebar-wrapper sidebar-related">
+			<aside id="related" class="ala-single-sidebar-related">
+									<section class="ala-sb-rel__category">
+						<h3 class="ala-sb-rel__cat__title">
+							Further reading about							<a href="https://alistapart.com/blog/topic/business/">Business</a>
+						</h3>
+													<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/dysfunctional-teams-back-on-track/">How to Get a Dysfunctional Team Back on Track									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Everyone’s a good manager when their team is functioning perfectly. But what do you do when your team screws up? Liam Nugent tells how to face reality when work goes poorly, and shares practical steps to get your team back on track.</div>
+							</article>
+														<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/resilient-management-excerpt/">Resilient Management, An Excerpt									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Great managers ensure their teams are successful and that team members grow in their careers. In this excerpt from her new book, Resilient Management, Lara Hogan discusses how to do this by mentoring, coaching, and sponsoring them.</div>
+							</article>
+												</section>
+								</aside>
+		</div>
+			</div><!-- .entry-content -->
+	</article><!-- #post-7172707 -->
+
+				<footer class="ala-author">
+					<div class="ala-author__content clear">
+						<a name="panelist0"></a>
+													<h4 class="ala-author__about">About the Author</h4>
+													<div class="ala-author__avatar">
+							<img width="150" height="150" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/02/ben-callahan.jpg?fit=150%2C150&amp;ssl=1" class="avatar avatar-150 photo wp-post-image" alt="" loading="lazy" />						</div>
+
+						<h3 class="ala-author__name">Ben Callahan</h3>
+						<div class="ala-author__description">Ben Callahan is the president of <a href="http://sparkbox.com/">Sparkbox</a>, a diverse team of people who love the web and work tirelessly to make it better. He loves to <a href="https://seesparkbox.com/foundry/category/be_better_newsletter">write</a>, he's been known to give <a href="https://speakerdeck.com/bencallahan">a presentation or two</a>, he's an aspiring poet, and he loves to cook over open fire.</div>
+					</div>
+									</footer>
+									<aside class="widget-area pre-footer-widget-area pre-footer-single">
+						<section id="custom_html-4" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="pre-footer-email-signup">
+	<strong>Get our latest articles in your inbox.</strong> <a href="https://alistapart.com/email-signup">Sign up for email alerts</a>.
+</div>
+</div></section>					</aside><!-- .pre-footer-widget-area -->
+					
+					<div class="comment-area-wrap two-column-layout">
+						
+<div id="comments" class="comments-area column-content">
+
+	
+		<h2 class="comments-title">No Comments</h2>
+				<div class="comments-off">
+			<h3 class="comments-off-title"> Got something to say?</h3>
+			<p class="no-comments">We have turned off comments, but you can see what folks had to say before we did so.</p>
+		</div>
+		
+</div><!-- #comments -->
+	<div class="column-sidebar ala-posts">
+		<h2 class="section-title">More from ALA</h2>
+				<article id="post-7173224" class="home-post-content post-7173224 article type-article status-publish has-post-thumbnail hentry category-code category-css">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/breaking-out-of-the-box/" rel="bookmark">Breaking Out of the Box</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/patrick-brosset/" itemprop="url"> <span itemprop="name">Patrick Brosset</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					What can we do with thirty pixels? Windows Controls Overlay frees us from 40 years of history telling us how apps should look.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/code/" rel="category tag">Code</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-12-09T10:00:00-05:00">December 09, 2021</time><time class="updated" datetime="2021-12-09T07:23:48-05:00">December 09, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173136" class="home-post-content post-7173136 article type-article status-publish has-post-thumbnail hentry category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/how-to-sell-ux-research/" rel="bookmark">How to Sell UX Research with Two Simple Questions</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/sophiavoychehovski/" itemprop="url"> <span itemprop="name">Sophia V. Prater</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Seriously, do not ever design screens again without first answering these questions: what are the objects and how do they relate?				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/user-experience/" rel="category tag">User Experience</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-10-21T10:00:00-04:00">October 21, 2021</time><time class="updated" datetime="2021-10-21T07:17:11-04:00">October 21, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173122" class="home-post-content post-7173122 article type-article status-publish has-post-thumbnail hentry category-content category-content-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/a-content-model-is-not-a-design-system/" rel="bookmark">A Content Model Is Not a Design System</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/mike-wills/" itemprop="url"> <span itemprop="name">Mike Wills</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Why do so many content models still look more like design systems rather than reflecting structured data? Mike Wills takes us on a personal journey as he examines his own past experiences and invites us to conceive content models that articulate meaning and group related content together for use on any channel.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/content/" rel="category tag">Content</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-09-23T10:00:00-04:00">September 23, 2021</time><time class="updated" datetime="2021-09-23T09:21:30-04:00">September 23, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173095" class="home-post-content post-7173095 article type-article status-publish has-post-thumbnail hentry category-process category-usability category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/design-for-safety-excerpt/" rel="bookmark">Design for Safety, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/eva-penzeymoog/" itemprop="url"> <span itemprop="name">Eva PenzeyMoog</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Design for Safety, Eva PenzeyMoog discusses concrete ways you can incorporate safety awareness into your design processes.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/process/" rel="category tag">Process</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-26T11:01:43-04:00">August 26, 2021</time><time class="updated" datetime="2021-08-26T11:01:44-04:00">August 26, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173076" class="home-post-content post-7173076 article type-article status-publish has-post-thumbnail hentry category-design category-web-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/sustainable-web-design-excerpt/" rel="bookmark">Sustainable Web Design, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/tom-greenwood/" itemprop="url"> <span itemprop="name">Tom Greenwood</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Sustainable Web Design, Tom Greenwood provides clear guidance on how to track and address the carbon footprint of our websites.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/design/" rel="category tag">Design</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-05T10:00:00-04:00">August 05, 2021</time><time class="updated" datetime="2021-08-04T17:23:57-04:00">August 04, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+			
+	
+</div><!-- .home-post-wrap clear -->
+
+					</div>
+					
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+</div><!-- #content -->
+
+	<div class="widget-area header-widget">
+		<section id="custom_html-5" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div></div></section>	</div><!-- .header-widget -->
+	
+<footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WebPage">
+	<nav class="footer-navigation footer navigation-top"  itemscope itemtype="http://schema.org/SiteNavigationElement">
+		<div class="menu-footer-pages-container"><ul id="footer-top-left-menu" class="footer-top-left-menu"><li id="menu-item-6000544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000544"><a href="https://alistapart.com/about/" itemprop="url">About</a></li>
+<li id="menu-item-6000545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000545"><a href="https://alistapart.com/authors/" itemprop="url">Authors</a></li>
+<li id="menu-item-6000546" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000546"><a href="https://alistapart.com/about/masthead/" itemprop="url">Masthead</a></li>
+<li id="menu-item-6000547" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000547"><a href="https://alistapart.com/about/style-guide/" itemprop="url">Style Guide</a></li>
+<li id="menu-item-6000548" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000548"><a href="https://alistapart.com/contact/" itemprop="url">Contact</a></li>
+<li id="menu-item-6000549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000549"><a href="https://alistapart.com/about/sponsor/" itemprop="url">Sponsorships</a></li>
+</ul></div><div class="menu-footer-social-container"><ul id="footer-top-right-menu" class="footer-top-right-menu"><li id="menu-item-6000550" class="footer-menu-title menu-item menu-item-type-custom menu-item-object-custom menu-item-6000550"><a itemprop="url">Follow us:</a></li>
+<li id="menu-item-7171602" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7171602"><a href="https://alistapart.com/about/rss-feed/" itemprop="url">RSS</a></li>
+<li id="menu-item-6000552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000552"><a href="https://alistapart.com/email-signup/" itemprop="url">Email</a></li>
+<li id="menu-item-6000553" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000553"><a href="https://www.facebook.com/alistapart" itemprop="url">Facebook</a></li>
+<li id="menu-item-6000554" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000554"><a href="https://www.twitter.com/alistapart" itemprop="url">Twitter</a></li>
+</ul></div>	</nav>
+			<div class="widget-area footer-widget-area-wrap">
+			<div class="widget-area footer-widget-area">
+				<section id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+	<a href="https://abookapart.com">
+							<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aba_2.jpg?w=960&#038;ssl=1" alt="A Book Apart. Brief books for people who design, write, and code." data-recalc-dims="1">
+		<div class="footer-promo-copy">
+				<p class="promo-title">A Book Apart</p>
+				<p>Brief books for people who design, write, and code.</p>
+				<p>Bundle books and save!</p>
+				<p class="arrow">Shop now</p>
+						</div>
+			</a>
+</div>
+
+</div></section><section id="custom_html-8" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+		<a href="https://aneventapart.com">
+			<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aea_v1_2.png?w=960&#038;ssl=1" alt="An Event Apart. Three days of design, code, and content for people who make websites." data-recalc-dims="1">
+			<div class="footer-promo-copy">
+					<p class="promo-title">An Event Apart</p>
+						<p>Three days of design, code, and content for people who make websites.</p>
+							<p class="arrow">See  this year’s schedule</p>
+			</div>
+						</a>
+</div></div></section>			</div>
+		</div>
+
+		
+	<div class="site-info-wrap">
+		<div class="site-info">
+			<p>
+				ISSN 1534-0295 &middot; Copyright &copy; <span itemprop="copyrightYear"> 1998–2022</span> <span itemprop="copyrightHolder"> A List Apart &amp; Our Authors</span>			</p>
+			<p>
+				<a href="https://wordpress.com/">
+					Proudly powered by WordPress				</a>
+				<span class="sep"> · </span>
+				<a href="https://pressable.com/?utm_source=Automattic&#038;utm_medium=rpc&#038;utm_campaign=Concierge%20Referral&#038;utm_term=concierge">
+					Hosted by Pressable				</a>
+			</p>
+		</div><!-- .site-info -->
+	</div><!-- .site-info-wrap -->
+
+	<nav class="footer-navigation footer navigation-bottom">
+		<ul id="footer-bottom-left-menu" class="footer-bottom-left-menu"><li id="menu-item-6000555" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000555"><a href="https://alistapart.com/about/copyright/" itemprop="url">Permissions &#038; Copyright</a></li>
+<li id="menu-item-6000556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-6000556"><a href="https://alistapart.com/about/privacy-policy/" itemprop="url">Privacy Policy</a></li>
+<li id="menu-item-6000558" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000558"><a href="https://webtype.com/" itemprop="url">Fonts by Webtype</a></li>
+</ul><ul id="footer-bottom-right-menu" class="footer-bottom-right-menu"><li id="menu-item-6000559" class="aea menu-item menu-item-type-custom menu-item-object-custom menu-item-6000559"><a href="http://aneventapart.com/" itemprop="url"><span class="screen-reader-text">An Event Apart</span></a></li>
+<li id="menu-item-6000560" class="aba menu-item menu-item-type-custom menu-item-object-custom menu-item-6000560"><a href="http://abookapart.com/" itemprop="url"><span class="screen-reader-text">A Book Apart</span></a></li>
+</ul>	</nav>
+</footer><!-- #colophon -->
+</div><!-- #page -->
+<script type="text/template" id="tmpl-subscriber-only-message">
+	<div class="coil-message-inner">
+		<div class="coil-message-header">
+			<# if ( data.headerLogo ) { #>
+				{{{data.headerLogo}}}
+			<# } #>
+			<# if ( data.title ) { #>
+				<p class="coil-message-title">{{data.title}}</p>
+			<# } #>
+			<# if ( data.content ) { #>
+				<p class="coil-message-content">{{data.content}}</p>
+			<# } #>
+			<# if ( data.button.href ) { #>
+				<a target="_blank" href="{{data.button.href}}" class="coil-message-button">{{data.button.text}}</a>
+			<# } #>
+		</div>
+		<div class="coil-message-footer">
+			<p class="coil-footer-content">Already a member? Check that you&#039;re using a supported browser, have the Coil extension installed, and are logged in to your Coil account.</p>
+		</div>
+	</div>
+</script>
+<script type="text/template" id="tmpl-split-content-message">
+	<span class="coil-split-content-message">{{data}}</span>
+</script>
+<script type="text/template" id="tmpl-banner-message">
+	<div class="banner-message-inner">
+		<# if ( data.content ) { #>
+			<p class="coil-banner-message-content">{{data.content}}</p>
+		<# } #>
+		<# if ( data.button.href ) { #>
+			<a target="_blank" href="{{data.button.href}}" class="coil-banner-message-button">{{data.button.text}}</a>
+		<# } #>
+		<span class="coil-banner-message-dismiss" id="js-coil-banner-dismiss">&times;</span>
+	</div>
+</script>
+	<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');  
+
+	ga('create', 'UA-11757054-1', 'auto'); 
+	ga('send', 'pageview');  
+</script>
+<!-- End Google Analytics -->
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/alistapart.com\/article\/selling-design-systems\/":7172707};
+	</script>
+				<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001' id='jetpack-photon-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/underscore.min.js?ver=1.13.1' id='underscore-js'></script>
+<script type='text/javascript' id='wp-util-js-extra'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-util.min.js?ver=5.8.3' id='wp-util-js'></script>
+<script type='text/javascript' id='coil-monetization-js-js-extra'>
+/* <![CDATA[ */
+var coilParams = {"content_container":".content-area .entry-content","promotion_bar":"This site is monetized using Coil. If you enjoy the content, consider supporting us by signing up for a Coil Membership. Here's how\u2026","loading_content":"Verifying Web Monetization status. Please wait...","fully_gated":"Unlock exclusive content with Coil. Need a Coil account?","partial_gating":"To keep reading, join Coil and install the browser extension. Visit coil.com for more information.","learn_more_button_text":"Get Coil to access","learn_more_button_link":"https:\/\/coil.com\/","show_promotion_bar":"1","post_excerpt":"You didn\u2019t start your web career to be a politician or salesperson. But if you want to work on design systems, you have no choice. Ben Callahan shows you how to convince executives to fund the initial design system push and KEEP funding it.","site_logo":"<a href=\"https:\/\/alistapart.com\/\" class=\"custom-logo-link\" rel=\"home\"><img width=\"960\" height=\"98\" src=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?fit=960%2C98&ssl=1\" class=\"custom-logo\" alt=\"A List Apart\" srcset=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?w=960&ssl=1 960w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=300%2C31&ssl=1 300w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=768%2C78&ssl=1 768w\" sizes=\"(max-width: 960px) 100vw, 960px\" \/><\/a>","admin_missing_id_notice":"This post is monetized but you have not set your payment pointer ID in the <a href=\"https:\/\/alistapart.com\/wp-admin\/admin.php?page=coil\">Coil settings page<\/a>. Only content set to show for all visitors will show."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/initialize-monetization.min.js?ver=1.9.0' id='coil-monetization-js-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/js-cookie.3.0.0.min.js?ver=1.9.0' id='messaging-cookies-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/navigation.js?ver=20151215' id='ala-navigation-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.js?ver=1.0' id='ala-prism-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/skip-link-focus-fix.js?ver=20151215' id='ala-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/adchecka.js?ver=1.0' id='ala-adchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/loadadchecka.js?ver=1.0' id='ala-loadadchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
+<script type='text/javascript' id='sharing-js-js-extra'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=10.5-beta' id='sharing-js-js'></script>
+<script type='text/javascript' id='sharing-js-js-after'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+		<script type="text/javascript">
+			(function() {
+			var t   = document.createElement( 'script' );
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute( 'data-site-id', '606492000b21314ec4b22148' );
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName( 'script' )[0];
+			s.parentNode.insertBefore( t, s );
+			})();
+		</script>
+		<script src='https://stats.wp.com/e-202202.js' defer></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:10.5-beta',blog:'158094726',post:'7172707',tz:'-5',srv:'alistapart.com'} ]);
+	_stq.push([ 'clickTrackerInit', '158094726', '7172707' ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+	<html dir="ltr" lang="en-US"> 
+	<head> 
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Adding a Persistence Effect to Three.js Scenes - Codrops</title>
+				<meta name="author" content="Team Codrops">
+		<link rel="stylesheet" type="text/css" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/css/main.css?v475" />
+		<link rel="stylesheet" type="text/css" media="print" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/css/main_print.css?v6" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />	
+		<script src="//use.typekit.net/pdd7wbw.js"></script>
+		<script>try{Typekit.load();}catch(e){}</script>
+		<link rel="shortcut icon" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/favicon.ico">
+		<link rel="apple-touch-icon" sizes="144x144" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/apple-touch-icon-144x144.png">
+		<link rel="icon" type="image/png" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/favicon-196x196.png" sizes="196x196">
+		<meta name="monetization" content="$ilp.uphold.com/9YajJiWPyU23">
+		<!-- 857AADD2-739C-4BF6-A8D3-4986BE868A0C -->
+		<meta name="msapplication-TileColor" content="#2b5797">
+		<meta name="msapplication-TileImage" content="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/mstile-144x144.png">
+		<meta name="msapplication-config" content="/codrops/wp-content/themes/codropstheme03/favicons/browserconfig.xml">
+			   
+		<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.7.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<meta name="description" content="Learn how to enhance your Three.js scenes with postprocessing via framebuffers." />
+	<link rel="canonical" href="https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Adding a Persistence Effect to Three.js Scenes - Codrops" />
+	<meta property="og:description" content="Learn how to enhance your Three.js scenes with postprocessing via framebuffers." />
+	<meta property="og:url" content="https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/" />
+	<meta property="og:site_name" content="Codrops" />
+	<meta property="article:publisher" content="https://www.facebook.com/codrops/" />
+	<meta property="article:published_time" content="2021-12-28T10:53:59+00:00" />
+	<meta property="article:modified_time" content="2021-12-28T10:54:00+00:00" />
+	<meta property="og:image" content="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence.jpg" />
+	<meta property="og:image:width" content="800" />
+	<meta property="og:image:height" content="600" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Georgi Nikolov" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="15 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://tympanus.net/codrops/#organization","name":"Codrops","url":"https://tympanus.net/codrops/","sameAs":["https://www.facebook.com/codrops/","https://www.instagram.com/codropsss/","https://www.linkedin.com/company-beta/1067493/","https://www.pinterest.pt/codrops/","https://twitter.com/codrops"],"logo":{"@type":"ImageObject","@id":"https://tympanus.net/codrops/#logo","inLanguage":"en-US","url":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2020/06/codrops-logo_300x300.png","contentUrl":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2020/06/codrops-logo_300x300.png","width":300,"height":300,"caption":"Codrops"},"image":{"@id":"https://tympanus.net/codrops/#logo"}},{"@type":"WebSite","@id":"https://tympanus.net/codrops/#website","url":"https://tympanus.net/codrops/","name":"Codrops","description":"Creative front-end resources and inspiration for web professionals","publisher":{"@id":"https://tympanus.net/codrops/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://tympanus.net/codrops/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#primaryimage","inLanguage":"en-US","url":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence.jpg","contentUrl":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence.jpg","width":800,"height":600},{"@type":"WebPage","@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#webpage","url":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/","name":"Adding a Persistence Effect to Three.js Scenes - Codrops","isPartOf":{"@id":"https://tympanus.net/codrops/#website"},"primaryImageOfPage":{"@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#primaryimage"},"datePublished":"2021-12-28T10:53:59+00:00","dateModified":"2021-12-28T10:54:00+00:00","description":"Learn how to enhance your Three.js scenes with postprocessing via framebuffers.","breadcrumb":{"@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/"]}]},{"@type":"BreadcrumbList","@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tympanus.net/codrops/"},{"@type":"ListItem","position":2,"name":"Adding a Persistence Effect to Three.js Scenes"}]},{"@type":"Article","@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#article","isPartOf":{"@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#webpage"},"author":{"@id":"https://tympanus.net/codrops/#/schema/person/bfcb8f19b1630abcb12e4dcc48643ef6"},"headline":"Adding a Persistence Effect to Three.js Scenes","datePublished":"2021-12-28T10:53:59+00:00","dateModified":"2021-12-28T10:54:00+00:00","mainEntityOfPage":{"@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#webpage"},"wordCount":1847,"publisher":{"@id":"https://tympanus.net/codrops/#organization"},"image":{"@id":"https://tympanus.net/codrops/2021/12/28/adding-a-persistence-effect-to-three-js-scenes/#primaryimage"},"thumbnailUrl":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence.jpg","keywords":["framebuffer","motion trail","postprocessing","threejs","webgl"],"articleSection":["Tutorials"],"inLanguage":"en-US"},{"@type":"Person","@id":"https://tympanus.net/codrops/#/schema/person/bfcb8f19b1630abcb12e4dcc48643ef6","name":"Georgi Nikolov","image":{"@type":"ImageObject","@id":"https://tympanus.net/codrops/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/e3d80d570f70076b06b900f369ec2190?s=96&d=retro&r=g","contentUrl":"https://secure.gravatar.com/avatar/e3d80d570f70076b06b900f369ec2190?s=96&d=retro&r=g","caption":"Georgi Nikolov"},"description":"I am a frontend developer living and working in Berlin. I specialise in developing rich user interfaces and graphics, such as websites, web apps, animations and visualisations. During my spare time, I learn and strive to improve my programming skills and math for computer graphics / animation.","sameAs":["https://georgi-nikolov.com/","https://twitter.com/georgiNikoloff"],"url":"https://tympanus.net/codrops/author/georgi/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/block-library/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='prismatic-blocks-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/prismatic/css/styles-blocks.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-components-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/components/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-editor-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/block-editor/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-nux-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/nux/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-editor-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/editor/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='simple-iframe-style-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/simple-iframe/dist/blocks.style.build.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='avatar-manager-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/avatar-manager/assets/css/avatar-manager.min.css?ver=1.2.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-law-info-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/webtoffee-gdpr-cookie-consent/public/css/cookie-law-info-public.css?ver=2.3.4' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-law-info-gdpr-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/webtoffee-gdpr-cookie-consent/public/css/cookie-law-info-gdpr.css?ver=2.3.4' type='text/css' media='all' />
+<style id='cookie-law-info-gdpr-inline-css' type='text/css'>
+.cli-modal-content, .cli-tab-content { background-color: #ffffff; }.cli-privacy-content-text, .cli-modal .cli-modal-dialog, .cli-tab-container p, a.cli-privacy-readmore { color: #000000; }.cli-tab-header { background-color: #f2f2f2; }.cli-tab-header, .cli-tab-header a.cli-nav-link,span.cli-necessary-caption,.cli-switch .cli-slider:after { color: #000000; }.cli-switch .cli-slider:before { background-color: #ffffff; }.cli-switch input:checked + .cli-slider:before { background-color: #ffffff; }.cli-switch .cli-slider { background-color: #e3e1e8; }.cli-switch input:checked + .cli-slider { background-color: #28a745; }.cli-modal-close svg { fill: #000000; }.cli-tab-footer .wt-cli-privacy-accept-all-btn { background-color: #00acad; color: #ffffff}.cli-tab-footer .wt-cli-privacy-accept-btn { background-color: #00acad; color: #ffffff}.cli-tab-header a:before{ border-right: 1px solid #000000; border-bottom: 1px solid #000000; }
+</style>
+<link rel='stylesheet' id='wp_typeahead_css-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/wp-typeahead/css/typeahead.css?ver=5.7.5' type='text/css' media='all' />
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/87193.js"></script>
+
+
+
+<script type='text/javascript' id='cookie-law-info-js-extra'>
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":["ak_bmsc","_mcid","_abck","bm_sz","test_cookie","IDE","__utma","__utmc","__utmz","__utmt","__utmb"],"non_necessary_cookies":{"necessary":["cookielawinfo-checkbox-necessary","cookielawinfo-checkbox-performance","cookielawinfo-checkbox-analytics","cookielawinfo-checkbox-advertisement","_abck","bm_sz"],"performance":["__utma","__utmc","__utmz","__utmt","__utmb"],"advertisement":["test_cookie","IDE"],"others":["cookielawinfo-checkbox-others","ak_bmsc","_mcid","cookielawinfo-checkbox-functional"]},"cookielist":{"necessary":{"id":15831,"status":true,"priority":0,"title":"Necessary","strict":true,"default_state":true,"ccpa_optout":false,"loadonstart":false},"functional":{"id":15832,"status":true,"priority":5,"title":"Functional","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"performance":{"id":15833,"status":true,"priority":4,"title":"Performance","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"analytics":{"id":15834,"status":true,"priority":3,"title":"Analytics","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"advertisement":{"id":15835,"status":true,"priority":2,"title":"Advertisement","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"others":{"id":15836,"status":true,"priority":1,"title":"Others","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false}},"ajax_url":"https:\/\/tympanus.net\/codrops\/wp-admin\/admin-ajax.php","current_lang":"en","security":"c9e0a245a6","eu_countries":["GB"],"geoIP":"enabled","use_custom_geolocation_api":"","custom_geolocation_api":"https:\/\/geoip.cookieyes.com\/geoip\/checker\/result.php","consentVersion":"1","strictlyEnabled":["necessary","obligatoire"],"cookieDomain":"","privacy_length":"250","ccpaEnabled":"1","ccpaRegionBased":"1","ccpaBarEnabled":"1","ccpaType":"ccpa_gdpr","triggerDomRefresh":"","secure_cookies":""};
+var log_object = {"ajax_url":"https:\/\/tympanus.net\/codrops\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/99abe.js"></script>
+
+<script type='text/javascript' id='cookie-law-info-ccpa-js-extra'>
+/* <![CDATA[ */
+var ccpa_data = {"opt_out_prompt":"Do you really wish to opt out?","opt_out_confirm":"Confirm","opt_out_cancel":"Cancel"};
+/* ]]> */
+</script>
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/650cd.js"></script>
+
+
+
+
+<link rel="https://api.w.org/" href="https://tympanus.net/codrops/wp-json/" /><link rel="alternate" type="application/json" href="https://tympanus.net/codrops/wp-json/wp/v2/posts/57993" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://tympanus.net/codrops/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://tympanus.net/codrops/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.7.5" />
+<link rel='shortlink' href='https://tympanus.net/codrops/?p=57993' />
+<link rel="alternate" type="application/json+oembed" href="https://tympanus.net/codrops/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftympanus.net%2Fcodrops%2F2021%2F12%2F28%2Fadding-a-persistence-effect-to-three-js-scenes%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://tympanus.net/codrops/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftympanus.net%2Fcodrops%2F2021%2F12%2F28%2Fadding-a-persistence-effect-to-three-js-scenes%2F&#038;format=xml" />
+<script type="text/javascript">document.documentElement.className += " js";</script>
+		<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/3981a.js"></script>
+
+		
+		<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-7243260-2']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+
+			  function recordOutboundLink(link, category, action) {
+				_gat._getTrackerByName()._trackEvent(category, action);
+				setTimeout('document.location = "' + link.href + '"', 100);
+			}
+		</script>
+		<noscript>
+			<link rel="stylesheet" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/css/noscript.css"/>
+		</noscript>
+		<script type="application/ld+json">
+		{
+		  "@context": "http://schema.org",
+		  "@type": "WebSite",
+		  "url": "https://tympanus.net/codrops/",
+		  "potentialAction": {
+		    "@type": "SearchAction",
+		    "target": "https://tympanus.net/codrops/?s={search_term_string}",
+		    "query-input": "required name=search_term_string"
+		  }
+		}
+		</script>
+		<script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+	</head>
+	<body id="codrops-body">
+				<!-- BuySellAds.com Ad Code -->
+		<script type="text/javascript">
+			(function(){
+				var bsa = document.createElement('script');
+				bsa.type = 'text/javascript';
+				bsa.async = true;
+				bsa.src = '//s3.buysellads.com/ac/bsa.js';
+				(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+			})();
+		</script>
+		<!-- END BuySellAds.com Ad Code -->	
+				<div class="ct-container">
+			<header class="ct-header">
+				<div class="ct-inner ct-cf">
+
+											<div class="ct-branding">
+							<a class="ct-logo" href="/codrops" rel="home"><img src="/codrops/wp-content/themes/codropstheme03/images/codrops-logo.svg" alt="Codrops logo" /></a>
+						</div>
+					
+					<div class="ct-nav-wrapper">
+						<nav class="ct-nav-main">
+						   <ul>
+								<li><a href="/codrops/category/tutorials/">Tutorials</a></li>
+								<li><a href="/codrops/category/playground/">Playground</a></li>
+								<li><a href="/codrops/category/articles/">Articles</a></li>
+								<li><a href="/codrops/collective/">Collective</a></li>
+								<li><a href="/codrops/css_reference/">CSS Reference</a></li>
+							</ul>
+						</nav>
+					</div>
+
+					<div class="ct-header-items-right ct-cf">
+						<div class="ct-search" id="ct-search">
+							<form method="get" id="searchform" action="https://tympanus.net/codrops/">
+								<div class="ct-search-input-wrap">
+									<input class="ct-search-input" placeholder="Search on Codrops..." type="text" value="" name="s" id="s"/>
+								</div>
+								<input type="hidden" name="search-type" value="posts" />
+								<input class="ct-search-submit" type="submit" id="go" value=""><span class="ct-icon-search"></span>
+							</form>
+						</div>
+						<ul class="ct-connect">
+							<li><a class="ct-icon-feed" href="https://tympanus.net/codrops/feed/"><span>Rss Feed</span></a></li>
+							<li><a class="ct-icon-mail" href="http://eepurl.com/dJBUCo"><span>Email Updates</span></a></li>
+							<li><a class="ct-icon-twitter" href="http://www.twitter.com/codrops"><span>Codrops on Twitter</span></a></li>
+							<li><a class="ct-icon-facebook" href="http://www.facebook.com/pages/Codrops/159107397912"><span>Codrops on Facebook</span></a></li>
+							<li><a class="ct-icon-github" href="https://github.com/codrops"><span>Codrops on Github</span></a></li>
+							<li><a class="ct-icon-instagram" href="https://instagram.com/codropsss"><span>Codrops on Instagram</span></a></li>
+						</ul>
+					</div><!--/ct-header-items-right-->
+
+				</div><!-- ct-inner -->
+			</header><div class="ct-content">
+    <div class="ct-inner">		
+		
+				
+								
+				<div class="ct-main ct-main-post" id="ct-main" role="main">
+					<div class="ct-post">
+						<article id="post-57993" class="post-57993 post type-post status-publish format-standard has-post-thumbnail hentry category-tutorials tag-framebuffer tag-motion-trail tag-postprocessing tag-threejs tag-webgl">
+							<header>
+								<h1 class="ct-h-shd entry-title">
+									Adding a Persistence Effect to Three.js Scenes									
+																	</h1>
+								<div class="ct-post-excerpt">Learn how to enhance your Three.js scenes with postprocessing via framebuffers.</div>								<div class="ct-subline entry-meta ">
+									<div class="ct-subline__author">
+																																	<span class="byline author vcard">
+													By 
+													<a href="https://tympanus.net/codrops/author/georgi/" title="Posts by Georgi Nikolov" class="author url fn" rel="author">Georgi Nikolov</a>												</span>
+																															in
+										<a href="https://tympanus.net/codrops/category/tutorials/">Tutorials</a> on 
+											
+
+										<time class="ct-subline__pubtime" pubdate="pubdate">December 28, 2021</time>
+
+																			</div>
+								</div>
+							</header>		
+							<div class="ct-post-content">
+								
+
+								
+																			<div class="ct-post-featured-img">
+									    	<img width="800" height="600" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence.jpg 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-400x300.jpg 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-768x576.jpg 768w" sizes="(max-width: 800px) 100vw, 800px" />									    </div>
+									
+								
+																
+
+																											
+											<!--p class="ct-msponsor-article">
+											<span>From our sponsor:</span> <a href="https://www.wix.com/youdeservebetter?utm_source=media&utm_medium=cpc&utm_campaign=bd_partners_media_mb-wixvswp-codrops-banner_en_en_dt-mob&experiment_id=main" target="_blank" rel="nofollow sponsor">Wix’s robust, secure platform lets you develop faster and deliver smarter.</a></p-->
+
+																								<p class="ct-msponsor-article">
+															<span>From our sponsor:</span> <a href="https://srv.buysellads.com/ads/long/x/TH4C2IZ3TTTTTT4FGXHN4TTTTTT6GQNPK6TTTTTTEDZABYVTTTTTTESLPVSNKSJ7537HLRSWP36FP2QYVQCI4WZ727CT" target="_blank" rel="nofollow sponsor">Looking for an intuitive whiteboard style project management tool? Give Shortcut a try for free.</a></p>
+												    	
+											
+																																			
+								
+<p>If you have written any WebGL applications in the past, be it using the vanilla API or a helper library such as Three.js, you know that you set up the things you want to render, perhaps include different types of cameras, animations and fancy lighting and voilà, the results are rendered to the <strong>default WebGL framebuffer</strong>, which is the device screen.</p>
+
+
+
+<p>Framebuffers are a key feature in WebGL when it comes to creating advanced graphical effects such as depth-of-field, bloom, film grain or various types of anti-aliasing. They allow us to “post-process” our scenes, applying different effects on them once rendered.</p>
+
+
+
+<p><strong>This article assumes some intermediate knowledge of WebGL with Three.js. The core ideas behind framebuffers have already been covered in-depth in <a href="https://tympanus.net/codrops/2021/07/21/creating-a-typography-motion-trail-effect-with-three-js/">this article</a> here on Codrops. Please make sure to read it first, as the persistence effect we will be achieving directly builds on top of these ideas.</strong></p>
+
+
+
+<h2>Persistence effect in a nutshell</h2>
+
+
+
+<p>I call it persistence, yet am not really sure if it&#8217;s the best name for this effect and I am simply unaware of the proper way to call it. What is it useful for?</p>
+
+
+
+<p>We can use it subtly to blend each previous and current animation frame together or perhaps a bit less subtly to hide bad framerate. Looking at video games like Grand Theft Auto, we can simulate our characters getting drunk. Another thing that comes to mind is rendering the view from the cockpit of a spacecraft when traveling at supersonic speed. Or, since the effect is just so good looking in my opinion, use it for all kinds of audio visualisers, cool website effects and so on.</p>
+
+
+
+<p>To achieve it, first we would need to create 2 WebGL framebuffers. Since we will be using threejs for this demo, we would have to use <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderTarget">THREE.WebGLRenderTarget</a>. We will call them <strong>Framebuffer 1</strong> and <strong>Framebuffer 2</strong> from now on and they will have the same dimensions as the size of the canvas we are rendering to.</p>
+
+
+
+<p>To draw one frame of our animation with persistence, we will need to:</p>
+
+
+
+<ol><li><span style="font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, Oxygen-Sans, Ubuntu, Cantarell, &quot;Helvetica Neue&quot;, sans-serif;">Render the contents of <strong>Framebuffer 1 </strong>to <strong>Framebuffer 2</strong></span> with a shader that fades to a certain color. For the purposes of our demo, we will use a pure black color with full opacity</li><li>Render our threejs scene that holds the actual meshes we want to show on the screen to <strong>Framebuffer 2</strong> as well</li><li>Render the contents of <strong>Framebuffer 2</strong> to the <strong>Default WebGL framebuffer (device screen)</strong></li><li>Swap <strong>Framebuffer 1</strong> with <strong>Framebuffer 2</strong></li></ol>
+
+
+
+<p>Afterwards, for each new animation frame, we will need to repeat the above steps. Let&#8217;s illustrate each step:</p>
+
+
+
+<p>Here is a visualisation of our framebuffers. WebGL gives us the <strong>Default framebuffer</strong>, represented by the device screen, automatically. It&#8217;s up to us as developers to manually create <strong>Framebuffer 1</strong> and <strong>Framebuffer 2.</strong> No animation or rendering has happened yet, so the pixel contents of all 3 framebuffers are empty.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-1-800x556.png" alt="" class="wp-image-57994" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-1-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-1-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-1-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-1.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Our 2 manually created framebuffers on the left, the default device screen framebuffer on the right. Nothing has been drawn yet.</figcaption></figure>
+
+
+
+<p><strong>Step 1</strong>: we need to render the contents of <strong>Framebuffer 1 </strong>to <strong>Framebuffer 2</strong> with a shader that fades to a certain color. As said, we will use a black color, but for illustration purposes I am fading out to transparent white color with opacity 0.2. As <strong>Framebuffer 1 </strong>is empty, this will result in empty <strong>Framebuffer 2</strong>:</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-2-800x556.png" alt="" class="wp-image-57996" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-2-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-2-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-2-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-2.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Even though we have rendered Framebuffer 1 to Framebuffer 2, at this point we still have framebuffers with empty pixel contents.</figcaption></figure>
+
+
+
+<p><strong>Step 2</strong>: we need to render our threejs scene that holds our meshes / cameras / lighting / etc to <strong>Framebuffer 2</strong>. <strong>Please notice that both Step 1 and Step 2 render <strong>on top of each other</strong> to Framebuffer 2.</strong></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-3-800x556.png" alt="" class="wp-image-57997" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-3-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-3-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-3-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-3.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Our threejs scene rendered to Framebuffer 2.</figcaption></figure>
+
+
+
+<p><strong>Step 3</strong>: After we have successfully rendered <strong>Step 1</strong> and <strong>Step 2</strong> to <strong>Framebuffer 2</strong>, we need to render <strong>Framebuffer 2</strong> itself to the <strong>Default framebuffer</strong>:</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-4-800x556.png" alt="" class="wp-image-57998" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-4-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-4-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-4-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-4.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Final result rendered to the device screen.</figcaption></figure>
+
+
+
+<p><strong>Step 4</strong>: Now we need to swap <strong>Framebuffer 1</strong> with <strong>Framebuffer 2</strong>. We then clear <strong>Framebuffer 1</strong> and the <strong>Default framebuffer</strong>:</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-5-1-800x556.png" alt="" class="wp-image-58000" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-5-1-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-5-1-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-5-1-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-5-1.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Framebuffer 1 and Framebuffer 2 swapped.</figcaption></figure>
+
+
+
+<p>Now comes the interesting part, since <strong>Framebuffer 1</strong> is no longer empty. Let&#8217;s go over each step once again:</p>
+
+
+
+<p><strong>Step 1</strong>: we need to render the contents of <strong>Framebuffer 1 </strong>to <strong>Framebuffer 2</strong> with a shader that fades to a certain color. Let&#8217;s assume a transparent white color with <strong>0.2 opacity</strong>.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-6-800x556.png" alt="" class="wp-image-58001" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-6-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-6-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-6-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-6.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>We have rendered and faded out the pixel contents of Framebuffer 1 to Framebuffer 2 by a factor of 0.2.</figcaption></figure>
+
+
+
+<p><strong>Step 2</strong>: we need to render our threejs scene to <strong>Framebuffer 2</strong>. For illustration purposes, let&#8217;s assume we have an animation that slowly moves our 3D cube to the right, meaning that now it will be a few pixels to the right:</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-7-800x556.png" alt="" class="wp-image-58002" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-7-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-7-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-7-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-7.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Once again, we render both Framebuffer 1 and our threejs scene to Framebuffer 2. Notice how the threejs scene is rendered on top of the faded out contents of Framebuffer 1.</figcaption></figure>
+
+
+
+<p><strong>Step 3</strong>: After we have successfully rendered <strong>Step 1</strong> and <strong>Step 2</strong> to <strong>Framebuffer 2</strong>, we need to render <strong>Framebuffer 2</strong> itself to the <strong>Default framebuffer</strong>:</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-8-800x556.png" alt="" class="wp-image-58003" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-8-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-8-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-8-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-8.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>The pixel contents of Framebuffer 2 copied over to the device screen.</figcaption></figure>
+
+
+
+<p><strong>Step 4</strong>: Now we need to swap <strong>Framebuffer 1</strong> with <strong>Framebuffer 2</strong>. We then clear <strong>Framebuffer 1</strong> and the <strong>Default framebuffer</strong>:</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-9-800x556.png" alt="" class="wp-image-58005" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-9-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-9-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-9-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-9.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Rinse and repeat. Back to Step 1.</figcaption></figure>
+
+
+
+<p>I hope you can see a pattern emerging. If we repeat this process enough times, we will start accumulating each new frame to the previous faded one. Here is how it would look if we repeat enough times:</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="800" height="556" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-10-800x556.png" alt="" class="wp-image-58006" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-10-800x556.png 800w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-10-400x278.png 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-10-768x534.png 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/persistence-step-10.png 862w" sizes="(max-width: 800px) 100vw, 800px" /><figcaption>Postprocessing on our threejs scene</figcaption></figure>
+
+
+
+<p>Here is the demo we will build in this article. The result of the repeated enough times process above is evident:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img loading="lazy" width="611" height="600" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/exercise-preview-611x600.png" alt="" class="wp-image-58028" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/exercise-preview-611x600.png 611w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/exercise-preview-306x300.png 306w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/12/exercise-preview.png 745w" sizes="(max-width: 611px) 100vw, 611px" /><figcaption>Notice the accumulated trails. At every animation loop, we are repeating step 1 to 4.</figcaption></figure></div>
+
+
+
+<p>So with this theory out of the way, let&#8217;s create this effect with threejs!</p>
+
+
+
+<h2>Our skeleton app</h2>
+
+
+
+<p>Let&#8217;s write a simple threejs app that will animate a bunch of objects around the screen and use perspective camera to look at them. I will not explain the code for my example here, as it does not really matter what we render, as long as there is some animation present so things move and we can observe the persistence.</p>
+
+
+
+<p>I encourage you to disregard my example and draw something else yourself. Even the most basic spinning cube that moves around the screen will be enough. That being said, here is my scene:</p>
+
+
+
+<p class="codepen" data-height="400" data-default-tab="js,result" data-slug-hash="abLJrEX" data-user="gbnikolov" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/gbnikolov/pen/abLJrEX">
+  1. Skeleton app</a> by Georgi Nikoloff (<a href="https://codepen.io/gbnikolov">@gbnikolov</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+<p>The important thing to keep in mind here is that this demo renders to the default framebuffer, represented by the device screen, that WebGL automatically gives us. There are no extra framebuffers involved in this demo up to this point.</p>
+
+
+
+<h2>Achieving the persistence</h2>
+
+
+
+<p>Let&#8217;s add the code needed to achieve actual persistence. We will start by introducing a <a href="https://threejs.org/docs/?q=orthogr#api/en/cameras/OrthographicCamera">THREE.OrthographicCamera</a>.</p>
+
+
+
+<blockquote class="wp-block-quote"><p>Orthographic camera can be useful for rendering 2D scenes and UI elements, amongst other things.</p><cite><a href="https://threejs.org/docs/?q=orth#api/en/cameras/OrthographicCamera">threejs docs</a></cite></blockquote>
+
+
+
+<p>Remember, framebuffers allow us to render to image buffers in the video card’s memory instead of the device screen. These image buffers are represented by the <a href="https://threejs.org/docs/?q=Texture#api/en/textures/Texture">THREE.Texture</a> class and are automatically created for us when we create our <strong>Framebuffer 1</strong> and <strong>Framebuffer 2</strong> by instantiating a new <a href="https://threejs.org/docs/?q=webglre#api/en/renderers/WebGLRenderTarget">THREE.WebGLRenderTarget</a>. In order to display these textures back to the device screen, we need to create two 2D fullscreen quads that span the width and height of our monitor. Since these quads will be 2D, THREE.OrthographicCamera is best suited to display them.</p>
+
+
+
+<pre class="wp-block-code"><code>const leftScreenBorder = -innerWidth / 2
+const rightScreenBorder = innerWidth / 2
+const topScreenBorder = -innerHeight / 2
+const bottomScreenBorder = innerHeight / 2
+const near = -100
+const far = 100
+const orthoCamera = new THREE.OrthographicCamera(
+  leftScreenBorder,
+  rightScreenBorder,
+  topScreenBorder,
+  bottomScreenBorder,
+  near,
+  far
+)
+orthoCamera.position.z = -10
+orthoCamera.lookAt(new THREE.Vector3(0, 0, 0))</code></pre>
+
+
+
+<p>As a next step, let&#8217;s create a fullscreen quad geometry using <a href="https://threejs.org/docs/?q=PlaneG#api/en/geometries/PlaneGeometry">THREE.PlaneGeometry</a>:</p>
+
+
+
+<pre class="wp-block-code"><code>const fullscreenQuadGeometry = new THREE.PlaneGeometry(innerWidth, innerHeight)</code></pre>
+
+
+
+<p>Using our newly created 2D quad geometry, let&#8217;s create two fullscreen planes. I will call them <code>fadePlane</code> and <code>resultPlane</code>. They will use <a href="https://threejs.org/docs/?q=ShaderMaterial#api/en/materials/ShaderMaterial">THREE.ShaderMaterial</a> and <a href="https://threejs.org/docs/?q=MeshBasicMaterial#api/en/materials/MeshBasicMaterial">THREE.MeshBasicMaterial</a> respectively:</p>
+
+
+
+<pre class="wp-block-code"><code>// To achieve the fading out to black, we will use THREE.ShaderMaterial
+const fadeMaterial = new THREE.ShaderMaterial({
+  // Pass the texture result of our rendering to Framebuffer 1 as uniform variable
+  uniforms: {
+    inputTexture: { value: null }
+  },
+  vertexShader: `
+    // Declare a varying variable for texture coordinates
+    varying vec2 vUv;
+
+    void main () {
+      // Set each vertex position according to the
+      // orthographic camera position and projection
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  
+      // Pass the plane texture coordinates as interpolated varying
+      // variable to the fragment shader
+      vUv = uv;
+    }
+  `,
+  fragmentShader: `
+    // Pass the texture from Framebuffer 1
+    uniform sampler2D inputTexture;
+
+    // Consume the interpolated texture coordinates
+    varying vec2 vUv;
+
+    void main () {
+      // Get pixel color from texture
+      vec4 texColor = texture2D(inputTexture, vUv);
+
+      // Our fade-out color
+      vec4 fadeColor = vec4(0.0, 0.0, 0.0, 1.0);
+
+      // this step achieves the actual fading out
+      // mix texColor into fadeColor by a factor of 0.05
+      // you can change the value of the factor and see
+      // the result will change accordingly
+      gl_FragColor = mix(texColor, fadeColor, 0.05);
+    }
+  `
+})
+
+// Create our fadePlane
+const fadePlane = new THREE.Mesh(
+  fullscreenQuadGeometry,
+  fadeMaterial
+)
+
+// create our resultPlane
+// Please notice we don&#039;t use fancy shader materials for resultPlane
+// We will use it simply to copy the contents of fadePlane to the device screen
+// So we can just use the .map property of THREE.MeshBasicMaterial
+const resultMaterial = new THREE.MeshBasicMaterial({ map: null })
+const resultPlane = new THREE.Mesh(
+  fullscreenQuadGeometry,
+  resultMaterial
+)</code></pre>
+
+
+
+<p>We will use <code>fadePlane</code> to perform <strong>step 1</strong> and <strong>step 2</strong> from the list above (rendering the previous frame represented by <strong>Framebuffer 1</strong>, fading it out to black color and finally rendering our original threejs scene on top). We will render to <strong>Framebuffer 2</strong> and update its corresponding <code>THREE.Texture</code>.</p>
+
+
+
+<p>We will use the resulting texture of <strong>Framebuffer 2</strong> as an input to <code>&lt;strong&gt;resultPlane&lt;/strong&gt;</code>. This time, we will render to the  device screen. We will essentially copy the contents of <strong>Framebuffer 2 </strong>to the <strong>Default Framebuffer</strong> <strong>(device screen)</strong>, thus achieving <strong>step 3</strong>.</p>
+
+
+
+<p>Up next, let&#8217;s actually create our <strong>Framebuffer 1</strong> and <strong>Framebuffer</strong> <strong>2</strong>. They are represented by <a href="https://threejs.org/docs/?q=webglrend#api/en/renderers/WebGLRenderTarget">THREE.WebGLRenderTarget</a>:</p>
+
+
+
+<pre class="wp-block-code"><code>// Create two extra framebuffers manually
+// It is important we use let instead of const variables,
+// as we will need to swap them as discussed in Step 4!
+let framebuffer1 = new THREE.WebGLRenderTarget(innerWidth, innerHeight)
+let framebuffer2 = new THREE.WebGLRenderTarget(innerWidth, innerHeight)
+
+// Before we start using these framebuffers by rendering to them,
+// let&#039;s explicitly clear their pixel contents to #111111
+// If we don&#039;t do this, our persistence effect will end up wrong,
+// due to how accumulation between step 1 and 3 works. 
+// The first frame will never fade out when we mix Framebuffer 1 to
+// Framebuffer 2 and will be always visible.
+// This bug is better observed, rather then explained, so please
+// make sure to comment out these lines and see the change for yourself.
+renderer.setClearColor(0x111111)
+renderer.setRenderTarget(framebuffer1)
+renderer.clearColor()
+renderer.setRenderTarget(framebuffer2)
+renderer.clearColor()</code></pre>
+
+
+
+<p>As you might have guessed already, we will achieve <strong>step 4</strong> as described above by swapping <code>framebuffer1</code> and <code>framebuffer2</code> at the end of each animation frame.</p>
+
+
+
+<p>At this point we have everything ready and initialised: our THREE.OrthographicCamera, our 2 quads that will fade out and copy the contents of our framebuffers to the device screens and, of course, the framebuffers themselves. It should be noted that up until this point we did not change our animation loop code and logic, rather we just created these new things at the initialisation step of our program. Let&#8217;s now put them to practice in our rendering loop.</p>
+
+
+
+<p>Here is how my function that is executed on each animation frame looks like right now. Taken directly from the codepen example above:</p>
+
+
+
+<pre class="wp-block-code"><code>function drawFrame (timeElapsed) {
+  for (let i = 0; i &lt; meshes.length; i++) {
+     const mesh = meshes&#091;i]
+     // some animation logic that moves each mesh around the screen
+     // with different radius, offset and speed
+     // ...
+  }
+  // Render our entire scene to the device screen, represented by
+  // the default WebGL framebuffer
+  renderer.render(scene, perspectiveCamera)
+}</code></pre>
+
+
+
+<p>If you have written any threejs code before, this <code>drawFrame</code> method should not be any news to you. We apply some animation logic to our meshes and then render them to the device screen by calling <code>renderer.render()</code> on the whole scene with the appropriate camera.</p>
+
+
+
+<p>Let&#8217;s incorporate our steps 1 to 4 from above and achieve our persistence:</p>
+
+
+
+<pre class="wp-block-code"><code>function drawFrame (timeElapsed) {
+  // The for loop remains unchanged from the previous snippet
+  for (let i = 0; i &lt; meshes.length; i++) {
+     // ...
+  }
+
+  // By default, threejs clears the pixel color buffer when
+  // calling renderer.render()
+  // We want to disable it explicitly, since both step 1 and step 2 render
+  // to Framebuffer 2 accumulatively
+  renderer.autoClearColor = false
+
+  // Set Framebuffer 2 as active WebGL framebuffer to render to
+  renderer.setRenderTarget(framebuffer2)
+
+  // &lt;strong&gt;Step 1&lt;/strong&gt;
+  // Render the image buffer associated with Framebuffer 1 to Framebuffer 2
+  // fading it out to pure black by a factor of 0.05 in the fadeMaterial
+  // fragment shader
+  fadePlane.material.uniforms.inputTexture.value = framebuffer1.texture
+  renderer.render(fadePlane, orthoCamera)
+
+  // &lt;strong&gt;Step 2&lt;/strong&gt;
+  // Render our entire scene to Framebuffer 2, on top of the faded out 
+  // texture of Framebuffer 1.
+  renderer.render(scene, perspectiveCamera)
+
+  // Set the Default Framebuffer (device screen) represented by null as active WebGL framebuffer to render to.
+  renderer.setRenderTarget(null)
+  
+  // &lt;strong&gt;Step 3&lt;/strong&gt;
+  // Copy the pixel contents of Framebuffer 2 by passing them as a texture
+  // to resultPlane and rendering it to the Default Framebuffer (device screen)
+  resultPlane.material.map = framebuffer2.texture
+  renderer.render(resultPlane, orthoCamera)
+
+  // &lt;strong&gt;Step 4&lt;/strong&gt;
+  // Swap Framebuffer 1 and Framebuffer 2
+  const swap = framebuffer1
+  framebuffer1 = framebuffer2
+  framebuffer2 = swap
+
+  // End of the effect
+  // When the next animation frame is executed, the meshes will be animated
+  // and the whole process will repeat
+}</code></pre>
+
+
+
+<p>And with these changes out of the way, here is our updated example using persistence:</p>
+
+
+
+<p class="codepen" data-height="400" data-default-tab="js,result" data-slug-hash="eYGvwBw" data-user="gbnikolov" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/gbnikolov/pen/eYGvwBw">
+  2. Persistence</a> by Georgi Nikoloff (<a href="https://codepen.io/gbnikolov">@gbnikolov</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+<h2>Applying texture transformations</h2>
+
+
+
+<p>Now that we have our effect properly working, we can get more creative and expand on top of it.</p>
+
+
+
+<p>You might remember this snippet from the fragment shader code where we faded out the contents of <strong>Framebuffer  1 </strong>to <strong>Framebuffer 2</strong>:</p>
+
+
+
+<pre class="wp-block-code"><code>void main () {
+   // Get pixel color from texture
+   vec4 texColor = texture2D(inputTexture, vUv);
+
+   // Our fade-out color
+   vec4 fadeColor = vec4(0.0, 0.0, 0.0, 1.0);
+
+   // mix texColor into fadeColor by a factor of 0.05
+   gl_FragColor = mix(texColor, fadeColor, 0.05);
+}</code></pre>
+
+
+
+<p>When we sample from our <code>inputTexture</code>, we can upscale our texture coordinates by a factor of 0.0075 like so:</p>
+
+
+
+<pre class="wp-block-code"><code>vec4 texColor = texture2D(inputTexture, vUv * 0.9925);</code></pre>
+
+
+
+<p>With this transformation applied to our texture coordinates, here is our updated example:</p>
+
+
+
+<p class="codepen" data-height="400" data-default-tab="js,result" data-slug-hash="JjrNajE" data-user="gbnikolov" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/gbnikolov/pen/JjrNajE">
+  3. Peristence with upscaled texture coords</a> by Georgi Nikoloff (<a href="https://codepen.io/gbnikolov">@gbnikolov</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+<p>Or how about increasing our fade factor from 0.05 to 0.2?</p>
+
+
+
+<pre class="wp-block-code"><code>gl_FragColor = mix(texColor, fadeColor, 0.2);</code></pre>
+
+
+
+<p>This will intensify the effect of <code>fadeColor</code> by a magnitude of four, thus decreasing our persistence effect:</p>
+
+
+
+<p class="codepen" data-height="400" data-default-tab="js,result" data-slug-hash="YzrVOQL" data-user="gbnikolov" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/gbnikolov/pen/YzrVOQL">
+  4. Reduced persistence</a> by Georgi Nikoloff (<a href="https://codepen.io/gbnikolov">@gbnikolov</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+<p>But why stop there? Here is a final demo that provides you with UI controls to tweak the scale, rotation and fade factor parameters in the demo. It uses <a href="https://threejs.org/docs/?q=matrix3#api/en/math/Matrix3">THREE.Matrix3</a> and more specifically its <a href="https://threejs.org/docs/?q=matrix3#api/en/math/Matrix3.setUvTransform">setUvTransform</a> method that allows us to express the translation, scale and rotation of our texture coordinates as a 3&#215;3 matrix.</p>
+
+
+
+<p>We can then pass this 3&#215;3 as another uniform to our vertex shader and apply it to the texture coordinates. Here is the updated <code>fragmentShader</code> property of our <code>fadeMaterial</code>:</p>
+
+
+
+<pre class="wp-block-code"><code>// pass the texture coordinate matrix as another uniform variable
+uniform mat3 uvMatrix;
+varying vec2 vUv;
+void main () {
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  // Since our texture coordinates, represented by uv, are a vector with
+  // 2 floats and our matrix holds 9 floats, we need to temporarily
+  // add extra dimension to the texture coordinates to make the
+  // multiplication possible.
+  // In the end, we simply grab the .xy of the final result, thus
+  // transforming it back to vec2
+  vUv = (uvMatrix * vec3(uv, 1.0)).xy;
+}</code></pre>
+
+
+
+<p>And here is the result. I also added controls for the different parameters:</p>
+
+
+
+<p class="codepen" data-height="400" data-default-tab="js,result" data-slug-hash="OJxmojd" data-user="gbnikolov" style="height: 400px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/gbnikolov/pen/OJxmojd">
+  5. Parameterised persistence</a> by Georgi Nikoloff (<a href="https://codepen.io/gbnikolov">@gbnikolov</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async="" src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+<h2>Conclusion</h2>
+
+
+
+<p>Framebuffers are a powerful tool in WebGL that allows us to greatly enhance our scenes via post-processing and achieve all kinds of cool effects. Some techniques require more then one framebuffer as we saw and it is up to us as developers to mix and match them however we need to achieve our desired visuals.</p>
+
+
+
+<p>Further readings:</p>
+
+
+
+<ul><li><a href="https://threejs.org/docs/#manual/en/introduction/How-to-use-post-processing">How to use post-processing in threejs</a></li><li><a href="https://github.com/mattdesl/lwjgl-basics/wiki/ShaderLesson5">Gaussian blur post-processing by Matt DesLauriers</a></li></ul>
+
+								
+																																
+																	<div class="ct-post-nav">
+										<div class="ct-post-prev">        
+											<a href="https://tympanus.net/codrops/2021/12/27/three-js-animation-with-k-d-christmas-tree-algorithm/" rel="prev">Three.js Animation with K-d (Christmas) Tree Algorithm</a> 
+										</div>
+										<div class="ct-post-next">
+											<a href="https://tympanus.net/codrops/2021/12/31/a-look-back-at-2021-roundup-of-codrops-resources/" rel="next">A Look Back at 2021: Roundup of Codrops Resources</a> 
+										</div>
+										<div class="clr"></div>
+									</div> <!-- ct-post-nav -->
+																
+							</div>
+						</article>
+						<p class="ct-tags">
+							Tagged with: <a href="https://tympanus.net/codrops/tag/framebuffer/" rel="tag">framebuffer</a> <a href="https://tympanus.net/codrops/tag/motion-trail/" rel="tag">motion trail</a> <a href="https://tympanus.net/codrops/tag/postprocessing/" rel="tag">postprocessing</a> <a href="https://tympanus.net/codrops/tag/threejs/" rel="tag">threejs</a> <a href="https://tympanus.net/codrops/tag/webgl/" rel="tag">webgl</a>						</p>
+						<div class="clr"></div>
+					</div>
+
+																							
+											            <div class="ct-author-info ct-box">
+					                <div class="ct-author-avatar">
+					                    <img alt='' src='https://secure.gravatar.com/avatar/e3d80d570f70076b06b900f369ec2190?s=80&#038;d=retro&#038;r=g' srcset="https://secure.gravatar.com/avatar/e3d80d570f70076b06b900f369ec2190?s=160&#038;d=retro&#038;r=g 2x" class='avatar avatar-80 photo' height='80' width='80' loading='lazy'/>					                </div><!-- .author-avatar -->
+
+					                <div class="ct-author-page-desc">
+					                    <h3><a href="https://tympanus.net/codrops/author/georgi/">Georgi Nikolov</a></h3>
+					                    <p>I am a frontend developer living and working in Berlin.
+
+I specialise in developing rich user interfaces and graphics, such as websites, web apps, animations and visualisations.
+
+During my spare time, I learn and strive to improve my programming skills and math for computer graphics / animation.</p>
+					                    																				<p class="ct-author-page-url">
+											<a href="https://georgi-nikolov.com/" target="_blank">https://georgi-nikolov.com/</a>
+										</p>
+																				<div>
+											<ul class="ct-social-profiles">
+																																					<li><a class="ct-social-twitter" href="https://twitter.com/georgiNikoloff"><span>Twitter</span></a></li>
+																																																																									<li><a class="ct-social-codepen" href="https://codepen.io/gbnikolov"><span>Codepen</span></a></li>
+																																					<li><a class="ct-social-github" href="https://github.com/gnikoloff"><span>Github</span></a></li>
+																																																																																			</ul>
+										</div>
+					                </div>
+					            </div>
+					        
+						<!-- Related posts -->
+												<div class="ct-related-post">
+							
+									<div class="ct-related-item">
+										<div class="ct-latest-thumb-related">
+											<a href="https://tympanus.net/codrops/2021/01/19/drawing-2d-metaballs-with-webgl2/">
+												<img width="400" height="300" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/Metaballs-1-400x300.jpg" class="attachment-medium size-medium wp-post-image" alt="" loading="lazy" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/Metaballs-1-400x300.jpg 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/Metaballs-1-768x576.jpg 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/Metaballs-1.jpg 800w" sizes="(max-width: 400px) 100vw, 400px" />											</a>
+										</div>
+										<h3><a href="https://tympanus.net/codrops/2021/01/19/drawing-2d-metaballs-with-webgl2/">Drawing 2D Metaballs with WebGL2</a></h3>
+									</div>
+												
+								
+									<div class="ct-related-item">
+										<div class="ct-latest-thumb-related">
+											<a href="https://tympanus.net/codrops/2021/01/05/creating-an-infinite-auto-scrolling-gallery-using-webgl-with-ogl-and-glsl-shaders/">
+												<img width="400" height="300" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/InfiniteScrollingGallery-400x300.jpg" class="attachment-medium size-medium wp-post-image" alt="" loading="lazy" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/InfiniteScrollingGallery-400x300.jpg 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/InfiniteScrollingGallery-768x576.jpg 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/01/InfiniteScrollingGallery.jpg 800w" sizes="(max-width: 400px) 100vw, 400px" />											</a>
+										</div>
+										<h3><a href="https://tympanus.net/codrops/2021/01/05/creating-an-infinite-auto-scrolling-gallery-using-webgl-with-ogl-and-glsl-shaders/">Creating an Infinite Auto-Scrolling Gallery using WebGL with OGL and GLSL Shaders</a></h3>
+									</div>
+												
+								
+									<div class="ct-related-item">
+										<div class="ct-latest-thumb-related">
+											<a href="https://tympanus.net/codrops/2021/08/02/magical-marbles-in-three-js/">
+												<img width="400" height="300" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble-400x300.jpg" class="attachment-medium size-medium wp-post-image" alt="" loading="lazy" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble-400x300.jpg 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble-768x576.jpg 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble.jpg 800w" sizes="(max-width: 400px) 100vw, 400px" />											</a>
+										</div>
+										<h3><a href="https://tympanus.net/codrops/2021/08/02/magical-marbles-in-three-js/">Magical Marbles in Three.js</a></h3>
+									</div>
+												
+														</div>
+																						<div class="ct-row">
+						
+<div class="ct-sharing ct-box">
+	<!-- Begin Mailchimp Signup Form -->
+	<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		#mc_embed_signup{background: transparent; clear:left; width:100%; text-align: left;}
+		/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+		   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+	</style>
+	<style type="text/css">
+		#mc_embed_signup form { text-align: left; padding: 0;}
+		#mc-embedded-subscribe-form input[type=checkbox]{vertical-align: top;display: inline; width: auto;margin-right: 5px;}
+		#mergeRow-gdpr {margin-top: 20px;}
+		#mergeRow-gdpr fieldset label {font-weight: normal;}
+		#mc-embedded-subscribe-form .mc_fieldset{border:none;min-height: 0px;padding-bottom:0px;}
+		#mc_embed_signup input.email {width: 100%;margin: 0 auto 1rem; box-shadow:none;padding:5px 10px;height:50px;font-size: 0.9rem;border-radius:0;font-family:inherit;font-weight:bold;color: rgb(75, 94, 115);border:0;}
+		#mc_embed_signup input.email:focus {border-color: #66afe9; box-shadow: none;outline:none;}
+		#mc_embed_signup label {padding: 0;}    
+		#mc_embed_signup .button {background: #000;color:#fff;border-radius:0;transition:none;height:auto; padding:10px 20px;font-size:0.9rem; line-height:inherit;}
+		#mc_embed_signup .button:hover {background: #333;}
+	</style>
+	<div id="mc_embed_signup">
+		<form action="https://tympanus.us10.list-manage.com/subscribe/post?u=10ffec652b0f54fe5d8682ac0&amp;id=a9cab6dcf0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+		    <div id="mc_embed_signup_scroll">
+			<label for="mce-EMAIL"><h3>Subscribe to Codrops</h3></label>
+			<p>Stay up to date with the latest web design and development news and relevant updates from Codrops.</p>
+			<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+		    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+		    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_10ffec652b0f54fe5d8682ac0_a9cab6dcf0" tabindex="-1" value=""></div>
+		    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+		    </div>
+		</form>
+	</div>
+</div>
+
+
+
+						<div class="ct-bottom-ads ct-box">
+							<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CKYIK53I&placement=codrops" id="_carbonads_js"></script>
+							<style>
+								#carbonads * {
+								  margin: initial;
+								  padding: initial;
+								}
+								#carbonads {
+								  font-family: inherit;
+								}
+								#carbonads {
+								  z-index: 100;
+								}
+								#carbonads a {
+								  color: inherit;
+								  text-decoration: none;
+								}
+								#carbonads a:hover {
+								  color: inherit;
+								}
+								#carbonads span {
+								  position: relative;
+								  display: block;
+								  overflow: hidden;
+								}
+								#carbonads .carbon-img {
+								  display: block;
+								  margin: 0;
+								  line-height: 1;
+								}
+								#carbonads .carbon-img img {
+								  display: block;
+								  width: 100% !important;
+								  max-width: 288px !important;
+								}
+								#carbonads .carbon-text {
+								  display: block;
+								  font-size: 13px;
+								  padding: 1rem 0 30px;
+								  line-height: 1.5;
+								  text-align: left;
+								  max-width: 300px;
+								}
+								#carbonads .carbon-poweredby {
+								  display: block;
+								  padding: 6px 8px;
+								  background: #d7d7d7;
+								  text-align: center;
+								  text-transform: uppercase;
+								  letter-spacing: 0.5px;
+								  font-weight: 600;
+								  font-size: 8px;
+								  line-height: 1;
+								  border-top-left-radius: 3px;
+								  position: absolute;
+								  bottom: 0;
+								  left: 0;
+								}
+							</style>
+							<!--<h3>CSS Reference</h3>
+							<p>Learn about all important CSS properties from the basics with our extensive and easy-to-read CSS Reference.</p><p>It doesn't matter if you are a beginner or intermediate, <a href="/codrops/css_reference/">start learning CSS now</a>.</p>-->
+						</div>
+					</div>
+						<section id="comments" class="ct-comments">
+	
+		
+			<p class="ct-nocomments"></p>
+		<div class="ct-comment-form">	
+				<div class="clr"></div>
+	</div>
+
+</section><!-- #comments -->
+				</div>
+				<aside class="ct-sidebar">		
+	<div class="ct-pat">
+		<div id="coswrap" class="coswrap">
+			<a class="cos" href="https://srv.buysellads.com/ads/long/x/TH4C2IZ3TTTTTT4FGXHN4TTTTTT62QNPK6TTTTTTEDZABYVTTTTTTLIFC6AIEJL627JNAKZFKM46CE7MPM6CKB4652IT" target="_blank" rel="nofollow sponsored">
+				<img class="cos__img" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2022/01/Kan_Shortcut.png" alt="Shortcut"/>
+				<div class="cos__text">Shortcut is the ideal solution for task management, bug tracking, iteration planning, and reporting. Give us a try for free!</div>
+			</a>
+			 
+					<a class="cos" href="https://ad.doubleclick.net/ddm/trackclk/N1224323.3091281BUYSELLADS/B25600467.324553387;dc_trk_aid=516579785;dc_trk_cid=163822330;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=" target="_blank" rel="nofollow sponsored">
+						<img class="cos__img" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/09/Mailchimp_V2.jpg" alt="Mailchimp"/>
+						<img src="https://ad.doubleclick.net/ddm/trackimp/N1224323.3091281BUYSELLADS/B25600467.324553387;dc_trk_aid=516579785;dc_trk_cid=163822330;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=?" style="position:absolute;width:1px;height:1px;opacity:0;"/>
+						<div class="cos__text">Drive better results with a smart marketing platform. Try Mailchimp today.</div>
+					</a>
+				        	</div>
+		<!-- 125x125 -->
+		<div id="bsap_1243201" class="bsarocks bsap_af25dfd2f1908889af7a1aa5f4dcbd9e"></div>
+	</div>
+
+	<div class="ct-pat">
+		<div id="bsap_1298539" class="bsarocks bsap_af25dfd2f1908889af7a1aa5f4dcbd9e"></div>
+	</div>
+    		
+    	<div class="clr"></div>
+</aside>
+
+				<div class="clr"></div>
+			    </div>
+</div>
+		<footer class="ct-footer">
+			<div class="ct-inner">
+				<nav>
+					<ul>
+						<li><a href="/codrops/about/">About</a></li>
+						<li><a href="/codrops/contact/">Contact</a></li>
+						<li><a href="/codrops/advertise/">Advertise</a></li>
+						<li><a href="/codrops/privacy-policy/">Privacy Policy</a></li>
+						<li><a href="/codrops/licensing/">License</a></li>
+					</ul>
+					<ul>
+						<li><a href="/codrops/category/tutorials/">Tutorials</a></li>
+						<li><a href="/codrops/category/articles/">Articles</a></li>
+						<li><a href="/codrops/category/playground/">Playground</a></li>
+						<li><a href="/codrops/category/blueprints/">Blueprints</a></li>
+						<li><a href="/codrops/category/freebies/">Freebies</a></li>
+					</ul>
+					<ul>
+						<li><a href="/codrops/css_reference/">CSS Reference</a></li>
+						<li><a href="/codrops/collective/">Collective</a></li>
+						<li><a href="/codrops/newsletter/">Newsletter</a></li>
+						<li><a href="/codrops/archives/">Archives</a></li>
+						<li><a href="/codrops/deals/">Deals</a></li>
+					</ul>
+					<a class="ct-footer__farm" href="https://tympanus.net/codrops/project-nusa-portugal/"><img src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/05/farm.jpg" alt="Want to help Codrops build a sustainable permaculture farm in Portugal?" /></a>
+					<ul>
+						<li>Content delivered by <a href="https://www.stackpath.com/" title="Content Distribution Network" target="blank">StackPath</a></li>
+						<li>&copy; Codrops 2022</li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+		<div class="wt-cli-cookie-bar-container" data-nosnippet="true"><!--googleoff: all--><div id="cookie-law-info-bar" role="dialog" aria-live="polite" aria-label="cookieconsent" aria-describedby="wt-cli-cookie-banner" data-cli-geo-loc="0" style="" class="wt-cli-cookie-bar"><div class="cli-wrapper"><span id="wt-cli-cookie-banner"><div class="cli-bar-container cli-style-v2"><div class="cli-bar-message" style="width: auto !important">We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking “Okay”, you consent to the use of all cookies.</br><div class="wt-cli-ccpa-element"> <a href="javascript:void(0)" style="color:#606060;" role="button" class="wt-cli-ccpa-opt-out">Do not sell my personal information</a>.</div></div><div class="cli-bar-btn_container"><a id="wt-cli-settings-btn" tabindex="0" role='button' style="margin:0px 10px 0px 5px;" class="wt-cli-element small cli-plugin-button cli-plugin-main-button cli_settings_button" >Settings</a> <a id="wt-cli-accept-btn" tabindex="0" role='button' style="" data-cli_action="accept"  class="wt-cli-element small cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button" >Okay</a></div></div></span></div></div><div tabindex="0" id="cookie-law-info-again" style="display:none;"><span id="cookie_hdr_showagain">Privacy & Cookies Policy</span></div><div class="cli-modal" id="cliSettingsPopup" role="dialog" aria-labelledby="wt-cli-privacy-title" tabindex="-1" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+    <div class="cli-modal-content cli-bar-popup">
+      <button aria-label="Close" type="button" class="cli-modal-close" id="cliModalClose">
+      <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+      <span class="wt-cli-sr-only">Close</span>
+      </button>
+        <div class="cli-modal-body">
+
+    <div class="wt-cli-element cli-container-fluid cli-tab-container">
+        <div class="cli-row">
+                            <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+                    <div class="cli-privacy-overview">
+                        <h4 id='wt-cli-privacy-title'>Privacy Overview</h4>                        <div class="cli-privacy-content">
+                            <div class="cli-privacy-content-text">This website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may have an effect on your browsing experience.</div>
+                        </div>
+                        <a id="wt-cli-privacy-readmore"  tabindex="0" role="button" class="cli-privacy-readmore" data-readmore-text="Show more" data-readless-text="Show less"></a>                    </div>
+                </div>
+                        <div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+
+                
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-necessary" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-necessary" aria-controls="wt-cli-tab-necessary" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+                                Necessary                            </a>
+                                                                                        <div class="wt-cli-necessary-checkbox">
+                                    <input type="checkbox" class="cli-user-preference-checkbox" id="wt-cli-checkbox-necessary" aria-label="Necessary" data-id="checkbox-necessary" checked="checked" />
+                                    <label class="form-check-label" for="wt-cli-checkbox-necessary"> Necessary </label>
+                                </div>
+                                <span class="cli-necessary-caption">
+                                    Always Enabled                                </span>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-necessary" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-necessary" class="cli-tab-pane cli-fade" data-id="necessary">
+                                <p>Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information.</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-functional" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-functional" aria-controls="wt-cli-tab-functional" class="cli-nav-link cli-settings-mobile" data-target="functional" data-toggle="cli-toggle-tab">
+                                Functional                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-functional" aria-label="functional" data-id="checkbox-functional" role="switch" aria-controls="wt-cli-tab-link-functional" aria-labelledby="wt-cli-tab-link-functional"  />
+                                    <label for="wt-cli-checkbox-functional" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">functional</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-functional" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-functional" class="cli-tab-pane cli-fade" data-id="functional">
+                                <p>Functional cookies help to perform certain functionalities like sharing the content of the website on social media platforms, collect feedbacks, and other third-party features.
+</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-performance" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-performance" aria-controls="wt-cli-tab-performance" class="cli-nav-link cli-settings-mobile" data-target="performance" data-toggle="cli-toggle-tab">
+                                Performance                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-performance" aria-label="performance" data-id="checkbox-performance" role="switch" aria-controls="wt-cli-tab-link-performance" aria-labelledby="wt-cli-tab-link-performance"  />
+                                    <label for="wt-cli-checkbox-performance" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">performance</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-performance" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-performance" class="cli-tab-pane cli-fade" data-id="performance">
+                                <p>Performance cookies are used to understand and analyze the key performance indexes of the website which helps in delivering a better user experience for the visitors.
+<table class="wt-cli-element cookielawinfo-row-cat-table cookielawinfo-winter"><thead><tr><th scope="col" class="cookielawinfo-column-1">Cookie</th><th scope="col" class="cookielawinfo-column-3">Duration</th><th scope="col" class="cookielawinfo-column-4">Description</th></tr></thead><tbody><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utma</td><td class="cookielawinfo-column-3">2 years</td><td class="cookielawinfo-column-4">This cookie is set by Google Analytics and is used to distinguish users and sessions. The cookie is created when the JavaScript library executes and there are no existing __utma cookies. The cookie is updated every time data is sent to Google Analytics.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmb</td><td class="cookielawinfo-column-3">30 minutes</td><td class="cookielawinfo-column-4">The cookie is set by Google Analytics. The cookie is used to determine new sessions/visits. The cookie is created when the JavaScript library executes and there are no existing __utma cookies. The cookie is updated every time data is sent to Google Analytics.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmc</td><td class="cookielawinfo-column-3">session</td><td class="cookielawinfo-column-4">The cookie is set by Google Analytics and is deleted when the user closes the browser. The cookie is not used by ga.js. The cookie is used to enable interoperability with urchin.js which is an older version of Google analytics and used in conjunction with the __utmb cookie to determine new sessions/visits.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmt</td><td class="cookielawinfo-column-3">10 minutes</td><td class="cookielawinfo-column-4">The cookie is set by Google Analytics and is used to throttle request rate.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmz</td><td class="cookielawinfo-column-3">6 months</td><td class="cookielawinfo-column-4">This cookie is set by Google analytics and is used to store the traffic source or campaign through which the visitor reached your site.</td></tr></tbody></table></p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-analytics" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-analytics" aria-controls="wt-cli-tab-analytics" class="cli-nav-link cli-settings-mobile" data-target="analytics" data-toggle="cli-toggle-tab">
+                                Analytics                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-analytics" aria-label="analytics" data-id="checkbox-analytics" role="switch" aria-controls="wt-cli-tab-link-analytics" aria-labelledby="wt-cli-tab-link-analytics"  />
+                                    <label for="wt-cli-checkbox-analytics" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">analytics</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-analytics" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-analytics" class="cli-tab-pane cli-fade" data-id="analytics">
+                                <p>Analytical cookies are used to understand how visitors interact with the website. These cookies help provide information on metrics the number of visitors, bounce rate, traffic source, etc.
+</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-advertisement" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-advertisement" aria-controls="wt-cli-tab-advertisement" class="cli-nav-link cli-settings-mobile" data-target="advertisement" data-toggle="cli-toggle-tab">
+                                Advertisement                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-advertisement" aria-label="advertisement" data-id="checkbox-advertisement" role="switch" aria-controls="wt-cli-tab-link-advertisement" aria-labelledby="wt-cli-tab-link-advertisement"  />
+                                    <label for="wt-cli-checkbox-advertisement" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">advertisement</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-advertisement" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-advertisement" class="cli-tab-pane cli-fade" data-id="advertisement">
+                                <p>Advertisement cookies are used to provide visitors with relevant ads and marketing campaigns. These cookies track visitors across websites and collect information to provide customized ads.
+<table class="wt-cli-element cookielawinfo-row-cat-table cookielawinfo-winter"><thead><tr><th scope="col" class="cookielawinfo-column-1">Cookie</th><th scope="col" class="cookielawinfo-column-3">Duration</th><th scope="col" class="cookielawinfo-column-4">Description</th></tr></thead><tbody><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">IDE</td><td class="cookielawinfo-column-3">1 year 24 days</td><td class="cookielawinfo-column-4">Used by Google DoubleClick and stores information about how the user uses the website and any other advertisement before visiting the website. This is used to present users with ads that are relevant to them according to the user profile.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">test_cookie</td><td class="cookielawinfo-column-3">15 minutes</td><td class="cookielawinfo-column-4">This cookie is set by doubleclick.net. The purpose of the cookie is to determine if the user's browser supports cookies.</td></tr></tbody></table></p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-others" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-others" aria-controls="wt-cli-tab-others" class="cli-nav-link cli-settings-mobile" data-target="others" data-toggle="cli-toggle-tab">
+                                Others                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-others" aria-label="others" data-id="checkbox-others" role="switch" aria-controls="wt-cli-tab-link-others" aria-labelledby="wt-cli-tab-link-others"  />
+                                    <label for="wt-cli-checkbox-others" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">others</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-others" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-others" class="cli-tab-pane cli-fade" data-id="others">
+                                <p>Other uncategorized cookies are those that are being analyzed and have not been classified into a category as yet.
+<table class="wt-cli-element cookielawinfo-row-cat-table cookielawinfo-winter"><thead><tr><th scope="col" class="cookielawinfo-column-1">Cookie</th><th scope="col" class="cookielawinfo-column-3">Duration</th><th scope="col" class="cookielawinfo-column-4">Description</th></tr></thead><tbody><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">_mcid</td><td class="cookielawinfo-column-3">1 year</td><td class="cookielawinfo-column-4">No description</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">ak_bmsc</td><td class="cookielawinfo-column-3">2 hours</td><td class="cookielawinfo-column-4">No description</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-functional</td><td class="cookielawinfo-column-3">1 year</td><td class="cookielawinfo-column-4">The cookie is set by GDPR cookie consent to record the user consent for the cookies in the category "Functional".</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-others</td><td class="cookielawinfo-column-3">1 year</td><td class="cookielawinfo-column-4">No description</td></tr></tbody></table></p>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cli-modal-footer">
+    <div class="wt-cli-element cli-container-fluid cli-tab-container">
+        <div class="cli-row">
+            <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+                <div class="cli-tab-footer wt-cli-privacy-overview-actions">
+                    
+                        
+                                                    <a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn">Save & Accept</a>
+                                                                    
+                </div>
+                            </div>
+        </div>
+    </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<!--googleon: all--></div>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			cli_cookiebar_settings='{"animate_speed_hide":"500","animate_speed_show":"500","background":"#ffffff","border":"#444","border_on":false,"button_1_button_colour":"#000000","button_1_button_hover":"#000000","button_1_link_colour":"#fff","button_1_as_button":true,"button_1_new_win":false,"button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#0099cc","button_2_as_button":false,"button_2_hidebar":false,"button_2_nofollow":false,"button_3_button_colour":"#000","button_3_button_hover":"#000000","button_3_link_colour":"#fff","button_3_as_button":true,"button_3_new_win":false,"button_4_button_colour":"#000","button_4_button_hover":"#000000","button_4_link_colour":"#fff","button_4_as_button":true,"button_7_button_colour":"#0099cc","button_7_button_hover":"#007aa3","button_7_link_colour":"#fff","button_7_as_button":true,"button_7_new_win":false,"font_family":"inherit","header_fix":false,"notify_animate_hide":false,"notify_animate_show":false,"notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":false,"scroll_close_reload":false,"accept_close_reload":false,"reject_close_reload":false,"showagain_tab":false,"showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#0a0a0a","show_once_yn":false,"show_once":"10000","logging_on":false,"as_popup":false,"popup_overlay":true,"bar_heading_text":"","cookie_bar_as":"banner","cookie_setting_popup":true,"accept_all":true,"js_script_blocker":false,"popup_showagain_position":"bottom-right","widget_position":"left","button_1_style":"Array","button_2_style":"Array","button_3_style":"Array","button_4_style":[["margin","0px 10px 0px 5px"]],"button_5_style":[],"button_7_style":[],"accept_close_page_navigation":false}';
+		/* ]]> */
+		</script>
+		<link rel='stylesheet' id='cookie-law-info-table-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/webtoffee-gdpr-cookie-consent/public/css/cookie-law-info-table.css?ver=2.3.4' type='text/css' media='all' />
+
+
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/c00e6.js"></script>
+
+<script type='text/javascript' id='typeahead_wp_plugin-js-extra'>
+/* <![CDATA[ */
+var wp_typeahead = {"ajaxurl":"https:\/\/tympanus.net\/codrops\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+
+
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/906ad.js"></script>
+
+		</div><!--ct-container-->
+	</body>
+</html>
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Object Caching 158/237 objects using disk
+Page Caching using disk: enhanced (SSL caching disabled) 
+Content Delivery Network via i7x7p5b7.stackpathcdn.com
+Minified using disk
+
+Served from: tympanus.net @ 2022-01-10 01:49:55 by W3 Total Cache
+-->

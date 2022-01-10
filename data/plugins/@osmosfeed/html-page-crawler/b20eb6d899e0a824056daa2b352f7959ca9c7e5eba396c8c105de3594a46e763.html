@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="robots" content="noodp">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, viewport-fit=cover">
+
+    <title>  New WebKit Features in Safari 15.2 | WebKit</title>
+
+    <meta name="application-name" content="WebKit">
+
+    <link rel="stylesheet" type="text/css" href="https://webkit.org/wp-content/themes/webkit/style.css?20200127" media="all">
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?families=SF+Pro,v1" type="text/css">
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?families=SF+Mono,v2" type="text/css">
+    <meta name="supported-color-schemes" content="light dark">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="https://webkit.org/feed/">
+    <link rel="alternate" type="text/xml" title="RSS .92" href="https://webkit.org/feed/rss/">
+    <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="https://webkit.org/feed/atom/">
+    <link rel="pingback" href="https://webkit.org/wp/xmlrpc.php">
+
+    <link rel="shortcut icon" sizes="32x32" type="image/x-icon" href="/favicon.ico">
+
+    <meta name='robots' content='max-image-preview:large' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://webkit.org/wp/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://webkit.org/wp/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://webkit.org/wp/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.2" />
+<link rel="canonical" href="https://webkit.org/blog/12140/new-webkit-features-in-safari-15-2/" />
+<link rel='shortlink' href='https://webkit.org/?p=12140' />
+<link rel="alternate" type="application/json+oembed" href="https://webkit.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebkit.org%2Fblog%2F12140%2Fnew-webkit-features-in-safari-15-2%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://webkit.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebkit.org%2Fblog%2F12140%2Fnew-webkit-features-in-safari-15-2%2F&#038;format=xml" />
+
+    <!-- Schema.org markup -->
+    <meta itemprop="name" content="New WebKit Features in Safari 15.2">
+    <meta itemprop="description" content="The internet has always been about communication and collaboration.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:site" content="@webkit">
+    <meta name="twitter:title" content="New WebKit Features in Safari 15.2">
+    <meta name="twitter:description" content="The internet has always been about communication and collaboration.">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="New WebKit Features in Safari 15.2">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://webkit.org/blog/12140/new-webkit-features-in-safari-15-2/">
+    <meta property="og:description" content="The internet has always been about communication and collaboration.">
+    <meta property="og:site_name" content="WebKit">
+    <meta property="article:published_time" content="2021-12-13T11:13:38-08:00">
+    <meta property="article:modified_time" content="2021-12-15T08:46:51-08:00">
+    <meta property="article:section" content="News">
+    <meta property="fb:admins" content="1085088865">
+</head>
+<body class="post-template-default single single-post postid-12140 single-format-standard">
+    <!-- Copyright © 2020 Apple Inc. All rights reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg">
+	<style> svg { display: block; width: 0; height: 0; } </style>
+    <filter id="invertLightness" x="0" y="0" style="color-interpolation-filters: sRGB">
+        <feColorMatrix type="matrix" in="SourceGraphic" result="red" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1" />
+        <feColorMatrix type="matrix" in="SourceGraphic" result="green" values="0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1" />
+        <feColorMatrix type="matrix" in="SourceGraphic" result="blue" values="0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1" />
+        <feBlend in="red" in2="green" mode="lighten" result="maxyellow" />
+        <feBlend in="maxyellow" in2="blue" mode="lighten" result="max" />
+        <feBlend in="red" in2="green" mode="darken" result="minyellow" />
+        <feBlend in="minyellow" in2="blue" mode="darken" result="min" />
+        <feComponentTransfer result="adjustment" in="min">
+            <feFuncR type="linear" intercept="1" slope="-1" />
+            <feFuncG type="linear" intercept="1" slope="-1" />
+            <feFuncB type="linear" intercept="1" slope="-1" />
+        </feComponentTransfer>
+        <feComposite operator="arithmetic" in="SourceGraphic" in2="adjustment" k1="0" k2="1" k3="1" k4="-1" result="channelAdjustment" />
+        <feComposite operator="arithmetic" in="channelAdjustment" in2="max" k1="0" k2="1" k3="-1" k4="1" result="finalColors" />
+        <feComposite operator="in" in="finalColors" in2="SourceAlpha" />
+    </filter>
+</svg>    <header aria-label="WebKit.org Header" id="header">
+        <div class="page-width">
+        <a href="/"><div id="logo" class="site-logo">WebKit</div></a>
+        <nav id="site-nav" aria-label="Site Menu">
+<div class="menu-main-menu-container"><input type="checkbox" id="menu-main-menu-toggle" class="menu-toggle" /><label for="menu-main-menu-toggle" class="label-toggle main-menu" data-open="Main Menu" data-close="Close Menu"></label><ul id="menu-main-menu" class="menu" role="menubar"><li id="menu-item-4270" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-4270"><a href="https://webkit.org/blog/" role="menuitem">Blog</a></li>
+<li id="menu-item-6091" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6091"><a href="https://webkit.org/downloads/" role="menuitem">Downloads</a></li>
+<li id="menu-item-4272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4272"><a href="https://webkit.org/status/" role="menuitem">Feature Status</a></li>
+<li id="menu-item-9988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-9988"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="#nav-sub-menu" role="menuitem" aria-haspopup="true" aria-owns="sub-menu-for-9988" aria-controls="sub-menu-for-9988" aria-expanded="true"><label for="toggle-9988" class="label-toggle">Documentation</label></a>
+<ul class="sub-menu sub-menu-layer" role="menu" id="sub-menu-for-9988">
+	<li id="menu-item-4273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4273"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="https://webkit.org/reporting-bugs/" role="menuitem">How to Report Bugs</a></li>
+	<li id="menu-item-9989" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9989"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="/web-inspector" role="menuitem">Web Inspector</a></li>
+	<li id="menu-item-10868" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10868"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="https://webkit.org/tracking-prevention/" role="menuitem">Tracking Prevention</a></li>
+</ul>
+</li>
+<li id="menu-item-4274" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4274"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="#nav-sub-menu" role="menuitem" aria-haspopup="true" aria-owns="sub-menu-for-4274" aria-controls="sub-menu-for-4274" aria-expanded="true"><label for="toggle-4274" class="label-toggle">Contribute</label></a>
+<ul class="sub-menu sub-menu-layer" role="menu" id="sub-menu-for-4274">
+	<li id="menu-item-10037" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10037"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/project/" role="menuitem">Project Goals</a></li>
+	<li id="menu-item-4277" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4277"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/getting-started/" role="menuitem">Getting Started</a></li>
+	<li id="menu-item-4284" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4284"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/contributing-code/" role="menuitem">Contributing Code</a></li>
+	<li id="menu-item-4281" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4281"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/testing-contributions/" role="menuitem">Testing Contributions</a></li>
+	<li id="menu-item-4282" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4282"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/policy-and-guidelines/" role="menuitem">Policy and Guidelines</a></li>
+	<li id="menu-item-4278" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4278"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="http://trac.webkit.org" role="menuitem">Trac Timeline</a></li>
+</ul>
+</li>
+</ul></div></nav>
+        </div>
+    </header>
+
+<main id="content">
+    <div class="page-width">
+    
+        <article class="post-12140 post type-post status-publish format-standard hentry category-news" id="post-12140">
+            <h1><a href="https://webkit.org/blog/12140/new-webkit-features-in-safari-15-2/" rel="bookmark" title="Permanent Link: New WebKit Features in Safari 15.2">New WebKit Features in Safari 15.2</a></h1>
+            <div class="byline">
+                <p class="date">Dec 13, 2021</p>
+                <p class="author">by <span>Jen Simmons</span></p>
+                            </div>
+
+            <div class="bodycopy">
+                <p>The internet has always been about communication and collaboration. It started with asynchronous messages made of text. As it matured, the internet became real-time. Then the web came along, adding images, and later, video. Websites provided a means to publish, to broadcast, to run stores, to gather communities and create worlds.</p>
+<p>Now, the web is maturing to the point where web apps make rich collaboration experiences possible — including digital creation. Recent updates to WebKit bring a number of improvements to Safari 15.2 that focus on supporting creative applications and leveraging the incredible power of today’s hardware.</p>
+<h3>WebAssembly Enhancements</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/WebAssembly">Web Assembly (Wasm)</a> is a low-level assembly language that allows a multitude of programming languages like C/C++, C#, Objective-C, Swift, Python, Java or even Cobol to be compiled to run on the web at near native speed — without the user needing to install anything special. It’s designed to work alongside of JavaScript, allowing sites to use both together. Wasm provides the tools needed to bring powerful software applications to the web.</p>
+<p>In Safari 15.2, the addressable memory for Wasm has been expanded to 4GB, opening up possibilities for bigger and more powerful applications. The addition of zero-cost <a href="https://github.com/WebAssembly/exception-handling/blob/master/proposals/exception-handling/Exceptions.md">exception handling</a> also provides potential performance gains.</p>
+<h3>COOP/COEP  HTTP Headers</h3>
+<p>Shared memory provides powerful functionality for native applications, but on the web, such power must be balanced with strong security protections.  <code>SharedArrayBuffer</code> was supported in WebKit for Safari 10.1–11, but was disabled along with other browsers due to the risk of using it for speculative execution attacks like Spectre.</p>
+<p>Safari 15.2 adds support for <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy"><code>Cross-Origin-Opener-Policy</code> (COOP)</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Embedder-Policy"><code>Cross-Origin-Embedder-Policy</code> (COEP)</a> HTTP response headers. Sites can adopt these headers to opt into process isolation and be better protected. If sites serve both <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code>, they are now able to use SharedArrayBuffer and Wasm threading again.</p>
+<h3>Wide gamut support for Canvas</h3>
+<p>These days modern creative tools depend on amazing camera and gorgeous displays. Yet, most colors on the Web today are sRGB colors, which match the limited color capabilities of computer monitors from the late 1990s. The human visual system can perceive a much broader range of colors. Today’s modern displays reproduce the colors of the Display P3 gamut, with significantly higher saturation than sRGB.</p>
+<p>Since 2016, WebKit has supported wide color images and video, and last year became <a href="https://webkit.org/blog/10042/wide-gamut-color-in-css-with-display-p3/">the first browser engine to implement the new color syntax</a> defined in <a href="https://drafts.csswg.org/css-color-4/">CSS Color Module Level 4</a>. One notable omission in wide gamut color support was in the HTML <code>canvas</code> element. Earlier this year, a proposal for support was added to the HTML standard, and now, in Safari 15.2, WebKit adds wide gamut support — including Display P3 — for use in <code>canvas</code>.</p>
+<p>Read more about the details, with demos of stunning results, in <a href="https://webkit.org/blog/12058/wide-gamut-2d-graphics-using-html-canvas/">Wide Gamut 2D Graphics using HTML Canvas</a>.</p>
+<h3>More information</h3>
+<p>For more on what’s in Safari 15.2, including bug fixes, see the <a href="https://developer.apple.com/documentation/safari-release-notes/safari-15_2-release-notes">Safari 15.2 Release Notes</a>.</p>
+<h3>Availability</h3>
+<p>Safari 15.2 is available on macOS Monterey, macOS Big Sur and macOS Catalina. To update on macOS, go to Apple menu  > System Preferences, and click Software Update.</p>
+<p>Safari 15.2 is available on iOS and iPadOS 15.2. To update, go to Settings > General, then tap Software Update.</p>
+<h3>Feedback</h3>
+<p>If you run into issues, we welcome your <a href="https://bugreport.apple.com/">bug reports</a> for Safari, or <a href="https://bugs.webkit.org/">WebKit bugs</a> for web content issues. Send us a tweet <a href="https://twitter.com/webkit">@webkit</a> to share your thoughts on this release.</p>
+
+                            </div>
+        </article>
+
+        <aside class="nextrouter" aria-label="Next/Previous posts">
+            <div class="bodycopy">
+                        <a class="page-numbers next-post" href="https://webkit.org/blog/12058/wide-gamut-2d-graphics-using-html-canvas/" rel="next"><div class="nextrouter-copy"><span class="label">Next</span><span class="title">Wide Gamut 2D Graphics using HTML Canvas</span><span class="link">Learn more</span></div></a>            </div>
+        </aside>
+        <aside class="nextrouter previous" aria-label="Next/Previous posts">
+            <div class="bodycopy">
+            <a class="page-numbers prev-post" href="https://webkit.org/blog/12137/release-notes-for-safari-technology-preview-136/" rel="prev"><div class="nextrouter-copy"><span class="label">Previously</span><span class="title">Release Notes for Safari Technology Preview 136</span><span class="link">Learn more</span></div></a>            </div>
+        </aside>
+
+    
+    
+    </div><!--.page-width-->
+</main><!-- #content -->
+
+<footer>
+    <div class="page-width">
+        <nav id="footer-nav" aria-label="Footer menu"><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-7617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7617"><a href="https://twitter.com/webkit">@webkit</a></li>
+<li id="menu-item-5365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5365"><a href="https://webkit.org/sitemap/">Site Map</a></li>
+<li id="menu-item-4185" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4185"><a href="http://www.apple.com/legal/privacy/">Privacy Policy</a></li>
+<li id="menu-item-4287" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4287"><a href="https://webkit.org/licensing-webkit/">Licensing WebKit</a></li>
+<li id="menu-item-4187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4187"><a href="https://webkit.org/terms-of-use/">WebKit and the WebKit logo are trademarks of Apple Inc.</a></li>
+</ul></div></nav>
+    </div>
+</footer>
+
+
+<script type='text/javascript' src='https://webkit.org/wp-content/themes/webkit/scripts/global.js?ver=1.0' id='theme-global-js'></script>
+<script type='text/javascript' src='https://webkit.org/wp/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+</body>
+</html>
+<!-- Dynamic page generated in 0.199 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2022-01-09 16:52:50 -->
+
+<!-- super cache -->

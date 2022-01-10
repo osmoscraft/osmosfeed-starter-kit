@@ -1,0 +1,458 @@
+
+
+<!doctype html>
+<html lang="en-US">
+<head data-template-path="https://hacks.mozilla.org/wp-content/themes/Hax">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="w2ocEMd5yV9IsGCjhq-7ls67r4VH-Ob6oWdiZpqjN8U">
+
+  
+  <meta name="title" content="Implementing Private Fields for JavaScript – Mozilla Hacks - the Web developer blog">
+
+    <meta property="og:site_name" content="Mozilla Hacks &#8211; the Web developer blog">
+  <meta property="og:url" content="https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript">
+  <meta property="og:title" content="Implementing Private Fields for JavaScript – Mozilla Hacks - the Web developer blog">
+  <meta property="og:description" content="Private fields are a language feature being added to the JavaScript language through the TC39 proposal process.">
+  <meta property="og:image" content="https://hacks.mozilla.org/files/2021/06/Screen-Shot-2021-06-08-at-1.25.57-PM.png">
+  <meta property="og:image:width" content="574">
+  <meta property="og:image:height" content="487">
+
+    <meta property="twitter:title" content="Implementing Private Fields for JavaScript – Mozilla Hacks - the Web developer blog">
+  <meta property="twitter:description" content="Private fields are a language feature being added to the JavaScript language through the TC39 proposal process.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://hacks.mozilla.org/files/2021/06/Screen-Shot-2021-06-08-at-1.25.57-PM.png">
+  <meta name="twitter:site" content="@mozhacks">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
+
+  <script type="text/javascript">
+    window.hacks = {};
+    // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+    var removeUtms  =   function(){
+        var l = window.location;
+        if( l.hash.indexOf( "utm" ) != -1 ){
+            var anchor = l.hash.match(/#(?!utm)[^&]+/);
+            anchor  =   anchor? anchor[0]: '';
+            if(!anchor && window.history.replaceState){
+                history.replaceState({},'', l.pathname + l.search);
+            } else {
+                l.hash = anchor;
+            }
+        };
+    };
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35433268-8'],
+              ['_setAllowAnchor', true]);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push( removeUtms );
+    (function(d, k) {
+      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
+    })(document, 'script');
+  </script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="blog-name" content="Mozilla Hacks - the Web developer blog" />
+<link rel="alternate" hreflang="en" href="https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/" />
+<link rel="alternate" hreflang="x-default" href="https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Implementing Private Fields for JavaScript - Mozilla Hacks - the Web developer blog</title>
+	<meta name="description" content="Private fields are a language feature being added to the JavaScript language through the TC39 proposal process." />
+	<link rel="canonical" href="https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Matthew Gaudet" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="11 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://hacks.mozilla.org/#website","url":"https://hacks.mozilla.org/","name":"Mozilla Hacks - the Web developer blog","description":"hacks.mozilla.org","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://hacks.mozilla.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/#primaryimage","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2021/06/Screen-Shot-2021-06-08-at-1.25.57-PM.png","contentUrl":"https://hacks.mozilla.org/files/2021/06/Screen-Shot-2021-06-08-at-1.25.57-PM.png","width":574,"height":487},{"@type":"WebPage","@id":"https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/#webpage","url":"https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/","name":"Implementing Private Fields for JavaScript - Mozilla Hacks - the Web developer blog","isPartOf":{"@id":"https://hacks.mozilla.org/#website"},"primaryImageOfPage":{"@id":"https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/#primaryimage"},"datePublished":"2021-06-08T15:26:19+00:00","dateModified":"2021-06-08T15:26:19+00:00","author":{"@id":"https://hacks.mozilla.org/#/schema/person/77089013d9ead0a99bb6144e64cc4adc"},"description":"Private fields are a language feature being added to the JavaScript language through the TC39 proposal process.","breadcrumb":{"@id":"https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/"]}]},{"@type":"BreadcrumbList","@id":"https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hacks.mozilla.org/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://hacks.mozilla.org/articles/"},{"@type":"ListItem","position":3,"name":"Implementing Private Fields for JavaScript"}]},{"@type":"Person","@id":"https://hacks.mozilla.org/#/schema/person/77089013d9ead0a99bb6144e64cc4adc","name":"Matthew Gaudet","image":{"@type":"ImageObject","@id":"https://hacks.mozilla.org/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/0c4c6c72545e010e29e8da0e3bb229ee?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/0c4c6c72545e010e29e8da0e3bb229ee?s=96&d=mm&r=g","caption":"Matthew Gaudet"},"url":"https://hacks.mozilla.org/author/mgaudetmozilla-com/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//blog.mozilla.org' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Feed" href="https://hacks.mozilla.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Comments Feed" href="https://hacks.mozilla.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Implementing Private Fields for JavaScript Comments Feed" href="https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/feed/" />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='wpml-legacy-post-translations-0-css'  href='//blog.mozilla.org/hacks/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-post-translations/style.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/analytics.js?ver=5.8.2' id='analytics-js'></script>
+<link rel="https://api.w.org/" href="https://hacks.mozilla.org/wp-json/" /><link rel="alternate" type="application/json" href="https://hacks.mozilla.org/wp-json/wp/v2/posts/47312" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hacks.mozilla.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://hacks.mozilla.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='shortlink' href='https://hacks.mozilla.org/?p=47312' />
+<link rel="alternate" type="application/json+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F06%2Fimplementing-private-fields-for-javascript%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F06%2Fimplementing-private-fields-for-javascript%2F&#038;format=xml" />
+<meta name="generator" content="WPML ver:4.5.1 stt:59,61,1,2;" />
+<link rel="shortcut icon" type="image/x-icon" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" /><style>#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}li#wp-admin-bar-site-name a { background: url( "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }
+</style></head>
+<body>
+  <div class="outer-wrapper">
+    <header class="section section--fullwidth header">
+      <div class="masthead row">
+        <div class="branding block block--3">
+          <h1>
+            <a href="https://hacks.mozilla.org">
+              <img class="branding__logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
+        </div>
+        <div class="search block block--2">
+          <form class="search__form" method="get" action="https://hacks.mozilla.org/">
+            <input type="search" name="s" class="search__input" placeholder="Search Mozilla Hacks" value="">
+            <i class="fa fa-search search__badge"></i>
+          </form>
+        </div>
+        <nav class="social">
+          <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i><span>Hacks on YouTube</span></a>
+          <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>@mozhacks on Twitter</span></a>
+          <a class="social__link rss" href="https://hacks.mozilla.org/feed/" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><span>Hacks RSS Feed</span></a>
+          <a class="fx-button" href="https://www.mozilla.org/firefox/download/thanks/?utm_source=hacks.mozilla.org&utm_medium=referral&utm_campaign=header-download-button&utm_content=header-download-button">Download Firefox</a>
+        </nav>
+      </div>
+    </header>
+
+  
+<div id="content-head" class="section">
+  <h1 class="post__title">Implementing Private Fields for JavaScript</h1>
+  <div class="byline">
+    <h3 class="post__author">
+                      <img alt='' src='https://secure.gravatar.com/avatar/0c4c6c72545e010e29e8da0e3bb229ee?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/0c4c6c72545e010e29e8da0e3bb229ee?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>        By
+                                        <a class="url" href="https://hacks.mozilla.org/author/mgaudetmozilla-com/">Matthew Gaudet</a>                            </h2>
+    <div class="post__meta">
+      Posted on
+      <abbr class="published" title="2021-06-08T08:26:19-07:00">
+        June 8, 2021      </abbr>
+      <span class="entry-cat">in
+        <a href="https://hacks.mozilla.org/category/featured/" rel="category tag" title="View all posts in Featured Article" >Featured Article</a>, <a href="https://hacks.mozilla.org/category/firefox/" rel="category tag" title="View all posts in Firefox" >Firefox</a>,  and <a href="https://hacks.mozilla.org/category/javascript/" rel="category tag" title="View all posts in JavaScript" >JavaScript</a>      </span>
+            <div class="socialshare" data-type="bubbles"></div>
+    </div>
+  </div>
+</div>
+
+<main id="content-main" class="section article">
+  <article class="post" role="article">
+    <p><em>This post is <a href="https://www.mgaudet.ca/technical/2021/5/4/implementing-private-fields-for-javascript">cross-posted from Matthew Gaudet’s blog</a></em></p>
+<p>When implementing a language feature for JavaScript, an implementer must make decisions about how the language in the specification maps to the implementation. Sometimes this is fairly simple, where the specification and implementation can share much of the same terminology and algorithms. Other times, pressures in the implementation make it more challenging, requiring or pressuring the implementation strategy diverge to diverge from the language specification.</p>
+<p>Private fields is an example of where the specification language and implementation reality diverge, at least in <a href="https://spidermonkey.dev/">SpiderMonkey</a>– the JavaScript engine which powers Firefox. To understand more, I’ll explain what private fields are, a couple of models for thinking about them, and explain why our implementation diverges from the specification language.</p>
+<h2 id="private-fields">Private Fields</h2>
+<p>Private fields are a language feature being added to the JavaScript language through the <a href="https://tc39.es/">TC39</a> <a href="https://tc39.es/process-document/">proposal process</a>, as part of the <a href="https://github.com/tc39/proposal-class-fields">class fields proposal</a>, which is at Stage 4 in the TC39 process. We will ship private fields and private methods in Firefox 90.</p>
+<p>The private fields proposal adds a strict notion of ‘private state’ to the language. In the following example, <code>#x</code> may only be accessed by instances of class <code>A</code>:</p>
+<pre class="js"><code>class A {
+  #x = 10;
+}</code></pre>
+<p>This means that outside of the class, it is impossible to access that field. Unlike public fields for example, as the following example shows:</p>
+<pre class="js"><code>class A {
+  #x = 10; // Private field
+  y = 12; // Public Field
+}
+
+var a = new A();
+a.y; // Accessing public field y: OK
+a.#x; // Syntax error: reference to undeclared private field</code></pre>
+<p>Even various other tools that JavaScript gives you for interrogating objects are prevented from accessing private fields (e.g. <code>Object.getOwnProperty{Symbols,Names}</code> don’t list private fields; there’s no way to use <code>Reflect.get</code> to access them).</p>
+<h2 id="a-feature-three-ways">A Feature Three Ways</h2>
+<p>When talking about a feature in JavaScript, there are often three different aspects in play: the mental model, the specification, and the implementation.</p>
+<p>The mental model provides the high-level thinking that we expect programmers to use mostly. The specification in turn provides the detail of the semantics required by the feature. The implementation can look wildly different from the specification text, so long as the specification semantics are maintained.</p>
+<p>These three aspects shouldn’t produce different results for people reasoning through things (though, sometimes a ‘mental model’ is shorthand, and doesn’t accurately capture semantics in edge case scenarios).</p>
+<p>We can look at private fields using these three aspects:</p>
+<h3 id="mental-model">Mental Model</h3>
+<p>The most basic mental model one can have for private fields is what it says on the tin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields">fields</a>, but private. Now, JS fields become properties on objects, so the mental model is perhaps ‘properties that can’t be accessed from outside the class’.</p>
+<p>However, when we encounter proxies, this mental model breaks down a bit; trying to specify the semantics for ‘hidden properties’ and proxies <a href="https://github.com/zenparsing/es-abstract-refs/issues/11#issuecomment-65723350">is challenging</a> (what happens when a Proxy is trying to provide access control to properties, if you aren’t supposed to be able see private fields with Proxies? Can subclasses access private fields? Do private fields participate in prototype inheritance?) . In order to preserve the desired privacy properties an alternative mental model became the way the committee thinks about private fields.</p>
+<p>This alternative model is called the ‘WeakMap’ model. In this mental model you imagine that each class has a hidden weak map associated with each private field, such that you could hypothetically <a href="https://en.wikipedia.org/wiki/Syntactic_sugar">‘desugar’</a></p>
+<pre class="js"><code>class A {
+  #x = 15;
+  g() {
+    return this.#x;
+  }
+}</code></pre>
+<p>into something like</p>
+<pre class="js"><code>class A_desugared {
+  static InaccessibleWeakMap_x = new WeakMap();
+  constructor() {
+    A_desugared.InaccessibleWeakMap_x.set(this, 15);
+  }
+
+  g() {
+    return A_desugared.InaccessibleWeakMap_x.get(this);
+  }
+}</code></pre>
+<p>The <code>WeakMap</code> model is, surprisingly, not how the feature is written in the specification, but is an important part of the design intention is behind them. I will cover a bit later how this mental model shows up in places later.</p>
+<h3 id="specification">Specification</h3>
+<p>The actual specification changes are provided by the <a href="https://github.com/tc39/proposal-class-fields">class fields proposal</a>, specifically the <a href="https://tc39.es/proposal-class-fields/">changes to the specification text</a>. I won’t cover every piece of this specification text, but I’ll call out specific aspects to help elucidate the differences between specification text and implementation.</p>
+<p>First, the specification adds the notion of <a href="https://tc39.es/proposal-class-fields/#sec-private-names"><code>[[PrivateName]]</code></a>, which is a globally unique field identifier. This global uniqueness is to ensure that two classes cannot access each other’s fields merely by having the same name.</p>
+<pre class="js"><code>function createClass() {
+  return class {
+    #x = 1;
+    static getX(o) {
+      return o.#x;
+    }
+  };
+}
+
+let [A, B] = [0, 1].map(createClass);
+let a = new A();
+let b = new B();
+
+A.getX(a); // Allowed: Same class
+A.getX(b); // Type Error, because different class.</code></pre>
+<p>The specification also adds a new <a href="https://tc39.es/ecma262/#sec-object-internal-methods-and-internal-slots">‘internal slot’</a>, which is a specification level piece of internal state associated with an object in the spec, called <a href="https://tc39.es/proposal-class-fields/#sec-private-names"><code>[[PrivateFieldValues]]</code></a> to all objects. <code>[[PrivateFieldValues]]</code> is a list of records of the form:</p>
+<pre><code>{
+  [[PrivateName]]: Private Name,
+  [[PrivateFieldValue]]: ECMAScript value
+}</code></pre>
+<p>To manipulate this list, the specification adds four new algorithms:</p>
+<ol type="1">
+<li><a href="https://tc39.es/proposal-class-fields/#sec-privatefieldfind"><code>PrivateFieldFind</code></a></li>
+<li><a href="https://tc39.es/proposal-class-fields/#sec-privatefieldadd"><code>PrivateFieldAdd</code></a></li>
+<li><a href="https://tc39.es/proposal-class-fields/#sec-privatefieldget"><code>PrivateFieldGet</code></a></li>
+<li><a href="https://tc39.es/proposal-class-fields/#sec-privatefieldset"><code>PrivateFieldSet</code></a></li>
+</ol>
+<p>These algorithms largely work as you would expect: <code>PrivateFieldAdd</code> appends an entry to the list (though, in the interest of trying to provide errors eagerly, if a matching Private Name already exists in the list, it will throw a <code>TypeError</code>. I’ll show how that can happen later). <code>PrivateFieldGet</code> retrieves a value stored in the list, keyed by a given Private name, etc.</p>
+<h4 id="the-constructor-override-trick">The Constructor Override Trick</h4>
+<p>When I first started to read the specification, I was surprised to see that <code>PrivateFieldAdd</code> could throw. Given that it was only called from a constructor on the object being constructed, I had fully expected that the object would be freshly created, and therefore you’d not need to worry about a field already being there.</p>
+<p>This turns out to be possible, <a href="https://www.mgaudet.ca/technical/2020/7/24/investigating-the-return-behaviour-of-js-constructors">a side effect of some of the specification’s handling of constructor return values</a>. To be more concrete, the following is an example provided to me by André Bargull, which shows this in action.</p>
+<pre class="js"><code>class Base {
+  constructor(o) {
+    return o; // Note: We are returning the argument!
+  }
+}
+
+class Stamper extends Base {
+  #x = "stamped";
+  static getX(o) {
+    return o.#x;
+  }
+}</code></pre>
+<p><code>Stamper</code> is a class which can ‘stamp’ its private field onto any object:</p>
+<pre class="js"><code>let obj = {};
+new Stamper(obj); // obj now has private field #x
+Stamper.getX(obj); // =&gt; "stamped"</code></pre>
+<p>This means that when we add private fields to an object we cannot assume it doesn’t have them already. This is where the pre-existence check in <code>PrivateFieldAdd</code> comes into play:</p>
+<pre class="js"><code>let obj2 = {};
+new Stamper(obj2);
+new Stamper(obj2); // Throws 'TypeError' due to pre-existence of private field</code></pre>
+<p>This ability to stamp private fields into arbitrary objects interacts with the WeakMap model a bit here as well. For example, given that you can stamp private fields onto any object, that means you could also stamp a private field onto a sealed object:</p>
+<pre><code>var obj3 = {};
+Object.seal(obj3);
+new Stamper(obj3);
+Stamper.getX(obj3); // =&gt; "stamped"</code></pre>
+<p>If you imagine private fields as properties, this is uncomfortable, because it means you’re modifying an object that was sealed by a programmer to future modification. However, using the weak map model, it is totally acceptable, as you’re only using the sealed object as a key in the weak map.</p>
+<p>PS: Just because you <em>can</em> stamp private fields into arbitrary objects, doesn’t mean you <em>should</em>: Please don’t do this.</p>
+<h3 id="implementing-the-specification">Implementing the Specification</h3>
+<p>When faced with implementing the specification, there is a tension between following the letter of the specification, and doing something different to improve the implementation on some dimension.</p>
+<p>Where it is possible to implement the steps of the specification directly, we prefer to do that, as it makes maintenance of features easier as specification changes are made. SpiderMonkey does this in many places. You will see sections of code that are transcriptions of specification algorithms, <a href="https://searchfox.org/mozilla-central/rev/3434a9df60373a997263107e6f124fb164ddebf2/js/src/vm/JSFunction.cpp#1143-1210">with step</a> <a href="https://searchfox.org/mozilla-central/rev/3434a9df60373a997263107e6f124fb164ddebf2/js/src/builtin/Array.js#7-47">numbers for comments</a>. Following the exact letter of the specification can also be helpful where the specification is highly complex and small divergences can lead to compatibility risks.</p>
+<p>Sometimes however, there are good reasons to diverge from the specification language. JavaScript implementations have been honed for high performance for years, and there are many implementation tricks that have been applied to make that happen. Sometimes recasting a part of the specification in terms of code already written is the right thing to do, because that means the new code is also able to have the performance characteristics of the already written code.</p>
+<h4 id="implementing-private-names">Implementing Private Names</h4>
+<p>The specification language for Private Names already almost matches the semantics around <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbols</code></a>, which already exist in SpiderMonkey. So adding <code>PrivateNames</code> as a special kind of <code>Symbol</code> is a fairly easy choice.</p>
+<h4 id="implementing-private-fields">Implementing Private Fields</h4>
+<p>Looking at the specification for private fields, the specification implementation would be to add an extra hidden slot to every object in SpiderMonkey, which contains a reference to a list of <code>{PrivateName, Value}</code> pairs. However, implementing this directly has a number of clear downsides:</p>
+<ul>
+<li>It adds memory usage to objects without private fields</li>
+<li>It requires invasive addition of either new bytecodes or complexity to performance sensitive property access paths.</li>
+</ul>
+<p>An alternative option is to diverge from the specification language, and implement only the semantics, not the actual specification algorithms. In the majority of cases, you really <em>can</em> think of private fields as special properties on objects that are hidden from reflection or introspection outside a class.</p>
+<p>If we model private fields as properties, rather than a special side-list that is maintained with an object, we are able to take advantage of the fact that property manipulation is already extremely optimized in a JavaScript engine.</p>
+<p>However, properties are subject to reflection. So if we model private fields as object properties, we need to ensure that reflection APIs don’t reveal them, and that you can’t get access to them via Proxies.</p>
+<p>In SpiderMonkey, we elected to implement private fields as hidden properties in order to take advantage of all the optimized machinery that already exists for properties in the engine. When I started implementing this feature André Bargull – a SpiderMonkey contributor for many years – actually handed me a series of patches that had a good chunk of the private fields implementation already done, for which I was hugely grateful.</p>
+<p>Using our special PrivateName symbols, we effectively desuagar</p>
+<pre class="js"><code>class A {
+  #x = 10;
+  x() {
+    return this.#x;
+  }
+}</code></pre>
+<p>to something that looks closer to</p>
+<pre class="js"><code>class A_desugared {
+  constructor() {
+    this[PrivateSymbol(#x)] = 10;
+  }
+  x() {
+    return this[PrivateSymbol(#x)];
+  }
+}</code></pre>
+<p>Private fields have slightly different semantics than properties however. They are designed to issue errors on patterns expected to be programming mistakes, rather than silently accepting it. For example:</p>
+<ol type="1">
+<li>Accessing an a property on an object that doesn’t have it returns <code>undefined</code>. Private fields are specified to throw a <code>TypeError</code>, as a result of the <a href="https://tc39.es/proposal-class-fields/#sec-privatefieldget"><code>PrivateFieldGet</code> algorithm</a>.</li>
+<li>Setting a property on an object that doesn’t have it simply adds the property. Private fields will throw a <code>TypeError</code> in <a href="https://tc39.es/proposal-class-fields/#sec-privatefieldset"><code>PrivateFieldSet</code></a>.</li>
+<li>Adding a private field to an object that already has that field also throws a <code>TypeError</code> in <a href="https://tc39.es/proposal-class-fields/#sec-privatefieldadd"><code>PrivateFieldAdd</code></a>. See “The Constructor Override Trick” above for how this can happen.</li>
+</ol>
+<p>To handle the different semantics, we modified the bytecode emission for private field accesses. We added a new bytecode op, <code>CheckPrivateField</code> which verifies an object has the correct state for a given private field. This means throwing an exception if the property is missing or present, as appropriate for Get/Set or Add. <code>CheckPrivateField</code> is emitted just before using the regular ‘computed property name’ path (the one used for <code>A[someKey]</code>).</p>
+<p><code>CheckPrivateField</code> is designed such that we can easily implement an <a href="https://www.mgaudet.ca/technical/2018/6/5/an-inline-cache-isnt-just-a-cache">inline cache</a> using <a href="https://jandemooij.nl/blog/2017/01/25/cacheir/">CacheIR</a>. Since we are storing private fields as properties, we can use the Shape of an object as a guard, and simply return the appropriate boolean value. The Shape of an object in SpiderMonkey determines what properties it has, and where they are located in the storage for that object. Objects that have the same shape are guaranteed to have the same properties, and it’s a perfect check for an IC for <code>CheckPrivateField</code>.</p>
+<p>Other modifications we made to make to the engine include omitting private fields from the property enumeration protocol, and allowing the extension of sealed objects if we are adding private field.</p>
+<h2 id="proxies">Proxies</h2>
+<p>Proxies presented us a bit of a new challenge. Concretely, using the <code>Stamper</code> class above, you can add a private field directly to a Proxy:</p>
+<pre><code>let obj3 = {};
+let proxy = new Proxy(obj3, handler);
+new Stamper(proxy)
+
+Stamper.getX(proxy) // =&gt; "stamped"
+Stamper.getX(obj3)  // TypeError, private field is stamped
+                    // onto the Proxy Not the target!</code></pre>
+<p>I definitely found this surprising initially. The reason I found this surprising was I had expected that, like other operations, the addition of a private field would tunnel through the proxy to the target. However, once I was able to internalize the WeakMap mental model, I was able to understand this example much better. The trick is that in the WeakMap model, it is the <code>Proxy</code>, not the target object, used as the key in the <code>#x</code> WeakMap.</p>
+<p>These semantics presented a challenge to our implementation choice to model private fields as hidden properties however, as SpiderMonkey’s Proxies are highly specialized objects that do not have room for arbitrary properties. In order to support this case, we added a new reserved slot for an ‘expando’ object. The expando is an object allocated lazily that acts as the holder for dynamically added properties on the proxy. This pattern is used already for DOM objects, which are typically implemented as C++ objects with no room for extra properties. So if you write <code>document.foo = "hi"</code>, this allocates an expando object for <code>document</code>, and puts the <code>foo</code> property and value in there instead. Returning to private fields, when <code>#x</code> is accessed on a Proxy, the proxy code knows to go and look in the expando object for that property.</p>
+<h2 id="in-conclusion">In Conclusion</h2>
+<p>Private Fields is an instance of implementing a JavaScript language feature where directly implementing the specification as written would be less performant than re-casting the specification in terms of already optimized engine primitives. Yet, that recasting itself can require some problem solving not present in the specification.</p>
+<p>At the end, I am fairly happy with the choices made for our implementation of Private Fields, and am excited to see it finally enter the world!</p>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>I have to thank, again, André Bargull, who provided the first set of patches and laid down an excellent trail for me to follow. His work made finishing private fields much easier, as he’d already put a lot of thought into decision making.</p>
+<p>Jason Orendorff has been an excellent and patient mentor as I have worked through this implementation, including two separate implementations of the private field bytecode, as well as two separate implementations of proxy support.</p>
+<p>Thanks to Caroline Cullen, and Iain Ireland for helping to read drafts of this post, and to Steve Fink for fixing many typos.</p>
+    <section class="about">
+                                <h2 class="about__header">About
+                          Matthew Gaudet                      </h3>
+                                <p><a class="url" href="https://hacks.mozilla.org/author/mgaudetmozilla-com/">More articles by Matthew Gaudet&hellip;</a></p>
+                  </section>
+  </article>
+  <section class="promo">
+    <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+  <h2 class="heading">Discover great resources for web development</h2>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
+  <input id="fmt" name="fmt" value="H" type="hidden">
+  <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
+
+  <div id="newsletterErrors" class="newsletter__errors"></div>
+
+  <div id="newsletterEmail" class="form__row">
+    <label for="newsletterEmailInput" class="offscreen">E-mail</label>
+    <input id="newsletterEmailInput" name="email" class="newsletter__input" required="" placeholder="you@example.com" size="30" type="email">
+  </div>
+
+  <div id="newsletterPrivacy" class="form__row form__fineprint">
+    <input id="newsletterPrivacyInput" name="privacy" required="" type="checkbox">
+    <label for="newsletterPrivacyInput">
+      I'm okay with Mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/">Privacy Policy</a>.
+    </label>
+  </div>
+  <button id="newsletter-submit" type="submit" class="button positive">Sign up now</button>
+</form>
+<div id="newsletterThanks" class="newsletter newsletter--thanks block block--1 block--polite hidden">
+  <h2 class="heading">Thanks! Please check your inbox to confirm your subscription.</h2>
+  <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us.
+  </p>
+</div>
+  </section>
+  
+
+<section class="discussion">
+  <hr class="dino">
+  <div class="comments">
+    <header class="comments__head">
+      <h3>2 comments</h3>
+    </header>
+
+          <ol class="comments__list" class="hfeed">
+      
+ <li id="comment-27098" class="comment even thread-even depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">A I</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Thanks for the writeup. Very interesting to learn about the underlying machinery. </p>
+<p>Had no idea the constructor trick was even possible. I wonder how many actual people do use it and why this isn&#8217;t a case of simply changing the spec to better fit the most likely use.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/#comment-27098" rel="bookmark" title="Permanent link to this comment by A I"><abbr class="published" title="2021-06-11">June 11th, 2021</abbr> at 17:18</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27104" class="comment byuser comment-author-mgaudetmozilla-com bypostauthor odd alt depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">Matthew Gaudet</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>I did a dive into why that exists when I discovered it, and wrote that up <a href="https://www.mgaudet.ca/technical/2020/7/24/investigating-the-return-behaviour-of-js-constructors" rel="nofollow ugc">here</a>. Essentially this all ties back to trying to maintain compatibility with some pre-class patterns was my take-away.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/06/implementing-private-fields-for-javascript/#comment-27104" rel="bookmark" title="Permanent link to this comment by Matthew Gaudet"><abbr class="published" title="2021-06-15">June 15th, 2021</abbr> at 09:25</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+      </ol>
+      </div>
+
+<p class="comments__closed"><b>Comments are closed for this article.</b></p>
+
+
+</main><!-- /#content-main -->
+
+  
+
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        <p class="block block--1">
+          Except where otherwise noted, content on this site is licensed
+          under the
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
+          or any later version.
+        </p>
+        <img class="footer__logo" alt="the Mozilla dino logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/dino.svg">
+      </div>
+    </footer>
+  </div>
+  <link rel='stylesheet' id='hljstheme-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/styles/solarized-light.css?ver=0.6.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.common.pack.js?ver=0.6.2' id='hljs_preload-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.custom.pack.js?ver=0.6.2' id='hljs-js'></script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+  <script>
+    // External links should open in a new tab.
+    (function () {
+      var postLinks = document.querySelectorAll('#content-main a');
+
+      var origin = location.origin;
+
+      for (var i = 0; i < postLinks.length; i++) {
+        var link = postLinks[i];
+        if (link.origin !== origin && !link.getAttribute('target')) {
+          link.setAttribute('target', '_blank');
+        }
+      }
+    })();
+
+    window.addEventListener('load', function () {
+      if (document.querySelector('#newsletterForm')) {
+        var script = document.createElement('script');
+        var path = document.head.getAttribute('data-template-path');
+        script.setAttribute('src', path + '/js/newsletter.js');
+        document.head.appendChild(script);
+      }
+    });
+  </script>
+</body>
+</html>

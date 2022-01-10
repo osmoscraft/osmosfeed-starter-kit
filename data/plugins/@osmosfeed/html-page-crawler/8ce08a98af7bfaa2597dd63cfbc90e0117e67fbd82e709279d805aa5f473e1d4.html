@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<!-- Use the latest IE engine to render the page and execute JavaScript -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://stratechery.com/xmlrpc.php">
+
+	<!-- Typekit -->
+	<script src="//use.typekit.net/qcf4iyw.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/favicon/site.webmanifest">
+	<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#e9ab59">
+	<link rel="shortcut icon" href="/favicon/favicon.ico">
+	<meta name="msapplication-TileColor" content="#e9ab59">
+	<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-39065009-1', 'auto');
+		ga('send', 'pageview');
+		ga('require', 'linker');
+		ga('linker:autoLink', ['memberful.com'], true);
+			</script>
+
+	<title>The 2021 Stratechery Year in Review &#8211; Stratechery by Ben Thompson</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel='dns-prefetch' href='//c0.wp.com' />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/stratechery.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.3"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://c0.wp.com/c/5.8.3/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='a-z-listing-block-css'  href='https://149384716.v2.pressablecdn.com/wp-content/plugins/a-z-listing/css/a-z-listing-default.css?ver=4.2.0' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css'  href='https://c0.wp.com/c/5.8.3/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://c0.wp.com/c/5.8.3/wp-includes/js/mediaelement/wp-mediaelement.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='atomic-wp-css'  href='https://149384716.v2.pressablecdn.com/wp-content/plugins/atomic-wp/views/atomic.css?ver=1636267877' type='text/css' media='all' />
+<link rel='stylesheet' id='stratechery-theme-style-css'  href='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/css/checkbox.css?wp=3&#038;ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='stratechery-bigfoot-css'  href='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/css/bigfoot.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='stratechery-membership-css'  href='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/css/membership.css?wp=3&#038;ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='decanter-css'  href='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/css/decanter.css?wp=64&#038;ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='stratechery-style-css'  href='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='algolia-autocomplete-css'  href='https://149384716.v2.pressablecdn.com/wp-content/plugins/wp-search-with-algolia/css/algolia-autocomplete.css?ver=1.8.0' type='text/css' media='all' />
+<link rel='stylesheet' id='social-logos-css'  href='https://149384716.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=10.5-beta' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://149384716.v2.pressablecdn.com/wp-content/plugins/jetpack/css/jetpack.css?ver=10.5-beta' type='text/css' media='all' />
+<script type='text/javascript' id='jetpack_related-posts-js-extra'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js?ver=20211209' id='jetpack_related-posts-js'></script>
+<script type='text/javascript' src='https://c0.wp.com/c/5.8.3/wp-includes/js/jquery/jquery.min.js' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://c0.wp.com/c/5.8.3/wp-includes/js/jquery/jquery-migrate.min.js' id='jquery-migrate-js'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://stratechery.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://stratechery.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://stratechery.com/2021/the-2021-stratechery-year-in-review/" />
+<link rel='shortlink' href='https://stratechery.com/?p=8231' />
+<link rel="alternate" type="application/json+oembed" href="https://stratechery.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fstratechery.com%2F2021%2Fthe-2021-stratechery-year-in-review%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://stratechery.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fstratechery.com%2F2021%2Fthe-2021-stratechery-year-in-review%2F&#038;format=xml" />
+    
+    <script type="text/javascript">
+        var ajaxurl = 'https://stratechery.com/wp-admin/admin-ajax.php';
+    </script>
+		<style>
+			.algolia-search-highlight {
+				background-color: #fffbcc;
+				border-radius: 2px;
+				font-style: normal;
+			}
+		</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The 2021 Stratechery Year in Review" />
+<meta property="og:url" content="https://stratechery.com/2021/the-2021-stratechery-year-in-review/" />
+<meta property="og:description" content="The most popular and most important posts on Stratechery in 2021." />
+<meta property="article:published_time" content="2021-12-20T12:11:41+00:00" />
+<meta property="article:modified_time" content="2021-12-22T08:07:27+00:00" />
+<meta property="og:site_name" content="Stratechery by Ben Thompson" />
+<meta property="og:image" content="https://149384716.v2.pressablecdn.com/wp-content/uploads/2021/05/orthogonality3-768x487-1.png" />
+<meta property="og:image:width" content="768" />
+<meta property="og:image:height" content="487" />
+<meta property="og:image:alt" content="A drawing of the Creator Carrying Audiences to Different Mediums" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@stratechery" />
+<meta name="twitter:text:title" content="The 2021 Stratechery Year in Review" />
+<meta name="twitter:image" content="https://149384716.v2.pressablecdn.com/wp-content/uploads/2021/05/orthogonality3-768x487-1.png?w=640" />
+<meta name="twitter:image:alt" content="A drawing of the Creator Carrying Audiences to Different Mediums" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://i0.wp.com/stratechery.com/wp-content/uploads/2018/03/cropped-android-chrome-512x512-1.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/stratechery.com/wp-content/uploads/2018/03/cropped-android-chrome-512x512-1.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://i0.wp.com/stratechery.com/wp-content/uploads/2018/03/cropped-android-chrome-512x512-1.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/stratechery.com/wp-content/uploads/2018/03/cropped-android-chrome-512x512-1.png?fit=270%2C270&#038;ssl=1" />
+<style type="text/css" id="wp-custom-css">.ewd-ufaq-faq-title .ewd-ufaq-post-margin-symbol span {font-size: 12px !important;}
+.faq h4 {
+    font-size: 17px;
+}
+
+.faq .ufaq-faq-body {
+    padding: 0 55px 0 55px;
+}
+
+.faq p {
+    font-size: 1rem;
+}
+
+.faq li {
+    font-size: .750em;
+    color: #8e8e8e;
+}</style></head>
+
+<body class="post-template-default single single-post postid-8231 single-format-standard group-blog">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">
+		Skip to content	</a>
+
+	<header id="masthead" class="site-header" role="banner">
+		<div class="grid">
+			<div class="row">
+				<div class="twelve column">
+					<div class="site-branding">
+						<h1 class="site-title">
+							<a href="https://stratechery.com/" rel="home">
+								<span>Stratechery by Ben Thompson</span>
+							</a>
+						</h1><!-- .site-title -->
+													<p class="site-description">On the business, strategy, and impact of technology.</p>
+											</div><!-- .site-branding -->
+
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span>Menu</span></button>
+						<div class="menu-primary-container"><ul id="primary-menu" class="menu"><li id="menu-item-1611" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1611"><a title="Information about Ben Thompson and Stratechery" href="http://stratechery.com/about/">About</a></li>
+<li id="menu-item-1613" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1613"><a title="A paid podcast from Ben Thompson and John Gruber" href="https://dithering.fm/">Dithering</a></li>
+<li id="menu-item-1645" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1645"><a title="A podcast about tech and society from Ben Thompson and James Allworth" href="https://exponent.fm/">Exponent</a></li>
+</ul></div>					</nav><!-- #site-navigation -->
+					<div class="widget-area">
+						<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://stratechery.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form></aside><aside id="nav_menu-2" class="widget widget_nav_menu"><h1 class="widget-title">By Ben Thompson</h1><div class="menu-primary-container"><ul id="menu-primary" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1611"><a title="Information about Ben Thompson and Stratechery" href="http://stratechery.com/about/">About</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1613"><a title="A paid podcast from Ben Thompson and John Gruber" href="https://dithering.fm/">Dithering</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1645"><a title="A podcast about tech and society from Ben Thompson and James Allworth" href="https://exponent.fm/">Exponent</a></li>
+</ul></div></aside><aside id="custom_html-4" class="widget_text widget widget_custom_html"><h1 class="widget-title">The Daily Update</h1><div class="textwidget custom-html-widget"><a href="https://stratechery.com/daily-update/">About The Daily Update</a><br><a title="Subscribe to the Daily Update" href="https://stratechery.passport.online/member/plan/4ycW4SE71Cy6ryrijywbTG">Subscribe</a>: <a title="Subscribe to the Daily Update for $12/month" href="https://stratechery.passport.online/member/plan/4ycW4SE71Cy6ryrijywbTG?price=YSr21tFbq4KY2tGJaA2KD3"> Monthly</a> | <a title="Subscribe to the Daily Update for $120/year" href="https://stratechery.passport.online/member/plan/4ycW4SE71Cy6ryrijywbTG?price=W99dkMv8qQXvdrP7Lw6nTV">Annual</a><br><a title="Member-only Forum" href="https://forum.stratechery.com/">Member Forum</a></div></aside><aside id="custom_html-3" class="widget_text widget widget_custom_html"><h1 class="widget-title">Follow</h1><div class="textwidget custom-html-widget"><a href="https://stratechery.passport.online/member/plan/FU88mU4RBhdMq8yDRbssHs">Create an account to receive<br>Weekly Updates via<br>Email, Podcast, or RSS</a></div></aside><aside id="nav_menu-6" class="widget widget_nav_menu"><h1 class="widget-title">Explore Stratechery</h1><div class="menu-explore-container"><ul id="menu-explore" class="menu"><li id="menu-item-3386" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3386"><a title="An overview of the key concepts covered by Stratechery" href="https://stratechery.com/concepts/">Concepts</a></li>
+<li id="menu-item-3387" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3387"><a title="An index of the companies covered by Stratechery" href="https://stratechery.com/companies/">Companies</a></li>
+<li id="menu-item-3388" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3388"><a title="An index of the topic covered by Stratechery" href="https://stratechery.com/topics/">Topics</a></li>
+</ul></div></aside><aside id="nav_menu-7" class="widget widget_nav_menu"><h1 class="widget-title">Archives</h1><div class="menu-archives-container"><ul id="menu-archives" class="menu"><li id="menu-item-1772" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1772"><a title="Free Weekly Articles from the front page of Stratechery" href="https://stratechery.com/category/articles/">Articles</a></li>
+<li id="menu-item-1773" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1773"><a title="Subscriber-only Daily Updates" href="https://stratechery.com/category/daily-email/">Daily Updates</a></li>
+<li id="menu-item-1775" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1775"><a title="The best of Stratechery, organized by year" href="https://stratechery.com/category/year-in-review/">Years in Review</a></li>
+</ul></div></aside><aside id="atomic_login_widget-2" class="widget widget_atomic_login_widget"><h1 class="widget-title">Account</h1><ul class="atomic-widget__loggedin" style="display: none;">
+	<li><div class="atomic-widget__username">Member</div></li>
+	<li><a href="https://stratechery.passport.online/member/account/prefs">Delivery Preferences</a></li>
+	<li><a href="https://stratechery.passport.online/member/account/subs">Manage Account</a></li>
+	<li><a href="https://stratechery.passport.online/member/logout?redirect_uri=https%3A%2F%2Fstratechery.com%2Fwp-json%2FatomicPlugin%2Fv1%2Flogout&#038;client_id=UzZShQMUtptvnZQjTc6xpZ">Sign Out</a></li>
+	</ul>
+<ul class="atomic-widget__loggedout" style="display: none;">
+	<li><a href="https://stratechery.com/wp-json/atomicPlugin/v1/authlogin">Log In</a></li>
+	<li><a href="https://stratechery.passport.online/member/signup">Sign Up</a></li>
+	</ul>
+<p class="atomic-widget__loading">Loading</p>
+</aside><aside id="custom_html-5" class="widget_text widget widget_custom_html"><h1 class="widget-title">Support</h1><div class="textwidget custom-html-widget">Please email <a href="mailto:support@stratechery.com">support@stratechery.com</a></div></aside>					</div>
+				</div><!-- .twelve -->
+			</div><!-- .row -->
+		</div><!-- .grid -->
+	</header><!-- #masthead -->
+
+<div id="content" class="site-content">
+	<div class="grid">
+		<div class="row">
+			<div class="nine column content-area">
+				<div id="primary">
+					<main id="main" class="site-main" role="main">
+
+					
+						<article id="post-8231" class="post-8231 post type-post status-publish format-standard hentry category-articles category-year-in-review">
+	<header class="entry-header">
+
+		<h1 class="entry-title">The 2021 Stratechery Year in Review</h1>
+		<div class="entry-meta">
+			<span class="posted-on"><span class="screen-reader-text">Posted on</span><time class="entry-date published" datetime="2021-12-20T04:11:41-08:00">Monday, December 20, 2021</time><time class="updated" datetime="2021-12-22T00:07:27-08:00">Wednesday, December 22, 2021</time></span> <span class="byline"><span class="author vcard"><span class="screen-reader-text">Author</span> by <a class="url fn n" href="https://stratechery.com/author/stratechery/">Ben Thompson</a></span></span>		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>There is a perspective in which 2021 was an absolute drag: COVID dragged on, vaccines became politicized, new variants emerged, and while tech continued to provide the infrastructure that kept the economy moving, it also provided the infrastructure for all of those things that made this year feel so difficult.</p>
+<p>At the same time, 2021 also provided a glimpse of a future beyond our current smartphone and social media-dominated paradigm: there was the Metaverse, and crypto, and <a href="https://stratechery.com/2021/the-great-bifurcation/">my contention they are related</a>. Sure, the old paradigm is increasingly dominated by regulation and politics, a topic that is so soul-sucking that it temporarily made me want to post less, but the brilliance of the Internet, and of business-models like that which undergirds Stratechery, is that freedom to not only write what you want, but build what you want, and be what you want, is greater than ever.</p>
+<p><a href="https://stratechery.com/2021/internet-3-0-and-the-beginning-of-tech-history/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/internet30-2.png?resize=640%2C483&#038;ssl=1" alt="A drawing of Internet 3.0 and Open Protocols" width="640" height="483" class="aligncenter size-large wp-image-5531" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/internet30-2.png?resize=1024%2C772&amp;ssl=1 1024w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/internet30-2.png?resize=300%2C226&amp;ssl=1 300w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/internet30-2.png?resize=768%2C579&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/internet30-2.png?resize=836%2C630&amp;ssl=1 836w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/internet30-2.png?w=1280&amp;ssl=1 1280w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<p>This year Stratechery published 40 free Weekly Articles and 121 Daily Updates, including 13 interviews. I also launched <a href="https://stratechery.com/2021/passport">Passport</a>, the new back-end for Stratechery and <a href="https://dithering.fm">Dithering</a>, the twice-a-week for-pay podcast I host with <a href="https://daringfireball.net/">John Gruber</a>; Passport remains under development, so stay tuned for updates in 2022.</p>
+<p><a href="https://stratechery.com/2021/passport/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/06/passport-10.png?resize=640%2C79&#038;ssl=1" alt="Passport is the new back-end for Stratechery" width="640" height="79" class="aligncenter size-large wp-image-6447" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/06/passport-10.png?resize=1024%2C126&amp;ssl=1 1024w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/06/passport-10.png?resize=300%2C37&amp;ssl=1 300w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/06/passport-10.png?resize=768%2C94&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/06/passport-10.png?resize=1200%2C147&amp;ssl=1 1200w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/06/passport-10.png?w=1280&amp;ssl=1 1280w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<p>Today, as per tradition, I summarize the most popular and most important posts of the year on Stratechery.</p>
+<p>You can find previous years here: <a href="https://stratechery.com/2020/the-2020-stratechery-year-in-review/">2020</a> | <a href="https://stratechery.com/2019/the-2019-stratechery-year-in-review/">2019</a> | <a href="https://stratechery.com/2018/the-2018-stratechery-year-in-review/">2018</a> | <a href="https://stratechery.com/2017/the-2017-stratechery-year-in-review/">2017</a> | <a href="https://stratechery.com/2016/the-2016-stratechery-year-in-review/">2016</a> | <a href="https://stratechery.com/2015/the-stratechery-2015-year-in-review/">2015</a> | <a href="https://stratechery.com/2014/stratechery-2014-year-review/">2014</a> | <a href="http://stratechery.com/2013/stratechery-2013-year-review/">2013</a></p>
+<p>On to 2021:</p>
+<h4>The Five Most-Viewed Articles</h4>
+<p>The five most-viewed articles on Stratechery according to page views:</p>
+<ol>
+<li><a href="https://stratechery.com/2021/clubhouses-inevitability/">Clubhouse&#8217;s Inevitability</a> — I was very bullish on Clubhouse; unfortunately, it looks like I got this one completely wrong. I admitted to my error and explained my thinking in <a href="https://stratechery.com/2021/market-making-and-time-horizons-clubhouse-struggling-what-did-i-get-wrong/">this Update</a>.</li>
+<li><a href="https://stratechery.com/2021/the-relentless-jeff-bezos/">The Relentless Jeff Bezos</a> — Jeff Bezos is retiring, and will go down as one of the great CEO&#8217;s in tech history, in part because of how he transformed Amazon into a tech company in every respect.</li>
+<li><a href="https://stratechery.com/2021/intel-problems/">Intel Problems</a> — Intel is in much more danger than its profits suggest; the problems are a long time in the making, and the solution is to split up the company. <em>See also, <a href="https://stratechery.com/2021/intel-unleashed-gelsinger-on-intel-idm-2-0/">Intel Unleashed, Gelsinger on Intel, IDM 2.0</a> and <a href="https://stratechery.com/2021/intel-vs-tsmc-how-samsung-and-tsmc-won-mad-chips/">Intel vs. TSMC, How Samsung and TSMC Won, MAD Chips</a>.</em></li>
+<li><a href="https://stratechery.com/2021/internet-3-0-and-the-beginning-of-tech-history/">Internet 3.0 and the Beginning of (Tech) History</a> — The actions taken by Big Tech have a resonance that goes beyond the context of domestic U.S. politics. Even if they were right, they will still push the world to Internet 3.0.</li>
+<li><a href="https://stratechery.com/2021/apples-mistake/">Apple&#8217;s Mistake</a> — While it&#8217;s possible to understand Apple&#8217;s motivations behind its decision to enable on-device scanning, the company had a better way to satisfy its societal obligations while preserving user privacy. <em>See also, <a href="https://stratechery.com/2021/apple-versus-governments-apples-legitimate-privacy-claims-privacy-and-paranoia/">Apple Versus Governments, Apple’s Legitimate Privacy Claims, Privacy and Paranoia</a>, <a href="https://stratechery.com/2021/apples-point-of-view-nfts-and-status-nfts-and-standard-formats/">Apple’s Point-of-View, NFTs and Status, NFTs and Standard Formats</a>, and <a href="https://stratechery.com/2021/apples-point-of-view-nfts-and-status-nfts-and-standard-formats/">Facebook Messenger Updates, WhatsApp vs. Apple, Facebook’s CSAM Approach</a>.</em></li>
+</ol>
+<p><a href="https://stratechery.com/2021/intel-problems/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/intel-1.png?resize=640%2C388&#038;ssl=1" alt="" width="640" height="388" class="aligncenter size-large wp-image-5595" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/intel-1.png?resize=1024%2C621&amp;ssl=1 1024w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/intel-1.png?resize=300%2C182&amp;ssl=1 300w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/intel-1.png?resize=768%2C466&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/intel-1.png?resize=1039%2C630&amp;ssl=1 1039w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/intel-1.png?w=1280&amp;ssl=1 1280w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<h4>The Next Revolution</h4>
+<p>Several posts throughout the year wrestled with the theory of the next revolution, from memes to metaverses:</p>
+<ul>
+<li><a href="https://stratechery.com/2021/internet-3-0-and-the-beginning-of-tech-history/">Internet 3.0 and the Beginning of (Tech) History</a> — The actions taken by Big Tech have a resonance that goes beyond the context of domestic U.S. politics. Even if they were right, they will still push the world to Internet 3.0.</li>
+<li><a href="https://stratechery.com/2021/mistakes-and-memes/">Mistakes and Memes</a> — Information on the Internet is conveyed by memes, which can be anything and everything. The real world impacts are only now being understood.</li>
+<li><a href="https://stratechery.com/2021/the-death-and-birth-of-technological-revolutions/">The Death and Birth of Technological Revolutions</a> — Carlota Perez documents technological revolutions, and thinks we’re in the middle of the current one; what, though, if we are nearing its maturation? Is crypto next?</li>
+<li><a href="https://stratechery.com/2021/sequoia-productive-capital/">Sequoia Productive Capital</a> — Sequoia’s transformation of its venture capital model is actually a shift from financial capital to productive capital.</li>
+<li><a href="https://stratechery.com/2021/the-great-bifurcation/">The Great Bifurcation</a> — Tracing the evolution of tech’s three eras, and why the fourth era — the Metaverse — is defined by its bifurcation with the physical world.</li>
+</ul>
+<h4>The Metaverse</h4>
+<p>Several posts this year worked to define the Metaverse and understand its role in the future:</p>
+<ul>
+<li><a href="https://stratechery.com/2021/the-roblox-microverse/">The Roblox Microverse</a> — Roblox is something new and interesting that abstracts away the platforms underneath it.</li>
+<li><a href="https://stratechery.com/2021/metaverses/">Metaverses</a> — The Metaverse of Snow Crash is not a good analogy for the future, as the Internet breaks down into Stephenson’s dystopia.</li>
+<li><a href="https://stratechery.com/2021/meta/">Meta</a> — Facebook’s reorganization into Meta is the ultimate bet on the power of founder control. <em>See also <a href="https://stratechery.com/2021/an-interview-with-mark-zuckerberg-about-the-metaverse/">my interview with Meta CEO Mark Zuckerberg</a>.</em></li>
+<li><a href="https://stratechery.com/2021/microsoft-and-the-metaverse/">Microsoft and the Metaverse</a> — Defining the Metaverse, and explaining why Microsoft is well-placed for the virtual reality opportunity. <em>See also, <a href="https://stratechery.com/2021/enterprise-metaverses-horizon-workrooms-workrooms-facebook-problem/">Enterprise Metaverses, Horizon Workrooms, Workrooms’ Facebook Problem</a>.</em></li>
+<li><a href="https://stratechery.com/2021/unity-weta-and-faceless-platforms/">Unity, Weta, and Faceless Platforms</a> — Unity’s acquisition of Weta digital makes sense for both sides, and positions Unity to be an essential platform for tech’s future. <em>See also <a href="https://stratechery.com/2021/unity-buys-weta-digital-an-interview-with-unity-ceo-john-riccitiello/">my interview with Unity CEO John Riccitiello</a>.</em></li>
+</ul>
+<p><a href="https://stratechery.com/2021/unity-weta-and-faceless-platforms/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/11/unity-3.png?resize=640%2C464&#038;ssl=1" alt="A drawing of Unity and Weta&#039;s Convergence" width="640" height="464" class="aligncenter size-large wp-image-8056" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/11/unity-3.png?resize=1024%2C742&amp;ssl=1 1024w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/11/unity-3.png?resize=300%2C218&amp;ssl=1 300w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/11/unity-3.png?resize=768%2C557&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/11/unity-3.png?resize=869%2C630&amp;ssl=1 869w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/11/unity-3.png?w=1280&amp;ssl=1 1280w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<h4>Politics &amp; Regulation</h4>
+<p>A lot of time — perhaps too much — was spent on politics and regulation:</p>
+<ul>
+<li><a href="https://stratechery.com/2021/trump-and-twitter/">Trump and Twitter</a> — After <a href="https://stratechery.com/2020/zuckerbergs-choice-zuckerbergs-power-zuckerbergs-conviction/">defending Trump&#8217;s right to social media</a> I finally sided with those who thought that Twitter should suspend his account; I really don&#8217;t know that I got this right, especially after Twitter and Facebook ramped up censorship throughout the year, instead of stepping back. <em>See also <a href="https://stratechery.com/2021/intel-vs-tsmc-how-samsung-and-tsmc-won-mad-chips/">Facebook and Twitter Suspend Trump, Parler Suspended Everywhere, Context and Culture</a>, <a href="https://stratechery.com/2021/russia-google-and-apple-the-app-firewall-laptop-assumptions/">Russia, Google and Apple; The App Firewall; Laptop Assumptions</a>, and <a href="https://stratechery.com/2021/russia-google-and-apple-the-app-firewall-laptop-assumptions/">Facebook Files, Continued; Misinformation and Vaccinations; Fact-Checking and the Unknown</a>.</em></li>
+<li><a href="https://stratechery.com/2021/moderation-in-infrastructure/">Moderation in Infrastructure</a> — Infrastructure companies need a distinct approach to moderation that focuses on neutrality and due process. <em>See also my interviews with <a href="https://stratechery.com/2021/interviews-with-patrick-collison-brad-smith-thomas-kurian-and-matthew-prince-on-moderation-in-infrastructure/">Stripe CEO Patrick Collison, Microsoft President Brad Smith, Google Cloud CEO Thomas Kurian, and Cloudflare CEO Matthew Prince</a>.</em></li>
+<li><a href="https://stratechery.com/2021/the-webs-missing-interoperability/">The Web’s Missing Interoperability</a> — Truly unlocking competition in tech means increasing interoperability; an absolutist approach to privacy is doing the exact opposite.</li>
+<li><a href="https://stratechery.com/2021/regulators-and-reality/">Regulators and Reality</a> — The FTC’s new Facebook case isn’t any better than the old one, even as there are ever more questions about the potential harm of regulatory interference. <em>See also, <a href="https://stratechery.com/2021/facebook-complaint-dismissed-anti-monopoly-vs-antitrust-revisited-where-facebook-lost/">Facebook Complaint Dismissed; Anti-Monopoly vs. Antitrust, Revisited; Where Facebook Lost</a>.</em></li>
+<li><a href="https://stratechery.com/2021/facebook-political-problems/">Facebook Political Problems</a> — Facebook’s political problems stem directly from its size and drive for growth; they are societal issues, not antitrust ones. <em>See also, <a href="https://stratechery.com/2021/the-facebook-files-instagram-and-teens-facebook-versus-app-stores/">The Facebook Files, Instagram and Teens, Facebook versus App Stores</a>.</em></li>
+</ul>
+<p><a href="https://stratechery.com/2021/clubhouses-inevitability/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/02/WAclubhouse-9-768x575-1.png?resize=640%2C479&#038;ssl=1" alt="A drawing of Clubhouse&#039;s Similarity to Twitter, Instagram, and TikTok" width="640" height="479" class="aligncenter size-full wp-image-5832" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/02/WAclubhouse-9-768x575-1.png?w=768&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/02/WAclubhouse-9-768x575-1.png?resize=300%2C225&amp;ssl=1 300w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<h4>The App Store</h4>
+<p>The regulatory question that received the most attention this year was the App Store, thanks in large part to Apple&#8217;s legal tussle with Epic:</p>
+<ul>
+<li><a href="https://stratechery.com/2021/app-store-arguments/">App Store Arguments</a> — There are all kinds of arguments to make about the App Store, and nearly all of them are good ones; that’s why the best solution can only come from Apple.</li>
+<li><a href="https://stratechery.com/2021/integrated-apple-and-app-store-risk/">Integrated Apple and App Store Risk</a> — WWDC highlighted how Apple’s differentiation is based on integration; the company ought not risk that differentiation for exploitive App Store policies.</li>
+<li><a href="https://stratechery.com/2021/the-cicilline-salvo/">The Cicilline Salvo</a> — A package of new proposed laws for regulating tech companies are in part a negotiating ploy, but also an indicator of change.</li>
+<li><a href="https://stratechery.com/2021/the-app-store-trap-and-tech-epochs/">Tech Epochs and the App Store Trap</a> — Centralized control is useful at the beginning of an economy, but limits innovation in the long run. That is as true for China as it is for the App Store.</li>
+<li><a href="https://stratechery.com/2021/the-apple-v-epic-decision/">The Apple v. Epic Decision</a> — Understanding Apple’s victory in Apple v. Epic, and the limitations of the injunction on anti-steering provisions. <em>See also, <a href="https://stratechery.com/2021/apples-settlement-explicit-imprimatur-additional-notes/">Apple’s Settlement, Explicit Imprimatur, Additional Notes</a>, <a href="https://stratechery.com/2021/apples-app-store-concession-why-this-is-a-big-deal-devil-in-the-details/">Apple’s App Store Concession, Why This is a Big Deal, Devil in the Details</a>, and <a href="https://stratechery.com/2021/apples-app-store-concession-why-this-is-a-big-deal-devil-in-the-details/">Apple Makes the Rules, Reader and Productivity Apps, High-spending Gamers</a>.</em></li>
+</ul>
+<h4>Creator Power</h4>
+<p>A yearly theme on Stratechery is creator power, and the opportunities unlocked by the Internet:</p>
+<ul>
+<li><a href="https://stratechery.com/2021/publishing-is-back-to-the-future/">Publishing is Back to the Future</a> — Journalism cannot afford to be divorced from business realities; that applies to Australia, the New York Times, and even Andreessen Horowitz.</li>
+<li><a href="https://stratechery.com/2021/sovereign-writers-and-substack/">Sovereign Writers and Substack</a> — Substack is at the center of media controversy, most of which misses the point that sovereign writers — not Substack — are in control.</li>
+<li><a href="https://stratechery.com/2021/non-fungible-taylor-swift/">Non-Fungible Taylor Swift</a> — Taylor Swift, like Dave Chappelle, is leveraging the power of the Internet to take control of their art.</li>
+<li><a href="https://stratechery.com/2021/spotifys-surprise/">Spotify’s Surprise</a> — Spotify’s new subscription podcast offerings embrace the open ecosystem of podcasts in multiple ways. <em>See also, <a href="https://stratechery.com/2021/podcast-subscriptions-vs-the-app-store/">Podcast Subscriptions vs. the App Store</a>.</em></li>
+<li><a href="https://stratechery.com/2021/market-making-on-the-internet/">Market-Making on the Internet</a> — More and more opportunities on the web come from market marking, not for advertisers, but for real goods and services paid for with real money.</li>
+</ul>
+<p><a href="https://stratechery.com/2021/market-making-on-the-internet/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/05/orthogonality3-768x487-1.png?resize=640%2C406&#038;ssl=1" alt="A drawing of the Creator Carrying Audiences to Different Mediums" width="640" height="406" class="aligncenter size-full wp-image-6329" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/05/orthogonality3-768x487-1.png?w=768&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/05/orthogonality3-768x487-1.png?resize=300%2C190&amp;ssl=1 300w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<h4>Company Analysis</h4>
+<p>While most Stratechery company analysis happens in the Update, there were a number of relevant Articles as well:</p>
+<ul>
+<li><a href="https://stratechery.com/2021/the-lightness-of-windows/">The Lightness of Windows</a> — The Windows 11 announcement was fun and interesting, but there is a reason that Windows is no longer the center of Microsoft’s business.</li>
+<li><a href="https://stratechery.com/2021/instagrams-evolution/">Instagram’s Evolution</a> — Instagram’s shift away from being a photo-sharing app is very much inline with the service’s continuous evolution.</li>
+<li><a href="https://stratechery.com/2021/distribution-and-demand/">Distribution and Demand</a> — Distribution on the Internet is free; what matters is controlling demand. AT&amp;T and Verizon didn’t understand the distinction. <em>See also, <a href="https://stratechery.com/2021/atts-original-bad-deal-discovery-warnermedia-the-streaming-landscape/">AT&amp;T’s Original Bad Deal, Discovery + WarnerMedia, The Streaming Landscape</a>.</em></li>
+<li><a href="https://stratechery.com/2021/cloudflares-disruption/">Cloudflare’s Disruption</a> — Cloudflare’s new storage offering is potentially disruptive both economically and strategically. <em>See also: <a href="https://stratechery.com/2021/cloudflare-on-the-edge/">Cloudflare on the Edge</a> — Cloudflare is uniquely positioned to become a major player in an Internet 3.0 world, where politics matter more than economics.</em></li>
+<li><a href="https://stratechery.com/2021/the-amazon-empire-strikes-back/">The Amazon Empire Strikes Back</a> — Amazon’s logistics investment makes the company increasingly attractive to 3rd party merchants.</li>
+</ul>
+<p><a href="https://stratechery.com/2021/cloudflares-disruption/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/09/cloudflare-2.png?resize=640%2C401&#038;ssl=1" alt="A drawing of Cloudflare&#039;s Modular Cloud" width="640" height="401" class="aligncenter size-large wp-image-7718" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/09/cloudflare-2.png?resize=1024%2C641&amp;ssl=1 1024w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/09/cloudflare-2.png?resize=300%2C188&amp;ssl=1 300w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/09/cloudflare-2.png?resize=768%2C481&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/09/cloudflare-2.png?resize=1007%2C630&amp;ssl=1 1007w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/09/cloudflare-2.png?w=1280&amp;ssl=1 1280w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<h4>Stratechery Interviews</h4>
+<p>This year&#8217;s Stratechery interviews included:</p>
+<ul>
+<li><a href="https://stratechery.com/2021/apple-earnings-an-interview-with-jay-goldberg-about-chips-and-intel/">Jay Goldberg</a> about chips, Intel, and Apple.</li>
+<li><a href="https://stratechery.com/2021/an-interview-with-eric-seufert-about-apple-facebook-and-mobile-advertising/">Eric Seufert</a> about advertising and Apple versus Facebook (and a <a href="https://stratechery.com/2021/an-interview-with-eric-seufert-about-the-impact-of-att/">follow-up interview</a> about the impact of ATT).</li>
+<li><a href="https://stratechery.com/2021/interviews-with-patrick-collison-brad-smith-thomas-kurian-and-matthew-prince-on-moderation-in-infrastructure/">Patrick Collison, Brad Smith, Thomas Kurian, and Matthew Prince</a> about moderation in infrastructure.</li>
+<li><a href="https://stratechery.com/2021/an-interview-with-dan-wang-about-china-the-u-s-and-technology/">Dan Wang</a> about the U.S. and China (and a <a href="https://stratechery.com/2021/an-interview-with-dan-wang-about-chinas-tech-crackdown/">follow-up interview</a> about China&#8217;s tech crackdown).</li>
+<li><a href="https://stratechery.com/2021/clubhouse-enables-creator-payments-artists-and-cultists-an-interview-with-nathan-hubbard/">Nathan Hubbard</a> about Taylor Swift and the future of music.</li>
+<li><a href="https://stratechery.com/2021/an-interview-with-brad-stone-about-amazon-unbound/">Brad Stone</a> about Amazon and Jeff Bezos.</li>
+<li><a href="https://stratechery.com/2021/an-interview-with-google-ceo-sundar-pichai/">Sundar Pichai</a> about the future of Google. <em>See also <a href="https://stratechery.com/2021/evaluating-sundar-pichai-ec-announces-new-google-investigation-amazon-blocks-floc/">Evaluating Sundar Pichai, EC Announces New Google Investigation, Amazon Blocks FLoC</a></em>.</li>
+<li><a href="https://stratechery.com/2021/facebooks-metaverse-opportunity-an-interview-with-matthew-ball-about-the-multiverse/">Matthew Ball</a> about the Metaverse.</li>
+<li><a href="https://stratechery.com/2021/an-interview-with-zeynep-tufekci-about-lessons-from-the-pandemic-and-the-crisis-of-authority/">Zeynep Tufekci</a> about the pandemic and the crisis of authority</li>
+<li><a href="https://stratechery.com/2021/an-interview-with-mark-zuckerberg-about-the-metaverse/">Mark Zuckerberg</a> about the Metaverse.</li>
+<li><a href="https://stratechery.com/2021/unity-buys-weta-digital-an-interview-with-unity-ceo-john-riccitiello/">John Riccitiello</a> about Unity&#8217;s acquisition of Weta.</li>
+</ul>
+<p><a href="https://stratechery.com/2021/new-defaults/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/defaults-1.png?resize=640%2C407&#038;ssl=1" alt="A drawing of Authoritarianism Hill, Dime-Store Ditch, and Freedom Mountain" width="640" height="407" class="aligncenter size-large wp-image-5518" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/defaults-1.png?resize=1024%2C651&amp;ssl=1 1024w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/defaults-1.png?resize=300%2C191&amp;ssl=1 300w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/defaults-1.png?resize=768%2C488&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/defaults-1.png?resize=991%2C630&amp;ssl=1 991w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/01/defaults-1.png?w=1280&amp;ssl=1 1280w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<p>Plus, an interview of me on the <a href="https://stratechery.com/2021/ben-thompson-on-the-good-time-clubhouse-show/">Good Time Clubhouse Show</a>.</p>
+<h4>The Year in Daily Updates</h4>
+<p>Fifteen of my favorite Daily Updates:</p>
+<ul>
+<li><a href="">The WhatsApp Kerfuffle, Comparing Messaging Services, Network Effects</a> — Some number of people are downloading alternative messaging apps after WhatsApp changed its privacy policy; Facebook’s problem is a narrative one, not a factual one.</li>
+<li><a href="https://stratechery.com/2021/facebooks-earnings-zuckerberg-vs-cook-apple-and-facebook-parallels/">Facebook’s Earnings, Zuckerberg vs. Cook, Apple and Facebook Parallels</a> — Zooming in on Facebook’s earnings, and zooming out on the unfolding fight between Apple and Facebook and their chief executives. <em>See also, <a href="https://stratechery.com/2021/interoperability-defined-applovin-files-s-1-the-facebook-shopify-value-chain/">Interoperability Defined, AppLovin Files S-1, The Facebook-Shopify Value Chain</a>.</em></li>
+<li><a href="https://stratechery.com/2021/mistakes-memes-and-foreign-ground-coronavirus-context-the-new-york-times-and-the-china-model/">Mistakes, Memes, and Foreign Ground; Coronavirus Context; The New York Times and the China Model</a> — Considering a world of memes is uncomfortable, and perhaps explains why journalists want a world of information control. The problem is that we will never be better at this than China.</li>
+<li><a href="https://stratechery.com/2021/google-makes-deal-with-news-corp-facebook-blocks-news-in-australia-microsofts-cynicism/">Google Makes Deal With News Corp, Facebook Blocks News in Australia, Microsoft’s Cynicism</a> — Google gives in in Australia, not to the government, but to News Corp. Facebook, meanwhile, pulls out; they are right on the merits, but terrible at the politics.</li>
+<li><a href="https://stratechery.com/2021/nonfungible-tokens-nba-top-shot-the-creation-of-consumption/">Nonfungible Tokens, NBA Top Shot, The Creation of Consumption</a> — NFTs are useful not simply because they are unique, but because they are an easy-to-understand way to understand the importance of blockchains. <em>See also, <a href="https://stratechery.com/2021/constitutiondao-the-need-for-trust-memes-and-reality/">ConstitutionDAO, The Need for Trust, Memes and Reality</a> and <a href="https://stratechery.com/2021/apples-macbook-pro-event-the-bitcoin-futures-etf-bitcoin-regulation-and-utility/">Apple’s MacBook Pro Event; The Bitcoin Futures ETF; Bitcoin, Regulation, and Utility</a>.</em></li>
+<li><a href="https://stratechery.com/2021/spotify-stream-on-spotifys-advertising-play-additional-notes-on-stream-on/">Spotify Stream On, Spotify’s Advertising Play, Additional Notes on Stream On</a> — Spotify’s Stream On event advertised Spotify’s ambitions to become an Aggregator. The plans were impressive, but should Spotify go even further?</li>
+<li><a href="https://stratechery.com/2021/the-automotive-chip-shortage-cheap-and-complex-a-useful-crisis/">The Automotive Chip Shortage, Cheap and Complex, A Useful Crisis</a> — The chip shortage facing the automobile industry has more to do with the auto industry’s failure to understand chips than a lack of U.S. capacity; still, a crisis in one area might fix another. <em>See also, <a href="https://stratechery.com/2021/mark-liu-at-tsia-tsmcs-100-billion-economics-versus-politics/">Mark Liu at TSIA, TSMC’s $100 Billion, Economics Versus Politics</a>, <a href="https://stratechery.com/2021/tsmc-earnings-semiconductor-economics-and-auto-microcontrollers-tsmcs-advantage/">TSMC Earnings, Semiconductor Economics and Auto Microcontrollers, TSMC’s Advantage</a>, and <a href="https://stratechery.com/2021/mark-liu-in-time-taiwan-and-china-tsmc-and-the-u-s/">Mark Liu in Time, Taiwan and China, TSMC and the U.S.</a></em></li>
+<li><a href="https://stratechery.com/2021/a-pandemic-year-coronavirus-and-information-zeynep-tufekci-cuts-through/">A Pandemic Year, Coronavirus and Information, Zeynep Tufekci Cuts Through</a> — Looking back on the pandemic through the lens of Stratechery’s Articles about information. Plus, why Zeynep Tufekci is the writer of the year. <em>See also <a href="https://stratechery.com/2021/new-defaults/">New Defaults</a> and <a href="https://stratechery.com/2021/pandemic-progress/">Pandemic Progress</a>.</em></li>
+<li><a href="https://stratechery.com/2021/nvidia-grace-gpu-use-cases-arm-and-integration/">Nvidia Grace, GPU Use Cases, ARM and Integration</a> — Nvidia’s database CPU is not a challenger to Intel; it is the vision undergirding it that is the real threat. <em>See also <a href="https://stratechery.com/2021/nvidias-gtc-keynote-the-nvidia-stack-the-omniverse/">Nvidia’s GTC Keynote, The Nvidia Stack, The Omniverse</a> and <a href="https://stratechery.com/2021/ftc-sues-to-block-nvidia-arm-acquisition-innovation-and-the-data-center-arms-future/">FTC Sues to Block Nvidia ARM Acquisition, Innovation and the Data Center, ARM’s Future</a>.</em></li>
+<li><a href="https://stratechery.com/2021/didi-removed-from-app-stores-china-vs-tech-caid-and-chinese-privacy/">Didi Removed From App Stores, China vs. Tech, CAID and Chinese Privacy</a> — China’s move against Didi didn’t happen in isolation: it’s the latest in a series of moves that should give investors pause. <em>See also, <a href="https://stratechery.com/2021/bytedances-new-board-member-the-tiktok-question-chinas-innovation-risk/">ByteDance’s New Board Member, The TikTok Question, China’s Innovation Risk</a>.</em></li>
+<li><a href="https://stratechery.com/2021/square-buys-afterpay-network-effects-apple-and-the-cost-of-time/">Square Buys Afterpay, Network Effects, Apple and the Cost of Time</a> — Afterpay is a leading market in “Buy Now Pay Later”; Square’s purchase makes a lot of sense, and the price is worth the time it would take to build a competitor.</li>
+<li><a href="https://stratechery.com/2021/mlb-versus-sinclair-what-happened-to-sinclair-the-problem-for-sports-leagues/">MLB Versus Sinclair, What Happened to Sinclair, The Problem for Sports Leagues</a> — The Internet has uniquely impacted regional sports networks, thanks to the reality of free distribution. Sports leagues will need to adapt. <em>See also, <a href="https://stratechery.com/2021/formula-1-and-netflix-netflix-and-sports-youtube-tv-vs-espn/">Formula 1 and Netflix, Netflix and Sports, YouTube TV vs. ESPN</a>.</em></li>
+<li><a href="https://stratechery.com/2021/zillow-pauses-home-buying-opendoors-advantage-crypto-and-energy/">Zillow Pauses Home-Buying, Opendoor’s Advantage, Crypto and Energy</a> — Zillow’s halt in buying new homes is a reminder that core competency can out-compete an Aggregator’s advantage; then, feedback on crypto and energy. <em>See also, <a href="https://stratechery.com/2021/zillow-shuts-down-offers-where-zillow-went-wrong-reflecting-on-zillow-aggregation-and-integration/">Zillow Shuts Down Offers; Where Zillow Went Wrong; Reflecting on Zillow, Aggregation, and Integration</a> and <a href="https://stratechery.com/2021/opendoor-earnings-opendoors-pricing-opendoors-scalability/">Opendoor Earnings, Opendoor’s Pricing, Opendoor’s Scalability</a>.</em></li>
+<li><a href="https://stratechery.com/2021/adobe-max-photoshop-on-the-web-photoshop-and-nfts/">Adobe Max, Photoshop on the Web, Photoshop and NFTs</a> — Adobe Max suggested that Adobe is finally starting to build its products as a service, not just selling them that way. Plus, Photoshop on the Web leans into Photoshop’s complexity, and Photoshop’s NFT authenticity feature is compelling.</li>
+<li><a href="https://stratechery.com/2021/the-information-on-apple-in-china-apples-deal-evaluating-apples-china-risk/">The Information on Apple in China, Apple’s Deal, Evaluating Apple’s China Risk</a> — The Information has a report on a deal Apple made with the Chinese government; this explains multiple things over the last five years, and may indicate that Apple’s position is fairly secure.</li>
+</ul>
+<p><a href="https://stratechery.com/2021/square-buys-afterpay-network-effects-apple-and-the-cost-of-time/"><img loading="lazy" src="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/08/afterpay-4.png?resize=640%2C241&#038;ssl=1" alt="A drawing of The Square/Afterpay Network Effect" width="640" height="241" class="aligncenter size-large wp-image-7398" srcset="https://i0.wp.com/stratechery.com/wp-content/uploads/2021/08/afterpay-4.png?resize=1024%2C385&amp;ssl=1 1024w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/08/afterpay-4.png?resize=300%2C113&amp;ssl=1 300w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/08/afterpay-4.png?resize=768%2C289&amp;ssl=1 768w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/08/afterpay-4.png?resize=1200%2C451&amp;ssl=1 1200w, https://i0.wp.com/stratechery.com/wp-content/uploads/2021/08/afterpay-4.png?w=1280&amp;ssl=1 1280w" sizes="(max-width: 640px) 100vw, 640px" data-recalc-dims="1" /></a></p>
+<hr />
+<p>I am so grateful to the Stratechery (and Dithering!) subscribers that make it possible for me to do this as a job. I wish all of you a Merry Christmas and Happy New Year, and I&#8217;m looking forward to a great 2022!</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share</h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-8231" class="share-facebook sd-button share-icon" href="https://stratechery.com/2021/the-2021-stratechery-year-in-review/?share=facebook" target="_blank" title="Click to share on Facebook"><span>Facebook</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-8231" class="share-twitter sd-button share-icon" href="https://stratechery.com/2021/the-2021-stratechery-year-in-review/?share=twitter" target="_blank" title="Click to share on Twitter"><span>Twitter</span></a></li><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-8231" class="share-linkedin sd-button share-icon" href="https://stratechery.com/2021/the-2021-stratechery-year-in-review/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span>LinkedIn</span></a></li><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon" href="https://stratechery.com/2021/the-2021-stratechery-year-in-review/?share=email" target="_blank" title="Click to email this to a friend"><span>Email</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>	</div><!-- .entry-content -->
+</article><!-- #post-## -->
+
+						
+	<nav class="navigation post-navigation" role="navigation" aria-label="Post navigation">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://stratechery.com/2021/the-great-bifurcation/" rel="prev"><span class="screen-reader-text">Previous post:</span> <span class="post-title">The Great Bifurcation</span></a></div></div>
+	</nav>
+					
+					</main><!-- #main -->
+				</div><!-- #primary -->
+			</div><!-- .nine -->
+
+			
+<div class="three column widget-area">
+	<div id="secondary" role="complementary">
+		<aside id="search-2" class="widget widget_search"><form role="search" method="get" class="search-form" action="https://stratechery.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form></aside><aside id="nav_menu-2" class="widget widget_nav_menu"><h1 class="widget-title">By Ben Thompson</h1><div class="menu-primary-container"><ul id="menu-primary-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1611"><a title="Information about Ben Thompson and Stratechery" href="http://stratechery.com/about/">About</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1613"><a title="A paid podcast from Ben Thompson and John Gruber" href="https://dithering.fm/">Dithering</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1645"><a title="A podcast about tech and society from Ben Thompson and James Allworth" href="https://exponent.fm/">Exponent</a></li>
+</ul></div></aside><aside id="custom_html-4" class="widget_text widget widget_custom_html"><h1 class="widget-title">The Daily Update</h1><div class="textwidget custom-html-widget"><a href="https://stratechery.com/daily-update/">About The Daily Update</a><br><a title="Subscribe to the Daily Update" href="https://stratechery.passport.online/member/plan/4ycW4SE71Cy6ryrijywbTG">Subscribe</a>: <a title="Subscribe to the Daily Update for $12/month" href="https://stratechery.passport.online/member/plan/4ycW4SE71Cy6ryrijywbTG?price=YSr21tFbq4KY2tGJaA2KD3"> Monthly</a> | <a title="Subscribe to the Daily Update for $120/year" href="https://stratechery.passport.online/member/plan/4ycW4SE71Cy6ryrijywbTG?price=W99dkMv8qQXvdrP7Lw6nTV">Annual</a><br><a title="Member-only Forum" href="https://forum.stratechery.com/">Member Forum</a></div></aside><aside id="custom_html-3" class="widget_text widget widget_custom_html"><h1 class="widget-title">Follow</h1><div class="textwidget custom-html-widget"><a href="https://stratechery.passport.online/member/plan/FU88mU4RBhdMq8yDRbssHs">Create an account to receive<br>Weekly Updates via<br>Email, Podcast, or RSS</a></div></aside><aside id="nav_menu-6" class="widget widget_nav_menu"><h1 class="widget-title">Explore Stratechery</h1><div class="menu-explore-container"><ul id="menu-explore-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3386"><a title="An overview of the key concepts covered by Stratechery" href="https://stratechery.com/concepts/">Concepts</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3387"><a title="An index of the companies covered by Stratechery" href="https://stratechery.com/companies/">Companies</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3388"><a title="An index of the topic covered by Stratechery" href="https://stratechery.com/topics/">Topics</a></li>
+</ul></div></aside><aside id="nav_menu-7" class="widget widget_nav_menu"><h1 class="widget-title">Archives</h1><div class="menu-archives-container"><ul id="menu-archives-1" class="menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1772"><a title="Free Weekly Articles from the front page of Stratechery" href="https://stratechery.com/category/articles/">Articles</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1773"><a title="Subscriber-only Daily Updates" href="https://stratechery.com/category/daily-email/">Daily Updates</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1775"><a title="The best of Stratechery, organized by year" href="https://stratechery.com/category/year-in-review/">Years in Review</a></li>
+</ul></div></aside><aside id="atomic_login_widget-2" class="widget widget_atomic_login_widget"><h1 class="widget-title">Account</h1><ul class="atomic-widget__loggedin" style="display: none;">
+	<li><div class="atomic-widget__username">Member</div></li>
+	<li><a href="https://stratechery.passport.online/member/account/prefs">Delivery Preferences</a></li>
+	<li><a href="https://stratechery.passport.online/member/account/subs">Manage Account</a></li>
+	<li><a href="https://stratechery.passport.online/member/logout?redirect_uri=https%3A%2F%2Fstratechery.com%2Fwp-json%2FatomicPlugin%2Fv1%2Flogout&#038;client_id=UzZShQMUtptvnZQjTc6xpZ">Sign Out</a></li>
+	</ul>
+<ul class="atomic-widget__loggedout" style="display: none;">
+	<li><a href="https://stratechery.com/wp-json/atomicPlugin/v1/authlogin">Log In</a></li>
+	<li><a href="https://stratechery.passport.online/member/signup">Sign Up</a></li>
+	</ul>
+<p class="atomic-widget__loading">Loading</p>
+</aside><aside id="custom_html-5" class="widget_text widget widget_custom_html"><h1 class="widget-title">Support</h1><div class="textwidget custom-html-widget">Please email <a href="mailto:support@stratechery.com">support@stratechery.com</a></div></aside>	</div><!-- #secondary -->
+</div><!-- .widget-area -->		</div><!-- .row -->
+	</div><!-- .grid -->
+</div><!-- #content -->
+
+
+	<section id="daily-updates">
+		<div class="grid">
+			<div class="row">
+				<h1><strong>Subscriber&#8217;s Daily Update</strong></h1>
+
+									<div id="post-8270" class="post-8270 post type-post status-publish format-standard hentry category-daily-email topics-ar-vr topics-ar topics-metaverse topics-vr concepts-ecosystems concepts-strategy companies-meta">
+						<span class="entry-meta">
+							Thursday, January 6, 2022						</span>
+						<h1 class="entry-title"><a href="https://stratechery.com/2022/facebook-and-xros-xros-vs-vros-why-vros/" rel="bookmark">Facebook and XROS, XROS vs VROS, Why VROS</a></h1>					</div>
+									<div id="post-8262" class="post-8262 post type-post status-publish format-standard hentry category-daily-email topics-blockchain topics-cryptocurrencies topics-ethereum topics-nft topics-venture-capital concepts-aggregation-theory concepts-owning-customer-relationship companies-opensea">
+						<span class="entry-meta">
+							Wednesday, January 5, 2022						</span>
+						<h1 class="entry-title"><a href="https://stratechery.com/2022/opensea-raises-money-bans-nfts-openseas-value-cryptos-aggregators/" rel="bookmark">OpenSea Raises Money, Bans NFTs; OpenSea&#8217;s Value; Crypto&#8217;s Aggregators</a></h1>					</div>
+									<div id="post-8241" class="post-8241 post type-post status-publish format-standard hentry category-daily-email">
+						<span class="entry-meta">
+							Wednesday, December 22, 2021						</span>
+						<h1 class="entry-title"><a href="https://stratechery.com/2021/holiday-break-december-22nd-to-january-4th/" rel="bookmark">Holiday Break: December 22nd to January 4th</a></h1>					</div>
+									<div id="post-8246" class="post-8246 post type-post status-publish format-standard hentry category-daily-email topics-app-stores topics-digital topics-apple-app-store topics-linear topics-nft topics-publishing topics-sports topics-streaming topics-video concepts-advertising concepts-bundling-and-unbundling concepts-business-models concepts-differentiation concepts-niche-strategy concepts-product-management concepts-strategy concepts-subscriptions companies-disney companies-espn">
+						<span class="entry-meta">
+							Tuesday, December 21, 2021						</span>
+						<h1 class="entry-title"><a href="https://stratechery.com/2021/the-creator-opportunity-the-value-of-abundance-tv-and-sports-follow-up/" rel="bookmark">The Creator Opportunity, The Value of Abundance, TV and Sports Follow-up</a></h1>					</div>
+							</div><!-- .row -->
+		</div><!-- .grid -->
+	</section><!-- #daily-updates -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="grid">
+			<div class="row">
+				<div class="twelve column">
+					<div class="site-info">
+						<div class="site-info-container">
+							<span class="powered-by">
+								On the business, strategy, and impact of technology.
+							</span><!-- .powered-by -->
+							<span class="copyright">
+								&copy; <a href="http://stratechery.com/">Stratechery LLC</a> 2022 | <a href="https://stratechery.com/terms-of-service/">Terms of Service</a> | <a href="https://stratechery.com/privacy-policy/">Privacy Policy</a>
+							</span>
+						</div><!-- .site-info-container -->
+					</div><!-- .site-info -->
+				</div><!-- .twelve -->
+			</div><!-- .row -->
+		</div><!-- .grid -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+<script type="text/javascript">var algolia = {"debug":false,"application_id":"Q1WKEJ5QZW","search_api_key":"b7aae8f205468417f39f981067110ddd","powered_by_enabled":false,"query":"","autocomplete":{"sources":[{"index_id":"posts_post","index_name":"STRATECHERY_PRODUCTION2_posts_post","label":"Posts","admin_name":"Posts","position":0,"max_suggestions":5,"tmpl_suggestion":"autocomplete-post-suggestion","enabled":true},{"index_id":"terms_companies","index_name":"STRATECHERY_PRODUCTION2_terms_companies","label":"<a href=\"\/companies\/\">Companies<\/a>","admin_name":"Companies","position":1,"max_suggestions":3,"tmpl_suggestion":"autocomplete-term-suggestion","enabled":true},{"index_id":"terms_concepts","index_name":"STRATECHERY_PRODUCTION2_terms_concepts","label":"<a href=\"\/concepts\/\">Concepts<\/a>","admin_name":"Concepts","position":2,"max_suggestions":3,"tmpl_suggestion":"autocomplete-term-suggestion","enabled":true},{"index_id":"terms_topics","index_name":"STRATECHERY_PRODUCTION2_terms_topics","label":"<a href=\"\/topics\/\">Topics<\/a>","admin_name":"Topics","position":3,"max_suggestions":3,"tmpl_suggestion":"autocomplete-term-suggestion","enabled":true}],"input_selector":"input[name='s']:not('.no-autocomplete')"},"indices":{"searchable_posts":{"name":"STRATECHERY_PRODUCTION2_searchable_posts","id":"searchable_posts","enabled":true,"replicas":[]},"posts_post":{"name":"STRATECHERY_PRODUCTION2_posts_post","id":"posts_post","enabled":true,"replicas":[]},"terms_topics":{"name":"STRATECHERY_PRODUCTION2_terms_topics","id":"terms_topics","enabled":true,"replicas":[]},"terms_concepts":{"name":"STRATECHERY_PRODUCTION2_terms_concepts","id":"terms_concepts","enabled":true,"replicas":[]},"terms_companies":{"name":"STRATECHERY_PRODUCTION2_terms_companies","id":"terms_companies","enabled":true,"replicas":[]}}};</script><script type="text/html" id="tmpl-autocomplete-header">
+  <div class="autocomplete-header">
+	<div class="autocomplete-header-title">{{{ data.label }}}</div>
+	<div class="clear"></div>
+  </div>
+</script>
+
+<script type="text/html" id="tmpl-autocomplete-post-suggestion">
+  <a class="suggestion-link" href="{{ data.permalink }}" title="{{ data.post_title }}">
+		<div class="suggestion-post-attributes">
+		  <span class="suggestion-post-title">{{{ data._highlightResult.post_title.value }}}</span>
+		  <# if ( data._snippetResult['content'] ) { #>
+			<span class="suggestion-post-content">{{{ data._snippetResult['content'].value }}}</span>
+			<# } #>
+		</div>
+  </a>
+</script>
+
+<script type="text/html" id="tmpl-autocomplete-term-suggestion">
+  <a class="suggestion-link" href="{{ data.permalink }}" title="{{ data.name }}">
+	<svg viewBox="0 0 21 21" width="21" height="21">
+	  <svg width="21" height="21" viewBox="0 0 21 21">
+		<path
+			d="M4.662 8.72l-1.23 1.23c-.682.682-.68 1.792.004 2.477l5.135 5.135c.7.693 1.8.688 2.48.005l1.23-1.23 5.35-5.346c.31-.31.54-.92.51-1.36l-.32-4.29c-.09-1.09-1.05-2.06-2.15-2.14l-4.3-.33c-.43-.03-1.05.2-1.36.51l-.79.8-2.27 2.28-2.28 2.27zm9.826-.98c.69 0 1.25-.56 1.25-1.25s-.56-1.25-1.25-1.25-1.25.56-1.25 1.25.56 1.25 1.25 1.25z"
+			fill-rule="evenodd"></path>
+	  </svg>
+	</svg>
+	<span class="suggestion-post-title">{{{ data._highlightResult.name.value }}}</span>
+  </a>
+</script>
+
+<script type="text/html" id="tmpl-autocomplete-user-suggestion">
+  <a class="suggestion-link user-suggestion-link" href="{{ data.posts_url }}" title="{{ data.display_name }}">
+	<# if ( data.avatar_url ) { #>
+	  <img class="suggestion-user-thumbnail" src="{{ data.avatar_url }}" alt="{{ data.display_name }}">
+	  <# } #>
+
+		<span class="suggestion-post-title">{{{ data._highlightResult.display_name.value }}}</span>
+  </a>
+</script>
+
+<script type="text/html" id="tmpl-autocomplete-footer">
+  <div class="autocomplete-footer">
+	<div class="autocomplete-footer-branding">
+	  <a href="#" class="algolia-powered-by-link" title="Algolia">
+		<svg width="130" viewBox="0 0 130 18" xmlns="http://www.w3.org/2000/svg">
+		  <title>Search by Algolia</title>
+		  <defs>
+			<linearGradient x1="-36.868%" y1="134.936%" x2="129.432%" y2="-27.7%" id="a">
+			  <stop stop-color="#00AEFF" offset="0%"/>
+			  <stop stop-color="#3369E7" offset="100%"/>
+			</linearGradient>
+		  </defs>
+		  <g fill="none" fill-rule="evenodd">
+			<path
+				d="M59.399.022h13.299a2.372 2.372 0 0 1 2.377 2.364V15.62a2.372 2.372 0 0 1-2.377 2.364H59.399a2.372 2.372 0 0 1-2.377-2.364V2.381A2.368 2.368 0 0 1 59.399.022z"
+				fill="url(#a)"/>
+			<path
+				d="M66.257 4.56c-2.815 0-5.1 2.272-5.1 5.078 0 2.806 2.284 5.072 5.1 5.072 2.815 0 5.1-2.272 5.1-5.078 0-2.806-2.279-5.072-5.1-5.072zm0 8.652c-1.983 0-3.593-1.602-3.593-3.574 0-1.972 1.61-3.574 3.593-3.574 1.983 0 3.593 1.602 3.593 3.574a3.582 3.582 0 0 1-3.593 3.574zm0-6.418v2.664c0 .076.082.131.153.093l2.377-1.226c.055-.027.071-.093.044-.147a2.96 2.96 0 0 0-2.465-1.487c-.055 0-.11.044-.11.104l.001-.001zm-3.33-1.956l-.312-.311a.783.783 0 0 0-1.106 0l-.372.37a.773.773 0 0 0 0 1.101l.307.305c.049.049.121.038.164-.011.181-.245.378-.479.597-.697.225-.223.455-.42.707-.599.055-.033.06-.109.016-.158h-.001zm5.001-.806v-.616a.781.781 0 0 0-.783-.779h-1.824a.78.78 0 0 0-.783.779v.632c0 .071.066.12.137.104a5.736 5.736 0 0 1 1.588-.223c.52 0 1.035.071 1.534.207a.106.106 0 0 0 .131-.104z"
+				fill="#FFF"/>
+			<path
+				d="M102.162 13.762c0 1.455-.372 2.517-1.123 3.193-.75.676-1.895 1.013-3.44 1.013-.564 0-1.736-.109-2.673-.316l.345-1.689c.783.163 1.819.207 2.361.207.86 0 1.473-.174 1.84-.523.367-.349.548-.866.548-1.553v-.349a6.374 6.374 0 0 1-.838.316 4.151 4.151 0 0 1-1.194.158 4.515 4.515 0 0 1-1.616-.278 3.385 3.385 0 0 1-1.254-.817 3.744 3.744 0 0 1-.811-1.351c-.192-.539-.29-1.504-.29-2.212 0-.665.104-1.498.307-2.054a3.925 3.925 0 0 1 .904-1.433 4.124 4.124 0 0 1 1.441-.926 5.31 5.31 0 0 1 1.945-.365c.696 0 1.337.087 1.961.191a15.86 15.86 0 0 1 1.588.332v8.456h-.001zm-5.954-4.206c0 .893.197 1.885.592 2.299.394.414.904.621 1.528.621.34 0 .663-.049.964-.142a2.75 2.75 0 0 0 .734-.332v-5.29a8.531 8.531 0 0 0-1.413-.18c-.778-.022-1.369.294-1.786.801-.411.507-.619 1.395-.619 2.223zm16.12 0c0 .719-.104 1.264-.318 1.858a4.389 4.389 0 0 1-.904 1.52c-.389.42-.854.746-1.402.975-.548.229-1.391.36-1.813.36-.422-.005-1.26-.125-1.802-.36a4.088 4.088 0 0 1-1.397-.975 4.486 4.486 0 0 1-.909-1.52 5.037 5.037 0 0 1-.329-1.858c0-.719.099-1.411.318-1.999.219-.588.526-1.09.92-1.509.394-.42.865-.741 1.402-.97a4.547 4.547 0 0 1 1.786-.338 4.69 4.69 0 0 1 1.791.338c.548.229 1.019.55 1.402.97.389.42.69.921.909 1.509.23.588.345 1.28.345 1.999h.001zm-2.191.005c0-.921-.203-1.689-.597-2.223-.394-.539-.948-.806-1.654-.806-.707 0-1.26.267-1.654.806-.394.539-.586 1.302-.586 2.223 0 .932.197 1.558.592 2.098.394.545.948.812 1.654.812.707 0 1.26-.272 1.654-.812.394-.545.592-1.166.592-2.098h-.001zm6.962 4.707c-3.511.016-3.511-2.822-3.511-3.274L113.583.926l2.142-.338v10.003c0 .256 0 1.88 1.375 1.885v1.792h-.001zm3.774 0h-2.153V5.072l2.153-.338v9.534zm-1.079-10.542c.718 0 1.304-.578 1.304-1.291 0-.714-.581-1.291-1.304-1.291-.723 0-1.304.578-1.304 1.291 0 .714.586 1.291 1.304 1.291zm6.431 1.013c.707 0 1.304.087 1.786.262.482.174.871.42 1.156.73.285.311.488.735.608 1.182.126.447.186.937.186 1.476v5.481a25.24 25.24 0 0 1-1.495.251c-.668.098-1.419.147-2.251.147a6.829 6.829 0 0 1-1.517-.158 3.213 3.213 0 0 1-1.178-.507 2.455 2.455 0 0 1-.761-.904c-.181-.37-.274-.893-.274-1.438 0-.523.104-.855.307-1.215.208-.36.487-.654.838-.883a3.609 3.609 0 0 1 1.227-.49 7.073 7.073 0 0 1 2.202-.103c.263.027.537.076.833.147v-.349c0-.245-.027-.479-.088-.697a1.486 1.486 0 0 0-.307-.583c-.148-.169-.34-.3-.581-.392a2.536 2.536 0 0 0-.915-.163c-.493 0-.942.06-1.353.131-.411.071-.75.153-1.008.245l-.257-1.749c.268-.093.668-.185 1.183-.278a9.335 9.335 0 0 1 1.66-.142l-.001-.001zm.181 7.731c.657 0 1.145-.038 1.484-.104v-2.168a5.097 5.097 0 0 0-1.978-.104c-.241.033-.46.098-.652.191a1.167 1.167 0 0 0-.466.392c-.121.169-.175.267-.175.523 0 .501.175.79.493.981.323.196.75.289 1.293.289h.001zM84.109 4.794c.707 0 1.304.087 1.786.262.482.174.871.42 1.156.73.29.316.487.735.608 1.182.126.447.186.937.186 1.476v5.481a25.24 25.24 0 0 1-1.495.251c-.668.098-1.419.147-2.251.147a6.829 6.829 0 0 1-1.517-.158 3.213 3.213 0 0 1-1.178-.507 2.455 2.455 0 0 1-.761-.904c-.181-.37-.274-.893-.274-1.438 0-.523.104-.855.307-1.215.208-.36.487-.654.838-.883a3.609 3.609 0 0 1 1.227-.49 7.073 7.073 0 0 1 2.202-.103c.257.027.537.076.833.147v-.349c0-.245-.027-.479-.088-.697a1.486 1.486 0 0 0-.307-.583c-.148-.169-.34-.3-.581-.392a2.536 2.536 0 0 0-.915-.163c-.493 0-.942.06-1.353.131-.411.071-.75.153-1.008.245l-.257-1.749c.268-.093.668-.185 1.183-.278a8.89 8.89 0 0 1 1.66-.142l-.001-.001zm.186 7.736c.657 0 1.145-.038 1.484-.104v-2.168a5.097 5.097 0 0 0-1.978-.104c-.241.033-.46.098-.652.191a1.167 1.167 0 0 0-.466.392c-.121.169-.175.267-.175.523 0 .501.175.79.493.981.318.191.75.289 1.293.289h.001zm8.682 1.738c-3.511.016-3.511-2.822-3.511-3.274L89.461.926l2.142-.338v10.003c0 .256 0 1.88 1.375 1.885v1.792h-.001z"
+				fill="#182359"/>
+			<path
+				d="M5.027 11.025c0 .698-.252 1.246-.757 1.644-.505.397-1.201.596-2.089.596-.888 0-1.615-.138-2.181-.414v-1.214c.358.168.739.301 1.141.397.403.097.778.145 1.125.145.508 0 .884-.097 1.125-.29a.945.945 0 0 0 .363-.779.978.978 0 0 0-.333-.747c-.222-.204-.68-.446-1.375-.725-.716-.29-1.221-.621-1.515-.994-.294-.372-.44-.82-.44-1.343 0-.655.233-1.171.698-1.547.466-.376 1.09-.564 1.875-.564.752 0 1.5.165 2.245.494l-.408 1.047c-.698-.294-1.321-.44-1.869-.44-.415 0-.73.09-.945.271a.89.89 0 0 0-.322.717c0 .204.043.379.129.524.086.145.227.282.424.411.197.129.551.299 1.063.51.577.24.999.464 1.268.671.269.208.466.442.591.704.125.261.188.569.188.924l-.001.002zm3.98 2.24c-.924 0-1.646-.269-2.167-.808-.521-.539-.782-1.281-.782-2.226 0-.97.242-1.733.725-2.288.483-.555 1.148-.833 1.993-.833.784 0 1.404.238 1.858.714.455.476.682 1.132.682 1.966v.682H7.357c.018.577.174 1.02.467 1.329.294.31.707.465 1.241.465.351 0 .678-.033.98-.099a5.1 5.1 0 0 0 .975-.33v1.026a3.865 3.865 0 0 1-.935.312 5.723 5.723 0 0 1-1.08.091l.002-.001zm-.231-5.199c-.401 0-.722.127-.964.381s-.386.625-.432 1.112h2.696c-.007-.491-.125-.862-.354-1.115-.229-.252-.544-.379-.945-.379l-.001.001zm7.692 5.092l-.252-.827h-.043c-.286.362-.575.608-.865.739-.29.131-.662.196-1.117.196-.584 0-1.039-.158-1.367-.473-.328-.315-.491-.761-.491-1.337 0-.612.227-1.074.682-1.386.455-.312 1.148-.482 2.079-.51l1.026-.032v-.317c0-.38-.089-.663-.266-.851-.177-.188-.452-.282-.824-.282-.304 0-.596.045-.876.134a6.68 6.68 0 0 0-.806.317l-.408-.902a4.414 4.414 0 0 1 1.058-.384 4.856 4.856 0 0 1 1.085-.132c.756 0 1.326.165 1.711.494.385.329.577.847.577 1.552v4.002h-.902l-.001-.001zm-1.88-.859c.458 0 .826-.128 1.104-.384.278-.256.416-.615.416-1.077v-.516l-.763.032c-.594.021-1.027.121-1.297.298s-.406.448-.406.814c0 .265.079.47.236.615.158.145.394.218.709.218h.001zm7.557-5.189c.254 0 .464.018.628.054l-.124 1.176a2.383 2.383 0 0 0-.559-.064c-.505 0-.914.165-1.227.494-.313.329-.47.757-.47 1.284v3.105h-1.262V7.218h.988l.167 1.047h.064c.197-.354.454-.636.771-.843a1.83 1.83 0 0 1 1.023-.312h.001zm4.125 6.155c-.899 0-1.582-.262-2.049-.787-.467-.525-.701-1.277-.701-2.259 0-.999.244-1.767.733-2.304.489-.537 1.195-.806 2.119-.806.627 0 1.191.116 1.692.349l-.381 1.015c-.534-.208-.974-.312-1.321-.312-1.028 0-1.542.682-1.542 2.046 0 .666.128 1.166.384 1.501.256.335.631.502 1.125.502a3.23 3.23 0 0 0 1.595-.419v1.101a2.53 2.53 0 0 1-.722.285 4.356 4.356 0 0 1-.932.086v.002zm8.277-.107h-1.268V9.506c0-.458-.092-.8-.277-1.026-.184-.226-.477-.338-.878-.338-.53 0-.919.158-1.168.475-.249.317-.373.848-.373 1.593v2.949h-1.262V4.801h1.262v2.122c0 .34-.021.704-.064 1.09h.081a1.76 1.76 0 0 1 .717-.666c.306-.158.663-.236 1.072-.236 1.439 0 2.159.725 2.159 2.175v3.873l-.001-.001zm7.649-6.048c.741 0 1.319.269 1.732.806.414.537.62 1.291.62 2.261 0 .974-.209 1.732-.628 2.275-.419.542-1.001.814-1.746.814-.752 0-1.336-.27-1.751-.811h-.086l-.231.704h-.945V4.801h1.262v1.987l-.021.655-.032.553h.054c.401-.591.992-.886 1.772-.886zm-.328 1.031c-.508 0-.875.149-1.098.448-.224.299-.339.799-.346 1.501v.086c0 .723.115 1.247.344 1.571.229.324.603.486 1.123.486.448 0 .787-.177 1.018-.532.231-.354.346-.867.346-1.536 0-1.35-.462-2.025-1.386-2.025l-.001.001zm3.244-.924h1.375l1.209 3.368c.183.48.304.931.365 1.354h.043c.032-.197.091-.436.177-.717.086-.281.541-1.616 1.364-4.004h1.364l-2.541 6.73c-.462 1.235-1.232 1.853-2.31 1.853-.279 0-.551-.03-.816-.091v-.999c.19.043.406.064.65.064.609 0 1.037-.353 1.284-1.058l.22-.559-2.385-5.941h.001z"
+				fill="#1D3657"/>
+		  </g>
+		</svg>
+	  </a>
+	</div>
+  </div>
+</script>
+
+<script type="text/html" id="tmpl-autocomplete-empty">
+  <div class="autocomplete-empty">
+	  No results matched your query 	<span class="empty-query">"{{ data.query }}"</span>
+  </div>
+</script>
+
+<script type="text/javascript">
+  jQuery(function () {
+	/* init Algolia client */
+	var client = algoliasearch(algolia.application_id, algolia.search_api_key);
+
+	/* setup default sources */
+	var sources = [];
+
+	sources.push({
+		source: function(q, cb) { cb([]); },
+		name: "default",
+		templates: {
+			empty: function(data) {
+				return '<a href="/?s=' + encodeURIComponent(data.query) + '">Search for: <span class="empty-query">"' + data.query + '"</span></a>';
+			}
+		}
+	});
+
+	jQuery.each(algolia.autocomplete.sources, function (i, config) {
+	  var suggestion_template = wp.template(config['tmpl_suggestion']);
+	  sources.push({
+		source: algoliaAutocomplete.sources.hits(client.initIndex(config['index_name']), {
+		  hitsPerPage: config['max_suggestions'],
+		  attributesToSnippet: [
+			'content:10'
+		  ],
+		  highlightPreTag: '__ais-highlight__',
+		  highlightPostTag: '__/ais-highlight__'
+		}),
+		templates: {
+		  header: function () {
+			return wp.template('autocomplete-header')({
+			  label: config['label']
+			});
+		  },
+		  suggestion: function (hit) {
+      if(hit.escaped === true) {
+        return suggestion_template(hit);
+      }
+      hit.escaped = true;
+
+			for (var key in hit._highlightResult) {
+			  /* We do not deal with arrays. */
+			  if (typeof hit._highlightResult[key].value !== 'string') {
+				continue;
+			  }
+			  hit._highlightResult[key].value = _.escape(hit._highlightResult[key].value);
+			  hit._highlightResult[key].value = hit._highlightResult[key].value.replace(/__ais-highlight__/g, '<em>').replace(/__\/ais-highlight__/g, '</em>');
+			}
+
+			for (var key in hit._snippetResult) {
+			  /* We do not deal with arrays. */
+			  if (typeof hit._snippetResult[key].value !== 'string') {
+				continue;
+			  }
+
+			  hit._snippetResult[key].value = _.escape(hit._snippetResult[key].value);
+			  hit._snippetResult[key].value = hit._snippetResult[key].value.replace(/__ais-highlight__/g, '<em>').replace(/__\/ais-highlight__/g, '</em>');
+			}
+
+			return suggestion_template(hit);
+		  }
+		}
+	  });
+	});
+
+	/* Setup dropdown menus */
+	jQuery(algolia.autocomplete.input_selector).each(function (i) {
+	  var $searchInput = jQuery(this);
+
+	  var config = {
+		debug: algolia.debug,
+		hint: false,
+		openOnFocus: true,
+		appendTo: 'body'
+	  };
+
+	  if (algolia.powered_by_enabled) {
+		config.templates.footer = wp.template('autocomplete-footer');
+	  }
+
+	  /* Instantiate autocomplete.js */
+	  var autocomplete = algoliaAutocomplete($searchInput[0], config, sources)
+	  .on('autocomplete:selected', function (e, suggestion) {
+		/* Redirect the user when we detect a suggestion selection. */
+		window.location.href = suggestion.permalink;
+	  });
+
+	  /* Force the dropdown to be re-drawn on scroll to handle fixed containers. */
+	  jQuery(window).scroll(function() {
+		if(autocomplete.autocomplete.getWrapper().style.display === "block") {
+		  autocomplete.autocomplete.close();
+		  autocomplete.autocomplete.open();
+		}
+	  });
+	});
+
+	jQuery(document).on("click", ".algolia-powered-by-link", function (e) {
+	  e.preventDefault();
+	  window.location = "https://www.algolia.com/?utm_source=WordPress&utm_medium=extension&utm_content=" + window.location.hostname + "&utm_campaign=poweredby";
+	});
+  });
+</script>
+	<div id="sharing_email" style="display: none;">
+		<form action="/2021/the-2021-stratechery-year-in-review/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Your Email Address</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			
+			<img style="float: right; display: none" class="loading" src="https://149384716.v2.pressablecdn.com/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Send Email" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel" role="button">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001' id='jetpack-photon-js'></script>
+<script type='text/javascript' id='atomic-wp-js-extra'>
+/* <![CDATA[ */
+var atomicWp = {"is_logged_in":"https:\/\/stratechery.com\/wp-json\/atomicPlugin\/v1\/isloggedin","copied":"Copied"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/plugins/atomic-wp/views/atomic.js?ver=1636267878' id='atomic-wp-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/js/navigation.js?ver=20120206' id='stratechery-navigation-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/js/skip-link-focus-fix.js?ver=20130115' id='stratechery-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/js/pricing.js?wp=1&#038;ver=1.0' id='stratechery-pricing-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/js/theme.js?ver=1.0' id='stratechery-scripts-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/js/bigfoot.min.js?ver=20150428' id='stratechery-bigfoot-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/themes/stratechery-theme/js/podcast-subscribe.js?wp=5&#038;ver=1.0' id='stratechery-podcast-js'></script>
+<script type='text/javascript' src='https://c0.wp.com/c/5.8.3/wp-includes/js/underscore.min.js' id='underscore-js'></script>
+<script type='text/javascript' id='wp-util-js-extra'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://c0.wp.com/c/5.8.3/wp-includes/js/wp-util.min.js' id='wp-util-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/plugins/wp-search-with-algolia/js/algoliasearch/dist/algoliasearch.jquery.min.js?ver=1.8.0' id='algolia-search-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/plugins/wp-search-with-algolia/js/autocomplete.js/dist/autocomplete.min.js?ver=1.8.0' id='algolia-autocomplete-js'></script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/plugins/wp-search-with-algolia/js/autocomplete-noconflict.js?ver=1.8.0' id='algolia-autocomplete-noconflict-js'></script>
+<script type='text/javascript' src='https://c0.wp.com/c/5.8.3/wp-includes/js/wp-embed.min.js' id='wp-embed-js'></script>
+<script type='text/javascript' id='sharing-js-js-extra'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"","is_stats_active":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149384716.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=10.5-beta' id='sharing-js-js'></script>
+<script type='text/javascript' id='sharing-js-js-after'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-linkedin' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-linkedin' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+		<script type="text/javascript">
+			(function() {
+			var t   = document.createElement( 'script' );
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute( 'data-site-id', '5dd5eb18ab460c20bb05a115' );
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName( 'script' )[0];
+			s.parentNode.insertBefore( t, s );
+			})();
+		</script>
+		</body>
+</html>

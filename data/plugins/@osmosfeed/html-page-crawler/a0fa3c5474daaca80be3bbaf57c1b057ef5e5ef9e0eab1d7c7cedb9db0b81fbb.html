@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<title>Design for Safety, An Excerpt &#8211; A List Apart</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="A List Apart &raquo; Feed" href="https://alistapart.com/main/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/alistapart.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.3"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.3' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-monetize-css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/frontend/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-messaging-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/messages/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/style.css?ver=1636974319' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-prism-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.css?ver=1.0' type='text/css' media='all' />
+<!-- `sharedaddy` is included in the concatenated jetpack.css -->
+<link rel='stylesheet' id='social-logos-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=10.5-beta' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/css/jetpack.css?ver=10.5-beta' type='text/css' media='all' />
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://alistapart.com/wp-json/" /><link rel="alternate" type="application/json" href="https://alistapart.com/wp-json/wp/v2/article/7173095" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://alistapart.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://alistapart.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://alistapart.com/article/design-for-safety-excerpt/" />
+<link rel="alternate" type="application/json+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fdesign-for-safety-excerpt%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fdesign-for-safety-excerpt%2F&#038;format=xml" />
+<meta name="monetization" content="$ilp.uphold.com/Kh7NgDU9kqp3" />
+<link rel="monetization" href="https://ilp.uphold.com/Kh7NgDU9kqp3" />
+<style type='text/css'>img#wpstats{display:none}</style>
+			<style type="text/css">
+						.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+
+						</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Design for Safety, An Excerpt" />
+<meta property="og:url" content="https://alistapart.com/article/design-for-safety-excerpt/" />
+<meta property="og:description" content="None of us want to build products that put our users’ safety at risk, but how do you reduce the risk that our products will be weaponized by abusers? In this excerpt from Design for Safety, Eva Pen…" />
+<meta property="article:published_time" content="2021-08-26T15:01:43+00:00" />
+<meta property="article:modified_time" content="2021-08-26T15:01:44+00:00" />
+<meta property="og:site_name" content="A List Apart" />
+<meta property="og:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2018/10/excerptillustration_300.png?fit=1200%2C586&#038;ssl=1" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="586" />
+<meta property="og:image:alt" content="Illustration: A small piece of paper is torn from a very large book with some glasses, a bookmark, and a steaming mug of something delicious nearby." />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:creator" content="@alistapart" />
+<meta name="twitter:site" content="@alistapart" />
+<meta name="twitter:text:title" content="Design for Safety, An Excerpt" />
+<meta name="twitter:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2018/10/excerptillustration_300.png?fit=1200%2C586&#038;ssl=1&#038;w=640" />
+<meta name="twitter:image:alt" content="Illustration: A small piece of paper is torn from a very large book with some glasses, a bookmark, and a steaming mug of something delicious nearby." />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=270%2C270&#038;ssl=1" />
+<link rel="stylesheet" type="text/css" id="wp-custom-css" href="https://alistapart.com/?custom-css=2a4ef18516" /></head>
+
+<body class="article-template-default single single-article postid-7173095 wp-custom-logo monetization-not-initialized coil-no-gating coil-hide-excerpt article-design-for-safety-excerpt" itemscope itemtype="http://schema.org/Article">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<a href="https://alistapart.com/" class="custom-logo-link" rel="home"><img width="960" height="98" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?fit=960%2C98&amp;ssl=1" class="custom-logo" alt="A List Apart" srcset="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?w=960&amp;ssl=1 960w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=300%2C31&amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=768%2C78&amp;ssl=1 768w" sizes="(max-width: 960px) 100vw, 960px" /></a>				<p class="site-title"><a href="https://alistapart.com/" rel="home"  itemscope itemtype="http://schema.org/ImageObject">A List Apart</a></p>
+								<p class="site-description">For people who make websites</p>
+					</div><!-- .site-branding -->
+
+		<nav id="site-navigation" class="main-navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="screen-reader-text">Primary Menu</span></button>
+			<div class="menu-site-header-container"><ul id="primary-menu" class="menu"><li id="menu-item-6000493" class="ala-home-url menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6000493"><a href="https://alistapart.com" itemprop="url"><span itemprop="name">Home</span></a></li>
+<li id="menu-item-6000494" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-6000494"><a href="https://alistapart.com/articles/" itemprop="url"><span itemprop="name">Articles</span></a></li>
+<li id="menu-item-6000495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000495"><a href="https://alistapart.com/events/" itemprop="url"><span itemprop="name">Events</span></a></li>
+<li id="menu-item-6000496" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000496"><a href="https://alistapart.com/topics/" itemprop="url"><span itemprop="name">Topics</span></a></li>
+<li id="menu-item-6000497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000497"><a href="https://alistapart.com/about/contribute/" itemprop="url"><span itemprop="name">Write for Us</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="mlp-language-nav"><span itemprop="name">Language (English) <i class="arrow-down"></i></span></a><ul class="sub-menu mlp-languages"><li class="site-id-"2" mlp-language-nav-item menu-item menu-item-type-mlp_language menu-item-object-mlp_language"><a rel="alternate" href="https://alistapart.com/it" itemprop="url"><span itemprop="name">Italian</span></a></li></ul></li></ul></div>
+			<form role="search" method="get" class="search-form" action="https://alistapart.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>		</nav><!-- #site-navigation -->
+
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+			
+<article id="post-7173095" class="post-7173095 article type-article status-publish has-post-thumbnail hentry category-process category-usability category-user-experience category-user-research">
+
+	<figure class="hero-wide" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+		
+			<div class="post-thumbnail">
+				<img width="1920" height="938" src="https://149572954.v2.pressablecdn.com/wp-content/uploads/2018/10/excerptillustration_300.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Illustration: A small piece of paper is torn from a very large book with some glasses, a bookmark, and a steaming mug of something delicious nearby." loading="lazy" itemprop="contentUrl" srcset="https://i0.wp.com/alistapart.com/wp-content/uploads/2018/10/excerptillustration_300.png?w=1920&amp;ssl=1 1920w, https://i0.wp.com/alistapart.com/wp-content/uploads/2018/10/excerptillustration_300.png?resize=300%2C147&amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2018/10/excerptillustration_300.png?resize=768%2C375&amp;ssl=1 768w, https://i0.wp.com/alistapart.com/wp-content/uploads/2018/10/excerptillustration_300.png?resize=1024%2C500&amp;ssl=1 1024w" sizes="(max-width: 1920px) 100vw, 1920px" />			</div><!-- .post-thumbnail -->
+
+					<span class="illustrator-credit" itemprop="contributor" itemscope itemtype="http://schema.org/Person">
+			Illustration by <a href="https://alistapart.com/author/kcornell/" title="Posts by Kevin Cornell" class="author url fn" rel="author">Kevin Cornell</a>				</span>
+			
+	</figure>
+
+	<header class="entry-header">
+		
+		<h1 class="entry-title" itemprop="headline">Design for Safety, An Excerpt</h1>		<div class="entry-meta">
+			<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/eva-penzeymoog/" itemprop="url"> <span itemprop="name">Eva PenzeyMoog</span></a></span></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-26T11:01:43-04:00">August 26, 2021</time><time class="updated" datetime="2021-08-26T11:01:44-04:00">August 26, 2021</time></span>			<div class="entry-topic">
+				<span class="cat-links">Published in <a href="https://alistapart.com/blog/topic/process/" rel="category tag">Process</a>, <a href="https://alistapart.com/blog/topic/usability/" rel="category tag">Usability</a>, <a href="https://alistapart.com/blog/topic/user-experience/" rel="category tag">User Experience</a>, <a href="https://alistapart.com/blog/topic/user-research/" rel="category tag">User Research</a></span>			</div>
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	
+		<div class="ala-editors-note"><b>A note from the editors:</b> We’re pleased to share an excerpt from Chapter 5 of Eva PenzeyMoog’s <a href="https://abookapart.com/products/design-for-safety"><cite>Design for Safety</cite></a>, from <a href="https://abookapart.com/">A Book Apart</a>.
+</div>
+		
+	
+	
+	<div class="entry-content">
+		
+<p>Antiracist economist Kim Crayton says that “intention without strategy is chaos.” We’ve discussed how our biases, assumptions, and inattention toward marginalized and vulnerable groups lead to dangerous and unethical tech—but what, <em>specifically</em>, do we need to do to fix it? The intention to make our tech safer is not enough; we need a strategy.</p>		<div class="aside-breaker"><span>Article Continues Below</span></div>
+		<div class="ala-single-sidebar-wrapper">
+			<span class="screen-reader-text">Article Continues Below</span>
+			<aside class="ala-single-sidebar-minutiae">
+				<span class="ala-comment-bubble"></span>					<div class="ala-share">
+					<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 id="section1" class="sd-title">Share this:<a class="subhead-anchor" href="#section1">#section1</a></h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-7173095" class="share-facebook sd-button share-icon no-text" href="https://alistapart.com/article/design-for-safety-excerpt/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-7173095" class="share-twitter sd-button share-icon no-text" href="https://alistapart.com/article/design-for-safety-excerpt/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+										<section id="custom_html-6" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.patreon.com/alistapart" class="patreon-bubble">Become a patron</a></div></section>					
+							</aside>
+
+			<aside class="ala-single-sidebar-1">
+				<section id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div>
+
+<div class="banner ala-banner">
+	<a href="https://abookapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/logo_a-book-apart-color.png?w=960&#038;ssl=1" alt="A Book Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>A Book Apart:<br> Brief books for people who make websites.</p>		
+		</a>
+</div>
+
+<div class="banner">
+	<a href="https://aneventapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/AEA_2017_80x80_2.png?w=960&#038;ssl=1" alt="An Event Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>An Event Apart:<br> 3 days of design, code, and content for web &amp; UX designers &amp; devs.</p>		
+		</a>
+</div></div></section>			</aside>
+
+		</div>
+		
+
+
+
+<p>This chapter will equip you with that plan of action. It covers how to integrate safety principles into your design work in order to create tech that’s safe, how to convince your stakeholders that this work is necessary, and how to respond to the critique that what we <em>actually</em> need is more diversity. (Spoiler: we do, but diversity alone is not the antidote to fixing unethical, unsafe tech.)</p>
+
+
+
+<h2 id="section2"><strong>The process for inclusive safety</strong><a class="subhead-anchor" href="#section2">#section2</a></h2>
+
+
+
+<p>When you are designing for safety, your goals are to:</p>
+
+
+
+<ul><li>identify ways your product can be used for abuse,</li><li>design ways to prevent the abuse, and</li><li>provide support for vulnerable users to reclaim power and control.</li></ul>
+
+
+
+<p>The Process for Inclusive Safety is a tool to help you reach those goals (<strong>Fig 5.1</strong>). It’s a methodology I created in 2018 to capture the various techniques I was using when designing products with safety in mind. Whether you are creating an entirely new product or adding to an existing feature, the Process can help you make your product safe and inclusive. The Process includes five general areas of action:</p>
+
+
+
+<ul><li>Conducting research</li><li>Creating archetypes</li><li>Brainstorming problems</li><li>Designing solutions</li><li>Testing for safety</li></ul>
+
+
+
+<figure id="figure1" class="wp-block-image size-full"><img loading="lazy" width="627" height="189" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/08/dfs-fig-5-1.jpg?resize=627%2C189&#038;ssl=1" alt="" class="wp-image-7173096" data-recalc-dims="1" /><figcaption><strong>Fig 5.1</strong>: Each aspect of the Process for Inclusive Safety can be incorporated into your design process where it makes the most sense for you. The times given are estimates to help you incorporate the stages into your design plan.</figcaption></figure>
+
+
+
+<p>The Process is meant to be flexible—it won’t make sense for teams to implement every step in some situations. Use the parts that are relevant to your unique work and context; this is meant to be something you can insert into your existing design practice.</p>
+
+
+
+<p>And once you use it, if you have an idea for making it better or simply want to provide context of how it helped your team, please get in touch with me. It’s a living document that I hope will continue to be a useful and realistic tool that technologists can use in their day-to-day work.</p>
+
+
+
+<p>If you’re working on a product specifically for a vulnerable group or survivors of some form of trauma, such as an app for survivors of domestic violence, sexual assault, or drug addiction, be sure to read Chapter 7, which covers that situation explicitly and should be handled a bit differently. The guidelines here are for prioritizing safety when designing a more general product that will have a wide user base (which, we already know from statistics, will include certain groups that should be protected from harm). Chapter 7 is focused on products that are <em>specifically for</em> vulnerable groups and people who have experienced trauma.</p>
+
+
+
+<h3 id="section3">Step 1: Conduct research<a class="subhead-anchor" href="#section3">#section3</a></h3>
+
+
+
+<p>Design research should include a broad analysis of how your tech might be weaponized for abuse as well as specific insights into the experiences of survivors and perpetrators of that type of abuse. At this stage, you and your team will investigate issues of interpersonal harm and abuse, and explore any other safety, security, or inclusivity issues that might be a concern for your product or service, like data security, racist algorithms, and harassment.</p>
+
+
+
+<h4 id="section4">Broad research<a class="subhead-anchor" href="#section4">#section4</a></h4>
+
+
+
+<p>Your project should begin with broad, general research into similar products and issues around safety and ethical concerns that have already been reported. For example, a team building a smart home device would do well to understand the multitude of ways that existing smart home devices have been used as tools of abuse. If your product will involve AI, seek to understand the potentials for racism and other issues that have been reported in existing AI products. Nearly all types of technology have some kind of potential or actual harm that’s been reported on in the news or written about by academics. <a href="https://scholar.google.com">Google Scholar</a> is a useful tool for finding these studies.</p>
+
+
+
+<h4 id="section5">Specific research: Survivors<a class="subhead-anchor" href="#section5">#section5</a></h4>
+
+
+
+<p>When possible and appropriate, include direct research (surveys and interviews) with people who are experts in the forms of harm you have uncovered. Ideally, you’ll want to interview advocates working in the space of your research first so that you have a more solid understanding of the topic and are better equipped to not retraumatize survivors. If you’ve uncovered possible domestic violence issues, for example, the experts you’ll want to speak with are survivors themselves, as well as workers at domestic violence hotlines, shelters, other related nonprofits, and lawyers.</p>
+
+
+
+<p>Especially when interviewing survivors of any kind of trauma, it is important to pay people for their knowledge and lived experiences. Don’t ask survivors to share their trauma for free, as this is exploitative. While some survivors may not want to be paid, you should always make the offer in the initial ask. An alternative to payment is to donate to an organization working against the type of violence that the interviewee experienced. We’ll talk more about how to appropriately interview survivors in Chapter 6.</p>
+
+
+
+<h4 id="section6">Specific research: Abusers<a class="subhead-anchor" href="#section6">#section6</a></h4>
+
+
+
+<p>It’s unlikely that teams aiming to design for safety will be able to interview self-proclaimed abusers or people who have broken laws around things like hacking. Don’t make this a goal; rather, try to get at this angle in your general research. Aim to understand how abusers or bad actors weaponize technology to use against others, how they cover their tracks, and how they explain or rationalize the abuse.</p>
+
+
+
+<h3 id="section7">Step 2: Create archetypes<a class="subhead-anchor" href="#section7">#section7</a></h3>
+
+
+
+<p>Once you’ve finished conducting your research, use your insights to create abuser and survivor archetypes. Archetypes are not personas, as they’re not based on real people that you interviewed and surveyed. Instead, they’re based on your research into likely safety issues, much like when we design for accessibility: we don’t need to have found a group of blind or low-vision users in our interview pool to create a design that’s inclusive of them. Instead, we base those designs on existing research into what this group needs. Personas typically represent real users and include many details, while archetypes are broader and can be more generalized.</p>
+
+
+
+<p>The abuser archetype is someone who will look at the product as a tool to perform harm (<strong>Fig 5.2</strong>). They may be trying to harm someone they don’t know through surveillance or anonymous harassment, or they may be trying to control, monitor, abuse, or torment someone they know personally.</p>
+
+
+
+<figure id="figure2" class="wp-block-image size-large"><img loading="lazy" width="960" height="718" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/08/5.2-abuser-archetype-Harry-Oleson.jpg?resize=960%2C718&#038;ssl=1" alt="" class="wp-image-7173097" data-recalc-dims="1" /><figcaption><strong>Fig 5.2:</strong> Harry Oleson, an abuser archetype for a fitness product, is looking for ways to stalk his ex-girlfriend through the fitness apps she uses.</figcaption></figure>
+
+
+
+<p>The survivor archetype is someone who is being abused with the product. There are various situations to consider in terms of the archetype’s understanding of the abuse and how to put an end to it: Do they need proof of abuse they already suspect is happening, or are they unaware they’ve been targeted in the first place and need to be alerted (<strong>Fig 5.3</strong>)?</p>
+
+
+
+<figure id="figure3" class="wp-block-image size-large"><img loading="lazy" width="960" height="718" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/08/5.3-survivor-archetype-Lisa-Zwaan.jpg?resize=960%2C718&#038;ssl=1" alt="" class="wp-image-7173098" data-recalc-dims="1" /><figcaption><strong>Fig 5.3</strong>: The survivor archetype Lisa Zwaan suspects her husband is weaponizing their home’s IoT devices against her, but in the face of his insistence that she simply doesn’t understand how to use the products, she’s unsure. She needs some kind of proof of the abuse.</figcaption></figure>
+
+
+
+<p>You may want to make multiple survivor archetypes to capture a range of different experiences. They may know that the abuse is happening but not be able to stop it, like when an abuser locks them out of IoT devices; or they know it’s happening but don’t know how, such as when a stalker keeps figuring out their location (<strong>Fig 5.4</strong>). Include as many of these scenarios as you need to in your survivor archetype. You’ll use these later on when you design solutions to help your survivor archetypes achieve their goals of preventing and ending abuse.</p>
+
+
+
+<figure id="figure4" class="wp-block-image size-large"><img loading="lazy" width="960" height="718" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/08/5.4-survivor-archetype-Eric-Mitchell.jpg?resize=960%2C718&#038;ssl=1" alt="" class="wp-image-7173099" data-recalc-dims="1" /><figcaption><strong>Fig 5.4</strong>: The survivor archetype Eric Mitchell knows he’s being stalked by his ex-boyfriend Rob but can’t figure out how Rob is learning his location information.</figcaption></figure>
+
+
+
+<p>It may be useful for you to create persona-like artifacts for your archetypes, such as the three examples shown. Instead of focusing on the demographic information we often see in personas, focus on their goals. The goals of the abuser will be to carry out the specific abuse you’ve identified, while the goals of the survivor will be to prevent abuse, understand that abuse is happening, make ongoing abuse stop, or regain control over the technology that’s being used for abuse. Later, you’ll brainstorm how to prevent the abuser’s goals and assist the survivor’s goals.</p>
+
+
+
+<p>And while the “abuser/survivor” model fits most cases, it doesn’t fit all, so modify it as you need to. For example, if you uncovered an issue with security, such as the ability for someone to hack into a home camera system and talk to children, the malicious hacker would get the abuser archetype and the child’s parents would get survivor archetype.</p>
+
+
+
+<h3 id="section8">Step 3: Brainstorm problems<a class="subhead-anchor" href="#section8">#section8</a></h3>
+
+
+
+<p>After creating archetypes, brainstorm novel abuse cases and safety issues. “Novel” means things not found in your research; you’re trying to identify completely <em>new</em> safety issues that are unique to your product or service. The goal with this step is to exhaust every effort of identifying harms your product could cause. You aren’t worrying about how to prevent the harm yet—that comes in the next step.</p>
+
+
+
+<p>How could your product be used for any kind of abuse, outside of what you’ve already identified in your research? I recommend setting aside at least a few hours with your team for this process.</p>
+
+
+
+<p>If you’re looking for somewhere to start, try doing a Black Mirror brainstorm. This exercise is based on the show <em>Black Mirror</em>, which features stories about the dark possibilities of technology. Try to figure out how your product would be used in an episode of the show—the most wild, awful, out-of-control ways it could be used for harm. When I’ve led Black Mirror brainstorms, participants usually end up having a good deal of fun (which I think is great—it’s okay to have fun when designing for safety!). I recommend time-boxing a Black Mirror brainstorm to half an hour, and then dialing it back and using the rest of the time thinking of more realistic forms of harm.</p>
+
+
+
+<p>After you’ve identified as many opportunities for abuse as possible, you may still not feel confident that you’ve uncovered every potential form of harm. A healthy amount of anxiety is normal when you’re doing this kind of work. It’s common for teams designing for safety to worry, “Have we really identified every possible harm? What if we’ve missed something?” If you’ve spent at least four hours coming up with ways your product could be used for harm and have run out of ideas, go to the next step.</p>
+
+
+
+<p>It’s impossible to guarantee you’ve thought of everything; instead of aiming for 100 percent assurance, recognize that you’ve taken this time and have done the best you can, and commit to continuing to prioritize safety in the future. Once your product is released, your users may identify new issues that you missed; aim to receive that feedback graciously and course-correct quickly.</p>
+
+
+
+<h3 id="section9">Step 4: Design solutions<a class="subhead-anchor" href="#section9">#section9</a></h3>
+
+
+
+<p>At this point, you should have a list of ways your product can be used for harm as well as survivor and abuser archetypes describing opposing user goals. The next step is to identify ways to design against the identified abuser’s goals and to support the survivor’s goals. This step is a good one to insert alongside existing parts of your design process where you’re proposing solutions for the various problems your research uncovered.</p>
+
+
+
+<p>Some questions to ask yourself to help prevent harm and support your archetypes include:</p>
+
+
+
+<ul><li>Can you design your product in such a way that the identified harm cannot happen in the first place? If not, what roadblocks can you put up to prevent the harm from happening?</li><li>How can you make the victim aware that abuse is happening through your product?</li><li>How can you help the victim understand what they need to do to make the problem stop?</li><li>Can you identify any types of user activity that would indicate some form of harm or abuse? Could your product help the user access support?</li></ul>
+
+
+
+<p>In some products, it’s possible to proactively recognize that harm is happening. For example, a pregnancy app might be modified to allow the user to report that they were the victim of an assault, which could trigger an offer to receive resources for local and national organizations. This sort of proactiveness is not always possible, but it’s worth taking a half hour to discuss if any type of user activity would indicate some form of harm or abuse, and how your product could assist the user in receiving help in a safe manner.</p>
+
+
+
+<p>That said, use caution: you don’t want to do anything that could put a user in harm’s way if their devices are being monitored. If you do offer some kind of proactive help, always make it voluntary, and think through other safety issues, such as the need to keep the user in-app in case an abuser is checking their search history. We’ll walk through a good example of this in the next chapter.</p>
+
+
+
+<h3 id="section10">Step 5: Test for safety<a class="subhead-anchor" href="#section10">#section10</a></h3>
+
+
+
+<p>The final step is to test your prototypes from the point of view of your archetypes: the person who wants to weaponize the product for harm and the victim of the harm who needs to regain control over the technology. Just like any other kind of product testing, at this point you’ll aim to rigorously test out your safety solutions so that you can identify gaps and correct them, validate that your designs will help keep your users safe, and feel more confident releasing your product into the world.</p>
+
+
+
+<p>Ideally, safety testing happens along with usability testing. If you’re at a company that doesn’t do usability testing, you might be able to use safety testing to cleverly perform both; a user who goes through your design attempting to weaponize the product against someone else can also be encouraged to point out interactions or other elements of the design that don’t make sense to them.</p>
+
+
+
+<p>You’ll want to conduct safety testing on either your final prototype or the actual product if it’s already been released. There’s nothing wrong with testing an existing product that wasn’t designed with safety goals in mind from the onset—“retrofitting” it for safety is a good thing to do.</p>
+
+
+
+<p>Remember that testing for safety involves testing from the perspective of both an abuser and a survivor, though it may not make sense for you to do both. Alternatively, if you made multiple survivor archetypes to capture multiple scenarios, you’ll want to test from the perspective of each one.</p>
+
+
+
+<p>As with other sorts of usability testing, you as the designer are most likely too close to the product and its design by this point to be a valuable tester; you know the product too well. Instead of doing it yourself, set up testing as you would with other usability testing: find someone who is not familiar with the product and its design, set the scene, give them a task, encourage them to think out loud, and observe how they attempt to complete it.</p>
+
+
+
+<h4 id="section11">Abuser testing<a class="subhead-anchor" href="#section11">#section11</a></h4>
+
+
+
+<p>The goal of this testing is to understand how easy it is for someone to weaponize your product for harm. Unlike with usability testing, you <em>want</em> to make it impossible, or at least difficult, for them to achieve their goal. Reference the goals in the abuser archetype you created earlier, and use your product in an attempt to achieve them.</p>
+
+
+
+<p>For example, for a fitness app with GPS-enabled location features, we can imagine that the abuser archetype would have the goal of figuring out where his ex-girlfriend now lives. With this goal in mind, you’d try everything possible to figure out the location of another user who has their privacy settings enabled. You might try to see her running routes, view any available information on her profile, view anything available about her location (which she has set to private), and investigate the profiles of any other users somehow connected with her account, such as her followers.</p>
+
+
+
+<p>If by the end of this you’ve managed to uncover some of her location data, despite her having set her profile to private, you know now that your product enables stalking. Your next step is to go back to step 4 and figure out how to prevent this from happening. You may need to repeat the process of designing solutions and testing them more than once.</p>
+
+
+
+<h4 id="section12">Survivor testing<a class="subhead-anchor" href="#section12">#section12</a></h4>
+
+
+
+<p>Survivor testing involves identifying how to give information and power to the survivor. It might not always make sense based on the product or context. Thwarting the attempt of an abuser archetype to stalk someone also satisfies the goal of the survivor archetype to not be stalked, so separate testing wouldn’t be needed from the survivor’s perspective.</p>
+
+
+
+<p>However, there are cases where it makes sense. For example, for a smart thermostat, a survivor archetype’s goals would be to understand who or what is making the temperature change when they aren’t doing it themselves. You could test this by looking for the thermostat’s history log and checking for usernames, actions, and times; if you couldn’t find that information, you would have more work to do in step 4.</p>
+
+
+
+<p>Another goal might be regaining control of the thermostat once the survivor realizes the abuser is remotely changing its settings. Your test would involve attempting to figure out how to do this: are there instructions that explain how to remove another user and change the password, and are they easy to find? This might again reveal that more work is needed to make it clear to the user how they can regain control of the device or account.</p>
+
+
+
+<h4 id="section13">Stress testing<a class="subhead-anchor" href="#section13">#section13</a></h4>
+
+
+
+<p>To make your product more inclusive and compassionate, consider adding stress testing. This concept comes from <em><a href="https://abookapart.com/products/design-for-real-life">Design for Real Life</a></em> by Eric Meyer and Sara Wachter-Boettcher. The authors pointed out that personas typically center people who are having a good day—but real users are often anxious, stressed out, having a bad day, or even experiencing tragedy. These are called “stress cases,” and testing your products for users in stress-case situations can help you identify places where your design lacks compassion. <em>Design for Real Life</em> has more details about what it looks like to incorporate stress cases into your design as well as many other great tactics for compassionate design.</p>
+		<div class="ala-single-sidebar-wrapper sidebar-related">
+			<aside id="related" class="ala-single-sidebar-related">
+									<section class="ala-sb-rel__category">
+						<h3 class="ala-sb-rel__cat__title">
+							Further reading about							<a href="https://alistapart.com/blog/topic/process/">Process</a>
+						</h3>
+													<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/sustainable-web-design-excerpt/">Sustainable Web Design, An Excerpt									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Climate change is a daunting problem to face, but in this excerpt from Sustainable Web Design, Tom Greenwood provides clear guidance on how we can track and moreover address the carbon footprint of our websites in order to lessen our impact on our planet.</div>
+							</article>
+														<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/asynchronous-design-critique-giving-feedback-part2/">Asynchronous Design Critique: Getting Feedback									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Receiving feedback can be a stressful experience: will an open-ended question attract helpful guidance or harsh criticism? Erin “Folletto“ Casali has already taught us how to provide good feedback; now she shows how to have agency when receiving it. Follow her advice and you’ll be able to structure your feedback process to always generate an ego-friendly, focused, and above all actionably helpful review.</div>
+							</article>
+												</section>
+								</aside>
+		</div>
+			</div><!-- .entry-content -->
+	</article><!-- #post-7173095 -->
+
+				<footer class="ala-author">
+					<div class="ala-author__content clear">
+						<a name="panelist0"></a>
+													<h4 class="ala-author__about">About the Author</h4>
+													<div class="ala-author__avatar">
+							<img width="150" height="150" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/08/eva.jpg?fit=150%2C150&amp;ssl=1" class="avatar avatar-150 photo wp-post-image" alt="Photo of Eva PenzeyMoog" loading="lazy" />						</div>
+
+						<h3 class="ala-author__name">Eva PenzeyMoog</h3>
+						<div class="ala-author__description"><a href="https://evapenzeymoog.com/">Eva PenzeyMoog</a> is a user experience and safety designer and founder of <a href="https://www.inclusivesafety.com/">The Inclusive Safety Project</a>. Before joining the tech field, she worked in the nonprofit space and volunteered as a domestic violence educator and rape crisis counselor. Her safety design work brings together her expertise in domestic violence and tech, helping technologists understand how their creations facilitate interpersonal harm and how to prevent it through intentionally prioritizing the most vulnerable users. She works to make designing for safety the norm and to inspire fellow technologists to transform the tech industry into one that prioritizes safety, justice, and compassion.</div>
+					</div>
+							<aside class="ala-author-book clear">
+			<figure class="ala-author-book__cover">
+
+				<a class="ala-author-book__purchase-url" href="https://abookapart.com/products/design-for-safety">
+					<img width="194" height="300" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/08/design-for-safety-cover.png?fit=194%2C300&amp;ssl=1" class="ala-author-book__cover" alt="Design for Safety book cover" loading="lazy" />				</a>
+			</figure>
+
+			<article class="ala-author-book__description">
+							<h4 class="ala-author__also">Also from this author</h4>
+								<h2><a class="ala-author-book__purchase-url" href="https://abookapart.com/products/design-for-safety">Design for Safety  <span class="ala-author-book__author-name">by Eva PenzeyMoog</span></a></h2>
+
+				<div class="ala-author-book__description__body"><p>“How will our product hurt people?” As web workers, we don’t often ask this question—but we should. Too often, we design for idealized circumstances, even though our users bring a range of complicated personal dynamics to every interaction. When we fail to explicitly design for vulnerable users, we unintentionally prioritize their abusers.</p>
+<p>Eva PenzeyMoog explains how even the most well-intentioned design can be weaponized for interpersonal harm. Through poignant, all-too-common examples, Eva demonstrates how to identify a design’s potential for abuse, how to avoid and mitigate the damage, and how to bake safety into every step of the design process. We can’t build good digital products unless we recognize that our users’ safety, and lives, are at stake.</p>
+</div>
+
+				<a class="ala-author-book__purchase-url--cta" href="https://abookapart.com/products/design-for-safety"><span>➝</span> Buy now</a>
+			</article>
+		</aside>
+							</footer>
+									<aside class="widget-area pre-footer-widget-area pre-footer-single">
+						<section id="custom_html-4" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="pre-footer-email-signup">
+	<strong>Get our latest articles in your inbox.</strong> <a href="https://alistapart.com/email-signup">Sign up for email alerts</a>.
+</div>
+</div></section>					</aside><!-- .pre-footer-widget-area -->
+					
+					<div class="comment-area-wrap two-column-layout">
+						
+<div id="comments" class="comments-area column-content">
+
+	
+		<h2 class="comments-title">No Comments</h2>
+				<div class="comments-off">
+			<h3 class="comments-off-title"> Got something to say?</h3>
+			<p class="no-comments">We have turned off comments, but you can see what folks had to say before we did so.</p>
+		</div>
+		
+</div><!-- #comments -->
+	<div class="column-sidebar ala-posts">
+		<h2 class="section-title">More from ALA</h2>
+				<article id="post-7173224" class="home-post-content post-7173224 article type-article status-publish has-post-thumbnail hentry category-code category-css">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/breaking-out-of-the-box/" rel="bookmark">Breaking Out of the Box</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/patrick-brosset/" itemprop="url"> <span itemprop="name">Patrick Brosset</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					What can we do with thirty pixels? Windows Controls Overlay frees us from 40 years of history telling us how apps should look.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/code/" rel="category tag">Code</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-12-09T10:00:00-05:00">December 09, 2021</time><time class="updated" datetime="2021-12-09T07:23:48-05:00">December 09, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173136" class="home-post-content post-7173136 article type-article status-publish has-post-thumbnail hentry category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/how-to-sell-ux-research/" rel="bookmark">How to Sell UX Research with Two Simple Questions</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/sophiavoychehovski/" itemprop="url"> <span itemprop="name">Sophia V. Prater</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Seriously, do not ever design screens again without first answering these questions: what are the objects and how do they relate?				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/user-experience/" rel="category tag">User Experience</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-10-21T10:00:00-04:00">October 21, 2021</time><time class="updated" datetime="2021-10-21T07:17:11-04:00">October 21, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173122" class="home-post-content post-7173122 article type-article status-publish has-post-thumbnail hentry category-content category-content-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/a-content-model-is-not-a-design-system/" rel="bookmark">A Content Model Is Not a Design System</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/mike-wills/" itemprop="url"> <span itemprop="name">Mike Wills</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Why do so many content models still look more like design systems rather than reflecting structured data? Mike Wills takes us on a personal journey as he examines his own past experiences and invites us to conceive content models that articulate meaning and group related content together for use on any channel.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/content/" rel="category tag">Content</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-09-23T10:00:00-04:00">September 23, 2021</time><time class="updated" datetime="2021-09-23T09:21:30-04:00">September 23, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173076" class="home-post-content post-7173076 article type-article status-publish has-post-thumbnail hentry category-design category-web-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/sustainable-web-design-excerpt/" rel="bookmark">Sustainable Web Design, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/tom-greenwood/" itemprop="url"> <span itemprop="name">Tom Greenwood</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Sustainable Web Design, Tom Greenwood provides clear guidance on how to track and address the carbon footprint of our websites.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/design/" rel="category tag">Design</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-05T10:00:00-04:00">August 05, 2021</time><time class="updated" datetime="2021-08-04T17:23:57-04:00">August 04, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173069" class="home-post-content post-7173069 article type-article status-publish has-post-thumbnail hentry category-content category-usability category-user-experience">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/voice-content-and-usability/" rel="bookmark">Voice Content and Usability</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/preston-so/" itemprop="url"> <span itemprop="name">Preston So</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Voice Content and Usability, author Preston So talks about the messy, primordial nature of human speech and challenges with programming computers to deal with these complexities.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/content/" rel="category tag">Content</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-07-29T09:00:00-04:00">July 29, 2021</time><time class="updated" datetime="2021-07-28T21:26:58-04:00">July 28, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+			
+	
+</div><!-- .home-post-wrap clear -->
+
+					</div>
+					
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+</div><!-- #content -->
+
+	<div class="widget-area header-widget">
+		<section id="custom_html-5" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div></div></section>	</div><!-- .header-widget -->
+	
+<footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WebPage">
+	<nav class="footer-navigation footer navigation-top"  itemscope itemtype="http://schema.org/SiteNavigationElement">
+		<div class="menu-footer-pages-container"><ul id="footer-top-left-menu" class="footer-top-left-menu"><li id="menu-item-6000544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000544"><a href="https://alistapart.com/about/" itemprop="url">About</a></li>
+<li id="menu-item-6000545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000545"><a href="https://alistapart.com/authors/" itemprop="url">Authors</a></li>
+<li id="menu-item-6000546" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000546"><a href="https://alistapart.com/about/masthead/" itemprop="url">Masthead</a></li>
+<li id="menu-item-6000547" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000547"><a href="https://alistapart.com/about/style-guide/" itemprop="url">Style Guide</a></li>
+<li id="menu-item-6000548" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000548"><a href="https://alistapart.com/contact/" itemprop="url">Contact</a></li>
+<li id="menu-item-6000549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000549"><a href="https://alistapart.com/about/sponsor/" itemprop="url">Sponsorships</a></li>
+</ul></div><div class="menu-footer-social-container"><ul id="footer-top-right-menu" class="footer-top-right-menu"><li id="menu-item-6000550" class="footer-menu-title menu-item menu-item-type-custom menu-item-object-custom menu-item-6000550"><a itemprop="url">Follow us:</a></li>
+<li id="menu-item-7171602" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7171602"><a href="https://alistapart.com/about/rss-feed/" itemprop="url">RSS</a></li>
+<li id="menu-item-6000552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000552"><a href="https://alistapart.com/email-signup/" itemprop="url">Email</a></li>
+<li id="menu-item-6000553" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000553"><a href="https://www.facebook.com/alistapart" itemprop="url">Facebook</a></li>
+<li id="menu-item-6000554" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000554"><a href="https://www.twitter.com/alistapart" itemprop="url">Twitter</a></li>
+</ul></div>	</nav>
+			<div class="widget-area footer-widget-area-wrap">
+			<div class="widget-area footer-widget-area">
+				<section id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+	<a href="https://abookapart.com">
+							<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aba_2.jpg?w=960&#038;ssl=1" alt="A Book Apart. Brief books for people who design, write, and code." data-recalc-dims="1">
+		<div class="footer-promo-copy">
+				<p class="promo-title">A Book Apart</p>
+				<p>Brief books for people who design, write, and code.</p>
+				<p>Bundle books and save!</p>
+				<p class="arrow">Shop now</p>
+						</div>
+			</a>
+</div>
+
+</div></section><section id="custom_html-8" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+		<a href="https://aneventapart.com">
+			<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aea_v1_2.png?w=960&#038;ssl=1" alt="An Event Apart. Three days of design, code, and content for people who make websites." data-recalc-dims="1">
+			<div class="footer-promo-copy">
+					<p class="promo-title">An Event Apart</p>
+						<p>Three days of design, code, and content for people who make websites.</p>
+							<p class="arrow">See  this year’s schedule</p>
+			</div>
+						</a>
+</div></div></section>			</div>
+		</div>
+
+		
+	<div class="site-info-wrap">
+		<div class="site-info">
+			<p>
+				ISSN 1534-0295 &middot; Copyright &copy; <span itemprop="copyrightYear"> 1998–2022</span> <span itemprop="copyrightHolder"> A List Apart &amp; Our Authors</span>			</p>
+			<p>
+				<a href="https://wordpress.com/">
+					Proudly powered by WordPress				</a>
+				<span class="sep"> · </span>
+				<a href="https://pressable.com/?utm_source=Automattic&#038;utm_medium=rpc&#038;utm_campaign=Concierge%20Referral&#038;utm_term=concierge">
+					Hosted by Pressable				</a>
+			</p>
+		</div><!-- .site-info -->
+	</div><!-- .site-info-wrap -->
+
+	<nav class="footer-navigation footer navigation-bottom">
+		<ul id="footer-bottom-left-menu" class="footer-bottom-left-menu"><li id="menu-item-6000555" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000555"><a href="https://alistapart.com/about/copyright/" itemprop="url">Permissions &#038; Copyright</a></li>
+<li id="menu-item-6000556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-6000556"><a href="https://alistapart.com/about/privacy-policy/" itemprop="url">Privacy Policy</a></li>
+<li id="menu-item-6000558" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000558"><a href="https://webtype.com/" itemprop="url">Fonts by Webtype</a></li>
+</ul><ul id="footer-bottom-right-menu" class="footer-bottom-right-menu"><li id="menu-item-6000559" class="aea menu-item menu-item-type-custom menu-item-object-custom menu-item-6000559"><a href="http://aneventapart.com/" itemprop="url"><span class="screen-reader-text">An Event Apart</span></a></li>
+<li id="menu-item-6000560" class="aba menu-item menu-item-type-custom menu-item-object-custom menu-item-6000560"><a href="http://abookapart.com/" itemprop="url"><span class="screen-reader-text">A Book Apart</span></a></li>
+</ul>	</nav>
+</footer><!-- #colophon -->
+</div><!-- #page -->
+<script type="text/template" id="tmpl-subscriber-only-message">
+	<div class="coil-message-inner">
+		<div class="coil-message-header">
+			<# if ( data.headerLogo ) { #>
+				{{{data.headerLogo}}}
+			<# } #>
+			<# if ( data.title ) { #>
+				<p class="coil-message-title">{{data.title}}</p>
+			<# } #>
+			<# if ( data.content ) { #>
+				<p class="coil-message-content">{{data.content}}</p>
+			<# } #>
+			<# if ( data.button.href ) { #>
+				<a target="_blank" href="{{data.button.href}}" class="coil-message-button">{{data.button.text}}</a>
+			<# } #>
+		</div>
+		<div class="coil-message-footer">
+			<p class="coil-footer-content">Already a member? Check that you&#039;re using a supported browser, have the Coil extension installed, and are logged in to your Coil account.</p>
+		</div>
+	</div>
+</script>
+<script type="text/template" id="tmpl-split-content-message">
+	<span class="coil-split-content-message">{{data}}</span>
+</script>
+<script type="text/template" id="tmpl-banner-message">
+	<div class="banner-message-inner">
+		<# if ( data.content ) { #>
+			<p class="coil-banner-message-content">{{data.content}}</p>
+		<# } #>
+		<# if ( data.button.href ) { #>
+			<a target="_blank" href="{{data.button.href}}" class="coil-banner-message-button">{{data.button.text}}</a>
+		<# } #>
+		<span class="coil-banner-message-dismiss" id="js-coil-banner-dismiss">&times;</span>
+	</div>
+</script>
+	<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');  
+
+	ga('create', 'UA-11757054-1', 'auto'); 
+	ga('send', 'pageview');  
+</script>
+<!-- End Google Analytics -->
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/alistapart.com\/article\/design-for-safety-excerpt\/":7173095};
+	</script>
+				<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001' id='jetpack-photon-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/underscore.min.js?ver=1.13.1' id='underscore-js'></script>
+<script type='text/javascript' id='wp-util-js-extra'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-util.min.js?ver=5.8.3' id='wp-util-js'></script>
+<script type='text/javascript' id='coil-monetization-js-js-extra'>
+/* <![CDATA[ */
+var coilParams = {"content_container":".content-area .entry-content","promotion_bar":"This site is monetized using Coil. If you enjoy the content, consider supporting us by signing up for a Coil Membership. Here's how\u2026","loading_content":"Verifying Web Monetization status. Please wait...","fully_gated":"Unlock exclusive content with Coil. Need a Coil account?","partial_gating":"To keep reading, join Coil and install the browser extension. Visit coil.com for more information.","learn_more_button_text":"Get Coil to access","learn_more_button_link":"https:\/\/coil.com\/","show_promotion_bar":"1","post_excerpt":"None of us want to build products that put our users\u2019 safety at risk, but how do you reduce the risk that our products will be weaponized by abusers? In this excerpt from Design for Safety, Eva PenzeyMoog offers a clear strategy for building inclusive safety in our products.","site_logo":"<a href=\"https:\/\/alistapart.com\/\" class=\"custom-logo-link\" rel=\"home\"><img width=\"960\" height=\"98\" src=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?fit=960%2C98&ssl=1\" class=\"custom-logo\" alt=\"A List Apart\" srcset=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?w=960&ssl=1 960w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=300%2C31&ssl=1 300w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=768%2C78&ssl=1 768w\" sizes=\"(max-width: 960px) 100vw, 960px\" \/><\/a>","admin_missing_id_notice":"This post is monetized but you have not set your payment pointer ID in the <a href=\"https:\/\/alistapart.com\/wp-admin\/admin.php?page=coil\">Coil settings page<\/a>. Only content set to show for all visitors will show."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/initialize-monetization.min.js?ver=1.9.0' id='coil-monetization-js-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/js-cookie.3.0.0.min.js?ver=1.9.0' id='messaging-cookies-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/navigation.js?ver=20151215' id='ala-navigation-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.js?ver=1.0' id='ala-prism-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/skip-link-focus-fix.js?ver=20151215' id='ala-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/adchecka.js?ver=1.0' id='ala-adchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/loadadchecka.js?ver=1.0' id='ala-loadadchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
+<script type='text/javascript' id='sharing-js-js-extra'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=10.5-beta' id='sharing-js-js'></script>
+<script type='text/javascript' id='sharing-js-js-after'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+		<script type="text/javascript">
+			(function() {
+			var t   = document.createElement( 'script' );
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute( 'data-site-id', '606492000b21314ec4b22148' );
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName( 'script' )[0];
+			s.parentNode.insertBefore( t, s );
+			})();
+		</script>
+		<script src='https://stats.wp.com/e-202202.js' defer></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:10.5-beta',blog:'158094726',post:'7173095',tz:'-5',srv:'alistapart.com'} ]);
+	_stq.push([ 'clickTrackerInit', '158094726', '7173095' ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<title>That’s Not My Burnout &#8211; A List Apart</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="A List Apart &raquo; Feed" href="https://alistapart.com/main/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/alistapart.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.3"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.3' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-monetize-css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/frontend/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-messaging-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/messages/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/style.css?ver=1636974319' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-prism-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.css?ver=1.0' type='text/css' media='all' />
+<!-- `sharedaddy` is included in the concatenated jetpack.css -->
+<link rel='stylesheet' id='social-logos-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=10.5-beta' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/css/jetpack.css?ver=10.5-beta' type='text/css' media='all' />
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://alistapart.com/wp-json/" /><link rel="alternate" type="application/json" href="https://alistapart.com/wp-json/wp/v2/article/7172980" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://alistapart.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://alistapart.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://alistapart.com/article/thats-not-my-burnout/" />
+<link rel="alternate" type="application/json+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fthats-not-my-burnout%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fthats-not-my-burnout%2F&#038;format=xml" />
+<meta name="monetization" content="$ilp.uphold.com/Kh7NgDU9kqp3" />
+<link rel="monetization" href="https://ilp.uphold.com/Kh7NgDU9kqp3" />
+<style type='text/css'>img#wpstats{display:none}</style>
+			<style type="text/css">
+						.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+
+						</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="That’s Not My Burnout" />
+<meta property="og:url" content="https://alistapart.com/article/thats-not-my-burnout/" />
+<meta property="og:description" content="Feeling connected and validated by experiences that mirror your own can help you understand how to conquer, or at least endure, times of struggle. But what if your struggle looks more like achievem…" />
+<meta property="article:published_time" content="2021-05-20T14:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-20T12:18:14+00:00" />
+<meta property="og:site_name" content="A List Apart" />
+<meta property="og:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/three-pigs.jpg?fit=1200%2C444&#038;ssl=1" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="444" />
+<meta property="og:image:alt" content="" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@alistapart" />
+<meta name="twitter:text:title" content="That’s Not My Burnout" />
+<meta name="twitter:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/three-pigs.jpg?fit=1200%2C444&#038;ssl=1&#038;w=640" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=270%2C270&#038;ssl=1" />
+<link rel="stylesheet" type="text/css" id="wp-custom-css" href="https://alistapart.com/?custom-css=2a4ef18516" /></head>
+
+<body class="article-template-default single single-article postid-7172980 wp-custom-logo monetization-not-initialized coil-no-gating coil-hide-excerpt article-thats-not-my-burnout" itemscope itemtype="http://schema.org/Article">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<a href="https://alistapart.com/" class="custom-logo-link" rel="home"><img width="960" height="98" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?fit=960%2C98&amp;ssl=1" class="custom-logo" alt="A List Apart" srcset="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?w=960&amp;ssl=1 960w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=300%2C31&amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=768%2C78&amp;ssl=1 768w" sizes="(max-width: 960px) 100vw, 960px" /></a>				<p class="site-title"><a href="https://alistapart.com/" rel="home"  itemscope itemtype="http://schema.org/ImageObject">A List Apart</a></p>
+								<p class="site-description">For people who make websites</p>
+					</div><!-- .site-branding -->
+
+		<nav id="site-navigation" class="main-navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="screen-reader-text">Primary Menu</span></button>
+			<div class="menu-site-header-container"><ul id="primary-menu" class="menu"><li id="menu-item-6000493" class="ala-home-url menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6000493"><a href="https://alistapart.com" itemprop="url"><span itemprop="name">Home</span></a></li>
+<li id="menu-item-6000494" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-6000494"><a href="https://alistapart.com/articles/" itemprop="url"><span itemprop="name">Articles</span></a></li>
+<li id="menu-item-6000495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000495"><a href="https://alistapart.com/events/" itemprop="url"><span itemprop="name">Events</span></a></li>
+<li id="menu-item-6000496" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000496"><a href="https://alistapart.com/topics/" itemprop="url"><span itemprop="name">Topics</span></a></li>
+<li id="menu-item-6000497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000497"><a href="https://alistapart.com/about/contribute/" itemprop="url"><span itemprop="name">Write for Us</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="mlp-language-nav"><span itemprop="name">Language (English) <i class="arrow-down"></i></span></a><ul class="sub-menu mlp-languages"><li class="site-id-"2" mlp-language-nav-item menu-item menu-item-type-mlp_language menu-item-object-mlp_language"><a rel="alternate" href="https://alistapart.com/it" itemprop="url"><span itemprop="name">Italian</span></a></li></ul></li></ul></div>
+			<form role="search" method="get" class="search-form" action="https://alistapart.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>		</nav><!-- #site-navigation -->
+
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+			
+<article id="post-7172980" class="post-7172980 article type-article status-publish has-post-thumbnail hentry category-career category-creativity">
+
+	<figure class="hero-wide" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+		
+			<div class="post-thumbnail">
+				<img width="2359" height="872" src="https://149572954.v2.pressablecdn.com/wp-content/uploads/2021/05/three-pigs.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy" itemprop="contentUrl" />			</div><!-- .post-thumbnail -->
+
+					<span class="illustrator-credit" itemprop="contributor" itemscope itemtype="http://schema.org/Person">
+			Illustration by <a href="https://alistapart.com/author/dmacpherson/" title="Posts by Dougal MacPherson" class="author url fn" rel="author">Dougal MacPherson</a>				</span>
+			
+	</figure>
+
+	<header class="entry-header">
+		
+		<h1 class="entry-title" itemprop="headline">That’s Not My Burnout</h1>		<div class="entry-meta">
+			<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/donna-bungard/" itemprop="url"> <span itemprop="name">Donna Bungard</span></a></span></span><span class="posted-on"><time class="entry-date published" datetime="2021-05-20T10:00:00-04:00">May 20, 2021</time><time class="updated" datetime="2021-05-20T08:18:14-04:00">May 20, 2021</time></span>			<div class="entry-topic">
+				<span class="cat-links">Published in <a href="https://alistapart.com/blog/topic/career/" rel="category tag">Career</a>, <a href="https://alistapart.com/blog/topic/creativity/" rel="category tag">Creativity</a></span>			</div>
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	
+	
+	
+	<div class="entry-content">
+		
+<p>Are you like me, reading about people fading away as they burn out, and feeling unable to relate? Do you feel like your feelings are invisible to the world because you’re experiencing burnout differently? When burnout starts to push down on us, our core comes through more. Beautiful, peaceful souls get quieter and fade into that distant and distracted burnout we’ve all read about. But some of us, those with fires always burning on the edges of our core, get hotter. In my heart I am fire. When I face burnout I double down, triple down, burning hotter and hotter to try to best the challenge. I don’t fade—I am engulfed in a <em>zealous burnout</em>.&nbsp;</p>		<div class="aside-breaker"><span>Article Continues Below</span></div>
+		<div class="ala-single-sidebar-wrapper">
+			<span class="screen-reader-text">Article Continues Below</span>
+			<aside class="ala-single-sidebar-minutiae">
+				<span class="ala-comment-bubble"></span>					<div class="ala-share">
+					<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 id="section1" class="sd-title">Share this:<a class="subhead-anchor" href="#section1">#section1</a></h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-7172980" class="share-facebook sd-button share-icon no-text" href="https://alistapart.com/article/thats-not-my-burnout/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-7172980" class="share-twitter sd-button share-icon no-text" href="https://alistapart.com/article/thats-not-my-burnout/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+										<section id="custom_html-6" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.patreon.com/alistapart" class="patreon-bubble">Become a patron</a></div></section>					
+							</aside>
+
+			<aside class="ala-single-sidebar-1">
+				<section id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div>
+
+<div class="banner ala-banner">
+	<a href="https://abookapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/logo_a-book-apart-color.png?w=960&#038;ssl=1" alt="A Book Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>A Book Apart:<br> Brief books for people who make websites.</p>		
+		</a>
+</div>
+
+<div class="banner">
+	<a href="https://aneventapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/AEA_2017_80x80_2.png?w=960&#038;ssl=1" alt="An Event Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>An Event Apart:<br> 3 days of design, code, and content for web &amp; UX designers &amp; devs.</p>		
+		</a>
+</div></div></section>			</aside>
+
+		</div>
+		
+
+
+
+<h2 id="section2">So what on earth is a zealous burnout?<a class="subhead-anchor" href="#section2">#section2</a></h2>
+
+
+
+<p>Imagine a woman determined to do it all. She has two amazing children whom she, along with her husband who is also working remotely, is homeschooling during a pandemic. She has a demanding client load at work—all of whom she loves. She gets up early to get some movement in (or often catch up on work), does dinner prep as the kids are eating breakfast, and gets to work while positioning herself near “fourth grade” to listen in as she juggles clients, tasks, and budgets. Sound like a lot? Even with a supportive team both at home and at work, it is.&nbsp;</p>
+
+
+
+<p>Sounds like this woman has too much on her plate and needs self-care. But no, she doesn’t have time for that. In fact, she starts to feel like she’s dropping balls. Not accomplishing enough. There’s not enough of her to be here and there; she is trying to divide her mind in two all the time, all day, every day. She starts to doubt herself. And as those feelings creep in more and more, her internal narrative becomes more and more critical.</p>
+
+
+
+<p>Suddenly she KNOWS what she needs to do! She should DO MORE.&nbsp;</p>
+
+
+
+<p>This is a hard and dangerous cycle. Know why? Because once she doesn’t finish that new goal, that narrative will get worse. Suddenly she’s failing. She isn’t doing enough. SHE is <em>not enough</em>. She might fail, she might fail her family&#8230;so she’ll find more she should do. She doesn’t sleep as much, move as much, all in the efforts to do more. Caught in this cycle of trying to prove herself to herself, never reaching any goal. Never feeling “enough.”&nbsp;</p>
+
+
+
+<p>So, yeah, that’s what zealous burnout looks like for me. It doesn’t happen overnight in some grand gesture but instead slowly builds over weeks and months. My burning out process looks like speeding up, not a person losing focus. I speed up and up and up&#8230;and then I just stop.</p>
+
+
+
+<h2 id="section3">I am the one who could<a class="subhead-anchor" href="#section3">#section3</a></h2>
+
+
+
+<p>It’s funny the things that shape us. Through the lens of childhood, I viewed the fears, struggles, and sacrifices of someone who had to make it all work without having enough. I was lucky that my mother was so resourceful and my father supportive; I never went without and even got an extra here or there.&nbsp;</p>
+
+
+
+<p>Growing up, I did not feel shame when my mother paid with food stamps; in fact, I’d have likely taken on any debate on the topic, verbally eviscerating anyone who dared to criticize the disabled woman trying to make sure all our needs were met with so little. As a child, I watched the way the fear of not making those ends meet impacted people I love. As the non-disabled person in my home, I would take on many of the physical tasks because I was “the one who could” make our lives a little easier. I learned early to associate fears or uncertainty with putting more of myself into it—I am the one who can. I learned early that when something frightens me, I can double down and work harder to make it better. I can own the challenge. When people have seen this in me as an adult, I’ve been told I seem fearless, but make no mistake, I’m not. If I seem fearless, it’s because this behavior was forged from other people’s fears.&nbsp;</p>
+
+
+
+<p>And here I am, more than 30 years later still feeling the urge to mindlessly push myself forward when faced with overwhelming tasks ahead of me, assuming that I am the one who can and therefore should. I find myself driven to prove that I can make things happen if I work longer hours, take on more responsibility, and do <em>more</em>.&nbsp;</p>
+
+
+
+<p>I do not see people who struggle financially as failures, because I have seen how strong that tide can be—it pulls you along the way. I truly get that I have been privileged to be able to avoid many of the challenges that were present in my youth. That said, I am still “the one who can” who feels she should, so if I were faced with not having enough to make ends meet for my own family, I would see myself as having failed. Though I am supported and educated, most of this is due to good fortune. I will, however, allow myself the arrogance of saying I have been careful with my choices to have encouraged that luck. My identity stems from the idea that I am “the one who can” so therefore feel obligated to do the most. I can choose to stop, and with some quite literal cold water splashed in my face, I’ve made the choice to before. But that choosing to stop is not my go-to; I move forward, driven by a fear that is so a part of me that I barely notice it’s there until I’m feeling utterly worn away.</p>
+
+
+
+<p>So why all the history? You see, burnout is a fickle thing. I have heard and read a lot about burnout over the years. Burnout is real. Especially now, with COVID, many of us are balancing more than we ever have before—all at once! It’s hard, and the procrastinating, the avoidance, the shutting down impacts so many amazing professionals. There are important articles that relate to what I imagine must be the majority of people out there, but not me. That’s not what my burnout looks like.</p>
+
+
+
+<h2 id="section4">The dangerous invisibility of zealous burnout<a class="subhead-anchor" href="#section4">#section4</a></h2>
+
+
+
+<p>A lot of work environments see the extra hours, extra effort, and overall focused commitment as an asset (and sometimes that’s all it is). They see someone trying to rise to challenges, not someone stuck in their fear. Many well-meaning organizations have safeguards in place to protect their teams from burnout. But in cases like this, those alarms are not always tripped, and then when the inevitable stop comes, some members of the organization feel surprised and disappointed. And sometimes maybe even betrayed.&nbsp;</p>
+
+
+
+<p>Parents—more so mothers, statistically speaking—are praised as being so on top of it all when they can work, be involved in the after-school activities, practice self-care in the form of diet and exercise, and still meet friends for coffee or wine. During COVID many of us have binged countless streaming episodes showing how it’s so hard for the female protagonist, but she is strong and funny and can do it. It’s a “very special episode” when she breaks down, cries in the bathroom, woefully admits she needs help, and just stops for a bit. Truth is, countless people are hiding their tears or are doom-scrolling to escape. We know that the media is a lie to amuse us, but often the perception that it’s what we should strive for has penetrated much of society.</p>
+
+
+
+<h2 id="section5">Women and burnout<a class="subhead-anchor" href="#section5">#section5</a></h2>
+
+
+
+<p>I love men. And though I don’t love every man (heads up, I don’t love every woman or nonbinary person either), I think there is a beautiful spectrum of individuals who represent that particular binary gender.&nbsp;</p>
+
+
+
+<p>That said, women are still more often at risk of burnout than their male counterparts, especially in these COVID stressed times. Mothers in the workplace feel the pressure to do all the “mom” things while giving 110%. Mothers not in the workplace feel they need to do more to “justify” their lack of traditional employment. Women who are not mothers often feel the need to do even more because they don’t have that extra pressure at home. It’s vicious and systemic and so a part of our culture that we’re often not even aware of the enormity of the pressures we put on ourselves and each other.&nbsp;</p>
+
+
+
+<p>And there are prices beyond happiness too. <a href="https://www.health.harvard.edu/heart-health/job-strain-and-heart-disease-risk-in-women">Harvard Health Publishing released a study</a> a decade ago that “uncovered strong links between women’s job stress and cardiovascular disease.” <a href="https://www.cdc.gov/heartdisease/women.htm">The CDC noted,</a> “Heart disease is the leading cause of death for women in the United States, killing 299,578 women in 2017—or about 1 in every 5 female deaths.”&nbsp;</p>
+
+
+
+<p>This relationship between work stress and health, from what I have read, is more dangerous for women than it is for their non-female counterparts.</p>
+
+
+
+<h2 id="section6">But what if your burnout isn’t like that either?<a class="subhead-anchor" href="#section6">#section6</a></h2>
+
+
+
+<p>That might not be you either. After all, each of us is so different and how we respond to stressors is too. It’s part of what makes us human. <strong>Don’t stress what burnout looks like</strong>,<strong> just learn to recognize it in yourself.</strong> Here are a few questions I sometimes ask friends if I am concerned about them.</p>
+
+
+
+<p style="margin-left: 1.5em"><em>Are you happy?</em> This simple question should be the first thing you ask yourself. Chances are, even if you’re burning out doing all the things you love, as you approach burnout you’ll just stop taking as much joy from it all.</p>
+
+
+
+<p style="margin-left: 1.5em"><em>Do you feel empowered to say no?</em> I have observed in myself and others that when someone is burning out, they no longer feel they can say no to things. Even those who don’t “speed up” feel pressure to say yes to not disappoint the people around them.</p>
+
+
+
+<p style="margin-left: 1.5em"><em>What are three things you’ve done for yourself?</em> Another observance is that we all tend to stop doing things for ourselves. Anything from skipping showers and eating poorly to avoiding talking to friends. These can be red flags.&nbsp;</p>
+
+
+
+<p style="margin-left: 1.5em"><em>Are you making excuses?</em> Many of us try to disregard feelings of burnout. Over and over I have heard, “It’s just crunch time,” “As soon as I do this one thing, it will all be better,” and “Well I should be able to handle this, so I’ll figure it out.” And it <em>might </em>really be crunch time, a single goal, and/or a skill set you need to learn. That happens—life happens. BUT if this doesn’t stop, be honest with yourself. If you’ve worked more 50-hour weeks since January than not, maybe it’s not crunch time—maybe it’s a bad situation that you’re burning out from.</p>
+
+
+
+<p style="margin-left: 1.5em"><em>Do you have a plan to stop feeling this way?</em> If something is truly temporary and you do need to just push through, then it has an exit route with a<br>defined end.</p>
+
+
+
+<p>Take the time to listen to yourself as you would a friend. Be honest, allow yourself to be uncomfortable, and break the thought cycles that prevent you from healing.&nbsp;</p>
+
+
+
+<h2 id="section7">So now what?<a class="subhead-anchor" href="#section7">#section7</a></h2>
+
+
+
+<p>What I just described is a different path to burnout, but it’s still burnout. There are well-established approaches to working through burnout:</p>
+
+
+
+<ul><li>Get enough sleep.</li><li>Eat healthy.</li><li>Work out.</li><li>Get outside.</li><li>Take a break.</li><li>Overall, practice self-care.</li></ul>
+
+
+
+<p>Those are hard for me because they feel like more tasks. If I’m in the burnout cycle, doing any of the above <em>for me </em>feels like a waste. The narrative is that if I’m already failing, why would I take care of myself when I’m dropping all those other balls? People need me, right?&nbsp;</p>
+
+
+
+<p>If you’re deep in the cycle, your inner voice might be pretty awful by now. If you need to, tell yourself you need to take care of the person your people depend on. If your roles are pushing you toward burnout, use them to help make healing easier by justifying the time spent working on you.&nbsp;</p>
+
+
+
+<p>To help remind myself of the airline attendant message about putting the mask on yourself first, I have come up with a few things that I do when I start feeling myself going into a zealous burnout.</p>
+
+
+
+<h3 id="section8">Cook an elaborate meal for someone!&nbsp;<a class="subhead-anchor" href="#section8">#section8</a></h3>
+
+
+
+<p>OK, I am a “food-focused” individual so cooking for someone is always my go-to. There are countless tales in my home of someone walking into the kitchen and turning right around and walking out when they noticed I was “chopping angrily.” But it’s more than that, and you should give it a try. Seriously. It’s the perfect go-to if you don’t feel worthy of taking time for yourself—do it for someone else. Most of us work in a digital world, so cooking can fill all of your senses and force you to be in the moment with all the ways you perceive the world. It can break you out of your head and help you gain a better perspective. In my house, I’ve been known to pick a place on the map and cook food that comes from wherever that is (thank you, Pinterest). I love cooking Indian food, as the smells are warm, the bread needs just enough kneading to keep my hands busy, and the process takes real attention for me because it’s not what I was brought up making. And in the end, we all win!</p>
+
+
+
+<h3 id="section9">Vent like a foul-mouthed fool<a class="subhead-anchor" href="#section9">#section9</a></h3>
+
+
+
+<p><em>Be careful with this one!&nbsp;</em></p>
+
+
+
+<p>I have been making an effort to practice more gratitude over the past few years, and I recognize the true benefits of that. That said, sometimes you just gotta let it all out—even the ugly. Hell, I’m a big fan of not sugarcoating our lives, and that sometimes means that to get past the big pile of poop, you’re gonna wanna complain about it a bit.&nbsp;</p>
+
+
+
+<p>When that is what’s needed, turn to a trusted friend and allow yourself some pure verbal diarrhea, saying all the things that are bothering you. You need to trust this friend not to judge, to see your pain, and, most importantly, to tell you to remove your cranium from your own rectal cavity. Seriously, it’s about getting a reality check here! One of the things I admire the most about my husband (though often after the fact) is his ability to break things down to their simplest. “We’re spending our lives together, of course you’re going to disappoint me from time to time, so get over it” has been his way of speaking his dedication, love, and acceptance of me—and I could not be more grateful. It also, of course, has meant that I needed to remove my head from that rectal cavity. So, again, usually those moments are appreciated in hindsight.</p>
+
+
+
+<h3 id="section10">Pick up a book!&nbsp;<a class="subhead-anchor" href="#section10">#section10</a></h3>
+
+
+
+<p>There are many books out there that aren’t so much self-help as they are people just like you sharing their stories and how they’ve come to find greater balance. Maybe you’ll find something that speaks to you. Titles that have stood out to me include:</p>
+
+
+
+<ul><li><em>Thrive</em> by Arianna Huffington</li><li><em>Tools of Titans</em> by Tim Ferriss</li><li><em>Girl, Stop Apologizing</em> by Rachel Hollis</li><li><em>Dare to Lead</em> by Brené Brown</li></ul>
+
+
+
+<p>Or, another tactic I love to employ is to read or listen to a book that has NOTHING to do with my work-life balance. I’ve read the following books and found they helped balance me out because my mind was pondering their interesting topics instead of running in circles:</p>
+
+
+
+<ul><li><em>The Drunken Botanist</em> by Amy Stewart</li><li><em>Superlife</em> by Darin Olien</li><li><em>A Brief History of Everyone Who Ever Lived</em> by Adam Rutherford</li><li><em>Gaia’s Garden</em> by Toby Hemenway&nbsp;</li></ul>
+
+
+
+<p>If you’re not into reading, pick up a topic on YouTube or choose a podcast to subscribe to. I’ve watched countless permaculture and gardening topics in addition to how to raise chickens and ducks. For the record, I do not have a particularly large food garden, nor do I own livestock of any kind&#8230;yet. I just find the topic interesting, and it has nothing to do with any aspect of my life that <em>needs</em> anything from me.</p>
+
+
+
+<h3 id="section11">Forgive yourself<strong>&nbsp;</strong><a class="subhead-anchor" href="#section11">#section11</a></h3>
+
+
+
+<p>You are never going to be perfect—hell, it would be boring if you were. It’s OK to be broken and flawed. It’s human to be tired and sad and worried. It’s OK to not do it all. It’s scary to be imperfect, but you cannot be brave if nothing were scary.</p>
+
+
+
+<p>This last one is the most important: <strong>allow yourself permission to NOT do it all. </strong>You never promised to be everything to everyone at all times. We are more powerful than the fears that drive us.&nbsp;</p>
+
+
+
+<p>This is hard. It is hard for me. It’s what’s driven me to write this—that it’s OK to stop. It’s OK that your unhealthy habit that might even benefit those around you needs to end. You can still be successful in life.</p>
+
+
+
+<p>I recently read that we are all writing our eulogy in how we live. Knowing that your professional accomplishments won’t be mentioned in that speech, what will yours say? What do you want it to say?&nbsp;</p>
+
+
+
+<p>Look, I get that none of these ideas will “fix it,” and that’s not their purpose. None of us are in control of our surroundings, only how we respond to them. These suggestions are to help stop the spiral effect so that you are empowered to address the underlying issues and choose your response. They are things that work for me most of the time. Maybe they’ll work for you.</p>
+
+
+
+<h2 id="section12">Does this sound familiar?&nbsp;<a class="subhead-anchor" href="#section12">#section12</a></h2>
+
+
+
+<p>If this sounds familiar, it’s not just you. Don’t let your negative self-talk tell you that you “even burn out wrong.” It’s not wrong. Even if rooted in fear like my own drivers, I believe that this need to do more comes from a place of love, determination, motivation, and other wonderful attributes that make you the amazing person you are. We’re going to be OK, ya know. The lives that unfold before us might never look like that story in our head—that idea of “perfect” or “done” we’re looking for, but that’s OK. Really, when we stop and look around, usually the only eyes that judge us are in the mirror.&nbsp;</p>
+
+
+
+<p>Do you remember that Winnie the Pooh sketch that had Pooh eat so much at Rabbit’s house that his buttocks couldn’t fit through the door? Well, I already associate a lot with Rabbit, so it came as no surprise when he abruptly declared that this was unacceptable. But do you recall what happened next? He put a shelf across poor Pooh’s ankles and decorations on his back, and made the best of the big butt in his kitchen.&nbsp;</p>
+
+
+
+<p>At the end of the day we are resourceful and know that we are able to push ourselves if we need to—even when we are tired to our core or have a big butt of fluff ‘n’ stuff in our room. None of us has to be afraid, as we can manage any obstacle put in front of us. And maybe that means we will need to redefine success to allow space for being uncomfortably human, but that doesn’t really sound so bad either.&nbsp;</p>
+
+
+
+<p>So, wherever you are right now, please breathe. Do what you need to do to get out of your head. Forgive and take care.</p>
+		<div class="ala-single-sidebar-wrapper sidebar-related">
+			<aside id="related" class="ala-single-sidebar-related">
+									<section class="ala-sb-rel__category">
+						<h3 class="ala-sb-rel__cat__title">
+							Further reading about							<a href="https://alistapart.com/blog/topic/career/">Career</a>
+						</h3>
+													<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/dysfunctional-teams-back-on-track/">How to Get a Dysfunctional Team Back on Track									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Everyone’s a good manager when their team is functioning perfectly. But what do you do when your team screws up? Liam Nugent tells how to face reality when work goes poorly, and shares practical steps to get your team back on track.</div>
+							</article>
+														<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/creative-culture-excerpt/">Connecting the Dots									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Companies often tout their "culture" as a reason to you should consider working there, but often what they pass off as culture amounts to little more than a foosball table and free snacks. In this excerpt from Creative Culture, Justin Dauer draws direct connections between an organizations’ true culture and the design work that it does.</div>
+							</article>
+												</section>
+								</aside>
+		</div>
+			</div><!-- .entry-content -->
+	</article><!-- #post-7172980 -->
+
+				<footer class="ala-author">
+					<div class="ala-author__content clear">
+						<a name="panelist0"></a>
+													<h4 class="ala-author__about">About the Author</h4>
+													<div class="ala-author__avatar">
+							<img width="150" height="150" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/donna-bungard.jpg?fit=150%2C150&amp;ssl=1" class="avatar avatar-150 photo wp-post-image" alt="" loading="lazy" />						</div>
+
+						<h3 class="ala-author__name">Donna Bungard</h3>
+						<div class="ala-author__description">Donna Bungard is a Project and Program Manager with a focus on and specializations in Accessibility and Content Strategy. Her human-centric approach influences her management style, writing, and life in general.  When not behind the keyboard, she is a mom, wife, and a whole lot of other cool roles. She can often be found playing with sugar, salt, and butter in her kitchen.</div>
+					</div>
+									</footer>
+									<aside class="widget-area pre-footer-widget-area pre-footer-single">
+						<section id="custom_html-4" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="pre-footer-email-signup">
+	<strong>Get our latest articles in your inbox.</strong> <a href="https://alistapart.com/email-signup">Sign up for email alerts</a>.
+</div>
+</div></section>					</aside><!-- .pre-footer-widget-area -->
+					
+					<div class="comment-area-wrap two-column-layout">
+						
+<div id="comments" class="comments-area column-content">
+
+	
+		<h2 class="comments-title">No Comments</h2>
+				<div class="comments-off">
+			<h3 class="comments-off-title"> Got something to say?</h3>
+			<p class="no-comments">We have turned off comments, but you can see what folks had to say before we did so.</p>
+		</div>
+		
+</div><!-- #comments -->
+	<div class="column-sidebar ala-posts">
+		<h2 class="section-title">More from ALA</h2>
+				<article id="post-7173224" class="home-post-content post-7173224 article type-article status-publish has-post-thumbnail hentry category-code category-css">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/breaking-out-of-the-box/" rel="bookmark">Breaking Out of the Box</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/patrick-brosset/" itemprop="url"> <span itemprop="name">Patrick Brosset</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					What can we do with thirty pixels? Windows Controls Overlay frees us from 40 years of history telling us how apps should look.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/code/" rel="category tag">Code</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-12-09T10:00:00-05:00">December 09, 2021</time><time class="updated" datetime="2021-12-09T07:23:48-05:00">December 09, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173136" class="home-post-content post-7173136 article type-article status-publish has-post-thumbnail hentry category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/how-to-sell-ux-research/" rel="bookmark">How to Sell UX Research with Two Simple Questions</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/sophiavoychehovski/" itemprop="url"> <span itemprop="name">Sophia V. Prater</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Seriously, do not ever design screens again without first answering these questions: what are the objects and how do they relate?				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/user-experience/" rel="category tag">User Experience</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-10-21T10:00:00-04:00">October 21, 2021</time><time class="updated" datetime="2021-10-21T07:17:11-04:00">October 21, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173122" class="home-post-content post-7173122 article type-article status-publish has-post-thumbnail hentry category-content category-content-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/a-content-model-is-not-a-design-system/" rel="bookmark">A Content Model Is Not a Design System</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/mike-wills/" itemprop="url"> <span itemprop="name">Mike Wills</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Why do so many content models still look more like design systems rather than reflecting structured data? Mike Wills takes us on a personal journey as he examines his own past experiences and invites us to conceive content models that articulate meaning and group related content together for use on any channel.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/content/" rel="category tag">Content</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-09-23T10:00:00-04:00">September 23, 2021</time><time class="updated" datetime="2021-09-23T09:21:30-04:00">September 23, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173095" class="home-post-content post-7173095 article type-article status-publish has-post-thumbnail hentry category-process category-usability category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/design-for-safety-excerpt/" rel="bookmark">Design for Safety, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/eva-penzeymoog/" itemprop="url"> <span itemprop="name">Eva PenzeyMoog</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Design for Safety, Eva PenzeyMoog discusses concrete ways you can incorporate safety awareness into your design processes.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/process/" rel="category tag">Process</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-26T11:01:43-04:00">August 26, 2021</time><time class="updated" datetime="2021-08-26T11:01:44-04:00">August 26, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173076" class="home-post-content post-7173076 article type-article status-publish has-post-thumbnail hentry category-design category-web-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/sustainable-web-design-excerpt/" rel="bookmark">Sustainable Web Design, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/tom-greenwood/" itemprop="url"> <span itemprop="name">Tom Greenwood</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Sustainable Web Design, Tom Greenwood provides clear guidance on how to track and address the carbon footprint of our websites.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/design/" rel="category tag">Design</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-05T10:00:00-04:00">August 05, 2021</time><time class="updated" datetime="2021-08-04T17:23:57-04:00">August 04, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+			
+	
+</div><!-- .home-post-wrap clear -->
+
+					</div>
+					
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+</div><!-- #content -->
+
+	<div class="widget-area header-widget">
+		<section id="custom_html-5" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div></div></section>	</div><!-- .header-widget -->
+	
+<footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WebPage">
+	<nav class="footer-navigation footer navigation-top"  itemscope itemtype="http://schema.org/SiteNavigationElement">
+		<div class="menu-footer-pages-container"><ul id="footer-top-left-menu" class="footer-top-left-menu"><li id="menu-item-6000544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000544"><a href="https://alistapart.com/about/" itemprop="url">About</a></li>
+<li id="menu-item-6000545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000545"><a href="https://alistapart.com/authors/" itemprop="url">Authors</a></li>
+<li id="menu-item-6000546" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000546"><a href="https://alistapart.com/about/masthead/" itemprop="url">Masthead</a></li>
+<li id="menu-item-6000547" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000547"><a href="https://alistapart.com/about/style-guide/" itemprop="url">Style Guide</a></li>
+<li id="menu-item-6000548" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000548"><a href="https://alistapart.com/contact/" itemprop="url">Contact</a></li>
+<li id="menu-item-6000549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000549"><a href="https://alistapart.com/about/sponsor/" itemprop="url">Sponsorships</a></li>
+</ul></div><div class="menu-footer-social-container"><ul id="footer-top-right-menu" class="footer-top-right-menu"><li id="menu-item-6000550" class="footer-menu-title menu-item menu-item-type-custom menu-item-object-custom menu-item-6000550"><a itemprop="url">Follow us:</a></li>
+<li id="menu-item-7171602" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7171602"><a href="https://alistapart.com/about/rss-feed/" itemprop="url">RSS</a></li>
+<li id="menu-item-6000552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000552"><a href="https://alistapart.com/email-signup/" itemprop="url">Email</a></li>
+<li id="menu-item-6000553" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000553"><a href="https://www.facebook.com/alistapart" itemprop="url">Facebook</a></li>
+<li id="menu-item-6000554" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000554"><a href="https://www.twitter.com/alistapart" itemprop="url">Twitter</a></li>
+</ul></div>	</nav>
+			<div class="widget-area footer-widget-area-wrap">
+			<div class="widget-area footer-widget-area">
+				<section id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+	<a href="https://abookapart.com">
+							<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aba_2.jpg?w=960&#038;ssl=1" alt="A Book Apart. Brief books for people who design, write, and code." data-recalc-dims="1">
+		<div class="footer-promo-copy">
+				<p class="promo-title">A Book Apart</p>
+				<p>Brief books for people who design, write, and code.</p>
+				<p>Bundle books and save!</p>
+				<p class="arrow">Shop now</p>
+						</div>
+			</a>
+</div>
+
+</div></section><section id="custom_html-8" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+		<a href="https://aneventapart.com">
+			<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aea_v1_2.png?w=960&#038;ssl=1" alt="An Event Apart. Three days of design, code, and content for people who make websites." data-recalc-dims="1">
+			<div class="footer-promo-copy">
+					<p class="promo-title">An Event Apart</p>
+						<p>Three days of design, code, and content for people who make websites.</p>
+							<p class="arrow">See  this year’s schedule</p>
+			</div>
+						</a>
+</div></div></section>			</div>
+		</div>
+
+		
+	<div class="site-info-wrap">
+		<div class="site-info">
+			<p>
+				ISSN 1534-0295 &middot; Copyright &copy; <span itemprop="copyrightYear"> 1998–2022</span> <span itemprop="copyrightHolder"> A List Apart &amp; Our Authors</span>			</p>
+			<p>
+				<a href="https://wordpress.com/">
+					Proudly powered by WordPress				</a>
+				<span class="sep"> · </span>
+				<a href="https://pressable.com/?utm_source=Automattic&#038;utm_medium=rpc&#038;utm_campaign=Concierge%20Referral&#038;utm_term=concierge">
+					Hosted by Pressable				</a>
+			</p>
+		</div><!-- .site-info -->
+	</div><!-- .site-info-wrap -->
+
+	<nav class="footer-navigation footer navigation-bottom">
+		<ul id="footer-bottom-left-menu" class="footer-bottom-left-menu"><li id="menu-item-6000555" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000555"><a href="https://alistapart.com/about/copyright/" itemprop="url">Permissions &#038; Copyright</a></li>
+<li id="menu-item-6000556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-6000556"><a href="https://alistapart.com/about/privacy-policy/" itemprop="url">Privacy Policy</a></li>
+<li id="menu-item-6000558" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000558"><a href="https://webtype.com/" itemprop="url">Fonts by Webtype</a></li>
+</ul><ul id="footer-bottom-right-menu" class="footer-bottom-right-menu"><li id="menu-item-6000559" class="aea menu-item menu-item-type-custom menu-item-object-custom menu-item-6000559"><a href="http://aneventapart.com/" itemprop="url"><span class="screen-reader-text">An Event Apart</span></a></li>
+<li id="menu-item-6000560" class="aba menu-item menu-item-type-custom menu-item-object-custom menu-item-6000560"><a href="http://abookapart.com/" itemprop="url"><span class="screen-reader-text">A Book Apart</span></a></li>
+</ul>	</nav>
+</footer><!-- #colophon -->
+</div><!-- #page -->
+<script type="text/template" id="tmpl-subscriber-only-message">
+	<div class="coil-message-inner">
+		<div class="coil-message-header">
+			<# if ( data.headerLogo ) { #>
+				{{{data.headerLogo}}}
+			<# } #>
+			<# if ( data.title ) { #>
+				<p class="coil-message-title">{{data.title}}</p>
+			<# } #>
+			<# if ( data.content ) { #>
+				<p class="coil-message-content">{{data.content}}</p>
+			<# } #>
+			<# if ( data.button.href ) { #>
+				<a target="_blank" href="{{data.button.href}}" class="coil-message-button">{{data.button.text}}</a>
+			<# } #>
+		</div>
+		<div class="coil-message-footer">
+			<p class="coil-footer-content">Already a member? Check that you&#039;re using a supported browser, have the Coil extension installed, and are logged in to your Coil account.</p>
+		</div>
+	</div>
+</script>
+<script type="text/template" id="tmpl-split-content-message">
+	<span class="coil-split-content-message">{{data}}</span>
+</script>
+<script type="text/template" id="tmpl-banner-message">
+	<div class="banner-message-inner">
+		<# if ( data.content ) { #>
+			<p class="coil-banner-message-content">{{data.content}}</p>
+		<# } #>
+		<# if ( data.button.href ) { #>
+			<a target="_blank" href="{{data.button.href}}" class="coil-banner-message-button">{{data.button.text}}</a>
+		<# } #>
+		<span class="coil-banner-message-dismiss" id="js-coil-banner-dismiss">&times;</span>
+	</div>
+</script>
+	<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');  
+
+	ga('create', 'UA-11757054-1', 'auto'); 
+	ga('send', 'pageview');  
+</script>
+<!-- End Google Analytics -->
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/alistapart.com\/article\/thats-not-my-burnout\/":7172980};
+	</script>
+				<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001' id='jetpack-photon-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/underscore.min.js?ver=1.13.1' id='underscore-js'></script>
+<script type='text/javascript' id='wp-util-js-extra'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-util.min.js?ver=5.8.3' id='wp-util-js'></script>
+<script type='text/javascript' id='coil-monetization-js-js-extra'>
+/* <![CDATA[ */
+var coilParams = {"content_container":".content-area .entry-content","promotion_bar":"This site is monetized using Coil. If you enjoy the content, consider supporting us by signing up for a Coil Membership. Here's how\u2026","loading_content":"Verifying Web Monetization status. Please wait...","fully_gated":"Unlock exclusive content with Coil. Need a Coil account?","partial_gating":"To keep reading, join Coil and install the browser extension. Visit coil.com for more information.","learn_more_button_text":"Get Coil to access","learn_more_button_link":"https:\/\/coil.com\/","show_promotion_bar":"1","post_excerpt":"Feeling connected and validated by experiences that mirror your own can help you understand how to conquer, or at least endure, times of struggle. But what if your struggle looks more like achievement? If you don't see yourself reflected in accounts of burnout, it can be alienating and make you feel even more alone. If you reach the end destination of burnout by stepping on the gas instead of coasting to a stop, Donna Bungard will show you how to recognize that you\u2019re low on fuel and give you a map of rest stops where you can refill your tank.","site_logo":"<a href=\"https:\/\/alistapart.com\/\" class=\"custom-logo-link\" rel=\"home\"><img width=\"960\" height=\"98\" src=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?fit=960%2C98&ssl=1\" class=\"custom-logo\" alt=\"A List Apart\" srcset=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?w=960&ssl=1 960w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=300%2C31&ssl=1 300w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=768%2C78&ssl=1 768w\" sizes=\"(max-width: 960px) 100vw, 960px\" \/><\/a>","admin_missing_id_notice":"This post is monetized but you have not set your payment pointer ID in the <a href=\"https:\/\/alistapart.com\/wp-admin\/admin.php?page=coil\">Coil settings page<\/a>. Only content set to show for all visitors will show."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/initialize-monetization.min.js?ver=1.9.0' id='coil-monetization-js-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/js-cookie.3.0.0.min.js?ver=1.9.0' id='messaging-cookies-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/navigation.js?ver=20151215' id='ala-navigation-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.js?ver=1.0' id='ala-prism-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/skip-link-focus-fix.js?ver=20151215' id='ala-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/adchecka.js?ver=1.0' id='ala-adchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/loadadchecka.js?ver=1.0' id='ala-loadadchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
+<script type='text/javascript' id='sharing-js-js-extra'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=10.5-beta' id='sharing-js-js'></script>
+<script type='text/javascript' id='sharing-js-js-after'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+		<script type="text/javascript">
+			(function() {
+			var t   = document.createElement( 'script' );
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute( 'data-site-id', '606492000b21314ec4b22148' );
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName( 'script' )[0];
+			s.parentNode.insertBefore( t, s );
+			})();
+		</script>
+		<script src='https://stats.wp.com/e-202202.js' defer></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:10.5-beta',blog:'158094726',post:'7172980',tz:'-5',srv:'alistapart.com'} ]);
+	_stq.push([ 'clickTrackerInit', '158094726', '7172980' ]);
+</script>
+</body>
+</html>

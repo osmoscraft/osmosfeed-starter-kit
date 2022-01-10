@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<title>The Future of Web Software Is HTML-over-WebSockets &#8211; A List Apart</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="A List Apart &raquo; Feed" href="https://alistapart.com/main/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/alistapart.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.3"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.3' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-monetize-css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/frontend/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-messaging-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/messages/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/style.css?ver=1636974319' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-prism-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.css?ver=1.0' type='text/css' media='all' />
+<!-- `sharedaddy` is included in the concatenated jetpack.css -->
+<link rel='stylesheet' id='social-logos-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=10.5-beta' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/css/jetpack.css?ver=10.5-beta' type='text/css' media='all' />
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://alistapart.com/wp-json/" /><link rel="alternate" type="application/json" href="https://alistapart.com/wp-json/wp/v2/article/7172755" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://alistapart.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://alistapart.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://alistapart.com/article/the-future-of-web-software-is-html-over-websockets/" />
+<link rel="alternate" type="application/json+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fthe-future-of-web-software-is-html-over-websockets%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fthe-future-of-web-software-is-html-over-websockets%2F&#038;format=xml" />
+<meta name="monetization" content="$ilp.uphold.com/Kh7NgDU9kqp3" />
+<link rel="monetization" href="https://ilp.uphold.com/Kh7NgDU9kqp3" />
+<style type='text/css'>img#wpstats{display:none}</style>
+			<style type="text/css">
+						.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+
+						</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The Future of Web Software Is HTML-over-WebSockets" />
+<meta property="og:url" content="https://alistapart.com/article/the-future-of-web-software-is-html-over-websockets/" />
+<meta property="og:description" content="The future of web app development is taking shape, and it&#8217;s changing the way we think about server-side app architecture. In this article, Matt E. Patterson shows why a new WebSockets-driven …" />
+<meta property="article:published_time" content="2021-02-25T15:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-24T18:08:10+00:00" />
+<meta property="og:site_name" content="A List Apart" />
+<meta property="og:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=512%2C512&#038;ssl=1" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
+<meta property="og:image:alt" content="" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@alistapart" />
+<meta name="twitter:text:title" content="The Future of Web Software Is HTML-over-WebSockets" />
+<meta name="twitter:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=240%2C240&amp;ssl=1" />
+<meta name="twitter:card" content="summary" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=270%2C270&#038;ssl=1" />
+<link rel="stylesheet" type="text/css" id="wp-custom-css" href="https://alistapart.com/?custom-css=2a4ef18516" /></head>
+
+<body class="article-template-default single single-article postid-7172755 wp-custom-logo monetization-not-initialized coil-no-gating coil-hide-excerpt article-the-future-of-web-software-is-html-over-websockets" itemscope itemtype="http://schema.org/Article">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<a href="https://alistapart.com/" class="custom-logo-link" rel="home"><img width="960" height="98" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?fit=960%2C98&amp;ssl=1" class="custom-logo" alt="A List Apart" srcset="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?w=960&amp;ssl=1 960w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=300%2C31&amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=768%2C78&amp;ssl=1 768w" sizes="(max-width: 960px) 100vw, 960px" /></a>				<p class="site-title"><a href="https://alistapart.com/" rel="home"  itemscope itemtype="http://schema.org/ImageObject">A List Apart</a></p>
+								<p class="site-description">For people who make websites</p>
+					</div><!-- .site-branding -->
+
+		<nav id="site-navigation" class="main-navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="screen-reader-text">Primary Menu</span></button>
+			<div class="menu-site-header-container"><ul id="primary-menu" class="menu"><li id="menu-item-6000493" class="ala-home-url menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6000493"><a href="https://alistapart.com" itemprop="url"><span itemprop="name">Home</span></a></li>
+<li id="menu-item-6000494" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-6000494"><a href="https://alistapart.com/articles/" itemprop="url"><span itemprop="name">Articles</span></a></li>
+<li id="menu-item-6000495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000495"><a href="https://alistapart.com/events/" itemprop="url"><span itemprop="name">Events</span></a></li>
+<li id="menu-item-6000496" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000496"><a href="https://alistapart.com/topics/" itemprop="url"><span itemprop="name">Topics</span></a></li>
+<li id="menu-item-6000497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000497"><a href="https://alistapart.com/about/contribute/" itemprop="url"><span itemprop="name">Write for Us</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="mlp-language-nav"><span itemprop="name">Language (English) <i class="arrow-down"></i></span></a><ul class="sub-menu mlp-languages"><li class="site-id-"2" mlp-language-nav-item menu-item menu-item-type-mlp_language menu-item-object-mlp_language"><a rel="alternate" href="https://alistapart.com/it" itemprop="url"><span itemprop="name">Italian</span></a></li></ul></li></ul></div>
+			<form role="search" method="get" class="search-form" action="https://alistapart.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>		</nav><!-- #site-navigation -->
+
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+			
+<article id="post-7172755" class="post-7172755 article type-article status-publish hentry category-application-development category-code category-html tag-html tag-spa tag-websockets">
+
+	<figure class="hero-wide" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+		
+	</figure>
+
+	<header class="entry-header">
+		
+		<h1 class="entry-title" itemprop="headline">The Future of Web Software Is HTML-over-WebSockets</h1>		<div class="entry-meta">
+			<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/matt-e-patterson/" itemprop="url"> <span itemprop="name">Matt E. Patterson</span></a></span></span><span class="posted-on"><time class="entry-date published" datetime="2021-02-25T10:00:00-05:00">February 25, 2021</time><time class="updated" datetime="2021-02-24T13:08:10-05:00">February 24, 2021</time></span>			<div class="entry-topic">
+				<span class="cat-links">Published in <a href="https://alistapart.com/blog/topic/application-development/" rel="category tag">Application Development</a>, <a href="https://alistapart.com/blog/topic/code/" rel="category tag">Code</a>, <a href="https://alistapart.com/blog/topic/html/" rel="category tag">HTML</a></span>			</div>
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	
+	
+	
+	<div class="entry-content">
+		
+<p>The future of web-based software architectures is already taking form, and this time it’s server-rendered (again). Papa’s got a brand new bag: HTML-over-WebSockets and broadcast everything all the time.</p>		<div class="aside-breaker"><span>Article Continues Below</span></div>
+		<div class="ala-single-sidebar-wrapper">
+			<span class="screen-reader-text">Article Continues Below</span>
+			<aside class="ala-single-sidebar-minutiae">
+				<span class="ala-comment-bubble"></span>					<div class="ala-share">
+					<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 id="section1" class="sd-title">Share this:<a class="subhead-anchor" href="#section1">#section1</a></h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-7172755" class="share-facebook sd-button share-icon no-text" href="https://alistapart.com/article/the-future-of-web-software-is-html-over-websockets/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-7172755" class="share-twitter sd-button share-icon no-text" href="https://alistapart.com/article/the-future-of-web-software-is-html-over-websockets/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+										<section id="custom_html-6" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.patreon.com/alistapart" class="patreon-bubble">Become a patron</a></div></section>					
+							</aside>
+
+			<aside class="ala-single-sidebar-1">
+				<section id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div>
+
+<div class="banner ala-banner">
+	<a href="https://abookapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/logo_a-book-apart-color.png?w=960&#038;ssl=1" alt="A Book Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>A Book Apart:<br> Brief books for people who make websites.</p>		
+		</a>
+</div>
+
+<div class="banner">
+	<a href="https://aneventapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/AEA_2017_80x80_2.png?w=960&#038;ssl=1" alt="An Event Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>An Event Apart:<br> 3 days of design, code, and content for web &amp; UX designers &amp; devs.</p>		
+		</a>
+</div></div></section>			</aside>
+
+		</div>
+		
+
+
+
+<p>The dual approach of marrying a Single Page App with an API service has left many dev teams mired in endless JSON wrangling and state discrepancy bugs across two layers. This costs dev time, slows release cycles, and saps the bandwidth for innovation.</p>
+
+
+
+<p>But a new WebSockets-driven approach is catching web developers’ attention. One that reaffirms the promises of classic server-rendered frameworks: fast prototyping, server-side state management, solid rendering performance, rapid feature development, and straightforward SEO. One that enables multi-user collaboration and reactive, responsive designs <em>without building two separate apps</em>. The end result is a single-repo application that feels to users just as responsive as a client-side all-JavaScript affair, but with straightforward templating and far fewer loading spinners, and no state misalignments, since state only lives in one place. All of this sets us up for a considerably easier (and faster!) development path.&nbsp;</p>
+
+
+
+<p>Reclaiming all of that time spent addressing architecture difficulties grants you a pool of surplus hours that you can use to do awesome. Spend your dev budget, and your company’s salary budget, happily building full-stack features yourself, and innovating on things that benefit your company and customers.&nbsp;</p>
+
+
+
+<p>And in my opinion, there’s no better app framework for reclaiming tedious development time than Ruby on Rails. Take another look at the underappreciated Stimulus. Beef up the View in your MVC with ViewComponents. Add in the <a href="https://cableready.stimulusreflex.com/">CableReady</a> and <a href="https://docs.stimulusreflex.com/">StimulusReflex</a> libraries for that Reactive Rails (as it has been dubbed) new car smell, and you’re off to the races. But we’ll get back to Rails in a bit&#8230;</p>
+
+
+
+<h2 id="section2">This all started with web frameworks&#8230;<a class="subhead-anchor" href="#section2">#section2</a></h2>
+
+
+
+<p>Web frameworks burst onto the scene around 2005 amidst a sea of mostly figure-it-out-for-yourself scripting language libraries glued together and thrown onto hand-maintained Apache servers. This new architecture promised developers a more holistic approach that wrapped up all the fiddly stuff in no-touch conventions, freeing developers to focus on programming ergonomics, code readability, and fast-to-market features. All a developer had to do was learn the framework’s core language, get up to speed on the framework itself and its conventions, and then start churning out sophisticated web apps while their friends were still writing XML configuration files for all those <em>other</em> approaches.</p>
+
+
+
+<p>Despite the early criticisms that always plague new approaches, these server-rendered frameworks became tools of choice, especially for fast-moving startups—strapped for resources—that needed an attractive, feature-rich app up <em>yesterday</em>.</p>
+
+
+
+<h2 id="section3">But then the <em>JavaScript everything</em> notion took hold&#8230;<a class="subhead-anchor" href="#section3">#section3</a></h2>
+
+
+
+<p>As the web development world pushed deeper into the 2010s, the tides began to turn, and server-rendered frameworks took something of a backseat to the Single Page Application, wholly built in JavaScript and run entirely on the client’s computer. At many companies, the “server” became relegated to hosting an API data service only, with most of the business logic and all of the HTML rendering happening on the client, courtesy of the big ’ol package of JavaScript that visitors were forced to download when they first hit the site.&nbsp;</p>
+
+
+
+<p>This is where things started to get ugly.</p>
+
+
+
+<p>Fast-forward to 2020 and the <a href="https://www.nngroup.com/articles/the-need-for-speed/">web isn’t getting any faster</a>, as we were promised it would with SPAs. Shoving megabytes of JavaScript down an iPhone 4’s throat doesn’t make for a great user experience. And if you thought building a professional web app took serious resources, what about building a web app <em>and</em> an API service <em>and</em> a communication layer between them? Do we really believe that every one of our users is going to have a device capable of digesting 100 kB of JSON and rendering a complicated HTML table <em>faster</em> than a server-side app could on even a mid-grade server?</p>
+
+
+
+<p>Developing and hosting these JavaScript-forward apps didn’t get any cheaper either. In many cases we’re now doing twice the work, and maybe even paying twice the developers, to achieve the same results we had before with server-side app development.</p>
+
+
+
+<p>In 2005, app frameworks blew everyone’s minds with “build a blog app in 15 minutes” videos. Fifteen years <em>later</em>, doing the same thing with an SPA approach can require two codebases, a JSON serialization layer, and dozens of spinners all over the place so we can still claim a 50ms First Contentful Paint. Meanwhile, the user watches some blank gray boxes, hoping for HTML to finally render from all the JSON their browser is requesting and digesting.&nbsp;</p>
+
+
+
+<p>How did we get here? This is not my beautiful house! Were we smart in giving up all of that server-rendered <em>developer happiness</em> and doubling down on staff and the time to implement in order to chase the promise of providing our users some fancier user interfaces?</p>
+
+
+
+<p>Well. Yes. Sort of.</p>
+
+
+
+<p>We’re not building web software for <em>us</em>. We’re building it for <em>them</em>. The users of our software have expectations of how it’s going to work for <em>them</em>. We have to meet them where they are. Our users are no longer excited about full-page refreshes and ugly Rube Goldberg-ian multi-form workflows. The SPA approach was the next logical leap from piles of unorganized spaghetti JavaScript living on the server. The problem, though: it was a 5% improvement, not a 500% improvement.&nbsp;</p>
+
+
+
+<h2 id="section4">Is 5% better worth twice the work? What about the developer cost?<a class="subhead-anchor" href="#section4">#section4</a></h2>
+
+
+
+<p>Bedazzling the web app certainly makes things <em>fancier</em> from the user’s perspective. Done well, it can make the app feel slicker and more interactive, and it opens up a wealth of new non-native interaction elements. Canonizing those elements as <em>components</em> was the next natural evolution. Gone are the days of thinking through how an entire HTML document could be mutated to give the <em>illusion</em> of the user interacting with an atomic widget on the page—now, that can be implemented directly, and we can think about our UX in terms of component breakdowns. But, alas, the costs begin to bite us almost immediately.</p>
+
+
+
+<p>Go ahead, write that slick little rating stars component. Add some cool animations, make the mouseover and click area feel good, give some endorphin-generating feedback when a selection is made. But now what? In a real app, we need to <em>persist</em> that change, right? The database has to be changed to reflect this new state, and the app in front of the user’s eyes needs to reflect that new reality too.&nbsp;</p>
+
+
+
+<p>In the old days, we’d give the user a couple star GIFs, each a link that hit the same server endpoint with a different param value. Server-side, we’d save that change to the database, then send back a whole new HTML page for their browser to re-render; maybe we’d even get fancy and use AJAX to do it <em>behind the scenes</em>, obviating the need for the full HTML and render. Let’s say the former costs <em>x</em> in developer time and salary (and we won’t even talk about lost opportunity cost for features rolled out too late for the market). In that case, the fancy AJAX-based approach costs <em>x</em> + <em>n (you know, some “extra JavaScript sprinkles”)</em>, but the cost of lots and lots of <em>n</em> grows as our app becomes more and more of a JavaScript spaghetti sprinkles mess.</p>
+
+
+
+<p>Over in the SPA world, we’re now writing JavaScript in the client-side app and using JSX or Handlebars templates to render the component, then code to persist that change to the front-end data store, then a PUT request to the API, where we’re also writing an API endpoint to handle the request, a JSON serializer (probably with its own pseudo-template) to package up our successful response, and then front-end code to ensure we re-render the component (and some branching logic to maybe rollback and re-render the client-side state change if the backend failed on us). This costs a lot more than even <em>x + n </em>in developer time and salary. And if you’ve split your team into “front-end” and “back-end” people, you might as well go ahead and double <em>that</em> cost (both time and money) for many non-trivial components where you need two different people to finish the implementation. Sure, the SPA mitigates some of the ever-growing spaghetti problem, but at what cost for a business racing to be relevant in the market or get something important out to the people who need it?</p>
+
+
+
+<p>One of the other arguments we hear in support of the SPA is the reduction in cost of cyber infrastructure. As if pushing that hosting burden onto the client (without their consent, for the most part, but that’s another topic) is somehow saving us on our cloud bills. But that’s ridiculous. For any non-trivial application, you’re still paying for a server to host the API and maybe another for the database, not to mention load balancers, DNS, etc. And here’s the thing: <em>none of that cost even comes close to what a software company pays its developers!</em> Seriously, think about it. I’ve yet to work at any business where our technical infrastructure was anything more than a fraction of our salary overhead. And good developers expect raises. Cloud servers generally just get <em>cheaper</em> over time.</p>
+
+
+
+<p>If you want to be efficient with your money—especially as a cash-strapped startup—you don’t need to cheap out on cloud servers; you need to get <em>more features faster out of your existing high-performance team</em>.</p>
+
+
+
+<p>In the old, old days, before the web frameworks, you’d pay a developer for six weeks to finally unveil…the log-in page. Cue the sad trombone. Then frameworks made that log-in page an hour of work, total, and people were launching web startups overnight. The trumpets sound! Now, with our SPA approach, we’re back to a bunch of extra work. <em>It’s costing us more money because we’re writing two apps at once</em>. There’s that trombone again&#8230;</p>
+
+
+
+<p>We’re paying a lot of money for that 5% user experience improvement.</p>
+
+
+
+<p>But what if we could take the best client-side JavaScript ideas and libraries from that 5% improvement and reconnect them with the developer ergonomics and salary savings of a single codebase? What if components and organized JavaScript could all live in one rock-solid app framework optimized for server-side rendering? What if there <em>is</em> a path to a 500% jump?</p>
+
+
+
+<p>Sound impossible? It’s not. I’ve seen it, like C-beams glittering in the dark near the Tannhäuser Gate. I’ve built that 500% app, in my free time, with my kids running around behind me barking like dogs. Push broadcasts to logged-in users. Instant updates to the client-side DOM in milliseconds. JavaScript-driven 3D animations that interact with real-time chat windows. All in a single codebase, running on the same server hardware I’d use for a “classic” server-rendered app (and maybe I can even scale that hardware down since I’m rendering HTML fragments more often than full-page documents). No separate front-end app. Clean, componentized JavaScript and server-side code, married like peanut butter and jelly. It’s real, I tell you!</p>
+
+
+
+<h2 id="section5">Socket to me! (Get it? Get it? Ah, nevermind&#8230;)<a class="subhead-anchor" href="#section5">#section5</a></h2>
+
+
+
+<p>Finalized in 2011, support for WebSockets in modern browsers ramped up throughout the 2010s and is now fully supported in all modern browsers. With the help of a small bit of client-side JavaScript, you get a <a href="https://en.wikipedia.org/wiki/Duplex_(telecommunications)#FULL-DUPLEX">full-duplex</a> socket connection between browser and server. Data can pass both ways, and can be pushed from either side at any time, no user-initiated request needed.</p>
+
+
+
+<p>Like the game industry’s ever-expanding moves into cloud-based gaming, the future of web apps is not going to be about pushing even heavier obligations onto the user/client, but rather the opposite: let the client act as a thin terminal that renders the state of things for the human. WebSockets provide the communication layer, seamless and fast; a direct shot from the server to the human.</p>
+
+
+
+<p>But this wasn’t terribly easy for many developers to grok at first. I sure didn’t. And the benefits weren’t exactly clear either. After years (decades, even) of wrapping our heads around the HTTP request cycle, to which all server-handled features must conform, adopting this WebSocket tech layer required a lot of head scratching. As with many clever new technologies or protocols, we needed a higher-level abstraction that provided something really effective for getting a new feature in front of a user, fast.</p>
+
+
+
+<h2 id="section6">Enter HTML-over-WebSockets&#8230;<a class="subhead-anchor" href="#section6">#section6</a></h2>
+
+
+
+<p>Want a hyper-responsive datalist typeahead that is perfectly synced with the database? On every keystroke, send a query down the WebSocket and get back <em>precisely</em> the changed set of <strong>option</strong> tags, nothing more, nothing less.</p>
+
+
+
+<p>How about client-side validations? Easy. On every input change, round up the form values and send ’em down the WebSocket. Let your server framework validate and send back changes to the HTML of the form, including any errors that need to be rendered. No need for JSON or complicated error objects.</p>
+
+
+
+<p>User presence indicators? Dead simple. Just check who has an active socket connection.</p>
+
+
+
+<p>What about multi-user chat? Or document collaboration? In classic frameworks and SPAs, these are the features we put off because of their difficulty and the code acrobatics needed to keep everyone’s states aligned. With HTML-over-the-wire, we’re just pushing tiny bits of HTML based on one user’s changes to <em>every other</em> <em>user</em> currently subscribed to the channel. They’ll see <em>exactly</em> the same thing as if they hit refresh and asked the server for the entire HTML page anew. And you can get those bits to every user in under 30ms.</p>
+
+
+
+<p>We’re not throwing away the promise of components either. Where this WebSockets-based approach can be seen as a thick server/thin client, so too can our components. It’s fractal, baby! Make that component <em>do</em> delightful things for the user with smart JavaScript, and then just ask the server for updated HTML, and mutate the DOM. No need for a client-side data store to manage the component’s state since it’ll render itself to look <em>exactly like what the server knows it should look like now</em>. The HTML comes from the server, so no need for JSX or Handlebars or &lt;insert other JavaScript templating library here&gt;. The server is always in control: rendering the initial component’s appearance <em>and</em> updating it in response to any state change, all through the socket.&nbsp;</p>
+
+
+
+<p>And there’s nothing saying you have to use those socket channels to send <em>only</em> HTML. Send a tiny bit of text, and have the client do something smart. Send a chat message from one user to every other user, and have their individual clients render that message in whatever app theme they’re currently using. Imagine the possibilities!</p>
+
+
+
+<h2 id="section7">But it’s complex/expensive/requires a bunch of new infrastructure, right?<a class="subhead-anchor" href="#section7">#section7</a></h2>
+
+
+
+<p>Nope. Prominent open-source web servers support it natively, generally without needing any kind of extra configuration or setup. Many server-side frameworks will automatically ship the JS code to the client for native support in communicating over the socket. In Rails, for example, setting up your app to use WebSockets is as easy as configuring the built-in ActionCable and then deploying as usual on the same hardware you would have used otherwise. Anecdotally, the typical single Rails server process seems to be perfectly happy supporting nearly 4,000 active connections. And you can easily swap in the excellent <a href="https://docs.anycable.io">AnyCable</a> to bump that up to around 10,000+ connections per node by not relying on the built-in Ruby WebSocket server. Again, this is on the usual hardware you’d be running your web server on in the first place. You don’t need to set up any extra hardware or increase your cloud infrastructure.</p>
+
+
+
+<p>This new approach is quickly appearing as extensions, libraries, or alternative configurations in a variety of languages and web frameworks, from Django’s <a href="https://sockpuppet.argpar.se">Sockpuppet</a> to Phoenix’s <a href="https://dockyard.com/blog/2018/12/12/phoenix-liveview-interactive-real-time-apps-no-need-to-write-javascript">LiveView</a> and beyond. Seriously, go dig around for WebSockets-based libraries for your favorite app framework and then step into a new way of thinking about your app architectures. Build something amazing and marvel at the glorious HTML bits zipping along on the socket, like jet fighters passing in the night. It’s more than a new technical approach; it’s a new mindset, and maybe even a new wellspring of key app features that will drive your startup success.</p>
+
+
+
+<p>But I’d be remiss if I didn’t highlight for the reader <em>my </em>contender for Best Framework in a Leading Role. Sure, any app framework can adopt this approach, but for my money, there’s a strong case to be made that the vanguard could be Ruby on Rails.&nbsp;</p>
+
+
+
+<h2 id="section8">So we come back around to Rails, 15 years on from its launch&#8230;<a class="subhead-anchor" href="#section8">#section8</a></h2>
+
+
+
+<p>Set up a Rails 6 app with the latest versions of <a href="https://github.com/turbolinks/turbolinks">Turbolinks</a>, <a href="https://stimulus.hotwire.dev">Stimulus</a>, <a href="https://docs.stimulusreflex.com">StimulusReflex</a>, <a href="https://cableready.stimulusreflex.com">CableReady</a>, and GitHub’s <a href="https://github.com/github/view_component">ViewComponent</a> gem, and you can be working with Reactive Rails in a way that simultaneously feels like building a classic Rails app <em>and </em>like building a modern, componentized SPA, in a single codebase, with all the benefits of server-side rendering, HTML fragment caching, easy SEO, rock-solid security, and the like. You’ll suddenly find your toolbelt bursting with straightforward tools to solve previously daunting challenges.</p>
+
+
+
+<p>Oh, and with Turbolinks, you also get wrappers allowing for hybrid native/HTML UIs in the same codebase. Use a quick deploy solution like Heroku or Hatchbox, and one developer can build a responsive, reactive, multi-platform app in their spare time. Just see <a href="https://dev.to/julianrubisch/twitter-clone-with-stimulusreflex-gone-hybrid-native-app-17fm">this Twitter clone</a> if you don’t believe me.&nbsp;</p>
+
+
+
+<p>OK, that all sounds exciting, but why Rails specifically? Isn’t it old and boring? You already said any framework can benefit from this new WebSocket, DOM-morphing approach, right?&nbsp;</p>
+
+
+
+<p>Sure. But where Rails has always shined is in its ability to make rapid prototyping, well…<em>rapid</em>, and in its deep ecosystem of well-polished gems. Rails also hasn’t stopped pushing the envelope forward, with the latest version 6.1.3 of the framework boasting a ton of cool features.&nbsp;</p>
+
+
+
+<p>If you’ve got a small, resource-strapped team, Rails (and Ruby outside of the framework) still serves as a potent force multiplier that lets you punch way above your weight, which probably explains the <a href="https://charliereese.ca/article/top-50-y-combinator-tech-startups">$92 billion in revenue it’s helped drive over the years</a>. With this new approach, there’s a <em>ton</em> more weight behind that punch. While your competitors are fiddling with their JSON serializers and struggling to optimize away all the loading spinners, you’re rolling out a new multi-user collaborative feature every week…or every <em>day</em>.&nbsp;</p>
+
+
+
+<p>You win. Your fellow developers win. Your business wins. And, most importantly, your <em>users</em> win.</p>
+
+
+
+<p>That’s what Rails promised from the day it was released to the community. That’s why Rails spawned so many imitators in other languages, and why it saw such explosive growth in the startup world for years. And that same old rapid prototyping spirit, married to this new HTML-over-the-wire approach, positions Rails for a powerful resurgence.&nbsp;</p>
+
+
+
+<p>Ruby luminary and <a href="https://www.amazon.com/Obie-Fernandez/e/B001IGV0LS">author</a> of <em>The Ruby Way</em>, Obie Fernandez, <a href="https://medium.com/@obie/react-is-dead-long-live-reactive-rails-long-live-stimulusreflex-and-viewcomponent-cd061e2b0fe2">seems to think so</a>.</p>
+
+
+
+<p>Heck, even <a href="https://www.youtube.com/watch?v=utxCm3uLhIE">Russ Hanneman thinks this approach with StimulusReflex is the new hotness</a>.</p>
+
+
+
+<p>And the good folks over at Basecamp (creators of Rails in the first place), dropped their own take on the concept, <a href="https://hotwire.dev">Hotwire</a>, just in time for the 2020 holidays, so your options for tackling this new and exciting technique continue to expand.</p>
+
+
+
+<p>Don’t call it a comeback, because Rails has been here for years. With this new architectural approach, brimming with HTML-over-WebSockets and full-duplex JavaScript interactions, Rails becomes something new, something beautiful, something that demands attention (again).&nbsp;</p>
+
+
+
+<p>Reactive Rails, with StimulusReflex and friends, is a must-look for anyone exhausted from toiling with JSON endpoints or JSX, and I’m super excited to see the new crop of apps that it enables.</p>
+		<div class="ala-single-sidebar-wrapper sidebar-related">
+			<aside id="related" class="ala-single-sidebar-related">
+									<section class="ala-sb-rel__category">
+						<h3 class="ala-sb-rel__cat__title">
+							Further reading about							<a href="https://alistapart.com/blog/topic/application-development/">Application Development</a>
+						</h3>
+													<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/responsible-javascript-part-3/">Responsible JavaScript: Part III									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Convenience always comes at a price. On the web, developer convenience often means third-party JavaScript—and we pass the hefty cost on to our users. Jeremy Wagner shows us how to get and keep third-party scripts under control through clean-up sprints and eternal vigilance in Part III of Responsible JavaScript.</div>
+							</article>
+														<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/responsible-javascript-part-2/">Responsible JavaScript: Part II									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">Web development is hard. We don’t always get it right on the first try. Fortunately, we don’t have to get everything perfect from the start. Jeremy  Wagner provides some helpful ways to start recovering from our collective JavaScript hangover.</div>
+							</article>
+												</section>
+								</aside>
+		</div>
+			</div><!-- .entry-content -->
+	</article><!-- #post-7172755 -->
+
+				<footer class="ala-author">
+					<div class="ala-author__content clear">
+						<a name="panelist0"></a>
+													<h4 class="ala-author__about">About the Author</h4>
+													<div class="ala-author__avatar">
+							<img width="150" height="150" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/02/matt-e-peterson.jpg?fit=150%2C150&amp;ssl=1" class="avatar avatar-150 photo wp-post-image" alt="Photo of Matt E. Peterson" loading="lazy" />						</div>
+
+						<h3 class="ala-author__name">Matt E. Patterson</h3>
+						<div class="ala-author__description">Matt E. Patterson is a veteran <a href="https://dev.to/mepatterson">web software architect</a>, the Director of Engineering at <a href="https://skillsengine.com/">SkillsEngine</a>, and the creator of <a href="https://chaosmage.app/">ChaosMage</a>. He’s worked with Ruby, Python, and JavaScript for over 20 years in a diverse set of industries, from Social Software to EdTech to Video Games. He’s also an <a href="https://amzn.to/mepatt">author of highly-rated horror and science fiction novels</a>.</div>
+					</div>
+									</footer>
+									<aside class="widget-area pre-footer-widget-area pre-footer-single">
+						<section id="custom_html-4" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="pre-footer-email-signup">
+	<strong>Get our latest articles in your inbox.</strong> <a href="https://alistapart.com/email-signup">Sign up for email alerts</a>.
+</div>
+</div></section>					</aside><!-- .pre-footer-widget-area -->
+					
+					<div class="comment-area-wrap two-column-layout">
+						
+<div id="comments" class="comments-area column-content">
+
+	
+		<h2 class="comments-title">No Comments</h2>
+				<div class="comments-off">
+			<h3 class="comments-off-title"> Got something to say?</h3>
+			<p class="no-comments">We have turned off comments, but you can see what folks had to say before we did so.</p>
+		</div>
+		
+</div><!-- #comments -->
+	<div class="column-sidebar ala-posts">
+		<h2 class="section-title">More from ALA</h2>
+				<article id="post-7173224" class="home-post-content post-7173224 article type-article status-publish has-post-thumbnail hentry category-code category-css">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/breaking-out-of-the-box/" rel="bookmark">Breaking Out of the Box</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/patrick-brosset/" itemprop="url"> <span itemprop="name">Patrick Brosset</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					What can we do with thirty pixels? Windows Controls Overlay frees us from 40 years of history telling us how apps should look.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/code/" rel="category tag">Code</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-12-09T10:00:00-05:00">December 09, 2021</time><time class="updated" datetime="2021-12-09T07:23:48-05:00">December 09, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173136" class="home-post-content post-7173136 article type-article status-publish has-post-thumbnail hentry category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/how-to-sell-ux-research/" rel="bookmark">How to Sell UX Research with Two Simple Questions</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/sophiavoychehovski/" itemprop="url"> <span itemprop="name">Sophia V. Prater</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Seriously, do not ever design screens again without first answering these questions: what are the objects and how do they relate?				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/user-experience/" rel="category tag">User Experience</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-10-21T10:00:00-04:00">October 21, 2021</time><time class="updated" datetime="2021-10-21T07:17:11-04:00">October 21, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173122" class="home-post-content post-7173122 article type-article status-publish has-post-thumbnail hentry category-content category-content-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/a-content-model-is-not-a-design-system/" rel="bookmark">A Content Model Is Not a Design System</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/mike-wills/" itemprop="url"> <span itemprop="name">Mike Wills</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Why do so many content models still look more like design systems rather than reflecting structured data? Mike Wills takes us on a personal journey as he examines his own past experiences and invites us to conceive content models that articulate meaning and group related content together for use on any channel.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/content/" rel="category tag">Content</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-09-23T10:00:00-04:00">September 23, 2021</time><time class="updated" datetime="2021-09-23T09:21:30-04:00">September 23, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173095" class="home-post-content post-7173095 article type-article status-publish has-post-thumbnail hentry category-process category-usability category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/design-for-safety-excerpt/" rel="bookmark">Design for Safety, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/eva-penzeymoog/" itemprop="url"> <span itemprop="name">Eva PenzeyMoog</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Design for Safety, Eva PenzeyMoog discusses concrete ways you can incorporate safety awareness into your design processes.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/process/" rel="category tag">Process</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-26T11:01:43-04:00">August 26, 2021</time><time class="updated" datetime="2021-08-26T11:01:44-04:00">August 26, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173076" class="home-post-content post-7173076 article type-article status-publish has-post-thumbnail hentry category-design category-web-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/sustainable-web-design-excerpt/" rel="bookmark">Sustainable Web Design, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/tom-greenwood/" itemprop="url"> <span itemprop="name">Tom Greenwood</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Sustainable Web Design, Tom Greenwood provides clear guidance on how to track and address the carbon footprint of our websites.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/design/" rel="category tag">Design</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-05T10:00:00-04:00">August 05, 2021</time><time class="updated" datetime="2021-08-04T17:23:57-04:00">August 04, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+			
+	
+</div><!-- .home-post-wrap clear -->
+
+					</div>
+					
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+</div><!-- #content -->
+
+	<div class="widget-area header-widget">
+		<section id="custom_html-5" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div></div></section>	</div><!-- .header-widget -->
+	
+<footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WebPage">
+	<nav class="footer-navigation footer navigation-top"  itemscope itemtype="http://schema.org/SiteNavigationElement">
+		<div class="menu-footer-pages-container"><ul id="footer-top-left-menu" class="footer-top-left-menu"><li id="menu-item-6000544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000544"><a href="https://alistapart.com/about/" itemprop="url">About</a></li>
+<li id="menu-item-6000545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000545"><a href="https://alistapart.com/authors/" itemprop="url">Authors</a></li>
+<li id="menu-item-6000546" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000546"><a href="https://alistapart.com/about/masthead/" itemprop="url">Masthead</a></li>
+<li id="menu-item-6000547" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000547"><a href="https://alistapart.com/about/style-guide/" itemprop="url">Style Guide</a></li>
+<li id="menu-item-6000548" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000548"><a href="https://alistapart.com/contact/" itemprop="url">Contact</a></li>
+<li id="menu-item-6000549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000549"><a href="https://alistapart.com/about/sponsor/" itemprop="url">Sponsorships</a></li>
+</ul></div><div class="menu-footer-social-container"><ul id="footer-top-right-menu" class="footer-top-right-menu"><li id="menu-item-6000550" class="footer-menu-title menu-item menu-item-type-custom menu-item-object-custom menu-item-6000550"><a itemprop="url">Follow us:</a></li>
+<li id="menu-item-7171602" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7171602"><a href="https://alistapart.com/about/rss-feed/" itemprop="url">RSS</a></li>
+<li id="menu-item-6000552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000552"><a href="https://alistapart.com/email-signup/" itemprop="url">Email</a></li>
+<li id="menu-item-6000553" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000553"><a href="https://www.facebook.com/alistapart" itemprop="url">Facebook</a></li>
+<li id="menu-item-6000554" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000554"><a href="https://www.twitter.com/alistapart" itemprop="url">Twitter</a></li>
+</ul></div>	</nav>
+			<div class="widget-area footer-widget-area-wrap">
+			<div class="widget-area footer-widget-area">
+				<section id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+	<a href="https://abookapart.com">
+							<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aba_2.jpg?w=960&#038;ssl=1" alt="A Book Apart. Brief books for people who design, write, and code." data-recalc-dims="1">
+		<div class="footer-promo-copy">
+				<p class="promo-title">A Book Apart</p>
+				<p>Brief books for people who design, write, and code.</p>
+				<p>Bundle books and save!</p>
+				<p class="arrow">Shop now</p>
+						</div>
+			</a>
+</div>
+
+</div></section><section id="custom_html-8" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+		<a href="https://aneventapart.com">
+			<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aea_v1_2.png?w=960&#038;ssl=1" alt="An Event Apart. Three days of design, code, and content for people who make websites." data-recalc-dims="1">
+			<div class="footer-promo-copy">
+					<p class="promo-title">An Event Apart</p>
+						<p>Three days of design, code, and content for people who make websites.</p>
+							<p class="arrow">See  this year’s schedule</p>
+			</div>
+						</a>
+</div></div></section>			</div>
+		</div>
+
+		
+	<div class="site-info-wrap">
+		<div class="site-info">
+			<p>
+				ISSN 1534-0295 &middot; Copyright &copy; <span itemprop="copyrightYear"> 1998–2022</span> <span itemprop="copyrightHolder"> A List Apart &amp; Our Authors</span>			</p>
+			<p>
+				<a href="https://wordpress.com/">
+					Proudly powered by WordPress				</a>
+				<span class="sep"> · </span>
+				<a href="https://pressable.com/?utm_source=Automattic&#038;utm_medium=rpc&#038;utm_campaign=Concierge%20Referral&#038;utm_term=concierge">
+					Hosted by Pressable				</a>
+			</p>
+		</div><!-- .site-info -->
+	</div><!-- .site-info-wrap -->
+
+	<nav class="footer-navigation footer navigation-bottom">
+		<ul id="footer-bottom-left-menu" class="footer-bottom-left-menu"><li id="menu-item-6000555" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000555"><a href="https://alistapart.com/about/copyright/" itemprop="url">Permissions &#038; Copyright</a></li>
+<li id="menu-item-6000556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-6000556"><a href="https://alistapart.com/about/privacy-policy/" itemprop="url">Privacy Policy</a></li>
+<li id="menu-item-6000558" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000558"><a href="https://webtype.com/" itemprop="url">Fonts by Webtype</a></li>
+</ul><ul id="footer-bottom-right-menu" class="footer-bottom-right-menu"><li id="menu-item-6000559" class="aea menu-item menu-item-type-custom menu-item-object-custom menu-item-6000559"><a href="http://aneventapart.com/" itemprop="url"><span class="screen-reader-text">An Event Apart</span></a></li>
+<li id="menu-item-6000560" class="aba menu-item menu-item-type-custom menu-item-object-custom menu-item-6000560"><a href="http://abookapart.com/" itemprop="url"><span class="screen-reader-text">A Book Apart</span></a></li>
+</ul>	</nav>
+</footer><!-- #colophon -->
+</div><!-- #page -->
+<script type="text/template" id="tmpl-subscriber-only-message">
+	<div class="coil-message-inner">
+		<div class="coil-message-header">
+			<# if ( data.headerLogo ) { #>
+				{{{data.headerLogo}}}
+			<# } #>
+			<# if ( data.title ) { #>
+				<p class="coil-message-title">{{data.title}}</p>
+			<# } #>
+			<# if ( data.content ) { #>
+				<p class="coil-message-content">{{data.content}}</p>
+			<# } #>
+			<# if ( data.button.href ) { #>
+				<a target="_blank" href="{{data.button.href}}" class="coil-message-button">{{data.button.text}}</a>
+			<# } #>
+		</div>
+		<div class="coil-message-footer">
+			<p class="coil-footer-content">Already a member? Check that you&#039;re using a supported browser, have the Coil extension installed, and are logged in to your Coil account.</p>
+		</div>
+	</div>
+</script>
+<script type="text/template" id="tmpl-split-content-message">
+	<span class="coil-split-content-message">{{data}}</span>
+</script>
+<script type="text/template" id="tmpl-banner-message">
+	<div class="banner-message-inner">
+		<# if ( data.content ) { #>
+			<p class="coil-banner-message-content">{{data.content}}</p>
+		<# } #>
+		<# if ( data.button.href ) { #>
+			<a target="_blank" href="{{data.button.href}}" class="coil-banner-message-button">{{data.button.text}}</a>
+		<# } #>
+		<span class="coil-banner-message-dismiss" id="js-coil-banner-dismiss">&times;</span>
+	</div>
+</script>
+	<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');  
+
+	ga('create', 'UA-11757054-1', 'auto'); 
+	ga('send', 'pageview');  
+</script>
+<!-- End Google Analytics -->
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/alistapart.com\/article\/the-future-of-web-software-is-html-over-websockets\/":7172755};
+	</script>
+				<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001' id='jetpack-photon-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/underscore.min.js?ver=1.13.1' id='underscore-js'></script>
+<script type='text/javascript' id='wp-util-js-extra'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-util.min.js?ver=5.8.3' id='wp-util-js'></script>
+<script type='text/javascript' id='coil-monetization-js-js-extra'>
+/* <![CDATA[ */
+var coilParams = {"content_container":".content-area .entry-content","promotion_bar":"This site is monetized using Coil. If you enjoy the content, consider supporting us by signing up for a Coil Membership. Here's how\u2026","loading_content":"Verifying Web Monetization status. Please wait...","fully_gated":"Unlock exclusive content with Coil. Need a Coil account?","partial_gating":"To keep reading, join Coil and install the browser extension. Visit coil.com for more information.","learn_more_button_text":"Get Coil to access","learn_more_button_link":"https:\/\/coil.com\/","show_promotion_bar":"1","post_excerpt":"The future of web app development is taking shape, and it's changing the way we think about server-side app architecture. In this article, Matt E. Patterson shows why a new WebSockets-driven approach is catching developers' attention, and how it can mean faster, easier development that results in an experience just as rich as client-side SPAs.","site_logo":"<a href=\"https:\/\/alistapart.com\/\" class=\"custom-logo-link\" rel=\"home\"><img width=\"960\" height=\"98\" src=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?fit=960%2C98&ssl=1\" class=\"custom-logo\" alt=\"A List Apart\" srcset=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?w=960&ssl=1 960w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=300%2C31&ssl=1 300w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=768%2C78&ssl=1 768w\" sizes=\"(max-width: 960px) 100vw, 960px\" \/><\/a>","admin_missing_id_notice":"This post is monetized but you have not set your payment pointer ID in the <a href=\"https:\/\/alistapart.com\/wp-admin\/admin.php?page=coil\">Coil settings page<\/a>. Only content set to show for all visitors will show."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/initialize-monetization.min.js?ver=1.9.0' id='coil-monetization-js-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/js-cookie.3.0.0.min.js?ver=1.9.0' id='messaging-cookies-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/navigation.js?ver=20151215' id='ala-navigation-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.js?ver=1.0' id='ala-prism-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/skip-link-focus-fix.js?ver=20151215' id='ala-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/adchecka.js?ver=1.0' id='ala-adchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/loadadchecka.js?ver=1.0' id='ala-loadadchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
+<script type='text/javascript' id='sharing-js-js-extra'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=10.5-beta' id='sharing-js-js'></script>
+<script type='text/javascript' id='sharing-js-js-after'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+		<script type="text/javascript">
+			(function() {
+			var t   = document.createElement( 'script' );
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute( 'data-site-id', '606492000b21314ec4b22148' );
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName( 'script' )[0];
+			s.parentNode.insertBefore( t, s );
+			})();
+		</script>
+		<script src='https://stats.wp.com/e-202202.js' defer></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:10.5-beta',blog:'158094726',post:'7172755',tz:'-5',srv:'alistapart.com'} ]);
+	_stq.push([ 'clickTrackerInit', '158094726', '7172755' ]);
+</script>
+</body>
+</html>
+<!--
+	generated in 0.235 seconds
+	66976 bytes batcached for 300 seconds
+-->

@@ -1,0 +1,81 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Christian Heilmann",
+  "feed_url": "https://christianheilmann.com/feed/",
+  "items": [
+    {
+      "id": "https://christianheilmann.com/?p=7063",
+      "url": "https://christianheilmann.com/2021/12/20/the-web-starts-on-page-four/",
+      "title": "The web starts on page four",
+      "summary": "After 25 years of working for, on and with the web, I am looking at the current state of it and I don’t like it. There is still a lot of beautiful, creative and amazing work out there, but on the whole, we lost an amazing opportunity. In its place we have a consumption machine […]",
+      "content_html": "After 25 years of working for, on and with the web, I am looking at the current state of it and I don&#8217;t like it. There is still a lot of beautiful, creative and amazing work out there, but on the whole, we lost an amazing opportunity. In its place we have a consumption machine [&#8230;]",
+      "content_text": "After 25 years of working for, on and with the web, I am looking at the current state of it and I don’t like it. There is still a lot of beautiful, creative and amazing work out there, but on the whole, we lost an amazing opportunity. In its place we have a consumption machine […]",
+      "date_published": "2021-12-20T18:06:05.000Z",
+      "date_modified": "2021-12-20T18:06:05.000Z",
+      "_plugin": {
+        "pageFilename": "af8bdf23990863e179438f0cd821de3ec553499cc41e6e39ad159e64b48a9e05.html"
+      }
+    },
+    {
+      "id": "https://christianheilmann.com/?p=7045",
+      "url": "https://christianheilmann.com/2021/11/18/lets-not-send-developers-to-the-accessibility-tree-tool/",
+      "title": "Let’s not send developers to the accessibility tree tool",
+      "summary": "Testing for accessibility is an incredibly important part of your development process. Products that don’t block out users because of easy to avoid issues have more success. And the longer you wait with fixing accessibility problems, the harder it gets. That’s why it is annoying when it is hard to find out about accessibility problems. […]",
+      "content_html": "Testing for accessibility is an incredibly important part of your development process. Products that don&#8217;t block out users because of easy to avoid issues have more success. And the longer you wait with fixing accessibility problems, the harder it gets. That&#8217;s why it is annoying when it is hard to find out about accessibility problems. [&#8230;]",
+      "content_text": "Testing for accessibility is an incredibly important part of your development process. Products that don’t block out users because of easy to avoid issues have more success. And the longer you wait with fixing accessibility problems, the harder it gets. That’s why it is annoying when it is hard to find out about accessibility problems. […]",
+      "date_published": "2021-11-18T17:14:58.000Z",
+      "date_modified": "2021-11-18T17:14:58.000Z",
+      "_plugin": {
+        "pageFilename": "f23dc560f7184fab96d57523378f610f7afaaa091a51bb373ceee790d5570bea.html"
+      }
+    },
+    {
+      "id": "https://christianheilmann.com/?p=7038",
+      "url": "https://christianheilmann.com/2021/11/07/quick-browser-developer-tools-tip-define-and-test-interaction-states-in-css-using-state-simulation/",
+      "title": "Quick browser Developer Tools tip: define and test interaction states in CSS using state simulation",
+      "summary": "Interfaces on the web have to be accessible independent of input device. In addition to using the right HTML to make it possible to activate functionality with mouse, keyboard, voice activation or any of the possible ways it is also important to have a visual indicator which element is currently active. This is why we […]",
+      "content_html": "Interfaces on the web have to be accessible independent of input device. In addition to using the right HTML to make it possible to activate functionality with mouse, keyboard, voice activation or any of the possible ways it is also important to have a visual indicator which element is currently active. This is why we [&#8230;]",
+      "content_text": "Interfaces on the web have to be accessible independent of input device. In addition to using the right HTML to make it possible to activate functionality with mouse, keyboard, voice activation or any of the possible ways it is also important to have a visual indicator which element is currently active. This is why we […]",
+      "date_published": "2021-11-07T15:58:36.000Z",
+      "date_modified": "2021-11-07T15:58:36.000Z",
+      "_plugin": {
+        "pageFilename": "d5db1676b88300c3755b2eff03015e7972367b10dab5aaa6ce2126c600f3eab2.html"
+      }
+    },
+    {
+      "id": "https://christianheilmann.com/?p=6999",
+      "url": "https://christianheilmann.com/2021/11/01/developer-tools-secrets-that-shouldnt-be-secrets/",
+      "title": "Developer Tools secrets that shouldn’t be secrets",
+      "summary": "Update: As this is blowing up on Hackernews I added information to each of the tips in which environment they are supported in parenthesis after each heading. When I state “Chromium browsers”, this refers to all browsers that use the Chromium core and also feature all the Developer Tools. This is Chrome, Microsoft Edge, Brave […]",
+      "content_html": "Update: As this is blowing up on Hackernews I added information to each of the tips in which environment they are supported in parenthesis after each heading. When I state &#8220;Chromium browsers&#8221;, this refers to all browsers that use the Chromium core and also feature all the Developer Tools. This is Chrome, Microsoft Edge, Brave [&#8230;]",
+      "content_text": "Update: As this is blowing up on Hackernews I added information to each of the tips in which environment they are supported in parenthesis after each heading. When I state “Chromium browsers”, this refers to all browsers that use the Chromium core and also feature all the Developer Tools. This is Chrome, Microsoft Edge, Brave […]",
+      "date_published": "2021-11-01T14:21:08.000Z",
+      "date_modified": "2021-11-01T14:21:08.000Z",
+      "_plugin": {
+        "pageFilename": "207f1e30f11d9508067c8683732ccc53da50faa5230f47b042e1bf15df13e7df.html"
+      }
+    },
+    {
+      "id": "https://christianheilmann.com/?p=6988",
+      "url": "https://christianheilmann.com/2021/10/28/edge-devtools-for-visual-studio-code-1-4-0-improved-screencasting-device-emulation-and-live-inline-issue-reporting/",
+      "title": "Edge DevTools for Visual Studio Code 1.4.0 – Improved Screencasting, Device Emulation and live, inline issue reporting",
+      "summary": "The 1.4.0 release of the Microsoft Tools for Visual Studio Code brings a few highly requested features. We improved the screencasting feature, added device emulation and live issue reporting in your source code. You can check the 3 minute highlight reel here . Improved screencasting In previous versions of the extension, the screencast was a […]",
+      "content_html": "The 1.4.0 release of the Microsoft Tools for Visual Studio Code brings a few highly requested features. We improved the screencasting feature, added device emulation and live issue reporting in your source code. You can check the 3 minute highlight reel here . Improved screencasting In previous versions of the extension, the screencast was a [&#8230;]",
+      "content_text": "The 1.4.0 release of the Microsoft Tools for Visual Studio Code brings a few highly requested features. We improved the screencasting feature, added device emulation and live issue reporting in your source code. You can check the 3 minute highlight reel here . Improved screencasting In previous versions of the extension, the screencast was a […]",
+      "date_published": "2021-10-28T06:02:36.000Z",
+      "date_modified": "2021-10-28T06:02:36.000Z",
+      "_plugin": {
+        "pageFilename": "53860d9175a471665a35a537876d073587c5ec45250150e950ba2105f2024173.html"
+      }
+    }
+  ],
+  "_plugin": {
+    "rawFeed": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rss version=\"2.0\"\n\txmlns:content=\"http://purl.org/rss/1.0/modules/content/\"\n\txmlns:wfw=\"http://wellformedweb.org/CommentAPI/\"\n\txmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n\txmlns:atom=\"http://www.w3.org/2005/Atom\"\n\txmlns:sy=\"http://purl.org/rss/1.0/modules/syndication/\"\n\txmlns:slash=\"http://purl.org/rss/1.0/modules/slash/\"\n\t>\n\n<channel>\n\t<title>Christian Heilmann</title>\n\t<atom:link href=\"https://christianheilmann.com/feed/\" rel=\"self\" type=\"application/rss+xml\" />\n\t<link>https://christianheilmann.com</link>\n\t<description>For a better web with more professional jobs - can talk, will travel</description>\n\t<lastBuildDate>Mon, 20 Dec 2021 18:06:05 +0000</lastBuildDate>\n\t<language>en-US</language>\n\t<sy:updatePeriod>\n\thourly\t</sy:updatePeriod>\n\t<sy:updateFrequency>\n\t1\t</sy:updateFrequency>\n\t<generator>https://wordpress.org/?v=5.8.3</generator>\n\t<item>\n\t\t<title>The web starts on page four</title>\n\t\t<link>https://christianheilmann.com/2021/12/20/the-web-starts-on-page-four/</link>\n\t\t\n\t\t<dc:creator><![CDATA[Chris Heilmann]]></dc:creator>\n\t\t<pubDate>Mon, 20 Dec 2021 18:06:05 +0000</pubDate>\n\t\t\t\t<category><![CDATA[General]]></category>\n\t\t<guid isPermaLink=\"false\">https://christianheilmann.com/?p=7063</guid>\n\n\t\t\t\t\t<description><![CDATA[After 25 years of working for, on and with the web, I am looking at the current state of it and I don&#8217;t like it. There is still a lot of beautiful, creative and amazing work out there, but on the whole, we lost an amazing opportunity. In its place we have a consumption machine [&#8230;]]]></description>\n\t\t\n\t\t\n\t\t\n\t\t\t</item>\n\t\t<item>\n\t\t<title>Let&#8217;s not send developers to the accessibility tree tool</title>\n\t\t<link>https://christianheilmann.com/2021/11/18/lets-not-send-developers-to-the-accessibility-tree-tool/</link>\n\t\t\n\t\t<dc:creator><![CDATA[Chris Heilmann]]></dc:creator>\n\t\t<pubDate>Thu, 18 Nov 2021 17:14:58 +0000</pubDate>\n\t\t\t\t<category><![CDATA[General]]></category>\n\t\t<guid isPermaLink=\"false\">https://christianheilmann.com/?p=7045</guid>\n\n\t\t\t\t\t<description><![CDATA[Testing for accessibility is an incredibly important part of your development process. Products that don&#8217;t block out users because of easy to avoid issues have more success. And the longer you wait with fixing accessibility problems, the harder it gets. That&#8217;s why it is annoying when it is hard to find out about accessibility problems. [&#8230;]]]></description>\n\t\t\n\t\t\n\t\t\n\t\t\t</item>\n\t\t<item>\n\t\t<title>Quick browser Developer Tools tip: define and test interaction states in CSS using state simulation</title>\n\t\t<link>https://christianheilmann.com/2021/11/07/quick-browser-developer-tools-tip-define-and-test-interaction-states-in-css-using-state-simulation/</link>\n\t\t\n\t\t<dc:creator><![CDATA[Chris Heilmann]]></dc:creator>\n\t\t<pubDate>Sun, 07 Nov 2021 15:58:36 +0000</pubDate>\n\t\t\t\t<category><![CDATA[General]]></category>\n\t\t<guid isPermaLink=\"false\">https://christianheilmann.com/?p=7038</guid>\n\n\t\t\t\t\t<description><![CDATA[Interfaces on the web have to be accessible independent of input device. In addition to using the right HTML to make it possible to activate functionality with mouse, keyboard, voice activation or any of the possible ways it is also important to have a visual indicator which element is currently active. This is why we [&#8230;]]]></description>\n\t\t\n\t\t\n\t\t\n\t\t\t</item>\n\t\t<item>\n\t\t<title>Developer Tools secrets that shouldn&#8217;t be secrets</title>\n\t\t<link>https://christianheilmann.com/2021/11/01/developer-tools-secrets-that-shouldnt-be-secrets/</link>\n\t\t\n\t\t<dc:creator><![CDATA[Chris Heilmann]]></dc:creator>\n\t\t<pubDate>Mon, 01 Nov 2021 14:21:08 +0000</pubDate>\n\t\t\t\t<category><![CDATA[General]]></category>\n\t\t<guid isPermaLink=\"false\">https://christianheilmann.com/?p=6999</guid>\n\n\t\t\t\t\t<description><![CDATA[Update: As this is blowing up on Hackernews I added information to each of the tips in which environment they are supported in parenthesis after each heading. When I state &#8220;Chromium browsers&#8221;, this refers to all browsers that use the Chromium core and also feature all the Developer Tools. This is Chrome, Microsoft Edge, Brave [&#8230;]]]></description>\n\t\t\n\t\t\n\t\t<enclosure url=\"https://christianheilmann.com/wp-content/uploads/2021/10/log-vs-live-expression-smaller.mp4\" length=\"2040538\" type=\"video/mp4\" />\n\n\t\t\t</item>\n\t\t<item>\n\t\t<title>Edge DevTools for Visual Studio Code 1.4.0 &#8211; Improved Screencasting, Device Emulation and live, inline issue reporting</title>\n\t\t<link>https://christianheilmann.com/2021/10/28/edge-devtools-for-visual-studio-code-1-4-0-improved-screencasting-device-emulation-and-live-inline-issue-reporting/</link>\n\t\t\n\t\t<dc:creator><![CDATA[Chris Heilmann]]></dc:creator>\n\t\t<pubDate>Thu, 28 Oct 2021 06:02:36 +0000</pubDate>\n\t\t\t\t<category><![CDATA[General]]></category>\n\t\t<guid isPermaLink=\"false\">https://christianheilmann.com/?p=6988</guid>\n\n\t\t\t\t\t<description><![CDATA[The 1.4.0 release of the Microsoft Tools for Visual Studio Code brings a few highly requested features. We improved the screencasting feature, added device emulation and live issue reporting in your source code. You can check the 3 minute highlight reel here . Improved screencasting In previous versions of the extension, the screencast was a [&#8230;]]]></description>\n\t\t\n\t\t\n\t\t\n\t\t\t</item>\n\t</channel>\n</rss>\n"
+  },
+  "description": "For a better web with more professional jobs - can talk, will travel",
+  "home_page_url": "https://christianheilmann.com",
+  "_ext": {
+    "date_published": "2021-12-20T18:06:05.000Z",
+    "date_modified": "2021-12-20T18:06:05.000Z"
+  }
+}

@@ -1,0 +1,408 @@
+
+
+<!doctype html>
+<html lang="en-US">
+<head data-template-path="https://hacks.mozilla.org/wp-content/themes/Hax">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="w2ocEMd5yV9IsGCjhq-7ls67r4VH-Ob6oWdiZpqjN8U">
+
+  
+  <meta name="title" content="Pyodide Spin Out and 0.17 Release – Mozilla Hacks - the Web developer blog">
+
+    <meta property="og:site_name" content="Mozilla Hacks &#8211; the Web developer blog">
+  <meta property="og:url" content="https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release">
+  <meta property="og:title" content="Pyodide Spin Out and 0.17 Release – Mozilla Hacks - the Web developer blog">
+  <meta property="og:description" content="We are happy to announce that Pyodide has become an independent and community-driven project and are pleased to announce the 0.17 release.">
+  <meta property="og:image" content="https://hacks.mozilla.org/files/2021/04/images.png">
+  <meta property="og:image:width" content="225">
+  <meta property="og:image:height" content="225">
+
+    <meta property="twitter:title" content="Pyodide Spin Out and 0.17 Release – Mozilla Hacks - the Web developer blog">
+  <meta property="twitter:description" content="We are happy to announce that Pyodide has become an independent and community-driven project and are pleased to announce the 0.17 release.">
+    <meta name="twitter:card" content="summary_image">
+    <meta property="twitter:image" content="https://hacks.mozilla.org/files/2021/04/images.png">
+  <meta name="twitter:site" content="@mozhacks">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
+
+  <script type="text/javascript">
+    window.hacks = {};
+    // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+    var removeUtms  =   function(){
+        var l = window.location;
+        if( l.hash.indexOf( "utm" ) != -1 ){
+            var anchor = l.hash.match(/#(?!utm)[^&]+/);
+            anchor  =   anchor? anchor[0]: '';
+            if(!anchor && window.history.replaceState){
+                history.replaceState({},'', l.pathname + l.search);
+            } else {
+                l.hash = anchor;
+            }
+        };
+    };
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35433268-8'],
+              ['_setAllowAnchor', true]);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push( removeUtms );
+    (function(d, k) {
+      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
+    })(document, 'script');
+  </script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="blog-name" content="Mozilla Hacks - the Web developer blog" />
+<link rel="alternate" hreflang="en" href="https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/" />
+<link rel="alternate" hreflang="x-default" href="https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Pyodide Spin Out and 0.17 Release - Mozilla Hacks - the Web developer blog</title>
+	<meta name="description" content="We are happy to announce that Pyodide has become an independent and community-driven project and are pleased to announce the 0.17 release." />
+	<link rel="canonical" href="https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Teon Brooks" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="7 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://hacks.mozilla.org/#website","url":"https://hacks.mozilla.org/","name":"Mozilla Hacks - the Web developer blog","description":"hacks.mozilla.org","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://hacks.mozilla.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/#primaryimage","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2021/04/images.png","contentUrl":"https://hacks.mozilla.org/files/2021/04/images.png","width":225,"height":225},{"@type":"WebPage","@id":"https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/#webpage","url":"https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/","name":"Pyodide Spin Out and 0.17 Release - Mozilla Hacks - the Web developer blog","isPartOf":{"@id":"https://hacks.mozilla.org/#website"},"primaryImageOfPage":{"@id":"https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/#primaryimage"},"datePublished":"2021-04-22T15:17:11+00:00","dateModified":"2021-04-23T12:47:53+00:00","author":{"@id":"https://hacks.mozilla.org/#/schema/person/fa74a6e58265f1c695acd4e31e6099f3"},"description":"We are happy to announce that Pyodide has become an independent and community-driven project and are pleased to announce the 0.17 release.","breadcrumb":{"@id":"https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/"]}]},{"@type":"BreadcrumbList","@id":"https://hacks.mozilla.org/2021/04/pyodide-spin-out-and-0-17-release/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hacks.mozilla.org/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://hacks.mozilla.org/articles/"},{"@type":"ListItem","position":3,"name":"Pyodide Spin Out and 0.17 Release"}]},{"@type":"Person","@id":"https://hacks.mozilla.org/#/schema/person/fa74a6e58265f1c695acd4e31e6099f3","name":"Teon Brooks","image":{"@type":"ImageObject","@id":"https://hacks.mozilla.org/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/6c2a7cc4a9b1e41052a0f34a1e59f1d1?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/6c2a7cc4a9b1e41052a0f34a1e59f1d1?s=96&d=mm&r=g","caption":"Teon Brooks"},"description":"Public-interest technologist. Product Manager at Mozilla. Executive Director at Computation in Education Labs.","sameAs":["https://teonbrooks.com","https://twitter.com/teonbrooks"],"url":"https://hacks.mozilla.org/author/tbrooksmozilla-com/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//blog.mozilla.org' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Feed" href="https://hacks.mozilla.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Comments Feed" href="https://hacks.mozilla.org/comments/feed/" />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='wpml-legacy-post-translations-0-css'  href='//blog.mozilla.org/hacks/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-post-translations/style.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/analytics.js?ver=5.8.2' id='analytics-js'></script>
+<link rel="https://api.w.org/" href="https://hacks.mozilla.org/wp-json/" /><link rel="alternate" type="application/json" href="https://hacks.mozilla.org/wp-json/wp/v2/posts/47230" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hacks.mozilla.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://hacks.mozilla.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='shortlink' href='https://hacks.mozilla.org/?p=47230' />
+<link rel="alternate" type="application/json+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F04%2Fpyodide-spin-out-and-0-17-release%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F04%2Fpyodide-spin-out-and-0-17-release%2F&#038;format=xml" />
+<meta name="generator" content="WPML ver:4.5.1 stt:59,61,1,2;" />
+<link rel="shortcut icon" type="image/x-icon" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" /><style>#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}li#wp-admin-bar-site-name a { background: url( "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }
+</style></head>
+<body>
+  <div class="outer-wrapper">
+    <header class="section section--fullwidth header">
+      <div class="masthead row">
+        <div class="branding block block--3">
+          <h1>
+            <a href="https://hacks.mozilla.org">
+              <img class="branding__logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
+        </div>
+        <div class="search block block--2">
+          <form class="search__form" method="get" action="https://hacks.mozilla.org/">
+            <input type="search" name="s" class="search__input" placeholder="Search Mozilla Hacks" value="">
+            <i class="fa fa-search search__badge"></i>
+          </form>
+        </div>
+        <nav class="social">
+          <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i><span>Hacks on YouTube</span></a>
+          <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>@mozhacks on Twitter</span></a>
+          <a class="social__link rss" href="https://hacks.mozilla.org/feed/" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><span>Hacks RSS Feed</span></a>
+          <a class="fx-button" href="https://www.mozilla.org/firefox/download/thanks/?utm_source=hacks.mozilla.org&utm_medium=referral&utm_campaign=header-download-button&utm_content=header-download-button">Download Firefox</a>
+        </nav>
+      </div>
+    </header>
+
+  
+<div id="content-head" class="section">
+  <h1 class="post__title">Pyodide Spin Out and 0.17 Release</h1>
+  <div class="byline">
+    <h3 class="post__author">
+                      <img width="64" height="64" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2021/04/630936-250x250.jpeg" class="avatar avatar-64 photo wp-post-image" alt="" loading="lazy" srcset="https://hacks.mozilla.org/files/2021/04/630936-250x250.jpeg 250w, https://hacks.mozilla.org/files/2021/04/630936.jpeg 460w" sizes="(max-width: 64px) 100vw, 64px" />        By
+                                        <a class="url" href="https://hacks.mozilla.org/author/">Roman Yurchak</a>,                                                  <a class="url" href="https://hacks.mozilla.org/author/">Hood Chatham</a>,                                                  <a class="url" href="https://teonbrooks.com" rel="external me">Teon Brooks</a>,                                                  <a class="url" href="https://wrla.ch" rel="external me">Will Lachance</a>                            </h2>
+    <div class="post__meta">
+      Posted on
+      <abbr class="published" title="2021-04-22T08:17:11-07:00">
+        April 22, 2021      </abbr>
+      <span class="entry-cat">in
+        <a href="https://hacks.mozilla.org/category/featured/" rel="category tag" title="View all posts in Featured Article" >Featured Article</a>, <a href="https://hacks.mozilla.org/category/javascript/" rel="category tag" title="View all posts in JavaScript" >JavaScript</a>,  and <a href="https://hacks.mozilla.org/category/webassembly/" rel="category tag" title="View all posts in WebAssembly" >WebAssembly</a>      </span>
+            <div class="socialshare" data-type="bubbles"></div>
+    </div>
+  </div>
+</div>
+
+<main id="content-main" class="section article">
+  <article class="post" role="article">
+    <p>We are happy to announce that Pyodide has become an independent and community-driven project. We are also pleased to announce the 0.17 release for Pyodide with many new features and improvements.</p>
+<p>Pyodide consists of the CPython 3.8 interpreter compiled to WebAssembly which allows Python to run in the browser. Many popular scientific Python packages have also been compiled and made available. In addition, Pyodide can install any Python package with a pure Python wheel from the Python Package Index (PyPi). Pyodide also includes a comprehensive foreign function interface which exposes the ecosystem of Python packages to Javascript and the browser user interface, including the DOM, to Python.</p>
+<p>You can try out the latest version of Pyodide in a <a href="https://pyodide.org/en/0.17.0/console.html">REPL</a> directly in your browser.</p>
+<h2>Pyodide is now an independent project</h2>
+<p>We are happy to announce that Pyodide now has a new home in a separate GitHub organisation (<a href="https://github.com/pyodide">github.com/pyodide</a>) and is maintained by a volunteer team of contributors. The project documentation is available on <a href="https://pyodide.org">pyodide.org</a>.</p>
+<p>Pyodide was originally developed inside Mozilla to allow the use of Python in <a href="https://hacks.mozilla.org/2019/03/iodide-an-experimental-tool-for-scientific-communicatiodide-for-scientific-communication-exploration-on-the-web/">Iodide</a>, an experimental effort to build an interactive scientific computing environment for the web.  Since <a href="https://hacks.mozilla.org/2019/04/pyodide-bringing-the-scientific-python-stack-to-the-browser/">its initial release and announcement</a>, Pyodide has attracted a large amount of interest from the community, remains actively developed, and is used in many projects outside of Mozilla.</p>
+<p>The core team has approved a transparent <a href="https://pyodide.org/en/0.17.0/project/governance.html">governance document </a> and has a <a href="https://pyodide.org/en/0.17.0/project/roadmap.html">roadmap for future developments</a>. Pyodide also has a<a href="https://pyodide.org/en/0.17.0/project/code-of-conduct.html#code-of-conduct"> Code of Conduct</a> which we expect all contributors and core members to adhere to.</p>
+<p>New contributors are welcome to participate in the project development on Github. There are many ways to contribute, including code contributions, documentation improvements, adding packages, and using Pyodide for your applications and providing feedback.</p>
+<h2>The Pyodide 0.17 release</h2>
+<p>Pyodide 0.17.0 is a major step forward from previous versions. It includes:</p>
+<ul>
+<li>major maintenance improvements,</li>
+<li>a thorough redesign of the central APIs, and</li>
+<li>careful elimination of error leaks and memory leaks</li>
+</ul>
+<h3>Type translation improvements</h3>
+<p>The type translations module was significantly reworked in v0.17 with the goal that round trip translations of objects between Python and Javascript produces an identical object.</p>
+<p>In other words, Python -&gt; JS -&gt; Python translation and JS -&gt; Python -&gt; JS translation now produce objects that are  equal to the original object. (A couple of exceptions to this remain due to unavoidable design tradeoffs.)</p>
+<p>One of Pyodide’s strengths is the foreign function interface between Python and Javascript, which at its best can practically erase the mental overhead of working with two different languages. All I/O must pass through the usual web APIs, so in order for Python code to take advantage of the browser’s strengths , we need to be able to support use cases like generating image data in Python and rendering the data to an HTML5 Canvas, or implementing event handlers in Python.</p>
+<p>In the past we found that one of the major pain points in using Pyodide occurs when an object makes a round trip from Python to Javascript and back to Python and comes back different. This violated the expectations of the user and forced inelegant workarounds.</p>
+<p>The issues with round trip translations were primarily caused by implicit conversion of Python types to Javascript. The implicit conversions were intended to be convenient, but the system was inflexible and surprising to users. We still implicitly convert strings, numbers, booleans, and None. Most other objects are shared between languages using proxies that allow methods and some operations to be called on the object from the other language. The proxies can be converted to native types with new explicit converter methods called <code>.toJs</code> and <code>to_py</code>.</p>
+<p>For instance, given an Array in JavaScript,</p>
+<pre><code class="language-js">window.x = ["a", "b", "c"];
+</code></pre>
+<p>We can access it in Python as,</p>
+<pre>&gt;&gt;&gt; from js import x # import x from global Javascript scope
+>&gt;&gt; type(x)
+&lt;class 'JsProxy'&gt;
+>&gt;&gt; x[0]    # can index x directly
+'a'
+>&gt;&gt; x[1] = 'c' # modify x
+>&gt;&gt; x.to_py()   # convert x to a Python list
+['a', 'c']
+</pre>
+<p>Several other conversion methods have been added for more complicated use cases. This gives the user much finer control over type conversions than was previously possible.</p>
+<p>For example, suppose we have a Python list and want to use it as an argument to a Javascript function that expects an Array.  Either the caller or the callee needs to take care of the conversion. This allows us to directly call functions that are unaware of Pyodide.</p>
+<p>Here is an example of calling a Javascript function from Python with argument conversion on the Python side:</p>
+<pre><code class="js">
+function jsfunc(array) {
+  array.push(2);
+  return array.length;
+}
+
+pyodide.runPython(`
+from js import jsfunc
+from pyodide import to_js
+
+def pyfunc():
+  mylist = [1,2,3]
+  jslist = to_js(mylist)
+  return jsfunc(jslist) # returns 4
+`)
+</code></pre>
+<p>This would work well in the case that <code>jsfunc</code> is a Javascript built-in and <code>pyfunc</code> is part of our codebase. If <code>pyfunc</code> is part of a Python package, we can handle the conversion in Javascript instead:</p>
+<pre><code class="js">
+function jsfunc(pylist) {
+  let array = pylist.toJs();
+  array.push(2);
+  return array.length;
+}
+</code></pre>
+<p>See the <a href="https://pyodide.org/en/0.17.0/usage/type-conversions.html">type translation documentation</a> for more information.</p>
+<h3>Asyncio support</h3>
+<p>Another major new feature is the implementation of a Python event loop that schedules coroutines to run on the browser event loop. This makes it possible to use asyncio in Pyodide.</p>
+<p>Additionally, it is now possible to await Javascript Promises in Python and to await Python awaitables in Javascript. This allows for seamless interoperability between asyncio in Python and Javascript (though memory management issues may arise in complex use cases).</p>
+<p>Here is an example where we define a Python async function that awaits the Javascript async function “fetch” and then we await the Python async function from Javascript.</p>
+<pre><code class="js">
+pyodide.runPython(`
+async def test():
+    from js import fetch
+    # Fetch the Pyodide packages list
+    r = await fetch("packages.json")
+    data = await r.json()
+    # return all available packages
+    return data.dependencies.object_keys()
+`);
+
+let test = pyodide.globals.get("test");
+
+// we can await the test() coroutine from Javascript
+result = await test();
+console.log(result);
+// logs ["asciitree", "parso", "scikit-learn", ...]
+</code></pre>
+<h3>Error Handling</h3>
+<p>Errors can now be thrown in Python and caught in Javascript or thrown in Javascript and caught in Python. Support for this is integrated at the lowest level, so calls between Javascript and C functions behave as expected. The error translation code is generated by C macros which makes implementing and debugging new logic dramatically simpler.</p>
+<p>For example:</p>
+<pre><code class="js">
+function jserror() {
+  throw new Error("ooops!");
+}
+
+pyodide.runPython(`
+from js import jserror
+from pyodide import JsException
+
+try:
+  jserror()
+except JsException as e:
+  print(str(e)) # prints "TypeError: ooops!"
+`);
+</code></pre>
+<h3>Emscripten update</h3>
+<p>Pyodide uses the <a href="https://emscripten.org/">Emscripten</a> compiler toolchain to compile the CPython 3.8 interpreter and Python packages with C extensions to WebAssembly. In this release we finally completed the migration to the latest version of Emscripten that uses the upstream LLVM backend. This allows us to take advantage of recent improvements to the toolchain, including significant reductions in package size and execution time.</p>
+<p>For instance, the SciPy package shrank dramatically from 92 MB to 15 MB so Scipy is now cached by browsers. This greatly improves the usability of scientific Python packages that depend on scipy, such as scikit-image and scikit-learn. The size of the base Pyodide environment with only the CPython standard library shrank from 8.1 MB to 6.4 MB.</p>
+<p>On the performance side, the latest toolchain comes with a 25% to 30% run time improvement:<br />
+<img loading="lazy" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2021/04/pyodide-benchmarks.png" alt="" width="853" height="538" class="alignnone size-full wp-image-47245" srcset="https://hacks.mozilla.org/files/2021/04/pyodide-benchmarks.png 853w, https://hacks.mozilla.org/files/2021/04/pyodide-benchmarks-250x158.png 250w, https://hacks.mozilla.org/files/2021/04/pyodide-benchmarks-500x315.png 500w, https://hacks.mozilla.org/files/2021/04/pyodide-benchmarks-768x484.png 768w" sizes="(max-width: 853px) 100vw, 853px" /><br />
+Performance ranges between near native to up to 3 to 5 times slower, depending on the benchmark.  The above benchmarks were created with Firefox 87.</p>
+<h3>Other changes</h3>
+<p>Other notable features include:</p>
+<ul>
+<li aria-level="1">Fixed package loading for Safari v14+ and other Webkit-based browsers</li>
+<li aria-level="1">Added support for relative URLs in micropip and loadPackage, and improved interaction between micropip and loadPackage</li>
+<li aria-level="1">Support for implementing Python modules in Javascript</li>
+</ul>
+<p>We also did a large amount of maintenance work and code quality improvements:</p>
+<ul>
+<li aria-level="1">Lots of bug fixes</li>
+<li aria-level="1">Upstreamed a number of patches to the emscripten compiler toolchain</li>
+<li aria-level="1">Added systematic error handling to the C code, including automatic adaptors between Javascript errors and CPython errors</li>
+<li aria-level="1">Added internal consistency checks to detect memory leaks, detect fatal errors, and improve ease of debugging</li>
+</ul>
+<p>See <a href="https://pyodide.org/en/0.17.0/project/changelog.html#version-0-17-0">the changelog</a> for more details.</p>
+<h2>Winding down Iodide</h2>
+<p>Mozilla has made the difficult decision to wind down the Iodide project. While <a href="https://alpha.iodide.io">alpha.iodide.io</a> will continue to be available for now (in part to provide a demonstration of Pyodide’s capabilities), we do not recommend using it for important work as it may shut down in the future. Since iodide’s release, there have been <a href="https://pyodide.org/en/0.17.0/project/related-projects.html#notebook-environements-ides-repls">many efforts</a> at creating interactive notebook environments based on Pyodide which are in active development and offer a similar environment for creating interactive visualizations in the browser using python.</p>
+<h2>Next steps for Pyodide</h2>
+<p>While many issues were addressed in this release, a number of other major steps remain on the roadmap. We can mention</p>
+<ul>
+<li aria-level="1">Reducing download sizes and initialization times</li>
+<li aria-level="1">Improve performance of Python code in Pyodide</li>
+<li aria-level="1">Simplification of package loading system</li>
+<li aria-level="1">Update scipy to a more recent version</li>
+<li aria-level="1">Better project sustainability, for instance, by seeking synergies with the conda-forge project and its tooling.</li>
+<li aria-level="1">Better support for web workers</li>
+<li aria-level="1">Better support for synchronous IO (popular for programming education)</li>
+</ul>
+<p>For additional information see the <a href="https://pyodide.org/en/latest/project/roadmap.html">project roadmap</a>.</p>
+<h2>Acknowledgements</h2>
+<p>Lots of thanks to:</p>
+<ul>
+<li aria-level="1"><a href="https://github.com/dalcde">Dexter Chua</a> and <a href="https://github.com/joemarshall">Joe Marshall</a> for improving the build setup and making Emscripten migration possible.</li>
+<li aria-level="1"><a href="https://github.com/hoodmane">Hood Chatham</a> for in-depth improvement of the type translation module and adding asyncio support</li>
+<li aria-level="1">and <a href="https://github.com/casatir">Romain Casati</a> for improving the Pyodide REPL console.</li>
+</ul>
+<p>We are also grateful to all <a href="https://github.com/pyodide/pyodide/graphs/contributors">Pyodide contributors</a>.</p>
+    <section class="about">
+                                <h2 class="about__header">About
+                          Roman Yurchak                      </h3>
+                      <p>Data Scientist and Founder at Symerio</p>
+                                <p><a class="url" href="https://hacks.mozilla.org/author/">More articles by Roman Yurchak&hellip;</a></p>
+                  <h2 class="about__header">About
+                          Hood Chatham                      </h3>
+                      <p>NSF Postdoc at UCLA working in algebraic topology</p>
+                                <p><a class="url" href="https://hacks.mozilla.org/author/">More articles by Hood Chatham&hellip;</a></p>
+                  <h2 class="about__header">About
+                          <a class="url" href="https://teonbrooks.com" rel="external me">
+                Teon Brooks              </a>
+                      </h3>
+                      <p>Public-interest technologist.
+Product Manager at Mozilla.
+Executive Director at Computation in Education Labs.</p>
+                    <ul class="author-meta fa-ul"><li><i class="fa-li fa fa-globe"></i><a href="https://teonbrooks.com" class="website" rel="me">https://teonbrooks.com</a></li><li><i class="fa-li fa fa-twitter"></i><a href="http://twitter.com/teonbrooks" class="twitter" rel="me">@teonbrooks</a></li></ul>            <p><a class="url" href="https://hacks.mozilla.org/author/tbrooksmozilla-com/">More articles by Teon Brooks&hellip;</a></p>
+                  <h2 class="about__header">About
+                          <a class="url" href="https://wrla.ch" rel="external me">
+                Will Lachance              </a>
+                      </h3>
+                      <p>Data Engineering @ Mozilla</p>
+                    <ul class="author-meta fa-ul"><li><i class="fa-li fa fa-globe"></i><a href="https://wrla.ch" class="website" rel="me">https://wrla.ch</a></li><li><i class="fa-li fa fa-twitter"></i><a href="http://twitter.com/wrlach" class="twitter" rel="me">@wrlach</a></li></ul>            <p><a class="url" href="https://hacks.mozilla.org/author/wlachancemozilla-com/">More articles by Will Lachance&hellip;</a></p>
+                  </section>
+  </article>
+  <section class="promo">
+    <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+  <h2 class="heading">Discover great resources for web development</h2>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
+  <input id="fmt" name="fmt" value="H" type="hidden">
+  <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
+
+  <div id="newsletterErrors" class="newsletter__errors"></div>
+
+  <div id="newsletterEmail" class="form__row">
+    <label for="newsletterEmailInput" class="offscreen">E-mail</label>
+    <input id="newsletterEmailInput" name="email" class="newsletter__input" required="" placeholder="you@example.com" size="30" type="email">
+  </div>
+
+  <div id="newsletterPrivacy" class="form__row form__fineprint">
+    <input id="newsletterPrivacyInput" name="privacy" required="" type="checkbox">
+    <label for="newsletterPrivacyInput">
+      I'm okay with Mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/">Privacy Policy</a>.
+    </label>
+  </div>
+  <button id="newsletter-submit" type="submit" class="button positive">Sign up now</button>
+</form>
+<div id="newsletterThanks" class="newsletter newsletter--thanks block block--1 block--polite hidden">
+  <h2 class="heading">Thanks! Please check your inbox to confirm your subscription.</h2>
+  <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us.
+  </p>
+</div>
+  </section>
+  
+
+</main><!-- /#content-main -->
+
+  
+
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        <p class="block block--1">
+          Except where otherwise noted, content on this site is licensed
+          under the
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
+          or any later version.
+        </p>
+        <img class="footer__logo" alt="the Mozilla dino logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/dino.svg">
+      </div>
+    </footer>
+  </div>
+  <link rel='stylesheet' id='hljstheme-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/styles/solarized-light.css?ver=0.6.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.common.pack.js?ver=0.6.2' id='hljs_preload-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.custom.pack.js?ver=0.6.2' id='hljs-js'></script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+  <script>
+    // External links should open in a new tab.
+    (function () {
+      var postLinks = document.querySelectorAll('#content-main a');
+
+      var origin = location.origin;
+
+      for (var i = 0; i < postLinks.length; i++) {
+        var link = postLinks[i];
+        if (link.origin !== origin && !link.getAttribute('target')) {
+          link.setAttribute('target', '_blank');
+        }
+      }
+    })();
+
+    window.addEventListener('load', function () {
+      if (document.querySelector('#newsletterForm')) {
+        var script = document.createElement('script');
+        var path = document.head.getAttribute('data-template-path');
+        script.setAttribute('src', path + '/js/newsletter.js');
+        document.head.appendChild(script);
+      }
+    });
+  </script>
+</body>
+</html>

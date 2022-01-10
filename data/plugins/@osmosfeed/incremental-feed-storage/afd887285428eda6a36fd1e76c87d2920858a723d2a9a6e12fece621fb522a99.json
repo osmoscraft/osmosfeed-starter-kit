@@ -1,0 +1,275 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Increment",
+  "feed_url": "https://increment.com/feed.xml",
+  "items": [
+    {
+      "id": "https://increment.com/planning/reframing-tech-debt/",
+      "url": "https://increment.com/planning/reframing-tech-debt/",
+      "title": "Reframing tech debt",
+      "summary": "If we bake addressing tech debt into our plans, could it become an opportunity to build abundance into our systems?",
+      "content_html": "If we bake addressing tech debt into our plans, could it become an opportunity to build abundance into our systems?",
+      "content_text": "If we bake addressing tech debt into our plans, could it become an opportunity to build abundance into our systems?",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "8619874c37b556df927538fb8551fe0e08dc66069d71e466648b5523886275a7.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/planning-for-momentum/",
+      "url": "https://increment.com/planning/planning-for-momentum/",
+      "title": "Planning for momentum",
+      "summary": "On reimagining planning as a dynamic and generative process.",
+      "content_html": "On reimagining planning as a dynamic and generative process.",
+      "content_text": "On reimagining planning as a dynamic and generative process.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "833d88aace26c223917172b8abf5b7351d8235f64f827abbd92c375e44515e86.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/planning-for-product-market-fit/",
+      "url": "https://increment.com/planning/planning-for-product-market-fit/",
+      "title": "Planning in the dark",
+      "summary": "When planning product development before you have product-market fit, continual iteration and getting comfortable with discomfort can help light the way.",
+      "content_html": "When planning product development before you have product-market fit, continual iteration and getting comfortable with discomfort can help light the way.",
+      "content_text": "When planning product development before you have product-market fit, continual iteration and getting comfortable with discomfort can help light the way.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "2ec3374a6f2f00ca183ca6b9451b1832a737e4eb11cf7c75754ed0d607f07479.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/individual-contributors-guide-to-roadmap-planning/",
+      "url": "https://increment.com/planning/individual-contributors-guide-to-roadmap-planning/",
+      "title": "An IC’s guide to roadmap planning",
+      "summary": "How individual contributors can leverage their unique perspective to advance alignment and clarity of vision.",
+      "content_html": "How individual contributors can leverage their unique perspective to advance alignment and clarity of vision.",
+      "content_text": "How individual contributors can leverage their unique perspective to advance alignment and clarity of vision.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "c41da49a6f2a3994fa6cda0b5ee8e011f32ed34b909ec6ff1998efbba8d5e030.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/product-management-for-engineers/",
+      "url": "https://increment.com/planning/product-management-for-engineers/",
+      "title": "A primer on product management for engineers",
+      "summary": "Breaking down the basics and benefits for engineers looking to manage product development with precision and verve.",
+      "content_html": "Breaking down the basics and benefits for engineers looking to manage product development with precision and verve.",
+      "content_text": "Breaking down the basics and benefits for engineers looking to manage product development with precision and verve.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "8509345017bdd6fe29c9049c5a58fc0bdb07308681f052cbe8d5a76a983b1ef2.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/planning-for-engineering-managers/",
+      "url": "https://increment.com/planning/planning-for-engineering-managers/",
+      "title": "The great tightrope act",
+      "summary": "By thoughtfully balancing ideas and inputs during the planning process, engineering managers can enrich team impacts and business outcomes.",
+      "content_html": "By thoughtfully balancing ideas and inputs during the planning process, engineering managers can enrich team impacts and business outcomes.",
+      "content_text": "By thoughtfully balancing ideas and inputs during the planning process, engineering managers can enrich team impacts and business outcomes.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "4b709fe668198b1654024b4db3f7e2303c2c751c9929f25ae399d2fbae622eab.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/planning-with-requests-for-comments/",
+      "url": "https://increment.com/planning/planning-with-requests-for-comments/",
+      "title": "Planning for change with RFCs",
+      "summary": "How an enduring framework for knowledge-sharing and decision-making helped one team make more informed, egalitarian decisions—and how you can too.",
+      "content_html": "How an enduring framework for knowledge-sharing and decision-making helped one team make more informed, egalitarian decisions—and how you can too.",
+      "content_text": "How an enduring framework for knowledge-sharing and decision-making helped one team make more informed, egalitarian decisions—and how you can too.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "347244ad393e8e9791aecd30529eff6409d0f16bf43b087706e4092e9c765cbb.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/product-planning-as-road-trip/",
+      "url": "https://increment.com/planning/product-planning-as-road-trip/",
+      "title": "Road to somewhere",
+      "summary": "By sharing both the route and the destination to our strategic objectives, we can set ourselves up for a smooth planning journey.",
+      "content_html": "By sharing both the route and the destination to our strategic objectives, we can set ourselves up for a smooth planning journey.",
+      "content_text": "By sharing both the route and the destination to our strategic objectives, we can set ourselves up for a smooth planning journey.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "4e323062ace3872ca18d85a96e5cd8cbd9b97b3293812030925bd0f0bc761f37.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/software-development-as-a-wicked-problem/",
+      "url": "https://increment.com/planning/software-development-as-a-wicked-problem/",
+      "title": "Software development as a wicked problem",
+      "summary": "An exploration of the foundational complexities of building software at scale—and why they often distill into human, rather than technical, challenges.",
+      "content_html": "An exploration of the foundational complexities of building software at scale—and why they often distill into human, rather than technical, challenges.",
+      "content_text": "An exploration of the foundational complexities of building software at scale—and why they often distill into human, rather than technical, challenges.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "4750a85d411e7683b274e4ffa647e40ec330b082ff3ed4a00b0f2bbd4cac8bfe.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/planning-and-tooling/",
+      "url": "https://increment.com/planning/planning-and-tooling/",
+      "title": "Tools for people",
+      "summary": "Considering the complementary—but not all-encompassing—role tooling can play in the planning process.",
+      "content_html": "Considering the complementary—but not all-encompassing—role tooling can play in the planning process.",
+      "content_text": "Considering the complementary—but not all-encompassing—role tooling can play in the planning process.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "aba32ea4dd4f0312db8d3e290cad3502b1736e736779b2c2238ca5bbbcc25785.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/open-source-planning/",
+      "url": "https://increment.com/planning/open-source-planning/",
+      "title": "Open-source excursions: The poetry of planning",
+      "summary": "Reflections on the value of a planning process that emphasizes transparency, empathy, and the people behind the products.",
+      "content_html": "Reflections on the value of a planning process that emphasizes transparency, empathy, and the people behind the products.",
+      "content_text": "Reflections on the value of a planning process that emphasizes transparency, empathy, and the people behind the products.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "33654a1f3c9c6a7545c0ede5a1897a6c789dd772b98a6a9558ceb073c50891d0.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/milestones-and-agile-development/",
+      "url": "https://increment.com/planning/milestones-and-agile-development/",
+      "title": "Planning for pause",
+      "summary": "As a companion to agile development practices, milestones offer a meditative—and productive—opportunity to decelerate.",
+      "content_html": "As a companion to agile development practices, milestones offer a meditative—and productive—opportunity to decelerate.",
+      "content_text": "As a companion to agile development practices, milestones offer a meditative—and productive—opportunity to decelerate.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "7a5e024230e8243ebbd81b909e507d948e603e29392abbb9dff0b74ca10a7bef.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/software-development-with-pathfinders/",
+      "url": "https://increment.com/planning/software-development-with-pathfinders/",
+      "title": "How to make pathfinder soup",
+      "summary": "Like the parable of stone soup, pathfinders can help development teams deliver complex and ambiguous projects, one ingredient at a time.",
+      "content_html": "Like the parable of stone soup, pathfinders can help development teams deliver complex and ambiguous projects, one ingredient at a time.",
+      "content_text": "Like the parable of stone soup, pathfinders can help development teams deliver complex and ambiguous projects, one ingredient at a time.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "f67f41039b0e635f12cd5ce80fbb3187f4a64c4105eb636bb5efc34408f6a0f3.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/how-to-build-effective-hiring-systems/",
+      "url": "https://increment.com/planning/how-to-build-effective-hiring-systems/",
+      "title": "Just hire great people?",
+      "summary": "Why enabling growing teams to flourish begins with an examination of our systems—and a well-considered hiring plan.",
+      "content_html": "Why enabling growing teams to flourish begins with an examination of our systems—and a well-considered hiring plan.",
+      "content_text": "Why enabling growing teams to flourish begins with an examination of our systems—and a well-considered hiring plan.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "625e91f48498104173c3d31a03aef3c29656184bd345bdc27d9010da4db66010.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/planning-for-privacy/",
+      "url": "https://increment.com/planning/planning-for-privacy/",
+      "title": "Planning for privacy",
+      "summary": "A look at the proactive practices and perspectives that can help companies center privacy in product development.",
+      "content_html": "A look at the proactive practices and perspectives that can help companies center privacy in product development.",
+      "content_text": "A look at the proactive practices and perspectives that can help companies center privacy in product development.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "265674982df8bc12af8e6851b8da91f04cf02ed83474f1652c75b2ce708d8292.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/planning-in-public-at-youtrack/",
+      "url": "https://increment.com/planning/planning-in-public-at-youtrack/",
+      "title": "On planning in public",
+      "summary": "YouTrack’s Elena Pishkova shares how the team plans products in public view and in collaboration with customers.",
+      "content_html": "YouTrack’s Elena Pishkova shares how the team plans products in public view and in collaboration with customers.",
+      "content_text": "YouTrack’s Elena Pishkova shares how the team plans products in public view and in collaboration with customers.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "0f10433a3299950267d4112a60b2866913ec607a3d50248ec1179b69a63f18df.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/what-planning-is-like-at-netflix-mailchimp-and-more/",
+      "url": "https://increment.com/planning/what-planning-is-like-at-netflix-mailchimp-and-more/",
+      "title": "What planning is like at…",
+      "summary": "From sprint cadence to success metrics, here’s a snapshot of the planning process at Netflix, Mailchimp, Asana, LaunchDarkly, and more.",
+      "content_html": "From sprint cadence to success metrics, here’s a snapshot of the planning process at Netflix, Mailchimp, Asana, LaunchDarkly, and more.",
+      "content_text": "From sprint cadence to success metrics, here’s a snapshot of the planning process at Netflix, Mailchimp, Asana, LaunchDarkly, and more.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "f64c5c1905edd4e98942fc411bb804bbd138f1cfc4f41b96898d4eb1174c79a1.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/formal-specifications-and-planning/",
+      "url": "https://increment.com/planning/formal-specifications-and-planning/",
+      "title": "Planning with flare",
+      "summary": "On thorny software projects, formal specifications can serve as beacons that illuminate the terrain ahead.",
+      "content_html": "On thorny software projects, formal specifications can serve as beacons that illuminate the terrain ahead.",
+      "content_text": "On thorny software projects, formal specifications can serve as beacons that illuminate the terrain ahead.",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "5d87ac41efa8cde97167d95cc44aa46bfb5b804cf648270849ce15df88842bb8.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/the-best-laid-plans-tech-careers/",
+      "url": "https://increment.com/planning/the-best-laid-plans-tech-careers/",
+      "title": "The best-laid plans",
+      "summary": "Wherein a career in machine learning begins with a virtual turtle, an appetite for literature, and an economics degree…",
+      "content_html": "Wherein a career in machine learning begins with a virtual turtle, an appetite for literature, and an economics degree…",
+      "content_text": "Wherein a career in machine learning begins with a virtual turtle, an appetite for literature, and an economics degree…",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "d8250bba9c858e7c9930bec264148a1537885885a36a8945ecfa5263c3699f5d.html"
+      }
+    },
+    {
+      "id": "https://increment.com/planning/letter-from-the-editor/",
+      "url": "https://increment.com/planning/letter-from-the-editor/",
+      "title": "Letter from the editor",
+      "content_html": "",
+      "content_text": "",
+      "date_published": "2021-11-09T10:00:00.000Z",
+      "date_modified": "2021-11-09T10:00:00.000Z",
+      "_plugin": {
+        "pageFilename": "2e0afe64161a43ba5496120c8a49fadb80b3147c147f669f60866b6c804bb602.html"
+      }
+    }
+  ],
+  "_plugin": {
+    "rawFeed": "<?xml version='1.0' encoding='utf-8'?>\n<rss version='2.0' xmlns:atom='http://www.w3.org/2005/Atom'>\n  <channel>\n    <title>Increment</title>\n    <description>A digital magazine about how teams build and operate software systems at scale.</description>\n    <link>https://increment.com</link>\n\n    <atom:link href='https://increment.com/feed.xml' rel='self' type='application/rss+xml' />\n\n    <item>\n      <title>Reframing tech debt</title>\n      <description>If we bake addressing tech debt into our plans, could it become an opportunity to build abundance into our systems?</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/reframing-tech-debt/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/reframing-tech-debt/</guid>\n    </item>\n\n    <item>\n      <title>Planning for momentum</title>\n      <description>On reimagining planning as a dynamic and generative process.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/planning-for-momentum/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/planning-for-momentum/</guid>\n    </item>\n\n    <item>\n      <title>Planning in the dark</title>\n      <description>When planning product development before you have product-market fit, continual iteration and getting comfortable with discomfort can help light the way.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/planning-for-product-market-fit/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/planning-for-product-market-fit/</guid>\n    </item>\n\n    <item>\n      <title>An IC’s guide to roadmap planning</title>\n      <description>How individual contributors can leverage their unique perspective to advance alignment and clarity of vision.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/individual-contributors-guide-to-roadmap-planning/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/individual-contributors-guide-to-roadmap-planning/</guid>\n    </item>\n\n    <item>\n      <title>A primer on product management for engineers</title>\n      <description>Breaking down the basics and benefits for engineers looking to manage product development with precision and verve.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/product-management-for-engineers/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/product-management-for-engineers/</guid>\n    </item>\n\n    <item>\n      <title>The great tightrope act</title>\n      <description>By thoughtfully balancing ideas and inputs during the planning process, engineering managers can enrich team impacts and business outcomes.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/planning-for-engineering-managers/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/planning-for-engineering-managers/</guid>\n    </item>\n\n    <item>\n      <title>Planning for change with RFCs</title>\n      <description>How an enduring framework for knowledge-sharing and decision-making helped one team make more informed, egalitarian decisions—and how you can too.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/planning-with-requests-for-comments/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/planning-with-requests-for-comments/</guid>\n    </item>\n\n    <item>\n      <title>Road to somewhere</title>\n      <description>By sharing both the route and the destination to our strategic objectives, we can set ourselves up for a smooth planning journey.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/product-planning-as-road-trip/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/product-planning-as-road-trip/</guid>\n    </item>\n\n    <item>\n      <title>Software development as a wicked problem</title>\n      <description>An exploration of the foundational complexities of building software at scale—and why they often distill into human, rather than technical, challenges.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/software-development-as-a-wicked-problem/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/software-development-as-a-wicked-problem/</guid>\n    </item>\n\n    <item>\n      <title>Tools for people</title>\n      <description>Considering the complementary—but not all-encompassing—role tooling can play in the planning process.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/planning-and-tooling/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/planning-and-tooling/</guid>\n    </item>\n\n    <item>\n      <title>Open-source excursions: The poetry of planning</title>\n      <description>Reflections on the value of a planning process that emphasizes transparency, empathy, and the people behind the products.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/open-source-planning/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/open-source-planning/</guid>\n    </item>\n\n    <item>\n      <title>Planning for pause</title>\n      <description>As a companion to agile development practices, milestones offer a meditative—and productive—opportunity to decelerate.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/milestones-and-agile-development/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/milestones-and-agile-development/</guid>\n    </item>\n\n    <item>\n      <title>How to make pathfinder soup</title>\n      <description>Like the parable of stone soup, pathfinders can help development teams deliver complex and ambiguous projects, one ingredient at a time.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/software-development-with-pathfinders/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/software-development-with-pathfinders/</guid>\n    </item>\n\n    <item>\n      <title>Just hire great people?</title>\n      <description>Why enabling growing teams to flourish begins with an examination of our systems—and a well-considered hiring plan.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/how-to-build-effective-hiring-systems/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/how-to-build-effective-hiring-systems/</guid>\n    </item>\n\n    <item>\n      <title>Planning for privacy</title>\n      <description>A look at the proactive practices and perspectives that can help companies center privacy in product development.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/planning-for-privacy/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/planning-for-privacy/</guid>\n    </item>\n\n    <item>\n      <title>On planning in public</title>\n      <description>YouTrack’s Elena Pishkova shares how the team plans products in public view and in collaboration with customers.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/planning-in-public-at-youtrack/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/planning-in-public-at-youtrack/</guid>\n    </item>\n\n    <item>\n      <title>What planning is like at… </title>\n      <description>From sprint cadence to success metrics, here’s a snapshot of the planning process at Netflix, Mailchimp, Asana, LaunchDarkly, and more.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/what-planning-is-like-at-netflix-mailchimp-and-more/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/what-planning-is-like-at-netflix-mailchimp-and-more/</guid>\n    </item>\n\n    <item>\n      <title>Planning with flare</title>\n      <description>On thorny software projects, formal specifications can serve as beacons that illuminate the terrain ahead.</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/formal-specifications-and-planning/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/formal-specifications-and-planning/</guid>\n    </item>\n\n    <item>\n      <title>The best-laid plans</title>\n      <description>Wherein a career in machine learning begins with a virtual turtle, an appetite for literature, and an economics degree…</description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/the-best-laid-plans-tech-careers/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/the-best-laid-plans-tech-careers/</guid>\n    </item>\n\n    <item>\n      <title>Letter from the editor</title>\n      <description></description>\n      <pubDate>Tue, 09 Nov 2021 10:00:00 GMT</pubDate>\n      <link>https://increment.com/planning/letter-from-the-editor/</link>\n      <guid isPermaLink='true'>https://increment.com/planning/letter-from-the-editor/</guid>\n    </item>\n  </channel>\n</rss>"
+  },
+  "description": "A digital magazine about how teams build and operate software systems at scale.",
+  "home_page_url": "https://increment.com",
+  "_ext": {
+    "date_published": "2021-11-09T10:00:00.000Z",
+    "date_modified": "2021-11-09T10:00:00.000Z"
+  }
+}

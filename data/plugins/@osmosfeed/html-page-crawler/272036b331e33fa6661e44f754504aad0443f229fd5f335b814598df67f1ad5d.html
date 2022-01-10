@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="robots" content="noodp">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, viewport-fit=cover">
+
+    <title>  PCM for In-App Direct Response Advertising | WebKit</title>
+
+    <meta name="application-name" content="WebKit">
+
+    <link rel="stylesheet" type="text/css" href="https://webkit.org/wp-content/themes/webkit/style.css?20200127" media="all">
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?families=SF+Pro,v1" type="text/css">
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?families=SF+Mono,v2" type="text/css">
+    <meta name="supported-color-schemes" content="light dark">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="https://webkit.org/feed/">
+    <link rel="alternate" type="text/xml" title="RSS .92" href="https://webkit.org/feed/rss/">
+    <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="https://webkit.org/feed/atom/">
+    <link rel="pingback" href="https://webkit.org/wp/xmlrpc.php">
+
+    <link rel="shortcut icon" sizes="32x32" type="image/x-icon" href="/favicon.ico">
+
+    <meta name='robots' content='max-image-preview:large' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://webkit.org/wp/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://webkit.org/wp/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://webkit.org/wp/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.8.2" />
+<link rel="canonical" href="https://webkit.org/blog/12042/pcm-for-in-app-direct-response-advertising/" />
+<link rel='shortlink' href='https://webkit.org/?p=12042' />
+<link rel="alternate" type="application/json+oembed" href="https://webkit.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebkit.org%2Fblog%2F12042%2Fpcm-for-in-app-direct-response-advertising%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://webkit.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebkit.org%2Fblog%2F12042%2Fpcm-for-in-app-direct-response-advertising%2F&#038;format=xml" />
+
+    <!-- Schema.org markup -->
+    <meta itemprop="name" content="PCM for In-App Direct Response Advertising">
+    <meta itemprop="description" content="Private Click Measurement (PCM) can now be used for in-app direct response advertising using SFSafariViewController.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:site" content="@webkit">
+    <meta name="twitter:title" content="PCM for In-App Direct Response Advertising">
+    <meta name="twitter:description" content="Private Click Measurement (PCM) can now be used for in-app direct response advertising using SFSafariViewController.">
+    <meta name="twitter:creator" content="@johnwilander">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="PCM for In-App Direct Response Advertising">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://webkit.org/blog/12042/pcm-for-in-app-direct-response-advertising/">
+    <meta property="og:description" content="Private Click Measurement (PCM) can now be used for in-app direct response advertising using SFSafariViewController.">
+    <meta property="og:site_name" content="WebKit">
+    <meta property="article:published_time" content="2021-11-16T09:06:04-08:00">
+    <meta property="article:modified_time" content="2021-11-16T09:06:04-08:00">
+    <meta property="article:section" content="Privacy">
+    <meta property="fb:admins" content="1085088865">
+<style type="text/css">article .byline .author {
+  white-space: normal;
+  line-height: 1.5;
+}</style></head>
+<body class="post-template-default single single-post postid-12042 single-format-standard">
+    <!-- Copyright © 2020 Apple Inc. All rights reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg">
+	<style> svg { display: block; width: 0; height: 0; } </style>
+    <filter id="invertLightness" x="0" y="0" style="color-interpolation-filters: sRGB">
+        <feColorMatrix type="matrix" in="SourceGraphic" result="red" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1" />
+        <feColorMatrix type="matrix" in="SourceGraphic" result="green" values="0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1" />
+        <feColorMatrix type="matrix" in="SourceGraphic" result="blue" values="0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1" />
+        <feBlend in="red" in2="green" mode="lighten" result="maxyellow" />
+        <feBlend in="maxyellow" in2="blue" mode="lighten" result="max" />
+        <feBlend in="red" in2="green" mode="darken" result="minyellow" />
+        <feBlend in="minyellow" in2="blue" mode="darken" result="min" />
+        <feComponentTransfer result="adjustment" in="min">
+            <feFuncR type="linear" intercept="1" slope="-1" />
+            <feFuncG type="linear" intercept="1" slope="-1" />
+            <feFuncB type="linear" intercept="1" slope="-1" />
+        </feComponentTransfer>
+        <feComposite operator="arithmetic" in="SourceGraphic" in2="adjustment" k1="0" k2="1" k3="1" k4="-1" result="channelAdjustment" />
+        <feComposite operator="arithmetic" in="channelAdjustment" in2="max" k1="0" k2="1" k3="-1" k4="1" result="finalColors" />
+        <feComposite operator="in" in="finalColors" in2="SourceAlpha" />
+    </filter>
+</svg>    <header aria-label="WebKit.org Header" id="header">
+        <div class="page-width">
+        <a href="/"><div id="logo" class="site-logo">WebKit</div></a>
+        <nav id="site-nav" aria-label="Site Menu">
+<div class="menu-main-menu-container"><input type="checkbox" id="menu-main-menu-toggle" class="menu-toggle" /><label for="menu-main-menu-toggle" class="label-toggle main-menu" data-open="Main Menu" data-close="Close Menu"></label><ul id="menu-main-menu" class="menu" role="menubar"><li id="menu-item-4270" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-4270"><a href="https://webkit.org/blog/" role="menuitem">Blog</a></li>
+<li id="menu-item-6091" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6091"><a href="https://webkit.org/downloads/" role="menuitem">Downloads</a></li>
+<li id="menu-item-4272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4272"><a href="https://webkit.org/status/" role="menuitem">Feature Status</a></li>
+<li id="menu-item-9988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-9988"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="#nav-sub-menu" role="menuitem" aria-haspopup="true" aria-owns="sub-menu-for-9988" aria-controls="sub-menu-for-9988" aria-expanded="true"><label for="toggle-9988" class="label-toggle">Documentation</label></a>
+<ul class="sub-menu sub-menu-layer" role="menu" id="sub-menu-for-9988">
+	<li id="menu-item-4273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4273"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="https://webkit.org/reporting-bugs/" role="menuitem">How to Report Bugs</a></li>
+	<li id="menu-item-9989" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9989"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="/web-inspector" role="menuitem">Web Inspector</a></li>
+	<li id="menu-item-10868" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10868"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="https://webkit.org/tracking-prevention/" role="menuitem">Tracking Prevention</a></li>
+</ul>
+</li>
+<li id="menu-item-4274" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4274"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="#nav-sub-menu" role="menuitem" aria-haspopup="true" aria-owns="sub-menu-for-4274" aria-controls="sub-menu-for-4274" aria-expanded="true"><label for="toggle-4274" class="label-toggle">Contribute</label></a>
+<ul class="sub-menu sub-menu-layer" role="menu" id="sub-menu-for-4274">
+	<li id="menu-item-10037" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10037"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/project/" role="menuitem">Project Goals</a></li>
+	<li id="menu-item-4277" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4277"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/getting-started/" role="menuitem">Getting Started</a></li>
+	<li id="menu-item-4284" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4284"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/contributing-code/" role="menuitem">Contributing Code</a></li>
+	<li id="menu-item-4281" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4281"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/testing-contributions/" role="menuitem">Testing Contributions</a></li>
+	<li id="menu-item-4282" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4282"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/policy-and-guidelines/" role="menuitem">Policy and Guidelines</a></li>
+	<li id="menu-item-4278" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4278"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="http://trac.webkit.org" role="menuitem">Trac Timeline</a></li>
+</ul>
+</li>
+</ul></div></nav>
+        </div>
+    </header>
+
+<main id="content">
+    <div class="page-width">
+    
+        <article class="post-12042 post type-post status-publish format-standard hentry category-privacy" id="post-12042">
+            <h1><a href="https://webkit.org/blog/12042/pcm-for-in-app-direct-response-advertising/" rel="bookmark" title="Permanent Link: PCM for In-App Direct Response Advertising">PCM for In-App Direct Response Advertising</a></h1>
+            <div class="byline">
+                <p class="date">Nov 16, 2021</p>
+                <p class="author">by <span>Alex Christensen, Kate Cheney, and John Wilander</span></p>
+                                <p class="twitter"><a href="https://twitter.com/johnwilander" target="_blank">@johnwilander</a></p>
+                            </div>
+
+            <div class="bodycopy">
+                <p>Private Click Measurement (PCM) can now be used for in-app direct response advertising using SFSafariViewController. Try it out in our iOS 15.2 beta.</p>
+<h2>What is PCM?</h2>
+<p>PCM is a proposed web standard for measuring the effectiveness of click-through advertising in a privacy-preserving way. It allows for 8 bits of data on the click source site to be combined with 4 bits of data on the click destination site to measure which advertising is driving sales. The combined 8+4 bits of data is sent to both the click source and destination in an attribution report that doesn’t carry any user or device identifiers. The net result is a report that says “Someone who clicked ad X on website A later converted with value Y on website B.”</p>
+<p>PCM shipped in iOS/iPadOS 14.5 and in Safari 14.1 on macOS. Its privacy-preserving nature means it can be used without getting the user’s permission to track according to <a href="https://developer.apple.com/app-store/user-privacy-and-data-use/">AppTrackingTransparency</a>.</p>
+<h2>What is SFSafariViewController?</h2>
+<p><a href="https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller">SFSafariViewController</a> is a ready-built in-app web browser on iOS/iPadOS with full-fledged Safari features such as Reader, AutoFill, Fraudulent Website Detection, content blocking, and bookmarks. User activity and interaction with SFSafariViewController are not visible to your app which means users can safely browse the web in it and you do not need to secure data between your app and SFSafariViewController.</p>
+<h2>On Direct Response Advertising</h2>
+<p>Our <a href="https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/">introductory blog post on PCM</a> featured two important FAQ entries on app-to-web advertising – on the subject of taking the user to the device’s browser and on the subject of an in-app experience.</p>
+<h3>When to Take the User To the Device’s Browser</h3>
+<p>PCM app-to-web in iOS 14.5 had to take the user to the device’s browser. This was designed to support re-engagement. Stored clicks in PCM are valid for 7 days and customers who are ready to take action only after a few hours or days, will most likely go find the merchant website in their browser. They’ll either look up the tab where they left off, use a bookmark they might have saved, use their search provider to find the right webpage, or enter the website’s address directly in the URL bar.</p>
+<p>For the stored click data to be readily available when the user re-engages in this fashion, the initial click needs to take the user to their browser. This is still true going forward.</p>
+<h3>When to Handle the Tap In-App</h3>
+<p>Another form of click-through advertising is called direct response. In such cases, the user is not expected to think about converting for an extended period of time, but rather take action directly on the webpage they land on. It could be a limited offer or a product priced so that the user doesn’t feel like they have to think it over.</p>
+<p>Developers and advertisers have told us they want to be able to provide more of an in-app experience for direct response advertising, rather than take the user to the device’s browser. They want a seamless in-app experience for users who tap on an ad, check out the product page, decide to buy or not, and then want to go back to the hosting app.</p>
+<p>Our intro blog post covered this request in the FAQ section, and we said “We are interested in this but don’t have a solution yet.” Today we have a solution. PCM is now capable of supporting in-app advertising with new API for SFSafariViewController.</p>
+<h2>PCM App-to-Web with SFSafariViewController</h2>
+<p><a href="https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller">SFSafariViewController</a> provides a great in-app browsing experience where the user can store Safari bookmarks that can sync across devices, has access to autofill of credentials and payment card info, and Apple Pay. It is simply a great place to take the user as part of direct response advertising.</p>
+<h3>Ephemeral Clicks to Prevent Click Fraud</h3>
+<p>PCM will only store click data and schedule an attribution report if the user triggers a conversion in the SFSafariViewController that they opened through the click. A tap which navigates to a website in SFSafariViewController <em>without a matching triggering event</em> will not be stored. As a result, an instance of SFSafariViewController can only hold one non-converted click at a time, whereas all converted clicks will be stored and result in reports.</p>
+<p>This ensures that a hosting app cannot speculatively store clicks in its SFSafariViewController for fraudulent reasons. It also ensures that this use of PCM really is geared toward direct response advertising.</p>
+<h3>Attributions are Per Hosting App</h3>
+<p>Taps in different apps navigating the user to the same advertised website do not affect each other. Every app gets its own attribution. Again, this feature is for direct response advertising so a customer who buys a product twice based on ad clicks in two different apps will generate two attribution reports.</p>
+<h3>Attribution Reports Don’t Require Your App to Run</h3>
+<p>One particular challenge for the kind of delayed attribution reporting PCM uses is what to do if the user doesn’t use the hosting app frequently or doesn’t use it around the time when the report is supposed to be sent out. We have made sure that pending attribution reports from PCM app-to-web with SFSafariViewController are sent independent of if the hosting app where the click happened is running or not.</p>
+<h3>The API</h3>
+<p>As shown in our <a href="https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/">introductory blog post on PCM</a>, apps can already use Private Click Measurement with Safari by putting a <code>UIEventAttribution</code> on a <code>UISceneOpenExternalURLOptions</code> and using it with UIScene&#8217;s <code>openURL:options:completionHandler:</code>.</p>
+<p>In iOS 15.2 beta, a new attribute of type <code>UIEventAttribution</code> is added to the existing class <code>SFSafariViewControllerConfiguration</code>:</p>
+<pre><code>@available(iOS 15.2, *)
+  @NSCopying var eventAttribution: UIEventAttribution?
+</code></pre>
+<p>You can optionally use it when opening a URL in SFSafariViewController, like this:</p>
+<pre><code>func didTapOnAdWithIdentifier(advertisementIdentifier: UInt8, url: URL) {
+    let attribution = UIEventAttribution(
+        sourceIdentifier: advertisementIdentifier, 
+        destinationURL: url, 
+        sourceDescription: "Ad for toy XYZ.",
+        purchaser: "Toy Example Company")
+    let configuration = SFSafariViewController.Configuration()
+    configuration.eventAttribution = attribution
+    present(SFSafariViewController(url: url, configuration: configuration), animated: false)
+}
+</code></pre>
+<p>When an <code>UIEventAttribution</code> is part of the configuration, SafariViewService checks that a tap on an <code>UIEventAttributionView</code> preceded the opening of SFSafariViewController to guarantee <em>click-through</em> attribution. Then the information from the <code>UIEventAttribution</code> object is checked before it’s given to WebKit for processing.</p>
+<p>Private Click Measurement works as previously from that point.</p>
+<h2>Debugging Your App</h2>
+<p>See “Testing and Debugging” in our <a href="https://webkit.org/blog/11529/introducing-private-click-measurement-pcm/">introductory blog post on PCM</a> for how to turn on PCM Debug Mode.</p>
+<p>Make sure to restart your app after enabling PCM Debug Mode with SFSafariViewController.  If you are having trouble getting PCM Debug Mode to turn on or off, try restarting the device.</p>
+<h2>Please Provide Feedback</h2>
+<p>We really appreciate all the developer and ad tech feedback we’ve received so far on Private Click Measurement. Prioritizing PCM for in-app measurement was the result of such feedback. There are three ways for you to continue to tell us what you think:</p>
+<ul>
+<li>The <a href="https://github.com/privacycg/private-click-measurement/issues">standards proposal repository</a> in the W3C Privacy Community Group for anything related to the specified web parts of PCM, i.e. feedback on the proposed standard as it would work in any web engine.</li>
+<li><a href="https://bugs.webkit.org/">https://bugs.webkit.org</a> for anything specific to the WebKit implementation of PCM.</li>
+<li><a href="https://feedbackassistant.apple.com/">Apple Feedback Assistant</a> for anything specific to the UIKit or SFSafariViewController APIs for PCM.</li>
+</ul>
+
+                            </div>
+        </article>
+
+        <aside class="nextrouter" aria-label="Next/Previous posts">
+            <div class="bodycopy">
+                        <a class="page-numbers next-post" href="https://webkit.org/blog/12137/release-notes-for-safari-technology-preview-136/" rel="next"><div class="nextrouter-copy"><span class="label">Next</span><span class="title">Release Notes for Safari Technology Preview 136</span><span class="link">Learn more</span></div></a>            </div>
+        </aside>
+        <aside class="nextrouter previous" aria-label="Next/Previous posts">
+            <div class="bodycopy">
+            <a class="page-numbers prev-post" href="https://webkit.org/blog/12040/release-notes-for-safari-technology-preview-135/" rel="prev"><div class="nextrouter-copy"><span class="label">Previously</span><span class="title">Release Notes for Safari Technology Preview 135</span><span class="link">Learn more</span></div></a>            </div>
+        </aside>
+
+    
+    
+    </div><!--.page-width-->
+</main><!-- #content -->
+
+<footer>
+    <div class="page-width">
+        <nav id="footer-nav" aria-label="Footer menu"><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-7617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7617"><a href="https://twitter.com/webkit">@webkit</a></li>
+<li id="menu-item-5365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5365"><a href="https://webkit.org/sitemap/">Site Map</a></li>
+<li id="menu-item-4185" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4185"><a href="http://www.apple.com/legal/privacy/">Privacy Policy</a></li>
+<li id="menu-item-4287" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4287"><a href="https://webkit.org/licensing-webkit/">Licensing WebKit</a></li>
+<li id="menu-item-4187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4187"><a href="https://webkit.org/terms-of-use/">WebKit and the WebKit logo are trademarks of Apple Inc.</a></li>
+</ul></div></nav>
+    </div>
+</footer>
+
+
+<script type='text/javascript' src='https://webkit.org/wp-content/themes/webkit/scripts/global.js?ver=1.0' id='theme-global-js'></script>
+<script type='text/javascript' src='https://webkit.org/wp/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+</body>
+</html>
+<!-- Dynamic page generated in 0.285 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2022-01-09 17:39:56 -->
+
+<!-- super cache -->

@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
+	<title>Beware the Cut ‘n’ Paste Persona &#8211; A List Apart</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="A List Apart &raquo; Feed" href="https://alistapart.com/main/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/alistapart.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.3"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.3' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://149572954.v2.pressablecdn.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-monetize-css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/frontend/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='coil-messaging-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/css/messages/coil.min.css?ver=1.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/style.css?ver=1636974319' type='text/css' media='all' />
+<link rel='stylesheet' id='ala-prism-style-css'  href='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.css?ver=1.0' type='text/css' media='all' />
+<!-- `sharedaddy` is included in the concatenated jetpack.css -->
+<link rel='stylesheet' id='social-logos-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=10.5-beta' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/css/jetpack.css?ver=10.5-beta' type='text/css' media='all' />
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<link rel="https://api.w.org/" href="https://alistapart.com/wp-json/" /><link rel="alternate" type="application/json" href="https://alistapart.com/wp-json/wp/v2/article/7172941" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://alistapart.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://alistapart.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://alistapart.com/article/beware-the-cut-n-paste-persona/" />
+<link rel="alternate" type="application/json+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fbeware-the-cut-n-paste-persona%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://alistapart.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Falistapart.com%2Farticle%2Fbeware-the-cut-n-paste-persona%2F&#038;format=xml" />
+<meta name="monetization" content="$ilp.uphold.com/Kh7NgDU9kqp3" />
+<link rel="monetization" href="https://ilp.uphold.com/Kh7NgDU9kqp3" />
+<style type='text/css'>img#wpstats{display:none}</style>
+			<style type="text/css">
+						.site-title,
+			.site-description {
+				position: absolute;
+				clip: rect(1px, 1px, 1px, 1px);
+			}
+
+						</style>
+		
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Beware the Cut ‘n’ Paste Persona" />
+<meta property="og:url" content="https://alistapart.com/article/beware-the-cut-n-paste-persona/" />
+<meta property="og:description" content="User personas are a cornerstone of user research, but can fail when they portray abstract caricatures rather than actual potential users. Emanuela Cozzi and Lennart Overkamp show us a new take on u…" />
+<meta property="article:published_time" content="2021-05-06T14:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-06T03:20:03+00:00" />
+<meta property="og:site_name" content="A List Apart" />
+<meta property="og:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/cut-n-paste-persona.jpg?fit=1200%2C318&#038;ssl=1" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="318" />
+<meta property="og:image:alt" content="Illustration showing three distinct personas" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:site" content="@alistapart" />
+<meta name="twitter:text:title" content="Beware the Cut ‘n’ Paste Persona" />
+<meta name="twitter:image" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/cut-n-paste-persona.jpg?fit=1200%2C318&#038;ssl=1&#038;w=640" />
+<meta name="twitter:image:alt" content="Illustration showing three distinct personas" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/cropped-icon_navigation-laurel-512.jpg?fit=270%2C270&#038;ssl=1" />
+<link rel="stylesheet" type="text/css" id="wp-custom-css" href="https://alistapart.com/?custom-css=2a4ef18516" /></head>
+
+<body class="article-template-default single single-article postid-7172941 wp-custom-logo monetization-not-initialized coil-no-gating coil-hide-excerpt article-beware-the-cut-n-paste-persona" itemscope itemtype="http://schema.org/Article">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<a href="https://alistapart.com/" class="custom-logo-link" rel="home"><img width="960" height="98" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?fit=960%2C98&amp;ssl=1" class="custom-logo" alt="A List Apart" srcset="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?w=960&amp;ssl=1 960w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=300%2C31&amp;ssl=1 300w, https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/ala-logo-big.png?resize=768%2C78&amp;ssl=1 768w" sizes="(max-width: 960px) 100vw, 960px" /></a>				<p class="site-title"><a href="https://alistapart.com/" rel="home"  itemscope itemtype="http://schema.org/ImageObject">A List Apart</a></p>
+								<p class="site-description">For people who make websites</p>
+					</div><!-- .site-branding -->
+
+		<nav id="site-navigation" class="main-navigation" itemscope="" itemtype="http://schema.org/SiteNavigationElement">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><span class="screen-reader-text">Primary Menu</span></button>
+			<div class="menu-site-header-container"><ul id="primary-menu" class="menu"><li id="menu-item-6000493" class="ala-home-url menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-6000493"><a href="https://alistapart.com" itemprop="url"><span itemprop="name">Home</span></a></li>
+<li id="menu-item-6000494" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-6000494"><a href="https://alistapart.com/articles/" itemprop="url"><span itemprop="name">Articles</span></a></li>
+<li id="menu-item-6000495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000495"><a href="https://alistapart.com/events/" itemprop="url"><span itemprop="name">Events</span></a></li>
+<li id="menu-item-6000496" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000496"><a href="https://alistapart.com/topics/" itemprop="url"><span itemprop="name">Topics</span></a></li>
+<li id="menu-item-6000497" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000497"><a href="https://alistapart.com/about/contribute/" itemprop="url"><span itemprop="name">Write for Us</span></a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#" class="mlp-language-nav"><span itemprop="name">Language (English) <i class="arrow-down"></i></span></a><ul class="sub-menu mlp-languages"><li class="site-id-"2" mlp-language-nav-item menu-item menu-item-type-mlp_language menu-item-object-mlp_language"><a rel="alternate" href="https://alistapart.com/it" itemprop="url"><span itemprop="name">Italian</span></a></li></ul></li></ul></div>
+			<form role="search" method="get" class="search-form" action="https://alistapart.com/">
+				<label>
+					<span class="screen-reader-text">Search for:</span>
+					<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Search" />
+			</form>		</nav><!-- #site-navigation -->
+
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main">
+
+			
+<article id="post-7172941" class="post-7172941 article type-article status-publish has-post-thumbnail hentry category-user-experience category-user-research tag-user-personas tag-user-research">
+
+	<figure class="hero-wide" itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject">
+		
+			<div class="post-thumbnail">
+				<img width="4539" height="1202" src="https://149572954.v2.pressablecdn.com/wp-content/uploads/2021/05/cut-n-paste-persona.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Illustration showing three distinct personas" loading="lazy" itemprop="contentUrl" />			</div><!-- .post-thumbnail -->
+
+					<span class="illustrator-credit" itemprop="contributor" itemscope itemtype="http://schema.org/Person">
+			Illustration by <a href="https://alistapart.com/author/dmacpherson/" title="Posts by Dougal MacPherson" class="author url fn" rel="author">Dougal MacPherson</a>				</span>
+			
+	</figure>
+
+	<header class="entry-header">
+		
+		<h1 class="entry-title" itemprop="headline">Beware the Cut ‘n’ Paste Persona</h1>		<div class="entry-meta">
+			<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/emanuela-cozzi/" itemprop="url"> <span itemprop="name">Emanuela Cozzi</span></a></span>, <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/lennartoverkamp/" itemprop="url"> <span itemprop="name">Lennart Overkamp</span></a></span></span><span class="posted-on"><time class="entry-date published" datetime="2021-05-06T10:00:00-04:00">May 06, 2021</time><time class="updated" datetime="2021-05-05T23:20:03-04:00">May 05, 2021</time></span>			<div class="entry-topic">
+				<span class="cat-links">Published in <a href="https://alistapart.com/blog/topic/user-experience/" rel="category tag">User Experience</a>, <a href="https://alistapart.com/blog/topic/user-research/" rel="category tag">User Research</a></span>			</div>
+		</div><!-- .entry-meta -->
+	</header><!-- .entry-header -->
+
+	
+	
+	
+	<div class="entry-content">
+		
+<p><a href="https://thispersondoesnotexist.com/">This Person Does Not Exist</a> is a website that generates human faces with a machine learning algorithm. It takes real portraits and recombines them into fake human faces. We recently scrolled past a LinkedIn post stating that this website could be useful “if you are developing a persona and looking for a photo.”&nbsp;</p>		<div class="aside-breaker"><span>Article Continues Below</span></div>
+		<div class="ala-single-sidebar-wrapper">
+			<span class="screen-reader-text">Article Continues Below</span>
+			<aside class="ala-single-sidebar-minutiae">
+				<span class="ala-comment-bubble"></span>					<div class="ala-share">
+					<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 id="section1" class="sd-title">Share this:<a class="subhead-anchor" href="#section1">#section1</a></h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-7172941" class="share-facebook sd-button share-icon no-text" href="https://alistapart.com/article/beware-the-cut-n-paste-persona/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-7172941" class="share-twitter sd-button share-icon no-text" href="https://alistapart.com/article/beware-the-cut-n-paste-persona/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>					</div>
+										<section id="custom_html-6" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><a href="https://www.patreon.com/alistapart" class="patreon-bubble">Become a patron</a></div></section>					
+							</aside>
+
+			<aside class="ala-single-sidebar-1">
+				<section id="custom_html-2" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div>
+
+<div class="banner ala-banner">
+	<a href="https://abookapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/03/logo_a-book-apart-color.png?w=960&#038;ssl=1" alt="A Book Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>A Book Apart:<br> Brief books for people who make websites.</p>		
+		</a>
+</div>
+
+<div class="banner">
+	<a href="https://aneventapart.com/">				<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/AEA_2017_80x80_2.png?w=960&#038;ssl=1" alt="An Event Apart Logo" class="banner-logo" data-recalc-dims="1" />
+		<p>An Event Apart:<br> 3 days of design, code, and content for web &amp; UX designers &amp; devs.</p>		
+		</a>
+</div></div></section>			</aside>
+
+		</div>
+		
+
+
+
+<p>We agree: the computer-generated faces could be a great match for personas—but not for the reason you might think. Ironically, the website highlights the core issue of this very common design method: <em>the person(a) does not exist</em>. Like the pictures, personas are artificially made. Information is taken out of natural context and recombined into an isolated snapshot that’s detached from reality.&nbsp;</p>
+
+
+
+<p>But strangely enough, designers use personas to inspire their design for the real world.&nbsp;</p>
+
+
+
+<h2 id="section2">Personas: A step back<a class="subhead-anchor" href="#section2">#section2</a></h2>
+
+
+
+<p>Most designers have created, used, or come across personas at least once in their career. In their article “<a href="https://www.interaction-design.org/literature/article/personas-why-and-how-you-should-use-them">Personas &#8211; A Simple Introduction</a>,” the Interaction Design Foundation defines personas as “fictional characters, which you create based upon your research in order to represent the different user types that might use your service, product, site, or brand.” In their most complete expression, personas typically consist of a name, profile picture, quotes, demographics, goals, needs, behavior in relation to a certain service/product, emotions, and motivations (for example, see Creative Companion’s <a href="https://creativecompanion.wordpress.com/2011/05/05/the-persona-core-poster/">Persona Core Poster</a>). The purpose of personas, as <a href="https://medium.designit.com/mindset-over-matter-a-new-design-trick-for-your-toolbox-part-one-91bc5f82360f">stated by</a> design agency Designit, is “to make the research relatable, [and] easy to communicate, digest, reference, and apply to product and service development.”</p>
+
+
+
+<h2 id="section3">The decontextualization of personas<a class="subhead-anchor" href="#section3">#section3</a></h2>
+
+
+
+<p>Personas are popular because they make “dry” research data more relatable, more human. However, this method constrains the researcher’s data analysis in such a way that the investigated users are removed from their unique contexts. As a result, personas don’t portray key factors that make you understand their decision-making process or allow you to relate to users’ thoughts and behavior; they lack <em>stories</em>. You understand <em>what</em> the persona did, but you don’t have the background to understand <em>why</em>. You end up with representations of users that are actually <em>less</em> human.</p>
+
+
+
+<p>This “decontextualization” we see in personas happens in four ways, which we’ll explain below.&nbsp;</p>
+
+
+
+<h3 id="section4">Personas assume people are static&nbsp;<a class="subhead-anchor" href="#section4">#section4</a></h3>
+
+
+
+<p>Although many companies still try to box in their employees and customers with outdated personality tests (referring to you, Myers-Briggs), here’s a painfully obvious truth: people are not a fixed set of features. You act, think, and feel differently according to the situations you experience. You appear different to different people; you might act friendly to some, rough to others. And you change your mind all the time about decisions you’ve taken.&nbsp;</p>
+
+
+
+<p><a href="https://en.wikipedia.org/wiki/Person%E2%80%93situation_debate#Current_directions">Modern psychologists agree</a> that while people generally behave according to certain patterns, it’s actually a combination of background and environment that determines how people act and take decisions. The context—the environment, the influence of other people, your mood, the entire history that led up to a situation—determines the kind of person you are in each specific moment.&nbsp;</p>
+
+
+
+<p>In their attempt to simplify reality, personas do not take this variability into account; they present a user as a fixed set of features. Like personality tests, personas snatch people away from real life. Even worse, people are reduced to a label and categorized as “that kind of person” with no means to exercise their innate flexibility. This practice reinforces stereotypes, lowers diversity, and doesn’t reflect reality.&nbsp;</p>
+
+
+
+<h3 id="section5">Personas focus on individuals, not the environment<a class="subhead-anchor" href="#section5">#section5</a></h3>
+
+
+
+<p>In the real world, you’re designing for a context, not for an individual. Each person lives in a family, a community, an ecosystem, where there are environmental, political, and social factors you need to consider. A design is never meant for a single user. Rather, you design for one or more particular contexts in which many people might use that product. Personas, however, show the user <em>alone</em> rather than describe how the user relates to the environment.&nbsp;</p>
+
+
+
+<p>Would you always make the same decision over and over again? Maybe you’re a committed vegan but still decide to buy some meat when your relatives are coming over. As they depend on different situations and variables, your decisions—and behavior, opinions, and statements—are not absolute but highly contextual. The persona that “represents” you wouldn’t take into account this dependency, because it doesn’t specify the premises of your decisions. It doesn’t provide a justification of why you act the way you do. Personas enact the well-known bias called <a href="https://en.wikipedia.org/wiki/Fundamental_attribution_error"><em>fundamental attribution error</em></a>: explaining others’ behavior too much by their personality and too little by the situation.</p>
+
+
+
+<p>As mentioned by the Interaction Design Foundation, personas are usually placed in a scenario that’s a “specific context with a problem they want to or have to solve”—does that mean context actually <em>is</em> considered? Unfortunately, what often happens is that you take a fictional character and based on that fiction determine how this character might deal with a certain situation. This is made worse by the fact that you haven’t even fully investigated and understood the <em>current</em> context of the people your persona seeks to represent; so how could you possibly understand how they would act in <em>new</em> situations?&nbsp;</p>
+
+
+
+<h3 id="section6">Personas are meaningless averages<a class="subhead-anchor" href="#section6">#section6</a></h3>
+
+
+
+<p>As mentioned in Shlomo Goltz’s <a href="https://www.smashingmagazine.com/2014/08/a-closer-look-at-personas-part-1/">introductory article</a> on <em>Smashing Magazine</em>, “a persona is depicted as a specific person but is not a real individual; rather, it is synthesized from observations of many people.” A well-known critique to this aspect of personas is that <em>the average person does not exist</em>, as per the <a href="https://www.goodreads.com/book/show/24186666-the-end-of-average">famous example</a> of the USA Air Force designing planes based on the average of 140 of their pilots’ physical dimensions and not a single pilot actually fitting within that average seat.&nbsp;</p>
+
+
+
+<p>The same limitation applies to mental aspects of people. Have you ever heard a famous person say, “They took what I said out of context! They used my words, but I didn’t mean it like that.” The celebrity’s statement was reported literally, but the reporter failed to explain the context around the statement and didn’t describe the non-verbal expressions. As a result, the intended meaning was lost. You do the same when you create personas: you collect somebody’s statement (or goal, or need, or emotion), of which the meaning can only be understood if you provide its own specific context, yet report it as an isolated finding. </p>
+
+
+
+<p>But personas go a step further, extracting a decontextualized finding and joining it with <em>another</em> decontextualized finding from somebody else. The resulting set of findings often does not make sense: it’s unclear, or even contrasting, because it lacks the underlying reasons on why and how that finding has arisen. It lacks <em>meaning</em>. And the persona doesn’t give you the full background of the person(s) to uncover this meaning: you would need to dive into the raw data for each single persona item to find it. What, then, is the usefulness of the persona?</p>
+
+
+
+<figure id="figure1" class="wp-block-image size-large"><img loading="lazy" width="960" height="960" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/cut-n-paste-persona-fig3.jpg?resize=960%2C960&#038;ssl=1" alt="Composite image of a man composed of many different photos" class="wp-image-7172942" data-recalc-dims="1" /></figure>
+
+
+
+<h3 id="section7">The relatability of personas is deceiving<a class="subhead-anchor" href="#section7">#section7</a></h3>
+
+
+
+<p>To a certain extent, designers realize that a persona is a lifeless average. To overcome this, designers invent and add “relatable” details to personas to make them resemble real individuals. Nothing captures the absurdity of this better than a sentence by the Interaction Design Foundation: “Add a few fictional personal details to make the persona a realistic character.” In other words, you add non-realism in an attempt to create more realism. You deliberately obscure the fact that “John Doe” is an abstract representation of research findings; but wouldn’t it be much more responsible to <em>emphasize</em> that John is only an abstraction? If something is artificial, let’s present it as such.</p>
+
+
+
+<p>It’s the finishing touch of a persona’s decontextualization: after having assumed that people’s personalities are fixed, dismissed the importance of their environment, and hidden meaning by joining isolated, non-generalizable findings, designers <em>invent</em> new context to create (their own) meaning. In doing so, as with everything they create, they introduce a host of biases. As phrased by Designit, as designers we can “contextualize [the persona] based on our reality and experience. We create connections that are familiar to <em>us</em>.” This practice reinforces stereotypes, doesn’t reflect real-world diversity, and gets further away from people’s actual reality with every detail added.&nbsp;</p>
+
+
+
+<p>To do good design research, we should report the reality “as-is” and make it relatable for our audience, so everyone can use their own empathy and develop their own interpretation and emotional response.</p>
+
+
+
+<h2 id="section8">Dynamic Selves: The alternative to personas<a class="subhead-anchor" href="#section8">#section8</a></h2>
+
+
+
+<p>If we shouldn’t use personas, what should we do instead?&nbsp;</p>
+
+
+
+<p>Designit has proposed using <a href="https://medium.designit.com/mindset-over-matter-a-new-design-trick-for-your-toolbox-part-two-f56bd248319a"><em>Mindsets</em></a> instead of personas. Each Mindset is a “spectrum of attitudes and emotional responses that different people have within the same context or life experience.” It challenges designers to not get fixated on a single user’s way of being. Unfortunately, while being a step in the right direction, this proposal doesn’t take into account that people are part of an environment that determines their personality, their behavior, and, yes, their mindset. Therefore, Mindsets are also not absolute but change in regard to the situation. The question remains, what determines a certain Mindset?</p>
+
+
+
+<p>Another alternative comes from Margaret P., author of the article “<a href="https://medium.com/microsoft-design/kill-your-personas-1c332d4908cc">Kill Your Personas</a>,” who has argued for replacing personas with <em>persona spectrums</em> that consist of a <em>range</em> of user abilities. For example, a visual impairment could be permanent (blindness), temporary (recovery from eye surgery), or situational (screen glare). Persona spectrums are highly useful for more inclusive and <em>context-based</em> design, as they’re based on the understanding that the context is the pattern, not the personality. Their limitation, however, is that they have a very <em>functional</em> take on users that misses the relatability of a real person taken from within a spectrum.&nbsp;</p>
+
+
+
+<p>In developing an alternative to personas, we aim to transform the standard design process to be context-based. Contexts are generalizable and have patterns that we can identify, just like we tried to do previously with people. So how do we identify these patterns? How do we ensure truly context-based design?&nbsp;</p>
+
+
+
+<h2 id="section9">Understand real individuals in multiple contexts<a class="subhead-anchor" href="#section9">#section9</a></h2>
+
+
+
+<p>Nothing is more relatable and inspiring than reality. Therefore, we have to understand real individuals in their multi-faceted contexts, and use this understanding to fuel our design. We refer to this approach as <em>Dynamic Selves</em>.</p>
+
+
+
+<p>Let’s take a look at what the approach looks like, based on an example of how one of us applied it in a recent project that researched habits of Italians around energy consumption. We drafted a design research plan aimed at investigating people’s attitudes toward energy consumption and sustainable behavior, with a focus on smart thermostats.&nbsp;</p>
+
+
+
+<h4 id="section10">1. Choose the right sample<a class="subhead-anchor" href="#section10">#section10</a></h4>
+
+
+
+<p>When we argue against personas, we’re often challenged with <a href="https://ux.stackexchange.com/questions/8647/why-not-use-a-real-person-as-a-persona">quotes</a> such as “Where are you going to find a single person that encapsulates all the information from one of these advanced personas[?]” The answer is simple: <em>you don’t have to</em>. You don’t need to have information about many people for your insights to be deep and meaningful.&nbsp;</p>
+
+
+
+<p>In qualitative research, validity does not derive from quantity but from accurate sampling. You select the people that best represent the “population” you’re designing for. If this sample is chosen well, and you have understood the sampled people in sufficient depth, you’re able to infer how the rest of the population thinks and behaves. There’s no need to study seven Susans and five Yuriys; one of each will do.&nbsp;</p>
+
+
+
+<p>Similarly, you don’t need to understand Susan in fifteen different contexts. Once you’ve seen her in a couple of diverse situations, you’ve understood the scheme of Susan’s response to different contexts. Not Susan as an atomic being but Susan in relation to the surrounding environment: how she might act, feel, and think in different situations.&nbsp;</p>
+
+
+
+<p>Given that each person is representative of a part of the total population you’re researching, it becomes clear why each should be represented as an individual, as each already is an abstraction of a larger group of individuals in similar contexts. You don’t want abstractions of abstractions! These selected people need to be understood and shown in their full expression, remaining in their microcosmos—and if you want to identify patterns you can focus on identifying patterns in contexts.</p>
+
+
+
+<p>Yet the question remains: how do you select a representative sample? First of all, you have to consider what’s the target audience of the product or service you are designing: it might be useful to look at the company’s goals and strategy, the current customer base, and/or a possible future target audience.&nbsp;</p>
+
+
+
+<p>In our example project, we were designing an application for those who own a smart thermostat. In the future, everyone could have a smart thermostat in their house. Right now, though, only early adopters own one. To build a significant sample, we needed to understand the reason why these early adopters became such. We therefore recruited by asking people why they had a smart thermostat and how they got it. There were those who had <em>chosen</em> to buy it, those who had been <em>influenced</em> by others to buy it, and those who had <em>found</em> it in their house. So we selected representatives of these three situations, from different age groups and geographical locations, with an equal balance of tech savvy and non-tech savvy participants.&nbsp;</p>
+
+
+
+<h4 id="section11">2. Conduct your research<a class="subhead-anchor" href="#section11">#section11</a></h4>
+
+
+
+<p>After having chosen and recruited your sample, conduct your research using ethnographic methodologies. This will make your qualitative data rich with anecdotes and examples. In our example project, given COVID-19 restrictions, we converted an in-house ethnographic research effort into remote family interviews, conducted from home and accompanied by diary studies.</p>
+
+
+
+<p>To gain an in-depth understanding of attitudes and decision-making trade-offs, the research focus was not limited to the interviewee alone but deliberately included the whole family. Each interviewee would tell a story that would then become much more lively and precise with the corrections or additional details coming from wives, husbands, children, or sometimes even pets. We also focused on the relationships with other meaningful people (such as colleagues or distant family) and all the behaviors that resulted from those relationships. This wide research focus allowed us to shape a vivid mental image of dynamic situations with multiple actors.&nbsp;</p>
+
+
+
+<p>It’s essential that the scope of the research remains broad enough to be able to include all possible actors. Therefore, it normally works best to define broad research areas with macro questions. Interviews are best set up in a semi-structured way, where follow-up questions will dive into topics mentioned spontaneously by the interviewee. This open-minded “plan to be surprised” will yield the most insightful findings. When we asked one of our participants how his family regulated the house temperature, he replied, “My wife has not installed the thermostat’s app—she uses WhatsApp instead. If she wants to turn on the heater and she is not home, she will text me. <em>I am her thermostat.”</em></p>
+
+
+
+<h4 id="section12">3. Analysis: Create the Dynamic Selves<a class="subhead-anchor" href="#section12">#section12</a></h4>
+
+
+
+<p>During the research analysis, you start representing each individual with <em>multiple</em> Dynamic Selves, each “Self” representing one of the contexts you have investigated. The core of each Dynamic Self is a quote, which comes supported by a photo and a few relevant demographics that illustrate the wider context. The research findings themselves will show which demographics are relevant to show. In our case, as our research focused on families and their lifestyle to understand their needs for thermal regulation, the important demographics were family type, number and nature of houses owned, economic status, and technological maturity. (We also included the individual’s name and age, but they’re optional—we included them to ease the stakeholders’ transition from personas and be able to connect multiple actions and contexts to the same person).</p>
+
+
+
+<figure id="figure2" class="wp-block-image size-large"><img loading="lazy" width="960" height="519" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/cut-n-paste-persona-fig1.png?resize=960%2C519&#038;ssl=1" alt="Three cards, each showing a different lifestyle photo, a quote that correlates to that dynamic self's attitude about technology, and some basic demographic info" class="wp-image-7172943" data-recalc-dims="1" /></figure>
+
+
+
+<p>To capture exact quotes, interviews need to be video-recorded and notes need to be taken <em>verbatim </em>as much as possible. This is essential to the truthfulness of the several Selves of each participant. In the case of real-life ethnographic research, photos of the context and anonymized actors are essential to build realistic Selves. Ideally, these photos should come directly from field research, but an evocative and representative image will work, too, as long as it’s realistic and depicts meaningful actions that you associate with your participants. For example, one of our interviewees told us about his mountain home where he used to spend every weekend with his family. Therefore, we portrayed him hiking with his little daughter.&nbsp;</p>
+
+
+
+<p>At the end of the research analysis, we displayed all of the Selves’ “cards” on a single canvas, categorized by activities. Each card displayed a situation, represented by a quote and a unique photo. All participants had multiple cards about themselves.</p>
+
+
+
+<figure id="figure3" class="wp-block-image size-large"><img loading="lazy" width="960" height="410" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/cut-n-paste-persona-fig2.png?resize=960%2C410&#038;ssl=1" alt="A collection of many cards representing many dynamic self personas" class="wp-image-7172944" data-recalc-dims="1" /></figure>
+
+
+
+<h4 id="section13">4. Identify design opportunities<a class="subhead-anchor" href="#section13">#section13</a></h4>
+
+
+
+<p>Once you have collected all main quotes from the interview transcripts and diaries, and laid them all down as Self cards, you will see patterns emerge. These patterns will highlight the <em>opportunity areas</em> for new product creation, new functionalities, and new services—for new design.&nbsp;</p>
+
+
+
+<p>In our example project, there was a particularly interesting insight around the concept of humidity. We realized that people don’t know what humidity is and why it is important to monitor it for health: an environment that’s too dry or too wet can cause respiratory problems or worsen existing ones. This highlighted a big opportunity for our client to educate users on this concept and become a health advisor.</p>
+
+
+
+<h3 id="section14">Benefits of Dynamic Selves<a class="subhead-anchor" href="#section14">#section14</a></h3>
+
+
+
+<p>When you use the Dynamic Selves approach in your research, you start to notice unique social relations, peculiar situations real people face and the actions that follow, and that people are surrounded by changing environments. In our thermostat project, we have come to know one of the participants, Davide, as a boyfriend, dog-lover, and tech enthusiast.&nbsp;</p>
+
+
+
+<p>Davide is an individual we might have once reduced to a persona called “tech enthusiast.” But we can have tech enthusiasts who have families or are single, who are rich or poor. Their motivations and priorities when deciding to purchase a new thermostat can be opposite according to these different frames.&nbsp;</p>
+
+
+
+<p>Once you have understood Davide in multiple situations, and for each situation have understood in sufficient depth the underlying reasons for his behavior, you’re able to generalize how he would act in another situation. You can use your understanding of him to infer what he would think and do in the contexts (or scenarios) that you design for.</p>
+
+
+
+<figure id="figure4" class="wp-block-image size-large"><img loading="lazy" width="960" height="540" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/cut-n-paste-persona-fig4.png?resize=960%2C540&#038;ssl=1" alt="A comparison. On one side, three people are fused into one to create a persona; in the second, the three people exist as separate dynamic selves." class="wp-image-7172945" data-recalc-dims="1" /></figure>
+
+
+
+<p>The Dynamic Selves approach aims to dismiss the conflicted dual purpose of personas—to summarize and empathize at the same time—by separating your research summary from the people you’re seeking to empathize with. This is important because our empathy for people is <a href="https://www.epicpeople.org/commodified-empathy/">affected by scale</a>: the bigger the group, the harder it is to feel empathy for others. We feel the strongest empathy for individuals we can personally relate to.&nbsp;&nbsp;</p>
+
+
+
+<p>If you take a <em>real</em> person as inspiration for your design, you no longer need to create an artificial character. No more inventing details to make the character more “realistic,” no more unnecessary additional bias. It’s simply how this person is in real life. In fact, in our experience, personas quickly become nothing more than a name in our <a href="https://alistapart.com/article/priority-guides-a-content-first-alternative-to-wireframes/">priority guides</a> and prototype screens, as we all know that these characters don’t really exist.&nbsp;</p>
+
+
+
+<p>Another powerful benefit of the Dynamic Selves approach is that it raises the stakes of your work: if you mess up your design, someone real, a person you and the team know and have met, is going to feel the consequences. It might stop you from taking shortcuts and will remind you to conduct <a href="https://alistapart.com/article/daily-ethical-design/">daily</a> checks on your designs.</p>
+
+
+
+<p>And finally, real people in their specific contexts are a better basis for anecdotal storytelling and therefore are more effective in persuasion. Documentation of real research is essential in achieving this result. It adds weight and urgency behind your design arguments: “When I met Alessandra, the conditions of her workplace struck me. Noise, bad ergonomics, lack of light, you name it. If we go for this functionality, I’m afraid we’re going to add complexity to her life.”</p>
+
+
+
+<h2 id="section15">Conclusion<a class="subhead-anchor" href="#section15">#section15</a></h2>
+
+
+
+<p>Designit mentioned in their article on Mindsets that “design thinking tools offer a shortcut to deal with reality’s complexities, but this process of simplification can sometimes flatten out people’s lives into a few general characteristics.” Unfortunately, personas have been culprits in a crime of oversimplification. They are unsuited to represent the complex nature of our users’ decision-making processes and don’t account for the fact that humans are immersed in contexts.&nbsp;</p>
+
+
+
+<p>Design needs simplification but not generalization. You have to look at the research elements that stand out: the sentences that captured your attention, the images that struck you, the sounds that linger. Portray those, use them to describe the person in their multiple contexts. Both insights and people come with a context; they cannot be cut from that context because it would remove meaning.&nbsp;</p>
+
+
+
+<p>It’s high time for design to move away from fiction, and embrace reality—in its messy, surprising, and unquantifiable beauty—as our guide and inspiration.</p>
+		<div class="ala-single-sidebar-wrapper sidebar-related">
+			<aside id="related" class="ala-single-sidebar-related">
+									<section class="ala-sb-rel__category">
+						<h3 class="ala-sb-rel__cat__title">
+							Further reading about							<a href="https://alistapart.com/blog/topic/user-experience/">User Experience</a>
+						</h3>
+													<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/how-to-sell-ux-research/">How to Sell UX Research with Two Simple Questions									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">It’s one reason why so many UX designers are frustrated in their job and why many projects fail. And it’s also why we often can’t sell research: every decision-maker is confident in their own mental picture. In this article, Sophia Prater shows you how to collaboratively expose misalignment and gaps in your team’s shared understanding by bringing the team together around two simple questions. What are the objects? How do they relate?</div>
+							</article>
+														<article>
+								<h3 class="ala-sb-rel__cat__entry-title">
+									<a href="https://alistapart.com/article/design-for-safety-excerpt/">Design for Safety, An Excerpt									</a></h3>
+								<div class="ala-sb-rel__cat__entry-content">None of us want to build products that put our users’ safety at risk, but how do you reduce the risk that our products will be weaponized by abusers? In this excerpt from Design for Safety, Eva PenzeyMoog offers a clear strategy for building inclusive safety in our products.</div>
+							</article>
+												</section>
+								</aside>
+		</div>
+			</div><!-- .entry-content -->
+	</article><!-- #post-7172941 -->
+
+				<footer class="ala-author">
+					<div class="ala-author__content clear">
+						<a name="panelist0"></a>
+													<h4 class="ala-author__about">About the Author</h4>
+													<div class="ala-author__avatar">
+							<img width="150" height="150" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2021/05/emanuela-cozzi.jpeg?fit=150%2C150&amp;ssl=1" class="avatar avatar-150 photo wp-post-image" alt="Photo of Emanuela Cozzi" loading="lazy" />						</div>
+
+						<h3 class="ala-author__name">Emanuela Cozzi</h3>
+						<div class="ala-author__description">Human scientist at heart, Emanuela turned to design to bring to life her understanding of human thoughts, actions and emotions. Firm believer in the power of data coming from in-depth yet focused research, she works daily to perfect the design approach, create meaningful services, and promote collaboration among all disciplines for the greater good.</div>
+					</div>
+									</footer>
+								<footer class="ala-author">
+					<div class="ala-author__content clear">
+						<a name="panelist1"></a>
+												<div class="ala-author__avatar">
+							<img width="150" height="150" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2018/05/lennart-overkamp.jpg?fit=150%2C150&amp;ssl=1" class="avatar avatar-150 photo wp-post-image" alt="" loading="lazy" />						</div>
+
+						<h3 class="ala-author__name">Lennart Overkamp</h3>
+						<div class="ala-author__description">As an insights-driven service and experience designer, Lennart Overkamp holds a firm belief in the power of active listening. He embraces the challenge of co-creating responsible products and services that achieve wellbeing, social justice, and sustainability. Outside working hours, he loves to read, write, have eye-opening discussions over dinner, and explore nature’s hidden gems on his many hikes and bike rides.</div>
+					</div>
+											<aside class="ala-author__more">
+							<h3 class="ala-author__more_title">More from this author</h3>
+															<h4 class="ala-author__article">
+									<a href="https://alistapart.com/article/daily-ethical-design/">Daily Ethical Design									</a>
+								</h4>
+																<h4 class="ala-author__article">
+									<a href="https://alistapart.com/article/priority-guides-a-content-first-alternative-to-wireframes/">Priority Guides: A Content-First Alternative to Wireframes									</a>
+								</h4>
+														</aside>
+										</footer>
+									<aside class="widget-area pre-footer-widget-area pre-footer-single">
+						<section id="custom_html-4" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="pre-footer-email-signup">
+	<strong>Get our latest articles in your inbox.</strong> <a href="https://alistapart.com/email-signup">Sign up for email alerts</a>.
+</div>
+</div></section>					</aside><!-- .pre-footer-widget-area -->
+					
+					<div class="comment-area-wrap two-column-layout">
+						
+<div id="comments" class="comments-area column-content">
+
+	
+		<h2 class="comments-title">No Comments</h2>
+				<div class="comments-off">
+			<h3 class="comments-off-title"> Got something to say?</h3>
+			<p class="no-comments">We have turned off comments, but you can see what folks had to say before we did so.</p>
+		</div>
+		
+</div><!-- #comments -->
+	<div class="column-sidebar ala-posts">
+		<h2 class="section-title">More from ALA</h2>
+				<article id="post-7173224" class="home-post-content post-7173224 article type-article status-publish has-post-thumbnail hentry category-code category-css">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/breaking-out-of-the-box/" rel="bookmark">Breaking Out of the Box</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/patrick-brosset/" itemprop="url"> <span itemprop="name">Patrick Brosset</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					What can we do with thirty pixels? Windows Controls Overlay frees us from 40 years of history telling us how apps should look.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/code/" rel="category tag">Code</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-12-09T10:00:00-05:00">December 09, 2021</time><time class="updated" datetime="2021-12-09T07:23:48-05:00">December 09, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173136" class="home-post-content post-7173136 article type-article status-publish has-post-thumbnail hentry category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/how-to-sell-ux-research/" rel="bookmark">How to Sell UX Research with Two Simple Questions</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/sophiavoychehovski/" itemprop="url"> <span itemprop="name">Sophia V. Prater</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Seriously, do not ever design screens again without first answering these questions: what are the objects and how do they relate?				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/user-experience/" rel="category tag">User Experience</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-10-21T10:00:00-04:00">October 21, 2021</time><time class="updated" datetime="2021-10-21T07:17:11-04:00">October 21, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173122" class="home-post-content post-7173122 article type-article status-publish has-post-thumbnail hentry category-content category-content-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/a-content-model-is-not-a-design-system/" rel="bookmark">A Content Model Is Not a Design System</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/mike-wills/" itemprop="url"> <span itemprop="name">Mike Wills</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					Why do so many content models still look more like design systems rather than reflecting structured data? Mike Wills takes us on a personal journey as he examines his own past experiences and invites us to conceive content models that articulate meaning and group related content together for use on any channel.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/content/" rel="category tag">Content</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-09-23T10:00:00-04:00">September 23, 2021</time><time class="updated" datetime="2021-09-23T09:21:30-04:00">September 23, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173095" class="home-post-content post-7173095 article type-article status-publish has-post-thumbnail hentry category-process category-usability category-user-experience category-user-research">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/design-for-safety-excerpt/" rel="bookmark">Design for Safety, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/eva-penzeymoog/" itemprop="url"> <span itemprop="name">Eva PenzeyMoog</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Design for Safety, Eva PenzeyMoog discusses concrete ways you can incorporate safety awareness into your design processes.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/process/" rel="category tag">Process</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-26T11:01:43-04:00">August 26, 2021</time><time class="updated" datetime="2021-08-26T11:01:44-04:00">August 26, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+						<article id="post-7173076" class="home-post-content post-7173076 article type-article status-publish has-post-thumbnail hentry category-design category-web-strategy">
+
+				<header class="entry-header">
+					<h4 class="home-post-title"><a href="https://alistapart.com/article/sustainable-web-design-excerpt/" rel="bookmark">Sustainable Web Design, An Excerpt</a></h4>					<div class="entry-meta">
+						<span class="byline"> by <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><a class="url fn n" href="https://alistapart.com/author/tom-greenwood/" itemprop="url"> <span itemprop="name">Tom Greenwood</span></a></span></span>					</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+				<div class="entry-content">
+					In this excerpt from Sustainable Web Design, Tom Greenwood provides clear guidance on how to track and address the carbon footprint of our websites.				</div><!-- .entry-content -->
+				<footer class="footer-meta entry-meta">
+					<span class="cat-links"><a href="https://alistapart.com/blog/topic/design/" rel="category tag">Design</a></span><span class="posted-on"><time class="entry-date published" datetime="2021-08-05T10:00:00-04:00">August 05, 2021</time><time class="updated" datetime="2021-08-04T17:23:57-04:00">August 04, 2021</time></span>				</footer><!-- .entry-meta -->
+
+
+			</article><!-- #post-## -->
+
+			
+	
+</div><!-- .home-post-wrap clear -->
+
+					</div>
+					
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+</div><!-- #content -->
+
+	<div class="widget-area header-widget">
+		<section id="custom_html-5" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="banner">
+	<a href="https://sps.northwestern.edu/ala">
+	<img class="banner-logo" src="https://i0.wp.com/alistapart.com/wp-content/uploads/2020/09/IDS_700x200_Logo-copy.gif?w=960&#038;ssl=1" alt="Northwestern Logo" data-recalc-dims="1">
+	<p>Northwestern’s Online MS in Information Design and Strategy. Choose from tracks in content strategy, data science and analytics, and learning design.</p>
+	</a>
+</div></div></section>	</div><!-- .header-widget -->
+	
+<footer id="colophon" class="site-footer" itemscope itemtype="https://schema.org/WebPage">
+	<nav class="footer-navigation footer navigation-top"  itemscope itemtype="http://schema.org/SiteNavigationElement">
+		<div class="menu-footer-pages-container"><ul id="footer-top-left-menu" class="footer-top-left-menu"><li id="menu-item-6000544" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000544"><a href="https://alistapart.com/about/" itemprop="url">About</a></li>
+<li id="menu-item-6000545" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000545"><a href="https://alistapart.com/authors/" itemprop="url">Authors</a></li>
+<li id="menu-item-6000546" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000546"><a href="https://alistapart.com/about/masthead/" itemprop="url">Masthead</a></li>
+<li id="menu-item-6000547" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000547"><a href="https://alistapart.com/about/style-guide/" itemprop="url">Style Guide</a></li>
+<li id="menu-item-6000548" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000548"><a href="https://alistapart.com/contact/" itemprop="url">Contact</a></li>
+<li id="menu-item-6000549" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000549"><a href="https://alistapart.com/about/sponsor/" itemprop="url">Sponsorships</a></li>
+</ul></div><div class="menu-footer-social-container"><ul id="footer-top-right-menu" class="footer-top-right-menu"><li id="menu-item-6000550" class="footer-menu-title menu-item menu-item-type-custom menu-item-object-custom menu-item-6000550"><a itemprop="url">Follow us:</a></li>
+<li id="menu-item-7171602" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7171602"><a href="https://alistapart.com/about/rss-feed/" itemprop="url">RSS</a></li>
+<li id="menu-item-6000552" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000552"><a href="https://alistapart.com/email-signup/" itemprop="url">Email</a></li>
+<li id="menu-item-6000553" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000553"><a href="https://www.facebook.com/alistapart" itemprop="url">Facebook</a></li>
+<li id="menu-item-6000554" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000554"><a href="https://www.twitter.com/alistapart" itemprop="url">Twitter</a></li>
+</ul></div>	</nav>
+			<div class="widget-area footer-widget-area-wrap">
+			<div class="widget-area footer-widget-area">
+				<section id="custom_html-7" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+	<a href="https://abookapart.com">
+							<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aba_2.jpg?w=960&#038;ssl=1" alt="A Book Apart. Brief books for people who design, write, and code." data-recalc-dims="1">
+		<div class="footer-promo-copy">
+				<p class="promo-title">A Book Apart</p>
+				<p>Brief books for people who design, write, and code.</p>
+				<p>Bundle books and save!</p>
+				<p class="arrow">Shop now</p>
+						</div>
+			</a>
+</div>
+
+</div></section><section id="custom_html-8" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><div class="footer-promo">
+		<a href="https://aneventapart.com">
+			<img src="https://i0.wp.com/alistapart.com/wp-content/uploads/2019/04/promo_aea_v1_2.png?w=960&#038;ssl=1" alt="An Event Apart. Three days of design, code, and content for people who make websites." data-recalc-dims="1">
+			<div class="footer-promo-copy">
+					<p class="promo-title">An Event Apart</p>
+						<p>Three days of design, code, and content for people who make websites.</p>
+							<p class="arrow">See  this year’s schedule</p>
+			</div>
+						</a>
+</div></div></section>			</div>
+		</div>
+
+		
+	<div class="site-info-wrap">
+		<div class="site-info">
+			<p>
+				ISSN 1534-0295 &middot; Copyright &copy; <span itemprop="copyrightYear"> 1998–2022</span> <span itemprop="copyrightHolder"> A List Apart &amp; Our Authors</span>			</p>
+			<p>
+				<a href="https://wordpress.com/">
+					Proudly powered by WordPress				</a>
+				<span class="sep"> · </span>
+				<a href="https://pressable.com/?utm_source=Automattic&#038;utm_medium=rpc&#038;utm_campaign=Concierge%20Referral&#038;utm_term=concierge">
+					Hosted by Pressable				</a>
+			</p>
+		</div><!-- .site-info -->
+	</div><!-- .site-info-wrap -->
+
+	<nav class="footer-navigation footer navigation-bottom">
+		<ul id="footer-bottom-left-menu" class="footer-bottom-left-menu"><li id="menu-item-6000555" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6000555"><a href="https://alistapart.com/about/copyright/" itemprop="url">Permissions &#038; Copyright</a></li>
+<li id="menu-item-6000556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-6000556"><a href="https://alistapart.com/about/privacy-policy/" itemprop="url">Privacy Policy</a></li>
+<li id="menu-item-6000558" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6000558"><a href="https://webtype.com/" itemprop="url">Fonts by Webtype</a></li>
+</ul><ul id="footer-bottom-right-menu" class="footer-bottom-right-menu"><li id="menu-item-6000559" class="aea menu-item menu-item-type-custom menu-item-object-custom menu-item-6000559"><a href="http://aneventapart.com/" itemprop="url"><span class="screen-reader-text">An Event Apart</span></a></li>
+<li id="menu-item-6000560" class="aba menu-item menu-item-type-custom menu-item-object-custom menu-item-6000560"><a href="http://abookapart.com/" itemprop="url"><span class="screen-reader-text">A Book Apart</span></a></li>
+</ul>	</nav>
+</footer><!-- #colophon -->
+</div><!-- #page -->
+<script type="text/template" id="tmpl-subscriber-only-message">
+	<div class="coil-message-inner">
+		<div class="coil-message-header">
+			<# if ( data.headerLogo ) { #>
+				{{{data.headerLogo}}}
+			<# } #>
+			<# if ( data.title ) { #>
+				<p class="coil-message-title">{{data.title}}</p>
+			<# } #>
+			<# if ( data.content ) { #>
+				<p class="coil-message-content">{{data.content}}</p>
+			<# } #>
+			<# if ( data.button.href ) { #>
+				<a target="_blank" href="{{data.button.href}}" class="coil-message-button">{{data.button.text}}</a>
+			<# } #>
+		</div>
+		<div class="coil-message-footer">
+			<p class="coil-footer-content">Already a member? Check that you&#039;re using a supported browser, have the Coil extension installed, and are logged in to your Coil account.</p>
+		</div>
+	</div>
+</script>
+<script type="text/template" id="tmpl-split-content-message">
+	<span class="coil-split-content-message">{{data}}</span>
+</script>
+<script type="text/template" id="tmpl-banner-message">
+	<div class="banner-message-inner">
+		<# if ( data.content ) { #>
+			<p class="coil-banner-message-content">{{data.content}}</p>
+		<# } #>
+		<# if ( data.button.href ) { #>
+			<a target="_blank" href="{{data.button.href}}" class="coil-banner-message-button">{{data.button.text}}</a>
+		<# } #>
+		<span class="coil-banner-message-dismiss" id="js-coil-banner-dismiss">&times;</span>
+	</div>
+</script>
+	<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) 
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');  
+
+	ga('create', 'UA-11757054-1', 'auto'); 
+	ga('send', 'pageview');  
+</script>
+<!-- End Google Analytics -->
+	
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/alistapart.com\/article\/beware-the-cut-n-paste-persona\/":7172941};
+	</script>
+				<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001' id='jetpack-photon-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/underscore.min.js?ver=1.13.1' id='underscore-js'></script>
+<script type='text/javascript' id='wp-util-js-extra'>
+/* <![CDATA[ */
+var _wpUtilSettings = {"ajax":{"url":"\/wp-admin\/admin-ajax.php"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-util.min.js?ver=5.8.3' id='wp-util-js'></script>
+<script type='text/javascript' id='coil-monetization-js-js-extra'>
+/* <![CDATA[ */
+var coilParams = {"content_container":".content-area .entry-content","promotion_bar":"This site is monetized using Coil. If you enjoy the content, consider supporting us by signing up for a Coil Membership. Here's how\u2026","loading_content":"Verifying Web Monetization status. Please wait...","fully_gated":"Unlock exclusive content with Coil. Need a Coil account?","partial_gating":"To keep reading, join Coil and install the browser extension. Visit coil.com for more information.","learn_more_button_text":"Get Coil to access","learn_more_button_link":"https:\/\/coil.com\/","show_promotion_bar":"1","post_excerpt":"User personas are a cornerstone of user research, but can fail when they portray abstract caricatures rather than actual potential users. Emanuela Cozzi and Lennart Overkamp show us a new take on user personas that can prove to be more effective and meaningful.","site_logo":"<a href=\"https:\/\/alistapart.com\/\" class=\"custom-logo-link\" rel=\"home\"><img width=\"960\" height=\"98\" src=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?fit=960%2C98&ssl=1\" class=\"custom-logo\" alt=\"A List Apart\" srcset=\"https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?w=960&ssl=1 960w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=300%2C31&ssl=1 300w, https:\/\/i0.wp.com\/alistapart.com\/wp-content\/uploads\/2019\/03\/ala-logo-big.png?resize=768%2C78&ssl=1 768w\" sizes=\"(max-width: 960px) 100vw, 960px\" \/><\/a>","admin_missing_id_notice":"This post is monetized but you have not set your payment pointer ID in the <a href=\"https:\/\/alistapart.com\/wp-admin\/admin.php?page=coil\">Coil settings page<\/a>. Only content set to show for all visitors will show."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/initialize-monetization.min.js?ver=1.9.0' id='coil-monetization-js-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/coil-web-monetization/assets/js/js-cookie.3.0.0.min.js?ver=1.9.0' id='messaging-cookies-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/navigation.js?ver=20151215' id='ala-navigation-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/prism/prism.js?ver=1.0' id='ala-prism-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/skip-link-focus-fix.js?ver=20151215' id='ala-skip-link-focus-fix-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/adchecka.js?ver=1.0' id='ala-adchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/themes/ala/js/loadadchecka.js?ver=1.0' id='ala-loadadchecka-js'></script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
+<script type='text/javascript' id='sharing-js-js-extra'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://149572954.v2.pressablecdn.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=10.5-beta' id='sharing-js-js'></script>
+<script type='text/javascript' id='sharing-js-js-after'>
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-facebook' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-facebook' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+						return false;
+					}
+				} );
+			} )();
+var windowOpen;
+			( function () {
+				function matches( el, sel ) {
+					return !! (
+						el.matches && el.matches( sel ) ||
+						el.msMatchesSelector && el.msMatchesSelector( sel )
+					);
+				}
+
+				document.body.addEventListener( 'click', function ( event ) {
+					if ( ! event.target ) {
+						return;
+					}
+
+					var el;
+					if ( matches( event.target, 'a.share-twitter' ) ) {
+						el = event.target;
+					} else if ( event.target.parentNode && matches( event.target.parentNode, 'a.share-twitter' ) ) {
+						el = event.target.parentNode;
+					}
+
+					if ( el ) {
+						event.preventDefault();
+
+						// If there's another sharing window open, close it.
+						if ( typeof windowOpen !== 'undefined' ) {
+							windowOpen.close();
+						}
+						windowOpen = window.open( el.getAttribute( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+						return false;
+					}
+				} );
+			} )();
+</script>
+		<script type="text/javascript">
+			(function() {
+			var t   = document.createElement( 'script' );
+			t.type  = 'text/javascript';
+			t.async = true;
+			t.id    = 'gauges-tracker';
+			t.setAttribute( 'data-site-id', '606492000b21314ec4b22148' );
+			t.src = '//secure.gaug.es/track.js';
+			var s = document.getElementsByTagName( 'script' )[0];
+			s.parentNode.insertBefore( t, s );
+			})();
+		</script>
+		<script src='https://stats.wp.com/e-202202.js' defer></script>
+<script>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:10.5-beta',blog:'158094726',post:'7172941',tz:'-5',srv:'alistapart.com'} ]);
+	_stq.push([ 'clickTrackerInit', '158094726', '7172941' ]);
+</script>
+</body>
+</html>

@@ -1,0 +1,624 @@
+
+
+<!doctype html>
+<html lang="en-US">
+<head data-template-path="https://hacks.mozilla.org/wp-content/themes/Hax">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="w2ocEMd5yV9IsGCjhq-7ls67r4VH-Ob6oWdiZpqjN8U">
+
+  
+  <meta name="title" content="Tab Unloading in Firefox 93 – Mozilla Hacks - the Web developer blog">
+
+    <meta property="og:site_name" content="Mozilla Hacks &#8211; the Web developer blog">
+  <meta property="og:url" content="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93">
+  <meta property="og:title" content="Tab Unloading in Firefox 93 – Mozilla Hacks - the Web developer blog">
+  <meta property="og:description" content="Firefox will monitor available system memory and, should it become that a crash is imminent, Firefox will respond by unloading memory-heavy.">
+  <meta property="og:image" content="https://hacks.mozilla.org/files/2021/10/AboutUnloads.png">
+  <meta property="og:image:width" content="1177">
+  <meta property="og:image:height" content="935">
+
+    <meta property="twitter:title" content="Tab Unloading in Firefox 93 – Mozilla Hacks - the Web developer blog">
+  <meta property="twitter:description" content="Firefox will monitor available system memory and, should it become that a crash is imminent, Firefox will respond by unloading memory-heavy.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://hacks.mozilla.org/files/2021/10/AboutUnloads.png">
+  <meta name="twitter:site" content="@mozhacks">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
+
+  <script type="text/javascript">
+    window.hacks = {};
+    // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+    var removeUtms  =   function(){
+        var l = window.location;
+        if( l.hash.indexOf( "utm" ) != -1 ){
+            var anchor = l.hash.match(/#(?!utm)[^&]+/);
+            anchor  =   anchor? anchor[0]: '';
+            if(!anchor && window.history.replaceState){
+                history.replaceState({},'', l.pathname + l.search);
+            } else {
+                l.hash = anchor;
+            }
+        };
+    };
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35433268-8'],
+              ['_setAllowAnchor', true]);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push( removeUtms );
+    (function(d, k) {
+      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
+    })(document, 'script');
+  </script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="blog-name" content="Mozilla Hacks - the Web developer blog" />
+<link rel="alternate" hreflang="en" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/" />
+<link rel="alternate" hreflang="x-default" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Tab Unloading in Firefox 93 - Mozilla Hacks - the Web developer blog</title>
+	<meta name="description" content="Firefox will monitor available system memory and, should it become that a crash is imminent, Firefox will respond by unloading memory-heavy." />
+	<link rel="canonical" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Haik Aftandilian" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="7 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://hacks.mozilla.org/#website","url":"https://hacks.mozilla.org/","name":"Mozilla Hacks - the Web developer blog","description":"hacks.mozilla.org","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://hacks.mozilla.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#primaryimage","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2021/10/AboutUnloads.png","contentUrl":"https://hacks.mozilla.org/files/2021/10/AboutUnloads.png","width":1177,"height":935,"caption":"Screenshot of the about:unloads page in beta planned for Firefox 94."},{"@type":"WebPage","@id":"https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#webpage","url":"https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/","name":"Tab Unloading in Firefox 93 - Mozilla Hacks - the Web developer blog","isPartOf":{"@id":"https://hacks.mozilla.org/#website"},"primaryImageOfPage":{"@id":"https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#primaryimage"},"datePublished":"2021-10-05T16:52:07+00:00","dateModified":"2021-10-05T16:52:07+00:00","author":{"@id":"https://hacks.mozilla.org/#/schema/person/2e2fea6b281983aed8279a5a7c9eabb8"},"description":"Firefox will monitor available system memory and, should it become that a crash is imminent, Firefox will respond by unloading memory-heavy.","breadcrumb":{"@id":"https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/"]}]},{"@type":"BreadcrumbList","@id":"https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hacks.mozilla.org/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://hacks.mozilla.org/articles/"},{"@type":"ListItem","position":3,"name":"Tab Unloading in Firefox 93"}]},{"@type":"Person","@id":"https://hacks.mozilla.org/#/schema/person/2e2fea6b281983aed8279a5a7c9eabb8","name":"Haik Aftandilian","image":{"@type":"ImageObject","@id":"https://hacks.mozilla.org/#personlogo","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2021/10/biophoto-96x96.png","contentUrl":"https://hacks.mozilla.org/files/2021/10/biophoto-96x96.png","caption":"Haik Aftandilian"},"url":"https://hacks.mozilla.org/author/haftandilianmozilla-com/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//blog.mozilla.org' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Feed" href="https://hacks.mozilla.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Comments Feed" href="https://hacks.mozilla.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Tab Unloading in Firefox 93 Comments Feed" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/feed/" />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.2' type='text/css' media='all' />
+<link rel='stylesheet' id='wpml-legacy-post-translations-0-css'  href='//blog.mozilla.org/hacks/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-post-translations/style.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/analytics.js?ver=5.8.2' id='analytics-js'></script>
+<link rel="https://api.w.org/" href="https://hacks.mozilla.org/wp-json/" /><link rel="alternate" type="application/json" href="https://hacks.mozilla.org/wp-json/wp/v2/posts/47413" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hacks.mozilla.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://hacks.mozilla.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='shortlink' href='https://hacks.mozilla.org/?p=47413' />
+<link rel="alternate" type="application/json+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F10%2Ftab-unloading-in-firefox-93%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2021%2F10%2Ftab-unloading-in-firefox-93%2F&#038;format=xml" />
+<meta name="generator" content="WPML ver:4.5.1 stt:59,61,1,2;" />
+<link rel="shortcut icon" type="image/x-icon" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" /><style>#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}li#wp-admin-bar-site-name a { background: url( "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }
+</style></head>
+<body>
+  <div class="outer-wrapper">
+    <header class="section section--fullwidth header">
+      <div class="masthead row">
+        <div class="branding block block--3">
+          <h1>
+            <a href="https://hacks.mozilla.org">
+              <img class="branding__logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
+        </div>
+        <div class="search block block--2">
+          <form class="search__form" method="get" action="https://hacks.mozilla.org/">
+            <input type="search" name="s" class="search__input" placeholder="Search Mozilla Hacks" value="">
+            <i class="fa fa-search search__badge"></i>
+          </form>
+        </div>
+        <nav class="social">
+          <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i><span>Hacks on YouTube</span></a>
+          <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>@mozhacks on Twitter</span></a>
+          <a class="social__link rss" href="https://hacks.mozilla.org/feed/" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><span>Hacks RSS Feed</span></a>
+          <a class="fx-button" href="https://www.mozilla.org/firefox/download/thanks/?utm_source=hacks.mozilla.org&utm_medium=referral&utm_campaign=header-download-button&utm_content=header-download-button">Download Firefox</a>
+        </nav>
+      </div>
+    </header>
+
+  
+<div id="content-head" class="section">
+  <h1 class="post__title">Tab Unloading in Firefox 93</h1>
+  <div class="byline">
+    <h3 class="post__author">
+                      <img alt='' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2021/10/biophoto-64x64.png' srcset='https://hacks.mozilla.org/files/2021/10/biophoto-128x128.png 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>        By
+                                        <a class="url" href="https://hacks.mozilla.org/author/haftandilianmozilla-com/">Haik Aftandilian</a>                            </h2>
+    <div class="post__meta">
+      Posted on
+      <abbr class="published" title="2021-10-05T09:52:07-07:00">
+        October 5, 2021      </abbr>
+      <span class="entry-cat">in
+        <a href="https://hacks.mozilla.org/category/featured/" rel="category tag" title="View all posts in Featured Article" >Featured Article</a>, <a href="https://hacks.mozilla.org/category/firefox/" rel="category tag" title="View all posts in Firefox" >Firefox</a>,  and <a href="https://hacks.mozilla.org/category/mozilla/" rel="category tag" title="View all posts in Mozilla" >Mozilla</a>      </span>
+            <div class="socialshare" data-type="bubbles"></div>
+    </div>
+  </div>
+</div>
+
+<main id="content-main" class="section article">
+  <article class="post" role="article">
+    <p>Starting with Firefox 93, Firefox will monitor available system memory and, should it ever become so critically low that a crash is imminent, Firefox will respond by unloading memory-heavy but not actively used tabs. This feature is currently enabled on Windows and will be deployed later for macOS and Linux as well. When a tab is unloaded, the tab remains in the tab bar and will be automatically reloaded when it is next selected. The tab’s scroll position and form data are restored just like when the browser is restarted with the <i>restore previous windows</i> browser option.</p>
+<p>On Windows, out-of-memory (OOM) situations are responsible for a significant number of the browser and content process crashes reported by our users. Unloading tabs allows Firefox to save memory leading to fewer crashes and avoids the associated interruption in using the browser.</p>
+<p>We believe this may especially benefit people who are doing heavy browsing work with many tabs on resource-constrained machines. Or perhaps those users simply trying to play a memory-intensive game or using a website that goes a little crazy. And of course, there are the tab hoarders, (no judgement here). Firefox is now better at surviving these situations.</p>
+<p>We have experimented with tab unloading on Windows in the past, but a problem we could not get past was that finding a balance between decreasing the browser’s memory usage and annoying the user because there&#8217;s a slight delay as the tab gets reloaded, is a rather difficult exercise, and we never got satisfactory results.</p>
+<p>We have now approached the problem again by refining our low-memory detection and tab selection algorithm and narrowing the action to the case where we are sure we&#8217;re providing a user benefit: if the browser is about to crash. Recently we have been conducting an experiment on our Nightly channel to monitor how tab unloading affects browser use and the number of crashes our users encounter. We’ve seen encouraging results with that experiment. We’ll continue to monitor the results as the feature ships in Firefox 93.</p>
+<p>With our experiment on the Nightly channel, we hoped to see a decrease in the number of OOM crashes hit by our users. However, after the month-long experiment, we found an overall significant decrease in browser crashes and content process crashes. Of those remaining crashes, we saw an <i>increase</i> in OOM crashes. Most encouragingly, people who had tab unloading enabled were able to use the browser for longer periods of time. We also found that average memory usage of the browser <i>increased.</i></p>
+<p>The latter may seem very counter-intuitive, but is easily explained by survivorship bias. Much like in the <a href="https://en.wikipedia.org/wiki/Survivorship_bias#In_the_military">archetypal example of the Allied WWII bombers with bullet holes</a>, browser sessions that had such high memory usage would have crashed and burned in the past, but are now able to survive by unloading tabs just before hitting the critical threshold.</p>
+<p>The increase in OOM crashes, also very counter-intuitive, is harder to explain. Before tab unloading was introduced, Firefox already responded to Windows memory-pressure by triggering an internal memory-pressure event, allowing subsystems to reduce their memory use. With tab unloading, this event is fired after all possible unloadable tabs have been unloaded.</p>
+<p>This may account for the difference. Another hypothesis is that it&#8217;s possible our tab unloading sometimes kicks in a fraction too late and finds the tabs in a state where they can&#8217;t even be safely unloaded any more.</p>
+<p>For example, unloading a tab requires a garbage collection pass over its JavaScript heap. This needs some additional temporary storage that is not available, leading to the tab crashing instead of being unloaded but still saving the entire browser from going down.</p>
+<p>We&#8217;re working on improving our understanding of this problem and the relevant heuristics. But given the clearly improved outcomes for users, we felt there was no point in holding back the feature.</p>
+<h2>When does Firefox automatically unload tabs?</h2>
+<p>When system memory is critically low, Firefox will begin automatically unloading tabs. Unloading tabs could disturb users’ browsing sessions so the approach aims to unload tabs only when necessary to avoid crashes. On Windows, Firefox gets a notification from the operating system (setup using <a href="https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-creatememoryresourcenotification">CreateMemoryResourceNotification</a>) indicating that the available physical memory is running low. The threshold for low physical memory is not documented, but appears to be around 6%. Once that occurs, Firefox starts periodically checking the commit space (<a href="https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/ns-sysinfoapi-memorystatusex">MEMORYSTATUSEX.ullAvailPageFile</a>).</p>
+<p>When the commit space reaches a low-memory threshold, which is defined with the preference “browser.low_commit_space_threshold_mb”, Firefox will unload one tab, or if there are no unloadable tabs, trigger the Firefox-internal memory-pressure warning allowing subsystems in the browser to reduce their memory use. The browser then waits for a short period of time before checking commit space again and then repeating this process until available commit space is above the threshold.</p>
+<p>We found the checks on commit space to be essential for predicting when a real out-of-memory situation is happening. As long as there is still swap AND physical memory available, there is no problem. If we run out of physical memory and there is swap, performance will crater due to paging, but we won&#8217;t crash.</p>
+<p>On Windows, allocations fail and applications will crash if there is low commit space in the system even though there is physical memory available because Windows does not overcommit memory and can refuse to allocate virtual memory to the process in this case. In other words, unlike Linux, Windows always requires commit space to allocate memory.</p>
+<p>How do we end up in this situation? If some applications allocate memory but do not touch it, Windows does not assign the physical memory to such untouched memory. We have observed graphics drivers doing this, leading to low swap space when plenty of physical memory is available.</p>
+<p>In addition, <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1711610">crash data</a> we collected indicated that a surprising number of users with beefy machines were in this situation, some perhaps thinking that because they had a lot of memory in their machine, the Windows swap could be reduced to the bare minimum. You can see why this is not a good idea!</p>
+<h2>How does Firefox choose which tabs to unload first?</h2>
+<p>Ideally, only tabs that are no longer needed will be unloaded and the user will eventually restart the browser or close unloaded tabs before ever reloading them. A natural metric is to consider when the user has last used a tab. Firefox unloads tabs in least-recently-used order.</p>
+<p>Tabs playing sound, using picture-in-picture, pinned tabs, or tabs using WebRTC (which is used for video and audio conferencing sites) are weighted more heavily so they are less likely to be unloaded. Tabs in the foreground are never unloaded. We plan to do more experiments and continue to tune the algorithm, aiming to reduce crashes while maintaining performance and being unobtrusive to the user.</p>
+<h2>about:unloads</h2>
+<p>For diagnostic and testing purposes, a new page about:unloads has been added to display the tabs in their unload-priority-order and to manually trigger tab unloading. This feature is currently in beta and will ship with Firefox 94.</p>
+<div id="attachment_47414" style="width: 260px" class="wp-caption alignnone"><img aria-describedby="caption-attachment-47414" loading="lazy" class="size-medium wp-image-47414" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2021/10/AboutUnloads-250x199.png" alt="Screenshot of the about:unloads page in beta planned for Firefox 94." width="250" height="199" srcset="https://hacks.mozilla.org/files/2021/10/AboutUnloads-250x199.png 250w, https://hacks.mozilla.org/files/2021/10/AboutUnloads-500x397.png 500w, https://hacks.mozilla.org/files/2021/10/AboutUnloads-768x610.png 768w, https://hacks.mozilla.org/files/2021/10/AboutUnloads.png 1177w" sizes="(max-width: 250px) 100vw, 250px" /><p id="caption-attachment-47414" class="wp-caption-text">Screenshot of the about:unloads page in beta planned for Firefox 94.</p></div>
+<h2></h2>
+<h2>Browser Extensions</h2>
+<p>Some browser extensions already offer users the ability to unload tabs. We expect these extensions to interoperate with automatic tab unloading as they use the same underlying <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/discard">tabs.discard() API</a>. Although it may change in the future, today automatic tab unloading only occurs when system memory is critically low, which is a low-level system metric that is not exposed by the WebExtensions API. (Note: an extension could use the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_messaging">native messaging support</a> in the WebExtensions API to accomplish this with a separate application.) Users will still be able to benefit from tab unloading extensions and those extensions may offer more control over when tabs are unloaded, or deploy more aggressive heuristics to save more memory.</p>
+<p>Let us know how it works for you by leaving feedback on <a href="https://ideas.mozilla.org">ideas.mozilla.org</a> or <a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox&amp;component=Tabbed+Browser">reporting a bug</a>. For support, visit <a href="https://support.mozilla.org">support.mozilla.org</a>.Firefox crash reporting and telemetry adheres to our <a href="https://www.mozilla.org/en-US/privacy/principles/">data privacy principles</a>. See the <a href="https://www.mozilla.org/en-US/privacy/">Mozilla Privacy Policy</a> for more information.</p>
+<p><em>Thanks to Gian-Carlo Pascutto, Toshihito Kikuchi, Gabriele Svelto, Neil Deakin, Kris Wright, and Chris Peterson, for their contributions to this blog post and their work on developing tab unloading in Firefox.</em></p>
+    <section class="about">
+                                <h2 class="about__header">About
+                          Haik Aftandilian                      </h3>
+                                <p><a class="url" href="https://hacks.mozilla.org/author/haftandilianmozilla-com/">More articles by Haik Aftandilian&hellip;</a></p>
+                  </section>
+  </article>
+  <section class="promo">
+    <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+  <h2 class="heading">Discover great resources for web development</h2>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
+  <input id="fmt" name="fmt" value="H" type="hidden">
+  <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
+
+  <div id="newsletterErrors" class="newsletter__errors"></div>
+
+  <div id="newsletterEmail" class="form__row">
+    <label for="newsletterEmailInput" class="offscreen">E-mail</label>
+    <input id="newsletterEmailInput" name="email" class="newsletter__input" required="" placeholder="you@example.com" size="30" type="email">
+  </div>
+
+  <div id="newsletterPrivacy" class="form__row form__fineprint">
+    <input id="newsletterPrivacyInput" name="privacy" required="" type="checkbox">
+    <label for="newsletterPrivacyInput">
+      I'm okay with Mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/">Privacy Policy</a>.
+    </label>
+  </div>
+  <button id="newsletter-submit" type="submit" class="button positive">Sign up now</button>
+</form>
+<div id="newsletterThanks" class="newsletter newsletter--thanks block block--1 block--polite hidden">
+  <h2 class="heading">Thanks! Please check your inbox to confirm your subscription.</h2>
+  <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us.
+  </p>
+</div>
+  </section>
+  
+
+<section class="discussion">
+  <hr class="dino">
+  <div class="comments">
+    <header class="comments__head">
+      <h3>19 comments</h3>
+    </header>
+
+          <ol class="comments__list" class="hfeed">
+      
+ <li id="comment-27212" class="comment even thread-even depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Uristqwerty</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Some thoughts as a user with frequent long-lived tabs:</p>
+<p> &#8211; Many sites show a snapshot of actively-changing content when you open the page, so being able to restore using the original set of responses for that tab would be a valuable option (consider: opening the front page of a site multiple times, 6 hours apart. If they all reload as clones of each other, that is a loss of browsing state). I don&#8217;t know if this is how it works already, but if not, it&#8217;s something to consider.</p>
+<p> &#8211; Often, user interaction changes page state in a way that won&#8217;t be automatically recovered (collapsing/expanding replies, for example), so a heuristic that prioritizes unloading tabs with no user interaction time or no DOM changes would also help preserve non-recoverable state.</p>
+<p> &#8211; If nothing else, an extension API for deciding which tabs should be unloaded first could eventually allow user choices like &#8220;unload youtube even in a foreground tab; it&#8217;s both heavy and preserves its own state well enough&#8221;, or &#8220;prefer not to unload reddit, it is decidedly *not* idempotent&#8221;, or a toolbar toggle for &#8220;I care about this particular tab instance; keep it loaded at all costs&#8221;. Or better yet, &#8220;don&#8217;t unload tabs in the container named &#8216;Important'&#8221;, re-using a UI the user might be familiar with rather than requiring them to learn something new. Leaving it to extensions would allow them cater to different levels of technical expertise, rather than a single UI that settles on a compromise.</p>
+<p>Overall, sounds like a nice feature for many users, though.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27212" rel="bookmark" title="Permanent link to this comment by Uristqwerty"><abbr class="published" title="2021-10-05">October 5th, 2021</abbr> at 12:53</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+
+ <li id="comment-27215" class="comment odd alt thread-odd thread-alt depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Bela</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>The #1 thing I want in this regard is for &#8216;open in background tab&#8217; to create tabs which are *already unloaded*.  i.e. just the notion of a tab open to the specified URL.  I&#8217;m in the habit of opening a site full of articles, then ctrl-clicking a dozen of them into the background.  This causes a storm of activity which is completely unnecessary as I&#8217;m not going to look at any of those tabs for a while.</p>
+<p>Note: NOT asking for slowed down loading of background tabs.  I don&#8217;t want the resources consumed slowly, I want them consumed not at all. Until I invoke a tab by*switching* to it.</p>
+<p>Likewise, don&#8217;t load any tabs other than the focused one, when restarting from a saved session.</p>
+<p>Obviously this has to be an option, as many users would hate it.  Heavy users of tabs would love it.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27215" rel="bookmark" title="Permanent link to this comment by Bela"><abbr class="published" title="2021-10-05">October 5th, 2021</abbr> at 18:50</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27216" class="comment byuser comment-author-haftandilianmozilla-com bypostauthor even depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">Haik Aftandilian</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>@Bela, there is an extension available which opens new tabs in the unloaded state so that may be worth giving a try. Take a look at Lazy Tabs:</p>
+<p>  <a href="https://addons.mozilla.org/en-US/firefox/addon/lazy-tabs/" rel="nofollow ugc">https://addons.mozilla.org/en-US/firefox/addon/lazy-tabs/</a></p>
+<p>I tested the latest version, last updated Jul 3, 2021, and it works as advertised. It&#8217;s a small extension and easy to read through the entire source code to see what it does.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27216" rel="bookmark" title="Permanent link to this comment by Haik Aftandilian"><abbr class="published" title="2021-10-05">October 5th, 2021</abbr> at 20:41</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27235" class="comment odd alt depth-3">
+      <b class="comment__title vcard">
+      <cite class="author fn">Reik Red</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Just wanted to voice my support for &#8220;just-in-time&#8221; tab loading, as described by Bela above. IMPORTANT: favicon must be loaded, though. Favicons are such a big visual navigational help.</p>
+<p> (Around firefox 60(??), I lost all my favicons because of some new security policy implemented in a new version of firefox, and that caused massive trouble having to revisit 1000s of tabs to try and get the favicons back on display. Ran out of memory, too! But I digress.)</p>
+<p> Just-in-time tab load could be a user-selectable feature. When you switch to a tab, maybe the tab could display &#8220;Just-in-time loading in progress&#8221; until the content has been fetched/rendered) from network *r cache if no network).</p>
+<p>I just tried the above linked lazy tabs app, and it does not at all do what I want. You have to go in and pause (unload?) each tab manually. very different from Just-in-time.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27235" rel="bookmark" title="Permanent link to this comment by Reik Red"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 13:17</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+
+ <li id="comment-27218" class="comment even depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">moose</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Funny, because I want the opposite. I want to load a great pile of tabs, then have them available (and /not/ unloaded) when I am away from the Internet (e.g. on a plane&#8230;). </p>
+<p>Similarly, I never want to have to reconnect to the Internet because /Firefox/  (as opposed to a particular page) decided to reload or whatever one of my tabs. (Particularly annoying on my mobile device where I have enough RAM to not to have to worry, but I don&#8217;t want to have to turn on mobile data or whatever. Or I want to be able to read something when I cannot connect to the Internet (e.g. on a plane). Having to reload/refresh my tabs loses context, and potentially results in a page not existing any more.)</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27218" rel="bookmark" title="Permanent link to this comment by moose"><abbr class="published" title="2021-10-05">October 5th, 2021</abbr> at 23:52</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27227" class="comment odd alt depth-3">
+      <b class="comment__title vcard">
+      <cite class="author fn">Gian-Carlo Pascutto</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>The point that the article makes (but apparently doesn&#8217;t manage to get across very well :-/) is that we trigger this when we&#8217;re about to crash because we ran out of memory. So the choice is between trying to pick one tab to unload, or crashing &#8211; which unloads all tabs. So tab unloading helps rather than hurts your scenario.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27227" rel="bookmark" title="Permanent link to this comment by Gian-Carlo Pascutto"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 05:56</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+
+ <li id="comment-27237" class="comment even depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">Reik Red</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Just wanted to voice my support for &#8220;just-in-time&#8221; tab loading, as described by Bela above. IMPORTANT: favicon must be loaded, though. Favicons are such a big visual navigational help.</p>
+<p> (Around firefox 60(??), I lost all my favicons because of some new security policy implemented in a new version of firefox, and that caused massive trouble having to revisit 1000s of tabs to try and get the favicons back on display. Ran out of memory, too! But I digress.)</p>
+<p> Just-in-time tab load could be a user-selectable feature. When you switch to a tab, maybe the tab could display &#8220;Just-in-time loading in progress&#8221; until the content has been fetched/rendered) from network *r cache if no network).</p>
+<p>I just tried the above linked lazy tabs app, and it does not at all do<br />
+what I want. You have to go in and pause (unload?) each tab<br />
+manually. very different from Just-in-time.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27237" rel="bookmark" title="Permanent link to this comment by Reik Red"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 13:24</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+
+ <li id="comment-27217" class="comment odd alt thread-even depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Cookie Engineer</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>This is great!</p>
+<p>A little comment on the tab hoarding problem: Can we get a local search page that is able to search the html/text content of bookmarks?</p>
+<p>People usually are afraid of losing tabs, because the omnibar is useless for finding content in bookmarks. A dedicated search page (about:search?) that uses a local index of bookmark urls, tags, and more important &#8211; their contents &#8211; would help _so_ much in rediscovering a reading list or tabs you&#8217;ve bookmarked before already.</p>
+<p>Maybe automatically archive the reader view of a bookmark and use that as a baseline for search?</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27217" rel="bookmark" title="Permanent link to this comment by Cookie Engineer"><abbr class="published" title="2021-10-05">October 5th, 2021</abbr> at 20:56</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27222" class="comment even depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">zakius</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>there used to be easily accessible library (ctrl+shift+b) but that was too simple</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27222" rel="bookmark" title="Permanent link to this comment by zakius"><abbr class="published" title="2021-10-06">October 6th, 2021</abbr> at 03:23</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+
+ <li id="comment-27233" class="comment odd alt depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">Reik Red</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>I like the idea of &#8220;full-page (regexp) text search in all open tabs&#8221;, whether local or otherwise. Perhaps local is better &#8212; I might not like to tell google 1000s of tabs I have open so that it can limit a search to those, even if google supported such a concept.</p>
+<p>On tab hoarding in general: One reason I hoard tabs is because searching in bookmarks or history and such does not give me the context of neighboring tabs that I looked up that are related to some specific tab I have bookmarked, even if all the tabs were bookmarked (hope that sentence makes sense).</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27233" rel="bookmark" title="Permanent link to this comment by Reik Red"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 13:01</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+
+ <li id="comment-27219" class="comment even thread-odd thread-alt depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">zakius</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>&#8220;unloading&#8221; definitely should just offload the current state to non-volatile memory, there are way too many cases when reloading from network won&#8217;t work at all, especially for these resource heavy websites<br />
+and there&#8217;s always the edge case of returning to the unloaded tab when your connection is down</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27219" rel="bookmark" title="Permanent link to this comment by zakius"><abbr class="published" title="2021-10-06">October 6th, 2021</abbr> at 02:38</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+
+ <li id="comment-27220" class="comment odd alt thread-even depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">martixy</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>&gt; a surprising number of users with beefy machines were in this situation, some perhaps thinking that because they had a lot of memory in their machine, the Windows swap could be reduced to the bare minimum.</p>
+<p>This is not surprising. Virtualized memory is a tricky concept to grasp.</p>
+<p>It is worth noting that windows can set a min and max page file size. That way you can have the benefit of a small page file and room for fictitious commit. Tho I do wish windows would allow overcommit.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27220" rel="bookmark" title="Permanent link to this comment by martixy"><abbr class="published" title="2021-10-06">October 6th, 2021</abbr> at 03:08</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+
+ <li id="comment-27223" class="comment even thread-odd thread-alt depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Janio Sarmento</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Great, but I think Firefox should modernize their JS engine rather than solving issues that are not that important.</p>
+<p>I&#8217;m using Firefox less each day because some tools I use (Proxmox, e.g.) do not work in it because of the lack of support to modern JS features. Frustrating.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27223" rel="bookmark" title="Permanent link to this comment by Janio Sarmento"><abbr class="published" title="2021-10-06">October 6th, 2021</abbr> at 03:32</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+
+ <li id="comment-27224" class="comment odd alt thread-even depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Dan</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Web browsers should stop becoming operating systems, it directly goes against the KISS philosophy the best technologies were built on in the past, such as Unix.<br />
+We need a new model for running internet-era apps that doesn&#8217;t involve terrible technologies such as the DOM, JavaScript, and using a markup language such as HTML and CSS to build applications. Today&#8217;s web applications are slower and feel much less responsive than Windows 3.11 era applications.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27224" rel="bookmark" title="Permanent link to this comment by Dan"><abbr class="published" title="2021-10-06">October 6th, 2021</abbr> at 09:53</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+
+ <li id="comment-27226" class="comment even thread-odd thread-alt depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Dmitry</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>So, how can I disable this option?</p>
+<p>I&#8217;ll explain my point. I actively use the Internet and a computer. I often have many tabs and programs open. However, I independently monitor the free memory in the task manager and can independently close tabs or programs that consume memory, but are no longer needed. However, I need the tabs not to be unloaded from memory. I don&#8217;t want to be in a situation where I won&#8217;t receive notifications from mail because the mail tab has been unloaded. I don&#8217;t want to lose the text that I entered an hour ago in the form of the site. I don&#8217;t want to lose the notification from my messenger. Even if my computer goes to SWAP and starts to dump in pagefile. I won&#8217;t experience any problems with this, because I have an SSD. But it&#8217;s important to me that my tabs are always up to date.<br />
+So how can I disable this damn option?</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27226" rel="bookmark" title="Permanent link to this comment by Dmitry"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 00:37</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27239" class="comment byuser comment-author-haftandilianmozilla-com bypostauthor odd alt depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">Haik Aftandilian</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Firefox tries to only unload a tab when an out-of-memory crash is imminent. Heavy swapping should not trigger a tab unload. It&#8217;s when swap file space is almost exhausted that this is more likely to occur. However, you can disable tab unloading by setting &#8220;browser.tabs.unloadOnLowMemory&#8221; to false in about:config. The way you disable it could change in the future. If you leave it on and encounter a tab being unloaded when you believe there was no out-of-memory crash risk, please let us know about it by filing a bug on <a href="https://bugzilla.mozilla.org" rel="nofollow ugc">https://bugzilla.mozilla.org</a></p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27239" rel="bookmark" title="Permanent link to this comment by Haik Aftandilian"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 14:09</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+
+ <li id="comment-27232" class="comment even thread-even depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Reik Red</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>(accidentally submitted half-written comment above, pls delete that one, and also this comment if you want)</p>
+<p>Tab-unloading is a wonderful idea. I am eagerly awaiting the linux version getting tab-unloading enabled. </p>
+<p>Some additional features would be useful, though.</p>
+<p> 1. set a user-defined memory limit individually for each firefox instance, via about:config. When reaching limit, invoke tab unloading</p>
+<p>2. same as 1, but with a global limit on all firefox instances (profiles) running for a user or for all users<br />
+  (not as important).</p>
+<p>I also liked Bela&#8217;s comment above about not loading tab contents at all unless they are being displayed (selected, visibly open) in a window. But still show the favicon in the tab, so easier to find relevant tabs. I have not tried &#8220;lazy tabs&#8221; for a long time. Some previous  (and possibly unrelated)  incarnations of lazy tabs used to be not so great. After the big firefox speedup about 2 years ago I was less concerned about loading time or browser restart time in general, but nowadays I have such high memory usage even right after restart that something built-in like lazy tabs is very relevant  in addition to tab-unload.</p>
+<p>Just to give you an idea of my memory usage situation, here is an instance/profile reikHH  with about 12GB for 1620 tabs, one of  my worst profiles in terms of memory used per tab :)</p>
+<p>FirefoxHH -P reikHH<br />
+mapped: 12395992K    writeable/private: 5793320K    shared: 839428K</p>
+<p>The above memory footprint is from a pmap script I found (linux).</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27232" rel="bookmark" title="Permanent link to this comment by Reik Red"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 12:46</a>
+
+      <p class="comment__util"> </p>
+  <ol class="children">
+
+ <li id="comment-27236" class="comment odd alt depth-2">
+      <b class="comment__title vcard">
+      <cite class="author fn">Reik Red</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Clarification: I started using the term &#8220;just-in-time tab loading&#8221; further up in the comments now, rather than calling it &#8220;lazy tabs&#8221;. Load-on-demand might be another term to describe it.</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27236" rel="bookmark" title="Permanent link to this comment by Reik Red"><abbr class="published" title="2021-10-07">October 7th, 2021</abbr> at 13:20</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+
+ <li id="comment-27300" class="comment even thread-odd thread-alt depth-1">
+      <b class="comment__title vcard">
+      <cite class="author fn">Joel Crumpler</cite>
+    </b>
+  
+    
+    <blockquote class="comment__body">
+      <p>Wonderful</p>
+    </blockquote>
+
+    <a class="comment__meta" href="https://hacks.mozilla.org/2021/10/tab-unloading-in-firefox-93/#comment-27300" rel="bookmark" title="Permanent link to this comment by Joel Crumpler"><abbr class="published" title="2021-11-04">November 4th, 2021</abbr> at 07:38</a>
+
+      <p class="comment__util"> </p>
+  </li><!-- #comment-## -->
+      </ol>
+      </div>
+
+<p class="comments__closed"><b>Comments are closed for this article.</b></p>
+
+
+</main><!-- /#content-main -->
+
+  
+
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        <p class="block block--1">
+          Except where otherwise noted, content on this site is licensed
+          under the
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
+          or any later version.
+        </p>
+        <img class="footer__logo" alt="the Mozilla dino logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/dino.svg">
+      </div>
+    </footer>
+  </div>
+  <link rel='stylesheet' id='hljstheme-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/styles/solarized-light.css?ver=0.6.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/wp-embed.min.js?ver=5.8.2' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.common.pack.js?ver=0.6.2' id='hljs_preload-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.custom.pack.js?ver=0.6.2' id='hljs-js'></script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+  <script>
+    // External links should open in a new tab.
+    (function () {
+      var postLinks = document.querySelectorAll('#content-main a');
+
+      var origin = location.origin;
+
+      for (var i = 0; i < postLinks.length; i++) {
+        var link = postLinks[i];
+        if (link.origin !== origin && !link.getAttribute('target')) {
+          link.setAttribute('target', '_blank');
+        }
+      }
+    })();
+
+    window.addEventListener('load', function () {
+      if (document.querySelector('#newsletterForm')) {
+        var script = document.createElement('script');
+        var path = document.head.getAttribute('data-template-path');
+        script.setAttribute('src', path + '/js/newsletter.js');
+        document.head.appendChild(script);
+      }
+    });
+  </script>
+</body>
+</html>

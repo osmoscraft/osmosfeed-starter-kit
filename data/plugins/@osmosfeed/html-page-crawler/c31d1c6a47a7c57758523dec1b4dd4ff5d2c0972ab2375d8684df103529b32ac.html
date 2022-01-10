@@ -1,0 +1,1593 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+
+    
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+        <title>Advent Calendars For Web Designers And Developers (December 2021 Edition) — Smashing Magazine</title>
+      
+      
+
+
+<link rel="preconnect" href="https://cloud.netlifyusercontent.com"/>
+<link rel="preconnect" href="https://smashingcomments.netlify.app"/>
+<link rel="preconnect" href="https://res.cloudinary.com"/>
+<link rel="preconnect" href="https://www.google-analytics.com/"/>
+<link rel="preconnect" href="https://storage.googleapis.com"/>
+
+      
+
+
+
+
+
+
+    
+
+    
+      
+
+<style>
+  @font-face{font-family:Elena;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff")}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff");font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic;font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700;font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic;font-display:optional}@font-face{font-family:Mija;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff")}@font-face{font-family:MijaLCP;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff");font-display:optional}@font-face{font-family:Mija;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700}@font-face{font-family:MijaLCP;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700;font-display:optional}
+</style>
+
+<script>
+
+  var fontsInServiceWorker = sessionStorage.foutFontsStage1Loaded && sessionStorage.foutFontsStage2Loaded || ('serviceWorker' in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === 'activated')
+  if (!fontsInServiceWorker && 'fonts' in document) {
+    function fetchFonts(fonts) {
+      return Promise.all(fonts.map(function (font) {
+        return document
+          .fonts
+          .load(font);
+      }));
+    }
+
+    if( sessionStorage.foutFontsStage2Loaded ) {
+			document.documentElement.className += " wf-loaded-stage2";
+		} else {
+      sessionStorage.foutFontsStage1Loaded = true;
+    };
+  }
+
+
+
+  if ("fonts" in document && !("connection" in navigator && navigator.connection.saveData)) {
+		
+		let font = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format('woff2')"
+		);
+		let fontBold = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+		let fontItalic = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format('woff2')",
+			{ style: "italic" }
+		);
+		
+		
+		
+		
+		let font2Bold = new FontFace(
+			"Mija",
+			"url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+
+		
+		let loadedFonts = Promise.all([
+			font.load(),
+			
+			fontBold.load(),
+			font2Bold.load(),
+			fontItalic.load()
+		]).then(result => {
+			result.forEach(font => document.fonts.add(font));
+			document.documentElement.classList.add('wf-loaded-stage2');
+			sessionStorage.foutFontsStage2Loaded = true;
+		}).catch(error => {
+			throw new Error(`Error caught: ${error}`);
+		});
+
+  }
+
+  if (
+    (sessionStorage.foutFontsStage1Loaded &&
+      sessionStorage.foutFontsStage2Loaded) ||
+    ('serviceWorker' in navigator &&
+      navigator.serviceWorker.controller !== null &&
+      navigator.serviceWorker.controller.state === 'activated')
+  ) {
+    var docEl = document.documentElement
+    
+    docEl.classList.add('wf-loaded-stage2')
+  }
+
+  if (
+    !'querySelector' in document &&
+    'addEventListener' in window &&
+    'getComputedStyle' in window
+  ) {
+    window.document.documentElement.className += ' no-js'
+  }
+  window.document.documentElement.className += ' enhanced js'
+</script>
+
+
+
+<style>
+  @charset "UTF-8";@media (prefers-color-scheme:dark){:root{--article-background-color:linear-gradient(-45deg, #162c35 70%, #0c252f 100%)}}*,::after,::before{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;overflow-y:scroll}body{margin:0;display:flex;flex-direction:column;background-color:#fff;font-feature-settings:"onum" 1;color:#333;overflow:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:-apple-system,BlinkMacSystemFont,Roboto,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif;font-size:1.125em}body,html{min-height:100%;overflow-x:hidden}img{max-width:100%;position:relative;border-style:none}article,aside,figcaption,figure,footer,header,main,nav,section{display:block}:focus{outline:3px dotted var(--THEME_COLOR_HOVER,#811d15)!important}article,figure,header,main,nav,section{display:block}@media (prefers-reduced-data:reduce){.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 body,.wf-loaded-stage2 h1,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 tbody td,.wf-loaded-stage2 th,.wf-loaded-stage2 time{font-family:-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif!important}}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 h1,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 th{font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 body,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 tbody td,.wf-loaded-stage2 time{font-family:Elena,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}@media all and (max-width:750px){.c-garfield-the-cat{display:flex;flex-direction:column}.c-garfield-the-cat>*{margin-bottom:0}.article__image,.c-garfield-the-cat>figure{margin:1em auto .25em auto}.c-garfield-aside--meta{margin-bottom:1em}.c-garfield-the-cat>pre{margin-top:1em}.c-garfield-the-cat .code-toolbar{margin-top:1em}.c-garfield-the-cat .code-toolbar>pre{margin-top:0}.c-garfield-the-cat>pre{margin-bottom:.5rem}.c-garfield-the-cat>table{margin-top:1em;margin-bottom:1em}.c-garfield-the-cat .pull-quote__quotation{margin-top:1em}.drop-caps{display:none}}@media all and (max-width:1000px){.article-header--meta,.article-header--meta-item__date,.article__summary,.article__summary::before,.author__desc,.author__desc__title,.drop-caps+p::first-line,.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--meta-item__date,.wf-loaded-stage2 .article__summary,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 body,.wf-loaded-stage2 time,body,time{font-family:ElenaLCP,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.feature-panel__desc,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 h1,h1{font-family:MijaLCP,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif;font-weight:700}}.js-show-secondary .menu-text--sm,.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}.js-show-secondary .menu-text--sm--close{display:block}@media all and (min-width:800px){.js-show-secondary .main-nav__secondary{display:block;top:50px}.js-show-secondary .menu-text--lg--close,.menu-text--lg{display:block}.js-show-secondary .menu-text--lg,.js-show-secondary .menu-text--sm--close,.menu-text--sm{display:none}}.js-show-secondary .main-nav-more-item__button:before{content:"";display:block;margin-left:.35em;width:45px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50.21 35.05'%3E%3Cellipse cx='27.8' cy='32.92' fill='rgba(60,60,60,0.5)' rx='19.64' ry='1.2'/%3E%3Cpath fill='%23fff' d='M46.48 15.53a5.2 5.2 0 00-2-.31 7 7 0 00-1.43.19 7.66 7.66 0 001.19-1.52 7.12 7.12 0 011.12-.13 5.18 5.18 0 012 .31h.05a2.82 2.82 0 011.44 1.24 2.75 2.75 0 01.18 2 2.36 2.36 0 00-.74-.46 2 2 0 01.86 1c.11.45-.23 1-.67.92a1.86 1.86 0 00-.22-1 2.65 2.65 0 00-.29-1 2.74 2.74 0 00-1.49-1.24zM16.56 28.07c.06-.21.37-1.29.19-1.47 0 0 5.18 5.08 7.22-2.7a6 6 0 001.16.62c-.75 7-6.44 3.43-6.44 3.43.22.13.14 1.25.12 1.47-.16 2.2-3 1.63-3.74.11a2.44 2.44 0 01-.14-.34 1.4 1.4 0 001.63-1.12z' class='cls-2'/%3E%3Cpath fill='%23fff' d='M1.26 14.52c.08.23.18.45.28.67v.05c1.26 2.67 3.76 5 6.81 4.61a12 12 0 003.51-1.05 8.6 8.6 0 013.64-1 7.28 7.28 0 00.1 2.65A9.82 9.82 0 0117 18.5s-.77 2.34-.41 3a1 1 0 00-.15-.18 1.28 1.28 0 00-.8-.4 1 1 0 00-.89.7c-.23.45-.24.83-.63 1.17-1 .87-2.17 2-1.79 3.47a2.64 2.64 0 002.06 1.82A1.39 1.39 0 0016 27c.06-.21.36-1.28.18-1.46 0 0 5.19 5.07 7.23-2.7a5.65 5.65 0 001.16.61c1.43.56 3.94.91 6.11-2.07a20.36 20.36 0 005.68 1.13s-1.55-.55-1.61-1.28c0 0 3.84 1 6 0l-2.43-.32a3.69 3.69 0 001.68-.42 5.24 5.24 0 012.46 0c.73.08 1.06-.31 1.54-.78a1.17 1.17 0 00.09.33 2.06 2.06 0 00.12.35 3.21 3.21 0 00.37.65 1.35 1.35 0 001.27.53.92.92 0 00.53-.28 1.2 1.2 0 00.19-1.16 2 2 0 00-.77-.94 1.85 1.85 0 011 1.76c.44.08.78-.48.67-.93a1.13 1.13 0 00-.13-.32 2.4 2.4 0 00-.72-.7 2.26 2.26 0 01.74.45 2.67 2.67 0 00.1-.64v-.3a2.59 2.59 0 00-.28-1A2.65 2.65 0 0046 16.32l-.14-.06-.08-.05h-.06a10.1 10.1 0 00-3.9-.54 6.3 6.3 0 001.59-2.45 3 3 0 01-.12.73s1.61-.69.71-2.95a1 1 0 01.63.49 4.17 4.17 0 00-1.74-2.81 2.35 2.35 0 01.88.17 3.64 3.64 0 00-1.72-1.34l-.27-2.21.88.31s0-.35-.89-.86a7.17 7.17 0 00.36-3.37C39.32 1 38.27 2.48 38 2.94a12.73 12.73 0 00-2.56.26 2.83 2.83 0 011.29-.62 3.87 3.87 0 00-3.23.94s-2.73-2-5.37-1.29c0 0-.27 1.36 1.42 4.77a6.37 6.37 0 00-2.31 2.67 7.38 7.38 0 011.63-1.59s-2.44 2.6-1.46 4.67a3.77 3.77 0 01.35-1.55c0 .4-.24 3.2 1 4.61a9.92 9.92 0 01-.32-2s.37 2.53 3.84 3.6a4.35 4.35 0 01-1.49-1.54 11.65 11.65 0 002.47 1.23c-.61.18-1 .31-1 .31l-.81.38a6.56 6.56 0 01-2.34-1.49h-.07a.58.58 0 01-.31.08.64.64 0 01-.46-.21 5.47 5.47 0 01-1.14-2.91.66.66 0 01-.33-.31 3.48 3.48 0 01-.19-2.24 6.84 6.84 0 00-6.5-.26 18.29 18.29 0 012.43.43s-4.84.26-7.22 3.71c0 0 1.93-2 2.77-1.7a8.44 8.44 0 00-2.1 3A9.13 9.13 0 0012 16c-3.7.78-5.2-1.7-5.79-3.65 0-.13-.08-.25-.11-.37a.14.14 0 000-.07v-.16a.14.14 0 010-.06q-.1-.24-.1-.47v-.05a.68.68 0 000-.14 2.4 2.4 0 010-.24v-.09a.09.09 0 000-.05v-.08a.28.28 0 010-.09v-.12c-.09-2-1.43-2.88-3-1.92C.82 9.6.44 12.35 1.26 14.52zm26.58-3.41v.05z' class='cls-2'/%3E%3C/svg%3E");order:1}.js-show-secondary .main-nav-more-item__button:after{width:15px;height:15px;order:2;background-image:url(/images/icons/close.svg)}.js-show-secondary .main-nav__secondary{display:flex}strong{font-weight:bolder;letter-spacing:0}svg:not(:root){overflow:hidden}button{text-transform:none;cursor:pointer;font:inherit;margin:0}[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}.l-author-bio{display:flex;flex-wrap:wrap;align-items:center}.l-author-bio-content{flex-grow:1;flex-shrink:1;flex-basis:300px}.bio-image__large .bio-image{--bio-image-border-width:8px}.bio-image{padding:0;margin:0;display:block;width:100%;height:100%;border-radius:inherit;position:relative}.bio-image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transform-origin:30% 50%;opacity:1;transition:opacity .3s ease-in-out}.bio-image:hover::before{opacity:0}a.bio-image-link{background:0 0;text-shadow:none;color:inherit;padding:0;display:block;border-radius:inherit;width:100%;height:100%}a.bio-image-link::before{display:block;content:'';height:120%;width:120%;position:absolute;top:-10%;left:-12%}.bio-image-wrapper{background:var(--bio-image-background-color,var(--bio-image-border-color,#d33a2c));border:solid var(--bio-image-border-width,8px) var(--bio-image-border-color,#d33a2c);border-radius:inherit;transform:scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));transform-origin:0 100%;overflow:hidden;width:100%;height:100%;transition:transform .2s ease-out}.bio-image-image{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2) rotateZ(calc(11 * 1deg));transition:transform .2s ease-out}.bio-image-link:active .bio-image-wrapper,.bio-image-link:focus .bio-image-wrapper,.bio-image:hover .bio-image-wrapper{transform:scale(.84) translateX(15%) rotateZ(0)}.bio-image-link:active .bio-image-image,.bio-image-link:focus .bio-image-image,.bio-image:hover .bio-image-image{transform:scale(1.2) rotateZ(0)}.article__content .author-post__author-title{color:#d33a2c;text-decoration-line:underline;font-weight:700;font-size:.9em}.light-grey{color:#767676!important}.rounded-3xl{border-radius:1.2em}.block{display:block}.h-48{height:12rem}.mr-3{margin-right:.75rem}.mb-5{margin-bottom:1.25rem}@media all and (max-width:600px){.mobw-40{width:8rem!important}.mobh-40{height:8rem!important}}.w-48{width:12rem}.mt-2{margin-top:.5rem}.mtn{margin-top:0!important}.mbn{margin-bottom:0!important}small{font-size:80%}.row{box-sizing:border-box;display:flex;flex:0 1 auto;flex-direction:row;flex-wrap:wrap;margin-right:-1rem;margin-left:-1rem}[class*=col-]{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}.row::after{clear:both}.col-12{flex-basis:100%;max-width:100%}@media screen and (min-width:48em){.col-12{flex-basis:100%;max-width:100%}}.container{width:calc(100% - .5em);max-width:1440px;margin:0 auto;z-index:1;position:relative}.container::after{content:"";display:table;clear:both}@media (min-width:40em){.container{width:92vw!important}}@media (min-width:48em){.container{width:85vw}}@media (min-width:64em){.container{width:68rem}}@media (min-width:75em){.container{width:79rem}}@media screen and (min-width:160em){.container{max-width:1650px}}@media (min-width:187.5em){.container{max-width:1860px}}.c-garfield-the-cat>p:first-of-type{font-size:1.1em;line-height:1.55em}.c-garfield-the-cat>p:empty{display:none}.c-felix-the-cat{background-color:#f3f3f3;border-left:11px solid #e6e4e1;padding:1em 1em 1em 1.5em;color:#424242;margin-left:0;margin-top:1em;font-size:1.05em;line-height:1.6em;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0 0,#fff 100%)}.c-felix-the-cat h4{margin-top:.5em}.sponsor-panel{display:flex;justify-content:center;align-items:center}.sponsor-panel-content{flex:3}.sponsor-panel-image{display:none}@media screen and (min-width:1100px){.sponsor-panel-image{display:block;background-image:none;margin-left:1.5em;flex:1}}@media (max-width:1024px){.col{width:100%!important;padding:0 1em}.row{margin-left:0;margin-right:0}.article__content{float:none}.article__content::before{display:none}}#main{position:relative;z-index:0;background-color:#fff}@supports (display:grid){.main-nav{display:grid;align-items:center}}.main-nav{position:relative;display:block;min-width:0;color:#fff;grid-column:span 2;font-size:1.05em}.main-nav__primary .nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav__secondary .nav-item--active{background-color:transparent;margin:0}.c-garfield-the-cat figcaption a{color:#666;text-decoration-line:underline;text-decoration-color:#666}.c-garfield-the-cat figcaption a.btn{color:#fff;text-decoration:none}@media all and (min-width:1100px){@supports (grid-row-gap:0){.c-garfield-the-cat{display:grid;grid-template-columns:0 minmax(0,.5fr) repeat(10,minmax(0,1fr)) .7fr .3fr 17rem;margin:0 auto}.c-garfield-the-cat ol,.c-garfield-the-cat ul,.c-garfield-the-cat>div,.c-garfield-the-cat>p,.c-garfield-the-cat>table{margin-bottom:1.4em}.c-garfield-the-cat>h2{margin-top:1.5em;margin-bottom:1em}.c-garfield-the-cat>h3,.c-garfield-the-cat>h4{margin-top:1.5em;margin-bottom:.65em}.c-garfield-the-cat>h5{margin-top:.65em;margin-bottom:.65em}.article__image,.c-garfield-the-cat>figure{margin:0 auto 1.4em auto;width:100%}.c-garfield-the-cat .code-toolbar pre,.c-garfield-the-cat blockquote,.c-garfield-the-cat pre,.c-garfield-the-cat>figure.video-embed-container{margin-bottom:1.7em;margin-top:.3em}.c-garfield-the-cat .code-toolbar{margin-bottom:0}.c-garfield-the-cat>*{grid-column:3/13;margin-top:0;margin-bottom:0}.c-garfield-the-cat .c-garfield-bio{grid-column:1/2;grid-row:1/4;align-self:start}.c-garfield-the-cat .c-garfield-header{grid-column-end:16}.c-garfield-the-cat .c-garfield-aside--meta{grid-column:15/16;grid-row:2/7;align-self:start;margin:0}.c-garfield-the-cat .toc-components li{margin-bottom:.75em}.c-garfield-the-cat>.break-out{grid-column:3/14;width:100%}.c-garfield-the-cat>.break-out img{margin:0 auto}.c-garfield-the-cat>.break-out figcaption{max-width:50em}.article__content .c-garfield-the-cat figcaption{margin:0 auto}.c-garfield-the-cat .c-garfield-native-panel{grid-column:15/16;grid-row:8/15;align-self:start;text-align:center;position:relative}.c-garfield-native-panel__right{grid-column:15/16;grid-row:15/22;align-self:start;text-align:center}.c-garfield-the-cat .c-garfield-native-panel__below{grid-row:19/25}.c-garfield-the-cat .c-garfield-native-panel__end{grid-row:26/33}.feature-panel-container{margin-top:6em;margin-bottom:1em}}}.no-ads .c-garfield-native-panel,.no-panels .feature-panel-container,.subscriber .c-garfield-native-panel,.subscriber .feature-panel-container{display:none!important}figcaption a{color:inherit}figcaption code,figcaption pre{font-style:normal}.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{position:relative}.feature-panel-container{grid-column:1/15;margin-top:3em;margin-bottom:1em}.article__image img,.c-garfield-the-cat>figure img{display:block;width:auto;max-width:100%;margin:0 auto;height:auto}.article__image>a,.c-garfield-the-cat>figure>a{display:block;background:0 0;position:relative;z-index:99}.article__image figcaption,.c-garfield-the-cat>figure figcaption{color:#666;font-size:.95em;font-style:italic;padding:.75em 2em .75em 0;display:table}.article__image figcaption a,.c-garfield-the-cat>figure figcaption a{color:#666}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before,.internal__page__wrapper figure:not(.bio-image) figcaption::before{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNyAxMy4wOSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMmMyYzI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5jYW1lcmE8L3RpdGxlPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTguNSA1LjQ0YTIuMjEgMi4yMSAwIDEgMCAyLjIxIDIuMjEgMi4yMSAyLjIxIDAgMCAwLTIuMjEtMi4yMXpNMTQuNzkgMi4yMWgtMi41NWEyLjIxIDIuMjEgMCAwIDAtMi4yNC0yLjIxaC0zYTIuMjEgMi4yMSAwIDAgMC0yLjI0IDIuMjFoLTIuNTVhMi4yMSAyLjIxIDAgMCAwLTIuMjEgMi4yMXY2LjQ2YTIuMjEgMi4yMSAwIDAgMCAyLjIxIDIuMjFoMTIuNThhMi4yMSAyLjIxIDAgMCAwIDIuMjEtMi4yMXYtNi40NmEyLjIxIDIuMjEgMCAwIDAtMi4yMS0yLjIxem0tNi4yOSA5LjM1YTMuOTEgMy45MSAwIDEgMSAzLjkxLTMuOTEgMy45MSAzLjkxIDAgMCAxLTMuOTEgMy45MXoiLz48L3N2Zz4=);height:1em;width:1.5em;padding-right:.6em;display:table-cell;vertical-align:baseline;position:relative;top:.05em}.c-garfield-the-cat>figure.article__figure figcaption::before{content:'';display:none}.hidden{display:none!important}.c-garfield-header{clear:both}.c-promo-box{font-size:.9em;border-radius:11px}.c-promo-box a:not(.btn){color:#006fc6}.c-promo-box--ad::before{display:block;white-space:pre-wrap;padding:2em 0 3em 0;font-size:.85em;font-style:italic;color:#666}.c-promo-box--ad img{border-top-left-radius:11px;border-top-right-radius:11px}.c-garfield-the-cat .author__desc{font-size:.9em;color:#555}.summary__heading{font-style:normal;font-size:1rem;letter-spacing:2px;margin:0;font-weight:700;color:#d33a2c;text-transform:uppercase}.c-promo-box--ad ul{padding-left:0;margin:0}.bnnr-list{display:flex;text-align:center;justify-content:center;flex-direction:row}.sponsors.c-promo-box:not(.c-promo-box--wide) .bnnr-list{flex-direction:column}.c-garfield-the-cat{padding:0 1em}@media screen and (min-width:80em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.4fr .6fr 21rem 1fr}}@media screen and (min-width:100em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.9fr .4fr 21rem 1fr}}@media screen and (min-width:160em){.c-garfield-the-cat{display:grid;grid-template-columns:18.5rem repeat(11,minmax(0,1fr)) .7fr .3fr 18.5rem;grid-column-gap:1.75rem}}@media (min-width:187.5em){.c-garfield-the-cat{display:grid;grid-template-columns:20rem repeat(11,minmax(0,1fr)) .7fr .3fr 20rem;grid-column-gap:2.25rem}}.header{background:#d33a2c;background:var(--THEME_COLOR,#d33a2c);position:relative;display:grid;justify-content:flex-start;align-items:center;padding:.8em;z-index:2;grid-template-columns:min-content min-content 1fr;column-gap:5px}@media all and (min-width:31.25em){.header{grid-template-columns:-webkit-min-content -webkit-min-content 0 minmax(100px,100%);grid-template-columns:min-content min-content 0 minmax(100px,100%);column-gap:10px}}@media (min-width:700px){.header{grid-template-columns:-webkit-min-content minmax(140px,2fr) 0 minmax(100px,350px);grid-template-columns:min-content minmax(140px,2fr) 0 minmax(100px,350px)}}@media (min-width:740px){.header{padding:1rem 2em}}.search{flex-basis:100px;flex-shrink:1}@media screen and (min-width:48em){body{font-size:calc(.35842vw + .95296em)}}body .form__field__label,body li,body p{line-height:calc(1.5em + .2vw);word-break:break-word}body h1{line-height:1.2}.article--post__title a:focus,.article--post__title a:hover{color:#d33a2c}@supports (-ms-ime-align:auto){.article__image figcaption,.c-garfield-the-cat>figure figcaption{display:inline-block}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before{display:inline-block}body{font-feature-settings:normal}}::-webkit-input-placeholder{color:#666}::-moz-placeholder{color:#000}:-ms-input-placeholder{color:#666}.article-header--meta-item__date,time{color:#666;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;text-transform:lowercase;background-position:center 72%}.article-header--meta-item__date{display:flex}.wf-loaded-stage2 time{font-variant:petite-caps}.kbd,kbd{font-size:.9em;padding:.0625rem .5rem;border-radius:.125rem;border:1px solid #d33a2c;box-shadow:1px 1px 0 #d33a2c,2px 2px 0 #d33a2c;margin:0 .25rem;color:#d33a2c;font-family:monospace}figure{margin:0;padding:0}figure:after,figure:before{content:" ";display:table;clear:both}a{padding:7px 0;background-color:transparent;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;text-decoration-line:underline;color:#006fc6}.h1,h1{font-size:calc(1.625rem + 1.6vw);margin:0}.h2,.h3,.h4,.h5,h2,h3,h4,h5{color:#333}.h2,h2{font-size:calc(1.5rem + .25vw);margin:2em 0 .75em;text-transform:capitalize}.h3,h3{font-size:calc(1.125rem + .25vw);text-transform:uppercase;letter-spacing:1px;margin-top:2em;margin-bottom:1em}h4{font-size:1.1em;margin-top:2em}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{text-transform:none}@keyframes fadeOut-headings{0%{background:#ffde95;box-shadow:-10px 0 0 12px #ffde95}100%{background:#fff1d2;box-shadow:-10px 0 0 12px #fff1d2}}h2:target,h3:target,h4:target,h5:target,h6:target{border-radius:11px;animation:fadeOut-headings .4s;animation-fill-mode:forwards}.article__content h2:target a,.article__content h3:target a,.article__content h4:target a,.article__content h5:target a{color:#d33a2c}:target{scroll-margin-top:2rem}ol,ul{margin:1em 0;max-width:100%}ol{padding:0;list-style:none;counter-reset:listCounter}ol>li{padding-left:calc(1.65em + .7vw);position:relative;counter-increment:listCounter;margin-bottom:1em}ol>li::before{content:counter(listCounter,decimal-leading-zero);font-size:.7em;font-weight:700;color:#d33a2c;left:.8em;position:absolute;font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif}ul{list-style:disc}ul>li::marker{color:#d33a2c}ul>li{margin-bottom:.75em;padding-left:.15em}.rh{color:#d33a2c}.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}@media (min-width:800px){.search{flex-basis:500px}.main-nav{grid-column:auto}.menu-text--sm{display:none}.menu-text--lg{display:block}}.secondary-nav{position:relative;grid-row-start:2;grid-column:1/5}body:not(.enhanced) .main-nav{overflow-x:auto;-webkit-overflow-scrolling:touch}.main-nav__primary{display:flex;list-style:none;padding:.4em 0;margin:0;flex-wrap:nowrap;width:100%;height:100%;flex-shrink:1;min-width:0;justify-content:flex-start}.main-nav span:empty{display:none}@media all and (min-width:53.125em){.main-nav__primary{justify-content:space-between}}.nav-item{flex-grow:0;background:0 0;text-shadow:none;color:inherit;font-weight:700;display:flex;align-items:center;margin-bottom:0;padding-left:0}.nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav-more-item{position:relative;width:145px}@media (min-width:42.9375em){.main-nav-more-item{margin-left:.35em}}@media all and (max-width:52.5em){.main-nav-more-item{justify-content:center}}.main-nav-more-item__button{padding:.4em .5rem .4em 1rem;border:1px solid rgba(0,0,0,.05);color:inherit;display:flex;align-items:center;justify-content:space-around;line-height:1;position:relative;background-color:rgba(0,0,0,.2);border-radius:11px;box-shadow:0 13px 7px -15px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.main-nav-more-item__button,.nav-item-link{white-space:nowrap}.nav-item-link{padding:.35em .9rem;background:0 0;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);text-decoration:none}@media screen and (min-width:800px){.main-nav__secondary .nav-item-link{color:#d33a2c!important}}.nav-item-link:focus,.nav-item-link:hover{background-color:rgba(0,0,0,.15);border-radius:11px}.main-nav__secondary .nav-item-link:focus,.main-nav__secondary .nav-item-link:hover{background-color:transparent;box-shadow:none}.main-nav-more-item__button:active,.main-nav-more-item__button:focus,.nav-item-link:active,.nav-item-link:focus{outline-color:var(--THEME_COLOR_OUTLINE,#811d15)!important}.secondary-nav .nav-item-link:active,.secondary-nav .nav-item-link:focus{outline-color:#811d15!important}.main-nav__secondary .nav-item-link{text-shadow:none;width:100%;text-decoration:none;text-decoration-color:#d33a2c;padding:.25em .7rem}.main-nav-more-item__button:after{content:"";display:block;margin-left:9px;width:30px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35.96 33.31'%3E%3Cellipse cx='17.98' cy='31.55' fill='rgba(60,60,60,0.3)' rx='14.75' ry='.57'/%3E%3Cpath fill='%23fff' d='M34.94 15v-.93c-.23-3-2.16-5.93-5.22-6.3-2.31-.28-3.39 1.45-2.4 3.84a.43.43 0 000 .05v.11a.14.14 0 010 .06.63.63 0 000 .09v.17c0 .08.06.18.09.29s0 0 0 .05a1 1 0 000 .17.64.64 0 010 .07c0 .18.1.38.14.6a.24.24 0 010 .08v.29c0 .03.06.33.08.5.37 2.58 0 6.27-4.73 7.37A12.74 12.74 0 0019.7 23c-.17-.65-.36-1.25-.55-1.77a5.16 5.16 0 002.05-2.56 11.26 11.26 0 01-.69 2.33c1.81-1.55 2-5.05 2-5.54a4.72 4.72 0 01.21 2c1.55-2.41-1.17-6-1.17-6a9.67 9.67 0 011.84 2.24C23 11.75 20.82 10 20.82 10c2.65-4 2.51-5.68 2.51-5.68-3.26-1.34-7 .73-7 .73a5.12 5.12 0 00-4-1.7 3.61 3.61 0 011.56 1 16.79 16.79 0 00-3.23-.74C10.41 3 9.4 1.16 6.22 1h-.58S5 3.64 5.61 5.19c-1.15.49-1.26.93-1.26.93l1.17-.25-.67 2.67a4.66 4.66 0 00-2.39 1.38 3 3 0 011.15-.07A5.11 5.11 0 001 13.05a1.32 1.32 0 01.87-.51c-1.47 2.69.49 3.76.49 3.76a3.8 3.8 0 010-.92 8.52 8.52 0 002.19 3.9 14.13 14.13 0 01-.24-1.59 5.46 5.46 0 001.93 2.7 6.25 6.25 0 01-.4-1.52 5.87 5.87 0 001.36 1.75c-.12.24-.24.47-.34.71a12 12 0 00-.7 2.13c0 .23-.09.45-.13.66a1.4 1.4 0 00-1-.31 1.4 1.4 0 00-1.09 1 3.1 3.1 0 000 1.57 9.48 9.48 0 001.8 3.92A2.92 2.92 0 004 30.06c-.56.16-1 .83-.72 1.34H22.6c.29-.51-.16-1.18-.72-1.34a2.92 2.92 0 00-1.71.24A9.48 9.48 0 0022 26.44 3.24 3.24 0 0022 25a15.89 15.89 0 012.87-.21 14.93 14.93 0 004.65-.69c3.72-1.24 5.38-5.25 5.38-9zm-12.49.42h-.05v-.07z'/%3E%3C/svg%3E")}.main-nav__secondary{display:none;color:#fff;padding:.2em 0;flex-wrap:wrap;flex-direction:column;justify-content:flex-start;align-items:flex-start;height:10em}@media all and (min-width:31.25em){.main-nav__secondary .nav-item-link{padding:.25em 1.1rem}.main-nav__secondary{padding:.2em .5em}}@media (-webkit-min-device-pixel-ratio:1.3),(min-resolution:124.8dpi){.main-nav__secondary{height:11em}}@media (min-width:800px){.secondary-nav{grid-row:auto;grid-column:auto}.main-nav__secondary{display:none;position:absolute;top:0;left:-80px;transform:translate(-50%,0);max-width:unset;background:#fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px;margin:0;padding:14px 20px 10px 10px;min-width:180px;color:#d33a2c;flex-direction:row;justify-content:space-between;align-items:center;height:auto}.main-nav__secondary:before{content:"";display:block;position:absolute;top:1px;left:50%;transform:translate(-50%,-100%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:15px solid #fff}}.nav-item-1,.nav-item-10,.nav-item-2,.nav-item-3,.nav-item-4,.nav-item-5,.nav-item-6,.nav-item-7,.nav-item-8,.nav-item-9{display:none}.main-nav__secondary .nav-item-1,.main-nav__secondary .nav-item-10,.main-nav__secondary .nav-item-2,.main-nav__secondary .nav-item-3,.main-nav__secondary .nav-item-4,.main-nav__secondary .nav-item-5,.main-nav__secondary .nav-item-6,.main-nav__secondary .nav-item-7,.main-nav__secondary .nav-item-8,.main-nav__secondary .nav-item-9{display:flex}@media (min-width:42.9375em){.nav-item-1{display:flex}.main-nav__secondary .nav-item-1{display:none}}@media (min-width:52.5em){.nav-item-2{display:flex}.main-nav__secondary .nav-item-2{display:none}}@media (min-width:56.5625em){.nav-item-3{display:flex}.main-nav__secondary .nav-item-3{display:none}}@media (min-width:70em){.nav-item-4{display:flex}.main-nav__secondary .nav-item-4{display:none}}@media (min-width:77.8125em){.nav-item-5{display:flex}.main-nav__secondary .nav-item-5{display:none}}@media (min-width:97.5em){.nav-item-6{display:flex}.main-nav__secondary .nav-item-6{display:none}}@media (min-width:108.4375em){.nav-item-7{display:flex}.main-nav__secondary .nav-item-7{display:none}}@media (min-width:120.625em){.nav-item-8{display:flex}.main-nav__secondary .nav-item-8{display:none}}@media (min-width:136.5625em){.nav-item-9{display:flex}.main-nav__secondary .nav-item-9{display:none}}@media (min-width:179.6875em){.nav-item-10{display:flex}.main-nav__secondary .nav-item-10{display:none}.main-nav-more-item{display:none}.main-nav__primary{justify-content:flex-start}.nav-item{padding:0 .65em}.header,.header.searchFocused{grid-template-columns:-webkit-min-content minmax(140px,-webkit-max-content) 0 minmax(250px,600px);grid-template-columns:min-content minmax(140px,max-content) 0 minmax(250px,600px)}}@media (max-width:480px){.header .search{grid-column:1/5;margin-top:.5em}.main-nav__primary{justify-content:flex-end}.main-nav-more-item{justify-content:flex-end}}.btn--text-shadow,a.btn.btn--text-shadow{text-shadow:1px 1px 1px rgba(0,0,0,.25)}.btn-wrapper{display:none}@media screen and (min-width:1100px){.btn-wrapper{display:block;padding:4px}}.btn,.toolbar-item{display:inline-block;border-radius:11px;text-align:center;color:#fff;text-decoration:none;border:none;font-weight:700;background:0 0;font-size:.9em;outline:0;background-color:#d33a2c;background-image:linear-gradient(to bottom,#f88040,#d33a2c)}.toolbar-item{transition:all .3s ease-in-out}.toolbar-item:active,.toolbar-item:focus{position:relative;top:3px}.btn{padding:.5em 1em}.btn.btn--green,.btn.btn--member{background-color:#41b14f;background-image:linear-gradient(#9ec14c,#41b14f);color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);transition:box-shadow .2s ease-in-out}.cta--green{display:block;padding:.5em;color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0;font-weight:700;text-decoration:none;border-radius:11px;text-align:center;font-size:.85em}.cta--green:hover{background-color:#c8f1e0;border:1px solid #a0dcc4}.cta--green:active,.cta--green:active:hover,.cta--green:focus,.cta--green:focus:hover{background-color:#137d54;color:#fff!important}a.btn--white{background:#fff;color:#267dcc;transition:color .1s ease-out}.btn--white--bordered:active,.btn--white--bordered:focus,.btn--white--bordered:hover,.toolbar-item,a.btn--white--bordered{border:1px solid #ddd}.btn span{color:#811d15;font-size:.8em;margin-left:5px;margin-top:.5em;line-height:1}.btn.btn--medium{font-size:calc(.9em + .1vw);padding:.75em 1em}@media (max-width:64em){pre{max-width:100%}}.input{border:none;display:block;color:#333;background-color:#fff;padding:.4em .75em;border-radius:5.5px;outline:0;font:inherit;margin:0;font-size:1.15rem;width:100%}.input::-webkit-input-placeholder{color:#666}.input:-ms-input-placeholder{color:#666}.input::-moz-placeholder{color:#000}.input::-ms-clear{display:none}.search .search-input{padding-left:calc(22px + 15px + 15px);background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgaGVpZ2h0PSIyNHB4IiB3aWR0aD0iMjRweCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIyMi4zMSIgeTE9IjIzLjYyIiB4Mj0iMy43MyIgeTI9IjMuMDUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlOTM3MjIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmODZmMjUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGl0bGU+TWFnbmlmaWVyPC90aXRsZT48cGF0aCBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiIGQ9Ik0yMy4zMyAyMC4xbC00LjczLTQuNzRhMTAuMDYgMTAuMDYgMCAxIDAtMy4yMyAzLjIzbDQuNzQgNC43NGEyLjI5IDIuMjkgMCAxIDAgMy4yMi0zLjIzem0tMTcuNDgtNS44NGE1Ljk0IDUuOTQgMCAxIDEgOC40MiAwIDYgNiAwIDAgMS04LjQyIDB6Ii8+PC9zdmc+);background-repeat:no-repeat;background-size:22px auto;background-position:15px 45%;font-size:calc(1em + .1vw);border-radius:11px;padding-top:1rem;padding-bottom:1rem;font-weight:700;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}@media all and (max-width:550px){.search .search-input{min-height:54px}}.search-button{width:0;height:0;padding:0}.enhanced .search-button{display:none}.search-input-wrapper{position:relative}.search-clear-button{background:0 0;border:none;position:absolute;right:0;top:50%;transition:opacity .2s ease-out;transform:translate(-25%,-50%);opacity:0;padding:.5em}.search-clear-button.enabled{opacity:1}.search-results{background:var(--THEME_COLOR,#d33a2c);color:#fff}.search-results img{border-radius:11px;border:4px solid #fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}.search-results img:hover{box-shadow:0 0 3px -1px rgba(50,50,93,.25),0 4px 12px -6px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.search-results ol img{min-height:100px;height:auto}.logo{font-size:1em;line-height:0;width:3em;flex-basis:3em;flex-shrink:0;position:relative;z-index:0}@media all and (min-width:1450px){.logo{width:10.5em;flex-basis:10.5em}.logo img{transform:none}}.logo a{display:block;background:0 0;outline:0;padding:0;color:transparent;text-shadow:none}.logo a picture{display:block}.logo img{height:3.5em;transform:translate(0,15%)}.cart-active .back-to-top-wrapper{display:none}a.back-to-top{display:block;background:0 0;width:50px;height:50px;opacity:.7;text-shadow:none;border-radius:11px;padding:13px;transform-origin:bottom left;will-change:transform;transform:rotate(-11deg);transition:background-color .1s ease-out,transform .2s ease-out,opacity .1s ease-out;background-color:#666}@media all and (max-width:64em){a.back-to-top{opacity:.3}}a.back-to-top:focus,a.back-to-top:hover{background-color:#282634;opacity:1}a.back-to-top svg{display:block}.back-to-top-wrapper{width:50px;height:50px;display:none;position:fixed;bottom:20px;right:20px;z-index:9;will-change:transform;backface-visibility:hidden}.back-to-top-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}@media (min-height:600px){.back-to-top-wrapper{display:block}}label{max-width:100%}.form__field__input,input[type=email],input[type=password],input[type=text],textarea{background:#effaff;font-size:1em;border:1px solid #d2dfe4;transition:box-shadow .3s ease-in-out,color .3s ease-in-out;background-position:right 1.35em center;background-size:.25em .25em;background-repeat:no-repeat;margin-bottom:5px;border-radius:11px;padding:.9em 2em .7em 1.1rem;display:block;width:100%;outline:0;box-shadow:inset 0 1px 1px 0 rgba(0,0,0,.2)}.form__field__label{display:block;margin-bottom:.5em;cursor:pointer}input{border-color:#aaa}.sponsors ul{padding-left:0;text-align:center;list-style-image:none}.sponsors__native ul.bnnr-list li a{border-radius:11px;background-color:#fff;margin-bottom:3em;position:relative;top:0;padding:0;background-image:none;text-decoration-line:underline;text-decoration-color:#006fc6!important;text-decoration-thickness:1px;display:flex;flex-direction:column}.sponsors.sponsors-leaderboard ul li a,.sponsors.sponsors__lead ul li a,.sponsors__native ul.bnnr-list li a{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03);transition:box-shadow .2s ease-in-out,top .1s ease-in-out;border-radius:11px}.sponsors.sponsors-leaderboard ul li a:hover,.sponsors.sponsors__lead ul li a:hover,.sponsors__native ul.bnnr-list li a:hover{box-shadow:0 1px 7px -5px rgba(50,50,93,.25),0 3px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.sponsors.sponsors-leaderboard ul li a:active,.sponsors.sponsors-leaderboard ul li a:focus,.sponsors.sponsors__lead ul li a:active,.sponsors.sponsors__lead ul li a:focus,.sponsors__native ul.bnnr-list li a:active,.sponsors__native ul.bnnr-list li a:focus{box-shadow:inset 0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,.03);outline-offset:.75em;top:7px}.sponsors__native ul.bnnr-list li img{max-width:none;width:100%;height:auto;display:inherit}img::before{height:2.5em;display:block;top:2em;content:" ";width:100%;z-index:2;left:0}img::after{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHN0eWxlPSJtYXJnaW4tcmlnaHQ6IDEwcHg7Ij4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDI4aC0yMHYtNGw2LTEwIDguMjE5IDEwIDUuNzgxLTR2OHoiPjwvcGF0aD4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDE1YzAgMS42NTctMS4zNDMgMy0zIDNzLTMtMS4zNDMtMy0zIDEuMzQzLTMgMy0zYzEuNjU3IDAgMyAxLjM0MyAzIDN6Ij48L3BhdGg+CjxwYXRoIGZpbGw9IiM3NzciIGQ9Ik0yOC42ODEgNy4xNTljLTAuNjk0LTAuOTQ3LTEuNjYyLTIuMDUzLTIuNzI0LTMuMTE2cy0yLjE2OS0yLjAzMC0zLjExNi0yLjcyNGMtMS42MTItMS4xODItMi4zOTMtMS4zMTktMi44NDEtMS4zMTloLTE1LjVjLTEuMzc4IDAtMi41IDEuMTIxLTIuNSAyLjV2MjdjMCAxLjM3OCAxLjEyMiAyLjUgMi41IDIuNWgyM2MxLjM3OCAwIDIuNS0xLjEyMiAyLjUtMi41di0xOS41YzAtMC40NDgtMC4xMzctMS4yMy0xLjMxOS0yLjg0MXpNMjQuNTQzIDUuNDU3YzAuOTU5IDAuOTU5IDEuNzEyIDEuODI1IDIuMjY4IDIuNTQzaC00LjgxMXYtNC44MTFjMC43MTggMC41NTYgMS41ODQgMS4zMDkgMi41NDMgMi4yNjh6TTI4IDI5LjVjMCAwLjI3MS0wLjIyOSAwLjUtMC41IDAuNWgtMjNjLTAuMjcxIDAtMC41LTAuMjI5LTAuNS0wLjV2LTI3YzAtMC4yNzEgMC4yMjktMC41IDAuNS0wLjUgMCAwIDE1LjQ5OS0wIDE1LjUgMHY3YzAgMC41NTIgMC40NDggMSAxIDFoN3YxOS41eiI+PC9wYXRoPgo8L3N2Zz4K) " " attr(alt);font-size:.9em;display:block;color:#666;line-height:1.5;position:absolute;font-style:italic;z-index:2;top:calc(2em - 35px);text-align:center;width:104%;left:-2%;padding:2.25em 1em;text-shadow:none;background-color:#eee;border-radius:11px}@media screen and (min-width:40em){.author__desc{margin-left:1em}}.author__desc{font-size:.8em;position:relative;font-style:normal!important;color:#333;padding:0!important}.author__desc p{margin:1em 0}.author__desc .show-more-link{display:inline}.author__desc__title{color:#666;text-transform:uppercase;letter-spacing:2px;font-size:.9em;margin:0;font-weight:400}@media (max-width:40em){.author__desc{width:100%}}.article{padding-top:calc(.5em + 2vw)}.article__summary{font-size:1.05em}.c-garfield-the-cat .article__summary{position:initial}.author__desc p{font-size:.95em}.wf-loaded-stage2 .author__desc p{font-size:1em}.article__summary{align-self:center;margin-top:0;color:#666;position:relative;padding-bottom:1.5em;margin-bottom:.5em;border-bottom:3px solid #e5e5e5;font-size:1.05em;line-height:1.55em;font-style:italic}.wf-loaded-stage2 .article__summary{font-size:1.15em}@media all and (max-width:420px){.article__content{margin-top:0}}.article__content{line-height:1.5;padding:0!important}.article__content a{color:#006fc6}.article__content .btn{color:#fff}.drop-caps+p::first-line{font-weight:700;font-variant:all-petite-caps;text-transform:lowercase;letter-spacing:.5px;font-size:1.15em}.drop-caps{width:calc(96px + 1vw);height:calc(120px + 4vw);float:left;margin-right:1.5em;position:relative;left:calc(-1.3em - .5vw);top:.5vw}@media all and (min-width:500px){.drop-caps{width:150px;height:186px;min-width:100px;margin-left:0}}@media screen and (min-width:64em){.author__desc{margin-left:0}}.drop-caps img{max-width:100%}.drop-caps img:nth-of-type(2){position:absolute;bottom:0;right:-40px;width:75%}@media all and (min-height:700px){body.articlepage{overflow:initial}}.form__field__label--extra{display:inline}@media (max-width:64em){.form__field__label--extra{display:none}}.article-header{margin:0}@media all and (max-width:1099px){.article-header--meta{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x;overflow-y:hidden}.article-header--meta::-webkit-scrollbar{display:none;width:0;background:0 0}.sponsors:not(.sponsors__lead):not(.sponsors-leaderboard):not(#sponsors-article-end):not(.sponsors__mobile){display:none}.c-garfield-aside--meta{display:none}.sponsors__mobile{display:block}.meta-box{margin:1.5em 0}.comment-count{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.article-header--comments a{color:#d33a2c;text-decoration:none;font-weight:700}.article-header--meta .article-header--meta-comments{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EArtboard 29%3C/title%3E%3Cpath class='cls-1' d='M3.29,2.73a66.7,66.7,0,0,0,3.21,9.52l6.29,1.08L8.1,15.53c2.91,5.28,7,9.09,12.14,4.55L25,24.52l.57-.52-3.83-5.48c3.6-4.32,1.74-7.76-1.93-10.36L17,13.29l-.1-6.85A43.83,43.83,0,0,0,11,4L9,7.7,9,3.39c-2.2-.65-4.07-1.08-5.08-1.3A.52.52,0,0,0,3.29,2.73Z'/%3E%3C/svg%3E");background-size:auto .75em;background-repeat:no-repeat;background-position:left 45%;padding-left:1em}}.c-garfield-the-cat .article-header--meta{display:flex;align-items:flex-end;list-style:none;padding:0;margin:0 0 .95em;height:30px}.article-header--meta li{padding:0;margin:0;min-width:max-content}.article-header--meta li::before{display:none}.article-header--meta li::after{content:"/";font-size:1em;color:#a7a7a7;display:inline-block;margin:0 .25em}.article-header--meta li:last-of-type::after{display:none}.article-header--date{color:#585858;font-family:inherit;font-size:.95em}.article-header--comments{font-size:.9em}.article-header--updated{padding:0 .8rem;color:#137d54;background-color:#d6f3e7;border:1px solid #c6f2e0;border-radius:11px;font-weight:700;text-transform:initial;font-feature-settings:normal;font-variant:none;font-size:.9em;letter-spacing:0;min-width:fit-content;margin-right:7px}.meta-box{background:#f6f6f6;padding:.6em 1em;list-style:none;width:max-content;max-width:100%;border-radius:11px;font-size:.9em;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:.5em 2em}.c-garfield-the-cat .meta-box--item{line-height:1.4;padding-left:1.5em;background-size:auto 1em;background-repeat:no-repeat;background-position:left 2px;margin-bottom:0}.meta-box li:last-child,.meta-box--item:last-child{margin-bottom:0}.meta-box--tags{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cpath fill='%23e93e32' class='cls-1' d='M12.78 22.74l1.35 1.35a2.09 2.09 0 003 0l8.12-8.15a2.09 2.09 0 000-3l-1.34-1.33zM14.71 2.51a2.09 2.09 0 00-1.52-.61l-10 .22L3 12.1a2.09 2.09 0 00.61 1.52l7.14 7.12L21.87 9.65zm-4.64 9.88a3.17 3.17 0 113.44-2.86 3.17 3.17 0 01-3.44 2.86z'/%3E%3C/svg%3E")}.meta-box--share{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M126.16 359.66c148 0 228.93-122.61 228.93-228.94 0-3.48 0-6.94-.23-10.4A163.83 163.83 0 00395 78.68a160.93 160.93 0 01-46.21 12.66 80.82 80.82 0 0035.37-44.51 161.17 161.17 0 01-51.09 19.53A80.54 80.54 0 00196 139.74 228.42 228.42 0 0130.13 55.68 80.52 80.52 0 0055 163.09 80 80 0 0118.52 153v1a80.49 80.49 0 0064.55 78.87 80.37 80.37 0 01-36.33 1.38 80.55 80.55 0 0075.17 55.87A161.38 161.38 0 0122 324.67a163.54 163.54 0 01-19.16-1.16 227.73 227.73 0 00123.33 36.08' fill='%231da1f2'/%3E%3C/svg%3E")}.meta-box--published{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32%7D%3C/style%3E%3C/defs%3E%3Crect class='cls-1' x='8.25' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Crect class='cls-1' x='17.53' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Cpath class='cls-1' d='M24.1 5.39h-2.56a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59h-4.28a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59H4.75a2.07 2.07 0 00-2.08 2.07v14.75a2.07 2.07 0 002.07 2.07H24.1a2.07 2.07 0 002.07-2.07V7.46a2.07 2.07 0 00-2.07-2.07zm-.29 16.15H5.23V8.45h18.58z'/%3E%3Cpath class='cls-1' d='M7.18 11.71h2.5v2.5h-2.5zM11.27 11.71h2.5v2.5h-2.5zM15.26 11.71h2.5v2.5h-2.5zM19.35 11.71h2.5v2.5h-2.5zM7.18 15.78h2.5v2.5h-2.5zM11.27 15.78h2.5v2.5h-2.5zM15.26 15.78h2.5v2.5h-2.5zM19.35 15.78h2.5v2.5h-2.5z'/%3E%3C/svg%3E")}.meta-box--author{background-image:url(/images/icons/author.svg)}code,pre{font-feature-settings:normal;color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Fira Code,Menlo,Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;font-variant-ligatures:none;word-wrap:normal;tab-size:4;hyphens:none}pre{padding:1rem;margin:.5rem 0;resize:both;max-width:100vw;color:#666;background:#fafafa;border:1px solid #eee;font-size:1em;border-radius:11px;min-width:250px;overflow:auto;box-shadow:0 6px 12px -17px rgba(50,50,93,.25),0 7px 6px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.code-toolbar{position:relative}li>.code-toolbar{margin-top:1em}.code-toolbar>.toolbar{position:absolute;top:.5em;right:.5em;opacity:0;transition:opacity .3s ease-in-out}.code-toolbar>.toolbar .toolbar-item{display:inline-block}code.diff-highlight{width:100%}a code{background:0;padding:0;text-decoration-line:underline}:not(pre)>code,code{background:#fff2ea;color:#333;font-size:calc(.75em + .1vw);line-height:calc(1.5em + .2vw);padding:0 .2725em;font-style:normal;display:inline-block}:not(pre)>code{white-space:normal}pre>code{line-height:calc(1.75rem + .2vw);background:0 0;white-space:break-spaces}pre[data-line]>code{white-space:pre}pre[data-line]>code>span{height:calc(1.75rem + .2vw);display:inline-block}.table,table{width:100%;border-collapse:collapse;margin-bottom:calc(2em + 2vw);clear:both}.tr,tr{border-bottom:4px solid #eee}.td,.th,td,th{padding:1em 1.5em;border:none;text-align:left}.scroll-pane{overflow-x:auto;scrollbar-color:#666 #201c29;-webkit-overflow-scrolling:touch}.scroll-pane::-webkit-scrollbar{height:.75em}.scroll-pane::-webkit-scrollbar-thumb{background:#b0b0b0;border-radius:11px}.scroll-pane table td{min-width:30vw}@media all and (min-width:650px){.scroll-pane table td{min-width:auto}}.layout-fixed{table-layout:fixed}.figure table{margin-bottom:0}.tablesaw td{line-height:165%;text-align:left;vertical-align:middle}.tablesaw td,.tablesaw th{padding:.8em 1em}tbody tr:nth-child(2n) td{background-color:#f7f7f7}.tablesaw th,table th{border-bottom:4px solid #ddd}@media screen and (max-width:767px){.tablesaw thead{display:none}.tablesaw tr{display:flex;flex-direction:column;margin-bottom:1.5em;width:100%;border-radius:11px;border:1px solid #eee}.tablesaw td:before{content:attr(data-label);display:table-cell;font-weight:700;padding:0 1em 0 0;text-align:right}.tablesaw td:last-child:after{content:'';position:absolute;left:0;right:0;bottom:0}}a.skip-main{left:-999px;position:absolute;top:auto;width:1px;height:1px;overflow:hidden;z-index:-999}a.skip-main:active,a.skip-main:focus{color:#d33a2c;background-color:#fff;left:auto;top:auto;width:auto;height:auto;overflow:auto;padding:.5em 1em;text-align:center;font-size:1.2em;z-index:999}.video-embed-container .video-embed-container--wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}.signature{margin:1.5em 0;font-size:.9em;color:silver;font-style:italic}.author .show-more-link{font-size:.9em;display:inline;color:#666;text-decoration-line:underline;text-decoration-color:currentColor;font-weight:400}.cookie-banner{background-color:#fff;border-radius:11px;position:fixed;width:calc(19em + 1vw);padding:1em 1.5em;font-size:1em;z-index:99;box-shadow:0 6px 40px rgba(0,0,0,.3);bottom:1em;left:1em}.cookie-banner p{font-size:.9em;margin-top:0}.cookie-banner__container{display:flex}.cookie-banner button{padding:.9em 1em}@media screen and (max-width:480px){.cookie-banner{right:0;left:0;width:100%;border-radius:0;bottom:0}.cookie-banner p{margin-top:1em}}@media screen and (max-width:380px){.cookie-banner p{margin-top:0}}.cookies--btn{width:100%}.mr5{margin-right:.5em}.mr0{margin-right:0!important}.btn--white{background:#fff;color:#267dcc;border:1px solid #fff}.btn--white--bordered{border:1px solid #ddd}.sponsors ul li{display:inline-block;margin-bottom:3em;font-size:.85em;padding:0;text-align:center;vertical-align:top;max-width:25rem;border-radius:11px;border:1px solid #eee;min-height:90px}.c-promo-box--ad.sponsors li{width:auto}.sponsors__native ul.bnnr-list li{border:0;width:100%;height:auto;max-width:85%;margin:0 0 2em auto}.sponsors__native ul.bnnr-list .ad__desc{padding:1em}.sponsors__native ul.bnnr-list li:only-child{padding-bottom:0}blockquote:not(.pull-quote){font-style:italic;border-left:11px solid #e6e4e1;padding:1em calc(1.5em + .5vw);color:#424242;margin-left:0;margin-right:0;font-size:1.05em;line-height:1.65em;letter-spacing:0;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0e3 0,#fff 100%)}blockquote:not(.pull-quote) p{margin:0}.btn--small.toolbar-item,.btn.btn--small{font-size:.9em;border-radius:6px;margin:0;padding:.4em 1em}.c-felix-the-cat a.btn{display:table;margin-top:1em;margin-bottom:1.5em}@media screen and (max-height:880px){.article__comments--notes{display:none}.article__comments__form__desc{margin-top:4em}}header.subnav__header{background-color:#fff;background-color:var(--headers-bg-color,#fff);padding:.2rem 0 0 0;z-index:1}.subnav__primary::-webkit-scrollbar{display:none;width:0;background:0 0}.subnav__tags li:first-child{padding-left:14px}.subnav__tags li:last-child{padding-right:.8em}.subnav__tags .subnav-item{margin-bottom:0}@media (min-width:740px){header.subnav__header{padding:.25rem 0 0 0;box-shadow:0 4px 20px 0 rgba(0,0,0,.12)}.subnav__tags li:first-child{padding-left:35px}}.subnav .nav-item-link{color:#d33a2c;text-shadow:none!important;font-weight:700;font-family:Mija;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;border-radius:11px;font-size:1rem;background-color:#ffe7e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #fee0e0}.subnav .nav-item-link:hover{text-shadow:none;font-weight:700;font-family:Mija;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.subnav-item a:active,.subnav-item a:active:hover,.subnav-item a:focus,.subnav-item a:focus:hover{box-shadow:inset 0 1px 3px 0 rgba(0,0,0,.12);background-color:#d33a2c;color:#fff!important;outline:0}.subnav-item--active a.nav-item-link,.subnav-item--active a.nav-item-link:hover{background-color:#d33a2c;color:#fff!important;border:1px solid #d33a2c}.subnav-item{display:flex;margin-right:9px;padding-left:3px}.subnav-item .nav-item-link{padding:2px 12px}.subnav a{background:0 0;font-weight:700;display:flex;align-items:center;text-decoration:none}.subnav__primary{padding:.25em 0;margin-top:.25em;margin-bottom:.35em;display:flex;position:relative;scroll-snap-type:x;scroll-padding:1rem;overflow-x:auto;scrollbar-width:none}.subnav-more-item__button{padding:.2em 1em;color:#d33a2c;border:1px solid #ddd;border-radius:11px;background:0 0;display:flex;align-items:center;justify-content:space-around;position:relative;font-size:.85em;min-width:max-content;transition:none}.hidden{display:none!important}.c-garfield-the-cat .subnav-item--green .nav-item-link{color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0}.c-garfield-the-cat .subnav-item--green .nav-item-link:hover{color:#137d54;background-color:#c8f1e0;border:1px solid #a0dcc4}.subnav .nav-item-link:hover{color:#d33a2c;text-shadow:none;font-weight:700;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.feature-panel__desc,.sponsors__desc{font-size:.75em;color:#666;padding-bottom:10px;top:-15px;position:relative}.feature-panel::before{position:absolute;left:0;transform:translate(0,-100%);top:-5px;content:"";border-bottom:8px solid #eee;width:100%}@media (min-width:1000px){.feature-panel::before{width:73%}}.feature-panel{position:relative;border-radius:11px;padding:1.25em;display:flex;flex-wrap:wrap;background-color:#f6f6f6}@media (min-width:1000px){.feature-panel{padding:2.5em}}.feature-panel-left-col,.feature-panel-right-col{flex-basis:100%;position:relative;padding:0;flex-shrink:0}.feature-panel-right-col{order:-1;display:flex;align-items:flex-start;margin-bottom:1em;justify-content:flex-start;margin-top:2em}@media (min-width:800px){.feature-panel-left-col{flex-basis:65%}.feature-panel-right-col{order:0;flex-basis:35%;margin:0;justify-content:center}}.feature-panel-description>:first-child{margin-top:0}.feature-panel-description>:last-child{margin-bottom:0}.feature-panel-image-link{position:relative;text-decoration:none;width:100%;max-width:210px;transition:scale,opacity .2s ease-out;padding-left:2.5em;background-image:none}.feature-panel-image{width:100%;max-width:14.375rem;margin:0 auto;display:block;transition:all .2s ease-out;will-change:transform;transform-origin:0 100%;transform:rotate(-11deg)}@media (min-width:1000px){.feature-panel-image-link{position:absolute;max-width:14.375rem;top:-90px;right:0}}.feature-panel-image-img{height:auto}.btn--large.toolbar-item,.btn.btn--large{font-size:calc(1em + .25vw);padding:.75em 1em}.btn .sr-only,.sr-only{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.c-garfield__nl{display:none}@media all and (min-width:1100px){.drop-caps{display:none}.l-author-bio{display:flex}.c-garfield__nl{display:block}.nl-box__form{display:flex;padding-bottom:7px;text-align:center;letter-spacing:-.5px;color:#fff;font-size:1.15em}.nl-box__desc{margin-top:10px;color:#666;font-size:80%;line-height:1.5em;text-align:center}.nl-box__form .nl-box__form--button,.nl-box__form .nl-box__form--email{flex-grow:1;flex-shrink:0;box-sizing:border-box;width:auto;margin:0;padding:.75em 1em;border:0;border-radius:11px;background:#fff;font-size:.95em}.nl-box__form--button:active,.nl-box__form--button:focus,input.nl-box__form--email:active,input.nl-box__form--email:focus{box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form--button:-ms-input-placeholder,.nl-box__form--email:-ms-input-placeholder{color:#777;font-style:italic}.nl-box__form--button::placeholder,.nl-box__form--email::placeholder{color:#777;font-style:italic}.nl-box__form .nl-box__form--button{transition:all .2s ease-in-out;color:#fff;background-color:#0168b8;font-family:Mija,-apple-system,Arial,BlinkMacSystemFont,"Roboto Slab","Droid Serif","Segoe UI",Ubuntu,Cantarell,Georgia,serif;font-weight:700;box-shadow:0 1px 1px rgba(0,0,0,.3);width:100%;border:0;border-left:1px solid #ddd;flex:2;border-top-left-radius:0;border-bottom-left-radius:0}.nl-box__form .nl-box__form--email{border-top-right-radius:0;border-bottom-right-radius:0;width:100%;flex:4}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus,.nl-box__form .nl-box__form--button:hover{cursor:pointer;color:#fff;background-color:#0168b8;border-color:#dadada;box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus{outline:0!important;text-shadow:1px 1px 1px rgba(0,0,0,.3);box-shadow:inset 0 3px 3px rgba(0,0,0,.3)}.nl-box__group{display:flex;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px}.nl-box__wrapper{display:flex;flex-direction:column;justify-content:center}.nl-box__form form{width:100%}.nl-box__form .nl-box__group{margin:0}.nl-box{margin:1.5em 0;padding:1em 0;box-shadow:none;max-width:750px;justify-self:center}}.article__content a.anchor{color:#767676;text-decoration:none;transition:color .2s ease-in-out;padding:.35em .05em}.article__content a.anchor:active,.article__content a.anchor:focus,.article__content a.anchor:hover{color:#106fc6;background-image:linear-gradient(90deg,#006fc6 0,#2ca2d3 30%,#006fc6 85%,#006fc6 100%);background-size:100%;background-repeat:repeat;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-moz-background-clip:text;-moz-text-fill-color:transparent;text-decoration:none}#promo-article-end,#sponsors-article-end,.article__comments,.main-footer{content-visibility:auto}.toc-components{box-shadow:0 9px 30px -5px rgba(50,50,83,.25),0 8px 8px -12px rgba(0,0,0,.2),0 -6px 16px -6px rgba(0,0,0,.03);border-radius:11px;padding:2em;background-color:#fff;margin:1.25em 0 3em 0;grid-column:3/13}@media screen and (min-width:500px){.toc-components{display:grid;grid-template-columns:1fr 1fr}}@media screen and (min-width:800px){.toc-components{padding:2em 3em}}.article__content .btn--white{background:#fff;color:#267dcc}
+</style>
+
+
+    
+
+    
+      <link rel="preload" href="/js/nav-v2.js" as="script" importance="high">
+<link rel="preload" href="/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2" as="font" type="font/woff2" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+<link rel="preload" href="/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2" as="font" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2"  as="font" type="font/woff2" media="(min-width: 800px)" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2" as="font" media="(min-width: 800px)" type="font/woff2" crossorigin importance="low" media="(prefers-reduced-data: no-preference)">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/js/app.js" media="(min-width: 800px)" as="script" importance="low">
+    
+
+    
+      
+  
+  
+
+  
+  
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Smashing Magazine &amp;raquo; Feed" href="https://www.smashingmagazine.com/feed/" />
+
+    
+
+    <meta name="description" content="Are you ready for the countdown to Christmas? From [festive](https://www.smashingmagazine.com/2016/12/freebie-christmas-advent-icon-set-25-icons-ai-eps-svg-png-pdf/) [icon](https://www.smashingmagazine.com/2015/12/freebie-christmas-icons-illustrations/) [sets](https://www.smashingmagazine.com/2014/11/freebie-christmas-icon-set-ai-psd-eps-pdf-svg-png/) to advent calendars that are bound to sweeten your days with a delightful little surprise each morning, we’ve decided to join in on this lovely annual tradition and bring it all to one place. So prepare yourself a nice cup of coffee and get cozy — there’s always something new to learn and discover!"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://www.smashingmagazine.com/2021/12/tech-advent-calendars-web-developers-web-designers-2021/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content='Advent Calendars For Web Designers And Developers (December 2021 Edition) — Smashing Magazine' />
+<meta property="og:description" content="Are you ready for the countdown to Christmas? From [festive](https://www.smashingmagazine.com/2016/12/freebie-christmas-advent-icon-set-25-icons-ai-eps-svg-png-pdf/) [icon](https://www.smashingmagazine.com/2015/12/freebie-christmas-icons-illustrations/) [sets](https://www.smashingmagazine.com/2014/11/freebie-christmas-icon-set-ai-psd-eps-pdf-svg-png/) to advent calendars that are bound to sweeten your days with a delightful little surprise each morning, we’ve decided to join in on this lovely annual tradition and bring it all to one place. So prepare yourself a nice cup of coffee and get cozy — there’s always something new to learn and discover!" />
+<meta property="og:url" content="https://www.smashingmagazine.com/2021/12/tech-advent-calendars-web-developers-web-designers-2021/" />
+<meta property="og:site_name" content="Smashing Magazine" />
+<meta property="article:publisher" content="https://www.facebook.com/smashmag" />
+
+	
+	<meta property="article:author" content="https://www.smashingmagazine.com/author/iris-ljesnjanin/" />
+
+<meta property="article:tag" content="Resources" /><meta property="article:tag" content="Community" /><meta property="article:tag" content="Round-Ups" />
+<meta property="article:section" content="General" />
+<meta property="article:published_time" content="2021-12-02 14:00:43 &#43;0000 UTC" />
+<meta property="article:modified_time" content=" 2021-12-02 14:00:43 &#43;0000 UTC" />
+<meta property="og:updated_time" content="2021-12-02 14:00:43 &#43;0000 UTC" />
+<meta property="og:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png' />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Are you ready for the countdown to Christmas? From [festive](https://www.smashingmagazine.com/2016/12/freebie-christmas-advent-icon-set-25-icons-ai-eps-svg-png-pdf/) [icon](https://www.smashingmagazine.com/2015/12/freebie-christmas-icons-illustrations/) [sets](https://www.smashingmagazine.com/2014/11/freebie-christmas-icon-set-ai-psd-eps-pdf-svg-png/) to advent calendars that are bound to sweeten your days with a delightful little surprise each morning, we’ve decided to join in on this lovely annual tradition and bring it all to one place. So prepare yourself a nice cup of coffee and get cozy — there’s always something new to learn and discover!" />
+<meta name="twitter:title" content='Advent Calendars For Web Designers And Developers (December 2021 Edition) — Smashing Magazine' />
+<meta name="twitter:site" content="@smashingmag" />
+<meta name="twitter:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png' />
+
+	
+	
+
+<meta property="DC.date.issued" content="2021-12-02 14:00:43 &#43;0000 UTC" />
+
+
+    <meta name="theme-color" content="#d33a2c">
+    <meta property="fb:pages" content="45576747489"/>
+    
+    <meta name="google-site-verification" content="X5sd8PEDJqYLSR98RKgSozn-0RNpknXFlGoA-UXe5K0" />
+
+    <link rel="icon" href="/images/favicon/favicon.ico" />
+    <link rel="icon" href="/images/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+  </head>
+
+  <body data-instant-whitelist class='no-js    articlepage' >
+
+		
+			
+				
+
+
+
+<div data-handler="PreLoad" id="top"></div>
+<a href="#main" class="skip-main">Skip to main content</a>
+<a href="#all-topics" class="skip-main">Jump to all topics</a>
+
+  
+    <a href="#article__start" class="skip-main">Start reading the article</a>
+  
+
+<a href="/articles/" class="skip-main">Jump to list of all articles</a>
+
+<header class="global-header header">
+    <div class="logo">
+	<a href="/" title="&larr; Back to the homepage">
+		<picture>
+			<source
+				media="(max-width: 1450px)" srcset="/images/logo.svg">
+			<source
+				media="(min-width: 1450px)"
+				srcset="/images/logo--full.svg">
+			<img
+				src="/images/logo/logo.svg"
+				loading="eager" decoding="async"
+				alt="Smashing Magazine" />
+		</picture>
+	</a>
+</div>
+
+    <nav class="main-nav">
+  <ul class="main-nav__primary">
+  
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+    <li role="none" class="nav-item main-nav-more-item">
+      <button class="main-nav-more-item__button" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="menu-text--lg">More</span>
+        <span class="menu-text--lg--close">Less</span>
+        <span class="menu-text--sm">Menu</span>
+        <span class="menu-text--sm--close">Less</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+<nav class="secondary-nav">
+  <ul class="main-nav__secondary">
+    
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+  </ul>
+</nav>
+    <div class="search">
+        <form data-handler="Search" id="js-search-form" class="search-form" method="get" action="https://www.google.com/webhp?q=site:smashingmagazine.com">
+        <div class="search-input-wrapper">
+            <input  class="input search-input" inputmode="search" type="search" name="q" id="js-search-input" autocomplete="off" placeholder="Search articles..." aria-label="Search articles" />
+            <input type="hidden" name="sitesearch" value="smashingmagazine.com" />
+            <a id="js-search-clear-button" class="search-clear-button" tabindex="-1" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.35 15.36" width="16px" height="16px" tabind="-1">
+                    <title>Clear Search</title>
+                    <path fill="#e33b2a" d="M8.38 11.41c-.5-.5-.78-.52-1.33 0l-3.05 3.08c-1.18 1.18-1.7 1.18-3-.16s-1.18-2-.18-3l3.18-3.19a.69.69 0 0 0-.07-1.14l-3-3c-1-1-1.13-1.81 0-3s1.9-1.21 3.13 0l2.94 3a.66.66 0 0 0 1.11 0c.63-.65 2.49-2.51 3.28-3.35a1.46 1.46 0 0 1 2.3-.15c.24.24.47.42.89.84.86.86.94 1.57.05 2.46l-3.27 3.26c-.36.34-.52.58-.16.94l3.27 3.27c1.1 1.1 1.23 1.7.05 2.88l-.58.58a1.59 1.59 0 0 1-2.46-.21z" />
+                </svg>
+            </a>
+        </div>
+        <input type="submit" class="search-button btn" name="submit" value="Search" id="js-search-submit">
+    </form>
+</div>
+
+</header>
+<script src="/js/nav-v2.js" importance="high" defer></script>
+<div>
+  <div data-component="SearchResults" class="search-results" data-lite="true"></div>
+
+  
+</div>
+
+
+
+
+
+	<header class="subnav__header" id="all-topics">
+		<nav class="subnav" role="navigation">
+  <ul class="subnav__primary subnav__tags flex">
+  	
+
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/accessibility/">Accessibility</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/css/">CSS</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/javascript/">JavaScript</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/react/">React</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/vue/">Vue</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/round-ups/">Round-Ups</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/ux/">UX</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/design/">Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/web-design/">Web Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/figma/">Figma</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/wallpapers/">Wallpapers</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/guides/">Guides</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/business/">Business</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/career/">Career</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/privacy/">Privacy</a></li>
+
+
+    <li role="none" class="subnav-item subnav-more-item">
+      <a class="subnav-more-item__button" href="/articles/">
+        <span class="menu-text">Jump to all articles ↬</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+	</header>
+
+
+			
+		
+
+    
+    <main id="main" tabindex="-1">
+      
+  
+  
+  <script id="gotell" type="application/json">
+    {"created_at":"2021-12-02T14:00:43Z"}
+  </script>
+
+  
+
+  <article class="block article" role="main">
+    <div class="container article-container">
+      <div class="row">
+
+        <div class="col-12 article__content" id="article__content">
+
+          <div class="c-garfield-the-cat ">
+
+            <div class="c-garfield-header">
+              
+              
+
+
+
+<header class="article-header">
+  <ul class="article-header--meta">
+		
+			<li class="article-header--meta-item article-header--meta-item__author">
+				<a class="author-post__author-title" href="/author/iris-ljesnjanin/">Iris Lješnjanin</a>
+        
+			</li>
+		
+    
+			
+			<li class="article-header--meta-item article-header--meta-item__date">
+				<span class="article-header--updated">Updated</span>
+				<time class="article-header--date" datetime="2021-12-06">Dec 6, 2021</time></li>
+    
+
+    
+    <li class="article-header--meta-item article-header--meta-comments">
+      <span class="article-header--comments">
+        <a href="#comments-tech-advent-calendars-web-developers-web-designers-2021">
+          
+          <span data-component="CommentsCount" data-insert="true" data-thread="/2021/12/tech-advent-calendars-web-developers-web-designers-2021/" data-article="articles/2021-12-02-tech-advent-calendars-web-developers-web-designers-2021.md">0 <span class="comment-count">comments</span></span>
+        </a>
+      </span>
+    </li>
+    
+  </ul>
+
+  <h1 class="article-header--title">Advent Calendars For Web Designers And Developers (December 2021 Edition)</h1>
+
+  
+</header>
+
+            </div>
+
+              
+              
+
+
+<ul class="meta-box meta-box--article">
+
+  
+  <li class="meta-box--item meta-box--published">
+    14 min read
+     </li>
+
+
+
+
+  <li class="meta-box--item meta-box--tags">
+    
+    
+      
+        <a href="/category/resources">Resources</a>,
+      
+    
+      
+        <a href="/category/community">Community</a>,
+      
+    
+      
+        <a href="/category/round-ups">Round-Ups</a>
+      
+    
+  </li>
+
+
+
+
+
+  <li class="meta-box--item meta-box--share">
+    Share on <a rel="nofollow" href="https://&#084;&#119;&#073;&#116;&#084;&#101;&#082;&#046;&#067;&#111;&#077;/intent/tweet?text=Advent%20Calendars%20For%20Web%20Designers%20And%20Developers%20%28December%202021%20Edition%29&url=https%3A%2F%2Fwww.smashingmagazine.com%2f2021%2f12%2ftech-advent-calendars-web-developers-web-designers-2021%2f&via=smashingmag">Twitter</a>,&nbsp;<a rel="nofollow" href="/api/ball?uri=//www.linkedin.com/shareArticle?url=https://www.smashingmagazine.com%2f2021%2f12%2ftech-advent-calendars-web-developers-web-designers-2021%2f&title=Advent%20Calendars%20For%20Web%20Designers%20And%20Developers%20%28December%202021%20Edition%29">LinkedIn</a>
+
+  </li>
+
+
+</ul>
+
+
+            <div class="c-garfield-aside--meta">
+
+              <div class="l-author-bio">
+
+  <div class="mobw-40 mobh-40 w-48 h-48 rounded-3xl bio-image__large mb-5 mr-3">
+    
+    
+
+
+
+<figure role="presentation" class="bio-image ">
+  
+  <a href="/author/iris-ljesnjanin/" class="bio-image-link">
+  
+  <div class="bio-image-wrapper">
+		<picture>
+			<source type="image/avif" srcset="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAEdgAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAMgAAADIAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAEeBtZGF0EgAKChgd8fH7IEBAMIAyxyMSEAIHOKFJpgojRLMG5jlH2XATYaylNLlLlHD8dPEmA/OZbnfUI8SbIqbbODc2ZAZS10T7nldz/LwHD9Jlluc2QsHDrXz&#43;8WmCUpSEMH2ydigCSwHbuYIMxRE3ynfZ3m4PAiObjJSgk9rqBGJofoH&#43;n3bjvDNzEhNvm&#43;xbXv&#43;FK078o2ww9r/OZhzYmjmX8pHLpz2X2M&#43;KbUhJqg0/EUPGBQUf6v6JpEIk6dqhEPWnNr4H1DDcLysdJS7RYadUotVZK907S29dp3sE6kogkihCnqbEMSun6qo06pGWV86vPg7S74Pkz3pRAgMJ7&#43;WCYbsBfgokax3XmRMuISC3geZqQuc6xN8tJJoOWL1NNaFQjIkUMb08b320deewQxz&#43;PfNYHkL4&#43;CBaSOKW5FY/DzIv/loBlpTvJf04LY1mzbgaP5Xh2G5mXDRcdjUHrrOFbfWlWAVocVvTcX2zLLr9GuC5KhLMehTOpsFl4oaq4bHKnQRNotgrSlMjD/9NAIvFOBBLpPxhRI/QMzoIb56lr2MUJpD7cGjTeC&#43;YyJGWOSYVm2LBAOKCfhMgJXb/z5HLdeS07J6L14JreAW00XZoDu4ggJbQJK3R/W/WDUbojwYCLY8TFiOeWavORBLqh9JrpsJL4I6VzqamiRojjLUvZXD7LwZI&#43;YoSn8xpqjYYZgnJajPC5kgEIb4SGty2MWPP6Hqs0EdiBRIZjVk0fkh5EQUaVXIHGhUcb76nsYrc6GabrvYzRruLTZoHH0vAciYlvTqQ22KN2YLIez0jDH23h&#43;AZLgFcQieCUiQkFH3W7iZptXkFA6ecISpAhM0sVFYkE4fCvNkiwBOlgguUP13Ofo&#43;AEtjatLCdIwA/2iI&#43;JkXN62qYTM519fo8ljDaWi8tLd&#43;vbEkKce1A9ooNFCfzQcW/oLACSTeXHSgGI2LoN&#43;bFVQiIVHLS4GVZcRrHKvVgEVES3oDQLOghllpjv65rZlQ0vfx8VW5plxqk5ZVaqveagDQEE2JmftiXzRokxYlkMoHFCsjyzBM8T/ev9kDomT5BdM7Im5sxLqOhSEUDQZVb86RoDcPykLX05AhjIjO9HUZvaBQcgL54rg6JO3z6CFL9QonlzTRjWOdPx64z/g9fVUs4MMqKt2&#43;02fdH5wFrcNM5xvhp/14onXq0OtQvQPc6COIGYMyPySTc&#43;riBAU/&#43;xCn2ywrHCJ2OZTFrRiCZQD/Xx/0vKnGX1KG56h38BK94tp0xzzVkp/&#43;7TAtAuEa5AlGW0OeRZvXF&#43;/mfGcaeYZprReXxaCVDU8gD3&#43;PADHRtY30JS3oZbJuvTxM0AlOyNF73Mj70zeDisuNul5KgSh1Y5f/prmQpHsniBRUCMd4i0hFtOqTShcz&#43;vf8FQARXrN1HSfL9Gb3/LEYwHmNjqENl/npFt/mjYGzRuEnrp9wCvI9IxPiCi&#43;dGI0zQ3p/Ju&#43;VJVw8IiEuA67PBwVVeAJjV5hZDC/3x0yHTZ3Py1OlB8OEd/vWL7Ah90v5/bhCJ9kN7rqg1Qe41n6P3RszJaixC00pcprGZlgFFQIcjGCBlsrpAdo6hkdN4uxEOLm40RY97Xvhz2Euj6Q9PaSG9DyyNSt9usHWoUPosSRaJdHmSUdi&#43;MwPttGcjT2MBBtBqmplN/UEekE5K8CLpSSWkM7WmUiGKrS4homsBxGd&#43;SlBzlfvFNbBtjP83RxoaI8C9z908UlKY0gP6YWxAdXuqydS6Dnynz9RfkDoo6RQufGgn0kQhTpHKYkmqAIQ1rP/gfpIzzkcaq91oWIcPhUAsfciHBD5HrOiHaqpRgVBXNl87cQAy4Dv9d3Q3V&#43;GPtGYyUEJngJKOnzCyQzMvJFTSMrraAS7HMqv0HXmVgwkM9qJnMf1aGpye38nirUs8V9TsRaqS9/1O6B6G5rvxPbQKBnA544pL29/9PFXAd0BCzHyNoQJPAqf34hJSAfMWLGoheu6/dVR&#43;2o2CHuOxGtO2aFJCHL3zkUxmSAPupj/hRpzPhQta&#43;hOfUj2rkvjpCOnbXvH1&#43;xNQya6SWbCDhLTs9TZttTZWUdAzP173By9Ki3bIPV/7t1MEJlKQyxCO05UH3X5mc6ojQECooXuXXdj91YEGI&#43;OXm7GCkNtAhUJf9I7wTdzQpEyHaVG3Z6/ourfRIA5/LQTn/CdYrc6vqjMyzj2gFqdnN5voL8H4mkzfLBwqLXJ1avIfgSCzro9HV0x80nSDd9Ow6mSugTUiOLXrurlRom7i48DXWp9pSojL7fwCLYU1/fY&#43;oF095ZzwpBQPJP0ytbaIiiysDZpmUWYSumokco/PP8dKj3cJwENBKEEvzknyKie&#43;&#43;pTaUmAoLN1iRONrcWdLBzPcOHSe6rMf2vJNWZOJBmPHqncniWNf47NN966ex0H05ZiLcdPsVEn7csQCKJeZaRsB/q6bCn8B80LX1s&#43;7f57/hEVXQMbjdXOAcZuCBcTO70Fag6L4IzwJ7zTsIEacqxEb1HqNG2yH9utN0RkEqMotjPbVezRMYzs0DevrCLiFqt&#43;NVYOmQD4s5DmmlPAaSh&#43;AfCBIkv/PL02AIfsTb/5&#43;5&#43;O0b/fJo7hJA7EhMUvl/W60Hd3ScwD9SSinyRbKEwu9/Iu8QqMR2Idp0BcClxxcKF2qRA7y2lxyFO5IintQq9vuruO2oi4agfPELPeEGeKu2i/b&#43;5baB33H0g&#43;77U7sECTVDKKKSG6CPBXgxSNIRQys3MMxYAgZx8Odp6os9R7L5xMhI9yx6Aoa9x4dyA/Evb1MADgMrIqcliUtLjxvALLQxlR6B/zMv3k6e6g8OYsD/W54P7FV9x1W0gPALU6tDDlgaHNxJ/etprSuDBs8b50ZLjQO8s50sXPiNa6W3Nqo0zLN5zaij8vhcCeYmbZnkKfraioDhLFfnvSQ1705r7Dox6cYkN5xyM54O1tUZLnMLcXmuBnMcNLFPoikb23xArPEGjYI4iAn7kwv4mImq3kD2E8&#43;a49G36oHf7XolGlUhoIU4rISa9KPkUyoXzrjc2xUMTcoPcAi5jPr/5ycgtKV85LK7/9eAAhvxahGbRMJTBj7SdKn3qX7z/W3HLLPe1tKAcyQqB26KykM4vFGS8FGFnxF09ri&#43;toOXwPT/ThXnGydlKpj&#43;Rt3xLS1w2ffj3UXPWARszM1ddGE22GDoYrTCYIBI5RRxFNJGf6mbxIA9qD&#43;2tmnn4IY&#43;JtzJLvYMYq6Jw95T1eRQIvvk2ARwZH1NyH4vV3c/C1gyr4yp6rruMDqKzT0GQ/6fNCxnFz974H7FiTdBNmmGLzDheo5aBdhidY&#43;liMeMcnEipfyN7eUVUhBDldNrxWFrwPtKhVLkJV6wVSAQ5PFnTavlRzL/yid47msMQECMvMA7QLmRikkhRMymbsFrB5JK0y49Y&#43;eG09lsYW9BdJhODYouv8dLLz96awdunMNSzMy1Fe42jJIhjeROkUvt5achaPkjpqZD1EMZbs6C3wqeX/rD&#43;lT&#43;80r3VvIrN7smPoqRIQwuL3&#43;6ogCev7c9WSNR&#43;EbjnMo9ZjaM2bcS3m/ZSuf0kLhhy8r0a&#43;Wa5khz6jQMDHcqvaL/Iu3Gc07CG342yqWncTe/qY6ZAaaHVD30pODWMXuYWMKpWwWwplgkFlJ091sjzQu/kYvMcqhA&#43;wwpFYFH9ML2Xd52oFhjsiyixmTFCyZxZUwUQ/dyEdjVUmlJUc9Xi2w6jmItZ95814tZhmXn3KHFVpVoAe7XO2ggKamSjoRMWqKojRUIs2mEC1gO0IpcgdldfPAGBA&#43;2DZkbpN1B5cm/7HF3hn2uPeD5ylAGiRv9F4nGNP2S1zWtnDsebZ4U4UoIZOPXAkFgvy32IB&#43;X24dmFI8rkUaVnVRlKEs5h8UVMUGbTWyteN3dHswzqgY2sVk7stkHuBFjbY1fTJe6dmWqg00EU4QfDArMAB/eHHJ5XgHZ7dBwDuCAUkOtQE3P70t2PGil8yJgfzFDtoihZcuJ/DNr8PMNqEq0mNTYxlXQ8U6hdOabDTYkrPCr86zz6F0Pw7rYuaOdsILnwVCwzLyZmfPGUQaWa1yHFeCHfi3aJ72Oc7A4VCX8LDgH2psYNwadDJX7nX&#43;VCzF4mEMKmpCahX7VU3Q208WdMkPQLCYL8QVK5RX8ppVwxhbZO3c3AWEr6KX69XLSmWyafHxusT5UNSnTxZeJ04j31h1mGgTZ&#43;Tpneo3B72S7TC/HTbi9&#43;RgdN1piZpSKcMejO5PwbD/qWlEk1xSLgqXTWDKf16nCTjWdysDgKs4PorsNufkSuPn00194sH4PxviNez7UcMfV3Jk3IBdCRFsnzhHfefu6YgCxdPo91qKQSXPfH5hidJPvNzemy6oitv3SgKSMiMFKhlyKUB9jTlQ4Ipr1xEmcYBX3T&#43;OD3FNxBdQKt8UTUtxzWx/u1B7iWiRA7RYE7XvIFIsnWsRpCzLUwNQoK2a/pztn/fzAdPPHC3LbMB7u&#43;H/mwI22JBws8BZNNOIx7KuI0jjj67plDW2&#43;9dW6UfrkwUMmhuWI5FiXfqFcKLyOQb/WBfaxjLc0Mi2Lu7ry8yT0WCTdcphAgve1n&#43;lPzu3tmKeT2i2PDgB2aehTAqxX3GF4B73caSmHFBFkFhankHIn1XqNnleYcrJaZ/IbJDmHNBqPxA5lUFak9v&#43;D&#43;AopnLEPPDCDyH7gl/HeHtH36k1GOSW3404JZjFWzfU4ferA6uAaeYJccSJJUbUm3qGMqHHcye4bLwiCDp58eaAXxsO0rTR5chsppHyQTWkjgkGlp1KCfEL3tOyNQU8zA3BI1aG96GDhyJV8f&#43;IOeh9WlT65nqRjIVeMJtF22JUEqFy515L&#43;oH6IHK5c/2k67tpigxzVA3a4Z3e8evzsezlZLMGcNUT0Ioci/iOUorPdfm5ZZ0Nw7reHe4L3Ncev44dVK4PrcW5UiChy57fW5gaDuNS0XUpCgIV93bjVlOlloJgjpr6PIpDTQyaytTHw0Thbzdi6bFpHB17f&#43;DbkP4brNi9IuTzR2nnmn&#43;EDrXgqOevJatVxotTI0SmvH4FkzlbJt4C&#43;fKkmtgbRLKDMyuVdidwsMkS3Aljist6rxKBEUV/jz9nrZX3jwVgpG8YOtdKbak7ZzgTuZRn1EpImBMp9z/hVDCWl0Tka24dzBsy7jbAzUU4U&#43;ElHaoNSZ5kcoYqFganQVjhBBh5QBIvUL6d0M9Cg9c5NHxm8885ppMoRjrWnty&#43;Gm2BomzsA6Nt/7HiVHn3hPCdh2GWF2ewQIQGyiRUlVp7osIXzI9xQR5qIxZh11AKu9xydRdQU2gMBu9/pBIU0y1tLSqKKBeOFwVKyg6R4LB95fBaLxJCRBjQNKtl/G0K6uVWR5RCushpLPnAWJwdqsKz5T&#43;crJsiVWHEh702Q/FugKz9W9y3eKsWvNoVZz1L/blf2INQWBN6fRfo34AqJ9aIzwt3ORiR/wiub59SLNdTb/7iF2gEFSatO3fnLh6ZBdTZ&#43;O1VfrsGafGuBOBXnG4OdHm&#43;QeZ8LD&#43;IRSlpNAVDTcu&#43;rO4WVePUO24xvuW8GAOZ1/wJWze04ZvdIJ0Esf7rZSYTUVm1&#43;pEf6N4gXphYcacgvkL7goydRCqRXlC57l3PfemvUnLTq5FshdtV&#43;i69krzaQNTmpLyOKty6ZtbMnn/5IjRRHeK1r&#43;RLwIkAdFWC0MDZZb4aIPqp1k3BVXa89cdn1lwJsbF6NgX8Yermv0BSwua0tpxZoDRk6KNxIA1TNinpTYHtnsy0u5FZis7DL50XlRbSMOC9865W8QBdnISODc8q9N41we4V9xtcLzO9jDu1RXHTuYzhHroldQ8ef4mXmNYjXrN60gXV4cUegIbEpT9MJk0iB9gCwo5IfedKOVfNz2g&#43;SDQDSda/qcAKYdgtnM9Aill0sAzeTEizO4fjk/we5wtNmSuzgKMzgqedeAyOBXhx2sWEw71oFOpvCinQX29kJbOSp7OaviiK/8OpTXyoz&#43;Rx3IN8pDAdMMxoCXq6wWE6SkpAWgnzKd0eKGReV5yEe7RnhtIpZj92ooF3yUtILSb9fKwfHUDvQTY&#43;3IBOEC/tv0txEDA=">
+			<img
+				class="bio-image-image"
+					src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/953d0d06-aebe-42b0-ab17-336430703219/iris-lj-200px.jpg"
+					loading="eager" decoding="async" importance="high" width="100" height="100"
+					alt="Iris Lješnjanin"
+				/>
+		</picture>
+  </div>
+  
+  </a>
+  
+</figure>
+  </div>
+
+  <div class="l-author-bio-content author__desc" id="author__desc">
+    <h4 class="author__desc__title">
+    About The Author
+    </h4>
+
+    <p>
+      
+        Juggling between three languages on a daily basis, Iris is known for her love of linguistics, arts, web design and typography, as well as her goldmine of …
+      
+      <a href="/author/iris-ljesnjanin/" class="show-more-link">More about
+          Iris&nbsp;↬</a>
+    </p>
+  </div>
+
+</div>
+
+              <div class="c-garfield__nl">
+              <h4 class="h2">Email Newsletter</h4>
+              <section class="nl-box__form"><form action="//smashingmagazine.us1.list-manage.com/subscribe/post?u=16b832d9ad4b28edf261f34df&amp;id=a1666656e0" method="post"><div class="nl-box__wrapper"><label for="mce-EMAIL-hp" class="sr-only">Your (smashing) email</label><div class="nl-box__group"><input type="email" name="EMAIL" class="nl-box__form--email" id="mce-EMAIL-hp" placeholder="Your email">
+    <input type="submit" value="Meow!" name="subscribe" class="nl-box__form--button"></div></div></form></section><p class="nl-box__desc"><em><a href="https://www.smashingmagazine.com/the-smashing-newsletter/">Weekly tips on front-end &amp; UX</a>.<br />Trusted by 190.000 folks.</em></p>
+              </div>
+
+              
+
+
+
+            </div>
+
+
+            
+
+							
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+									
+								
+							
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+							
+							
+
+							<div class="c-garfield-native-panel__right">
+								
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://smart-interface-design-patterns.com">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2c42b388-373d-46c8-b0ab-b4fae869254a/sidp-large.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ff6622dc-2ac1-4ba8-b8b9-228b425ca5cc/sidp-large.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Smart Interface Design Patterns, Video Course</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+							</div>
+              <div class="c-garfield-native-panel">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://bit.ly/northwestern_uni_winter">
+							
+								<img src="https://res.cloudinary.com/indysigner/image/upload/v1601395101/ads/NWU_Oct.gif" loading="lazy" width="180" height="150" alt="In-demand skills with Northwestern online">
+							
+
+            <em class="ad__desc">Build in-demand skills like UX, UI and HCI — Northwestern online MS in Info. Design &amp; Strategy</em>
+						
+              </a>
+					</li>
+
+				
+			
+				
+					
+
+					<li>
+						<a href="https://smashingconf.com/online-workshops/workshops/remi-parmentier-mar">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68b2c174-9f80-4b04-8503-2d3adda61427/workshop-remiparmentier.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c8324a50-2a45-420d-8adb-b80998e9fe0e/workshop-remiparmentier.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Building Modern HTML Emails</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__below">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__end">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+            
+
+            <div class="c-garfield-summary" id="article__start">
+              <section aria-label="quick summary" class="article__summary">
+                <span class="summary__heading">Quick summary&nbsp;↬ </span>
+                
+                  Are you ready for the countdown to Christmas? From <a href="https://www.smashingmagazine.com/2016/12/freebie-christmas-advent-icon-set-25-icons-ai-eps-svg-png-pdf/">festive</a> <a href="https://www.smashingmagazine.com/2015/12/freebie-christmas-icons-illustrations/">icon</a> <a href="https://www.smashingmagazine.com/2014/11/freebie-christmas-icon-set-ai-psd-eps-pdf-svg-png/">sets</a> to advent calendars that are bound to sweeten your days with a delightful little surprise each morning, we’ve decided to join in on this lovely annual tradition and bring it all to one place. So prepare yourself a nice cup of coffee and get cozy &mdash; there’s always something new to learn and discover!
+                
+              </section>
+            </div>
+
+            
+
+            
+							
+
+
+
+						
+
+            
+
+<p>Once again, the web community has been busy with creating some fantastic advent calendars this year. As you’ll see, each and every one of these calendars are sure to cater for a <strong>daily dose of web design and development goodness</strong> with stellar articles, inspiring experiments, and even puzzles to solve.</p>
+
+<p>It doesn’t really matter if you’re a front-end dev, UX designer or content strategist, we’re certain you’ll find at least something to <strong>inspire you for the upcoming year</strong>. Use this month of December as a time to slow down, and your time to reflect and plan ahead &mdash; you won’t regret it.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+  
+  ">
+  
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="420"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6e09cbdf-49c2-4250-a290-4c0fce6fe0a8/advent-roundup-2021.png"
+			
+			sizes="100vw"
+			alt="Topple in Winter Mode"
+		/>
+    
+
+  
+    <figcaption class="op-vertical-bottom">
+      You don’t have to celebrate Christmas in order to share your story in any of these calendars. Just like Topple, it’s really all about learning from each other &mdash; one day at a time.
+    </figcaption>
+  
+</figure>
+
+<h2 id="marker" style="text-transform: none;">Advent of JavaScript</h2>
+
+<p><a href="https://www.adventofjs.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/712e45ae-0255-4580-b7c8-787cb5be07e0/advent-of-js.png" width="200" height="200" alt="Advent Of JavaScript" /></a>If you sign up to the <a href="https://www.adventofjs.com/">Advent of JavaScript</a>, you’ll be getting an email every day that outlined a JavaScript challenge. Each of the given challenges include all of the HTML and CSS you need to get started, allowing you to focus on the JavaScript. You’ll also receive a brief on how to get started, ways to push yourself, and steps to help you get started. You can get the challenges for free (or pay for the solutions).<br />
+  <ul>
+    <li><a href="https://twitter.com/jamesqquick">James Q. Quick on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="marker" style="text-transform: none;">Advent of CSS</h2>
+
+<p><a href="https://www.adventofcss.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/72764d05-689b-4566-a230-5e86b7936298/advent-of-css.png" width="200" height="200" alt="Advent Of CSS" /></a>For folks who’re more into CSS, there’s the <a href="https://www.adventofcss.com/">Advent of CSS</a> where you can sign up for a daily email outlining a CSS challenge that includes all the assets you need to get started &mdash; including a Figma design file. (If you don’t have a Figma account, don’t worry, it’s free.) Before accepting this challenge, you really should know basic HTML and CSS.<br />
+  <ul>
+    <li><a href="https://twitter.com/selfteachme">Amy Dutton on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="jvm-programming-advent-calendar">JVM Programming Advent Calendar</h2>
+
+<p><a href="https://www.javaadvent.com/calendar"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/bfca6838-6686-4272-854f-4968b0b86633/javaadvent-icon.png" width="200" height="200" alt="The JVM Programming Advent Calendar" /></a>The <a href="https://www.javaadvent.com/calendar">Java Advent 2021</a> is here! To make the advent season even sweeter for JVM enthusiasts, there will be a new article about JVM-related topic everyday. The project started in 2012 with the idea of providing technical content during the Christmas Advent period, so keep looking for nice things under the Java Christmas tree! 🎄<br />
+  <ul>
+    <li><a href="https://feeds.feedburner.com/JavaAdventCalendar">RSS Feed</a></li>
+    <li><a href="https://twitter.com/JavaAdvent">@JavaAdvent on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="marker" style="text-transform: none;">Advent of Code</h2>
+
+<p><a href="https://adventofcode.com"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/aab140db-32a7-4dc6-8a2c-0d98c7280b1f/adventofcode-2021.png" width="200" height="200" alt="Advent Of Code" /></a>If you prefer a puzzle over an article, take a look at <a href="https://adventofcode.com">Advent of Code</a>. Created by Eric Wastl, this is an advent calendar of small programming puzzles for a variety of skill sets and skill levels that can be solved in any programming language you like. You don’t need a computer science background to participate &mdash; just a little programming knowledge and some problem solving skills will get you pretty far. Go ahead and give it a go!<br />
+  <ul>
+    <li><a href="https://twitter.com/hashtag/AdventOfCode?src=hashtag_click&f=live">#AdventOfCode on Twitter</a></li>
+    <li><a href="https://twitter.com/ericwastl">@ericwastl on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="perl-6-raku-advent-calendar">Perl 6/Raku Advent Calendar</h2>
+
+<p><a href="https://raku-advent.blog/category/2021/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5fbb81ea-9998-4f3a-940f-2535158e11fb/a-language-a-day-advent-calendar-examples.png" width="200" height="200" alt="Raku Advent Calendar" /></a>Back in October of 2019, “Perl 6” was renamed to “Raku”. It’s the 6th year since (what was then called) Perl 6 was released, and the 13th year in a row for this <a href="https://raku-advent.blog/category/2021/">Raku Advent calendar</a>. Stay tuned for lots of articles on metaprogramming, applications, useful Raku modules, programming techniques, guides on how to work with Raku inside containers, and even how to migrate from good ol’ Perl.<br />
+<ul>
+  <li><a href="https://raku-advent.blog/category/2020/rss">RSS Feed</a></li>
+</ul>
+</p>
+
+<h2 id="24-pull-requests">24 Pull Requests</h2>
+
+<p><a href="https://24pullrequests.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6efe9200-4cc4-483b-b03c-3d477da2137a/24pullrequests.png
+" width="200" height="200" alt="24PullRequests" /></a><a href="https://24pullrequests.com/">24 Pull Requests</a> is a yearly initiative to encourage contributors around the world to send 24 pull requests between December 1st and December 24th. The project is available in twenty languages, and encourages all kinds of contributions to open-source projects &mdash; including non-pull-request contributions. There’s <a href="https://24pullrequests.com/contributions/new">a new contribution form</a> on the site that allows you to record the contributions you’ve made each day that wouldn’t usually make sense as a pull request. Join in!<br />
+  <ul>
+    <li><a href="https://github.com/24pullrequests/24pullrequests">“24 Pull Requests” on GitHub</a></li>
+    <li><a href="https://24pullrequests.com/">@24PullRequests on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="htmhell-advent-calendar">HTMHell Advent Calendar</h2>
+
+<p><a href="https://www.htmhell.dev/adventcalendar/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/942da5ec-135f-4a40-8628-75e735f1a8b8/htmhell-advent-cal.png" width="200" height="200" alt="HTMHell Advent Calendar" /></a>If you’re already familiar with the HTMHell website, then you can guess how interesting its advent calendar is going to get! Take a peek behind each door of the <a href="https://www.htmhell.dev/adventcalendar/">HTMHell calendar</a> where you’ll find an article, talk or tool that focuses on HTML. To be fair, HTMHell isn’t just about bad practices &mdash; Manuel also shares good practices and <a href="https://www.htmhell.dev/tips/">useful HTML tips and tricks</a>. 🔥<br />
+  <ul>
+    <li><a href="https://twitter.com/htm_hell">@htm_hell on Twitter</a></li>
+    <li><a href="https://twitter.com/mmatuzo">Manuel Matuzović on Twitter</a></li>
+    <li><a href="https://www.htmhell.dev/feed_tips.xml">“HTML Tips &amp; Tricks” RSS Feed</a></li>
+  </ul>
+</p>
+
+<div data-audience="non-subscriber" data-remove="true" class="feature-panel-container"><span class="feature-panel__desc">More after jump! Continue reading below&nbsp;&darr;</span>
+<aside class="feature-panel">
+<div class="feature-panel-left-col">
+<div class="feature-panel-description"><p><strong>Web forms</strong> are at the center of every meaningful interaction, so they’re worth getting a firm handle on. Meet Adam Silver&rsquo;s <strong><a href="https://www.smashingmagazine.com/printed-books/form-design-patterns/">Form Design Patterns</a></strong>, a practical guide to designing and building forms for the web.</p>
+<a data-instant href="https://www.smashingmagazine.com/printed-books/form-design-patterns/" class="btn btn--green btn--large">Jump to table of contents&nbsp;↬</a></div>
+</div>
+<div class="feature-panel-right-col"><a data-instant href="https://www.smashingmagazine.com/printed-books/form-design-patterns/" class="feature-panel-image-link">
+<div class="feature-panel-image"><picture><source type="image/avif" srcSet="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/64e57b41-b7f1-4ae3-886a-806cce580ef9/form-design-patterns-shop-image-1-1.avif" />
+<img
+    loading="lazy"
+    decoding="async"
+    class="feature-panel-image-img"
+    src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/51e0f837-d85d-4b28-bfab-1c9a47f0ce33/form-design-patterns-shop-image.png"
+    alt="Feature Panel"
+    width="481"
+    height="698"
+/>
+</picture>
+</div>
+</a>
+</div>
+</aside>
+</div>
+
+<h2 id="perfplanet-calendar">PerfPlanet Calendar</h2>
+
+<p><a href="https://calendar.perfplanet.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c8bbcb96-0df2-49c9-9d47-4bdda65e72fb/perfplanet-2021.png" width="200" height="200" alt="PerfPlanet Calendar" /></a>An advent calendar that has been publishing since 2009 is back again. Good ol’ <a href="https://calendar.perfplanet.com/">PerfPlanet</a> is back for another season with all things speed and web performance. Anyone is welcome to <a href="https://calendar.perfplanet.com/contribute/">contribute to the calendar</a>, so do feel free to reach out with a topic or tool you’re passionate about, or a technique you’d like to teach and tell the web performance community about.<br />
+  <ul>
+    <li><a href="https://twitter.com/stoyanstefanov">Stoyan Stefanov on Twitter</a></li>
+    <li><a href="https://www.phpied.com/perfplanet-calendars-oldies-but-goodies/">Perfplanet calendar’s oldies but goodies</a></li>
+  </ul>
+</p>
+
+<h2 id="c-advent-calendar">C# Advent Calendar</h2>
+
+<p><a href="https://csadvent.christmas/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/9341d10c-fd9f-4e47-a620-df8b81366126/csharpred.png" width="200" height="200" alt="C# Advent Calendar 2021" /></a>It’s time for the fifth annual <a href="https://csadvent.christmas/">C# advent calendar</a> that will feature two pieces of content every day. Anyone can contribute by sharing their blog posts, videos, articles or podcast episodes dedicated to C# development. In case all of the spots are already claimed, you can always <a href="https://csadvent.christmas/substitute">sign up to be a substitute author</a>. Rock on! 🎸<br />
+  <ul>
+    <li><a href="https://twitter.com/search?q=%23csadvent&src=typed_query&f=live">#csadvent on Twitter</a></li>
+    <li><a href="https://twitter.com/mgroves">@mgroves on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="inclusive-design-24">Inclusive Design 24</h2>
+
+<p><a href="https://twitter.com/id24conf"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8bce5bc4-1b00-4f4f-89c7-1540eab666f8/inclusive-design24-advent.png" width="200" height="200" alt="Inclusive Design 24" /></a>The good folks at <a href="https://twitter.com/id24conf">Inclusive Design 24</a> are sharing their <a href="https://twitter.com/hashtag/id24?src=hashtag_click&f=live">favorite talks</a> from previous years of the good ol’ <a href="https://twitter.com/hashtag/id24?src=hashtag_click&f=live">#id24</a> online-only conferences while counting down the days until the New Year. All videos have even been manually re-captioned, just so they’re all at their best.<br />
+  <ul>
+    <li><a href="https://twitter.com/hashtag/id24?src=hashtag_click&f=live">@id24conf on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="lean-uxmas">Lean UXMas</h2>
+
+<p><a href="https://2021.leanuxmas.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e1b0708b-334c-401c-ad83-39d87eca084a/leanuxmas-advent.png" width="200" height="200" alt="Lean UXMas" /></a><a href="https://2021.leanuxmas.com/">Lean UXMas</a> has been publishing each advent since 2014 and is a collection of the most popular articles from this year’s Agile and Lean UX latest news. If you find yourself impatiently waiting for the next article to be posted, you can always check out the previous advent calendars smashing the year in the base URL, or simply search for them below the website’s header.<br />
+  <ul>
+    <li><a href="https://2021.leanuxmas.com/rss">RSS Feed</a></li>
+    <li><a href="https://twitter.com/leanuxmas">@LeanUXmas on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="code-security-advent-calendar">Code Security Advent Calendar</h2>
+
+<p><a href="https://blog.sonarsource.com/code-security-advent-calendar-2021"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e576951a-9a35-42b2-ba2d-2970684d3dc0/sonarsource-advent.jpeg" width="200" height="200" alt="Code Security Advent Calendar" /></a>If you’re up for a challenge that involves spotting security vulnerabilities, then the <a href="https://blog.sonarsource.com/code-security-advent-calendar-2021">Code Security Advent Calendar</a> is just the right one for you. Every day, there will be a code security puzzle and/or riddle <a href="https://twitter.com/sonarsource">announced on Twitter</a> to which you’re welcome to join and share with your friends to discuss solutions together. The most active players with the best solutions will be contacted to receive a cool swag pack. 🎁<br />
+  <ul>
+    <li><a href="https://twitter.com/sonarsource">@SonarSource on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="marker" style="text-transform: none;">Advent of Cyber</h2>
+
+<p><a href="https://tryhackme.com/christmas"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68e356b4-df87-4246-9dac-d9a7bd23ff7a/tryhackme-logo.png" width="200" height="200" alt="‘Try Hack Me’ Advent Calendar" /></a>Security can be a daunting field. With <a href="https://tryhackme.com/christmas">Advent of Cyber</a>, you can get started with Cyber Security by learning the basics and completing a new, beginner friendly security exercise every day. For each task you get correct, you get a raffle ticket and on the 26th December, meaning the more questions you answer, the more chance you have of winning. Every day you complete a challenge, you get entered into another prize draw for the chance to win a mini-prize. So, what are you waiting for?<br />
+  <ul>
+    <li><a href="https://twitter.com/RealTryHackMe">TryHackMe on Twitter</a></li>
+    <li><a href="https://twitter.com/_johnhammond">John Hammond on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="24-days-in-december">24 Days In December</h2>
+
+<p><a href="https://24daysindecember.net/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/48c6e546-394b-4a36-9ab3-ac2fa885f39b/24-days-in-dec-2018.png" width="200" height="200" alt="24 Days In December" /></a>“PHP is not just a language. PHP is a group of people, a community of developers who build things for the web. The PHPamily spans the globe, and while we might not always agree or get along, we have one thing in common, we’re passionate about what we do.” <a href="https://twitter.com/jon_bossenger">Jonathan Bossenger</a> hits the nail right on the head as he welcomes everyone to participate in the 6th edition of <a href="https://24daysindecember.net/">24 Days in December</a>. We’re all look forward to hearing your personal journey and stories with PHP! 🌈<br />
+  <ul>
+    <li><a href="https://24daysindecember.net/feed/">RSS Feed</a></li>
+    <li><a href="https://twitter.com/24DaysInDec">@24DaysInDec on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="designcember">Designcember</h2>
+
+<p><a href="https://designcember.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0a86312a-1b28-4ee4-871b-4d7b071a5fa7/designcember.png" width="200" height="200" alt="Designcember" /></a>As a celebration of web design, the good folks at <a href="https://web.dev/">web.dev</a> are dropping a UI development treat for you every day with their brilliant <a href="https://designcember.com/">Designcember</a> advent calendar. Built with CSS container queries and the new CQ Polyfill, it’s full of little details to explore! Try interacting with the windows, resizing your browser, or clicking on the button at the top right to toggle between dark and light mode. Why not play along and create your own CQ demo?<br />
+  <ul>
+    <li><a href="https://twitter.com/search?q=%23Designcember&src=typed_query&f=live">#Designcember on Twitter</a></li>
+    <li><a href="https://twitter.com/ChromiumDev">@ChromiumDev on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="marker" style="text-transform: none;">Umbraco Christmas Calendar</h2>
+
+<p><a href="https://24days.in/umbraco-cms/2021/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92cb7edc-8893-4440-b8a3-d538d7396fdd/umbraco-cms-2021.png" width="200" height="200" alt="24 Days In Umbraco" /></a>It’s the 10th year of <a href="https://24days.in/umbraco-cms/2021/">24 Days In Umbraco</a> and it’s time to learn more about Umbraco (otherwise known as the ‘Friendly CMS’). If you’re interested in it but not sure where to start, you can always check out the <a href="https://24days.in/umbraco-cms/tags/v7/">articles by tag(s)</a> and find the answers to your questions. The calendar was first started back in 2012 so there’s plenty of content to sift through.<br />
+  <ul>
+    <li><a href="https://twitter.com/24daysinumbraco">@24daysinumbraco on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="festive-tech-calendar-2021">Festive Tech Calendar 2021</h2>
+
+<p><a href="https://festivetechcalendar.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f0b7cff5-b026-4063-906c-9692748a6c63/festivetechcalendar.jpg" width="200" height="200" alt="Festive Tech Calendar 2021" /></a>With over 2K subscribers on YouTube, the <a href="https://festivetechcalendar.com/">Festive Tech Calendar</a> is back at it again this year with videos from different communities and people around the globe. As you’ll see, you’ll quickly be able to find an entire <a href="https://www.youtube.com/c/AzureAdventCalendar/videos">collection of videos</a> from all of the previous years, and topics as well as the diversity of speakers both don’t fall short indeed. By the communities, for the communities indeed.<br />
+  <ul>
+    <li><a href="https://www.youtube.com/channel/UCJL9wCcmeMBbah4J0uOWIPg">“Festive Tech Calendar” on YoutTube</a></li>
+    <li><a href="https://twitter.com/hashtag/FestiveTechCalendar2021?src=hashtag_click">#FestiveTechCalendar2021 on Twitter</a></li>
+    <li><a href="https://twitter.com/_cloudfamily">@CloudFamily on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="sysadvent">SysAdvent</h2>
+
+<p><a href="https://sysadvent.blogspot.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/263db521-0f2d-4bc9-9dff-37ab5b6f3b97/sysadvent-logo-200px.jpeg" width="200" height="200" alt="SysAdvent" /></a><a href="https://sysadvent.blogspot.com/">SysAdvent</a> is back this year! With the goals of sharing, openness and mentoring, you’re in for some great articles about systems administration topics written by fellow sysadmins. Tune in each day for an article that explores the wide range of topics in system administration.<br />
+  <ul>
+    <li><a href="https://sysadvent.blogspot.com/feeds/posts/default?alt=rss">RSS Feed</a></li>
+    <li><a href="https://twitter.com/SysAdvent">@SysAdvent on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="it-security-advent-calendar">IT Security Advent Calendar</h2>
+
+<p><a href="https://www.infowebica.com/resources/security-advent-calendar/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/a60baf39-0023-4abc-ad36-0af7af0ab0f5/myadvent-mascot.png" width="200" height="200" alt="Security Advent Calendar Basic Security Advice" /></a>“Don't store sensitive data in the cloud; keep it entirely disconnected from the web.” Yup, that’s the credo delivered in the first advent door of the good ol’ <a href="https://www.infowebica.com/resources/security-advent-calendar/">IT Security Advent Calendar</a> this year. Counting down to Christmas, this calendar is dedicated to sharing a new tip for protecting your devices, networks, and data each day.<br />
+  <ul>
+    <li><a href="https://twitter.com/infowebica">@Infowebica on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="bekk-christmas">Bekk Christmas</h2>
+
+<p><a href="https://javascript.christmas/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/033f1252-2239-4479-a4ef-7ff447202251/bekk-christmas.jpg" width="200" height="200" alt="React, JavaScript, Security And Elm Christmas" /></a>This year’s <a href="https://bekk.christmas/">Bekk Christmas</a> features opinion pieces, tutorials, podcasts, deep dives and lots of other formats. Pick the ones that seem interesting to you, and consume them whenever you like. It’s worth digging through the archives (see e.g. <a href="https://www.bekk.christmas/post/2020">2020</a>) &mdash; there’s a golden gem hidden in each one of them!
+
+  <br />
+  <ul>
+    <li><a href="https://twitter.com/livetibekk">Bekk on Twitter</a></li>
+    <li><a href="https://twitter.com/selbekk">Kristofer Giltvedt Selbekk on Twitter</a></li>
+  </ul>
+</p>
+
+<p><br /></p>
+
+<div class="sponsors__lead-place"></div>
+
+<p><br /></p>
+
+<p>It’s nice to find some <strong>calendars in languages other than English</strong>, too! Here are a few we stumbled upon:</p>
+
+<h2 id="24-jours-de-web-french">24 Jours De Web (French)</h2>
+
+<p><a href="https://www.24joursdeweb.fr/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/efe93c87-dd0a-4212-9d7b-cfe015fd4d47/24joursdeweb-advent.png" width="200" height="200" alt="24 Jours De Web" /></a><a href="https://www.24joursdeweb.fr/">24 Jours De Web</a> is a lovely French calendar which first appeared back in 2012, and has been continuing the lovely tradition of online advent calendars ever since. 24 authors come together each year and publish an article on UX, accessibility, privacy, and other topics related to the good ol’ web.<br />
+  <ul>
+    <li><a href="https://www.24joursdeweb.fr/feed/">RSS Feed</a></li>
+    <li><a href="https://twitter.com/24joursdeweb">@24joursdeweb on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="selfhtml-adventskalender-german">SELFHTML Adventskalender (German)</h2>
+
+<p><a href="https://forum.selfhtml.org/advent/2021"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e2b0e0c9-42a7-4f24-add2-48a391e99907/selfhtml-logo-200px.png" width="200" height="200" alt="SELFHTML Advent Calendar" /></a>This year’s <a href="https://forum.selfhtml.org/advent/2021">SELFHTML Adventskalender</a> is dedicated to accessibility &mdash; a topic that concerns everyone. Why? Because accessibility is good for all of us. Accessible websites are simply better websites. At the end of the day, everyone in the world hits a large key faster and more reliably than a small key. To all the German-speaking developers out there, you’ll understand <a href="https://blog.selfhtml.org/2021/nov/29/adventskalender-2021">why it’s important to include accessibility</a> as much as possible. Also, make sure to bookmark the <a href="https://wiki.selfhtml.org/wiki/SELFHTML:Wiki">SELFHTML wiki</a> so you can have the latest documentations and tutorials at hand.<br />
+  <ul>
+    <li><a href="https://forum.selfhtml.org/all/feeds/rss">RSS Feed</a></li>
+    <li><a href="https://twitter.com/selfhtml">@SELFHTML on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="marker" style="text-transform: none;">adventJS (Spanish)</h2>
+
+<p><a href="https://adventjs.dev/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/9a98c76c-3675-47a1-a400-5b41d7520334/adventjs-spanish.png" width="200" height="200" alt="adventJS" /></a>Fancy more JavaScript challenges every day? Well, <a href="https://twitter.com/midudev">Miguel Ángel Durán</a> has your back with <a href="https://adventjs.dev/">adventJS</a> &mdash; an advent calendar that started back in 2015. The programming challenges are all in Spanish, and are meant to be solved with JavaScript only. Don’t forget to participate and share your solutions on Twitter!<br />
+  <ul>
+    <li><a href="https://twitter.com/hashtag/adventjs?src=hashtag_click&f=live">#adventjs on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="kodekalender-norwegian">Kodekalender (Norwegian)</h2>
+
+<p><a href="https://julekalender.knowit.no/doors"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2a0a9a87-8082-4b44-a5ee-64f131f5f8ee/kodekalender-knowit-advent.png" width="200" height="200" alt="Kodekalender by Knowit" /></a>Knowit is one of the Nordic region's leading consulting companies. They have once again brought their <a href="https://julekalender.knowit.no/doors">Norwegian calendar</a> to life, and it is just the kind of holiday calendar for those of you who love programming. Behind each hatch hides a task you have to answer in the form of a simple text string or a number. The hatches vary in degree of difficulty and design, but common to all is that they are best suited for solving with code. Solve as many slots as possible to increase your chances of winning! Good luck!<br />
+  <ul>
+    <li><a href="https://twitter.com/knowitnorge">@knowitnorge on Twitter</a></li>
+  </ul>
+</p>
+
+<h2 id="webアクセシビリティ-advent-calendar-japanese">WEBアクセシビリティ Advent Calendar (Japanese)</h2>
+
+<p><a href="https://adventar.org/calendars/6197"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/9376dae6-86b3-4985-8175-903ef544d24c/adventar-illu.png" width="200" height="200" alt="WEBアクセシビリティ Advent Calendar" /></a>This <a href="https://adventar.org/calendars/6197">Japanese advent calendar</a> has been running since 2013 and is moderated by <a href="https://twitter.com/hokaccha">@hokaccha</a>. Its focus lies on web accessibility, with a new author exploring a topic each day &mdash; from web accessibility to all the different types of programming languages you may want to explore for your projects. Once logged in, you can save a spot on the calendar and have your article or work published on that particular day.</p>
+
+<p><br /></p>
+
+<blockquote>Do you happen to know any other advent calendars that have been created in languages other than in English? Please do feel free to <a href="https://twitter.com/smash_it_on">reach out to me on Twitter</a> and I’ll be sure to add them to this list. 🙌</blockquote>
+
+<h2 id="oldies-but-goodies">Oldies But Goodies</h2>
+
+<h3 id="christmas-experiments-2018">Christmas Experiments (2018)</h3>
+
+<p><a href="https://christmasexperiments.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c8a061cb-67e1-4b1c-ac6f-ccdac1836764/christmasexperiments-advent.png" width="200" height="200" alt="Christmas Experiments" /></a><a href="https://christmasexperiments.com/">Christmas Experiments</a> started back in 2012, with the goal to deliver great experiments and highlight top web creative as well as newcomers. It was a pretty cool WebGL advent calendar that featured a daily new experiment that was quite obviously made with love by digital artists. Unfortunately, it did not continue after the 2018 edition.<br />
+  <ul>
+    <li><a href="https://twitter.com/christmasxp">@christmasxp on Twitter</a></li>
+  </ul>
+</p>
+
+<h3 id="24-accessibility-2019">24 Accessibility (2019)</h3>
+
+<p><a href="https://www.24a11y.com/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/a947a3c2-c96e-45e7-9a27-5488f3a8e0f1/24-a11y-logo-18-opt.jpg" width="200" height="200" alt="24 Accessibility" /></a>An advent calendar we surely miss is the <a href="https://www.24a11y.com/">24 Accessibility</a>. The site hasn’t had a new article since 2019, but still offers a good resource of articles on all subjects related to digital accessibility. Whether you are new to accessibility or a veteran, a developer, designer, user experience professional, quality assurance analyst or project manager, you’ll find an article of interest during the run of the series.<br />
+  <ul>
+    <li><a href="https://www.24a11y.com/feed/">RSS Feed</a></li>
+    <li><a href="https://twitter.com/24accessibility">@24accessibility on Twitter</a></li>
+  </ul>
+</p>
+
+<h3 id="it-s-a-shape-christmas-2019">It’s A Shape Christmas (2019)</h3>
+
+<p><a href="https://itsashapechristmas.co.uk/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/a42bacde-cedc-48d4-a06a-295ac90ad0ad/shape-christmas-logo-200px.png" width="200" height="200" alt="It’s A Shape Christmas" /></a><a href="https://itsashapechristmas.co.uk/">It’s A Shape Christmas</a> is a digital calendar that counts down to Christmas and reveals a bespoke illustration each day themed around four different shapes (Square, Triangle, Circle and Hexagon) and Christmas. The project was started in 2011 by a UK design agency called <em>Made by Shape</em>. The website still showcases some of the best from the previous seasons. I’m sure you’ll agree: they’re all just too good not to be shared! ✨<br />
+  <ul>
+    <li><a href="https://twitter.com/shapechristmas">@shapechristmas on Twitter</a></li>
+  </ul>
+</p>
+
+<h3 id="24-ways-2019">24 Ways (2019)</h3>
+
+<p><a href="https://24ways.org/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f4641212-86e0-49e0-a270-512acc6e4329/24-ways-advent-2018.png" width="200" height="200" alt="24 Ways" /></a>First initiated by Drew McLellan, <a href="https://24ways.org/">24 ways</a> started out as a simple website that published a new tip or trick each day leading readers through December up until Christmas. It launched in <a href="https://24ways.org/2005">2005</a> and still has all of the calendars available online. Unfortunately, the last one was published in 2019 and will be taking a well-earned break after that year’s “final countdown”.<br />
+  <ul>
+    <li><a href="https://feeds.feedburner.com/24ways">RSS Feed</a></li>
+    <li><a href="https://twitter.com/24ways">@24ways on Twitter</a></li>
+  </ul>
+</p>
+
+<h3 id="perl-advent-2020">Perl Advent (2020)</h3>
+
+<p><a href="https://perladvent.org/archives.html"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/69912810-b90a-4e98-939f-6e122273a17a/perladvent.png" width="200" height="200" alt="Perl Advent Calendar 2019" /></a>The <a href="https://perladvent.org/">Perl Advent</a> started back in <a href="https://perladvent.org/2000/">2000</a> and is perhaps the longest running web advent calendar that many know of. You’ll find insightful articles written by diverse author submissions from all types of Perl programming levels. A different Perl module will be featured each day for the twenty four days of advent, and an extra module on Christmas day. Make sure to go through the <a href="https://perladvent.org/archives.html">previous Perl advent calendars</a> &mdash; it’s worth it.<br />
+  <ul>
+    <li><a href="https://perladvent.org/2019/atom.xml">RSS Feed</a></li>
+    <li><a href="https://www.twoshortplanks.com/">Mark Fowler’s website</a></li>
+  </ul>
+</p>
+
+<h3 id="pwadvent-2020">PWAdvent (2020)</h3>
+
+<p><a href="https://pwadvent.dev/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/06434a01-12fb-4883-942a-97e7f2b2282c/pwadvent-dev.png" width="200" height="200" alt="PWAdvent" /></a><a href="https://pwadvent.dev/">PWAdvent</a> is a nice advent calendar for everyone who’s excited about the web platform and Progressive Web Apps, of course. Take a look at all the great stuff the web has to offer in last year’s calendar, in which a new progressive browser feature was introduced every day by <a href="https://twitter.com/nic_o_martin">Nico Martin</a> himself and others.</p>
+
+<h3 id="a11y-advent-calendar-2020">A11y Advent Calendar (2020)</h3>
+
+<p><a href="https://kittygiraudel.com/2020/12/01/a11y-advent-calendar/"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/74d6e23b-ae2b-4b5b-9813-91ae3bf0e780/a11y-advent-calendar.png" width="200" height="200" alt="A11y Advent Calendar" /></a>Heydon Pickering once said, “Accessibility is not about doing <em>more</em> work but about doing the <em>right</em> work.” Last year, Kitty Giraudel decided to publish an accessibility tip a day in their very own <a href="https://kittygiraudel.com/2020/12/01/a11y-advent-calendar/">#A11yAdvent</a>. Some of the tips are probably common knowledge for many, yet each of the posts cover so many of the important aspects of accessibility that will still hold true for years to come.<br />
+  <ul>
+    <li><a href="https://kittygiraudel.com/rss/index.xml">RSS Feed</a></li>
+    <li><a href="https://twitter.com/KittyGiraudel">Kitty Giraudel on Twitter</a></li>
+  </ul>
+</p>
+
+<div class="sponsors__lead-place"></div>
+
+<h2 id="last-but-not-least">Last But Not Least&hellip;</h2>
+
+<p><a href="https://twitter.com/hashtag/SmashingAdvent?src=hashtag_click"><img loading="lazy" decoding="async" style="float: right; padding: 1em;" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7483fb45-4dc0-492a-aee5-f7b133abcc18/smashingconf-advent.png" width="200" height="200" alt="SmashingAdvent" /></a>Of course, we wanted to join in the fun ourselves and brought our very own <a href="https://twitter.com/hashtag/SmashingAdvent?src=hashtag_click">#SmashingAdvent</a> to life! As you already probably know, the Smashing team has been organizing conferences and events since 2012, so there are plenty of gems to shine the spotlight on. Do give <a href="https://twitter.com/smashingconf">@SmashingConf</a> a follow on Twitter where we’ll be sharing our favorite talks and interviews with speakers from all over the globe.</p>
+
+<p>On behalf of the entire Smashing team, we’d like to say <strong>thank you to each and every one involved</strong> in these projects &mdash; we see you! The communities in our web industry wouldn’t be able to learn so much and thrive if it wasn’t for your time, hard work and dedication. We all sincerely and truly appreciate each and every one of you. 🙏</p>
+
+<p>And of course, if there’s a calendar that isn’t mentioned here, please do post it in comments section below.</p>
+
+<div class="signature">
+  <img src="https://www.smashingmagazine.com/images/logo/logo--red.png" alt="Smashing Editorial" width="35" height="46" loading="lazy" decoding="async" />
+  <span>(cr, vf)</span>
+</div>
+
+
+
+						
+							<div class="category__related--alt">
+								<span class="italic grey mrs mbm block">Explore more on</span>
+								<nav class="subnav ib" role="navigation">
+									<ul class="subnav__primary subnav__subtags flex flex-wrap">
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/resources">Resources</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/community">Community</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/round-ups">Round-Ups</a></li>
+									
+									</ul>
+								</nav>
+							</div>
+      			
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <link href="/css/non-critical-article-manual-felix.css" media="print" onload="this.media='all'" rel="stylesheet">
+      <link href="/css/article-dark-mode-v3.css" media="(prefers-color-scheme: dark)" rel="stylesheet">
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+
+      
+        <div id="sponsors-article-end" data-impression="true" class="c-promo-box c-promo-box--ad c-promo-box--wide sponsors sponsors__row hidden sponsors__external" data-audience="non-subscriber" data-remove="true"></div>
+      
+
+			
+				<div id="promo-article-end hidden">
+					
+						
+
+<div class="book-grid">
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/the-smashing-newsletter/"><img loading="lazy" width="202" height="266" src="/images/smashing-cat/cat-in-a-chair--tall.svg" alt="Smashing Newsletter"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/the-smashing-newsletter/">
+				Smashing Newsletter
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Tips on front-end &amp; UX, delivered weekly in your inbox. Just the things you can actually use.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="https://www.smashingconf.com/online-workshops/"><img loading="lazy" width="202" height="266" src="https://www.smashingmagazine.com/images/smashing-cat/cat-explorer.svg" alt="Front-End &amp; UX Workshops, Online"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="https://www.smashingconf.com/online-workshops/">
+				Front-End &amp; UX Workshops, Online
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			With practical takeaways, live sessions, video recordings and a friendly Q&amp;A.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/printed-books/"><img loading="lazy" width="202" height="266" src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c2f2c6d6-4e85-449a-99f5-58bd053bc846/typescript-shop-cover-opt.png" alt="TypeScript in 50 Lessons"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/printed-books/">
+				TypeScript in 50 Lessons
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Everything TypeScript, with code walkthroughs and examples. And other printed books.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+</div>
+
+
+
+					
+				</div>
+			
+
+      
+        <div data-component="CommentsArea" id="comments-tech-advent-calendars-web-developers-web-designers-2021" data-thread="/2021/12/tech-advent-calendars-web-developers-web-designers-2021/" data-date="2021-12-02 14:00:43 &#43;0000 UTC"></div>
+
+      
+
+    </div>
+  </article>
+
+    </main>
+
+		
+			
+				
+				
+				<div data-component="CookieBanner"></div>
+
+  <div id="cart" class="cart-wrapper" data-component="MiniCart"></div>
+
+
+<footer class="main-footer">
+  <div class="container">
+
+    <div class="col-12">
+      <div class="footer__topics open">
+    <h4 class="footer__topics__title" id="topics">Browse All Smashing Magazine Topics</h4>
+    <ul class="footer__topics__list">
+      
+        <li class="footer__topics__item">
+            <a href="/category/accessibility">Accessibility</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/android">Android</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/animation">Animation</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/apps">Apps</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/css">CSS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design">Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-patterns">Design Patterns</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-systems">Design Systems</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/e-commerce">E-Commerce</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/freebies">Freebies</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/graphics">Graphics</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/html">HTML</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/illustrator">Illustrator</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/inspiration">Inspiration</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ios">iOS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/javascript">JavaScript</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/mobile">Mobile</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/pattern-libraries">Pattern Libraries</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/performance">Performance</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/photoshop">Photoshop</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/plugins">Plugins</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/react">React</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/responsive-design">Responsive Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/service-workers">Service Workers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/sketch">Sketch</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/typography">Typography</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ui">UI</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/usability">Usability</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/user-experience">User Experience</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wallpapers">Wallpapers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/web-design">Web Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wordpress">WordPress</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/workflow">Workflow</a>
+        </li>
+      
+    </ul>
+</div>
+
+    </div>
+
+    <div class="col-12">
+      <div class="footer__notes">
+        <p>With a commitment to quality content for the design community.</p>
+        <p>Founded by Vitaly Friedman and Sven Lennartz. <span class="lining-figures">2006–2022</span>.</p>
+        <p>Smashing is proudly running on <a href="https://www.netlify.com/?utm_source=link&utm_medium=parter&utm_campaign=sm-footer">Netlify</a>.</p>
+        <p>Fonts by <a href="http://latinotype.com/">Latinotype</a>.</p>
+      </div>
+
+      <ul class="footer__links">
+        <li>&#9998; <a href="/write-for-us/">Write for us</a>
+        </li>
+        <li>
+          <a href="/contact/">Contact us</a>
+        </li>
+        <li>
+          <a href="/about/">About us (Impressum)</a>
+        </li>
+        <li>
+          <a href="/privacy-policy/">Privacy policy</a>
+        </li>
+        <li>
+          <a href="/auth/">Membership login</a>
+        </li>
+        <li>
+            <a href="/delivery-times/">Delivery times</a>
+          </li>
+            <li>
+          <a href="mailto:&#097;&#100;&#118;&#101;&#114;&#116;&#105;&#115;&#105;&#110;&#103;&#064;&#115;&#109;&#097;&#115;&#104;&#105;&#110;&#103;&#109;&#097;&#103;&#097;&#122;&#105;&#110;&#101;&#046;&#099;&#111;&#109;?subject=Let’s talk about advertising">Advertise</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+<div class="back-to-top-wrapper" id="back_top">
+	<a href="#top" data-scroll="#top" class="back-to-top" title="Back to top">
+		<svg viewBox="0 0 100 100" width="25px" height="25px" tabindex="-1" role="img" aria-labelledby="title">
+			<title id="title">Back to top</title>
+			<path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"></path>
+			<image src="/images/back-to-top-arrow.png" alt="Back to top arrow" xlink:href="" width="100%" height="100%"></image>
+		</svg>
+	</a>
+</div>
+
+
+</footer>
+
+<div data-handler="PostLoad"></div>
+
+<script src="/js/app.js" defer importance="low"></script>
+<script>
+  
+  window.PRERELEASES = {}
+  window.PAGE_TYPE = "articles"
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+      	window.PRERELEASES['touch-design-for-mobile-interfaces'] = '2022-01-11T13:00:00.000Z';
+			
+    
+  
+
+  if ('serviceWorker' in navigator && !localStorage.getItem('no_sw')) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => {
+          window.caches
+            .open('smashing-mag-offline-articles')
+            .then(cache => cache.keys())
+            .then(keys => {
+              var savedOffline = document.querySelector('.meta-box--article')
+              if (savedOffline && keys && keys.length) {
+                var currentPageSaved = keys.find(key =>  key.url === window.location.href)
+              }
+
+              var list = document.querySelector('.offline-articles-list')
+              if (list && keys && keys.length) {
+                var listItem = document.createElement('li')
+
+                var innerList = keys
+                  .map(function(key) {
+                    return (
+                      '<li><a href="' + key.url + '">' + key.url + '</a></li>'
+                    )
+                  })
+                  .join('')
+                listItem.innerHTML =
+                  'Recently viewed aritcles: <ul>' + innerList + '</ul>'
+                list.appendChild(listItem)
+              }
+            })
+        })
+        .catch(function(err) {
+          console.error('Failed to load service worker')
+        })
+    })
+  }
+</script>
+
+<div hidden>
+
+
+</div>
+
+<link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+
+
+
+<script class="js-additional" importance="low" src="/js/instantpage.js" type="module" defer></script>
+<script class="js-additional" importance="low" src="/js/ga.js" defer></script>
+<script class="js-additional" importance="low" src="https://www.google-analytics.com/analytics.js" defer></script>
+<script class="js-additional" importance="low" type="module" src="/js/web-vitals-tracking.js"></script>
+
+			
+		
+
+  </body>
+</html>

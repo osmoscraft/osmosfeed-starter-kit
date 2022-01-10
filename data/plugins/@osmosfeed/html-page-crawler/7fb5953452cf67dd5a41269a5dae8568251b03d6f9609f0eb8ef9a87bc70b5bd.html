@@ -1,0 +1,2699 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+
+    
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+        <title>A Showcase Of Lovely Little Websites — Smashing Magazine</title>
+      
+      
+
+
+<link rel="preconnect" href="https://cloud.netlifyusercontent.com"/>
+<link rel="preconnect" href="https://smashingcomments.netlify.app"/>
+<link rel="preconnect" href="https://res.cloudinary.com"/>
+<link rel="preconnect" href="https://www.google-analytics.com/"/>
+<link rel="preconnect" href="https://storage.googleapis.com"/>
+
+      
+
+
+
+
+
+
+    
+
+    
+      
+
+<style>
+  @font-face{font-family:Elena;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff")}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff");font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic;font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700;font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic;font-display:optional}@font-face{font-family:Mija;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff")}@font-face{font-family:MijaLCP;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff");font-display:optional}@font-face{font-family:Mija;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700}@font-face{font-family:MijaLCP;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700;font-display:optional}
+</style>
+
+<script>
+
+  var fontsInServiceWorker = sessionStorage.foutFontsStage1Loaded && sessionStorage.foutFontsStage2Loaded || ('serviceWorker' in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === 'activated')
+  if (!fontsInServiceWorker && 'fonts' in document) {
+    function fetchFonts(fonts) {
+      return Promise.all(fonts.map(function (font) {
+        return document
+          .fonts
+          .load(font);
+      }));
+    }
+
+    if( sessionStorage.foutFontsStage2Loaded ) {
+			document.documentElement.className += " wf-loaded-stage2";
+		} else {
+      sessionStorage.foutFontsStage1Loaded = true;
+    };
+  }
+
+
+
+  if ("fonts" in document && !("connection" in navigator && navigator.connection.saveData)) {
+		
+		let font = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format('woff2')"
+		);
+		let fontBold = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+		let fontItalic = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format('woff2')",
+			{ style: "italic" }
+		);
+		
+		
+		
+		
+		let font2Bold = new FontFace(
+			"Mija",
+			"url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+
+		
+		let loadedFonts = Promise.all([
+			font.load(),
+			
+			fontBold.load(),
+			font2Bold.load(),
+			fontItalic.load()
+		]).then(result => {
+			result.forEach(font => document.fonts.add(font));
+			document.documentElement.classList.add('wf-loaded-stage2');
+			sessionStorage.foutFontsStage2Loaded = true;
+		}).catch(error => {
+			throw new Error(`Error caught: ${error}`);
+		});
+
+  }
+
+  if (
+    (sessionStorage.foutFontsStage1Loaded &&
+      sessionStorage.foutFontsStage2Loaded) ||
+    ('serviceWorker' in navigator &&
+      navigator.serviceWorker.controller !== null &&
+      navigator.serviceWorker.controller.state === 'activated')
+  ) {
+    var docEl = document.documentElement
+    
+    docEl.classList.add('wf-loaded-stage2')
+  }
+
+  if (
+    !'querySelector' in document &&
+    'addEventListener' in window &&
+    'getComputedStyle' in window
+  ) {
+    window.document.documentElement.className += ' no-js'
+  }
+  window.document.documentElement.className += ' enhanced js'
+</script>
+
+
+
+<style>
+  @charset "UTF-8";@media (prefers-color-scheme:dark){:root{--article-background-color:linear-gradient(-45deg, #162c35 70%, #0c252f 100%)}}*,::after,::before{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;overflow-y:scroll}body{margin:0;display:flex;flex-direction:column;background-color:#fff;font-feature-settings:"onum" 1;color:#333;overflow:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:-apple-system,BlinkMacSystemFont,Roboto,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif;font-size:1.125em}body,html{min-height:100%;overflow-x:hidden}img{max-width:100%;position:relative;border-style:none}article,aside,figcaption,figure,footer,header,main,nav,section{display:block}:focus{outline:3px dotted var(--THEME_COLOR_HOVER,#811d15)!important}article,figure,header,main,nav,section{display:block}@media (prefers-reduced-data:reduce){.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 body,.wf-loaded-stage2 h1,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 tbody td,.wf-loaded-stage2 th,.wf-loaded-stage2 time{font-family:-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif!important}}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 h1,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 th{font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 body,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 tbody td,.wf-loaded-stage2 time{font-family:Elena,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}@media all and (max-width:750px){.c-garfield-the-cat{display:flex;flex-direction:column}.c-garfield-the-cat>*{margin-bottom:0}.article__image,.c-garfield-the-cat>figure{margin:1em auto .25em auto}.c-garfield-aside--meta{margin-bottom:1em}.c-garfield-the-cat>pre{margin-top:1em}.c-garfield-the-cat .code-toolbar{margin-top:1em}.c-garfield-the-cat .code-toolbar>pre{margin-top:0}.c-garfield-the-cat>pre{margin-bottom:.5rem}.c-garfield-the-cat>table{margin-top:1em;margin-bottom:1em}.c-garfield-the-cat .pull-quote__quotation{margin-top:1em}.drop-caps{display:none}}@media all and (max-width:1000px){.article-header--meta,.article-header--meta-item__date,.article__summary,.article__summary::before,.author__desc,.author__desc__title,.drop-caps+p::first-line,.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--meta-item__date,.wf-loaded-stage2 .article__summary,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 body,.wf-loaded-stage2 time,body,time{font-family:ElenaLCP,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.feature-panel__desc,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 h1,h1{font-family:MijaLCP,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif;font-weight:700}}.js-show-secondary .menu-text--sm,.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}.js-show-secondary .menu-text--sm--close{display:block}@media all and (min-width:800px){.js-show-secondary .main-nav__secondary{display:block;top:50px}.js-show-secondary .menu-text--lg--close,.menu-text--lg{display:block}.js-show-secondary .menu-text--lg,.js-show-secondary .menu-text--sm--close,.menu-text--sm{display:none}}.js-show-secondary .main-nav-more-item__button:before{content:"";display:block;margin-left:.35em;width:45px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50.21 35.05'%3E%3Cellipse cx='27.8' cy='32.92' fill='rgba(60,60,60,0.5)' rx='19.64' ry='1.2'/%3E%3Cpath fill='%23fff' d='M46.48 15.53a5.2 5.2 0 00-2-.31 7 7 0 00-1.43.19 7.66 7.66 0 001.19-1.52 7.12 7.12 0 011.12-.13 5.18 5.18 0 012 .31h.05a2.82 2.82 0 011.44 1.24 2.75 2.75 0 01.18 2 2.36 2.36 0 00-.74-.46 2 2 0 01.86 1c.11.45-.23 1-.67.92a1.86 1.86 0 00-.22-1 2.65 2.65 0 00-.29-1 2.74 2.74 0 00-1.49-1.24zM16.56 28.07c.06-.21.37-1.29.19-1.47 0 0 5.18 5.08 7.22-2.7a6 6 0 001.16.62c-.75 7-6.44 3.43-6.44 3.43.22.13.14 1.25.12 1.47-.16 2.2-3 1.63-3.74.11a2.44 2.44 0 01-.14-.34 1.4 1.4 0 001.63-1.12z' class='cls-2'/%3E%3Cpath fill='%23fff' d='M1.26 14.52c.08.23.18.45.28.67v.05c1.26 2.67 3.76 5 6.81 4.61a12 12 0 003.51-1.05 8.6 8.6 0 013.64-1 7.28 7.28 0 00.1 2.65A9.82 9.82 0 0117 18.5s-.77 2.34-.41 3a1 1 0 00-.15-.18 1.28 1.28 0 00-.8-.4 1 1 0 00-.89.7c-.23.45-.24.83-.63 1.17-1 .87-2.17 2-1.79 3.47a2.64 2.64 0 002.06 1.82A1.39 1.39 0 0016 27c.06-.21.36-1.28.18-1.46 0 0 5.19 5.07 7.23-2.7a5.65 5.65 0 001.16.61c1.43.56 3.94.91 6.11-2.07a20.36 20.36 0 005.68 1.13s-1.55-.55-1.61-1.28c0 0 3.84 1 6 0l-2.43-.32a3.69 3.69 0 001.68-.42 5.24 5.24 0 012.46 0c.73.08 1.06-.31 1.54-.78a1.17 1.17 0 00.09.33 2.06 2.06 0 00.12.35 3.21 3.21 0 00.37.65 1.35 1.35 0 001.27.53.92.92 0 00.53-.28 1.2 1.2 0 00.19-1.16 2 2 0 00-.77-.94 1.85 1.85 0 011 1.76c.44.08.78-.48.67-.93a1.13 1.13 0 00-.13-.32 2.4 2.4 0 00-.72-.7 2.26 2.26 0 01.74.45 2.67 2.67 0 00.1-.64v-.3a2.59 2.59 0 00-.28-1A2.65 2.65 0 0046 16.32l-.14-.06-.08-.05h-.06a10.1 10.1 0 00-3.9-.54 6.3 6.3 0 001.59-2.45 3 3 0 01-.12.73s1.61-.69.71-2.95a1 1 0 01.63.49 4.17 4.17 0 00-1.74-2.81 2.35 2.35 0 01.88.17 3.64 3.64 0 00-1.72-1.34l-.27-2.21.88.31s0-.35-.89-.86a7.17 7.17 0 00.36-3.37C39.32 1 38.27 2.48 38 2.94a12.73 12.73 0 00-2.56.26 2.83 2.83 0 011.29-.62 3.87 3.87 0 00-3.23.94s-2.73-2-5.37-1.29c0 0-.27 1.36 1.42 4.77a6.37 6.37 0 00-2.31 2.67 7.38 7.38 0 011.63-1.59s-2.44 2.6-1.46 4.67a3.77 3.77 0 01.35-1.55c0 .4-.24 3.2 1 4.61a9.92 9.92 0 01-.32-2s.37 2.53 3.84 3.6a4.35 4.35 0 01-1.49-1.54 11.65 11.65 0 002.47 1.23c-.61.18-1 .31-1 .31l-.81.38a6.56 6.56 0 01-2.34-1.49h-.07a.58.58 0 01-.31.08.64.64 0 01-.46-.21 5.47 5.47 0 01-1.14-2.91.66.66 0 01-.33-.31 3.48 3.48 0 01-.19-2.24 6.84 6.84 0 00-6.5-.26 18.29 18.29 0 012.43.43s-4.84.26-7.22 3.71c0 0 1.93-2 2.77-1.7a8.44 8.44 0 00-2.1 3A9.13 9.13 0 0012 16c-3.7.78-5.2-1.7-5.79-3.65 0-.13-.08-.25-.11-.37a.14.14 0 000-.07v-.16a.14.14 0 010-.06q-.1-.24-.1-.47v-.05a.68.68 0 000-.14 2.4 2.4 0 010-.24v-.09a.09.09 0 000-.05v-.08a.28.28 0 010-.09v-.12c-.09-2-1.43-2.88-3-1.92C.82 9.6.44 12.35 1.26 14.52zm26.58-3.41v.05z' class='cls-2'/%3E%3C/svg%3E");order:1}.js-show-secondary .main-nav-more-item__button:after{width:15px;height:15px;order:2;background-image:url(/images/icons/close.svg)}.js-show-secondary .main-nav__secondary{display:flex}strong{font-weight:bolder;letter-spacing:0}svg:not(:root){overflow:hidden}button{text-transform:none;cursor:pointer;font:inherit;margin:0}[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}.l-author-bio{display:flex;flex-wrap:wrap;align-items:center}.l-author-bio-content{flex-grow:1;flex-shrink:1;flex-basis:300px}.bio-image__large .bio-image{--bio-image-border-width:8px}.bio-image{padding:0;margin:0;display:block;width:100%;height:100%;border-radius:inherit;position:relative}.bio-image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transform-origin:30% 50%;opacity:1;transition:opacity .3s ease-in-out}.bio-image:hover::before{opacity:0}a.bio-image-link{background:0 0;text-shadow:none;color:inherit;padding:0;display:block;border-radius:inherit;width:100%;height:100%}a.bio-image-link::before{display:block;content:'';height:120%;width:120%;position:absolute;top:-10%;left:-12%}.bio-image-wrapper{background:var(--bio-image-background-color,var(--bio-image-border-color,#d33a2c));border:solid var(--bio-image-border-width,8px) var(--bio-image-border-color,#d33a2c);border-radius:inherit;transform:scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));transform-origin:0 100%;overflow:hidden;width:100%;height:100%;transition:transform .2s ease-out}.bio-image-image{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2) rotateZ(calc(11 * 1deg));transition:transform .2s ease-out}.bio-image-link:active .bio-image-wrapper,.bio-image-link:focus .bio-image-wrapper,.bio-image:hover .bio-image-wrapper{transform:scale(.84) translateX(15%) rotateZ(0)}.bio-image-link:active .bio-image-image,.bio-image-link:focus .bio-image-image,.bio-image:hover .bio-image-image{transform:scale(1.2) rotateZ(0)}.article__content .author-post__author-title{color:#d33a2c;text-decoration-line:underline;font-weight:700;font-size:.9em}.light-grey{color:#767676!important}.rounded-3xl{border-radius:1.2em}.block{display:block}.h-48{height:12rem}.mr-3{margin-right:.75rem}.mb-5{margin-bottom:1.25rem}@media all and (max-width:600px){.mobw-40{width:8rem!important}.mobh-40{height:8rem!important}}.w-48{width:12rem}.mt-2{margin-top:.5rem}.mtn{margin-top:0!important}.mbn{margin-bottom:0!important}small{font-size:80%}.row{box-sizing:border-box;display:flex;flex:0 1 auto;flex-direction:row;flex-wrap:wrap;margin-right:-1rem;margin-left:-1rem}[class*=col-]{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}.row::after{clear:both}.col-12{flex-basis:100%;max-width:100%}@media screen and (min-width:48em){.col-12{flex-basis:100%;max-width:100%}}.container{width:calc(100% - .5em);max-width:1440px;margin:0 auto;z-index:1;position:relative}.container::after{content:"";display:table;clear:both}@media (min-width:40em){.container{width:92vw!important}}@media (min-width:48em){.container{width:85vw}}@media (min-width:64em){.container{width:68rem}}@media (min-width:75em){.container{width:79rem}}@media screen and (min-width:160em){.container{max-width:1650px}}@media (min-width:187.5em){.container{max-width:1860px}}.c-garfield-the-cat>p:first-of-type{font-size:1.1em;line-height:1.55em}.c-garfield-the-cat>p:empty{display:none}.c-felix-the-cat{background-color:#f3f3f3;border-left:11px solid #e6e4e1;padding:1em 1em 1em 1.5em;color:#424242;margin-left:0;margin-top:1em;font-size:1.05em;line-height:1.6em;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0 0,#fff 100%)}.c-felix-the-cat h4{margin-top:.5em}.sponsor-panel{display:flex;justify-content:center;align-items:center}.sponsor-panel-content{flex:3}.sponsor-panel-image{display:none}@media screen and (min-width:1100px){.sponsor-panel-image{display:block;background-image:none;margin-left:1.5em;flex:1}}@media (max-width:1024px){.col{width:100%!important;padding:0 1em}.row{margin-left:0;margin-right:0}.article__content{float:none}.article__content::before{display:none}}#main{position:relative;z-index:0;background-color:#fff}@supports (display:grid){.main-nav{display:grid;align-items:center}}.main-nav{position:relative;display:block;min-width:0;color:#fff;grid-column:span 2;font-size:1.05em}.main-nav__primary .nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav__secondary .nav-item--active{background-color:transparent;margin:0}.c-garfield-the-cat figcaption a{color:#666;text-decoration-line:underline;text-decoration-color:#666}.c-garfield-the-cat figcaption a.btn{color:#fff;text-decoration:none}@media all and (min-width:1100px){@supports (grid-row-gap:0){.c-garfield-the-cat{display:grid;grid-template-columns:0 minmax(0,.5fr) repeat(10,minmax(0,1fr)) .7fr .3fr 17rem;margin:0 auto}.c-garfield-the-cat ol,.c-garfield-the-cat ul,.c-garfield-the-cat>div,.c-garfield-the-cat>p,.c-garfield-the-cat>table{margin-bottom:1.4em}.c-garfield-the-cat>h2{margin-top:1.5em;margin-bottom:1em}.c-garfield-the-cat>h3,.c-garfield-the-cat>h4{margin-top:1.5em;margin-bottom:.65em}.c-garfield-the-cat>h5{margin-top:.65em;margin-bottom:.65em}.article__image,.c-garfield-the-cat>figure{margin:0 auto 1.4em auto;width:100%}.c-garfield-the-cat .code-toolbar pre,.c-garfield-the-cat blockquote,.c-garfield-the-cat pre,.c-garfield-the-cat>figure.video-embed-container{margin-bottom:1.7em;margin-top:.3em}.c-garfield-the-cat .code-toolbar{margin-bottom:0}.c-garfield-the-cat>*{grid-column:3/13;margin-top:0;margin-bottom:0}.c-garfield-the-cat .c-garfield-bio{grid-column:1/2;grid-row:1/4;align-self:start}.c-garfield-the-cat .c-garfield-header{grid-column-end:16}.c-garfield-the-cat .c-garfield-aside--meta{grid-column:15/16;grid-row:2/7;align-self:start;margin:0}.c-garfield-the-cat .toc-components li{margin-bottom:.75em}.c-garfield-the-cat>.break-out{grid-column:3/14;width:100%}.c-garfield-the-cat>.break-out img{margin:0 auto}.c-garfield-the-cat>.break-out figcaption{max-width:50em}.article__content .c-garfield-the-cat figcaption{margin:0 auto}.c-garfield-the-cat .c-garfield-native-panel{grid-column:15/16;grid-row:8/15;align-self:start;text-align:center;position:relative}.c-garfield-native-panel__right{grid-column:15/16;grid-row:15/22;align-self:start;text-align:center}.c-garfield-the-cat .c-garfield-native-panel__below{grid-row:19/25}.c-garfield-the-cat .c-garfield-native-panel__end{grid-row:26/33}.feature-panel-container{margin-top:6em;margin-bottom:1em}}}.no-ads .c-garfield-native-panel,.no-panels .feature-panel-container,.subscriber .c-garfield-native-panel,.subscriber .feature-panel-container{display:none!important}figcaption a{color:inherit}figcaption code,figcaption pre{font-style:normal}.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{position:relative}.feature-panel-container{grid-column:1/15;margin-top:3em;margin-bottom:1em}.article__image img,.c-garfield-the-cat>figure img{display:block;width:auto;max-width:100%;margin:0 auto;height:auto}.article__image>a,.c-garfield-the-cat>figure>a{display:block;background:0 0;position:relative;z-index:99}.article__image figcaption,.c-garfield-the-cat>figure figcaption{color:#666;font-size:.95em;font-style:italic;padding:.75em 2em .75em 0;display:table}.article__image figcaption a,.c-garfield-the-cat>figure figcaption a{color:#666}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before,.internal__page__wrapper figure:not(.bio-image) figcaption::before{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNyAxMy4wOSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMmMyYzI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5jYW1lcmE8L3RpdGxlPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTguNSA1LjQ0YTIuMjEgMi4yMSAwIDEgMCAyLjIxIDIuMjEgMi4yMSAyLjIxIDAgMCAwLTIuMjEtMi4yMXpNMTQuNzkgMi4yMWgtMi41NWEyLjIxIDIuMjEgMCAwIDAtMi4yNC0yLjIxaC0zYTIuMjEgMi4yMSAwIDAgMC0yLjI0IDIuMjFoLTIuNTVhMi4yMSAyLjIxIDAgMCAwLTIuMjEgMi4yMXY2LjQ2YTIuMjEgMi4yMSAwIDAgMCAyLjIxIDIuMjFoMTIuNThhMi4yMSAyLjIxIDAgMCAwIDIuMjEtMi4yMXYtNi40NmEyLjIxIDIuMjEgMCAwIDAtMi4yMS0yLjIxem0tNi4yOSA5LjM1YTMuOTEgMy45MSAwIDEgMSAzLjkxLTMuOTEgMy45MSAzLjkxIDAgMCAxLTMuOTEgMy45MXoiLz48L3N2Zz4=);height:1em;width:1.5em;padding-right:.6em;display:table-cell;vertical-align:baseline;position:relative;top:.05em}.c-garfield-the-cat>figure.article__figure figcaption::before{content:'';display:none}.hidden{display:none!important}.c-garfield-header{clear:both}.c-promo-box{font-size:.9em;border-radius:11px}.c-promo-box a:not(.btn){color:#006fc6}.c-promo-box--ad::before{display:block;white-space:pre-wrap;padding:2em 0 3em 0;font-size:.85em;font-style:italic;color:#666}.c-promo-box--ad img{border-top-left-radius:11px;border-top-right-radius:11px}.c-garfield-the-cat .author__desc{font-size:.9em;color:#555}.summary__heading{font-style:normal;font-size:1rem;letter-spacing:2px;margin:0;font-weight:700;color:#d33a2c;text-transform:uppercase}.c-promo-box--ad ul{padding-left:0;margin:0}.bnnr-list{display:flex;text-align:center;justify-content:center;flex-direction:row}.sponsors.c-promo-box:not(.c-promo-box--wide) .bnnr-list{flex-direction:column}.c-garfield-the-cat{padding:0 1em}@media screen and (min-width:80em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.4fr .6fr 21rem 1fr}}@media screen and (min-width:100em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.9fr .4fr 21rem 1fr}}@media screen and (min-width:160em){.c-garfield-the-cat{display:grid;grid-template-columns:18.5rem repeat(11,minmax(0,1fr)) .7fr .3fr 18.5rem;grid-column-gap:1.75rem}}@media (min-width:187.5em){.c-garfield-the-cat{display:grid;grid-template-columns:20rem repeat(11,minmax(0,1fr)) .7fr .3fr 20rem;grid-column-gap:2.25rem}}.header{background:#d33a2c;background:var(--THEME_COLOR,#d33a2c);position:relative;display:grid;justify-content:flex-start;align-items:center;padding:.8em;z-index:2;grid-template-columns:min-content min-content 1fr;column-gap:5px}@media all and (min-width:31.25em){.header{grid-template-columns:-webkit-min-content -webkit-min-content 0 minmax(100px,100%);grid-template-columns:min-content min-content 0 minmax(100px,100%);column-gap:10px}}@media (min-width:700px){.header{grid-template-columns:-webkit-min-content minmax(140px,2fr) 0 minmax(100px,350px);grid-template-columns:min-content minmax(140px,2fr) 0 minmax(100px,350px)}}@media (min-width:740px){.header{padding:1rem 2em}}.search{flex-basis:100px;flex-shrink:1}@media screen and (min-width:48em){body{font-size:calc(.35842vw + .95296em)}}body .form__field__label,body li,body p{line-height:calc(1.5em + .2vw);word-break:break-word}body h1{line-height:1.2}.article--post__title a:focus,.article--post__title a:hover{color:#d33a2c}@supports (-ms-ime-align:auto){.article__image figcaption,.c-garfield-the-cat>figure figcaption{display:inline-block}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before{display:inline-block}body{font-feature-settings:normal}}::-webkit-input-placeholder{color:#666}::-moz-placeholder{color:#000}:-ms-input-placeholder{color:#666}.article-header--meta-item__date,time{color:#666;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;text-transform:lowercase;background-position:center 72%}.article-header--meta-item__date{display:flex}.wf-loaded-stage2 time{font-variant:petite-caps}.kbd,kbd{font-size:.9em;padding:.0625rem .5rem;border-radius:.125rem;border:1px solid #d33a2c;box-shadow:1px 1px 0 #d33a2c,2px 2px 0 #d33a2c;margin:0 .25rem;color:#d33a2c;font-family:monospace}figure{margin:0;padding:0}figure:after,figure:before{content:" ";display:table;clear:both}a{padding:7px 0;background-color:transparent;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;text-decoration-line:underline;color:#006fc6}.h1,h1{font-size:calc(1.625rem + 1.6vw);margin:0}.h2,.h3,.h4,.h5,h2,h3,h4,h5{color:#333}.h2,h2{font-size:calc(1.5rem + .25vw);margin:2em 0 .75em;text-transform:capitalize}.h3,h3{font-size:calc(1.125rem + .25vw);text-transform:uppercase;letter-spacing:1px;margin-top:2em;margin-bottom:1em}h4{font-size:1.1em;margin-top:2em}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{text-transform:none}@keyframes fadeOut-headings{0%{background:#ffde95;box-shadow:-10px 0 0 12px #ffde95}100%{background:#fff1d2;box-shadow:-10px 0 0 12px #fff1d2}}h2:target,h3:target,h4:target,h5:target,h6:target{border-radius:11px;animation:fadeOut-headings .4s;animation-fill-mode:forwards}.article__content h2:target a,.article__content h3:target a,.article__content h4:target a,.article__content h5:target a{color:#d33a2c}:target{scroll-margin-top:2rem}ol,ul{margin:1em 0;max-width:100%}ol{padding:0;list-style:none;counter-reset:listCounter}ol>li{padding-left:calc(1.65em + .7vw);position:relative;counter-increment:listCounter;margin-bottom:1em}ol>li::before{content:counter(listCounter,decimal-leading-zero);font-size:.7em;font-weight:700;color:#d33a2c;left:.8em;position:absolute;font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif}ul{list-style:disc}ul>li::marker{color:#d33a2c}ul>li{margin-bottom:.75em;padding-left:.15em}.rh{color:#d33a2c}.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}@media (min-width:800px){.search{flex-basis:500px}.main-nav{grid-column:auto}.menu-text--sm{display:none}.menu-text--lg{display:block}}.secondary-nav{position:relative;grid-row-start:2;grid-column:1/5}body:not(.enhanced) .main-nav{overflow-x:auto;-webkit-overflow-scrolling:touch}.main-nav__primary{display:flex;list-style:none;padding:.4em 0;margin:0;flex-wrap:nowrap;width:100%;height:100%;flex-shrink:1;min-width:0;justify-content:flex-start}.main-nav span:empty{display:none}@media all and (min-width:53.125em){.main-nav__primary{justify-content:space-between}}.nav-item{flex-grow:0;background:0 0;text-shadow:none;color:inherit;font-weight:700;display:flex;align-items:center;margin-bottom:0;padding-left:0}.nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav-more-item{position:relative;width:145px}@media (min-width:42.9375em){.main-nav-more-item{margin-left:.35em}}@media all and (max-width:52.5em){.main-nav-more-item{justify-content:center}}.main-nav-more-item__button{padding:.4em .5rem .4em 1rem;border:1px solid rgba(0,0,0,.05);color:inherit;display:flex;align-items:center;justify-content:space-around;line-height:1;position:relative;background-color:rgba(0,0,0,.2);border-radius:11px;box-shadow:0 13px 7px -15px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.main-nav-more-item__button,.nav-item-link{white-space:nowrap}.nav-item-link{padding:.35em .9rem;background:0 0;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);text-decoration:none}@media screen and (min-width:800px){.main-nav__secondary .nav-item-link{color:#d33a2c!important}}.nav-item-link:focus,.nav-item-link:hover{background-color:rgba(0,0,0,.15);border-radius:11px}.main-nav__secondary .nav-item-link:focus,.main-nav__secondary .nav-item-link:hover{background-color:transparent;box-shadow:none}.main-nav-more-item__button:active,.main-nav-more-item__button:focus,.nav-item-link:active,.nav-item-link:focus{outline-color:var(--THEME_COLOR_OUTLINE,#811d15)!important}.secondary-nav .nav-item-link:active,.secondary-nav .nav-item-link:focus{outline-color:#811d15!important}.main-nav__secondary .nav-item-link{text-shadow:none;width:100%;text-decoration:none;text-decoration-color:#d33a2c;padding:.25em .7rem}.main-nav-more-item__button:after{content:"";display:block;margin-left:9px;width:30px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35.96 33.31'%3E%3Cellipse cx='17.98' cy='31.55' fill='rgba(60,60,60,0.3)' rx='14.75' ry='.57'/%3E%3Cpath fill='%23fff' d='M34.94 15v-.93c-.23-3-2.16-5.93-5.22-6.3-2.31-.28-3.39 1.45-2.4 3.84a.43.43 0 000 .05v.11a.14.14 0 010 .06.63.63 0 000 .09v.17c0 .08.06.18.09.29s0 0 0 .05a1 1 0 000 .17.64.64 0 010 .07c0 .18.1.38.14.6a.24.24 0 010 .08v.29c0 .03.06.33.08.5.37 2.58 0 6.27-4.73 7.37A12.74 12.74 0 0019.7 23c-.17-.65-.36-1.25-.55-1.77a5.16 5.16 0 002.05-2.56 11.26 11.26 0 01-.69 2.33c1.81-1.55 2-5.05 2-5.54a4.72 4.72 0 01.21 2c1.55-2.41-1.17-6-1.17-6a9.67 9.67 0 011.84 2.24C23 11.75 20.82 10 20.82 10c2.65-4 2.51-5.68 2.51-5.68-3.26-1.34-7 .73-7 .73a5.12 5.12 0 00-4-1.7 3.61 3.61 0 011.56 1 16.79 16.79 0 00-3.23-.74C10.41 3 9.4 1.16 6.22 1h-.58S5 3.64 5.61 5.19c-1.15.49-1.26.93-1.26.93l1.17-.25-.67 2.67a4.66 4.66 0 00-2.39 1.38 3 3 0 011.15-.07A5.11 5.11 0 001 13.05a1.32 1.32 0 01.87-.51c-1.47 2.69.49 3.76.49 3.76a3.8 3.8 0 010-.92 8.52 8.52 0 002.19 3.9 14.13 14.13 0 01-.24-1.59 5.46 5.46 0 001.93 2.7 6.25 6.25 0 01-.4-1.52 5.87 5.87 0 001.36 1.75c-.12.24-.24.47-.34.71a12 12 0 00-.7 2.13c0 .23-.09.45-.13.66a1.4 1.4 0 00-1-.31 1.4 1.4 0 00-1.09 1 3.1 3.1 0 000 1.57 9.48 9.48 0 001.8 3.92A2.92 2.92 0 004 30.06c-.56.16-1 .83-.72 1.34H22.6c.29-.51-.16-1.18-.72-1.34a2.92 2.92 0 00-1.71.24A9.48 9.48 0 0022 26.44 3.24 3.24 0 0022 25a15.89 15.89 0 012.87-.21 14.93 14.93 0 004.65-.69c3.72-1.24 5.38-5.25 5.38-9zm-12.49.42h-.05v-.07z'/%3E%3C/svg%3E")}.main-nav__secondary{display:none;color:#fff;padding:.2em 0;flex-wrap:wrap;flex-direction:column;justify-content:flex-start;align-items:flex-start;height:10em}@media all and (min-width:31.25em){.main-nav__secondary .nav-item-link{padding:.25em 1.1rem}.main-nav__secondary{padding:.2em .5em}}@media (-webkit-min-device-pixel-ratio:1.3),(min-resolution:124.8dpi){.main-nav__secondary{height:11em}}@media (min-width:800px){.secondary-nav{grid-row:auto;grid-column:auto}.main-nav__secondary{display:none;position:absolute;top:0;left:-80px;transform:translate(-50%,0);max-width:unset;background:#fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px;margin:0;padding:14px 20px 10px 10px;min-width:180px;color:#d33a2c;flex-direction:row;justify-content:space-between;align-items:center;height:auto}.main-nav__secondary:before{content:"";display:block;position:absolute;top:1px;left:50%;transform:translate(-50%,-100%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:15px solid #fff}}.nav-item-1,.nav-item-10,.nav-item-2,.nav-item-3,.nav-item-4,.nav-item-5,.nav-item-6,.nav-item-7,.nav-item-8,.nav-item-9{display:none}.main-nav__secondary .nav-item-1,.main-nav__secondary .nav-item-10,.main-nav__secondary .nav-item-2,.main-nav__secondary .nav-item-3,.main-nav__secondary .nav-item-4,.main-nav__secondary .nav-item-5,.main-nav__secondary .nav-item-6,.main-nav__secondary .nav-item-7,.main-nav__secondary .nav-item-8,.main-nav__secondary .nav-item-9{display:flex}@media (min-width:42.9375em){.nav-item-1{display:flex}.main-nav__secondary .nav-item-1{display:none}}@media (min-width:52.5em){.nav-item-2{display:flex}.main-nav__secondary .nav-item-2{display:none}}@media (min-width:56.5625em){.nav-item-3{display:flex}.main-nav__secondary .nav-item-3{display:none}}@media (min-width:70em){.nav-item-4{display:flex}.main-nav__secondary .nav-item-4{display:none}}@media (min-width:77.8125em){.nav-item-5{display:flex}.main-nav__secondary .nav-item-5{display:none}}@media (min-width:97.5em){.nav-item-6{display:flex}.main-nav__secondary .nav-item-6{display:none}}@media (min-width:108.4375em){.nav-item-7{display:flex}.main-nav__secondary .nav-item-7{display:none}}@media (min-width:120.625em){.nav-item-8{display:flex}.main-nav__secondary .nav-item-8{display:none}}@media (min-width:136.5625em){.nav-item-9{display:flex}.main-nav__secondary .nav-item-9{display:none}}@media (min-width:179.6875em){.nav-item-10{display:flex}.main-nav__secondary .nav-item-10{display:none}.main-nav-more-item{display:none}.main-nav__primary{justify-content:flex-start}.nav-item{padding:0 .65em}.header,.header.searchFocused{grid-template-columns:-webkit-min-content minmax(140px,-webkit-max-content) 0 minmax(250px,600px);grid-template-columns:min-content minmax(140px,max-content) 0 minmax(250px,600px)}}@media (max-width:480px){.header .search{grid-column:1/5;margin-top:.5em}.main-nav__primary{justify-content:flex-end}.main-nav-more-item{justify-content:flex-end}}.btn--text-shadow,a.btn.btn--text-shadow{text-shadow:1px 1px 1px rgba(0,0,0,.25)}.btn-wrapper{display:none}@media screen and (min-width:1100px){.btn-wrapper{display:block;padding:4px}}.btn,.toolbar-item{display:inline-block;border-radius:11px;text-align:center;color:#fff;text-decoration:none;border:none;font-weight:700;background:0 0;font-size:.9em;outline:0;background-color:#d33a2c;background-image:linear-gradient(to bottom,#f88040,#d33a2c)}.toolbar-item{transition:all .3s ease-in-out}.toolbar-item:active,.toolbar-item:focus{position:relative;top:3px}.btn{padding:.5em 1em}.btn.btn--green,.btn.btn--member{background-color:#41b14f;background-image:linear-gradient(#9ec14c,#41b14f);color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);transition:box-shadow .2s ease-in-out}.cta--green{display:block;padding:.5em;color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0;font-weight:700;text-decoration:none;border-radius:11px;text-align:center;font-size:.85em}.cta--green:hover{background-color:#c8f1e0;border:1px solid #a0dcc4}.cta--green:active,.cta--green:active:hover,.cta--green:focus,.cta--green:focus:hover{background-color:#137d54;color:#fff!important}a.btn--white{background:#fff;color:#267dcc;transition:color .1s ease-out}.btn--white--bordered:active,.btn--white--bordered:focus,.btn--white--bordered:hover,.toolbar-item,a.btn--white--bordered{border:1px solid #ddd}.btn span{color:#811d15;font-size:.8em;margin-left:5px;margin-top:.5em;line-height:1}.btn.btn--medium{font-size:calc(.9em + .1vw);padding:.75em 1em}@media (max-width:64em){pre{max-width:100%}}.input{border:none;display:block;color:#333;background-color:#fff;padding:.4em .75em;border-radius:5.5px;outline:0;font:inherit;margin:0;font-size:1.15rem;width:100%}.input::-webkit-input-placeholder{color:#666}.input:-ms-input-placeholder{color:#666}.input::-moz-placeholder{color:#000}.input::-ms-clear{display:none}.search .search-input{padding-left:calc(22px + 15px + 15px);background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgaGVpZ2h0PSIyNHB4IiB3aWR0aD0iMjRweCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIyMi4zMSIgeTE9IjIzLjYyIiB4Mj0iMy43MyIgeTI9IjMuMDUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlOTM3MjIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmODZmMjUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGl0bGU+TWFnbmlmaWVyPC90aXRsZT48cGF0aCBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiIGQ9Ik0yMy4zMyAyMC4xbC00LjczLTQuNzRhMTAuMDYgMTAuMDYgMCAxIDAtMy4yMyAzLjIzbDQuNzQgNC43NGEyLjI5IDIuMjkgMCAxIDAgMy4yMi0zLjIzem0tMTcuNDgtNS44NGE1Ljk0IDUuOTQgMCAxIDEgOC40MiAwIDYgNiAwIDAgMS04LjQyIDB6Ii8+PC9zdmc+);background-repeat:no-repeat;background-size:22px auto;background-position:15px 45%;font-size:calc(1em + .1vw);border-radius:11px;padding-top:1rem;padding-bottom:1rem;font-weight:700;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}@media all and (max-width:550px){.search .search-input{min-height:54px}}.search-button{width:0;height:0;padding:0}.enhanced .search-button{display:none}.search-input-wrapper{position:relative}.search-clear-button{background:0 0;border:none;position:absolute;right:0;top:50%;transition:opacity .2s ease-out;transform:translate(-25%,-50%);opacity:0;padding:.5em}.search-clear-button.enabled{opacity:1}.search-results{background:var(--THEME_COLOR,#d33a2c);color:#fff}.search-results img{border-radius:11px;border:4px solid #fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}.search-results img:hover{box-shadow:0 0 3px -1px rgba(50,50,93,.25),0 4px 12px -6px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.search-results ol img{min-height:100px;height:auto}.logo{font-size:1em;line-height:0;width:3em;flex-basis:3em;flex-shrink:0;position:relative;z-index:0}@media all and (min-width:1450px){.logo{width:10.5em;flex-basis:10.5em}.logo img{transform:none}}.logo a{display:block;background:0 0;outline:0;padding:0;color:transparent;text-shadow:none}.logo a picture{display:block}.logo img{height:3.5em;transform:translate(0,15%)}.cart-active .back-to-top-wrapper{display:none}a.back-to-top{display:block;background:0 0;width:50px;height:50px;opacity:.7;text-shadow:none;border-radius:11px;padding:13px;transform-origin:bottom left;will-change:transform;transform:rotate(-11deg);transition:background-color .1s ease-out,transform .2s ease-out,opacity .1s ease-out;background-color:#666}@media all and (max-width:64em){a.back-to-top{opacity:.3}}a.back-to-top:focus,a.back-to-top:hover{background-color:#282634;opacity:1}a.back-to-top svg{display:block}.back-to-top-wrapper{width:50px;height:50px;display:none;position:fixed;bottom:20px;right:20px;z-index:9;will-change:transform;backface-visibility:hidden}.back-to-top-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}@media (min-height:600px){.back-to-top-wrapper{display:block}}label{max-width:100%}.form__field__input,input[type=email],input[type=password],input[type=text],textarea{background:#effaff;font-size:1em;border:1px solid #d2dfe4;transition:box-shadow .3s ease-in-out,color .3s ease-in-out;background-position:right 1.35em center;background-size:.25em .25em;background-repeat:no-repeat;margin-bottom:5px;border-radius:11px;padding:.9em 2em .7em 1.1rem;display:block;width:100%;outline:0;box-shadow:inset 0 1px 1px 0 rgba(0,0,0,.2)}.form__field__label{display:block;margin-bottom:.5em;cursor:pointer}input{border-color:#aaa}.sponsors ul{padding-left:0;text-align:center;list-style-image:none}.sponsors__native ul.bnnr-list li a{border-radius:11px;background-color:#fff;margin-bottom:3em;position:relative;top:0;padding:0;background-image:none;text-decoration-line:underline;text-decoration-color:#006fc6!important;text-decoration-thickness:1px;display:flex;flex-direction:column}.sponsors.sponsors-leaderboard ul li a,.sponsors.sponsors__lead ul li a,.sponsors__native ul.bnnr-list li a{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03);transition:box-shadow .2s ease-in-out,top .1s ease-in-out;border-radius:11px}.sponsors.sponsors-leaderboard ul li a:hover,.sponsors.sponsors__lead ul li a:hover,.sponsors__native ul.bnnr-list li a:hover{box-shadow:0 1px 7px -5px rgba(50,50,93,.25),0 3px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.sponsors.sponsors-leaderboard ul li a:active,.sponsors.sponsors-leaderboard ul li a:focus,.sponsors.sponsors__lead ul li a:active,.sponsors.sponsors__lead ul li a:focus,.sponsors__native ul.bnnr-list li a:active,.sponsors__native ul.bnnr-list li a:focus{box-shadow:inset 0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,.03);outline-offset:.75em;top:7px}.sponsors__native ul.bnnr-list li img{max-width:none;width:100%;height:auto;display:inherit}img::before{height:2.5em;display:block;top:2em;content:" ";width:100%;z-index:2;left:0}img::after{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHN0eWxlPSJtYXJnaW4tcmlnaHQ6IDEwcHg7Ij4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDI4aC0yMHYtNGw2LTEwIDguMjE5IDEwIDUuNzgxLTR2OHoiPjwvcGF0aD4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDE1YzAgMS42NTctMS4zNDMgMy0zIDNzLTMtMS4zNDMtMy0zIDEuMzQzLTMgMy0zYzEuNjU3IDAgMyAxLjM0MyAzIDN6Ij48L3BhdGg+CjxwYXRoIGZpbGw9IiM3NzciIGQ9Ik0yOC42ODEgNy4xNTljLTAuNjk0LTAuOTQ3LTEuNjYyLTIuMDUzLTIuNzI0LTMuMTE2cy0yLjE2OS0yLjAzMC0zLjExNi0yLjcyNGMtMS42MTItMS4xODItMi4zOTMtMS4zMTktMi44NDEtMS4zMTloLTE1LjVjLTEuMzc4IDAtMi41IDEuMTIxLTIuNSAyLjV2MjdjMCAxLjM3OCAxLjEyMiAyLjUgMi41IDIuNWgyM2MxLjM3OCAwIDIuNS0xLjEyMiAyLjUtMi41di0xOS41YzAtMC40NDgtMC4xMzctMS4yMy0xLjMxOS0yLjg0MXpNMjQuNTQzIDUuNDU3YzAuOTU5IDAuOTU5IDEuNzEyIDEuODI1IDIuMjY4IDIuNTQzaC00LjgxMXYtNC44MTFjMC43MTggMC41NTYgMS41ODQgMS4zMDkgMi41NDMgMi4yNjh6TTI4IDI5LjVjMCAwLjI3MS0wLjIyOSAwLjUtMC41IDAuNWgtMjNjLTAuMjcxIDAtMC41LTAuMjI5LTAuNS0wLjV2LTI3YzAtMC4yNzEgMC4yMjktMC41IDAuNS0wLjUgMCAwIDE1LjQ5OS0wIDE1LjUgMHY3YzAgMC41NTIgMC40NDggMSAxIDFoN3YxOS41eiI+PC9wYXRoPgo8L3N2Zz4K) " " attr(alt);font-size:.9em;display:block;color:#666;line-height:1.5;position:absolute;font-style:italic;z-index:2;top:calc(2em - 35px);text-align:center;width:104%;left:-2%;padding:2.25em 1em;text-shadow:none;background-color:#eee;border-radius:11px}@media screen and (min-width:40em){.author__desc{margin-left:1em}}.author__desc{font-size:.8em;position:relative;font-style:normal!important;color:#333;padding:0!important}.author__desc p{margin:1em 0}.author__desc .show-more-link{display:inline}.author__desc__title{color:#666;text-transform:uppercase;letter-spacing:2px;font-size:.9em;margin:0;font-weight:400}@media (max-width:40em){.author__desc{width:100%}}.article{padding-top:calc(.5em + 2vw)}.article__summary{font-size:1.05em}.c-garfield-the-cat .article__summary{position:initial}.author__desc p{font-size:.95em}.wf-loaded-stage2 .author__desc p{font-size:1em}.article__summary{align-self:center;margin-top:0;color:#666;position:relative;padding-bottom:1.5em;margin-bottom:.5em;border-bottom:3px solid #e5e5e5;font-size:1.05em;line-height:1.55em;font-style:italic}.wf-loaded-stage2 .article__summary{font-size:1.15em}@media all and (max-width:420px){.article__content{margin-top:0}}.article__content{line-height:1.5;padding:0!important}.article__content a{color:#006fc6}.article__content .btn{color:#fff}.drop-caps+p::first-line{font-weight:700;font-variant:all-petite-caps;text-transform:lowercase;letter-spacing:.5px;font-size:1.15em}.drop-caps{width:calc(96px + 1vw);height:calc(120px + 4vw);float:left;margin-right:1.5em;position:relative;left:calc(-1.3em - .5vw);top:.5vw}@media all and (min-width:500px){.drop-caps{width:150px;height:186px;min-width:100px;margin-left:0}}@media screen and (min-width:64em){.author__desc{margin-left:0}}.drop-caps img{max-width:100%}.drop-caps img:nth-of-type(2){position:absolute;bottom:0;right:-40px;width:75%}@media all and (min-height:700px){body.articlepage{overflow:initial}}.form__field__label--extra{display:inline}@media (max-width:64em){.form__field__label--extra{display:none}}.article-header{margin:0}@media all and (max-width:1099px){.article-header--meta{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x;overflow-y:hidden}.article-header--meta::-webkit-scrollbar{display:none;width:0;background:0 0}.sponsors:not(.sponsors__lead):not(.sponsors-leaderboard):not(#sponsors-article-end):not(.sponsors__mobile){display:none}.c-garfield-aside--meta{display:none}.sponsors__mobile{display:block}.meta-box{margin:1.5em 0}.comment-count{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.article-header--comments a{color:#d33a2c;text-decoration:none;font-weight:700}.article-header--meta .article-header--meta-comments{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EArtboard 29%3C/title%3E%3Cpath class='cls-1' d='M3.29,2.73a66.7,66.7,0,0,0,3.21,9.52l6.29,1.08L8.1,15.53c2.91,5.28,7,9.09,12.14,4.55L25,24.52l.57-.52-3.83-5.48c3.6-4.32,1.74-7.76-1.93-10.36L17,13.29l-.1-6.85A43.83,43.83,0,0,0,11,4L9,7.7,9,3.39c-2.2-.65-4.07-1.08-5.08-1.3A.52.52,0,0,0,3.29,2.73Z'/%3E%3C/svg%3E");background-size:auto .75em;background-repeat:no-repeat;background-position:left 45%;padding-left:1em}}.c-garfield-the-cat .article-header--meta{display:flex;align-items:flex-end;list-style:none;padding:0;margin:0 0 .95em;height:30px}.article-header--meta li{padding:0;margin:0;min-width:max-content}.article-header--meta li::before{display:none}.article-header--meta li::after{content:"/";font-size:1em;color:#a7a7a7;display:inline-block;margin:0 .25em}.article-header--meta li:last-of-type::after{display:none}.article-header--date{color:#585858;font-family:inherit;font-size:.95em}.article-header--comments{font-size:.9em}.article-header--updated{padding:0 .8rem;color:#137d54;background-color:#d6f3e7;border:1px solid #c6f2e0;border-radius:11px;font-weight:700;text-transform:initial;font-feature-settings:normal;font-variant:none;font-size:.9em;letter-spacing:0;min-width:fit-content;margin-right:7px}.meta-box{background:#f6f6f6;padding:.6em 1em;list-style:none;width:max-content;max-width:100%;border-radius:11px;font-size:.9em;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:.5em 2em}.c-garfield-the-cat .meta-box--item{line-height:1.4;padding-left:1.5em;background-size:auto 1em;background-repeat:no-repeat;background-position:left 2px;margin-bottom:0}.meta-box li:last-child,.meta-box--item:last-child{margin-bottom:0}.meta-box--tags{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cpath fill='%23e93e32' class='cls-1' d='M12.78 22.74l1.35 1.35a2.09 2.09 0 003 0l8.12-8.15a2.09 2.09 0 000-3l-1.34-1.33zM14.71 2.51a2.09 2.09 0 00-1.52-.61l-10 .22L3 12.1a2.09 2.09 0 00.61 1.52l7.14 7.12L21.87 9.65zm-4.64 9.88a3.17 3.17 0 113.44-2.86 3.17 3.17 0 01-3.44 2.86z'/%3E%3C/svg%3E")}.meta-box--share{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M126.16 359.66c148 0 228.93-122.61 228.93-228.94 0-3.48 0-6.94-.23-10.4A163.83 163.83 0 00395 78.68a160.93 160.93 0 01-46.21 12.66 80.82 80.82 0 0035.37-44.51 161.17 161.17 0 01-51.09 19.53A80.54 80.54 0 00196 139.74 228.42 228.42 0 0130.13 55.68 80.52 80.52 0 0055 163.09 80 80 0 0118.52 153v1a80.49 80.49 0 0064.55 78.87 80.37 80.37 0 01-36.33 1.38 80.55 80.55 0 0075.17 55.87A161.38 161.38 0 0122 324.67a163.54 163.54 0 01-19.16-1.16 227.73 227.73 0 00123.33 36.08' fill='%231da1f2'/%3E%3C/svg%3E")}.meta-box--published{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32%7D%3C/style%3E%3C/defs%3E%3Crect class='cls-1' x='8.25' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Crect class='cls-1' x='17.53' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Cpath class='cls-1' d='M24.1 5.39h-2.56a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59h-4.28a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59H4.75a2.07 2.07 0 00-2.08 2.07v14.75a2.07 2.07 0 002.07 2.07H24.1a2.07 2.07 0 002.07-2.07V7.46a2.07 2.07 0 00-2.07-2.07zm-.29 16.15H5.23V8.45h18.58z'/%3E%3Cpath class='cls-1' d='M7.18 11.71h2.5v2.5h-2.5zM11.27 11.71h2.5v2.5h-2.5zM15.26 11.71h2.5v2.5h-2.5zM19.35 11.71h2.5v2.5h-2.5zM7.18 15.78h2.5v2.5h-2.5zM11.27 15.78h2.5v2.5h-2.5zM15.26 15.78h2.5v2.5h-2.5zM19.35 15.78h2.5v2.5h-2.5z'/%3E%3C/svg%3E")}.meta-box--author{background-image:url(/images/icons/author.svg)}code,pre{font-feature-settings:normal;color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Fira Code,Menlo,Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;font-variant-ligatures:none;word-wrap:normal;tab-size:4;hyphens:none}pre{padding:1rem;margin:.5rem 0;resize:both;max-width:100vw;color:#666;background:#fafafa;border:1px solid #eee;font-size:1em;border-radius:11px;min-width:250px;overflow:auto;box-shadow:0 6px 12px -17px rgba(50,50,93,.25),0 7px 6px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.code-toolbar{position:relative}li>.code-toolbar{margin-top:1em}.code-toolbar>.toolbar{position:absolute;top:.5em;right:.5em;opacity:0;transition:opacity .3s ease-in-out}.code-toolbar>.toolbar .toolbar-item{display:inline-block}code.diff-highlight{width:100%}a code{background:0;padding:0;text-decoration-line:underline}:not(pre)>code,code{background:#fff2ea;color:#333;font-size:calc(.75em + .1vw);line-height:calc(1.5em + .2vw);padding:0 .2725em;font-style:normal;display:inline-block}:not(pre)>code{white-space:normal}pre>code{line-height:calc(1.75rem + .2vw);background:0 0;white-space:break-spaces}pre[data-line]>code{white-space:pre}pre[data-line]>code>span{height:calc(1.75rem + .2vw);display:inline-block}.table,table{width:100%;border-collapse:collapse;margin-bottom:calc(2em + 2vw);clear:both}.tr,tr{border-bottom:4px solid #eee}.td,.th,td,th{padding:1em 1.5em;border:none;text-align:left}.scroll-pane{overflow-x:auto;scrollbar-color:#666 #201c29;-webkit-overflow-scrolling:touch}.scroll-pane::-webkit-scrollbar{height:.75em}.scroll-pane::-webkit-scrollbar-thumb{background:#b0b0b0;border-radius:11px}.scroll-pane table td{min-width:30vw}@media all and (min-width:650px){.scroll-pane table td{min-width:auto}}.layout-fixed{table-layout:fixed}.figure table{margin-bottom:0}.tablesaw td{line-height:165%;text-align:left;vertical-align:middle}.tablesaw td,.tablesaw th{padding:.8em 1em}tbody tr:nth-child(2n) td{background-color:#f7f7f7}.tablesaw th,table th{border-bottom:4px solid #ddd}@media screen and (max-width:767px){.tablesaw thead{display:none}.tablesaw tr{display:flex;flex-direction:column;margin-bottom:1.5em;width:100%;border-radius:11px;border:1px solid #eee}.tablesaw td:before{content:attr(data-label);display:table-cell;font-weight:700;padding:0 1em 0 0;text-align:right}.tablesaw td:last-child:after{content:'';position:absolute;left:0;right:0;bottom:0}}a.skip-main{left:-999px;position:absolute;top:auto;width:1px;height:1px;overflow:hidden;z-index:-999}a.skip-main:active,a.skip-main:focus{color:#d33a2c;background-color:#fff;left:auto;top:auto;width:auto;height:auto;overflow:auto;padding:.5em 1em;text-align:center;font-size:1.2em;z-index:999}.video-embed-container .video-embed-container--wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}.signature{margin:1.5em 0;font-size:.9em;color:silver;font-style:italic}.author .show-more-link{font-size:.9em;display:inline;color:#666;text-decoration-line:underline;text-decoration-color:currentColor;font-weight:400}.cookie-banner{background-color:#fff;border-radius:11px;position:fixed;width:calc(19em + 1vw);padding:1em 1.5em;font-size:1em;z-index:99;box-shadow:0 6px 40px rgba(0,0,0,.3);bottom:1em;left:1em}.cookie-banner p{font-size:.9em;margin-top:0}.cookie-banner__container{display:flex}.cookie-banner button{padding:.9em 1em}@media screen and (max-width:480px){.cookie-banner{right:0;left:0;width:100%;border-radius:0;bottom:0}.cookie-banner p{margin-top:1em}}@media screen and (max-width:380px){.cookie-banner p{margin-top:0}}.cookies--btn{width:100%}.mr5{margin-right:.5em}.mr0{margin-right:0!important}.btn--white{background:#fff;color:#267dcc;border:1px solid #fff}.btn--white--bordered{border:1px solid #ddd}.sponsors ul li{display:inline-block;margin-bottom:3em;font-size:.85em;padding:0;text-align:center;vertical-align:top;max-width:25rem;border-radius:11px;border:1px solid #eee;min-height:90px}.c-promo-box--ad.sponsors li{width:auto}.sponsors__native ul.bnnr-list li{border:0;width:100%;height:auto;max-width:85%;margin:0 0 2em auto}.sponsors__native ul.bnnr-list .ad__desc{padding:1em}.sponsors__native ul.bnnr-list li:only-child{padding-bottom:0}blockquote:not(.pull-quote){font-style:italic;border-left:11px solid #e6e4e1;padding:1em calc(1.5em + .5vw);color:#424242;margin-left:0;margin-right:0;font-size:1.05em;line-height:1.65em;letter-spacing:0;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0e3 0,#fff 100%)}blockquote:not(.pull-quote) p{margin:0}.btn--small.toolbar-item,.btn.btn--small{font-size:.9em;border-radius:6px;margin:0;padding:.4em 1em}.c-felix-the-cat a.btn{display:table;margin-top:1em;margin-bottom:1.5em}@media screen and (max-height:880px){.article__comments--notes{display:none}.article__comments__form__desc{margin-top:4em}}header.subnav__header{background-color:#fff;background-color:var(--headers-bg-color,#fff);padding:.2rem 0 0 0;z-index:1}.subnav__primary::-webkit-scrollbar{display:none;width:0;background:0 0}.subnav__tags li:first-child{padding-left:14px}.subnav__tags li:last-child{padding-right:.8em}.subnav__tags .subnav-item{margin-bottom:0}@media (min-width:740px){header.subnav__header{padding:.25rem 0 0 0;box-shadow:0 4px 20px 0 rgba(0,0,0,.12)}.subnav__tags li:first-child{padding-left:35px}}.subnav .nav-item-link{color:#d33a2c;text-shadow:none!important;font-weight:700;font-family:Mija;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;border-radius:11px;font-size:1rem;background-color:#ffe7e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #fee0e0}.subnav .nav-item-link:hover{text-shadow:none;font-weight:700;font-family:Mija;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.subnav-item a:active,.subnav-item a:active:hover,.subnav-item a:focus,.subnav-item a:focus:hover{box-shadow:inset 0 1px 3px 0 rgba(0,0,0,.12);background-color:#d33a2c;color:#fff!important;outline:0}.subnav-item--active a.nav-item-link,.subnav-item--active a.nav-item-link:hover{background-color:#d33a2c;color:#fff!important;border:1px solid #d33a2c}.subnav-item{display:flex;margin-right:9px;padding-left:3px}.subnav-item .nav-item-link{padding:2px 12px}.subnav a{background:0 0;font-weight:700;display:flex;align-items:center;text-decoration:none}.subnav__primary{padding:.25em 0;margin-top:.25em;margin-bottom:.35em;display:flex;position:relative;scroll-snap-type:x;scroll-padding:1rem;overflow-x:auto;scrollbar-width:none}.subnav-more-item__button{padding:.2em 1em;color:#d33a2c;border:1px solid #ddd;border-radius:11px;background:0 0;display:flex;align-items:center;justify-content:space-around;position:relative;font-size:.85em;min-width:max-content;transition:none}.hidden{display:none!important}.c-garfield-the-cat .subnav-item--green .nav-item-link{color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0}.c-garfield-the-cat .subnav-item--green .nav-item-link:hover{color:#137d54;background-color:#c8f1e0;border:1px solid #a0dcc4}.subnav .nav-item-link:hover{color:#d33a2c;text-shadow:none;font-weight:700;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.feature-panel__desc,.sponsors__desc{font-size:.75em;color:#666;padding-bottom:10px;top:-15px;position:relative}.feature-panel::before{position:absolute;left:0;transform:translate(0,-100%);top:-5px;content:"";border-bottom:8px solid #eee;width:100%}@media (min-width:1000px){.feature-panel::before{width:73%}}.feature-panel{position:relative;border-radius:11px;padding:1.25em;display:flex;flex-wrap:wrap;background-color:#f6f6f6}@media (min-width:1000px){.feature-panel{padding:2.5em}}.feature-panel-left-col,.feature-panel-right-col{flex-basis:100%;position:relative;padding:0;flex-shrink:0}.feature-panel-right-col{order:-1;display:flex;align-items:flex-start;margin-bottom:1em;justify-content:flex-start;margin-top:2em}@media (min-width:800px){.feature-panel-left-col{flex-basis:65%}.feature-panel-right-col{order:0;flex-basis:35%;margin:0;justify-content:center}}.feature-panel-description>:first-child{margin-top:0}.feature-panel-description>:last-child{margin-bottom:0}.feature-panel-image-link{position:relative;text-decoration:none;width:100%;max-width:210px;transition:scale,opacity .2s ease-out;padding-left:2.5em;background-image:none}.feature-panel-image{width:100%;max-width:14.375rem;margin:0 auto;display:block;transition:all .2s ease-out;will-change:transform;transform-origin:0 100%;transform:rotate(-11deg)}@media (min-width:1000px){.feature-panel-image-link{position:absolute;max-width:14.375rem;top:-90px;right:0}}.feature-panel-image-img{height:auto}.btn--large.toolbar-item,.btn.btn--large{font-size:calc(1em + .25vw);padding:.75em 1em}.btn .sr-only,.sr-only{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.c-garfield__nl{display:none}@media all and (min-width:1100px){.drop-caps{display:none}.l-author-bio{display:flex}.c-garfield__nl{display:block}.nl-box__form{display:flex;padding-bottom:7px;text-align:center;letter-spacing:-.5px;color:#fff;font-size:1.15em}.nl-box__desc{margin-top:10px;color:#666;font-size:80%;line-height:1.5em;text-align:center}.nl-box__form .nl-box__form--button,.nl-box__form .nl-box__form--email{flex-grow:1;flex-shrink:0;box-sizing:border-box;width:auto;margin:0;padding:.75em 1em;border:0;border-radius:11px;background:#fff;font-size:.95em}.nl-box__form--button:active,.nl-box__form--button:focus,input.nl-box__form--email:active,input.nl-box__form--email:focus{box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form--button:-ms-input-placeholder,.nl-box__form--email:-ms-input-placeholder{color:#777;font-style:italic}.nl-box__form--button::placeholder,.nl-box__form--email::placeholder{color:#777;font-style:italic}.nl-box__form .nl-box__form--button{transition:all .2s ease-in-out;color:#fff;background-color:#0168b8;font-family:Mija,-apple-system,Arial,BlinkMacSystemFont,"Roboto Slab","Droid Serif","Segoe UI",Ubuntu,Cantarell,Georgia,serif;font-weight:700;box-shadow:0 1px 1px rgba(0,0,0,.3);width:100%;border:0;border-left:1px solid #ddd;flex:2;border-top-left-radius:0;border-bottom-left-radius:0}.nl-box__form .nl-box__form--email{border-top-right-radius:0;border-bottom-right-radius:0;width:100%;flex:4}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus,.nl-box__form .nl-box__form--button:hover{cursor:pointer;color:#fff;background-color:#0168b8;border-color:#dadada;box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus{outline:0!important;text-shadow:1px 1px 1px rgba(0,0,0,.3);box-shadow:inset 0 3px 3px rgba(0,0,0,.3)}.nl-box__group{display:flex;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px}.nl-box__wrapper{display:flex;flex-direction:column;justify-content:center}.nl-box__form form{width:100%}.nl-box__form .nl-box__group{margin:0}.nl-box{margin:1.5em 0;padding:1em 0;box-shadow:none;max-width:750px;justify-self:center}}.article__content a.anchor{color:#767676;text-decoration:none;transition:color .2s ease-in-out;padding:.35em .05em}.article__content a.anchor:active,.article__content a.anchor:focus,.article__content a.anchor:hover{color:#106fc6;background-image:linear-gradient(90deg,#006fc6 0,#2ca2d3 30%,#006fc6 85%,#006fc6 100%);background-size:100%;background-repeat:repeat;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-moz-background-clip:text;-moz-text-fill-color:transparent;text-decoration:none}#promo-article-end,#sponsors-article-end,.article__comments,.main-footer{content-visibility:auto}.toc-components{box-shadow:0 9px 30px -5px rgba(50,50,83,.25),0 8px 8px -12px rgba(0,0,0,.2),0 -6px 16px -6px rgba(0,0,0,.03);border-radius:11px;padding:2em;background-color:#fff;margin:1.25em 0 3em 0;grid-column:3/13}@media screen and (min-width:500px){.toc-components{display:grid;grid-template-columns:1fr 1fr}}@media screen and (min-width:800px){.toc-components{padding:2em 3em}}.article__content .btn--white{background:#fff;color:#267dcc}
+</style>
+
+
+    
+
+    
+      <link rel="preload" href="/js/nav-v2.js" as="script" importance="high">
+<link rel="preload" href="/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2" as="font" type="font/woff2" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+<link rel="preload" href="/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2" as="font" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2"  as="font" type="font/woff2" media="(min-width: 800px)" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2" as="font" media="(min-width: 800px)" type="font/woff2" crossorigin importance="low" media="(prefers-reduced-data: no-preference)">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/js/app.js" media="(min-width: 800px)" as="script" importance="low">
+    
+
+    
+      
+  
+  
+
+  
+  
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Smashing Magazine &amp;raquo; Feed" href="https://www.smashingmagazine.com/feed/" />
+
+    
+
+    <meta name="description" content="Instead of spending your coffee break scrolling through your social feeds, how about a lovely little website instead? We came across some fantastic ones that are just too good not to be shared. But be warned, your break might take a bit longer than intended."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://www.smashingmagazine.com/2021/11/showcase-lovely-little-websites/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content='A Showcase Of Lovely Little Websites — Smashing Magazine' />
+<meta property="og:description" content="Instead of spending your coffee break scrolling through your social feeds, how about a lovely little website instead? We came across some fantastic ones that are just too good not to be shared. But be warned, your break might take a bit longer than intended." />
+<meta property="og:url" content="https://www.smashingmagazine.com/2021/11/showcase-lovely-little-websites/" />
+<meta property="og:site_name" content="Smashing Magazine" />
+<meta property="article:publisher" content="https://www.facebook.com/smashmag" />
+
+	
+	<meta property="article:author" content="https://www.smashingmagazine.com/author/cosima-mielke/" />
+
+<meta property="article:tag" content="User Experience" /><meta property="article:tag" content="Showcases" /><meta property="article:tag" content="Inspiration" />
+<meta property="article:section" content="General" />
+<meta property="article:published_time" content="2021-11-24 12:00:00 &#43;0000 UTC" />
+<meta property="article:modified_time" content=" 2021-11-24 12:00:00 &#43;0000 UTC" />
+<meta property="og:updated_time" content="2021-11-24 12:00:00 &#43;0000 UTC" />
+<meta property="og:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png' />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Instead of spending your coffee break scrolling through your social feeds, how about a lovely little website instead? We came across some fantastic ones that are just too good not to be shared. But be warned, your break might take a bit longer than intended." />
+<meta name="twitter:title" content='A Showcase Of Lovely Little Websites — Smashing Magazine' />
+<meta name="twitter:site" content="@smashingmag" />
+<meta name="twitter:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png' />
+
+	
+	
+
+<meta property="DC.date.issued" content="2021-11-24 12:00:00 &#43;0000 UTC" />
+
+
+    <meta name="theme-color" content="#d33a2c">
+    <meta property="fb:pages" content="45576747489"/>
+    
+    <meta name="google-site-verification" content="X5sd8PEDJqYLSR98RKgSozn-0RNpknXFlGoA-UXe5K0" />
+
+    <link rel="icon" href="/images/favicon/favicon.ico" />
+    <link rel="icon" href="/images/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+  </head>
+
+  <body data-instant-whitelist class='no-js    articlepage' >
+
+		
+			
+				
+
+
+
+<div data-handler="PreLoad" id="top"></div>
+<a href="#main" class="skip-main">Skip to main content</a>
+<a href="#all-topics" class="skip-main">Jump to all topics</a>
+
+  
+    <a href="#article__start" class="skip-main">Start reading the article</a>
+  
+
+<a href="/articles/" class="skip-main">Jump to list of all articles</a>
+
+<header class="global-header header">
+    <div class="logo">
+	<a href="/" title="&larr; Back to the homepage">
+		<picture>
+			<source
+				media="(max-width: 1450px)" srcset="/images/logo.svg">
+			<source
+				media="(min-width: 1450px)"
+				srcset="/images/logo--full.svg">
+			<img
+				src="/images/logo/logo.svg"
+				loading="eager" decoding="async"
+				alt="Smashing Magazine" />
+		</picture>
+	</a>
+</div>
+
+    <nav class="main-nav">
+  <ul class="main-nav__primary">
+  
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+    <li role="none" class="nav-item main-nav-more-item">
+      <button class="main-nav-more-item__button" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="menu-text--lg">More</span>
+        <span class="menu-text--lg--close">Less</span>
+        <span class="menu-text--sm">Menu</span>
+        <span class="menu-text--sm--close">Less</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+<nav class="secondary-nav">
+  <ul class="main-nav__secondary">
+    
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+  </ul>
+</nav>
+    <div class="search">
+        <form data-handler="Search" id="js-search-form" class="search-form" method="get" action="https://www.google.com/webhp?q=site:smashingmagazine.com">
+        <div class="search-input-wrapper">
+            <input  class="input search-input" inputmode="search" type="search" name="q" id="js-search-input" autocomplete="off" placeholder="Search articles..." aria-label="Search articles" />
+            <input type="hidden" name="sitesearch" value="smashingmagazine.com" />
+            <a id="js-search-clear-button" class="search-clear-button" tabindex="-1" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.35 15.36" width="16px" height="16px" tabind="-1">
+                    <title>Clear Search</title>
+                    <path fill="#e33b2a" d="M8.38 11.41c-.5-.5-.78-.52-1.33 0l-3.05 3.08c-1.18 1.18-1.7 1.18-3-.16s-1.18-2-.18-3l3.18-3.19a.69.69 0 0 0-.07-1.14l-3-3c-1-1-1.13-1.81 0-3s1.9-1.21 3.13 0l2.94 3a.66.66 0 0 0 1.11 0c.63-.65 2.49-2.51 3.28-3.35a1.46 1.46 0 0 1 2.3-.15c.24.24.47.42.89.84.86.86.94 1.57.05 2.46l-3.27 3.26c-.36.34-.52.58-.16.94l3.27 3.27c1.1 1.1 1.23 1.7.05 2.88l-.58.58a1.59 1.59 0 0 1-2.46-.21z" />
+                </svg>
+            </a>
+        </div>
+        <input type="submit" class="search-button btn" name="submit" value="Search" id="js-search-submit">
+    </form>
+</div>
+
+</header>
+<script src="/js/nav-v2.js" importance="high" defer></script>
+<div>
+  <div data-component="SearchResults" class="search-results" data-lite="true"></div>
+
+  
+</div>
+
+
+
+
+
+	<header class="subnav__header" id="all-topics">
+		<nav class="subnav" role="navigation">
+  <ul class="subnav__primary subnav__tags flex">
+  	
+
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/accessibility/">Accessibility</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/css/">CSS</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/javascript/">JavaScript</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/react/">React</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/vue/">Vue</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/round-ups/">Round-Ups</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/ux/">UX</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/design/">Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/web-design/">Web Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/figma/">Figma</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/wallpapers/">Wallpapers</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/guides/">Guides</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/business/">Business</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/career/">Career</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/privacy/">Privacy</a></li>
+
+
+    <li role="none" class="subnav-item subnav-more-item">
+      <a class="subnav-more-item__button" href="/articles/">
+        <span class="menu-text">Jump to all articles ↬</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+	</header>
+
+
+			
+		
+
+    
+    <main id="main" tabindex="-1">
+      
+  
+  
+  <script id="gotell" type="application/json">
+    {"created_at":"2021-11-24T12:00:00Z"}
+  </script>
+
+  
+
+  <article class="block article" role="main">
+    <div class="container article-container">
+      <div class="row">
+
+        <div class="col-12 article__content" id="article__content">
+
+          <div class="c-garfield-the-cat ">
+
+            <div class="c-garfield-header">
+              
+              
+
+
+
+<header class="article-header">
+  <ul class="article-header--meta">
+		
+			<li class="article-header--meta-item article-header--meta-item__author">
+				<a class="author-post__author-title" href="/author/cosima-mielke/">Cosima Mielke</a>
+        
+			</li>
+		
+    
+			
+			<li class="article-header--meta-item article-header--meta-item__date">
+				
+				<time class="article-header--date" datetime="2021-11-24">Nov 24, 2021</time></li>
+    
+
+    
+    <li class="article-header--meta-item article-header--meta-comments">
+      <span class="article-header--comments">
+        <a href="#comments-showcase-lovely-little-websites">
+          
+          <span data-component="CommentsCount" data-insert="true" data-thread="/2021/11/showcase-lovely-little-websites/" data-article="articles/2021-11-24-collection-lovely-little-websites.md">0 <span class="comment-count">comments</span></span>
+        </a>
+      </span>
+    </li>
+    
+  </ul>
+
+  <h1 class="article-header--title">A Showcase Of Lovely Little Websites</h1>
+
+  
+</header>
+
+            </div>
+
+              
+              
+
+
+<ul class="meta-box meta-box--article">
+
+  
+  <li class="meta-box--item meta-box--published">
+    19 min read
+     </li>
+
+
+
+
+  <li class="meta-box--item meta-box--tags">
+    
+    
+      
+        <a href="/category/user-experience">User Experience</a>,
+      
+    
+      
+        <a href="/category/showcases">Showcases</a>,
+      
+    
+      
+        <a href="/category/inspiration">Inspiration</a>
+      
+    
+  </li>
+
+
+
+
+
+  <li class="meta-box--item meta-box--share">
+    Share on <a rel="nofollow" href="https://&#084;&#119;&#073;&#116;&#084;&#101;&#082;&#046;&#067;&#111;&#077;/intent/tweet?text=A%20Showcase%20Of%20Lovely%20Little%20Websites&url=https%3A%2F%2Fwww.smashingmagazine.com%2f2021%2f11%2fshowcase-lovely-little-websites%2f&via=smashingmag">Twitter</a>,&nbsp;<a rel="nofollow" href="/api/ball?uri=//www.linkedin.com/shareArticle?url=https://www.smashingmagazine.com%2f2021%2f11%2fshowcase-lovely-little-websites%2f&title=A%20Showcase%20Of%20Lovely%20Little%20Websites">LinkedIn</a>
+
+  </li>
+
+
+</ul>
+
+
+            <div class="c-garfield-aside--meta">
+
+              <div class="l-author-bio">
+
+  <div class="mobw-40 mobh-40 w-48 h-48 rounded-3xl bio-image__large mb-5 mr-3">
+    
+    
+
+
+
+<figure role="presentation" class="bio-image ">
+  
+  <a href="/author/cosima-mielke/" class="bio-image-link">
+  
+  <div class="bio-image-wrapper">
+		<picture>
+			<source type="image/avif" srcset="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAGhbWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAsaWxvYwAAAABEAAACAAEAAAABAAAFUQAACe4AAgAAAAEAAAHJAAADiAAAAEJpaW5mAAAAAAACAAAAGmluZmUCAAAAAAEAAGF2MDFDb2xvcgAAAAAaaW5mZQIAAAAAAgAAYXYwMUFscGhhAAAAABppcmVmAAAAAAAAAA5hdXhsAAIAAQABAAAA12lwcnAAAACxaXBjbwAAABRpc3BlAAAAAAAAAMgAAADIAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAUaXNwZQAAAAAAAADIAAAAyAAAAA5waXhpAAAAAAEIAAAADGF2MUOBDRwAAAAAOGF1eEMAAAAAdXJuOm1wZWc6bXBlZ0I6Y2ljcDpzeXN0ZW1zOmF1eGlsaWFyeTphbHBoYQAAAAAeaXBtYQAAAAAAAAACAAEEAQKDBAACBAUGhwgAAA1&#43;bWRhdBIACgcYHfHx&#43;xCAMvoGEhAEDwABQeBAgN9fryNfqd/e1E23hEVBLdwzApVTHO67keNKZw1KcSkG/O&#43;m3GF8aDPkC5KRc0djSj/sjaWCRdbcvTo/XVUYPIGkp1IXaXptebof532gSqdwziS8JzR8bZ6HRZ8Iwegkr469cR4LPcInUJ5i26myUnzCCYDqXeanKh/crBD9Va7hQf7yYHoMidC9oiYklj0AaF6TScc0DYwmLh4uTJZe3UNKRUCwV/Fz3ahfHbots2piUOXIR8Qv1Ha6aWLc5fpgbCuD8lBuqDFzYq8wVxl3mkY40vft&#43;0Bhx3dUzZAGT3EvThEUCULYcygBvoAmUwodArpy8cWXza&#43;N/ryOVVWcCsxdeLi0eTOn8jNeP5hRAOZuwD3HJefhEVX1NjfRK/lruNhPgazsOzfl3oUoeY2OnPjiR/Nsk01rj9Kom0yOI8bm&#43;VdJSUmjGKsW8IGAx0MKy1hW02RY3Y5g/Hl&#43;3gHXaxPye7jRTyK1OuM8tyD3SKUiQrT6xZMx7AdUVfp6bmfKejBTm2ZobBRtjNstqtofdp4w47XxdAMgYuP5LEn5ncLg4TnJOSqdRPd7HN6SItRewXJCy&#43;zR8HH7AB1/gRRIEX39RZ05TAZb4cWAFsNF6&#43;aiAElae3Iw8btA6q3m/QSABDgHmyKreRHXuyHfDUQJNbrl3yp2skXR3/Fy7ijHyxZWcrkQK6cWobaMQ2flG8TmO7uL2GsFBqijaKvcfBBkakfEacXJjEOIe3EWNiDgSBR77zGA9GVVHfMWsRjwnVC&#43;ejSVY/OEx8kBg14FvKF4pxElTZDDZzFgGPI9XaQbPBWJk/1yacsdJKNXDFjFbMW262RzzIywUq342rNdklBm5FwyXXl/f6qVnYjmdEmflcspbMsZY&#43;DD7R/J7nfm9qagNo9mx24aoJOEFVgFDf63lCjg08viDmSxdnVm15yzpM/XLLNAHn5F3yKGj2bmFgBoDuDluPNYsXlB8RDlefKmnUcHLMwHDILIsqdPKQfeIeBCJ3DIWO28MYg/ZeLd&#43;Ca2o5FgutI&#43;TIt&#43;opfXOjDTjDf43EowvHQ8ncD/h2aDjpR9XQPNWQlQQK8x6nR5Qn&#43;dxURyuuI1YNdFUJYj&#43;1XwYTHiXvsibTIpNhQ65O&#43;y7MDJ2kerf8U64AgLI7maMU2e&#43;aqyya&#43;Qi4hmrHNI5tsbf5ASAAoKGB3x8fsgQEAwgDLdExIQA4wckUtrHCZkybrz4oTcfuJk6/po8DSQvhMbpoBAPM7G7Euf32QDkiNAgqFMOxC1pt2&#43;90yaSPj2ePMhpz7T6r&#43;AS6gqV2Q8N2hqJ3WJzlUoLj3P18LReAZyx6xVFgJmD5Zk8bQUV8tmIYMM&#43;Sb3Bbtx7tPzQHpMyJvXZB5zZX/ns8Xk2fFoQ7FY5qVCDhOb1xAeyRIelUc9qbDbo7flAyhsHHsV33JWu3lDyTlLnQ4MR1F02qutopHq10ETumG0qVNsJGwzwSddakRGRswSzPvsSc1U3cTCEicvuNmmVxhK5v/fCf00DXCUPpfIZPElQBE0jO1p4Hvxosr/0xhcs4AffFeKLFptYxO2JyrOlb4KYRPzhRlxsI2zS35kFnGx1sGnSaVxPmuW0gcIedjgGBYCjCu4uiSQKvgKCYkBcDEJAyx&#43;vWYnOZP&#43;LhSzcq3AxPt9kUn//gbkMAAAHFdBFRTc2v5rUjvFvFwZEm93zbfBj4D2&#43;jOYr9/r2mWYoQscrpia4MV4a3kpO4geEXoOWAfB&#43;DG16LNC6H0uUwrtypJSiWL&#43;EhkydxjSW4r4gsTXJ4vHhvgWdeWakJm9iyGBEgHeFT/TeVtlhNYip9J0L7Z3ruQyNlupIq&#43;sVevQidv2Dav/UsqMKHPXegZMyMtxnFdAakcqLwFXrsrbWuY8ZILCOf/5UAkmxRNhYIQUXzU1qrD63yZz02FcqZCW5v8ANirjrbKrXyifpaxKTwrEnsDMJiy11Q3C8aROJ9RQrjV8x0Jl3ath28aBVtbEbiZvZE7dseQBTUZ6sY9jMuY6jdVWIixNqx1QjQEzUtcB/HPAQm4jARGoL&#43;nxRc6e0pihWgxZfNClk3kQO93tH7k811&#43;z0rjOPGDgTjuMrlO5MomI5HlNNlCXf6oV3UnZLid7CJC5OaToRS5uVwFSQ57ynU0UgvowWfFjNHsQel9CqtCoH&#43;MjZWLRsD6Bte0dn7oYITpogklCaocXe3K7B7C7CjKc7JBA8E2mOjqIv9&#43;PVzYhPqwjN5CT2Ac8w5ZkLvFMMB0uhCIifMGaKCRfgada8udn0Qmtat5JioIDmgkqc0Nrn&#43;gUhaEtATbzs6ct5V&#43;3xwCaaf4HqM6IBurIR57GFi7KZCiboHROQruxv5V8sRISzcHyHl5P8yHH4o27JPjlD8ylobZaoNuka3dP6h5YUt1qDtL9bHg/&#43;FkqRwil6qzJvCKS/T3x0TwfMSl3hj3Ek26Svwux0WfWmTVaD609V5suI4bOBkX3qwfJsPbF9UDAAYtQB3W/nrvpYFB6E8WkVq6JdcXVMGrlpMAwc05zgiH9HaxZmlMEXEen/fQQDlmGgzcOFKCaaw4mH4IvQaNXLP&#43;ZiYo5ve0Cn&#43;kAru5jMUxklBaCBKTF9cwRpQSnSfcvjvw8MeF8HICHD2R&#43;sxdA/Gl9B4NA1wlMLbnIkWZn6ftbB2kbkVOnFRiozLgDS30DwIcZGxS6Zir6AyH8NhifKzkydzaXPuoHHpLDbFbGc8wq2wtf9vJP57vONLwSE7fcntH7XEqm6nyvWFGg1WkpT3kC9UKGkEanVnajqYcJxtmeXbWdQHSXnT9uducsSvUbzzwa8KCGzRM7t3AbR3hmDs2Jahwx8&#43;NcAy7WcI7XdEXmoN1On8AfcUOoE4UmvyEWyJH7warFLhStPdac6uMiBMI495UaUze7iBnHnvO3MYAyM3IgVx6vQmodRujwJWjosHBdlnxC/M8DqvCPbKPJ6KgMjTIBzdlNsWJ6kTj3ompVQT4J0jknhHgBLcyK&#43;KKYP9f2a9ovKcVDz6oxuifQJX58MSe9em0OqS7P1HoZ3vjKmIECQzfhmmdttVwpQWCLXnSJWlP2Cfz7lFFM1CEr9QsOTPYyZotyVG5R1oCU6XntB/AoXgYEWYN1RLbhbPNdhG7EHb0GxwFCV6G/L&#43;NhvZtm9&#43;9Vb27jgSRPUzTNK/qYc6zsPskhlRd0GU/ZS5e7ZP9&#43;ebdyckJ3tgBdFZ/6i3JIJuULvcE5s1ILDXNv/8cP&#43;b9Z1hj7SJ3NjphnkR9D3I8B94tnQhNEUeLekVLuk5VJReVxQAEPeLh3pzkbaAZN&#43;dXjrQOGV9MLDrkOfNLUHOqrrgoCPNtR/DV2Cp4CKHYfwwFba9BThtMjAuqNbI7JqAR9O5KzZaFUtXbGrKxLyFvGY6Zna9oRRRuLMWw7M1MoJFFYY8TEQjW4uBjhu6NoFaFG4QLhMpDeZ1kZAgT0q3S7MiAlZAdNQL/xiN7Y3n1iKPNXItOl7kOhzyCo5&#43;Sl84Q5C1FTehqiUQBj6lqv6FvdMlbNtRTO83qhjucyN6s9zcr6jcXjB5eAQK1boJUACIP2Yaa&#43;ke0456k24MViE6Si2qJyo&#43;i04dFx07LfHr/U&#43;yVEj46qB7cZKxVMVxBXqGECzzroDT2gLocMdLADppnmyoeiaKM/p6EoB9UGQCvIUB6uCzDHTktycsKRtpqSdZl97k3nhsqAmc&#43;SPmvxQnyiaGn/jDiLMJesENpKBd8H8hudy0yenX1tPIBX3Bt9f4WMpx&#43;ItsNGdpIz0uORECHmrmTraUK/wkgMQLVrnYcHUYkpXBTQcKe3SfU51WoEao&#43;hrsKRXv6VEl7mjFgaqasHO5&#43;yexCTsYHNTzXLMpryLLNuoAgr7JnrfFbooTdqb2054nDLODHvO3KaS52Su7dZ8Td0wHyoxHWn5yRORNgkCz7z6krf2TmcjhlWJ6c5YUj2x6BlnZEND7cyVmHGY&#43;7ns5Lr3fLGWDPDqXcFXuq3JbrwCTh9PBKcg9JM0MM4fXTk7NLUNTFQCagNhRcRaVutImUijTC8ybR9BO8ZqT3/G7S3YMAonPScyj2GeYGnfu0JzVPgnz8KIxWDoXPi2MXQr4c5FHKUvNqbWrztjLbrlauIkvGYki8Kcbxdep94hUFrHFp5XINuTHAS1cmkojWJK9F7qNrFOYirJBozvBL00Wp5PfYwsUw9Lga9xwji0kjfuunZ6/Y/t7rvaYsDmk&#43;ALGN0EGR1uspmjowyggxYK683oD99DItcAj3CGL9fj1w/gEEP4XfCLp9I6PvVN7/CqNzrfD0vaMfr3Y9uzetlR3nz4vU2LrhCNdSJPGi30G1&#43;QHgPZLg3kD35kzLXLSDIjMUWZvOAlgtUhvT5EsXe20Yf4bfuEV8w3fmOhVmVNW5zRUzCyUCiJOQjI5fSTXJVfL23xE05&#43;EY0JT4Wuk/mTkLmSRzDlvGumePKpAbPyf0nIh6bK11OSTgtxyOO&#43;&#43;2ugLUutq&#43;T2Ck4o&#43;/ftDczD9mmxJUiL&#43;xvi4PfbIM8dR91y0MIyNgy4jBJnq9ysFTse85dMShuV63/wL5NjQR7w0KIx5QfMp1A">
+			<img
+				class="bio-image-image"
+					src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/27cf2125-1ccc-4a49-9fbd-62b297a721c3/cosima-mielke-200px.png"
+					loading="eager" decoding="async" importance="high" width="100" height="100"
+					alt="Cosima Mielke"
+				/>
+		</picture>
+  </div>
+  
+  </a>
+  
+</figure>
+  </div>
+
+  <div class="l-author-bio-content author__desc" id="author__desc">
+    <h4 class="author__desc__title">
+    About The Author
+    </h4>
+
+    <p>
+      
+        Cosima has been an editor at SmashingMag since 2013. Whenever she&rsquo;s not writing articles for the weekly <a href="https://www.smashingmagazine.com/the-smashing-newsletter/">Smashing Newsletter</a>, she’s probably working on a …
+      
+      <a href="/author/cosima-mielke/" class="show-more-link">More about
+          Cosima&nbsp;↬</a>
+    </p>
+  </div>
+
+</div>
+
+              <div class="c-garfield__nl">
+              <h4 class="h2">Email Newsletter</h4>
+              <section class="nl-box__form"><form action="//smashingmagazine.us1.list-manage.com/subscribe/post?u=16b832d9ad4b28edf261f34df&amp;id=a1666656e0" method="post"><div class="nl-box__wrapper"><label for="mce-EMAIL-hp" class="sr-only">Your (smashing) email</label><div class="nl-box__group"><input type="email" name="EMAIL" class="nl-box__form--email" id="mce-EMAIL-hp" placeholder="Your email">
+    <input type="submit" value="Meow!" name="subscribe" class="nl-box__form--button"></div></div></form></section><p class="nl-box__desc"><em><a href="https://www.smashingmagazine.com/the-smashing-newsletter/">Weekly tips on front-end &amp; UX</a>.<br />Trusted by 190.000 folks.</em></p>
+              </div>
+
+              
+
+
+
+            </div>
+
+
+            
+
+							
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+									
+								
+							
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+							
+							
+
+							<div class="c-garfield-native-panel__right">
+								
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://smashingconf.com/online-workshops/workshops/remi-parmentier-mar">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/68b2c174-9f80-4b04-8503-2d3adda61427/workshop-remiparmentier.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c8324a50-2a45-420d-8adb-b80998e9fe0e/workshop-remiparmentier.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Building Modern HTML Emails</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+							</div>
+              <div class="c-garfield-native-panel">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://bit.ly/northwestern_uni_winter">
+							
+								<img src="https://res.cloudinary.com/indysigner/image/upload/v1601395101/ads/NWU_Oct.gif" loading="lazy" width="180" height="150" alt="In-demand skills with Northwestern online">
+							
+
+            <em class="ad__desc">Build in-demand skills like UX, UI and HCI — Northwestern online MS in Info. Design &amp; Strategy</em>
+						
+              </a>
+					</li>
+
+				
+			
+				
+					
+
+					<li>
+						<a href="https://www.smashingconf.com/online-workshops/">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6a2509d0-440a-4dce-a779-354421eefe71/friendly-workshops-02.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/73ceac5c-5073-4c08-9c8f-3936d520abab/block02.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Smashing Workshops: live and interactive</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__below">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__end">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+            
+
+            <div class="c-garfield-summary" id="article__start">
+              <section aria-label="quick summary" class="article__summary">
+                <span class="summary__heading">Quick summary&nbsp;↬ </span>
+                
+                  Instead of spending your coffee break scrolling through your social feeds, how about a lovely little website instead? We came across some fantastic ones that are just too good not to be shared. But be warned, your break might take a bit longer than intended.
+                
+              </section>
+            </div>
+
+            
+
+            
+							
+
+
+
+						
+
+            
+
+<p>A map that blends past and present, a musical time machine bringing back distant memories, or an interactive graphic novel pulling you deeper and deeper into a powerful story &mdash; sometimes you come across a lovely little website that, well, <strong>instantly conquers your heart</strong>. It doesn’t necessarily have to be overly useful or practical. Instead, its true value shines in the experience you get from it. It might leave you with your jaw dropped, with a smile on your face, surprised, excited, or inspired.</p>
+
+<p>In this post, we collected lovely little sites like these, found in the remote corners of the web. They are perfect for a <strong>short coffee break</strong> or whenever you’re up for a little bit of diversion. We hope you’ll enjoy them. Oh, and if you’ve come across a website that you feel is too good to keep to yourself, please don’t hesitate to share it in the comments below. We’d love to hear about it!</p>
+
+<h2 id="plant-guides-from-a-to-z">Plant Guides, From A To Z</h2>
+
+<p>Every office, and that includes home office as well, is better off with a lovely selection of beautiful plants. But which plants are easier to deal with for some of us who tend to be forgetful? Which ones require more care, and if so, what does it usually involve?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://howmanyplants.com/plant-guides">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="576"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f848cc48-7b12-4e47-80fa-dcc288faf357/plant-guides-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f848cc48-7b12-4e47-80fa-dcc288faf357/plant-guides-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f848cc48-7b12-4e47-80fa-dcc288faf357/plant-guides-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f848cc48-7b12-4e47-80fa-dcc288faf357/plant-guides-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f848cc48-7b12-4e47-80fa-dcc288faf357/plant-guides-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f848cc48-7b12-4e47-80fa-dcc288faf357/plant-guides-opt.png"
+			
+			sizes="100vw"
+			alt="Plant Guides, From A To Z"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://howmanyplants.com/plant-guides'>How Many Plants</a>)
+    </figcaption>
+  
+</figure>
+
+<p><a href="https://howmanyplants.com/plant-guides">How Many Plants</a> is a wonderful resource that covers all these questions well. It provides a thorough overview of all popular plants, sorted alphabetically and by care difficulty. You can even filter out plants based on their features (size, format, placement), plant type (traits, origins, pet-friendly) and leaf look (shape and surface). A great reference site to keep nearby.</p>
+
+<h2 id="covid-art-museum">Covid Art Museum</h2>
+
+<p>Of course, design isn’t quite like art. While design tries to solve a particular problem, art makes us think and feel &mdash; provoking us and questioning the status quo. But art can also bring around <strong>new perspectives</strong> and change in times when it’s so much needed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://covidartmuseum.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="545"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ac47c131-e250-4261-9e8a-f85c066158b1/covid-art-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ac47c131-e250-4261-9e8a-f85c066158b1/covid-art-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ac47c131-e250-4261-9e8a-f85c066158b1/covid-art-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ac47c131-e250-4261-9e8a-f85c066158b1/covid-art-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ac47c131-e250-4261-9e8a-f85c066158b1/covid-art-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ac47c131-e250-4261-9e8a-f85c066158b1/covid-art-opt.png"
+			
+			sizes="100vw"
+			alt="Covid Art Museum"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://covidartmuseum.com/'>Covid Art Museum</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The <a href="https://covidartmuseum.com/">Covid Art Museum</a> is a growing online exhibition of art born during Covid-19 quarantine, now with 238 contributions by people from all around the world. Often it’s an attempt to cope with the world around us, and perhaps take a slightly different perspective of how the changed world changed our perception of the world and our lives.</p>
+
+<h2 id="museum-of-annoying-experiences">Museum Of Annoying Experiences</h2>
+
+<p>How often do you feel frustrated these days? How often do you open a browser window just to <strong>find yourself stuck</strong> identifying fire hydrants and understanding confusing sentences? Or perhaps calling a customer support service just to be put on hold for half an hour (at best)?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://annoyingmuseum.zendesk.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="441"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8d91df0c-b3c0-45a6-935d-56108054e3c4/annoying-experiences-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8d91df0c-b3c0-45a6-935d-56108054e3c4/annoying-experiences-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8d91df0c-b3c0-45a6-935d-56108054e3c4/annoying-experiences-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8d91df0c-b3c0-45a6-935d-56108054e3c4/annoying-experiences-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8d91df0c-b3c0-45a6-935d-56108054e3c4/annoying-experiences-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8d91df0c-b3c0-45a6-935d-56108054e3c4/annoying-experiences-opt.png"
+			
+			sizes="100vw"
+			alt="Museum of Annoying Experiences"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://annoyingmuseum.zendesk.com/'>The Museum of Annoying Experiences</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The <a href="https://annoyingmuseum.zendesk.com/">Museum of Annoying Experiences</a> takes us on a journey to the year 3000 when bad customer service is nothing but a distant memory, only observable in the exhibits that show how things used to be in the past (well, today) when most interactions were incredibly annoying. Each exhibit is interactive and playful, taking a fun look at frustrations around us. Who knows: hopefully in the year 3000, all these annoying experiences will indeed be distant.</p>
+
+<h2 id="the-musical-time-machine">The Musical Time Machine</h2>
+
+<p>It’s still quite difficult to travel back in time, but fortunately, we can do so online. What if you wanted to listen to the pop charts extravaganza from the US back in 1955 or Uzbekistan in 1932? Well, <a href="https://radiooooo.com/">Radiooooo</a> has got your back (well, you might need to sign up for a free basic plan first).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://radiooooo.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="266"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5a0a3a89-ba5a-40a8-af80-f8db0554af37/radiooooo-opt.png"
+			
+			sizes="100vw"
+			alt="The Musical Time Machine"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://radiooooo.com/'>Radiooooo</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The website is a collection of songs collected over decades and now searchable, with filters by genre, speed, country, and time period. In fact, you can search by slow for chilling, fast for dancing, and weird music for bugging out &mdash; indeed, there is something for everyone! And if you want to go fancy, there is a shuffle mode, with songs picked by the curators.</p>
+
+<div data-audience="non-subscriber" data-remove="true" class="feature-panel-container"><span class="feature-panel__desc">More after jump! Continue reading below&nbsp;&darr;</span>
+<aside class="feature-panel">
+<div class="feature-panel-left-col">
+<div class="feature-panel-description"><p><strong>Web forms</strong> are at the center of every meaningful interaction, so they’re worth getting a firm handle on. Meet Adam Silver&rsquo;s <strong><a href="https://www.smashingmagazine.com/printed-books/form-design-patterns/">Form Design Patterns</a></strong>, a practical guide to designing and building forms for the web.</p>
+<a data-instant href="https://www.smashingmagazine.com/printed-books/form-design-patterns/" class="btn btn--green btn--large">Jump to table of contents&nbsp;↬</a></div>
+</div>
+<div class="feature-panel-right-col"><a data-instant href="https://www.smashingmagazine.com/printed-books/form-design-patterns/" class="feature-panel-image-link">
+<div class="feature-panel-image"><picture><source type="image/avif" srcSet="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/64e57b41-b7f1-4ae3-886a-806cce580ef9/form-design-patterns-shop-image-1-1.avif" />
+<img
+    loading="lazy"
+    decoding="async"
+    class="feature-panel-image-img"
+    src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/51e0f837-d85d-4b28-bfab-1c9a47f0ce33/form-design-patterns-shop-image.png"
+    alt="Feature Panel"
+    width="481"
+    height="698"
+/>
+</picture>
+</div>
+</a>
+</div>
+</aside>
+</div>
+
+<h2 id="ux-misconceptions-and-laws">UX Misconceptions And Laws</h2>
+
+<p>When we design experiences on the web, usually we rely on things that worked well in the past. Of course, we don’t know for sure how well our solutions worked, and we don’t know if they’d perform well next time around. But out of our experiences views emerge, and then as they find ground, they become more established over time. And sometimes, this is exactly how misconceptions appear.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://10ideesrecuesenuxdesign.castoretpollux.com/en/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="504"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b045e590-a531-49b5-a091-9fd7186a72e8/ux-misconceptions-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b045e590-a531-49b5-a091-9fd7186a72e8/ux-misconceptions-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b045e590-a531-49b5-a091-9fd7186a72e8/ux-misconceptions-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b045e590-a531-49b5-a091-9fd7186a72e8/ux-misconceptions-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b045e590-a531-49b5-a091-9fd7186a72e8/ux-misconceptions-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b045e590-a531-49b5-a091-9fd7186a72e8/ux-misconceptions-opt.png"
+			
+			sizes="100vw"
+			alt="UX Misconceptions And Laws"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://10ideesrecuesenuxdesign.castoretpollux.com/en/'>10 misconceptions on UX to get around</a>)
+    </figcaption>
+  
+</figure>
+
+<p>“<a href="https://10ideesrecuesenuxdesign.castoretpollux.com/en/">10 misconceptions on UX</a>” highlights common views and data around infinite scrolling, making everything accessible from the homepage, original design, mobile-first and user interviews, among others. Admittedly, the creators of the site are quite opinionated, and you might disagree with some statements, but the website is fun to play with, and there are dozens of random fun facts to explore as well.</p>
+
+<p>Also, if you’d like to deep-dive into common principles and heuristics of UX, Jon Yablonski has collected dozens of <a href="https://lawsofux.com/">Laws of UX</a> in his beautiful website, featuring everything from Hick’s Law and Law of Common Region to Tesler’s Law and Zeigarnik Effect. Wonderful resources worth keeping close!</p>
+
+<h2 id="the-timeline-of-the-web">The Timeline Of The Web</h2>
+
+<p>The web has been going through quite a few changes over the last three decades. You might remember Perl 5, Firebug, Backbone.js, and the end of Flash, but very often most things we’ve experienced on the web appear quite blurry, as they were changing so quickly.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://thehistoryoftheweb.com/timeline/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="517"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d1d4109e-97d0-40ea-b821-abcc1a22024a/history-of-the-web-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d1d4109e-97d0-40ea-b821-abcc1a22024a/history-of-the-web-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d1d4109e-97d0-40ea-b821-abcc1a22024a/history-of-the-web-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d1d4109e-97d0-40ea-b821-abcc1a22024a/history-of-the-web-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d1d4109e-97d0-40ea-b821-abcc1a22024a/history-of-the-web-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d1d4109e-97d0-40ea-b821-abcc1a22024a/history-of-the-web-opt.png"
+			
+			sizes="100vw"
+			alt="The Timeline Of The Web"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://thehistoryoftheweb.com/timeline/'>The History Of The Web</a>)
+    </figcaption>
+  
+</figure>
+
+<p>In <a href="https://thehistoryoftheweb.com/timeline/">The History of the Web</a>, Jay Hoffman, with illustrations by Katerina Limpitsouni, celebrates the most important events in the web’s young history. It’s an evolving timeline that charts the events on a timeline, with useful resources and links to follow-up and review. A lovely little project to keep bookmarked.</p>
+
+<h2 id="sounds-to-help-you-focus">Sounds To Help You Focus</h2>
+
+<p>Staying focused might easily be one of the biggest challenges when you need to get work done. If you’re working from home and are missing the familiar office sounds, [I Miss The Office](https://imisstheoffice.eu/) brings some **office atmosphere** into your home office &mdash; with virtual colleagues who produce typical sounds like typing, squeaking chairs, or the occasional bubbling of the watercooler.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://imisstheoffice.eu/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="518"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5cf1a563-d531-48c0-bd18-71da9d990f07/imisstheoffice-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5cf1a563-d531-48c0-bd18-71da9d990f07/imisstheoffice-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5cf1a563-d531-48c0-bd18-71da9d990f07/imisstheoffice-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5cf1a563-d531-48c0-bd18-71da9d990f07/imisstheoffice-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5cf1a563-d531-48c0-bd18-71da9d990f07/imisstheoffice-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5cf1a563-d531-48c0-bd18-71da9d990f07/imisstheoffice-opt.png"
+			
+			sizes="100vw"
+			alt="I Miss The Office"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://imisstheoffice.eu/'>I Miss The Office</a>)
+    </figcaption>
+  
+</figure>
+
+<h2 id="the-boat-a-powerful-piece-of-storytelling">The Boat: A Powerful Piece Of Storytelling</h2>
+
+<p>Some stories are so dense, so intense, that they capture you and don’t let you go. “<a href="http://www.sbs.com.au/theboat/">The Boat</a>” is such a story. Based on the short story by Nam Le, “The Boat” combines animation, audio, and ink and charcoal drawings into a powerful, interactive graphic novel.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+  
+  ">
+  
+    <a href="http://www.sbs.com.au/theboat/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="501"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/15966683-880d-47c2-8813-6cf56b77aed6/the-boat-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/15966683-880d-47c2-8813-6cf56b77aed6/the-boat-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/15966683-880d-47c2-8813-6cf56b77aed6/the-boat-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/15966683-880d-47c2-8813-6cf56b77aed6/the-boat-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/15966683-880d-47c2-8813-6cf56b77aed6/the-boat-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/15966683-880d-47c2-8813-6cf56b77aed6/the-boat-opt.png"
+			
+			sizes="100vw"
+			alt="The Boat"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      Image credit: <a href='http://www.sbs.com.au/theboat/'>The Boat</a>
+    </figcaption>
+  
+</figure>
+
+<p>The story told is the one of Mai, a girl whose parents send her alone on a boat to Australia after the Vietnam War. And, well, the storytelling experience really is exceptional. Each little element, each thoroughly applied animation contributes to creating an atmosphere that reflects the fear, despair, but also the hope that is linked to the escape. Take some time and see for yourself. It’s worth it.</p>
+
+<h2 id="interactive-timeline-in-dots">Interactive Timeline&hellip; In Dots!</h2>
+
+<p>Dots, dots, and even more dots. But these are not just any ordinary dots. Every dot is a historic event, so you can just imagine how the whole picture looks like if you step back and take a look at <a href="http://histography.io/">Histography</a>. This impressive interactive timeline spans across 14 billion years of history, from the Big Bang to the 2010s. What started out as a simple project in the <em>Bezalel Academy of Arts and Design</em> by Ronel Mor, has now turned out to be a leading example of what creative timelines can actually look like.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+  
+  ">
+  
+    <a href="http://histography.io/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="399"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/615407e4-17c2-4517-b531-317f5d43fb19/histography-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/615407e4-17c2-4517-b531-317f5d43fb19/histography-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/615407e4-17c2-4517-b531-317f5d43fb19/histography-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/615407e4-17c2-4517-b531-317f5d43fb19/histography-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/615407e4-17c2-4517-b531-317f5d43fb19/histography-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/615407e4-17c2-4517-b531-317f5d43fb19/histography-opt.png"
+			
+			sizes="100vw"
+			alt="Histography.io"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://histography.io/'>Histography.io</a>)
+    </figcaption>
+  
+</figure>
+
+<p>All of the historical events shown in the interface have been drawn from Wikipedia and new recorded events are added on a daily basis. Not only does it allow you to skip between decades to millions of years, but you can also choose to watch a variety of events which have happened in a particular period or target a specific event in time.</p>
+
+<div class="sponsors__lead-place"></div>
+
+<h2 id="designing-a-galaxy-far-far-away">Designing A Galaxy Far Far Away</h2>
+
+<p>Take 22 Illustrator files that measure 1024&#8202;&times;&#8202;465152&#8202;px combined, put in 1000 hours of work, and add the story of Star Wars Episode IV. What you’ll get is a project that will make your jaw drop: <a href="http://swanh.net/">SWANH</a>. Brought to life by illustrator and graphic novelist Martin Panchaud, SWANH tells the whole story of “Star Wars: A New Hope” in a huge infographic that requires 403.5ft (123m) of scrolling to get from top to bottom. And, well, it’s worth it.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+  
+  ">
+  
+    <a href="http://swanh.net/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="531"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b366556d-6041-427c-aa8f-2e90dea5d454/swanh-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b366556d-6041-427c-aa8f-2e90dea5d454/swanh-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b366556d-6041-427c-aa8f-2e90dea5d454/swanh-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b366556d-6041-427c-aa8f-2e90dea5d454/swanh-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b366556d-6041-427c-aa8f-2e90dea5d454/swanh-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b366556d-6041-427c-aa8f-2e90dea5d454/swanh-opt.png"
+			
+			sizes="100vw"
+			alt="SWANH"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://swanh.net/'>SWANH</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Made up of 157 images, the sheer dimensions of the piece are impressive, and so is the love to detail that Martin Panchaud put into creating the Star Wars universe. But SWANH is more than eye candy for Star Wars lovers. It’s also an experiment that wants to create a contrast to what we usually expect on the web: quickly understandable contexts and short stories. Brilliant.</p>
+
+<h2 id="design-facts-that-you-didn-t-know-about">Design Facts That You Didn’t Know About</h2>
+
+<p>Humankind has always created, however, the design craft as we know and practice it today is a rather young discipline. But that doesn’t mean it doesn’t have a lot of stories to tell. The project <a href="http://www.designfacts.org">Design Facts</a> by writer and art director Shane Bzok reveals them by serving bite-sized pieces of design history that you probably haven’t heard of yet.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+  
+  ">
+  
+    <a href="http://www.designfacts.org">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="435"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ab229aab-b9f7-455a-a414-a31c64db2a69/design-facts-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ab229aab-b9f7-455a-a414-a31c64db2a69/design-facts-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ab229aab-b9f7-455a-a414-a31c64db2a69/design-facts-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ab229aab-b9f7-455a-a414-a31c64db2a69/design-facts-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ab229aab-b9f7-455a-a414-a31c64db2a69/design-facts-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ab229aab-b9f7-455a-a414-a31c64db2a69/design-facts-opt.png"
+			
+			sizes="100vw"
+			alt="Design Facts That You Didn’t Know About"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://www.designfacts.org'>Design Facts</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Did you know, for example, that the logo for the Spanish lollipop company <em>Chupa Chups</em> was designed by Salvador Dali in 1969? That the Adobe founders named their company after a creek that ran behind the house of one of the founders? Or that the logo of the Chanel brand with its interlocking C’s originally adorned the building of a French vineyard and that Coco Chanel was granted permission by the vineyard owner to use it for her brand in the early 20’s? These are only three of the more than 130 surprising and informative design facts that Shane Bzok has collected. Perfect to squeeze into a short coffee break.</p>
+
+<h2 id="the-beauty-of-vintage-control-panels">The Beauty Of Vintage Control Panels</h2>
+
+<p>An old phone with a dial plate, a tape deck with a grid of buttons, an electricity control room with hundreds of bulbs &mdash; vintage electronics have a fascinating charm to them. In praise of all those dials, toggles and buttons that made and shaped the tech design of the past century, Stephen Coles and Norman Hathaway <a href="http://control--panel.com/">dedicated a Tumblog solely to vintage control panels</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+  
+  ">
+  
+    <a href="http://control--panel.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="500"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/29d103db-adc7-4ee4-ae50-a3a02db0c30a/vintage-control-panels-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/29d103db-adc7-4ee4-ae50-a3a02db0c30a/vintage-control-panels-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/29d103db-adc7-4ee4-ae50-a3a02db0c30a/vintage-control-panels-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/29d103db-adc7-4ee4-ae50-a3a02db0c30a/vintage-control-panels-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/29d103db-adc7-4ee4-ae50-a3a02db0c30a/vintage-control-panels-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/29d103db-adc7-4ee4-ae50-a3a02db0c30a/vintage-control-panels-opt.png"
+			
+			sizes="100vw"
+			alt="The Beauty Of Vintage Control Panels"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://control--panel.com/'>Control Panel</a>)
+    </figcaption>
+  
+</figure>
+
+<p>As you’ll see, browsing the collection feels like opening a time capsule. Apart from car dashboards and tech magazine covers of the 80s that still seem (fairly) familiar, you’ll find gems like four-buttoned remote controls from the 40s or retro-futuristic concepts, among them a smartwatch from the 80s that is essentially a shrunken PC worn on the wrist. A fun journey through the history of interface design. Leaves us with the question what people will think about our state-of-the-art gadgets and UIs in 50 years from now.</p>
+
+<h2 id="little-moments-of-happiness">Little Moments Of Happiness</h2>
+
+<p>Did you ever cool off a lion with a fan? It might sound weird, but, well, we did. And what can we say? The lion loved it! The refreshing breeze made his mane dance and brought a big smile to his face. Don’t believe it? Well, go ahead, and <a href="https://moments.epic.net/#lion">try for yourself</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+  
+  ">
+  
+    <a href="https://moments.epic.net/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="435"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/aec60ae6-5d08-47bd-ba93-9e4fd0db6e25/lion-fan-game-preview-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/aec60ae6-5d08-47bd-ba93-9e4fd0db6e25/lion-fan-game-preview-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/aec60ae6-5d08-47bd-ba93-9e4fd0db6e25/lion-fan-game-preview-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/aec60ae6-5d08-47bd-ba93-9e4fd0db6e25/lion-fan-game-preview-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/aec60ae6-5d08-47bd-ba93-9e4fd0db6e25/lion-fan-game-preview-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/aec60ae6-5d08-47bd-ba93-9e4fd0db6e25/lion-fan-game-preview-opt.png"
+			
+			sizes="100vw"
+			alt="Moments of Happiness"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (<a href='https://moments.epic.net/'>Moments of Happiness</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The lion is part of the WebGL project named “<a href="https://moments.epic.net/">Moments of Happiness</a>”, which was brought to life by EPIC Agency. He and five of his animal friends &mdash; a sneezing dragon, a playful cat, a paranoid bird, a valorous rabbit and a mighty fish &mdash; are bound to put a smile to your face, too, as you interact with them. To breathe life into the odd yet lovable bunch, the experiments use Three.js and the GSAP Library. If you want to take a closer look under the hood, the source codes are available on <a href="http://codepen.io/Yakudoo">Codepen</a>. Watch out, though: They are not fully optimized and might not work in some browsers or devices.</p>
+
+<h2 id="monochromatic-eye-candy">Monochromatic Eye Candy</h2>
+
+<p>Who doesn’t love some good eye candy? If you need some fresh inspiration, be sure to stop by the Tumblr of <a href="http://theafrix.tumblr.com/">The Afrix</a>. Curated by designer Tom Wysocki, the Tumblr resembles a well-balanced exhibition of opposites &mdash; black and white, strict geometry and fluent, organic shapes &mdash; joining up to build a harmonious whole.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://theafrix.tumblr.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="449"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/01292f62-9306-4b16-99e1-d5902c5af987/afrix-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/01292f62-9306-4b16-99e1-d5902c5af987/afrix-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/01292f62-9306-4b16-99e1-d5902c5af987/afrix-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/01292f62-9306-4b16-99e1-d5902c5af987/afrix-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/01292f62-9306-4b16-99e1-d5902c5af987/afrix-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/01292f62-9306-4b16-99e1-d5902c5af987/afrix-opt.png"
+			
+			sizes="100vw"
+			alt="The Afrix"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://theafrix.tumblr.com/'>The Afrix</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Among the works, you’ll find actual designs for portfolio websites and detailed illustrations, but also rather abstract and seemingly random digital experiments. It’s that mix of the unforeseen that makes the showcase so refreshing despite its monochromatic color palette. Beautiful works of art with a mysterious touch.</p>
+
+<h2 id="an-alphabetical-adventure">An Alphabetical Adventure</h2>
+
+<p>“A” is for “Albert”, “B” is for “Bounce”, “C” for “Cowabunga”. If you have no idea what all of this is about, well, no worries, we’ll tell you: it’s the beginning of a very special piece of eye candy. Brought to life by design agency Studio Lovelock, “<a href="http://www.aisforalbert.com/">A Is For Albert</a>” explores the moments of happiness &mdash; and the little mishaps &mdash; that life with kids brings along &mdash; with an animated alphabet.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://www.aisforalbert.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="435"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/3bbeaf14-741c-43fc-b615-ab6b330fa48b/albert-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/3bbeaf14-741c-43fc-b615-ab6b330fa48b/albert-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/3bbeaf14-741c-43fc-b615-ab6b330fa48b/albert-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/3bbeaf14-741c-43fc-b615-ab6b330fa48b/albert-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/3bbeaf14-741c-43fc-b615-ab6b330fa48b/albert-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/3bbeaf14-741c-43fc-b615-ab6b330fa48b/albert-opt.png"
+			
+			sizes="100vw"
+			alt="A Is For Albert"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://www.aisforalbert.com/'>A Is For Albert</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Each letter from A to Z tells the story of how Albert, a blonde little boy, explores the world in his own cute yet chaotic (and seen from his parents’ perspective sometimes maybe even a bit annoying) way. He decorates the livingroom wallpaper with his brush artworks, for example, and shows his love for the family cat by hugging it a bit too tight. Simple geometric shapes and a soft color palette are everything the project needs to breathe life into Albert’s (and his parents’) everyday adventures and make us smile.</p>
+
+<div class="sponsors__lead-place"></div>
+
+<h2 id="blending-past-and-present">Blending Past And Present</h2>
+
+<p>Maps can do more than help us find the way. They are witnesses of their time and, when we look at old maps, it’s like taking a trip back into long forgotten days. Now imagine that you had a magic spyglass that could show you what your neighborhood looked like 100 years ago. You’d only need to get out a recent map, hover your spyglass over it, and see what has changed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://maps.nls.uk/geo/explore/spy/index.cfm#zoom=16.609999999999985&amp;lat=51.4838&amp;lon=-0.1238&amp;layers=168&amp;b=1">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="477"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/74a5a24f-5aab-4738-b2fc-1006225dbaac/historic-maps-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/74a5a24f-5aab-4738-b2fc-1006225dbaac/historic-maps-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/74a5a24f-5aab-4738-b2fc-1006225dbaac/historic-maps-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/74a5a24f-5aab-4738-b2fc-1006225dbaac/historic-maps-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/74a5a24f-5aab-4738-b2fc-1006225dbaac/historic-maps-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/74a5a24f-5aab-4738-b2fc-1006225dbaac/historic-maps-opt.png"
+			
+			sizes="100vw"
+			alt="Georeferenced Map"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://maps.nls.uk/geo/explore/spy/index.cfm#zoom=16.609999999999985&lat=51.4838&lon=-0.1238&layers=168&b=1'>National Library of Scotland</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Well, actually, that’s possible. The National Library of Scotland provides a <a href="http://maps.nls.uk/geo/explore/spy/index.cfm#zoom=16.609999999999985&amp;lat=51.4838&amp;lon=-0.1238&amp;layers=168&amp;b=1">browser-based tool</a> that lets you jump between the same area on a recent and a vintage map just looking through a (digital) spyglass. The service works for maps of Great Britain, Scotland, England, and Wales. A fantastic way to see the world (and maybe even your neighborhood) from a different perspective.</p>
+
+<h2 id="do-you-have-the-design-eye">Do You Have The Design Eye?</h2>
+
+<p>So, you think no-one is better than you when it comes to assessing if something is centered or slightly off? Well, then here’s a challenge for you: <a href="https://www.supremo.co.uk/designers-eye/"><em>It’s Centred That</em></a>. The little game created by the folks at the UX design and web development studio Supremo takes your design eye to the ultimate test: You’re presented with shapes and need to decide if the dot is placed in the center. But beware, what sounds easy, is actually harder than you’d think. Will you make it through all 10 levels?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://www.supremo.co.uk/designers-eye/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="453"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f65b39d6-8c33-4ebc-b5a9-40eaa95c9ca4/design-eye-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f65b39d6-8c33-4ebc-b5a9-40eaa95c9ca4/design-eye-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f65b39d6-8c33-4ebc-b5a9-40eaa95c9ca4/design-eye-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f65b39d6-8c33-4ebc-b5a9-40eaa95c9ca4/design-eye-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f65b39d6-8c33-4ebc-b5a9-40eaa95c9ca4/design-eye-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f65b39d6-8c33-4ebc-b5a9-40eaa95c9ca4/design-eye-opt.png"
+			
+			sizes="100vw"
+			alt="It’s Centred That"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://www.supremo.co.uk/designers-eye/'>It’s Centred That</a>)
+    </figcaption>
+  
+</figure>
+
+<h2 id="patterns-in-islamic-art">Patterns In Islamic Art</h2>
+
+<p>The Islamic world has brought forth an incredibly rich heritage of architectural decoration, a heritage that deserves to be better known and that has a lot to offer not only to art historians, as David Wade points out. To make the beauty accessible to everyone, he started <a href="https://patterninislamicart.com/"><em>Pattern in Islamic Art</em></a>, a showcase of more than 4,000 images of patterns and other design features drawn from this artistic tradition. No matter if you are up for some eye candy or want to investigate the underlying construction of the complex geometries, the site is a real treasure chest.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://patterninislamicart.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="497"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03601b24-b83d-4744-9d42-1e6061b59f3d/patterns-islamic-art-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03601b24-b83d-4744-9d42-1e6061b59f3d/patterns-islamic-art-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03601b24-b83d-4744-9d42-1e6061b59f3d/patterns-islamic-art-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03601b24-b83d-4744-9d42-1e6061b59f3d/patterns-islamic-art-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03601b24-b83d-4744-9d42-1e6061b59f3d/patterns-islamic-art-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/03601b24-b83d-4744-9d42-1e6061b59f3d/patterns-islamic-art-opt.png"
+			
+			sizes="100vw"
+			alt="Pattern in Islamic Art"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://patterninislamicart.com/'>Pattern in Islamic Art</a>)
+    </figcaption>
+  
+</figure>
+
+<h2 id="print-design-inspiration-from-the-past">Print Design Inspiration From The Past</h2>
+
+<p>Typography, layout, color, patterns &mdash; vintage magazines provide an endless source of inspiration. If you’re up for some eye candy, the folks at Present &amp; Correct have collected a selection of print design goodies over time.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://blog.presentandcorrect.com/industrial-art-news">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="414"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/21359f29-280e-4863-b7ed-2aa01099f15f/vintage-print-design-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/21359f29-280e-4863-b7ed-2aa01099f15f/vintage-print-design-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/21359f29-280e-4863-b7ed-2aa01099f15f/vintage-print-design-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/21359f29-280e-4863-b7ed-2aa01099f15f/vintage-print-design-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/21359f29-280e-4863-b7ed-2aa01099f15f/vintage-print-design-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/21359f29-280e-4863-b7ed-2aa01099f15f/vintage-print-design-opt.png"
+			
+			sizes="100vw"
+			alt="Industrial Art News magazine covers"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://blog.presentandcorrect.com/industrial-art-news'>Present &amp; Correct</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Among them are covers from the East German design magazine <a href="http://blog.presentandcorrect.com/form-zweck"><em>Form + Zweck</em></a> which was published between 1956 and 1990, just like covers of Switzerland’s oldest typographic journal <a href="http://blog.presentandcorrect.com/typographische-monatsblatter"><em>Typographische Monatsblätter</em></a>. The Japanese magazine <a href="http://blog.presentandcorrect.com/industrial-art-news"><em>Industrial Art News</em></a> with its bold and vibrant cover art is also part of the collection. For some more contemporary inspiration, be sure to also check out the site of the Japanese <a href="http://www.idea-mag.com/en/idea_magazine/"><em>IDEA magazine</em></a> where you can peek inside past issues and even browse them by keyword. Eye candy to get lost in.</p>
+
+<h2 id="a-curated-gallery-of-patterns">A Curated Gallery Of Patterns</h2>
+
+<p>When bold colors meet subtle palettes, organic curves appear next to sharp-edged geometric forms, and minimalist designs face playful artworks, inspiration isn’t far. If you’re up for a surprise bag of inspiration, <a href="https://patterncollect.com/">Pattern Collect</a> is for you. The site curates beautifully illustrated patterns created by designers from across the globe.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://patterncollect.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="435"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e6e4f838-73d1-4a28-8c17-56b16ad45343/pattern-inspiration-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e6e4f838-73d1-4a28-8c17-56b16ad45343/pattern-inspiration-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e6e4f838-73d1-4a28-8c17-56b16ad45343/pattern-inspiration-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e6e4f838-73d1-4a28-8c17-56b16ad45343/pattern-inspiration-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e6e4f838-73d1-4a28-8c17-56b16ad45343/pattern-inspiration-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e6e4f838-73d1-4a28-8c17-56b16ad45343/pattern-inspiration-opt.png"
+			
+			sizes="100vw"
+			alt="Pattern Collect"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://patterncollect.com/'>Pattern Collect</a>)
+    </figcaption>
+  
+</figure>
+
+<p>You can browse the showcase by tag and, if you like an artwork, a link takes you to the original on Dribbble or Behance where you can learn more about the illustrator and their work. Who knows, maybe this will even turn out to be the opportunity to find creative talent to work with on an upcoming project?</p>
+
+<h2 id="a-trip-back-to-the-early-days-of-computing">A Trip Back To The Early-Days Of Computing</h2>
+
+<p>You’re in the mood for some tech nostalgia? Well, then <a href="http://www.pcjs.org/">PCjs</a> will be your kind of thing. The open-source project revives the times when computers came with a monochrome display and ran on 4.77Mhz and 64KB of RAM. And the best: It’s no showcase, but you can actually interact with the machines right in your browser. The simulations of the Original IBM PC from 1981 and the OSI Challenger 1P from 1978 were written entirely in JavaScript and require no additional plugins &mdash; no Java, no Flash.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://www.pcjs.org/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="499"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e2273402-842c-4820-a8e6-71d6b4951ddc/pcjs-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e2273402-842c-4820-a8e6-71d6b4951ddc/pcjs-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e2273402-842c-4820-a8e6-71d6b4951ddc/pcjs-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e2273402-842c-4820-a8e6-71d6b4951ddc/pcjs-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e2273402-842c-4820-a8e6-71d6b4951ddc/pcjs-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e2273402-842c-4820-a8e6-71d6b4951ddc/pcjs-opt.png"
+			
+			sizes="100vw"
+			alt="PCjs: A Trip Back To The Early-Days Of Personal Computing"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://www.pcjs.org/'>PCjs</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The pre-configured machines are ready to run BASIC, DOS, Windows 1.01, and assorted non-DOS software, and, if that’s not enough control for you yet, you can even build your own PC. The goal of the project is to help people understand how these early computers worked and to make it easy to experiment with them. It also provides a platform for running and analyzing older software. Now that’s really a trip down the memory lane.</p>
+
+<h2 id="a-rainbow-of-cover-artwork">A Rainbow Of Cover Artwork</h2>
+
+<p>By pairing hex color values with album cover art of 2020, you’ll have the foundation for a very special project: <a href="http://albumcolors.com/">Album Colors Of The Year</a>. It arranges some of last year’s album releases by color to create a rainbow of cover artwork.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://albumcolors.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="547"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/028e19b3-a350-4948-8db0-a55cff9f48a3/albumcolors-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/028e19b3-a350-4948-8db0-a55cff9f48a3/albumcolors-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/028e19b3-a350-4948-8db0-a55cff9f48a3/albumcolors-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/028e19b3-a350-4948-8db0-a55cff9f48a3/albumcolors-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/028e19b3-a350-4948-8db0-a55cff9f48a3/albumcolors-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/028e19b3-a350-4948-8db0-a55cff9f48a3/albumcolors-opt.png"
+			
+			sizes="100vw"
+			alt="A Rainbow Of Cover Artwork"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://albumcolors.com/'>Album Colors</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Lady Gaga’s album “Chromatica”, for instance, is a case of <code>#ed4c73</code>, Suuns’ “Fiction” shines in <code>#e489b3</code>, and Avalon Emerson’s “DJ-Kicks” screams <code>#f8bb04</code>. In times when album covers often live rather unnoticed in the corner of our smartphone screens, it is nice to see their artwork in the center of attention for a change. A great place to seek fresh inspiration &mdash; or just discovering some new tunes to get you through a lengthy coding session.</p>
+
+<h2 id="teletext-time-travel">Teletext Time Travel</h2>
+
+<p>Do you remember the times when you switched to the teletext for the weather forecast or the sports results? The loud colors on the black background, pixel art graphics, and flashing text? (Well, you might not, and it’s perfectly fine!) The <a href="http://teletext.mb21.co.uk/gallery/">Teletext Museum</a> is the perfect place to revive these memories or discover them (if you live outside Europe, for example).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://teletext.mb21.co.uk/gallery/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="583"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b96e2cd2-e72c-4852-b563-f737c4769d84/teletext-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b96e2cd2-e72c-4852-b563-f737c4769d84/teletext-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b96e2cd2-e72c-4852-b563-f737c4769d84/teletext-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b96e2cd2-e72c-4852-b563-f737c4769d84/teletext-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b96e2cd2-e72c-4852-b563-f737c4769d84/teletext-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b96e2cd2-e72c-4852-b563-f737c4769d84/teletext-opt.png"
+			
+			sizes="100vw"
+			alt="Teletext Time Travel"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://teletext.mb21.co.uk/gallery/'>The Teletext Museum</a>)
+    </figcaption>
+  
+</figure>
+
+<p>If we didn’t have the web, most of us would still be teletext designers and developers since essentially each teletext page is a box with content in it. Sounds familiar? Well, the gallery with images from teletext services from around the world illustrates how the interface design has evolved over time and a timeline gives you more information on what exactly changed and how.</p>
+
+<p>If you ever wanted to take on the role of a teletext designer, well, you can do that, too. Jason Robertson who <a href="http://www.transdiffusion.org/2016/01/07/teletext-time-travel">recovers old teletext data from VHS cassettes</a> in a complicated and time-consuming process provides a <a href="http://www.uniquecodeanddata.co.uk/teletext76/">plethora of teletext pages</a> from the 80’s and 90’s. Some of them can be edited right in the browser. The process needs some getting used to, but it’s definitely a fun trip back in time.</p>
+
+<h2 id="the-lives-of-famous-painters">The Lives Of Famous Painters</h2>
+
+<p>When we hear names like Picasso, Dalí, or Miró, we immediately remember some of their paintings. But what do we actually know about the artists behind the masterpieces? About their lives and love, the events that shaped them and their works? To visualize painter’s lives, information designer Giorgia Lupi and her team at Accurat teamed up with illustrator Michaela Buttignol. The result of the collaboration is a stunning <a href="https://www.brainpickings.org/index.php/2013/06/07/painters-lives-accurat-giorgia-lupi/">series of minimalist infographics</a> that boil the biographies of ten famous painters down to their cornerstones.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://www.brainpickings.org/index.php/2013/06/07/painters-lives-accurat-giorgia-lupi/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="485"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/227cacb2-675d-4b1f-aa2e-890b7e05bec4/painters-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/227cacb2-675d-4b1f-aa2e-890b7e05bec4/painters-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/227cacb2-675d-4b1f-aa2e-890b7e05bec4/painters-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/227cacb2-675d-4b1f-aa2e-890b7e05bec4/painters-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/227cacb2-675d-4b1f-aa2e-890b7e05bec4/painters-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/227cacb2-675d-4b1f-aa2e-890b7e05bec4/painters-opt.png"
+			
+			sizes="100vw"
+			alt="Visualizing Painter’s Lives"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://www.brainpickings.org/index.php/2013/06/07/painters-lives-accurat-giorgia-lupi/'>Giorgia Lupi</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The visualizations depict key moments &mdash; births, deaths, love affairs, marriages, children, travels &mdash; but also interesting tidbits such as astrological sign, left/right handedness as well as  connections and influences. By picking up the characteristic colors and other stylistic preferences of each artist, the designs also reflect the painters’ styles. A fun way to dive deeper into the history of art. If you’d like to learn more about creating engaging infographics like this one, you should also check out Giorgia Lupi’s <a href="https://medium.com/accurat-studio/beautiful-reasons-c1c6926ab7d7">article on the aesthetics of data narratives</a>.</p>
+
+<h2 id="the-museum-of-the-world">The Museum Of The World</h2>
+
+<p>The Rosetta Stone, the Parthenon sculptures, Egyptian mummies &mdash; all of them cornerstones of human culture which can be admired in the British Museum today. Comprising more than 2,000,000 years of human history, its collection is exceptional and one of the largest of its kind. To make that cultural heritage accessible to more people from all over the world, the British Museum has partnered up with Google. The result: the <a href="https://britishmuseum.withgoogle.com/">Museum Of The World</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://britishmuseum.withgoogle.com/">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="491"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ffa394a0-060c-4842-8485-2397367fe56e/museum-of-the-world-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ffa394a0-060c-4842-8485-2397367fe56e/museum-of-the-world-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ffa394a0-060c-4842-8485-2397367fe56e/museum-of-the-world-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ffa394a0-060c-4842-8485-2397367fe56e/museum-of-the-world-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ffa394a0-060c-4842-8485-2397367fe56e/museum-of-the-world-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ffa394a0-060c-4842-8485-2397367fe56e/museum-of-the-world-opt.png"
+			
+			sizes="100vw"
+			alt="The Museum Of The World"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='https://britishmuseum.withgoogle.com/'>Museum of the World</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The WebGL-powered desktop experience explores connections between the world’s cultures by showcasing exhibits that shaped human history. As you travel deeper into the history of mankind with each scroll, you can browse the artefacts according to type and area of origin &mdash; no matter where in the world they might be located. Stunning.</p>
+
+<h2 id="bringing-imaginations-to-life">Bringing Imaginations To Life</h2>
+
+<p>Guess what happens if 100 kids draw monsters and 100 illustrators bring those imaginations to life? Probably something hilarious and very refreshing. Katherine Johnson did just that: She invites Elementary students to draw monsters, and once their creations have taken shape, she works with illustrators to bring them to life in their unique artistic styles.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="http://www.gomonsterproject.com/monster-gallery">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="499"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/54643c9a-4a51-41ce-acc5-5bc4a108cbe1/monsters-opt.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/54643c9a-4a51-41ce-acc5-5bc4a108cbe1/monsters-opt.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/54643c9a-4a51-41ce-acc5-5bc4a108cbe1/monsters-opt.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/54643c9a-4a51-41ce-acc5-5bc4a108cbe1/monsters-opt.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/54643c9a-4a51-41ce-acc5-5bc4a108cbe1/monsters-opt.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/54643c9a-4a51-41ce-acc5-5bc4a108cbe1/monsters-opt.png"
+			
+			sizes="100vw"
+			alt="Monster Gallery"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      (Image credit: <a href='http://www.gomonsterproject.com/monster-gallery'>The Monster Project</a>)
+    </figcaption>
+  
+</figure>
+
+<p>The ultimate goal of <a href="http://www.gomonsterproject.com/monster-gallery">The Monster Project</a> as the project is called is to help children recognize the value of their ideas and make them feel excited about the creative potential of their own minds. At the moment, the site features over 100 monsters created by over 100 artists from all over the world. Now, are you feeling inspired already?</p>
+
+<div class="signature">
+  <img src="https://www.smashingmagazine.com/images/logo/logo--red.png" alt="Smashing Editorial" width="35" height="46" loading="lazy" decoding="async" />
+  <span>(vf, cm, il)</span>
+</div>
+
+
+
+						
+							<div class="category__related--alt">
+								<span class="italic grey mrs mbm block">Explore more on</span>
+								<nav class="subnav ib" role="navigation">
+									<ul class="subnav__primary subnav__subtags flex flex-wrap">
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/user-experience">User Experience</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/showcases">Showcases</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/inspiration">Inspiration</a></li>
+									
+									</ul>
+								</nav>
+							</div>
+      			
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <link href="/css/non-critical-article-manual-felix.css" media="print" onload="this.media='all'" rel="stylesheet">
+      <link href="/css/article-dark-mode-v3.css" media="(prefers-color-scheme: dark)" rel="stylesheet">
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+
+      
+        <div id="sponsors-article-end" data-impression="true" class="c-promo-box c-promo-box--ad c-promo-box--wide sponsors sponsors__row hidden sponsors__external" data-audience="non-subscriber" data-remove="true"></div>
+      
+
+			
+				<div id="promo-article-end hidden">
+					
+						
+
+<div class="book-grid">
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/the-smashing-newsletter/"><img loading="lazy" width="202" height="266" src="/images/smashing-cat/cat-in-a-chair--tall.svg" alt="Smashing Newsletter"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/the-smashing-newsletter/">
+				Smashing Newsletter
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Tips on front-end &amp; UX, delivered weekly in your inbox. Just the things you can actually use.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="https://www.smashingconf.com/online-workshops/"><img loading="lazy" width="202" height="266" src="https://www.smashingmagazine.com/images/smashing-cat/cat-explorer.svg" alt="Front-End &amp; UX Workshops, Online"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="https://www.smashingconf.com/online-workshops/">
+				Front-End &amp; UX Workshops, Online
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			With practical takeaways, live sessions, video recordings and a friendly Q&amp;A.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/printed-books/"><img loading="lazy" width="202" height="266" src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c2f2c6d6-4e85-449a-99f5-58bd053bc846/typescript-shop-cover-opt.png" alt="TypeScript in 50 Lessons"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/printed-books/">
+				TypeScript in 50 Lessons
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Everything TypeScript, with code walkthroughs and examples. And other printed books.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+</div>
+
+
+
+					
+				</div>
+			
+
+      
+        <div data-component="CommentsArea" id="comments-showcase-lovely-little-websites" data-thread="/2021/11/showcase-lovely-little-websites/" data-date="2021-11-24 12:00:00 &#43;0000 UTC"></div>
+
+      
+
+    </div>
+  </article>
+
+    </main>
+
+		
+			
+				
+				
+				<div data-component="CookieBanner"></div>
+
+  <div id="cart" class="cart-wrapper" data-component="MiniCart"></div>
+
+
+<footer class="main-footer">
+  <div class="container">
+
+    <div class="col-12">
+      <div class="footer__topics open">
+    <h4 class="footer__topics__title" id="topics">Browse All Smashing Magazine Topics</h4>
+    <ul class="footer__topics__list">
+      
+        <li class="footer__topics__item">
+            <a href="/category/accessibility">Accessibility</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/android">Android</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/animation">Animation</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/apps">Apps</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/css">CSS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design">Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-patterns">Design Patterns</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-systems">Design Systems</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/e-commerce">E-Commerce</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/freebies">Freebies</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/graphics">Graphics</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/html">HTML</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/illustrator">Illustrator</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/inspiration">Inspiration</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ios">iOS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/javascript">JavaScript</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/mobile">Mobile</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/pattern-libraries">Pattern Libraries</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/performance">Performance</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/photoshop">Photoshop</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/plugins">Plugins</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/react">React</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/responsive-design">Responsive Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/service-workers">Service Workers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/sketch">Sketch</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/typography">Typography</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ui">UI</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/usability">Usability</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/user-experience">User Experience</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wallpapers">Wallpapers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/web-design">Web Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wordpress">WordPress</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/workflow">Workflow</a>
+        </li>
+      
+    </ul>
+</div>
+
+    </div>
+
+    <div class="col-12">
+      <div class="footer__notes">
+        <p>With a commitment to quality content for the design community.</p>
+        <p>Founded by Vitaly Friedman and Sven Lennartz. <span class="lining-figures">2006–2022</span>.</p>
+        <p>Smashing is proudly running on <a href="https://www.netlify.com/?utm_source=link&utm_medium=parter&utm_campaign=sm-footer">Netlify</a>.</p>
+        <p>Fonts by <a href="http://latinotype.com/">Latinotype</a>.</p>
+      </div>
+
+      <ul class="footer__links">
+        <li>&#9998; <a href="/write-for-us/">Write for us</a>
+        </li>
+        <li>
+          <a href="/contact/">Contact us</a>
+        </li>
+        <li>
+          <a href="/about/">About us (Impressum)</a>
+        </li>
+        <li>
+          <a href="/privacy-policy/">Privacy policy</a>
+        </li>
+        <li>
+          <a href="/auth/">Membership login</a>
+        </li>
+        <li>
+            <a href="/delivery-times/">Delivery times</a>
+          </li>
+            <li>
+          <a href="mailto:&#097;&#100;&#118;&#101;&#114;&#116;&#105;&#115;&#105;&#110;&#103;&#064;&#115;&#109;&#097;&#115;&#104;&#105;&#110;&#103;&#109;&#097;&#103;&#097;&#122;&#105;&#110;&#101;&#046;&#099;&#111;&#109;?subject=Let’s talk about advertising">Advertise</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+<div class="back-to-top-wrapper" id="back_top">
+	<a href="#top" data-scroll="#top" class="back-to-top" title="Back to top">
+		<svg viewBox="0 0 100 100" width="25px" height="25px" tabindex="-1" role="img" aria-labelledby="title">
+			<title id="title">Back to top</title>
+			<path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"></path>
+			<image src="/images/back-to-top-arrow.png" alt="Back to top arrow" xlink:href="" width="100%" height="100%"></image>
+		</svg>
+	</a>
+</div>
+
+
+</footer>
+
+<div data-handler="PostLoad"></div>
+
+<script src="/js/app.js" defer importance="low"></script>
+<script>
+  
+  window.PRERELEASES = {}
+  window.PAGE_TYPE = "articles"
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+      	window.PRERELEASES['touch-design-for-mobile-interfaces'] = '2022-01-11T13:00:00.000Z';
+			
+    
+  
+
+  if ('serviceWorker' in navigator && !localStorage.getItem('no_sw')) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => {
+          window.caches
+            .open('smashing-mag-offline-articles')
+            .then(cache => cache.keys())
+            .then(keys => {
+              var savedOffline = document.querySelector('.meta-box--article')
+              if (savedOffline && keys && keys.length) {
+                var currentPageSaved = keys.find(key =>  key.url === window.location.href)
+              }
+
+              var list = document.querySelector('.offline-articles-list')
+              if (list && keys && keys.length) {
+                var listItem = document.createElement('li')
+
+                var innerList = keys
+                  .map(function(key) {
+                    return (
+                      '<li><a href="' + key.url + '">' + key.url + '</a></li>'
+                    )
+                  })
+                  .join('')
+                listItem.innerHTML =
+                  'Recently viewed aritcles: <ul>' + innerList + '</ul>'
+                list.appendChild(listItem)
+              }
+            })
+        })
+        .catch(function(err) {
+          console.error('Failed to load service worker')
+        })
+    })
+  }
+</script>
+
+<div hidden>
+
+
+</div>
+
+<link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+
+
+
+<script class="js-additional" importance="low" src="/js/instantpage.js" type="module" defer></script>
+<script class="js-additional" importance="low" src="/js/ga.js" defer></script>
+<script class="js-additional" importance="low" src="https://www.google-analytics.com/analytics.js" defer></script>
+<script class="js-additional" importance="low" type="module" src="/js/web-vitals-tracking.js"></script>
+
+			
+		
+
+  </body>
+</html>
