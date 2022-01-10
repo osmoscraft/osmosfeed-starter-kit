@@ -1,0 +1,33 @@
+name: Build site on schedule or main branch update
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # Adjust refresh schedule here. By default, it runs once per day.
+    # Syntax reference: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#schedule
+    # Recommended tool: https://crontab.guru/
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: "16"
+      - name: Install dependencies
+        run: npm i
+      - name: Build the feed
+        run: npm run build
+      - name: Commit changes to main branch
+        run: |
+          git config --global user.email "no-reply@osmosfeed.org"
+          git config --global user.name "osmosfeed bot"
+          git add -A
+          git commit -m "Workflow update"
+          git push

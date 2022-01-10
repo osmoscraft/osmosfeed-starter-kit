@@ -4,7 +4,7 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "start": "osmosfeed"
+    "build": "osmosfeed"
   },
   "keywords": [],
   "author": "",
