@@ -1,0 +1,4 @@
+node_modules
+
+# Ignore lock file in order to auto-update
+package-lock.json

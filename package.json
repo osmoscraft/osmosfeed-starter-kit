@@ -1,0 +1,15 @@
+{
+  "name": "osmosfeed-starter-kit",
+  "version": "1.0.0",
+  "description": "",
+  "private": "true",
+  "scripts": {
+    "start": "osmosfeed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@osmosfeed/cli": "0.0.1-alpha.1"
+  }
+}
