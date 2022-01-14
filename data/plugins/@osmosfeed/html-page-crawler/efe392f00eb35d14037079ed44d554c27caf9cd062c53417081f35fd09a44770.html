@@ -1,0 +1,1937 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+
+    
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+        <title>Building A Web Code Editor — Smashing Magazine</title>
+      
+      
+
+
+<link rel="preconnect" href="https://cloud.netlifyusercontent.com"/>
+<link rel="preconnect" href="https://smashingcomments.netlify.app"/>
+<link rel="preconnect" href="https://res.cloudinary.com"/>
+<link rel="preconnect" href="https://www.google-analytics.com/"/>
+<link rel="preconnect" href="https://storage.googleapis.com"/>
+
+      
+
+
+
+
+
+
+    
+
+    
+      
+
+<style>
+  @font-face{font-family:Elena;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff")}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff");font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic;font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700;font-display:optional}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic}@font-face{font-family:ElenaLCP;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic;font-display:optional}@font-face{font-family:Mija;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff")}@font-face{font-family:MijaLCP;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff");font-display:optional}@font-face{font-family:Mija;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700}@font-face{font-family:MijaLCP;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700;font-display:optional}
+</style>
+
+<script>
+
+  var fontsInServiceWorker = sessionStorage.foutFontsStage1Loaded && sessionStorage.foutFontsStage2Loaded || ('serviceWorker' in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === 'activated')
+  if (!fontsInServiceWorker && 'fonts' in document) {
+    function fetchFonts(fonts) {
+      return Promise.all(fonts.map(function (font) {
+        return document
+          .fonts
+          .load(font);
+      }));
+    }
+
+    if( sessionStorage.foutFontsStage2Loaded ) {
+			document.documentElement.className += " wf-loaded-stage2";
+		} else {
+      sessionStorage.foutFontsStage1Loaded = true;
+    };
+  }
+
+
+
+  if ("fonts" in document && !("connection" in navigator && navigator.connection.saveData)) {
+		
+		let font = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format('woff2')"
+		);
+		let fontBold = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+		let fontItalic = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format('woff2')",
+			{ style: "italic" }
+		);
+		
+		
+		
+		
+		let font2Bold = new FontFace(
+			"Mija",
+			"url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+
+		
+		let loadedFonts = Promise.all([
+			font.load(),
+			
+			fontBold.load(),
+			font2Bold.load(),
+			fontItalic.load()
+		]).then(result => {
+			result.forEach(font => document.fonts.add(font));
+			document.documentElement.classList.add('wf-loaded-stage2');
+			sessionStorage.foutFontsStage2Loaded = true;
+		}).catch(error => {
+			throw new Error(`Error caught: ${error}`);
+		});
+
+  }
+
+  if (
+    (sessionStorage.foutFontsStage1Loaded &&
+      sessionStorage.foutFontsStage2Loaded) ||
+    ('serviceWorker' in navigator &&
+      navigator.serviceWorker.controller !== null &&
+      navigator.serviceWorker.controller.state === 'activated')
+  ) {
+    var docEl = document.documentElement
+    
+    docEl.classList.add('wf-loaded-stage2')
+  }
+
+  if (
+    !'querySelector' in document &&
+    'addEventListener' in window &&
+    'getComputedStyle' in window
+  ) {
+    window.document.documentElement.className += ' no-js'
+  }
+  window.document.documentElement.className += ' enhanced js'
+</script>
+
+
+
+<style>
+  @charset "UTF-8";@media (prefers-color-scheme:dark){:root{--article-background-color:linear-gradient(-45deg, #162c35 70%, #0c252f 100%)}}*,::after,::before{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;overflow-y:scroll}body{margin:0;display:flex;flex-direction:column;background-color:#fff;font-feature-settings:"onum" 1;color:#333;overflow:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:-apple-system,BlinkMacSystemFont,Roboto,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif;font-size:1.125em}body,html{min-height:100%;overflow-x:hidden}img{max-width:100%;position:relative;border-style:none}article,aside,figcaption,figure,footer,header,main,nav,section{display:block}:focus{outline:3px dotted var(--THEME_COLOR_HOVER,#811d15)!important}article,figure,header,main,nav,section{display:block}@media (prefers-reduced-data:reduce){.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 body,.wf-loaded-stage2 h1,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 tbody td,.wf-loaded-stage2 th,.wf-loaded-stage2 time{font-family:-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif!important}}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 h1,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 th{font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 body,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 tbody td,.wf-loaded-stage2 time{font-family:Elena,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}@media all and (max-width:750px){.c-garfield-the-cat{display:flex;flex-direction:column}.c-garfield-the-cat>*{margin-bottom:0}.article__image,.c-garfield-the-cat>figure{margin:1em auto .25em auto}.c-garfield-aside--meta{margin-bottom:1em}.c-garfield-the-cat>pre{margin-top:1em}.c-garfield-the-cat .code-toolbar{margin-top:1em}.c-garfield-the-cat .code-toolbar>pre{margin-top:0}.c-garfield-the-cat>pre{margin-bottom:.5rem}.c-garfield-the-cat>table{margin-top:1em;margin-bottom:1em}.c-garfield-the-cat .pull-quote__quotation{margin-top:1em}.drop-caps{display:none}}@media all and (max-width:1000px){.article-header--meta,.article-header--meta-item__date,.article__summary,.article__summary::before,.author__desc,.author__desc__title,.drop-caps+p::first-line,.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--meta-item__date,.wf-loaded-stage2 .article__summary,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 body,.wf-loaded-stage2 time,body,time{font-family:ElenaLCP,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.feature-panel__desc,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 h1,h1{font-family:MijaLCP,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif;font-weight:700}}.js-show-secondary .menu-text--sm,.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}.js-show-secondary .menu-text--sm--close{display:block}@media all and (min-width:800px){.js-show-secondary .main-nav__secondary{display:block;top:50px}.js-show-secondary .menu-text--lg--close,.menu-text--lg{display:block}.js-show-secondary .menu-text--lg,.js-show-secondary .menu-text--sm--close,.menu-text--sm{display:none}}.js-show-secondary .main-nav-more-item__button:before{content:"";display:block;margin-left:.35em;width:45px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50.21 35.05'%3E%3Cellipse cx='27.8' cy='32.92' fill='rgba(60,60,60,0.5)' rx='19.64' ry='1.2'/%3E%3Cpath fill='%23fff' d='M46.48 15.53a5.2 5.2 0 00-2-.31 7 7 0 00-1.43.19 7.66 7.66 0 001.19-1.52 7.12 7.12 0 011.12-.13 5.18 5.18 0 012 .31h.05a2.82 2.82 0 011.44 1.24 2.75 2.75 0 01.18 2 2.36 2.36 0 00-.74-.46 2 2 0 01.86 1c.11.45-.23 1-.67.92a1.86 1.86 0 00-.22-1 2.65 2.65 0 00-.29-1 2.74 2.74 0 00-1.49-1.24zM16.56 28.07c.06-.21.37-1.29.19-1.47 0 0 5.18 5.08 7.22-2.7a6 6 0 001.16.62c-.75 7-6.44 3.43-6.44 3.43.22.13.14 1.25.12 1.47-.16 2.2-3 1.63-3.74.11a2.44 2.44 0 01-.14-.34 1.4 1.4 0 001.63-1.12z' class='cls-2'/%3E%3Cpath fill='%23fff' d='M1.26 14.52c.08.23.18.45.28.67v.05c1.26 2.67 3.76 5 6.81 4.61a12 12 0 003.51-1.05 8.6 8.6 0 013.64-1 7.28 7.28 0 00.1 2.65A9.82 9.82 0 0117 18.5s-.77 2.34-.41 3a1 1 0 00-.15-.18 1.28 1.28 0 00-.8-.4 1 1 0 00-.89.7c-.23.45-.24.83-.63 1.17-1 .87-2.17 2-1.79 3.47a2.64 2.64 0 002.06 1.82A1.39 1.39 0 0016 27c.06-.21.36-1.28.18-1.46 0 0 5.19 5.07 7.23-2.7a5.65 5.65 0 001.16.61c1.43.56 3.94.91 6.11-2.07a20.36 20.36 0 005.68 1.13s-1.55-.55-1.61-1.28c0 0 3.84 1 6 0l-2.43-.32a3.69 3.69 0 001.68-.42 5.24 5.24 0 012.46 0c.73.08 1.06-.31 1.54-.78a1.17 1.17 0 00.09.33 2.06 2.06 0 00.12.35 3.21 3.21 0 00.37.65 1.35 1.35 0 001.27.53.92.92 0 00.53-.28 1.2 1.2 0 00.19-1.16 2 2 0 00-.77-.94 1.85 1.85 0 011 1.76c.44.08.78-.48.67-.93a1.13 1.13 0 00-.13-.32 2.4 2.4 0 00-.72-.7 2.26 2.26 0 01.74.45 2.67 2.67 0 00.1-.64v-.3a2.59 2.59 0 00-.28-1A2.65 2.65 0 0046 16.32l-.14-.06-.08-.05h-.06a10.1 10.1 0 00-3.9-.54 6.3 6.3 0 001.59-2.45 3 3 0 01-.12.73s1.61-.69.71-2.95a1 1 0 01.63.49 4.17 4.17 0 00-1.74-2.81 2.35 2.35 0 01.88.17 3.64 3.64 0 00-1.72-1.34l-.27-2.21.88.31s0-.35-.89-.86a7.17 7.17 0 00.36-3.37C39.32 1 38.27 2.48 38 2.94a12.73 12.73 0 00-2.56.26 2.83 2.83 0 011.29-.62 3.87 3.87 0 00-3.23.94s-2.73-2-5.37-1.29c0 0-.27 1.36 1.42 4.77a6.37 6.37 0 00-2.31 2.67 7.38 7.38 0 011.63-1.59s-2.44 2.6-1.46 4.67a3.77 3.77 0 01.35-1.55c0 .4-.24 3.2 1 4.61a9.92 9.92 0 01-.32-2s.37 2.53 3.84 3.6a4.35 4.35 0 01-1.49-1.54 11.65 11.65 0 002.47 1.23c-.61.18-1 .31-1 .31l-.81.38a6.56 6.56 0 01-2.34-1.49h-.07a.58.58 0 01-.31.08.64.64 0 01-.46-.21 5.47 5.47 0 01-1.14-2.91.66.66 0 01-.33-.31 3.48 3.48 0 01-.19-2.24 6.84 6.84 0 00-6.5-.26 18.29 18.29 0 012.43.43s-4.84.26-7.22 3.71c0 0 1.93-2 2.77-1.7a8.44 8.44 0 00-2.1 3A9.13 9.13 0 0012 16c-3.7.78-5.2-1.7-5.79-3.65 0-.13-.08-.25-.11-.37a.14.14 0 000-.07v-.16a.14.14 0 010-.06q-.1-.24-.1-.47v-.05a.68.68 0 000-.14 2.4 2.4 0 010-.24v-.09a.09.09 0 000-.05v-.08a.28.28 0 010-.09v-.12c-.09-2-1.43-2.88-3-1.92C.82 9.6.44 12.35 1.26 14.52zm26.58-3.41v.05z' class='cls-2'/%3E%3C/svg%3E");order:1}.js-show-secondary .main-nav-more-item__button:after{width:15px;height:15px;order:2;background-image:url(/images/icons/close.svg)}.js-show-secondary .main-nav__secondary{display:flex}strong{font-weight:bolder;letter-spacing:0}svg:not(:root){overflow:hidden}button{text-transform:none;cursor:pointer;font:inherit;margin:0}[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}.l-author-bio{display:flex;flex-wrap:wrap;align-items:center}.l-author-bio-content{flex-grow:1;flex-shrink:1;flex-basis:300px}.bio-image__large .bio-image{--bio-image-border-width:8px}.bio-image{padding:0;margin:0;display:block;width:100%;height:100%;border-radius:inherit;position:relative}.bio-image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transform-origin:30% 50%;opacity:1;transition:opacity .3s ease-in-out}.bio-image:hover::before{opacity:0}a.bio-image-link{background:0 0;text-shadow:none;color:inherit;padding:0;display:block;border-radius:inherit;width:100%;height:100%}a.bio-image-link::before{display:block;content:'';height:120%;width:120%;position:absolute;top:-10%;left:-12%}.bio-image-wrapper{background:var(--bio-image-background-color,var(--bio-image-border-color,#d33a2c));border:solid var(--bio-image-border-width,8px) var(--bio-image-border-color,#d33a2c);border-radius:inherit;transform:scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));transform-origin:0 100%;overflow:hidden;width:100%;height:100%;transition:transform .2s ease-out}.bio-image-image{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2) rotateZ(calc(11 * 1deg));transition:transform .2s ease-out}.bio-image-link:active .bio-image-wrapper,.bio-image-link:focus .bio-image-wrapper,.bio-image:hover .bio-image-wrapper{transform:scale(.84) translateX(15%) rotateZ(0)}.bio-image-link:active .bio-image-image,.bio-image-link:focus .bio-image-image,.bio-image:hover .bio-image-image{transform:scale(1.2) rotateZ(0)}.article__content .author-post__author-title{color:#d33a2c;text-decoration-line:underline;font-weight:700;font-size:.9em}.light-grey{color:#767676!important}.rounded-3xl{border-radius:1.2em}.block{display:block}.h-48{height:12rem}.mr-3{margin-right:.75rem}.mb-5{margin-bottom:1.25rem}@media all and (max-width:600px){.mobw-40{width:8rem!important}.mobh-40{height:8rem!important}}.w-48{width:12rem}.mt-2{margin-top:.5rem}.mtn{margin-top:0!important}.mbn{margin-bottom:0!important}small{font-size:80%}.row{box-sizing:border-box;display:flex;flex:0 1 auto;flex-direction:row;flex-wrap:wrap;margin-right:-1rem;margin-left:-1rem}[class*=col-]{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}.row::after{clear:both}.col-12{flex-basis:100%;max-width:100%}@media screen and (min-width:48em){.col-12{flex-basis:100%;max-width:100%}}.container{width:calc(100% - .5em);max-width:1440px;margin:0 auto;z-index:1;position:relative}.container::after{content:"";display:table;clear:both}@media (min-width:40em){.container{width:92vw!important}}@media (min-width:48em){.container{width:85vw}}@media (min-width:64em){.container{width:68rem}}@media (min-width:75em){.container{width:79rem}}@media screen and (min-width:160em){.container{max-width:1650px}}@media (min-width:187.5em){.container{max-width:1860px}}.c-garfield-the-cat>p:first-of-type{font-size:1.1em;line-height:1.55em}.c-garfield-the-cat>p:empty{display:none}.c-felix-the-cat{background-color:#f3f3f3;border-left:11px solid #e6e4e1;padding:1em 1em 1em 1.5em;color:#424242;margin-left:0;margin-top:1em;font-size:1.05em;line-height:1.6em;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0 0,#fff 100%)}.c-felix-the-cat h4{margin-top:.5em}.sponsor-panel{display:flex;justify-content:center;align-items:center}.sponsor-panel-content{flex:3}.sponsor-panel-image{display:none}@media screen and (min-width:1100px){.sponsor-panel-image{display:block;background-image:none;margin-left:1.5em;flex:1}}@media (max-width:1024px){.col{width:100%!important;padding:0 1em}.row{margin-left:0;margin-right:0}.article__content{float:none}.article__content::before{display:none}}#main{position:relative;z-index:0;background-color:#fff}@supports (display:grid){.main-nav{display:grid;align-items:center}}.main-nav{position:relative;display:block;min-width:0;color:#fff;grid-column:span 2;font-size:1.05em}.main-nav__primary .nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav__secondary .nav-item--active{background-color:transparent;margin:0}.c-garfield-the-cat figcaption a{color:#666;text-decoration-line:underline;text-decoration-color:#666}.c-garfield-the-cat figcaption a.btn{color:#fff;text-decoration:none}@media all and (min-width:1100px){@supports (grid-row-gap:0){.c-garfield-the-cat{display:grid;grid-template-columns:0 minmax(0,.5fr) repeat(10,minmax(0,1fr)) .7fr .3fr 17rem;margin:0 auto}.c-garfield-the-cat ol,.c-garfield-the-cat ul,.c-garfield-the-cat>div,.c-garfield-the-cat>p,.c-garfield-the-cat>table{margin-bottom:1.4em}.c-garfield-the-cat>h2{margin-top:1.5em;margin-bottom:1em}.c-garfield-the-cat>h3,.c-garfield-the-cat>h4{margin-top:1.5em;margin-bottom:.65em}.c-garfield-the-cat>h5{margin-top:.65em;margin-bottom:.65em}.article__image,.c-garfield-the-cat>figure{margin:0 auto 1.4em auto;width:100%}.c-garfield-the-cat .code-toolbar pre,.c-garfield-the-cat blockquote,.c-garfield-the-cat pre,.c-garfield-the-cat>figure.video-embed-container{margin-bottom:1.7em;margin-top:.3em}.c-garfield-the-cat .code-toolbar{margin-bottom:0}.c-garfield-the-cat>*{grid-column:3/13;margin-top:0;margin-bottom:0}.c-garfield-the-cat .c-garfield-bio{grid-column:1/2;grid-row:1/4;align-self:start}.c-garfield-the-cat .c-garfield-header{grid-column-end:16}.c-garfield-the-cat .c-garfield-aside--meta{grid-column:15/16;grid-row:2/7;align-self:start;margin:0}.c-garfield-the-cat .toc-components li{margin-bottom:.75em}.c-garfield-the-cat>.break-out{grid-column:3/14;width:100%}.c-garfield-the-cat>.break-out img{margin:0 auto}.c-garfield-the-cat>.break-out figcaption{max-width:50em}.article__content .c-garfield-the-cat figcaption{margin:0 auto}.c-garfield-the-cat .c-garfield-native-panel{grid-column:15/16;grid-row:8/15;align-self:start;text-align:center;position:relative}.c-garfield-native-panel__right{grid-column:15/16;grid-row:15/22;align-self:start;text-align:center}.c-garfield-the-cat .c-garfield-native-panel__below{grid-row:19/25}.c-garfield-the-cat .c-garfield-native-panel__end{grid-row:26/33}.feature-panel-container{margin-top:6em;margin-bottom:1em}}}.no-ads .c-garfield-native-panel,.no-panels .feature-panel-container,.subscriber .c-garfield-native-panel,.subscriber .feature-panel-container{display:none!important}figcaption a{color:inherit}figcaption code,figcaption pre{font-style:normal}.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{position:relative}.feature-panel-container{grid-column:1/15;margin-top:3em;margin-bottom:1em}.article__image img,.c-garfield-the-cat>figure img{display:block;width:auto;max-width:100%;margin:0 auto;height:auto}.article__image>a,.c-garfield-the-cat>figure>a{display:block;background:0 0;position:relative;z-index:99}.article__image figcaption,.c-garfield-the-cat>figure figcaption{color:#666;font-size:.95em;font-style:italic;padding:.75em 2em .75em 0;display:table}.article__image figcaption a,.c-garfield-the-cat>figure figcaption a{color:#666}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before,.internal__page__wrapper figure:not(.bio-image) figcaption::before{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNyAxMy4wOSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMmMyYzI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5jYW1lcmE8L3RpdGxlPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTguNSA1LjQ0YTIuMjEgMi4yMSAwIDEgMCAyLjIxIDIuMjEgMi4yMSAyLjIxIDAgMCAwLTIuMjEtMi4yMXpNMTQuNzkgMi4yMWgtMi41NWEyLjIxIDIuMjEgMCAwIDAtMi4yNC0yLjIxaC0zYTIuMjEgMi4yMSAwIDAgMC0yLjI0IDIuMjFoLTIuNTVhMi4yMSAyLjIxIDAgMCAwLTIuMjEgMi4yMXY2LjQ2YTIuMjEgMi4yMSAwIDAgMCAyLjIxIDIuMjFoMTIuNThhMi4yMSAyLjIxIDAgMCAwIDIuMjEtMi4yMXYtNi40NmEyLjIxIDIuMjEgMCAwIDAtMi4yMS0yLjIxem0tNi4yOSA5LjM1YTMuOTEgMy45MSAwIDEgMSAzLjkxLTMuOTEgMy45MSAzLjkxIDAgMCAxLTMuOTEgMy45MXoiLz48L3N2Zz4=);height:1em;width:1.5em;padding-right:.6em;display:table-cell;vertical-align:baseline;position:relative;top:.05em}.c-garfield-the-cat>figure.article__figure figcaption::before{content:'';display:none}.hidden{display:none!important}.c-garfield-header{clear:both}.c-promo-box{font-size:.9em;border-radius:11px}.c-promo-box a:not(.btn){color:#006fc6}.c-promo-box--ad::before{display:block;white-space:pre-wrap;padding:2em 0 3em 0;font-size:.85em;font-style:italic;color:#666}.c-promo-box--ad img{border-top-left-radius:11px;border-top-right-radius:11px}.c-garfield-the-cat .author__desc{font-size:.9em;color:#555}.summary__heading{font-style:normal;font-size:1rem;letter-spacing:2px;margin:0;font-weight:700;color:#d33a2c;text-transform:uppercase}.c-promo-box--ad ul{padding-left:0;margin:0}.bnnr-list{display:flex;text-align:center;justify-content:center;flex-direction:row}.sponsors.c-promo-box:not(.c-promo-box--wide) .bnnr-list{flex-direction:column}.c-garfield-the-cat{padding:0 1em}@media screen and (min-width:80em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.4fr .6fr 21rem 1fr}}@media screen and (min-width:100em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.9fr .4fr 21rem 1fr}}@media screen and (min-width:160em){.c-garfield-the-cat{display:grid;grid-template-columns:18.5rem repeat(11,minmax(0,1fr)) .7fr .3fr 18.5rem;grid-column-gap:1.75rem}}@media (min-width:187.5em){.c-garfield-the-cat{display:grid;grid-template-columns:20rem repeat(11,minmax(0,1fr)) .7fr .3fr 20rem;grid-column-gap:2.25rem}}.header{background:#d33a2c;background:var(--THEME_COLOR,#d33a2c);position:relative;display:grid;justify-content:flex-start;align-items:center;padding:.8em;z-index:2;grid-template-columns:min-content min-content 1fr;column-gap:5px}@media all and (min-width:31.25em){.header{grid-template-columns:-webkit-min-content -webkit-min-content 0 minmax(100px,100%);grid-template-columns:min-content min-content 0 minmax(100px,100%);column-gap:10px}}@media (min-width:700px){.header{grid-template-columns:-webkit-min-content minmax(140px,2fr) 0 minmax(100px,350px);grid-template-columns:min-content minmax(140px,2fr) 0 minmax(100px,350px)}}@media (min-width:740px){.header{padding:1rem 2em}}.search{flex-basis:100px;flex-shrink:1}@media screen and (min-width:48em){body{font-size:calc(.35842vw + .95296em)}}body .form__field__label,body li,body p{line-height:calc(1.5em + .2vw);word-break:break-word}body h1{line-height:1.2}.article--post__title a:focus,.article--post__title a:hover{color:#d33a2c}@supports (-ms-ime-align:auto){.article__image figcaption,.c-garfield-the-cat>figure figcaption{display:inline-block}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before{display:inline-block}body{font-feature-settings:normal}}::-webkit-input-placeholder{color:#666}::-moz-placeholder{color:#000}:-ms-input-placeholder{color:#666}.article-header--meta-item__date,time{color:#666;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;text-transform:lowercase;background-position:center 72%}.article-header--meta-item__date{display:flex}.wf-loaded-stage2 time{font-variant:petite-caps}.kbd,kbd{font-size:.9em;padding:.0625rem .5rem;border-radius:.125rem;border:1px solid #d33a2c;box-shadow:1px 1px 0 #d33a2c,2px 2px 0 #d33a2c;margin:0 .25rem;color:#d33a2c;font-family:monospace}figure{margin:0;padding:0}figure:after,figure:before{content:" ";display:table;clear:both}a{padding:7px 0;background-color:transparent;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;text-decoration-line:underline;color:#006fc6}.h1,h1{font-size:calc(1.625rem + 1.6vw);margin:0}.h2,.h3,.h4,.h5,h2,h3,h4,h5{color:#333}.h2,h2{font-size:calc(1.5rem + .25vw);margin:2em 0 .75em;text-transform:capitalize}.h3,h3{font-size:calc(1.125rem + .25vw);text-transform:uppercase;letter-spacing:1px;margin-top:2em;margin-bottom:1em}h4{font-size:1.1em;margin-top:2em}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{text-transform:none}@keyframes fadeOut-headings{0%{background:#ffde95;box-shadow:-10px 0 0 12px #ffde95}100%{background:#fff1d2;box-shadow:-10px 0 0 12px #fff1d2}}h2:target,h3:target,h4:target,h5:target,h6:target{border-radius:11px;animation:fadeOut-headings .4s;animation-fill-mode:forwards}.article__content h2:target a,.article__content h3:target a,.article__content h4:target a,.article__content h5:target a{color:#d33a2c}:target{scroll-margin-top:2rem}ol,ul{margin:1em 0;max-width:100%}ol{padding:0;list-style:none;counter-reset:listCounter}ol>li{padding-left:calc(1.65em + .7vw);position:relative;counter-increment:listCounter;margin-bottom:1em}ol>li::before{content:counter(listCounter,decimal-leading-zero);font-size:.7em;font-weight:700;color:#d33a2c;left:.8em;position:absolute;font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif}ul{list-style:disc}ul>li::marker{color:#d33a2c}ul>li{margin-bottom:.75em;padding-left:.15em}.rh{color:#d33a2c}.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}@media (min-width:800px){.search{flex-basis:500px}.main-nav{grid-column:auto}.menu-text--sm{display:none}.menu-text--lg{display:block}}.secondary-nav{position:relative;grid-row-start:2;grid-column:1/5}body:not(.enhanced) .main-nav{overflow-x:auto;-webkit-overflow-scrolling:touch}.main-nav__primary{display:flex;list-style:none;padding:.4em 0;margin:0;flex-wrap:nowrap;width:100%;height:100%;flex-shrink:1;min-width:0;justify-content:flex-start}.main-nav span:empty{display:none}@media all and (min-width:53.125em){.main-nav__primary{justify-content:space-between}}.nav-item{flex-grow:0;background:0 0;text-shadow:none;color:inherit;font-weight:700;display:flex;align-items:center;margin-bottom:0;padding-left:0}.nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav-more-item{position:relative;width:145px}@media (min-width:42.9375em){.main-nav-more-item{margin-left:.35em}}@media all and (max-width:52.5em){.main-nav-more-item{justify-content:center}}.main-nav-more-item__button{padding:.4em .5rem .4em 1rem;border:1px solid rgba(0,0,0,.05);color:inherit;display:flex;align-items:center;justify-content:space-around;line-height:1;position:relative;background-color:rgba(0,0,0,.2);border-radius:11px;box-shadow:0 13px 7px -15px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.main-nav-more-item__button,.nav-item-link{white-space:nowrap}.nav-item-link{padding:.35em .9rem;background:0 0;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);text-decoration:none}@media screen and (min-width:800px){.main-nav__secondary .nav-item-link{color:#d33a2c!important}}.nav-item-link:focus,.nav-item-link:hover{background-color:rgba(0,0,0,.15);border-radius:11px}.main-nav__secondary .nav-item-link:focus,.main-nav__secondary .nav-item-link:hover{background-color:transparent;box-shadow:none}.main-nav-more-item__button:active,.main-nav-more-item__button:focus,.nav-item-link:active,.nav-item-link:focus{outline-color:var(--THEME_COLOR_OUTLINE,#811d15)!important}.secondary-nav .nav-item-link:active,.secondary-nav .nav-item-link:focus{outline-color:#811d15!important}.main-nav__secondary .nav-item-link{text-shadow:none;width:100%;text-decoration:none;text-decoration-color:#d33a2c;padding:.25em .7rem}.main-nav-more-item__button:after{content:"";display:block;margin-left:9px;width:30px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35.96 33.31'%3E%3Cellipse cx='17.98' cy='31.55' fill='rgba(60,60,60,0.3)' rx='14.75' ry='.57'/%3E%3Cpath fill='%23fff' d='M34.94 15v-.93c-.23-3-2.16-5.93-5.22-6.3-2.31-.28-3.39 1.45-2.4 3.84a.43.43 0 000 .05v.11a.14.14 0 010 .06.63.63 0 000 .09v.17c0 .08.06.18.09.29s0 0 0 .05a1 1 0 000 .17.64.64 0 010 .07c0 .18.1.38.14.6a.24.24 0 010 .08v.29c0 .03.06.33.08.5.37 2.58 0 6.27-4.73 7.37A12.74 12.74 0 0019.7 23c-.17-.65-.36-1.25-.55-1.77a5.16 5.16 0 002.05-2.56 11.26 11.26 0 01-.69 2.33c1.81-1.55 2-5.05 2-5.54a4.72 4.72 0 01.21 2c1.55-2.41-1.17-6-1.17-6a9.67 9.67 0 011.84 2.24C23 11.75 20.82 10 20.82 10c2.65-4 2.51-5.68 2.51-5.68-3.26-1.34-7 .73-7 .73a5.12 5.12 0 00-4-1.7 3.61 3.61 0 011.56 1 16.79 16.79 0 00-3.23-.74C10.41 3 9.4 1.16 6.22 1h-.58S5 3.64 5.61 5.19c-1.15.49-1.26.93-1.26.93l1.17-.25-.67 2.67a4.66 4.66 0 00-2.39 1.38 3 3 0 011.15-.07A5.11 5.11 0 001 13.05a1.32 1.32 0 01.87-.51c-1.47 2.69.49 3.76.49 3.76a3.8 3.8 0 010-.92 8.52 8.52 0 002.19 3.9 14.13 14.13 0 01-.24-1.59 5.46 5.46 0 001.93 2.7 6.25 6.25 0 01-.4-1.52 5.87 5.87 0 001.36 1.75c-.12.24-.24.47-.34.71a12 12 0 00-.7 2.13c0 .23-.09.45-.13.66a1.4 1.4 0 00-1-.31 1.4 1.4 0 00-1.09 1 3.1 3.1 0 000 1.57 9.48 9.48 0 001.8 3.92A2.92 2.92 0 004 30.06c-.56.16-1 .83-.72 1.34H22.6c.29-.51-.16-1.18-.72-1.34a2.92 2.92 0 00-1.71.24A9.48 9.48 0 0022 26.44 3.24 3.24 0 0022 25a15.89 15.89 0 012.87-.21 14.93 14.93 0 004.65-.69c3.72-1.24 5.38-5.25 5.38-9zm-12.49.42h-.05v-.07z'/%3E%3C/svg%3E")}.main-nav__secondary{display:none;color:#fff;padding:.2em 0;flex-wrap:wrap;flex-direction:column;justify-content:flex-start;align-items:flex-start;height:10em}@media all and (min-width:31.25em){.main-nav__secondary .nav-item-link{padding:.25em 1.1rem}.main-nav__secondary{padding:.2em .5em}}@media (-webkit-min-device-pixel-ratio:1.3),(min-resolution:124.8dpi){.main-nav__secondary{height:11em}}@media (min-width:800px){.secondary-nav{grid-row:auto;grid-column:auto}.main-nav__secondary{display:none;position:absolute;top:0;left:-80px;transform:translate(-50%,0);max-width:unset;background:#fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px;margin:0;padding:14px 20px 10px 10px;min-width:180px;color:#d33a2c;flex-direction:row;justify-content:space-between;align-items:center;height:auto}.main-nav__secondary:before{content:"";display:block;position:absolute;top:1px;left:50%;transform:translate(-50%,-100%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:15px solid #fff}}.nav-item-1,.nav-item-10,.nav-item-2,.nav-item-3,.nav-item-4,.nav-item-5,.nav-item-6,.nav-item-7,.nav-item-8,.nav-item-9{display:none}.main-nav__secondary .nav-item-1,.main-nav__secondary .nav-item-10,.main-nav__secondary .nav-item-2,.main-nav__secondary .nav-item-3,.main-nav__secondary .nav-item-4,.main-nav__secondary .nav-item-5,.main-nav__secondary .nav-item-6,.main-nav__secondary .nav-item-7,.main-nav__secondary .nav-item-8,.main-nav__secondary .nav-item-9{display:flex}@media (min-width:42.9375em){.nav-item-1{display:flex}.main-nav__secondary .nav-item-1{display:none}}@media (min-width:52.5em){.nav-item-2{display:flex}.main-nav__secondary .nav-item-2{display:none}}@media (min-width:56.5625em){.nav-item-3{display:flex}.main-nav__secondary .nav-item-3{display:none}}@media (min-width:70em){.nav-item-4{display:flex}.main-nav__secondary .nav-item-4{display:none}}@media (min-width:77.8125em){.nav-item-5{display:flex}.main-nav__secondary .nav-item-5{display:none}}@media (min-width:97.5em){.nav-item-6{display:flex}.main-nav__secondary .nav-item-6{display:none}}@media (min-width:108.4375em){.nav-item-7{display:flex}.main-nav__secondary .nav-item-7{display:none}}@media (min-width:120.625em){.nav-item-8{display:flex}.main-nav__secondary .nav-item-8{display:none}}@media (min-width:136.5625em){.nav-item-9{display:flex}.main-nav__secondary .nav-item-9{display:none}}@media (min-width:179.6875em){.nav-item-10{display:flex}.main-nav__secondary .nav-item-10{display:none}.main-nav-more-item{display:none}.main-nav__primary{justify-content:flex-start}.nav-item{padding:0 .65em}.header,.header.searchFocused{grid-template-columns:-webkit-min-content minmax(140px,-webkit-max-content) 0 minmax(250px,600px);grid-template-columns:min-content minmax(140px,max-content) 0 minmax(250px,600px)}}@media (max-width:480px){.header .search{grid-column:1/5;margin-top:.5em}.main-nav__primary{justify-content:flex-end}.main-nav-more-item{justify-content:flex-end}}.btn--text-shadow,a.btn.btn--text-shadow{text-shadow:1px 1px 1px rgba(0,0,0,.25)}.btn-wrapper{display:none}@media screen and (min-width:1100px){.btn-wrapper{display:block;padding:4px}}.btn,.toolbar-item{display:inline-block;border-radius:11px;text-align:center;color:#fff;text-decoration:none;border:none;font-weight:700;background:0 0;font-size:.9em;outline:0;background-color:#d33a2c;background-image:linear-gradient(to bottom,#f88040,#d33a2c)}.toolbar-item{transition:all .3s ease-in-out}.toolbar-item:active,.toolbar-item:focus{position:relative;top:3px}.btn{padding:.5em 1em}.btn.btn--green,.btn.btn--member{background-color:#41b14f;background-image:linear-gradient(#9ec14c,#41b14f);color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);transition:box-shadow .2s ease-in-out}.cta--green{display:block;padding:.5em;color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0;font-weight:700;text-decoration:none;border-radius:11px;text-align:center;font-size:.85em}.cta--green:hover{background-color:#c8f1e0;border:1px solid #a0dcc4}.cta--green:active,.cta--green:active:hover,.cta--green:focus,.cta--green:focus:hover{background-color:#137d54;color:#fff!important}a.btn--white{background:#fff;color:#267dcc;transition:color .1s ease-out}.btn--white--bordered:active,.btn--white--bordered:focus,.btn--white--bordered:hover,.toolbar-item,a.btn--white--bordered{border:1px solid #ddd}.btn span{color:#811d15;font-size:.8em;margin-left:5px;margin-top:.5em;line-height:1}.btn.btn--medium{font-size:calc(.9em + .1vw);padding:.75em 1em}@media (max-width:64em){pre{max-width:100%}}.input{border:none;display:block;color:#333;background-color:#fff;padding:.4em .75em;border-radius:5.5px;outline:0;font:inherit;margin:0;font-size:1.15rem;width:100%}.input::-webkit-input-placeholder{color:#666}.input:-ms-input-placeholder{color:#666}.input::-moz-placeholder{color:#000}.input::-ms-clear{display:none}.search .search-input{padding-left:calc(22px + 15px + 15px);background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgaGVpZ2h0PSIyNHB4IiB3aWR0aD0iMjRweCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIyMi4zMSIgeTE9IjIzLjYyIiB4Mj0iMy43MyIgeTI9IjMuMDUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlOTM3MjIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmODZmMjUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGl0bGU+TWFnbmlmaWVyPC90aXRsZT48cGF0aCBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiIGQ9Ik0yMy4zMyAyMC4xbC00LjczLTQuNzRhMTAuMDYgMTAuMDYgMCAxIDAtMy4yMyAzLjIzbDQuNzQgNC43NGEyLjI5IDIuMjkgMCAxIDAgMy4yMi0zLjIzem0tMTcuNDgtNS44NGE1Ljk0IDUuOTQgMCAxIDEgOC40MiAwIDYgNiAwIDAgMS04LjQyIDB6Ii8+PC9zdmc+);background-repeat:no-repeat;background-size:22px auto;background-position:15px 45%;font-size:calc(1em + .1vw);border-radius:11px;padding-top:1rem;padding-bottom:1rem;font-weight:700;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}@media all and (max-width:550px){.search .search-input{min-height:54px}}.search-button{width:0;height:0;padding:0}.enhanced .search-button{display:none}.search-input-wrapper{position:relative}.search-clear-button{background:0 0;border:none;position:absolute;right:0;top:50%;transition:opacity .2s ease-out;transform:translate(-25%,-50%);opacity:0;padding:.5em}.search-clear-button.enabled{opacity:1}.search-results{background:var(--THEME_COLOR,#d33a2c);color:#fff}.search-results img{border-radius:11px;border:4px solid #fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}.search-results img:hover{box-shadow:0 0 3px -1px rgba(50,50,93,.25),0 4px 12px -6px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.search-results ol img{min-height:100px;height:auto}.logo{font-size:1em;line-height:0;width:3em;flex-basis:3em;flex-shrink:0;position:relative;z-index:0}@media all and (min-width:1450px){.logo{width:10.5em;flex-basis:10.5em}.logo img{transform:none}}.logo a{display:block;background:0 0;outline:0;padding:0;color:transparent;text-shadow:none}.logo a picture{display:block}.logo img{height:3.5em;transform:translate(0,15%)}.cart-active .back-to-top-wrapper{display:none}a.back-to-top{display:block;background:0 0;width:50px;height:50px;opacity:.7;text-shadow:none;border-radius:11px;padding:13px;transform-origin:bottom left;will-change:transform;transform:rotate(-11deg);transition:background-color .1s ease-out,transform .2s ease-out,opacity .1s ease-out;background-color:#666}@media all and (max-width:64em){a.back-to-top{opacity:.3}}a.back-to-top:focus,a.back-to-top:hover{background-color:#282634;opacity:1}a.back-to-top svg{display:block}.back-to-top-wrapper{width:50px;height:50px;display:none;position:fixed;bottom:20px;right:20px;z-index:9;will-change:transform;backface-visibility:hidden}.back-to-top-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}@media (min-height:600px){.back-to-top-wrapper{display:block}}label{max-width:100%}.form__field__input,input[type=email],input[type=password],input[type=text],textarea{background:#effaff;font-size:1em;border:1px solid #d2dfe4;transition:box-shadow .3s ease-in-out,color .3s ease-in-out;background-position:right 1.35em center;background-size:.25em .25em;background-repeat:no-repeat;margin-bottom:5px;border-radius:11px;padding:.9em 2em .7em 1.1rem;display:block;width:100%;outline:0;box-shadow:inset 0 1px 1px 0 rgba(0,0,0,.2)}.form__field__label{display:block;margin-bottom:.5em;cursor:pointer}input{border-color:#aaa}.sponsors ul{padding-left:0;text-align:center;list-style-image:none}.sponsors__native ul.bnnr-list li a{border-radius:11px;background-color:#fff;margin-bottom:3em;position:relative;top:0;padding:0;background-image:none;text-decoration-line:underline;text-decoration-color:#006fc6!important;text-decoration-thickness:1px;display:flex;flex-direction:column}.sponsors.sponsors-leaderboard ul li a,.sponsors.sponsors__lead ul li a,.sponsors__native ul.bnnr-list li a{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03);transition:box-shadow .2s ease-in-out,top .1s ease-in-out;border-radius:11px}.sponsors.sponsors-leaderboard ul li a:hover,.sponsors.sponsors__lead ul li a:hover,.sponsors__native ul.bnnr-list li a:hover{box-shadow:0 1px 7px -5px rgba(50,50,93,.25),0 3px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.sponsors.sponsors-leaderboard ul li a:active,.sponsors.sponsors-leaderboard ul li a:focus,.sponsors.sponsors__lead ul li a:active,.sponsors.sponsors__lead ul li a:focus,.sponsors__native ul.bnnr-list li a:active,.sponsors__native ul.bnnr-list li a:focus{box-shadow:inset 0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,.03);outline-offset:.75em;top:7px}.sponsors__native ul.bnnr-list li img{max-width:none;width:100%;height:auto;display:inherit}img::before{height:2.5em;display:block;top:2em;content:" ";width:100%;z-index:2;left:0}img::after{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHN0eWxlPSJtYXJnaW4tcmlnaHQ6IDEwcHg7Ij4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDI4aC0yMHYtNGw2LTEwIDguMjE5IDEwIDUuNzgxLTR2OHoiPjwvcGF0aD4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDE1YzAgMS42NTctMS4zNDMgMy0zIDNzLTMtMS4zNDMtMy0zIDEuMzQzLTMgMy0zYzEuNjU3IDAgMyAxLjM0MyAzIDN6Ij48L3BhdGg+CjxwYXRoIGZpbGw9IiM3NzciIGQ9Ik0yOC42ODEgNy4xNTljLTAuNjk0LTAuOTQ3LTEuNjYyLTIuMDUzLTIuNzI0LTMuMTE2cy0yLjE2OS0yLjAzMC0zLjExNi0yLjcyNGMtMS42MTItMS4xODItMi4zOTMtMS4zMTktMi44NDEtMS4zMTloLTE1LjVjLTEuMzc4IDAtMi41IDEuMTIxLTIuNSAyLjV2MjdjMCAxLjM3OCAxLjEyMiAyLjUgMi41IDIuNWgyM2MxLjM3OCAwIDIuNS0xLjEyMiAyLjUtMi41di0xOS41YzAtMC40NDgtMC4xMzctMS4yMy0xLjMxOS0yLjg0MXpNMjQuNTQzIDUuNDU3YzAuOTU5IDAuOTU5IDEuNzEyIDEuODI1IDIuMjY4IDIuNTQzaC00LjgxMXYtNC44MTFjMC43MTggMC41NTYgMS41ODQgMS4zMDkgMi41NDMgMi4yNjh6TTI4IDI5LjVjMCAwLjI3MS0wLjIyOSAwLjUtMC41IDAuNWgtMjNjLTAuMjcxIDAtMC41LTAuMjI5LTAuNS0wLjV2LTI3YzAtMC4yNzEgMC4yMjktMC41IDAuNS0wLjUgMCAwIDE1LjQ5OS0wIDE1LjUgMHY3YzAgMC41NTIgMC40NDggMSAxIDFoN3YxOS41eiI+PC9wYXRoPgo8L3N2Zz4K) " " attr(alt);font-size:.9em;display:block;color:#666;line-height:1.5;position:absolute;font-style:italic;z-index:2;top:calc(2em - 35px);text-align:center;width:104%;left:-2%;padding:2.25em 1em;text-shadow:none;background-color:#eee;border-radius:11px}@media screen and (min-width:40em){.author__desc{margin-left:1em}}.author__desc{font-size:.8em;position:relative;font-style:normal!important;color:#333;padding:0!important}.author__desc p{margin:1em 0}.author__desc .show-more-link{display:inline}.author__desc__title{color:#666;text-transform:uppercase;letter-spacing:2px;font-size:.9em;margin:0;font-weight:400}@media (max-width:40em){.author__desc{width:100%}}.article{padding-top:calc(.5em + 2vw)}.article__summary{font-size:1.05em}.c-garfield-the-cat .article__summary{position:initial}.author__desc p{font-size:.95em}.wf-loaded-stage2 .author__desc p{font-size:1em}.article__summary{align-self:center;margin-top:0;color:#666;position:relative;padding-bottom:1.5em;margin-bottom:.5em;border-bottom:3px solid #e5e5e5;font-size:1.05em;line-height:1.55em;font-style:italic}.wf-loaded-stage2 .article__summary{font-size:1.15em}@media all and (max-width:420px){.article__content{margin-top:0}}.article__content{line-height:1.5;padding:0!important}.article__content a{color:#006fc6}.article__content .btn{color:#fff}.drop-caps+p::first-line{font-weight:700;font-variant:all-petite-caps;text-transform:lowercase;letter-spacing:.5px;font-size:1.15em}.drop-caps{width:calc(96px + 1vw);height:calc(120px + 4vw);float:left;margin-right:1.5em;position:relative;left:calc(-1.3em - .5vw);top:.5vw}@media all and (min-width:500px){.drop-caps{width:150px;height:186px;min-width:100px;margin-left:0}}@media screen and (min-width:64em){.author__desc{margin-left:0}}.drop-caps img{max-width:100%}.drop-caps img:nth-of-type(2){position:absolute;bottom:0;right:-40px;width:75%}@media all and (min-height:700px){body.articlepage{overflow:initial}}.form__field__label--extra{display:inline}@media (max-width:64em){.form__field__label--extra{display:none}}.article-header{margin:0}@media all and (max-width:1099px){.article-header--meta{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x;overflow-y:hidden}.article-header--meta::-webkit-scrollbar{display:none;width:0;background:0 0}.sponsors:not(.sponsors__lead):not(.sponsors-leaderboard):not(#sponsors-article-end):not(.sponsors__mobile){display:none}.c-garfield-aside--meta{display:none}.sponsors__mobile{display:block}.meta-box{margin:1.5em 0}.comment-count{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.article-header--comments a{color:#d33a2c;text-decoration:none;font-weight:700}.article-header--meta .article-header--meta-comments{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EArtboard 29%3C/title%3E%3Cpath class='cls-1' d='M3.29,2.73a66.7,66.7,0,0,0,3.21,9.52l6.29,1.08L8.1,15.53c2.91,5.28,7,9.09,12.14,4.55L25,24.52l.57-.52-3.83-5.48c3.6-4.32,1.74-7.76-1.93-10.36L17,13.29l-.1-6.85A43.83,43.83,0,0,0,11,4L9,7.7,9,3.39c-2.2-.65-4.07-1.08-5.08-1.3A.52.52,0,0,0,3.29,2.73Z'/%3E%3C/svg%3E");background-size:auto .75em;background-repeat:no-repeat;background-position:left 45%;padding-left:1em}}.c-garfield-the-cat .article-header--meta{display:flex;align-items:flex-end;list-style:none;padding:0;margin:0 0 .95em;height:30px}.article-header--meta li{padding:0;margin:0;min-width:max-content}.article-header--meta li::before{display:none}.article-header--meta li::after{content:"/";font-size:1em;color:#a7a7a7;display:inline-block;margin:0 .25em}.article-header--meta li:last-of-type::after{display:none}.article-header--date{color:#585858;font-family:inherit;font-size:.95em}.article-header--comments{font-size:.9em}.article-header--updated{padding:0 .8rem;color:#137d54;background-color:#d6f3e7;border:1px solid #c6f2e0;border-radius:11px;font-weight:700;text-transform:initial;font-feature-settings:normal;font-variant:none;font-size:.9em;letter-spacing:0;min-width:fit-content;margin-right:7px}.meta-box{background:#f6f6f6;padding:.6em 1em;list-style:none;width:max-content;max-width:100%;border-radius:11px;font-size:.9em;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:.5em 2em}.c-garfield-the-cat .meta-box--item{line-height:1.4;padding-left:1.5em;background-size:auto 1em;background-repeat:no-repeat;background-position:left 2px;margin-bottom:0}.meta-box li:last-child,.meta-box--item:last-child{margin-bottom:0}.meta-box--tags{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cpath fill='%23e93e32' class='cls-1' d='M12.78 22.74l1.35 1.35a2.09 2.09 0 003 0l8.12-8.15a2.09 2.09 0 000-3l-1.34-1.33zM14.71 2.51a2.09 2.09 0 00-1.52-.61l-10 .22L3 12.1a2.09 2.09 0 00.61 1.52l7.14 7.12L21.87 9.65zm-4.64 9.88a3.17 3.17 0 113.44-2.86 3.17 3.17 0 01-3.44 2.86z'/%3E%3C/svg%3E")}.meta-box--share{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M126.16 359.66c148 0 228.93-122.61 228.93-228.94 0-3.48 0-6.94-.23-10.4A163.83 163.83 0 00395 78.68a160.93 160.93 0 01-46.21 12.66 80.82 80.82 0 0035.37-44.51 161.17 161.17 0 01-51.09 19.53A80.54 80.54 0 00196 139.74 228.42 228.42 0 0130.13 55.68 80.52 80.52 0 0055 163.09 80 80 0 0118.52 153v1a80.49 80.49 0 0064.55 78.87 80.37 80.37 0 01-36.33 1.38 80.55 80.55 0 0075.17 55.87A161.38 161.38 0 0122 324.67a163.54 163.54 0 01-19.16-1.16 227.73 227.73 0 00123.33 36.08' fill='%231da1f2'/%3E%3C/svg%3E")}.meta-box--published{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32%7D%3C/style%3E%3C/defs%3E%3Crect class='cls-1' x='8.25' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Crect class='cls-1' x='17.53' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Cpath class='cls-1' d='M24.1 5.39h-2.56a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59h-4.28a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59H4.75a2.07 2.07 0 00-2.08 2.07v14.75a2.07 2.07 0 002.07 2.07H24.1a2.07 2.07 0 002.07-2.07V7.46a2.07 2.07 0 00-2.07-2.07zm-.29 16.15H5.23V8.45h18.58z'/%3E%3Cpath class='cls-1' d='M7.18 11.71h2.5v2.5h-2.5zM11.27 11.71h2.5v2.5h-2.5zM15.26 11.71h2.5v2.5h-2.5zM19.35 11.71h2.5v2.5h-2.5zM7.18 15.78h2.5v2.5h-2.5zM11.27 15.78h2.5v2.5h-2.5zM15.26 15.78h2.5v2.5h-2.5zM19.35 15.78h2.5v2.5h-2.5z'/%3E%3C/svg%3E")}.meta-box--author{background-image:url(/images/icons/author.svg)}code,pre{font-feature-settings:normal;color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Fira Code,Menlo,Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;font-variant-ligatures:none;word-wrap:normal;tab-size:4;hyphens:none}pre{padding:1rem;margin:.5rem 0;resize:both;max-width:100vw;color:#666;background:#fafafa;border:1px solid #eee;font-size:1em;border-radius:11px;min-width:250px;overflow:auto;box-shadow:0 6px 12px -17px rgba(50,50,93,.25),0 7px 6px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.code-toolbar{position:relative}li>.code-toolbar{margin-top:1em}.code-toolbar>.toolbar{position:absolute;top:.5em;right:.5em;opacity:0;transition:opacity .3s ease-in-out}.code-toolbar>.toolbar .toolbar-item{display:inline-block}code.diff-highlight{width:100%}a code{background:0;padding:0;text-decoration-line:underline}:not(pre)>code,code{background:#fff2ea;color:#333;font-size:calc(.75em + .1vw);line-height:calc(1.5em + .2vw);padding:0 .2725em;font-style:normal;display:inline-block}:not(pre)>code{white-space:normal}pre>code{line-height:calc(1.75rem + .2vw);background:0 0;white-space:break-spaces}pre[data-line]>code{white-space:pre}pre[data-line]>code>span{height:calc(1.75rem + .2vw);display:inline-block}.table,table{width:100%;border-collapse:collapse;margin-bottom:calc(2em + 2vw);clear:both}.tr,tr{border-bottom:4px solid #eee}.td,.th,td,th{padding:1em 1.5em;border:none;text-align:left}.scroll-pane{overflow-x:auto;scrollbar-color:#666 #201c29;-webkit-overflow-scrolling:touch}.scroll-pane::-webkit-scrollbar{height:.75em}.scroll-pane::-webkit-scrollbar-thumb{background:#b0b0b0;border-radius:11px}.scroll-pane table td{min-width:30vw}@media all and (min-width:650px){.scroll-pane table td{min-width:auto}}.layout-fixed{table-layout:fixed}.figure table{margin-bottom:0}.tablesaw td{line-height:165%;text-align:left;vertical-align:middle}.tablesaw td,.tablesaw th{padding:.8em 1em}tbody tr:nth-child(2n) td{background-color:#f7f7f7}.tablesaw th,table th{border-bottom:4px solid #ddd}@media screen and (max-width:767px){.tablesaw thead{display:none}.tablesaw tr{display:flex;flex-direction:column;margin-bottom:1.5em;width:100%;border-radius:11px;border:1px solid #eee}.tablesaw td:before{content:attr(data-label);display:table-cell;font-weight:700;padding:0 1em 0 0;text-align:right}.tablesaw td:last-child:after{content:'';position:absolute;left:0;right:0;bottom:0}}a.skip-main{left:-999px;position:absolute;top:auto;width:1px;height:1px;overflow:hidden;z-index:-999}a.skip-main:active,a.skip-main:focus{color:#d33a2c;background-color:#fff;left:auto;top:auto;width:auto;height:auto;overflow:auto;padding:.5em 1em;text-align:center;font-size:1.2em;z-index:999}.video-embed-container .video-embed-container--wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}.signature{margin:1.5em 0;font-size:.9em;color:silver;font-style:italic}.author .show-more-link{font-size:.9em;display:inline;color:#666;text-decoration-line:underline;text-decoration-color:currentColor;font-weight:400}.cookie-banner{background-color:#fff;border-radius:11px;position:fixed;width:calc(19em + 1vw);padding:1em 1.5em;font-size:1em;z-index:99;box-shadow:0 6px 40px rgba(0,0,0,.3);bottom:1em;left:1em}.cookie-banner p{font-size:.9em;margin-top:0}.cookie-banner__container{display:flex}.cookie-banner button{padding:.9em 1em}@media screen and (max-width:480px){.cookie-banner{right:0;left:0;width:100%;border-radius:0;bottom:0}.cookie-banner p{margin-top:1em}}@media screen and (max-width:380px){.cookie-banner p{margin-top:0}}.cookies--btn{width:100%}.mr5{margin-right:.5em}.mr0{margin-right:0!important}.btn--white{background:#fff;color:#267dcc;border:1px solid #fff}.btn--white--bordered{border:1px solid #ddd}.sponsors ul li{display:inline-block;margin-bottom:3em;font-size:.85em;padding:0;text-align:center;vertical-align:top;max-width:25rem;border-radius:11px;border:1px solid #eee;min-height:90px}.c-promo-box--ad.sponsors li{width:auto}.sponsors__native ul.bnnr-list li{border:0;width:100%;height:auto;max-width:85%;margin:0 0 2em auto}.sponsors__native ul.bnnr-list .ad__desc{padding:1em}.sponsors__native ul.bnnr-list li:only-child{padding-bottom:0}blockquote:not(.pull-quote){font-style:italic;border-left:11px solid #e6e4e1;padding:1em calc(1.5em + .5vw);color:#424242;margin-left:0;margin-right:0;font-size:1.05em;line-height:1.65em;letter-spacing:0;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0e3 0,#fff 100%)}blockquote:not(.pull-quote) p{margin:0}.btn--small.toolbar-item,.btn.btn--small{font-size:.9em;border-radius:6px;margin:0;padding:.4em 1em}.c-felix-the-cat a.btn{display:table;margin-top:1em;margin-bottom:1.5em}@media screen and (max-height:880px){.article__comments--notes{display:none}.article__comments__form__desc{margin-top:4em}}header.subnav__header{background-color:#fff;background-color:var(--headers-bg-color,#fff);padding:.2rem 0 0 0;z-index:1}.subnav__primary::-webkit-scrollbar{display:none;width:0;background:0 0}.subnav__tags li:first-child{padding-left:14px}.subnav__tags li:last-child{padding-right:.8em}.subnav__tags .subnav-item{margin-bottom:0}@media (min-width:740px){header.subnav__header{padding:.25rem 0 0 0;box-shadow:0 4px 20px 0 rgba(0,0,0,.12)}.subnav__tags li:first-child{padding-left:35px}}.subnav .nav-item-link{color:#d33a2c;text-shadow:none!important;font-weight:700;font-family:Mija;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;border-radius:11px;font-size:1rem;background-color:#ffe7e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #fee0e0}.subnav .nav-item-link:hover{text-shadow:none;font-weight:700;font-family:Mija;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.subnav-item a:active,.subnav-item a:active:hover,.subnav-item a:focus,.subnav-item a:focus:hover{box-shadow:inset 0 1px 3px 0 rgba(0,0,0,.12);background-color:#d33a2c;color:#fff!important;outline:0}.subnav-item--active a.nav-item-link,.subnav-item--active a.nav-item-link:hover{background-color:#d33a2c;color:#fff!important;border:1px solid #d33a2c}.subnav-item{display:flex;margin-right:9px;padding-left:3px}.subnav-item .nav-item-link{padding:2px 12px}.subnav a{background:0 0;font-weight:700;display:flex;align-items:center;text-decoration:none}.subnav__primary{padding:.25em 0;margin-top:.25em;margin-bottom:.35em;display:flex;position:relative;scroll-snap-type:x;scroll-padding:1rem;overflow-x:auto;scrollbar-width:none}.subnav-more-item__button{padding:.2em 1em;color:#d33a2c;border:1px solid #ddd;border-radius:11px;background:0 0;display:flex;align-items:center;justify-content:space-around;position:relative;font-size:.85em;min-width:max-content;transition:none}.hidden{display:none!important}.c-garfield-the-cat .subnav-item--green .nav-item-link{color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0}.c-garfield-the-cat .subnav-item--green .nav-item-link:hover{color:#137d54;background-color:#c8f1e0;border:1px solid #a0dcc4}.subnav .nav-item-link:hover{color:#d33a2c;text-shadow:none;font-weight:700;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.feature-panel__desc,.sponsors__desc{font-size:.75em;color:#666;padding-bottom:10px;top:-15px;position:relative}.feature-panel::before{position:absolute;left:0;transform:translate(0,-100%);top:-5px;content:"";border-bottom:8px solid #eee;width:100%}@media (min-width:1000px){.feature-panel::before{width:73%}}.feature-panel{position:relative;border-radius:11px;padding:1.25em;display:flex;flex-wrap:wrap;background-color:#f6f6f6}@media (min-width:1000px){.feature-panel{padding:2.5em}}.feature-panel-left-col,.feature-panel-right-col{flex-basis:100%;position:relative;padding:0;flex-shrink:0}.feature-panel-right-col{order:-1;display:flex;align-items:flex-start;margin-bottom:1em;justify-content:flex-start;margin-top:2em}@media (min-width:800px){.feature-panel-left-col{flex-basis:65%}.feature-panel-right-col{order:0;flex-basis:35%;margin:0;justify-content:center}}.feature-panel-description>:first-child{margin-top:0}.feature-panel-description>:last-child{margin-bottom:0}.feature-panel-image-link{position:relative;text-decoration:none;width:100%;max-width:210px;transition:scale,opacity .2s ease-out;padding-left:2.5em;background-image:none}.feature-panel-image{width:100%;max-width:14.375rem;margin:0 auto;display:block;transition:all .2s ease-out;will-change:transform;transform-origin:0 100%;transform:rotate(-11deg)}@media (min-width:1000px){.feature-panel-image-link{position:absolute;max-width:14.375rem;top:-90px;right:0}}.feature-panel-image-img{height:auto}.btn--large.toolbar-item,.btn.btn--large{font-size:calc(1em + .25vw);padding:.75em 1em}.btn .sr-only,.sr-only{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.c-garfield__nl{display:none}@media all and (min-width:1100px){.drop-caps{display:none}.l-author-bio{display:flex}.c-garfield__nl{display:block}.nl-box__form{display:flex;padding-bottom:7px;text-align:center;letter-spacing:-.5px;color:#fff;font-size:1.15em}.nl-box__desc{margin-top:10px;color:#666;font-size:80%;line-height:1.5em;text-align:center}.nl-box__form .nl-box__form--button,.nl-box__form .nl-box__form--email{flex-grow:1;flex-shrink:0;box-sizing:border-box;width:auto;margin:0;padding:.75em 1em;border:0;border-radius:11px;background:#fff;font-size:.95em}.nl-box__form--button:active,.nl-box__form--button:focus,input.nl-box__form--email:active,input.nl-box__form--email:focus{box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form--button:-ms-input-placeholder,.nl-box__form--email:-ms-input-placeholder{color:#777;font-style:italic}.nl-box__form--button::placeholder,.nl-box__form--email::placeholder{color:#777;font-style:italic}.nl-box__form .nl-box__form--button{transition:all .2s ease-in-out;color:#fff;background-color:#0168b8;font-family:Mija,-apple-system,Arial,BlinkMacSystemFont,"Roboto Slab","Droid Serif","Segoe UI",Ubuntu,Cantarell,Georgia,serif;font-weight:700;box-shadow:0 1px 1px rgba(0,0,0,.3);width:100%;border:0;border-left:1px solid #ddd;flex:2;border-top-left-radius:0;border-bottom-left-radius:0}.nl-box__form .nl-box__form--email{border-top-right-radius:0;border-bottom-right-radius:0;width:100%;flex:4}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus,.nl-box__form .nl-box__form--button:hover{cursor:pointer;color:#fff;background-color:#0168b8;border-color:#dadada;box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus{outline:0!important;text-shadow:1px 1px 1px rgba(0,0,0,.3);box-shadow:inset 0 3px 3px rgba(0,0,0,.3)}.nl-box__group{display:flex;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px}.nl-box__wrapper{display:flex;flex-direction:column;justify-content:center}.nl-box__form form{width:100%}.nl-box__form .nl-box__group{margin:0}.nl-box{margin:1.5em 0;padding:1em 0;box-shadow:none;max-width:750px;justify-self:center}}.article__content a.anchor{color:#767676;text-decoration:none;transition:color .2s ease-in-out;padding:.35em .05em}.article__content a.anchor:active,.article__content a.anchor:focus,.article__content a.anchor:hover{color:#106fc6;background-image:linear-gradient(90deg,#006fc6 0,#2ca2d3 30%,#006fc6 85%,#006fc6 100%);background-size:100%;background-repeat:repeat;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-moz-background-clip:text;-moz-text-fill-color:transparent;text-decoration:none}#promo-article-end,#sponsors-article-end,.article__comments,.main-footer{content-visibility:auto}.toc-components{box-shadow:0 9px 30px -5px rgba(50,50,83,.25),0 8px 8px -12px rgba(0,0,0,.2),0 -6px 16px -6px rgba(0,0,0,.03);border-radius:11px;padding:2em;background-color:#fff;margin:1.25em 0 3em 0;grid-column:3/13}@media screen and (min-width:500px){.toc-components{display:grid;grid-template-columns:1fr 1fr}}@media screen and (min-width:800px){.toc-components{padding:2em 3em}}.article__content .btn--white{background:#fff;color:#267dcc}
+</style>
+
+
+    
+
+    
+      <link rel="preload" href="/js/nav-v2.js" as="script" importance="high">
+<link rel="preload" href="/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2" as="font" type="font/woff2" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+<link rel="preload" href="/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2" as="font" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2"  as="font" type="font/woff2" media="(min-width: 800px)" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2" as="font" media="(min-width: 800px)" type="font/woff2" crossorigin importance="low" media="(prefers-reduced-data: no-preference)">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/js/app.js" media="(min-width: 800px)" as="script" importance="low">
+    
+
+    
+      
+  
+  
+
+  
+  
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Smashing Magazine &amp;raquo; Feed" href="https://www.smashingmagazine.com/feed/" />
+
+    
+
+    <meta name="description" content="If you’re a developer who’s thinking about building a platform that requires a code editor in one form or another, then this article is for you. This article explains how to create a web code editor that displays the result in real time with the help of some HTML, CSS and JavaScript."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://www.smashingmagazine.com/2022/01/building-web-code-editor/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content='Building A Web Code Editor — Smashing Magazine' />
+<meta property="og:description" content="If you’re a developer who’s thinking about building a platform that requires a code editor in one form or another, then this article is for you. This article explains how to create a web code editor that displays the result in real time with the help of some HTML, CSS and JavaScript." />
+<meta property="og:url" content="https://www.smashingmagazine.com/2022/01/building-web-code-editor/" />
+<meta property="og:site_name" content="Smashing Magazine" />
+<meta property="article:publisher" content="https://www.facebook.com/smashmag" />
+
+	
+	<meta property="article:author" content="https://www.smashingmagazine.com/author/daniel-don/" />
+
+<meta property="article:tag" content="React" /><meta property="article:tag" content="Tools" /><meta property="article:tag" content="JavaScript" /><meta property="article:tag" content="Workflow" /><meta property="article:tag" content="Techniques" />
+<meta property="article:section" content="General" />
+<meta property="article:published_time" content="2022-01-13 11:30:00 &#43;0000 UTC" />
+<meta property="article:modified_time" content=" 2022-01-13 11:30:00 &#43;0000 UTC" />
+<meta property="og:updated_time" content="2022-01-13 11:30:00 &#43;0000 UTC" />
+<meta property="og:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7db33e0-a76e-4f4f-959f-be0f8898784f/building-web-code-editor.jpg' />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="If you’re a developer who’s thinking about building a platform that requires a code editor in one form or another, then this article is for you. This article explains how to create a web code editor that displays the result in real time with the help of some HTML, CSS and JavaScript." />
+<meta name="twitter:title" content='Building A Web Code Editor — Smashing Magazine' />
+<meta name="twitter:site" content="@smashingmag" />
+<meta name="twitter:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7db33e0-a76e-4f4f-959f-be0f8898784f/building-web-code-editor.jpg' />
+
+	
+	<meta name="twitter:creator" content="@iamdanieldon" />
+
+<meta property="DC.date.issued" content="2022-01-13 11:30:00 &#43;0000 UTC" />
+
+
+    <meta name="theme-color" content="#d33a2c">
+    <meta property="fb:pages" content="45576747489"/>
+    
+    <meta name="google-site-verification" content="X5sd8PEDJqYLSR98RKgSozn-0RNpknXFlGoA-UXe5K0" />
+
+    <link rel="icon" href="/images/favicon/favicon.ico" />
+    <link rel="icon" href="/images/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+  </head>
+
+  <body data-instant-whitelist class='no-js    articlepage' >
+
+		
+			
+				
+
+
+
+<div data-handler="PreLoad" id="top"></div>
+<a href="#main" class="skip-main">Skip to main content</a>
+<a href="#all-topics" class="skip-main">Jump to all topics</a>
+
+  
+    <a href="#article__start" class="skip-main">Start reading the article</a>
+  
+
+<a href="/articles/" class="skip-main">Jump to list of all articles</a>
+
+<header class="global-header header">
+    <div class="logo">
+	<a href="/" title="&larr; Back to the homepage">
+		<picture>
+			<source
+				media="(max-width: 1450px)" srcset="/images/logo.svg">
+			<source
+				media="(min-width: 1450px)"
+				srcset="/images/logo--full.svg">
+			<img
+				src="/images/logo/logo.svg"
+				loading="eager" decoding="async"
+				alt="Smashing Magazine" />
+		</picture>
+	</a>
+</div>
+
+    <nav class="main-nav">
+  <ul class="main-nav__primary">
+  
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+    <li role="none" class="nav-item main-nav-more-item">
+      <button class="main-nav-more-item__button" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="menu-text--lg">More</span>
+        <span class="menu-text--lg--close">Less</span>
+        <span class="menu-text--sm">Menu</span>
+        <span class="menu-text--sm--close">Less</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+<nav class="secondary-nav">
+  <ul class="main-nav__secondary">
+    
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+  </ul>
+</nav>
+    <div class="search">
+        <form data-handler="Search" id="js-search-form" class="search-form" method="get" action="https://www.google.com/webhp?q=site:smashingmagazine.com">
+        <div class="search-input-wrapper">
+            <input  class="input search-input" inputmode="search" type="search" name="q" id="js-search-input" autocomplete="off" placeholder="Search articles..." aria-label="Search articles" />
+            <input type="hidden" name="sitesearch" value="smashingmagazine.com" />
+            <a id="js-search-clear-button" class="search-clear-button" tabindex="-1" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.35 15.36" width="16px" height="16px" tabind="-1">
+                    <title>Clear Search</title>
+                    <path fill="#e33b2a" d="M8.38 11.41c-.5-.5-.78-.52-1.33 0l-3.05 3.08c-1.18 1.18-1.7 1.18-3-.16s-1.18-2-.18-3l3.18-3.19a.69.69 0 0 0-.07-1.14l-3-3c-1-1-1.13-1.81 0-3s1.9-1.21 3.13 0l2.94 3a.66.66 0 0 0 1.11 0c.63-.65 2.49-2.51 3.28-3.35a1.46 1.46 0 0 1 2.3-.15c.24.24.47.42.89.84.86.86.94 1.57.05 2.46l-3.27 3.26c-.36.34-.52.58-.16.94l3.27 3.27c1.1 1.1 1.23 1.7.05 2.88l-.58.58a1.59 1.59 0 0 1-2.46-.21z" />
+                </svg>
+            </a>
+        </div>
+        <input type="submit" class="search-button btn" name="submit" value="Search" id="js-search-submit">
+    </form>
+</div>
+
+</header>
+<script src="/js/nav-v2.js" importance="high" defer></script>
+<div>
+  <div data-component="SearchResults" class="search-results" data-lite="true"></div>
+
+  
+</div>
+
+
+
+
+
+	<header class="subnav__header" id="all-topics">
+		<nav class="subnav" role="navigation">
+  <ul class="subnav__primary subnav__tags flex">
+  	
+
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/accessibility/">Accessibility</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/css/">CSS</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/javascript/">JavaScript</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/react/">React</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/vue/">Vue</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/round-ups/">Round-Ups</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/ux/">UX</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/design/">Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/web-design/">Web Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/figma/">Figma</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/wallpapers/">Wallpapers</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/guides/">Guides</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/business/">Business</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/career/">Career</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/privacy/">Privacy</a></li>
+
+
+    <li role="none" class="subnav-item subnav-more-item">
+      <a class="subnav-more-item__button" href="/articles/">
+        <span class="menu-text">Jump to all articles ↬</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+	</header>
+
+
+			
+		
+
+    
+    <main id="main" tabindex="-1">
+      
+  
+  
+  <script id="gotell" type="application/json">
+    {"created_at":"2022-01-13T11:30:00Z"}
+  </script>
+
+  
+
+  <article class="block article" role="main">
+    <div class="container article-container">
+      <div class="row">
+
+        <div class="col-12 article__content" id="article__content">
+
+          <div class="c-garfield-the-cat ">
+
+            <div class="c-garfield-header">
+              
+              
+
+
+
+<header class="article-header">
+  <ul class="article-header--meta">
+		
+			<li class="article-header--meta-item article-header--meta-item__author">
+				<a class="author-post__author-title" href="/author/daniel-don/">Daniel Don</a>
+        
+			</li>
+		
+    
+			
+			<li class="article-header--meta-item article-header--meta-item__date">
+				
+				<time class="article-header--date" datetime="2022-01-13">Jan 13, 2022</time></li>
+    
+
+    
+    <li class="article-header--meta-item article-header--meta-comments">
+      <span class="article-header--comments">
+        <a href="#comments-building-web-code-editor">
+          
+          <span data-component="CommentsCount" data-insert="true" data-thread="/2022/01/building-web-code-editor/" data-article="articles/2022-01-13-building-web-code-editor.md">0 <span class="comment-count">comments</span></span>
+        </a>
+      </span>
+    </li>
+    
+  </ul>
+
+  <h1 class="article-header--title">Building A Web Code Editor</h1>
+
+  
+</header>
+
+            </div>
+
+              
+              
+
+
+<ul class="meta-box meta-box--article">
+
+  
+  <li class="meta-box--item meta-box--published">
+    22 min read
+     </li>
+
+
+
+
+  <li class="meta-box--item meta-box--tags">
+    
+    
+      
+        <a href="/category/react">React</a>,
+      
+    
+      
+        <a href="/category/tools">Tools</a>,
+      
+    
+      
+        <a href="/category/javascript">JavaScript</a>,
+      
+    
+      
+        <a href="/category/workflow">Workflow</a>,
+      
+    
+      
+        <a href="/category/techniques">Techniques</a>
+      
+    
+  </li>
+
+
+
+
+
+  <li class="meta-box--item meta-box--share">
+    Share on <a rel="nofollow" href="https://&#084;&#119;&#073;&#116;&#084;&#101;&#082;&#046;&#067;&#111;&#077;/intent/tweet?text=Building%20A%20Web%20Code%20Editor&url=https%3A%2F%2Fwww.smashingmagazine.com%2f2022%2f01%2fbuilding-web-code-editor%2f&via=smashingmag">Twitter</a>,&nbsp;<a rel="nofollow" href="/api/ball?uri=//www.linkedin.com/shareArticle?url=https://www.smashingmagazine.com%2f2022%2f01%2fbuilding-web-code-editor%2f&title=Building%20A%20Web%20Code%20Editor">LinkedIn</a>
+
+  </li>
+
+
+</ul>
+
+
+            <div class="c-garfield-aside--meta">
+
+              <div class="l-author-bio">
+
+  <div class="mobw-40 mobh-40 w-48 h-48 rounded-3xl bio-image__large mb-5 mr-3">
+    
+    
+
+
+
+<figure role="presentation" class="bio-image ">
+  
+  <a href="/author/daniel-don/" class="bio-image-link">
+  
+  <div class="bio-image-wrapper">
+		<picture>
+			<source type="image/avif" srcset="/images/authors/daniel-don.avif">
+			<img
+				class="bio-image-image"
+					src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/60fa5fa8-c6aa-4076-9be0-52642f090607/daniel-don-200x200.jpg"
+					loading="eager" decoding="async" importance="high" width="100" height="100"
+					alt="Daniel Don"
+				/>
+		</picture>
+  </div>
+  
+  </a>
+  
+</figure>
+  </div>
+
+  <div class="l-author-bio-content author__desc" id="author__desc">
+    <h4 class="author__desc__title">
+    About The Author
+    </h4>
+
+    <p>
+      
+        Daniel Don is a software developer who loves sharing his knowledge and explaining seemingly difficult topics with relatable examples. He lives in Port Harcourt …
+      
+      <a href="/author/daniel-don/" class="show-more-link">More about
+          Daniel&nbsp;↬</a>
+    </p>
+  </div>
+
+</div>
+
+              <div class="c-garfield__nl">
+              <h4 class="h2">Email Newsletter</h4>
+              <section class="nl-box__form"><form action="//smashingmagazine.us1.list-manage.com/subscribe/post?u=16b832d9ad4b28edf261f34df&amp;id=a1666656e0" method="post"><div class="nl-box__wrapper"><label for="mce-EMAIL-hp" class="sr-only">Your (smashing) email</label><div class="nl-box__group"><input type="email" name="EMAIL" class="nl-box__form--email" id="mce-EMAIL-hp" placeholder="Your email">
+    <input type="submit" value="Meow!" name="subscribe" class="nl-box__form--button"></div></div></form></section><p class="nl-box__desc"><em><a href="https://www.smashingmagazine.com/the-smashing-newsletter/">Weekly tips on front-end &amp; UX</a>.<br />Trusted by 190.000 folks.</em></p>
+              </div>
+
+              
+
+
+
+            </div>
+
+
+            
+
+							
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+									
+								
+							
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+							
+							
+
+							<div class="c-garfield-native-panel__right">
+								
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://bit.ly/northwestern_uni_winter">
+							
+								<img src="https://res.cloudinary.com/indysigner/image/upload/v1601395101/ads/NWU_Oct.gif" loading="lazy" width="180" height="150" alt="In-demand skills with Northwestern online">
+							
+
+            <em class="ad__desc">Build in-demand skills like UX, UI and HCI — Northwestern online MS in Info. Design &amp; Strategy</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+							</div>
+              <div class="c-garfield-native-panel">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://smashingconf.com/online-workshops/workshops/gleb-bahmutov">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1c410efe-be40-44d2-bdec-b14ea1019e91/workshop-glebbahmutov.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f853d1af-6ef3-420d-b40a-7f0bbe25cc80/workshop-glebbahmutov.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Front-End Testing Masterclass</em>
+						
+              </a>
+					</li>
+
+				
+			
+				
+					
+
+					<li>
+						<a href="https://smart-interface-design-patterns.com">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2c42b388-373d-46c8-b0ab-b4fae869254a/sidp-large.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ff6622dc-2ac1-4ba8-b8b9-228b425ca5cc/sidp-large.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Smart Interface Design Patterns, Video Course</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__below">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__end">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+            
+
+            <div class="c-garfield-summary" id="article__start">
+              <section aria-label="quick summary" class="article__summary">
+                <span class="summary__heading">Quick summary&nbsp;↬ </span>
+                
+                  If you’re a developer who’s thinking about building a platform that requires a code editor in one form or another, then this article is for you. This article explains how to create a web code editor that displays the result in real time with the help of some HTML, CSS and JavaScript.
+                
+              </section>
+            </div>
+
+            
+
+            
+							
+
+
+
+						
+
+            
+
+<p>An online web code editor is most useful when you do not have the opportunity to use a code editor application, or when you want to quickly try out something on the web with your computer or even your mobile phone. This is also an interesting project to work on because having the knowledge of how to build a code editor will give you ideas on how to approach other projects that require you to integrate a code editor to show some functionality.</p>
+
+<p>Here are a few React concepts you’ll need to know in order to follow along in this article:</p>
+
+<ul>
+<li>Hooks,</li>
+<li>Component structure,</li>
+<li>Functional components,</li>
+<li>Props.</li>
+</ul>
+
+<h2 id="using-codemirror">Using CodeMirror</h2>
+
+<p>We will be using a library named <a href="https://codemirror.net/index.html">CodeMirror</a> to build our editor. CodeMirror is a versatile text editor implemented in JavaScript for the browser. It is especially for editing code and comes with a number of <a href="https://codemirror.net/mode/index.html">language modes</a> and <a href="https://codemirror.net/doc/manual.html#addons">add-ons</a> for more advanced editing functionality.</p>
+
+<p>A rich <a href="https://codemirror.net/doc/manual.html#api">programming API</a> and a CSS <a href="https://codemirror.net/doc/manual.html#styling">theming</a> system are available for customizing CodeMirror to fit your application and extending it with new functionality. It gives us the functionality to create a rich code editor that runs on the web and shows us the result of our code in real time.</p>
+
+<p>In the next section, we will set up our new React project and install the libraries we need to build our web app.</p>
+
+<h2 id="creating-a-new-react-project">Creating A New React Project</h2>
+
+<p>Let’s start by creating a new React project. In your commandline interface, navigate to the directory in which you want to create your project, and let’s create a React application and name it <code>code_editor</code>:</p>
+
+<pre><code class="language-bash">npx create-react-app code_editor</code></pre>
+
+<p>Having created our new React application, let’s navigate to that project’s directory in the commandline interface:</p>
+
+<pre><code class="language-bash">cd code_editor</code></pre>
+
+<p>There are two libraries we need to install here: <code>codemirror</code> and <code>react-codemirror2</code>.</p>
+
+<pre><code class="language-bash">npm install codemirror react-codemirror2</code></pre>
+
+<p>Having installed the libraries we need for this project, let’s create our tabs and enable tab switching between the three tabs that will appear in our editor (for HTML, CSS, and JavaScript).</p>
+
+<div data-audience="non-subscriber" data-remove="true" class="feature-panel-container"><span class="feature-panel__desc">More after jump! Continue reading below&nbsp;&darr;</span>
+<aside class="feature-panel">
+<div class="feature-panel-left-col">
+<div class="feature-panel-description"><p><strong>Web forms</strong> are at the center of every meaningful interaction, so they’re worth getting a firm handle on. Meet Adam Silver&rsquo;s <strong><a href="https://www.smashingmagazine.com/printed-books/form-design-patterns/">Form Design Patterns</a></strong>, a practical guide to designing and building forms for the web.</p>
+<a data-instant href="https://www.smashingmagazine.com/printed-books/form-design-patterns/" class="btn btn--green btn--large">Jump to table of contents&nbsp;↬</a></div>
+</div>
+<div class="feature-panel-right-col"><a data-instant href="https://www.smashingmagazine.com/printed-books/form-design-patterns/" class="feature-panel-image-link">
+<div class="feature-panel-image"><picture><source type="image/avif" srcSet="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/64e57b41-b7f1-4ae3-886a-806cce580ef9/form-design-patterns-shop-image-1-1.avif" />
+<img
+    loading="lazy"
+    decoding="async"
+    class="feature-panel-image-img"
+    src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/51e0f837-d85d-4b28-bfab-1c9a47f0ce33/form-design-patterns-shop-image.png"
+    alt="Feature Panel"
+    width="481"
+    height="698"
+/>
+</picture>
+</div>
+</a>
+</div>
+</aside>
+</div>
+
+<h3 id="button-component">Button Component</h3>
+
+<p>Instead of creating individual buttons, let’s make the button a component that is reusable. In our project, the button would have three instances, according to the three tabs we need.</p>
+
+<p>Create a folder named <code>components</code> in the <code>src</code> folder. In this new <code>components</code> folder, create a JSX file named <code>Button.jsx</code>.</p>
+
+<p>Here is all of the code needed in the <code>Button</code> component:</p>
+
+<pre><code class="language-javascript">import React from 'react'
+const Button = ({title, onClick}) =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;button
+        style={{
+          maxWidth: "140px",
+          minWidth: "80px",
+          height: "30px",
+          marginRight: "5px"
+        }}
+        onClick={onClick}
+      &gt;
+        {title}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  )
+}
+export default Button
+</code></pre>
+
+<p>Here is a full explanation of what we did above:</p>
+
+<ul>
+<li>We created a functional component named <code>Button</code>, which we then exported.</li>
+<li>We destructured <code>title</code> and <code>onClick</code> from the props coming into the component. Here, <code>title</code> would be a string of text, and <code>onClick</code> would be a function that gets called when a button is clicked.</li>
+<li>Next, we used the <code>button</code> element to declare our button, and used the <code>style</code> attributes to style our button to look presentable.</li>
+<li>We added the <code>onClick</code> attribute and passed our destructured <code>onClick</code> function props to it.</li>
+<li>The last thing you’ll notice we did in this component is pass in <code>{title}</code> as the content of the <code>button</code> tag. This allows us to display the title dynamically, based on what prop is being passed to the instance of the button component when it is called.</li>
+</ul>
+
+<p>Now that we have created a reusable button component, let’s move on and bring our component into <code>App.js.</code> Go to <code>App.js</code> and import the newly created button component:</p>
+
+<pre><code class="language-javascript">import Button from './components/Button';</code></pre>
+
+<p>To track which tab or editor is open, we need a declare state to hold the value of the editor that is open. Using the <code>useState</code> React hook, we’ll set up the state that will store the name of the editor tab that is currently open when that tab’s button is clicked.</p>
+
+<p>Here is how we do that:</p>
+
+<pre><code class="language-javascript">import React, { useState } from 'react';
+import './App.css';
+import Button from './components/Button';
+
+function App() {
+  const [openedEditor, setOpenedEditor] = useState('html');
+  return (
+    &lt;div className="App"&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+
+<p>Here, we declared our state. It takes the name of the editor that is currently open. Because the value <code>html</code> is passed as the state’s default value, the HTML editor would be the tab open by default.</p>
+
+<p>Let’s move on and write the function that will use <code>setOpenedEditor</code> to change the value of the state when a tab button is clicked.</p>
+
+<p><strong>Note:</strong> Two tabs may not be open at the same time, so we’ll have to consider that when writing our function.</p>
+
+<p>Here is what our function, named <code>onTabClick</code>, looks like:</p>
+
+<pre><code class="language-javascript">import React, { useState } from 'react';
+import './App.css';
+import Button from './components/Button';
+
+function App() {
+  ...
+
+  const onTabClick = (editorName) =&gt; {
+    setOpenedEditor(editorName);
+  };
+
+  return (
+    &lt;div className="App"&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+
+<p>Here, we passed a single function argument, which is the name of the tab currently selected. This argument would be supplied anywhere the function is called, and the relevant name of that tab would be passed in.</p>
+
+<p>Let’s create three instances of our <code>Button</code> for the three tabs we need:</p>
+
+<pre><code class="language-javascript">&lt;div className="App"&gt;
+      &lt;p&gt;Welcome to the editor!&lt;/p&gt;
+      &lt;div className="tab-button-container"&gt;
+        &lt;Button title="HTML" onClick={() =&gt; {
+          onTabClick('html')
+        }} /&gt;
+        &lt;Button title="CSS" onClick={() =&gt; {
+          onTabClick('css')
+        }} /&gt;
+        &lt;Button title="JavaScript" onClick={() =&gt; {
+          onTabClick('js')
+        }} /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+
+<p>Here is what we did:</p>
+
+<ul>
+<li>We started by adding a <code>p</code> tag, basically just to give some context to what our application is about.</li>
+<li>We used a <code>div</code> tag to wrap our tab buttons. The <code>div</code> tag carries a <code>className</code> that we will use to style the buttons into a grid display in the CSS file later in this tutorial.</li>
+<li>Next, we declared three instances of the <code>Button</code> component. If you recall, the <code>Button</code> component takes two props, <code>title</code> and <code>onClick</code>. In every instance of the <code>Button</code> component, these two props are provided.</li>
+<li>The <code>title</code> prop takes the title of the tab.</li>
+<li>The <code>onClick</code> prop takes a function, <code>onTabClick</code>, which we just created and which takes a single argument: the name of the tab selected.</li>
+</ul>
+
+<p>Based on the tab currently selected, we would use the JavaScript ternary operator to display the tab conditionally. This means that if the value of the <code>openedEditor</code> state is set to <code>html</code> (i.e. <code>setOpenedEditor('html')</code>), then the tab for the HTML section would become the currently visible tab. You’ll understand this better as we do it below:</p>
+
+<pre><code class="language-javascript">...
+return (
+    &lt;div className="App"&gt;
+      ...
+      &lt;div className="editor-container"&gt;
+        {
+          openedEditor === 'html' ? (
+            &lt;p&gt;The html editor is open&lt;/p&gt;
+          ) : openedEditor === 'css' ? (
+            &lt;p&gt;The CSS editor is open!!!!!!&lt;/p&gt;
+          ) : (
+            &lt;p&gt;the JavaScript editor is open&lt;/p&gt;
+          )
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+...</code></pre>
+
+<p>Let’s go over the code above in plain English. If the value of <code>openedEditor</code> is <code>html</code>, then display the HTML section. Otherwise, if the value of <code>openedEditor</code> is <code>css</code>, then display the CSS section. Otherwise, if the value is neither <code>html</code> nor <code>css</code>, then that means the value must be <code>js</code>, because we have only three possible values for the <code>openedEditor</code> state; so, then we’d display the tab for JavaScript.</p>
+
+<p>We used paragraph tags (<code>p</code>) for the different sections in the ternary operator conditions. As we proceed, we will create the editor components and replace the <code>p</code> tags with the editor components themselves.</p>
+
+<p>We have come so far already! When a button is clicked, it fires up the action that sets the tab it represents to <code>true</code>, making that tab visible. Here’s what our app currently looks like:</p>
+
+<figure><a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/42818ddc-ef56-4abf-864c-fe38d77eeeb0/2-building-web-code-editor.gif"><img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/54e7e73f-fbbb-4c2a-af2f-d611801222c1/2-building-web-code-editor-800w.gif" width="800" height="360" alt="A GIF showing the tab toggle we currently have." /></a><figcaption>A GIF showing the tab toggle we currently have. (<a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/42818ddc-ef56-4abf-864c-fe38d77eeeb0/2-building-web-code-editor.gif">Large preview</a>)</figcaption></figure>
+
+<p>Let’s add a little CSS to the <code>div</code> container holding the buttons. We want the buttons to be displayed in a grid, instead of stacked vertically like in the image above. Go to your <code>App.css</code> file and add the following code:</p>
+
+<pre><code class="language-css">.tab-button-container{
+  display: flex;
+}</code></pre>
+
+<p>Recall that we added <code>className=&quot;tab-button-container&quot;</code> as an attribute in the <code>div</code> tag holding the three-tab buttons. Here, we styled that container, using CSS to set its display to <code>flex</code>. This is the result:</p>
+
+<figure><a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/14bd1cc6-1d43-493b-9940-9850cf50f2f6/4-building-web-code-editor.gif"><img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/49c4a7b6-656a-4e6c-a895-78da9fb7f69c/4-building-web-code-editor-800w.gif" width="800" height="347" alt="We use CSS to set its display to flex" /></a><figcaption>(<a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/14bd1cc6-1d43-493b-9940-9850cf50f2f6/4-building-web-code-editor.gif">Large preview</a>)</figcaption></figure>
+
+<p>Be proud of how much you’ve done to get to this point. In the next section, we will create our editors, replacing the <code>p</code> tags with them.</p>
+
+<div class="sponsors__lead-place"></div>
+
+<h2 id="creating-the-editors">Creating the Editors</h2>
+
+<p>Because we have already installed the libraries we are going to be working on within our CodeMirror editor, let’s go ahead and create our <code>Editor.jsx</code> file in the <code>components</code> folder.</p>
+
+<h3 id="components-editor-jsx">components &gt; Editor.jsx</h3>
+
+<p>Having created our new file, let’s write some initial code in it:</p>
+
+<div class="break-out">
+<pre><code class="language-javascript">import React, { useState } from 'react';
+import 'codemirror/lib/codemirror.css';
+import { Controlled as ControlledEditorComponent } from 'react-codemirror2';
+
+
+const Editor = ({ language, value, setEditorState }) =&gt; {
+  return (
+    &lt;div className="editor-container"&gt;
+    &lt;/div&gt;
+  )
+}
+export default Editor
+</code></pre>
+</div>  
+
+<p>Here&rsquo;s what we did:</p>
+
+<ul>
+<li>We imported React alongside the <code>useState</code> hook because we are going to need it.</li>
+<li>We imported the CodeMirror CSS file (which comes from the CodeMirror library that we installed, so you don’t have to install it in any special way).</li>
+<li>We imported <code>Controlled</code> from <code>react-codemirror2</code>, renaming it to <code>ControlledEditorComponent</code> to make it clearer. We will be using this shortly.</li>
+<li>Then, we declared our <code>Editor</code> functional component, and we have a return statement with an empty <code>div</code>, with a <code>className</code> in the return statement for now.</li>
+</ul>
+
+<p>In our functional component, we destructured some values from the props, including <code>language</code>, <code>value</code>, and <code>setEditorState</code>. These three props would be supplied in any instance of the editor when it is called in <code>App.js</code>.</p>
+
+<p>Let’s use <code>ControlledEditorComponent</code> to write the code for our editor. Here’s what we’ll do:</p>
+
+<div class="break-out">
+<pre><code class="language-javascript">import React, { useState } from 'react';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/xml/xml';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
+import { Controlled as ControlledEditorComponent } from 'react-codemirror2';
+
+
+const Editor = ({ language, value, setEditorState }) =&gt; {
+  return (
+    &lt;div className="editor-container"&gt;
+      &lt;ControlledEditorComponent
+        onBeforeChange={handleChange}
+        value= {value}
+        className="code-mirror-wrapper"
+        options={{
+          lineWrapping: true,
+          lint: true,
+          mode: language,
+          lineNumbers: true,
+        }}
+      /&gt;
+    &lt;/div&gt;
+  )
+}
+export default Editor</code></pre>
+</div>
+
+<p>Let’s walk through what we did here, explaining some CodeMirror terms.</p>
+
+<p>The CodeMirror modes specify which language an editor is meant for. We imported three modes because we have three editors for this project:</p>
+
+<ol>
+<li><strong>XML:</strong> This mode is for HTML. It uses the term XML.</li>
+<li><strong>JavaScript:</strong> This (<code>codemirror/mode/javascript/javascript</code>) brings in JavaScript mode.</li>
+<li><strong>CSS:</strong> This (<code>codemirror/mode/css/css</code>) brings in CSS mode.</li>
+</ol>
+
+<p><strong>Note:</strong> Because the editor is built as a component that is reusable, we cannot put a direct mode in the editor. So, we supply the mode through the <code>language</code> prop that we destructured. But this doesn’t change the fact that the modes need to be imported in order to work.</p>
+
+<p>Next, let’s discuss the things in <code>ControlledEditorComponent</code>:</p>
+
+<ul>
+<li><code>onBeforeChange</code><br />
+This is called anytime you write to or remove from the editor. Think of this like the <code>onChange</code> handler you would normally have in an input field to track changes. Using this, we will be able to get the value of our editor anytime there&rsquo;s a new change and save it to our editor’s state. We will write the <code>{handleChange}</code> function as we proceed.</li>
+<li><code>value = {value}</code><br />
+This is just the content of the editor at any given time. We passed a destructured prop named <code>value</code> to this attribute. The <code>value</code> props is the state holding the value of that editor. This would be supplied from the editor’s instance.</li>
+<li><em><code>className</code></em><code>=&quot;code-mirror-wrapper&quot;</code><br />
+This class name is not a style we make ourselves. It is supplied from CodeMirror’s CSS file, which we imported above.</li>
+<li><code>options</code><br />
+This is an object that takes the different functionality we want our editor to have. There are many amazing options in CodeMirror. Let’s look at the ones we used here:
+
+<ul>
+<li><code>lineWrapping: true</code><br />
+This means that code should wrap to the next line when the line is full.</li>
+<li><code>lint: true</code><br />
+This allows linting.</li>
+<li><code>mode: language</code><br />
+This mode, as discussed above, takes the language that the editor is going to be used for. The language has already been imported above, but the editor is going to apply a language based on the <code>language</code> value supplied to the editor via the prop.</li>
+<li><code>lineNumbers: true</code><br />
+This specifies that the editor should have line numbers for each line.</li>
+</ul></li>
+</ul>
+
+<p>Next, we can write the <code>handleChange</code> function for the <code>onBeforeChange</code> handler:</p>
+
+<pre><code class="language-javascript">const handleChange = (editor, data, value) =&gt; {
+    setEditorState(value);
+}</code></pre>
+
+<p>The <code>onBeforeChange</code> handler gives us access to three things: <code>editor, data, value</code>.</p>
+
+<p>We only need the <code>value</code> because it is what we want to pass in our <code>setEditorState</code> prop. The <code>setEditorState</code> prop represents the set value for each state that we declared in <code>App.js</code>, holding the value for each editor. As we move on, we will look at how to pass this as a prop to the <code>Editor</code> component.</p>
+
+<p>Next, we’ll add a dropdown that allows us to select different themes for the editor. So, let’s look at themes in CodeMirror.</p>
+
+<h3 id="codemirror-themes">CodeMirror Themes</h3>
+
+<p>CodeMirror has multiple themes we can select from. Visit the <a href="https://codemirror.net/demo/theme.html">official website</a> to see demos of the different themes available. Let’s make a dropdown with different themes that the user can choose from in our editor. For this tutorial, we’ll be adding five themes, but you can add as many as you like.</p>
+
+<p>First, let’s import our themes in the <code>Editor.js</code> component:</p>
+
+<pre><code class="language-javascript">import 'codemirror/theme/dracula.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/theme/mdn-like.css';
+import 'codemirror/theme/the-matrix.css';
+import 'codemirror/theme/night.css';</code></pre>
+
+<p>Next, create an array of all of the themes we have imported:</p>
+
+<div class="break-out">
+<pre><code class="language-javascript">const themeArray = ['dracula', 'material', 'mdn-like', 'the-matrix', 'night']</code></pre>
+</div>
+
+<p>Let’s declare a <code>useState</code> hook to hold the value of the selected theme, and set the default theme as <code>dracula</code>:</p>
+
+<pre><code class="language-javascript">const [theme, setTheme] = useState("dracula")</code></pre>
+
+<p>Let’s create the dropdown:</p>
+
+<pre><code class="language-javascript">...
+return (
+    &lt;div className="editor-container"&gt;
+
+      &lt;div style={{marginBottom: "10px"}}&gt;
+        &lt;label for="cars"&gt;Choose a theme: &lt;/label&gt;
+        &lt;select name="theme" onChange={(el) =&gt; {
+          setTheme(el.target.value)
+        }}&gt;
+          {
+            themeArray.map( theme =&gt; (
+              &lt;option value={theme}&gt;{theme}&lt;/option&gt;
+            ))
+          }
+        &lt;/select&gt;
+      &lt;/div&gt;
+    // the rest of the code comes below...
+    &lt;/div&gt;
+  )
+...</code></pre>
+
+<p>In the code above, we used the <code>label</code> HTML tag to add a label to our dropdown, and then added the <code>select</code> HTML tag to create our dropdown. The <code>option</code> tag in the <code>select</code> element defines the options available in the dropdown.</p>
+
+<p>Because we needed to fill the dropdown with the theme names in the <code>themeArray</code> that we created, we used the <code>.map</code> array method to map <code>themeArray</code> and display the names individually using the <code>option</code> tag.</p>
+
+<p>Hold on &mdash; we’re not done explaining the code above. In the opening <code>select</code> tag, we passed the <code>onChange</code> attribute to track and update the <code>theme</code> state whenever a new value is selected in the dropdown. Whenever a new option is selected in the dropdown, the value is gotten from the object returned to us. Next, we use the <code>setTheme</code> from our state hook to set the new value to be the value that the state holds.</p>
+
+<p>At this point, we have created our dropdown, set up our theme’s state, and written our function to set the state with the new value. The final thing we need to do to make CodeMirror use our theme is pass the theme to the <code>options</code> object in <code>ControlledEditorComponent</code>. In the <code>options</code> object, let’s add a value named <code>theme</code>, and set its value to the state’s value for the selected theme, also named <code>theme</code>.</p>
+
+<p>Here’s what <code>ControlledEditorComponent</code> would look like now:</p>
+
+<pre><code class="language-javascript">&lt;ControlledEditorComponent
+  onBeforeChange={handleChange}
+  value= {value}
+  className="code-mirror-wrapper"
+  options={{
+    lineWrapping: true,
+    lint: true,
+    mode: language,
+    lineNumbers: true,
+    theme: theme,
+  }}
+/&gt;</code></pre>
+
+<p>Now, we have made a dropdown of different themes that can be selected from in the editor.</p>
+
+<p>Here’s what the full code in <code>Editor.js</code> looks like at the moment:</p>
+
+<div class="break-out">
+<pre><code class="language-javascript">import React, { useState } from 'react';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/dracula.css';
+import 'codemirror/theme/material.css';
+import 'codemirror/theme/mdn-like.css';
+import 'codemirror/theme/the-matrix.css';
+import 'codemirror/theme/night.css';
+import 'codemirror/mode/xml/xml';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/css/css';
+import { Controlled as ControlledEditorComponent } from 'react-codemirror2';
+
+
+const Editor = ({ language, value, setEditorState }) =&gt; {
+  const [theme, setTheme] = useState("dracula")
+  const handleChange = (editor, data, value) =&gt; {
+    setEditorState(value);
+  }
+  const themeArray = ['dracula', 'material', 'mdn-like', 'the-matrix', 'night']
+  return (
+    &lt;div className="editor-container"&gt;
+      &lt;div style={{marginBottom: "10px"}}&gt;
+        &lt;label for="themes"&gt;Choose a theme: &lt;/label&gt;
+        &lt;select name="theme" onChange={(el) =&gt; {
+          setTheme(el.target.value)
+        }}&gt;
+          {
+            themeArray.map( theme =&gt; (
+              &lt;option value={theme}&gt;{theme}&lt;/option&gt;
+            ))
+          }
+        &lt;/select&gt;
+      &lt;/div&gt;
+      &lt;ControlledEditorComponent
+        onBeforeChange={handleChange}
+        value= {value}
+        className="code-mirror-wrapper"
+        options={{
+          lineWrapping: true,
+          lint: true,
+          mode: language,
+          lineNumbers: true,
+          theme: theme,
+        }}
+      /&gt;
+    &lt;/div&gt;
+  )
+}
+export default Editor
+</code></pre>
+</div>
+
+<p>There’s only one <code>className</code> that we need to style. Go to <code>App.css</code> and add the following style:</p>
+
+<pre><code class="language-css">.editor-container{
+  padding-top: 0.4%;
+}</code></pre>
+
+<p>Now that our editors are ready, let’s go back to <code>App.js</code> and use them there.</p>
+
+<h3 id="src-app-js">src &gt; App.js</h3>
+
+<p>The first thing we need to do is import the <code>Editor.js</code> component in here:</p>
+
+<pre><code class="language-javascript">import Editor from './components/Editor';</code></pre>
+
+<p>In <code>App.js</code>, let’s declare the states that will hold the contents of the HTML, CSS, and JavaScript editors, respectively.</p>
+
+<pre><code class="language-javascript">const [html, setHtml] = useState('');
+const [css, setCss] = useState('');
+const [js, setJs] = useState('');</code></pre>
+
+<p>If you recall, we will need to use these states to hold and supply the contents of our editors.</p>
+
+<p>Next, let’s replace the paragraph (<code>p</code>) tags that we used for the HTML, CSS, and JavaScript in the conditional renderings with the editor components we have just created, and we’ll also pass in the appropriate prop to each instance of the editor component:</p>
+
+<pre><code class="language-javascript">function App() {
+  ...
+  return (
+    &lt;div className="App"&gt;
+      &lt;p&gt;Welcome to the edior&lt;/p&gt;
+
+      // This is where the tab buttons container is...
+
+      &lt;div className="editor-container"&gt;
+        {
+          htmlEditorIsOpen ? (
+            &lt;Editor
+              language="xml"
+              value={html}
+              setEditorState={setHtml}
+            /&gt;
+          ) : cssEditorIsOpen ? (
+            &lt;Editor
+              language="css"
+              value={css}
+              setEditorState={setCss}
+            /&gt;
+          ) : (
+            &lt;Editor
+              language="javascript"
+              value={js}
+              setEditorState={setJs}
+            /&gt;
+          )
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+export default App;</code></pre>
+
+<p>If you’ve been following along until now, you’ll understand what we did in the code block above.</p>
+
+<p>Here it is in plain English: We replaced the <code>p</code> tags (which were there as placeholders) with instances of the editor components. Then, we supplied their <code>language</code>, <code>value</code>, and <code>setEditorState</code> props, respectively, to match their corresponding states.</p>
+
+<p>We&rsquo;ve come so far! Here is what our app looks like now:</p>
+
+<figure><a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e0fe07c7-bcca-4cb6-a66c-18cc12545854/5-building-web-code-editor.gif"><img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/bbbaa0f0-fcd3-404d-baf1-ae0a28bba9f2/5-building-web-code-editor-800w.gif" width="800" height="377" alt="The way our app looks like now" /></a><figcaption>(<a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/e0fe07c7-bcca-4cb6-a66c-18cc12545854/5-building-web-code-editor.gif">Large preview</a>)</figcaption></figure>
+
+<div class="sponsors__lead-place"></div>
+
+<h2 id="introduction-to-iframes">Introduction to Iframes</h2>
+
+<p>We’ll be making use of inline frames (iframes) to display the result of the code entered in the editor.</p>
+
+<p>According to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe">MDN</a>:</p>
+
+<blockquote>
+<p>The HTML Inline Frame element (<code>&lt;iframe&gt;</code>) represents a nested <a href="https://developer.mozilla.org/en-US/docs/Glossary/browsing_context">browsing context</a>, embedding another HTML page into the current one.</p>
+</blockquote>
+
+<h3 id="how-iframes-work-in-react">How Iframes Work in React</h3>
+
+<p>Iframes are normally used with plain HTML. Using Iframes with React doesn’t require many changes, the major one being to convert attribute names to camelcase. An example of this is that <code>srcdoc</code> would become <code>srcDoc</code>.</p>
+
+<h3 id="the-future-of-iframes-on-the-web">The Future of Iframes on the Web</h3>
+
+<p>Iframes continue to be really useful in web development. Something you might want to check out is Portals. As <a href="https://medium.com/@bluepnume/google-chromes-portals-like-iframes-but-better-and-worse-29e0bbb3f78e">Daniel Brain explains</a>:</p>
+
+<blockquote>“Portals introduce a powerful new set of capabilities into this mix. Now it’s possible to build something that feels like an iframe, that can seamlessly animate and morph and take over the full browser window.”</blockquote>
+
+<p>One of the things Portals tries to solve is the URL bar problem. When using iframe, components rendered in the iframe don’t carry a unique URL in the address bar; as such, this might not be great for the user experience, depending on the use case. Portals is worth checking out, and I’d suggest you do that, but because it is not the focus of our article, this is all I’ll say about it here.</p>
+
+<h2 id="creating-the-iframe-to-house-our-result">Creating the Iframe to House Our Result</h2>
+
+<p>Let’s move ahead with our tutorial by creating an iframe to house the result of our editors.</p>
+
+<pre><code class="language-javascript">return (
+    &lt;div className="App"&gt;
+      // ...
+      &lt;div&gt;
+        &lt;iframe
+          srcDoc={srcDoc}
+          title="output"
+          sandbox="allow-scripts"
+          frameBorder="1"
+          width="100%"
+          height="100%"
+        /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );</code></pre>
+
+<p>Here, we created the iframe and housed it in a <code>div</code> container tag. In the iframe, we passed some attributes that we need:</p>
+
+<ul>
+<li><code>srcDoc</code><br />
+The <code>srcDoc</code> attribute is written in camelcase because this is how to write iframe attributes in React. When using an iframe, we can either embed an external web page on the page or render specified HTML content. To load and embed an external page, we would use the <code>src</code> property instead. In our case, we are not loading an external page; rather, we want to create a new internal HTML document that houses our result; for this, we need the <code>srcDoc</code> attribute. This attribute takes the HTML document that we want to embed (we have not created that yet, but we will soon).</li>
+<li><code>title</code><br />
+The title attribute is used to describe the contents of the inline frame.</li>
+<li><code>sandbox</code><br />
+This property has <a href="https://www.w3schools.com/tags/att_iframe_sandbox.asp#:~:text=The%20sandbox%20attribute%20enables%20an,block%20form%20submission">many purposes</a>. In our case, we are using it to allow scripts to run in our iframe with the <code>allow-scripts</code> value. Because we are working with a JavaScript editor, this would come in handy quickly.</li>
+<li><code>frameBorder</code><br />
+This merely defines the border thickness of the iframe.</li>
+<li><code>width</code> and <code>height</code><br />
+This defines the width and height of the iframe.</li>
+</ul>
+
+<p>These terms should now make more sense to you. Let’s move on and declare the state that will hold the HTML template document for <code>srcDoc</code>. If you look closely at the code block above, you’ll see that we passed a value to the <code>srcDoc</code> attribute: <em><code>srcDoc</code></em><code>={srcDoc}</code>. Let’s use our <code>useState()</code> React hook to declare the <code>srcDoc</code> state. To do this, in the <code>App.js</code> file, go to where we defined the other states and add this one:</p>
+
+<pre><code class="language-javascript">const [srcDoc, setSrcDoc] = useState(` `);</code></pre>
+
+<p>Now that we have created the state, the next thing to do is display the result in the state whenever we type in the code editor. But what we don’t want is to re-render the component on every single key press. With that in mind, let’s proceed.</p>
+
+<h3 id="configuring-the-iframe-to-display-the-result">Configuring the Iframe to Display the Result</h3>
+
+<p>Every time there&rsquo;s a change in any of the editors for the HTML, CSS, and JavaScript, respectively, we want <code>useEffect()</code> to be triggered, and that will render the updated result in the iframe. Let’s write <code>useEffect()</code> to do this in the <code>App.js</code> file:</p>
+
+<p>First, import the <code>useEffect()</code> hook:</p>
+
+<pre><code class="language-javascript">import React, { useState,  useEffect } from 'react';</code></pre>
+
+<p>Let’s write <code>useEffect()</code> like so:</p>
+
+<pre><code class="language-javascript">useEffect(() =&gt; {
+    const timeOut = setTimeout(() =&gt; {
+      setSrcDoc(
+        `
+          &lt;html&gt;
+            &lt;body&gt;${html}&lt;/body&gt;
+            &lt;style&gt;${css}&lt;/style&gt;
+            &lt;script&gt;${js}&lt;/script&gt;
+          &lt;/html&gt;
+        `
+      )
+    }, 250);
+    return () =&gt; clearTimeout(timeOut)
+  }, [html, css, js])</code></pre>
+
+<p>Here, we wrote a <code>useEffect()</code> hook that will always run whenever the value states that we declared for the HTML, CSS, and JavaScript editors are changed or updated.</p>
+
+<p>Why did we need to use <code>setTimeout()</code>? Well, if we wrote this without it, then every time a single key press is made in an editor, our iframe would be updated, and that isn’t great for performance generally. So we use <code>setTimeout()</code> to delay the update for 250 milliseconds, giving us enough time to know whether the user is still typing. That is, every time the user presses a key, it restarts the count, so the iframe would only be updated when the user has been idle (not typing) for 250 milliseconds. This is a cool way to avoid having to update the iframe every time a key is pressed.</p>
+
+<p>The next thing we did above was to update <code>srcDoc</code> with the new changes. The <code>srcDoc</code> component, as we explained above, renders specified HTML content in the iframe. In our code, we passed an HTML template, taking the <code>html</code> state that contains the code that the user has typed into the HTML editor and placing it between the <code>body</code> tags of our template. We also took the <code>css</code> state that contains the styles that the user has typed in the CSS editor, and we passed that between the <code>style</code> tags. Finally, we took the <code>js</code> state that contains the JavaScript code that the user has typed in the JavaScript editor, and we passed it between the <code>script</code> tags.</p>
+
+<p>Notice that in setting <code>setSrcDoc</code>, we used backticks (<code>` `</code>) instead of normal quotes (<code>' '</code>). This is because backticks allow us to pass in corresponding state values, as we did in the code above.</p>
+
+<p>The <code>return</code> statement in the <code>useEffect()</code> hook is a cleanup function that clears <code>setTimeout()</code> when it is complete, to avoid memory leakage. The <a href="https://reactjs.org/docs/hooks-effect.html">documentation has more</a> about <code>useEffect</code>.</p>
+
+<p>Here’s what our project looks like at the moment:</p>
+
+<figure><a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c00873c4-68a4-427e-8481-c4d25a44649f/3-building-web-code-editor.gif"><img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/7ffa79c1-1410-49b5-a145-0c0a5d986b4a/3-building-web-code-editor-800w.gif" width="800" height="380" alt="What our project looks like at the moment" /></a><figcaption>(<a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c00873c4-68a4-427e-8481-c4d25a44649f/3-building-web-code-editor.gif">Large preview</a>)</figcaption></figure>
+
+<h3 id="codemirror-addons">CodeMirror Addons</h3>
+
+<p>With CodeMirror addons, we can enhance our editor with more of the kind of functionality we would find in other code editors. Let’s walk through an example of closing tags being added automatically when an opening tag is typed, and another example of a bracket automatically closing when the opening bracket is inputted:</p>
+
+<p>The first thing to do is import the addon for this into our <code>App.js</code> file:</p>
+
+<pre><code class="language-javascript">import 'codemirror/addon/edit/closetag';
+import 'codemirror/addon/edit/closebrackets';</code></pre>
+
+<p>Let’s pass it in the <code>ControlledEditorComponent</code> options:</p>
+
+<pre><code class="language-javascript">&lt;ControlledEditorComponent
+        ...
+        options={{
+          ...
+          autoCloseTags: true,
+          autoCloseBrackets: true,
+        }}
+      /&gt;</code></pre>
+
+<p>Now here’s what we have:</p>
+
+<figure><a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/507dbd6b-c186-4ed6-92cd-4f382f638e97/1-building-web-code-editor.gif"><img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4239cd95-e529-484c-a79a-e641f64c3367/1-building-web-code-editor-800w.gif" width="800" height="379" alt="The way our project looks" /></a><figcaption>(<a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/507dbd6b-c186-4ed6-92cd-4f382f638e97/1-building-web-code-editor.gif">Large preview</a>)</figcaption></figure>
+
+<p>You could add a ton of these addons to your editor to give it richer features. We couldn’t possibly go through <a href="https://codemirror.net/doc/manual.html#addons">all of them</a> here.</p>
+
+<p>Now that we are done with this, let’s briefly discuss things we could do to improve our app’s accessibility and performance.</p>
+
+<h2 id="performance-and-accessibility-of-the-solution">Performance and Accessibility of the Solution</h2>
+
+<p>Looking at our web code editor, some things could definitely be improved upon.</p>
+
+<p>Because we’ve paid attention primarily to functionality, we might have neglected design a little bit. For better accessibility, here are some things you could do to improve this solution:</p>
+
+<ol>
+<li>You could set an <code>active</code> class on the button for the currently open editor. Highlighting the button would improve accessibility by giving users a clear indication of which editor they’re currently working on.</li>
+<li>You might want the editor to occupy more screen space than what we have here. Another thing you could try is making the iframe pop up with the click of a button that is docked somewhere to the side. Doing so would give the editor more screen space.</li>
+<li>This sort of editor would be useful for people who want to run a quick exercise on their mobile device, so fully adapting it to mobile would be necessary (not to mention both of the points about mobile above).</li>
+<li>Currently, we are able to switch the theme of the editor component from among the multiple themes we’ve loaded in, but the general theme of the page remains the same. You could enable the user to switch between a dark and light theme for the entire layout. This would be good for accessibility, relieving the strain on people’s eyes from looking at a bright screen for too long.</li>
+<li>We didn’t look at security issues with our iframe, mainly because we were loading an internal HTML document in the iframe, rather than an external document. So we don’t need to consider this too carefully because iframes are a good fit for our use case.</li>
+<li>With iframes, another consideration would be page-loading time, because the content being loaded in the iframe would normally be out of your control. In our app, this isn’t an issue because our iframe content isn’t external.</li>
+</ol>
+
+<p>Performance and accessibility are worth a lot of consideration when you’re building any application because they will determine how useful and usable your application is to its users.</p>
+
+<p><a href="https://www.smashingmagazine.com/author/shedrack-akintayo/">Shedrack</a> has done a good job of explaining methods for <a href="https://www.smashingmagazine.com/2020/07/methods-performance-react-apps/">improving and optimizing performance in React apps</a>. It’s worth checking out!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Working through different projects helps us to learn about a wide range of subjects. Now that you’ve gone through this article, feel free to expand upon your experience by experimenting with more add-ons to make the code editor richer, revamping the UI, and fixing the accessibility and performance concerns outlined above.</p>
+
+<ul>
+<li>The entire code base for this project is <a href="https://github.com/smashingmagazine/web_code_editor">available on GitHub</a>.</li>
+</ul>
+
+<p>Here’s the demo on Codesandbox:</p>
+
+<iframe src="https://codesandbox.io/embed/suspicious-breeze-hf41m?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="suspicious-breeze-hf41m"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+<h3 id="links-and-material">Links and Material</h3>
+
+<ul>
+<li>“<a href="https://bluepnume.medium.com/google-chromes-portals-like-iframes-but-better-and-worse-29e0bbb3f78e">Google Chrome’s Portals: Like Iframes, But Better, and Worse</a>”, Daniel Brain</li>
+<li>“<a href="https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab">Optimizing Performance</a>”, React documentation</li>
+<li>“<a href="https://codemirror.net/doc/manual.html">User Manual and Reference Guide</a>”, CodeMirror documentation</li>
+</ul>
+
+<div class="signature">
+  <img src="https://www.smashingmagazine.com/images/logo/logo--red.png" alt="Smashing Editorial" width="35" height="46" loading="lazy" decoding="async" />
+  <span>(ks, vf, yk, il, al)</span>
+</div>
+
+
+
+						
+							<div class="category__related--alt">
+								<span class="italic grey mrs mbm block">Explore more on</span>
+								<nav class="subnav ib" role="navigation">
+									<ul class="subnav__primary subnav__subtags flex flex-wrap">
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/react">React</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/tools">Tools</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/javascript">JavaScript</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/workflow">Workflow</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/techniques">Techniques</a></li>
+									
+									</ul>
+								</nav>
+							</div>
+      			
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <link href="/css/non-critical-article-manual-felix.css" media="print" onload="this.media='all'" rel="stylesheet">
+      <link href="/css/article-dark-mode-v3.css" media="(prefers-color-scheme: dark)" rel="stylesheet">
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+
+      
+        <div id="sponsors-article-end" data-impression="true" class="c-promo-box c-promo-box--ad c-promo-box--wide sponsors sponsors__row hidden sponsors__external" data-audience="non-subscriber" data-remove="true"></div>
+      
+
+			
+				<div id="promo-article-end hidden">
+					
+						
+
+<div class="book-grid">
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/the-smashing-newsletter/"><img loading="lazy" width="202" height="266" src="/images/smashing-cat/cat-in-a-chair--tall.svg" alt="Smashing Newsletter"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/the-smashing-newsletter/">
+				Smashing Newsletter
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Tips on front-end &amp; UX, delivered weekly in your inbox. Just the things you can actually use.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="https://www.smashingconf.com/online-workshops/"><img loading="lazy" width="202" height="266" src="https://www.smashingmagazine.com/images/smashing-cat/cat-explorer.svg" alt="Front-End &amp; UX Workshops, Online"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="https://www.smashingconf.com/online-workshops/">
+				Front-End &amp; UX Workshops, Online
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			With practical takeaways, live sessions, video recordings and a friendly Q&amp;A.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/printed-books/"><img loading="lazy" width="202" height="266" src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c2f2c6d6-4e85-449a-99f5-58bd053bc846/typescript-shop-cover-opt.png" alt="TypeScript in 50 Lessons"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/printed-books/">
+				TypeScript in 50 Lessons
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Everything TypeScript, with code walkthroughs and examples. And other printed books.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+</div>
+
+
+
+					
+				</div>
+			
+
+      
+        <div data-component="CommentsArea" id="comments-building-web-code-editor" data-thread="/2022/01/building-web-code-editor/" data-date="2022-01-13 11:30:00 &#43;0000 UTC"></div>
+
+      
+
+    </div>
+  </article>
+
+    </main>
+
+		
+			
+				
+				
+				<div data-component="CookieBanner"></div>
+
+  <div id="cart" class="cart-wrapper" data-component="MiniCart"></div>
+
+
+<footer class="main-footer">
+  <div class="container">
+
+    <div class="col-12">
+      <div class="footer__topics open">
+    <h4 class="footer__topics__title" id="topics">Browse All Smashing Magazine Topics</h4>
+    <ul class="footer__topics__list">
+      
+        <li class="footer__topics__item">
+            <a href="/category/accessibility">Accessibility</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/android">Android</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/animation">Animation</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/apps">Apps</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/css">CSS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design">Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-patterns">Design Patterns</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-systems">Design Systems</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/e-commerce">E-Commerce</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/freebies">Freebies</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/graphics">Graphics</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/html">HTML</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/illustrator">Illustrator</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/inspiration">Inspiration</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ios">iOS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/javascript">JavaScript</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/mobile">Mobile</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/pattern-libraries">Pattern Libraries</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/performance">Performance</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/photoshop">Photoshop</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/plugins">Plugins</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/react">React</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/responsive-design">Responsive Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/service-workers">Service Workers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/sketch">Sketch</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/typography">Typography</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ui">UI</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/usability">Usability</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/user-experience">User Experience</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wallpapers">Wallpapers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/web-design">Web Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wordpress">WordPress</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/workflow">Workflow</a>
+        </li>
+      
+    </ul>
+</div>
+
+    </div>
+
+    <div class="col-12">
+      <div class="footer__notes">
+        <p>With a commitment to quality content for the design community.</p>
+        <p>Founded by Vitaly Friedman and Sven Lennartz. <span class="lining-figures">2006–2022</span>.</p>
+        <p>Smashing is proudly running on <a href="https://www.netlify.com/?utm_source=link&utm_medium=parter&utm_campaign=sm-footer">Netlify</a>.</p>
+        <p>Fonts by <a href="http://latinotype.com/">Latinotype</a>.</p>
+      </div>
+
+      <ul class="footer__links">
+        <li>&#9998; <a href="/write-for-us/">Write for us</a>
+        </li>
+        <li>
+          <a href="/contact/">Contact us</a>
+        </li>
+        <li>
+          <a href="/about/">About us (Impressum)</a>
+        </li>
+        <li>
+          <a href="/privacy-policy/">Privacy policy</a>
+        </li>
+        <li>
+          <a href="/auth/">Membership login</a>
+        </li>
+        <li>
+            <a href="/delivery-times/">Delivery times</a>
+          </li>
+            <li>
+          <a href="mailto:&#097;&#100;&#118;&#101;&#114;&#116;&#105;&#115;&#105;&#110;&#103;&#064;&#115;&#109;&#097;&#115;&#104;&#105;&#110;&#103;&#109;&#097;&#103;&#097;&#122;&#105;&#110;&#101;&#046;&#099;&#111;&#109;?subject=Let’s talk about advertising">Advertise</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+<div class="back-to-top-wrapper" id="back_top">
+	<a href="#top" data-scroll="#top" class="back-to-top" title="Back to top">
+		<svg viewBox="0 0 100 100" width="25px" height="25px" tabindex="-1" role="img" aria-labelledby="title">
+			<title id="title">Back to top</title>
+			<path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"></path>
+			<image src="/images/back-to-top-arrow.png" alt="Back to top arrow" xlink:href="" width="100%" height="100%"></image>
+		</svg>
+	</a>
+</div>
+
+
+</footer>
+
+<div data-handler="PostLoad"></div>
+
+<script src="/js/app.js" defer importance="low"></script>
+<script>
+  
+  window.PRERELEASES = {}
+  window.PAGE_TYPE = "articles"
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+      	window.PRERELEASES['touch-design-for-mobile-interfaces'] = '2022-01-25T13:00:00.000Z';
+			
+    
+  
+
+  if ('serviceWorker' in navigator && !localStorage.getItem('no_sw')) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => {
+          window.caches
+            .open('smashing-mag-offline-articles')
+            .then(cache => cache.keys())
+            .then(keys => {
+              var savedOffline = document.querySelector('.meta-box--article')
+              if (savedOffline && keys && keys.length) {
+                var currentPageSaved = keys.find(key =>  key.url === window.location.href)
+              }
+
+              var list = document.querySelector('.offline-articles-list')
+              if (list && keys && keys.length) {
+                var listItem = document.createElement('li')
+
+                var innerList = keys
+                  .map(function(key) {
+                    return (
+                      '<li><a href="' + key.url + '">' + key.url + '</a></li>'
+                    )
+                  })
+                  .join('')
+                listItem.innerHTML =
+                  'Recently viewed aritcles: <ul>' + innerList + '</ul>'
+                list.appendChild(listItem)
+              }
+            })
+        })
+        .catch(function(err) {
+          console.error('Failed to load service worker')
+        })
+    })
+  }
+</script>
+
+<div hidden>
+
+
+</div>
+
+<link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+
+
+
+<script class="js-additional" importance="low" src="/js/instantpage.js" type="module" defer></script>
+<script class="js-additional" importance="low" src="/js/ga.js" defer></script>
+<script class="js-additional" importance="low" src="https://www.google-analytics.com/analytics.js" defer></script>
+<script class="js-additional" importance="low" type="module" src="/js/web-vitals-tracking.js"></script>
+
+			
+		
+
+  </body>
+</html>
