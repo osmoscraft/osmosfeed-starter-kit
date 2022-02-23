@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+
+    
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+        <title>Smashing Podcast Episode 45 With Jeremy Wagner: What Is Reponsible JavaScript? — Smashing Magazine</title>
+      
+      
+
+
+<link rel="preconnect" href="https://cloud.netlifyusercontent.com"/>
+<link rel="preconnect" href="https://smashingcomments.netlify.app"/>
+<link rel="preconnect" href="https://res.cloudinary.com"/>
+<link rel="preconnect" href="https://www.google-analytics.com/"/>
+<link rel="preconnect" href="https://storage.googleapis.com"/>
+
+      
+
+
+
+
+
+
+    
+
+    
+      
+
+<style>
+  @font-face{font-family:Elena;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff")}@font-face{font-family:Elena;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic}@font-face{font-family:Mija;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff")}@font-face{font-family:Mija;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700}
+</style>
+
+<script>
+
+  var fontsInServiceWorker = sessionStorage.foutFontsStage1Loaded && sessionStorage.foutFontsStage2Loaded || ('serviceWorker' in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === 'activated')
+  if (!fontsInServiceWorker && 'fonts' in document) {
+    function fetchFonts(fonts) {
+      return Promise.all(fonts.map(function (font) {
+        return document
+          .fonts
+          .load(font);
+      }));
+    }
+
+    if( sessionStorage.foutFontsStage2Loaded ) {
+			document.documentElement.className += " wf-loaded-stage2";
+		} else {
+      sessionStorage.foutFontsStage1Loaded = true;
+    };
+  }
+
+
+
+  if ("fonts" in document && !("connection" in navigator && navigator.connection.saveData)) {
+		
+		let font = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format('woff2')"
+		);
+		let fontBold = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+		let fontItalic = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format('woff2')",
+			{ style: "italic" }
+		);
+		
+		
+		
+		
+		let font2Bold = new FontFace(
+			"Mija",
+			"url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+
+		
+		let loadedFonts = Promise.all([
+			font.load(),
+			
+			fontBold.load(),
+			font2Bold.load(),
+			fontItalic.load()
+		]).then(result => {
+			result.forEach(font => document.fonts.add(font));
+			document.documentElement.classList.add('wf-loaded-stage2');
+			sessionStorage.foutFontsStage2Loaded = true;
+		}).catch(error => {
+			throw new Error(`Error caught: ${error}`);
+		});
+
+  }
+
+  if (
+    (sessionStorage.foutFontsStage1Loaded &&
+      sessionStorage.foutFontsStage2Loaded) ||
+    ('serviceWorker' in navigator &&
+      navigator.serviceWorker.controller !== null &&
+      navigator.serviceWorker.controller.state === 'activated')
+  ) {
+    var docEl = document.documentElement
+    
+    docEl.classList.add('wf-loaded-stage2')
+  }
+
+  if (
+    !'querySelector' in document &&
+    'addEventListener' in window &&
+    'getComputedStyle' in window
+  ) {
+    window.document.documentElement.className += ' no-js'
+  }
+  window.document.documentElement.className += ' enhanced js'
+</script>
+
+
+
+<style>
+  @charset "UTF-8";@media (prefers-color-scheme:dark){:root{--article-background-color:linear-gradient(-45deg, #162c35 70%, #0c252f 100%)}}*,::after,::before{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;overflow-y:scroll}body{margin:0;display:flex;flex-direction:column;background-color:#fff;font-feature-settings:"onum" 1;color:#333;overflow:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:-apple-system,BlinkMacSystemFont,Roboto,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif;font-size:1.125em}body,html{min-height:100%;overflow-x:hidden}img{max-width:100%;position:relative;border-style:none}article,aside,figcaption,figure,footer,header,main,nav,section{display:block}:focus{outline:3px dotted var(--THEME_COLOR_HOVER,#d33a2c)!important;outline-offset:2px}article,figure,header,main,nav,section{display:block}@media (prefers-reduced-data:reduce){.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 body,.wf-loaded-stage2 h1,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 tbody td,.wf-loaded-stage2 th,.wf-loaded-stage2 time{font-family:-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif!important}}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 h1,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 th{font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 body,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 tbody td,.wf-loaded-stage2 time{font-family:Elena,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}@media all and (max-width:750px){.c-garfield-the-cat{display:flex;flex-direction:column}.c-garfield-the-cat>*{margin-bottom:0}.article__image,.c-garfield-the-cat>figure{margin:1em auto .25em auto}.c-garfield-aside--meta{margin-bottom:1em}.c-garfield-the-cat>pre{margin-top:1em}.c-garfield-the-cat .code-toolbar{margin-top:1em}.c-garfield-the-cat .code-toolbar>pre{margin-top:0}.c-garfield-the-cat>pre{margin-bottom:.5rem}.c-garfield-the-cat>table{margin-top:1em;margin-bottom:1em}.c-garfield-the-cat .pull-quote__quotation{margin-top:1em}.drop-caps{display:none}}.js-show-secondary .menu-text--sm,.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}.js-show-secondary .menu-text--sm--close{display:block}@media all and (min-width:800px){.js-show-secondary .main-nav__secondary{display:block;top:50px}.js-show-secondary .menu-text--lg--close,.menu-text--lg{display:block}.js-show-secondary .menu-text--lg,.js-show-secondary .menu-text--sm--close,.menu-text--sm{display:none}}.js-show-secondary .main-nav-more-item__button:before{content:"";display:block;margin-left:.35em;width:45px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50.21 35.05'%3E%3Cellipse cx='27.8' cy='32.92' fill='rgba(60,60,60,0.5)' rx='19.64' ry='1.2'/%3E%3Cpath fill='%23fff' d='M46.48 15.53a5.2 5.2 0 00-2-.31 7 7 0 00-1.43.19 7.66 7.66 0 001.19-1.52 7.12 7.12 0 011.12-.13 5.18 5.18 0 012 .31h.05a2.82 2.82 0 011.44 1.24 2.75 2.75 0 01.18 2 2.36 2.36 0 00-.74-.46 2 2 0 01.86 1c.11.45-.23 1-.67.92a1.86 1.86 0 00-.22-1 2.65 2.65 0 00-.29-1 2.74 2.74 0 00-1.49-1.24zM16.56 28.07c.06-.21.37-1.29.19-1.47 0 0 5.18 5.08 7.22-2.7a6 6 0 001.16.62c-.75 7-6.44 3.43-6.44 3.43.22.13.14 1.25.12 1.47-.16 2.2-3 1.63-3.74.11a2.44 2.44 0 01-.14-.34 1.4 1.4 0 001.63-1.12z' class='cls-2'/%3E%3Cpath fill='%23fff' d='M1.26 14.52c.08.23.18.45.28.67v.05c1.26 2.67 3.76 5 6.81 4.61a12 12 0 003.51-1.05 8.6 8.6 0 013.64-1 7.28 7.28 0 00.1 2.65A9.82 9.82 0 0117 18.5s-.77 2.34-.41 3a1 1 0 00-.15-.18 1.28 1.28 0 00-.8-.4 1 1 0 00-.89.7c-.23.45-.24.83-.63 1.17-1 .87-2.17 2-1.79 3.47a2.64 2.64 0 002.06 1.82A1.39 1.39 0 0016 27c.06-.21.36-1.28.18-1.46 0 0 5.19 5.07 7.23-2.7a5.65 5.65 0 001.16.61c1.43.56 3.94.91 6.11-2.07a20.36 20.36 0 005.68 1.13s-1.55-.55-1.61-1.28c0 0 3.84 1 6 0l-2.43-.32a3.69 3.69 0 001.68-.42 5.24 5.24 0 012.46 0c.73.08 1.06-.31 1.54-.78a1.17 1.17 0 00.09.33 2.06 2.06 0 00.12.35 3.21 3.21 0 00.37.65 1.35 1.35 0 001.27.53.92.92 0 00.53-.28 1.2 1.2 0 00.19-1.16 2 2 0 00-.77-.94 1.85 1.85 0 011 1.76c.44.08.78-.48.67-.93a1.13 1.13 0 00-.13-.32 2.4 2.4 0 00-.72-.7 2.26 2.26 0 01.74.45 2.67 2.67 0 00.1-.64v-.3a2.59 2.59 0 00-.28-1A2.65 2.65 0 0046 16.32l-.14-.06-.08-.05h-.06a10.1 10.1 0 00-3.9-.54 6.3 6.3 0 001.59-2.45 3 3 0 01-.12.73s1.61-.69.71-2.95a1 1 0 01.63.49 4.17 4.17 0 00-1.74-2.81 2.35 2.35 0 01.88.17 3.64 3.64 0 00-1.72-1.34l-.27-2.21.88.31s0-.35-.89-.86a7.17 7.17 0 00.36-3.37C39.32 1 38.27 2.48 38 2.94a12.73 12.73 0 00-2.56.26 2.83 2.83 0 011.29-.62 3.87 3.87 0 00-3.23.94s-2.73-2-5.37-1.29c0 0-.27 1.36 1.42 4.77a6.37 6.37 0 00-2.31 2.67 7.38 7.38 0 011.63-1.59s-2.44 2.6-1.46 4.67a3.77 3.77 0 01.35-1.55c0 .4-.24 3.2 1 4.61a9.92 9.92 0 01-.32-2s.37 2.53 3.84 3.6a4.35 4.35 0 01-1.49-1.54 11.65 11.65 0 002.47 1.23c-.61.18-1 .31-1 .31l-.81.38a6.56 6.56 0 01-2.34-1.49h-.07a.58.58 0 01-.31.08.64.64 0 01-.46-.21 5.47 5.47 0 01-1.14-2.91.66.66 0 01-.33-.31 3.48 3.48 0 01-.19-2.24 6.84 6.84 0 00-6.5-.26 18.29 18.29 0 012.43.43s-4.84.26-7.22 3.71c0 0 1.93-2 2.77-1.7a8.44 8.44 0 00-2.1 3A9.13 9.13 0 0012 16c-3.7.78-5.2-1.7-5.79-3.65 0-.13-.08-.25-.11-.37a.14.14 0 000-.07v-.16a.14.14 0 010-.06q-.1-.24-.1-.47v-.05a.68.68 0 000-.14 2.4 2.4 0 010-.24v-.09a.09.09 0 000-.05v-.08a.28.28 0 010-.09v-.12c-.09-2-1.43-2.88-3-1.92C.82 9.6.44 12.35 1.26 14.52zm26.58-3.41v.05z' class='cls-2'/%3E%3C/svg%3E");order:1}.js-show-secondary .main-nav-more-item__button:after{width:15px;height:15px;order:2;background-image:url(/images/icons/close.svg)}.js-show-secondary .main-nav__secondary{display:flex}strong{font-weight:bolder;letter-spacing:0}svg:not(:root){overflow:hidden}button{text-transform:none;cursor:pointer;font:inherit;margin:0}[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}.l-author-bio{display:flex;flex-wrap:wrap;align-items:center}.l-author-bio-content{flex-grow:1;flex-shrink:1;flex-basis:300px}.bio-image__large .bio-image{--bio-image-border-width:8px}.bio-image{padding:0;margin:0;display:block;width:100%;height:100%;border-radius:inherit;position:relative}.bio-image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transform-origin:30% 50%;opacity:1;transition:opacity .3s ease-in-out}.bio-image:hover::before{opacity:0}a.bio-image-link{background:0 0;text-shadow:none;color:inherit;padding:0;display:block;border-radius:inherit;width:100%;height:100%}a.bio-image-link::before{display:block;content:'';height:120%;width:120%;position:absolute;top:-10%;left:-12%}.bio-image-wrapper{background:var(--bio-image-background-color,var(--bio-image-border-color,#d33a2c));border:solid var(--bio-image-border-width,8px) var(--bio-image-border-color,#d33a2c);border-radius:inherit;transform:scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));transform-origin:0 100%;overflow:hidden;width:100%;height:100%;transition:transform .2s ease-out}.bio-image-image{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2) rotateZ(calc(11 * 1deg));transition:transform .2s ease-out}.bio-image-link:active .bio-image-wrapper,.bio-image-link:focus .bio-image-wrapper,.bio-image:hover .bio-image-wrapper{transform:scale(.84) translateX(15%) rotateZ(0)}.bio-image-link:active .bio-image-image,.bio-image-link:focus .bio-image-image,.bio-image:hover .bio-image-image{transform:scale(1.2) rotateZ(0)}.article__content .author-post__author-title{color:#d33a2c;text-decoration-line:underline;font-weight:700;font-size:.9em}.light-grey{color:#767676!important}.rounded-3xl{border-radius:1.2em}.block{display:block}.h-48{height:12rem}.mr-3{margin-right:.75rem}.mb-5{margin-bottom:1.25rem}@media all and (max-width:600px){.mobw-40{width:8rem!important}.mobh-40{height:8rem!important}}.w-48{width:12rem}.mt-2{margin-top:.5rem}.mtn{margin-top:0!important}.mbn{margin-bottom:0!important}small{font-size:80%}.row{box-sizing:border-box;display:flex;flex:0 1 auto;flex-direction:row;flex-wrap:wrap;margin-right:-1rem;margin-left:-1rem}[class*=col-]{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}.row::after{clear:both}.col-12{flex-basis:100%;max-width:100%}@media screen and (min-width:48em){.col-12{flex-basis:100%;max-width:100%}}.container{width:calc(100% - .5em);max-width:1440px;margin:0 auto;z-index:1;position:relative}.container::after{content:"";display:table;clear:both}@media (min-width:40em){.container{width:92vw!important}}@media (min-width:48em){.container{width:85vw}}@media (min-width:64em){.container{width:68rem}}@media (min-width:75em){.container{width:79rem}}@media screen and (min-width:160em){.container{max-width:1650px}}@media (min-width:187.5em){.container{max-width:1860px}}.c-garfield-the-cat>p:first-of-type{font-size:1.1em;line-height:1.55em}.c-garfield-the-cat>p:empty{display:none}.c-felix-the-cat{background-color:#f3f3f3;border-left:11px solid #e6e4e1;padding:1em 1em 1em 1.5em;color:#424242;margin-left:0;margin-top:1em;font-size:1.05em;line-height:1.6em;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0 0,#fff 100%)}.c-felix-the-cat h4{margin-top:.5em}.sponsor-panel{display:flex;justify-content:center;align-items:center}.sponsor-panel-content{flex:3}.sponsor-panel-image{display:none}@media screen and (min-width:1100px){.sponsor-panel-image{display:block;background-image:none;margin-left:1.5em;flex:1}}@media (max-width:1024px){.col{width:100%!important;padding:0 1em}.row{margin-left:0;margin-right:0}.article__content{float:none}.article__content::before{display:none}}#main{position:relative;z-index:0;background-color:#fff}@supports (display:grid){.main-nav{display:grid;align-items:center}}.main-nav{position:relative;display:block;min-width:0;color:#fff;grid-column:span 2;font-size:1.05em}.main-nav__primary .nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav__secondary .nav-item--active{background-color:transparent;margin:0}.c-garfield-the-cat figcaption a{color:#666;text-decoration-line:underline;text-decoration-color:#666}.c-garfield-the-cat figcaption a.btn{color:#fff;text-decoration:none}@media all and (min-width:1100px){@supports (grid-row-gap:0){.c-garfield-the-cat{display:grid;grid-template-columns:0 minmax(0,.5fr) repeat(10,minmax(0,1fr)) .7fr .3fr 17rem;margin:0 auto}.c-garfield-the-cat ol,.c-garfield-the-cat ul,.c-garfield-the-cat>div,.c-garfield-the-cat>p,.c-garfield-the-cat>table{margin-bottom:1.4em}.c-garfield-the-cat>h2{margin-top:1.5em;margin-bottom:1em}.c-garfield-the-cat>h3,.c-garfield-the-cat>h4{margin-top:1.5em;margin-bottom:.65em}.c-garfield-the-cat>h5{margin-top:.65em;margin-bottom:.65em}.article__image,.c-garfield-the-cat>figure{margin:0 auto 1.4em auto;width:100%}.c-garfield-the-cat .code-toolbar pre,.c-garfield-the-cat blockquote,.c-garfield-the-cat pre,.c-garfield-the-cat>figure.video-embed-container{margin-bottom:1.7em;margin-top:.3em}.c-garfield-the-cat .code-toolbar{margin-bottom:0}.c-garfield-the-cat>*{grid-column:3/13;margin-top:0;margin-bottom:0}.c-garfield-the-cat .c-garfield-bio{grid-column:1/2;grid-row:1/4;align-self:start}.c-garfield-the-cat .c-garfield-header{grid-column-end:16}.c-garfield-the-cat .c-garfield-aside--meta{grid-column:15/16;grid-row:2/7;align-self:start;margin:0}.c-garfield-the-cat .toc-components li{margin-bottom:.75em}.c-garfield-the-cat>.break-out{grid-column:3/14;width:100%}.c-garfield-the-cat>.break-out img{margin:0 auto}.c-garfield-the-cat>.break-out figcaption{max-width:50em}.article__content .c-garfield-the-cat figcaption{margin:0 auto}.c-garfield-the-cat .c-garfield-native-panel{grid-column:15/16;grid-row:8/15;align-self:start;text-align:center;position:relative}.c-garfield-native-panel__right{grid-column:15/16;grid-row:15/22;align-self:start;text-align:center}.c-garfield-the-cat .c-garfield-native-panel__below{grid-row:19/25}.c-garfield-the-cat .c-garfield-native-panel__end{grid-row:26/33}.feature-panel-container{margin-top:6em;margin-bottom:1em}}}.no-ads .c-garfield-native-panel,.no-panels .feature-panel-container,.subscriber .c-garfield-native-panel,.subscriber .feature-panel-container{display:none!important}figcaption a{color:inherit}figcaption code,figcaption pre{font-style:normal}.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{position:relative}.feature-panel-container{grid-column:1/15;margin-top:3em;margin-bottom:1em}.article__image img,.c-garfield-the-cat>figure img{display:block;width:auto;max-width:100%;margin:0 auto;height:auto}.article__image>a,.c-garfield-the-cat>figure>a{display:block;background:0 0;position:relative;z-index:99}.article__image figcaption,.c-garfield-the-cat>figure figcaption{color:#666;font-size:.95em;font-style:italic;padding:.75em 2em .75em 0;display:table}.article__image figcaption a,.c-garfield-the-cat>figure figcaption a{color:#666}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before,.internal__page__wrapper figure:not(.bio-image) figcaption::before{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNyAxMy4wOSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMmMyYzI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5jYW1lcmE8L3RpdGxlPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTguNSA1LjQ0YTIuMjEgMi4yMSAwIDEgMCAyLjIxIDIuMjEgMi4yMSAyLjIxIDAgMCAwLTIuMjEtMi4yMXpNMTQuNzkgMi4yMWgtMi41NWEyLjIxIDIuMjEgMCAwIDAtMi4yNC0yLjIxaC0zYTIuMjEgMi4yMSAwIDAgMC0yLjI0IDIuMjFoLTIuNTVhMi4yMSAyLjIxIDAgMCAwLTIuMjEgMi4yMXY2LjQ2YTIuMjEgMi4yMSAwIDAgMCAyLjIxIDIuMjFoMTIuNThhMi4yMSAyLjIxIDAgMCAwIDIuMjEtMi4yMXYtNi40NmEyLjIxIDIuMjEgMCAwIDAtMi4yMS0yLjIxem0tNi4yOSA5LjM1YTMuOTEgMy45MSAwIDEgMSAzLjkxLTMuOTEgMy45MSAzLjkxIDAgMCAxLTMuOTEgMy45MXoiLz48L3N2Zz4=);height:1em;width:1.5em;padding-right:.6em;display:table-cell;vertical-align:baseline;position:relative;top:.05em}.c-garfield-the-cat>figure.article__figure figcaption::before{content:'';display:none}.hidden{display:none!important}.c-garfield-header{clear:both}.c-promo-box{font-size:.9em;border-radius:11px}.c-promo-box a:not(.btn){color:#006fc6}.c-promo-box--ad::before{display:block;white-space:pre-wrap;padding:2em 0 3em 0;font-size:.85em;font-style:italic;color:#666}.c-promo-box--ad img{border-top-left-radius:11px;border-top-right-radius:11px}.c-garfield-the-cat .author__desc{font-size:.9em;color:#555}.summary__heading{font-style:normal;font-size:1rem;letter-spacing:2px;margin:0;font-weight:700;color:#d33a2c;text-transform:uppercase}.c-promo-box--ad ul{padding-left:0;margin:0}.bnnr-list{display:flex;text-align:center;justify-content:center;flex-direction:row}.sponsors.c-promo-box:not(.c-promo-box--wide) .bnnr-list{flex-direction:column}.c-garfield-the-cat{padding:0 1em}@media screen and (min-width:80em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.4fr .6fr 21rem 1fr}}@media screen and (min-width:100em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.9fr .4fr 21rem 1fr}}@media screen and (min-width:160em){.c-garfield-the-cat{display:grid;grid-template-columns:18.5rem repeat(11,minmax(0,1fr)) .7fr .3fr 18.5rem;grid-column-gap:1.75rem}}@media (min-width:187.5em){.c-garfield-the-cat{display:grid;grid-template-columns:20rem repeat(11,minmax(0,1fr)) .7fr .3fr 20rem;grid-column-gap:2.25rem}}.header{background:#d33a2c;background:var(--THEME_COLOR,#d33a2c);position:relative;display:grid;justify-content:flex-start;align-items:center;padding:.8em;z-index:2;grid-template-columns:min-content min-content 1fr;column-gap:5px}@media all and (min-width:31.25em){.header{grid-template-columns:-webkit-min-content -webkit-min-content 0 minmax(100px,100%);grid-template-columns:min-content min-content 0 minmax(100px,100%);column-gap:10px}}@media (min-width:700px){.header{grid-template-columns:-webkit-min-content minmax(140px,2fr) 0 minmax(100px,350px);grid-template-columns:min-content minmax(140px,2fr) 0 minmax(100px,350px)}}@media (min-width:740px){.header{padding:1rem 2em}}.search{flex-basis:100px;flex-shrink:1}@media screen and (min-width:48em){body{font-size:calc(.35842vw + .95296em)}}body .form__field__label,body li,body p{line-height:calc(1.5em + .2vw);word-break:break-word}body h1{line-height:1.2}.article--post__title a:focus,.article--post__title a:hover{color:#d33a2c}@supports (-ms-ime-align:auto){.article__image figcaption,.c-garfield-the-cat>figure figcaption{display:inline-block}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before{display:inline-block}body{font-feature-settings:normal}}::-webkit-input-placeholder{color:#666}::-moz-placeholder{color:#000}:-ms-input-placeholder{color:#666}.article-header--meta-item__date,time{color:#666;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;text-transform:lowercase;background-position:center 72%}.article-header--meta-item__date{display:flex}.wf-loaded-stage2 time{font-variant:petite-caps}.kbd,kbd{font-size:.9em;padding:.0625rem .5rem;border-radius:.125rem;border:1px solid #d33a2c;box-shadow:1px 1px 0 #d33a2c,2px 2px 0 #d33a2c;margin:0 .25rem;color:#d33a2c;font-family:monospace}figure{margin:0;padding:0}figure:after,figure:before{content:" ";display:table;clear:both}a{padding:7px 0;background-color:transparent;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;text-decoration-line:underline;color:#006fc6}.h1,h1{font-size:calc(1.625rem + 1.6vw);margin:0}.h2,.h3,.h4,.h5,h2,h3,h4,h5{color:#333}.h2,h2{font-size:calc(1.5rem + .25vw);margin:2em 0 .75em;text-transform:capitalize}.h3,h3{font-size:calc(1.125rem + .25vw);text-transform:uppercase;letter-spacing:1px;margin-top:2em;margin-bottom:1em}h4{font-size:1.1em;margin-top:2em}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{text-transform:none}@keyframes fadeOut-headings{0%{background:#ffde95;box-shadow:-10px 0 0 12px #ffde95}100%{background:#fff1d2;box-shadow:-10px 0 0 12px #fff1d2}}h2:target,h3:target,h4:target,h5:target,h6:target{border-radius:11px;animation:fadeOut-headings .4s;animation-fill-mode:forwards}.article__content h2:target a,.article__content h3:target a,.article__content h4:target a,.article__content h5:target a{color:#d33a2c}:target{scroll-margin-top:2rem}ol,ul{margin:1em 0;max-width:100%}ol{padding:0;list-style:none;counter-reset:listCounter}ol>li{padding-left:calc(1.65em + .7vw);position:relative;counter-increment:listCounter;margin-bottom:1em}ol>li::before{content:counter(listCounter,decimal-leading-zero);font-size:.7em;font-weight:700;color:#d33a2c;left:.8em;position:absolute;font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif}ul{list-style:disc}ul>li::marker{color:#d33a2c}ul>li{margin-bottom:.75em;padding-left:.15em}.rh{color:#d33a2c}.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}@media (min-width:800px){.search{flex-basis:500px}.main-nav{grid-column:auto}.menu-text--sm{display:none}.menu-text--lg{display:block}}.secondary-nav{position:relative;grid-row-start:2;grid-column:1/5}body:not(.enhanced) .main-nav{overflow-x:auto;-webkit-overflow-scrolling:touch}.main-nav__primary{display:flex;list-style:none;padding:.4em 0;margin:0;flex-wrap:nowrap;width:100%;height:100%;flex-shrink:1;min-width:0;justify-content:flex-start}.main-nav span:empty{display:none}@media all and (min-width:53.125em){.main-nav__primary{justify-content:space-between}}.nav-item{flex-grow:0;background:0 0;text-shadow:none;color:inherit;font-weight:700;display:flex;align-items:center;margin-bottom:0;padding-left:0}.nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav-more-item{position:relative;width:145px}@media (min-width:42.9375em){.main-nav-more-item{margin-left:.35em}}@media all and (max-width:52.5em){.main-nav-more-item{justify-content:center}}.main-nav-more-item__button{padding:.4em .5rem .4em 1rem;border:1px solid rgba(0,0,0,.05);color:inherit;display:flex;align-items:center;justify-content:space-around;line-height:1;position:relative;background-color:rgba(0,0,0,.2);border-radius:11px;box-shadow:0 13px 7px -15px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.main-nav-more-item__button,.nav-item-link{white-space:nowrap}.nav-item-link{padding:.35em .9rem;background:0 0;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);text-decoration:none}@media screen and (min-width:800px){.main-nav__secondary .nav-item-link{color:#d33a2c!important}}.nav-item-link:focus,.nav-item-link:hover{background-color:rgba(0,0,0,.15);border-radius:11px}.main-nav__secondary .nav-item-link:focus,.main-nav__secondary .nav-item-link:hover{background-color:transparent;box-shadow:none}.main-nav-more-item__button:active,.main-nav-more-item__button:focus,.nav-item-link:active,.nav-item-link:focus{outline-color:var(--THEME_COLOR_OUTLINE,#811d15)!important}.secondary-nav .nav-item-link:active,.secondary-nav .nav-item-link:focus{outline-color:#811d15!important}.main-nav__secondary .nav-item-link{text-shadow:none;width:100%;text-decoration:none;text-decoration-color:#d33a2c;padding:.25em .7rem}.main-nav-more-item__button:after{content:"";display:block;margin-left:9px;width:30px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35.96 33.31'%3E%3Cellipse cx='17.98' cy='31.55' fill='rgba(60,60,60,0.3)' rx='14.75' ry='.57'/%3E%3Cpath fill='%23fff' d='M34.94 15v-.93c-.23-3-2.16-5.93-5.22-6.3-2.31-.28-3.39 1.45-2.4 3.84a.43.43 0 000 .05v.11a.14.14 0 010 .06.63.63 0 000 .09v.17c0 .08.06.18.09.29s0 0 0 .05a1 1 0 000 .17.64.64 0 010 .07c0 .18.1.38.14.6a.24.24 0 010 .08v.29c0 .03.06.33.08.5.37 2.58 0 6.27-4.73 7.37A12.74 12.74 0 0019.7 23c-.17-.65-.36-1.25-.55-1.77a5.16 5.16 0 002.05-2.56 11.26 11.26 0 01-.69 2.33c1.81-1.55 2-5.05 2-5.54a4.72 4.72 0 01.21 2c1.55-2.41-1.17-6-1.17-6a9.67 9.67 0 011.84 2.24C23 11.75 20.82 10 20.82 10c2.65-4 2.51-5.68 2.51-5.68-3.26-1.34-7 .73-7 .73a5.12 5.12 0 00-4-1.7 3.61 3.61 0 011.56 1 16.79 16.79 0 00-3.23-.74C10.41 3 9.4 1.16 6.22 1h-.58S5 3.64 5.61 5.19c-1.15.49-1.26.93-1.26.93l1.17-.25-.67 2.67a4.66 4.66 0 00-2.39 1.38 3 3 0 011.15-.07A5.11 5.11 0 001 13.05a1.32 1.32 0 01.87-.51c-1.47 2.69.49 3.76.49 3.76a3.8 3.8 0 010-.92 8.52 8.52 0 002.19 3.9 14.13 14.13 0 01-.24-1.59 5.46 5.46 0 001.93 2.7 6.25 6.25 0 01-.4-1.52 5.87 5.87 0 001.36 1.75c-.12.24-.24.47-.34.71a12 12 0 00-.7 2.13c0 .23-.09.45-.13.66a1.4 1.4 0 00-1-.31 1.4 1.4 0 00-1.09 1 3.1 3.1 0 000 1.57 9.48 9.48 0 001.8 3.92A2.92 2.92 0 004 30.06c-.56.16-1 .83-.72 1.34H22.6c.29-.51-.16-1.18-.72-1.34a2.92 2.92 0 00-1.71.24A9.48 9.48 0 0022 26.44 3.24 3.24 0 0022 25a15.89 15.89 0 012.87-.21 14.93 14.93 0 004.65-.69c3.72-1.24 5.38-5.25 5.38-9zm-12.49.42h-.05v-.07z'/%3E%3C/svg%3E")}.main-nav__secondary{display:none;color:#fff;padding:.2em 0;flex-wrap:wrap;flex-direction:column;justify-content:flex-start;align-items:flex-start;height:10em}@media all and (min-width:31.25em){.main-nav__secondary .nav-item-link{padding:.25em 1.1rem}.main-nav__secondary{padding:.2em .5em}}@media (-webkit-min-device-pixel-ratio:1.3),(min-resolution:124.8dpi){.main-nav__secondary{height:11em}}@media (min-width:800px){.secondary-nav{grid-row:auto;grid-column:auto}.main-nav__secondary{display:none;position:absolute;top:0;left:-80px;transform:translate(-50%,0);max-width:unset;background:#fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px;margin:0;padding:14px 20px 10px 10px;min-width:180px;color:#d33a2c;flex-direction:row;justify-content:space-between;align-items:center;height:auto}.main-nav__secondary:before{content:"";display:block;position:absolute;top:1px;left:50%;transform:translate(-50%,-100%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:15px solid #fff}}.nav-item-1,.nav-item-10,.nav-item-2,.nav-item-3,.nav-item-4,.nav-item-5,.nav-item-6,.nav-item-7,.nav-item-8,.nav-item-9{display:none}.main-nav__secondary .nav-item-1,.main-nav__secondary .nav-item-10,.main-nav__secondary .nav-item-2,.main-nav__secondary .nav-item-3,.main-nav__secondary .nav-item-4,.main-nav__secondary .nav-item-5,.main-nav__secondary .nav-item-6,.main-nav__secondary .nav-item-7,.main-nav__secondary .nav-item-8,.main-nav__secondary .nav-item-9{display:flex}@media (min-width:42.9375em){.nav-item-1{display:flex}.main-nav__secondary .nav-item-1{display:none}}@media (min-width:52.5em){.nav-item-2{display:flex}.main-nav__secondary .nav-item-2{display:none}}@media (min-width:56.5625em){.nav-item-3{display:flex}.main-nav__secondary .nav-item-3{display:none}}@media (min-width:70em){.nav-item-4{display:flex}.main-nav__secondary .nav-item-4{display:none}}@media (min-width:77.8125em){.nav-item-5{display:flex}.main-nav__secondary .nav-item-5{display:none}}@media (min-width:97.5em){.nav-item-6{display:flex}.main-nav__secondary .nav-item-6{display:none}}@media (min-width:108.4375em){.nav-item-7{display:flex}.main-nav__secondary .nav-item-7{display:none}}@media (min-width:120.625em){.nav-item-8{display:flex}.main-nav__secondary .nav-item-8{display:none}}@media (min-width:136.5625em){.nav-item-9{display:flex}.main-nav__secondary .nav-item-9{display:none}}@media (min-width:179.6875em){.nav-item-10{display:flex}.main-nav__secondary .nav-item-10{display:none}.main-nav-more-item{display:none}.main-nav__primary{justify-content:flex-start}.nav-item{padding:0 .65em}.header,.header.searchFocused{grid-template-columns:-webkit-min-content minmax(140px,-webkit-max-content) 0 minmax(250px,600px);grid-template-columns:min-content minmax(140px,max-content) 0 minmax(250px,600px)}}@media (max-width:480px){.header .search{grid-column:1/5;margin-top:.5em}.main-nav__primary{justify-content:flex-end}.main-nav-more-item{justify-content:flex-end}}.btn--text-shadow,a.btn.btn--text-shadow{text-shadow:1px 1px 1px rgba(0,0,0,.25)}.btn-wrapper{display:none}@media screen and (min-width:1100px){.btn-wrapper{display:block;padding:4px}}.btn,.toolbar-item{display:inline-block;border-radius:11px;text-align:center;color:#fff;text-decoration:none;border:none;font-weight:700;background:0 0;font-size:.9em;outline:0;background-color:#d33a2c;background-image:linear-gradient(to bottom,#f88040,#d33a2c)}.toolbar-item{transition:all .3s ease-in-out}.toolbar-item:active,.toolbar-item:focus{position:relative;top:3px}.btn{padding:.5em 1em}.btn.btn--green,.btn.btn--member{background-color:#41b14f;background-image:linear-gradient(#9ec14c,#41b14f);color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);transition:box-shadow .2s ease-in-out}.cta--green{display:block;padding:.5em;color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0;font-weight:700;text-decoration:none;border-radius:11px;text-align:center;font-size:.85em}.cta--green:hover{background-color:#c8f1e0;border:1px solid #a0dcc4}.cta--green:active,.cta--green:active:hover,.cta--green:focus,.cta--green:focus:hover{background-color:#137d54;color:#fff!important}a.btn--white{background:#fff;color:#267dcc;transition:color .1s ease-out}.btn--white--bordered:active,.btn--white--bordered:focus,.btn--white--bordered:hover,.toolbar-item,a.btn--white--bordered{border:1px solid #ddd}.btn span{color:#811d15;font-size:.8em;margin-left:5px;margin-top:.5em;line-height:1}.btn.btn--medium{font-size:calc(.9em + .1vw);padding:.75em 1em}@media (max-width:64em){pre{max-width:100%}}.input{border:none;display:block;color:#333;background-color:#fff;padding:.4em .75em;border-radius:5.5px;outline:0;font:inherit;margin:0;font-size:1.15rem;width:100%}.input::-webkit-input-placeholder{color:#666}.input:-ms-input-placeholder{color:#666}.input::-moz-placeholder{color:#000}.input::-ms-clear{display:none}.search .search-input{padding-left:calc(22px + 15px + 15px);background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgaGVpZ2h0PSIyNHB4IiB3aWR0aD0iMjRweCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIyMi4zMSIgeTE9IjIzLjYyIiB4Mj0iMy43MyIgeTI9IjMuMDUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlOTM3MjIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmODZmMjUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGl0bGU+TWFnbmlmaWVyPC90aXRsZT48cGF0aCBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiIGQ9Ik0yMy4zMyAyMC4xbC00LjczLTQuNzRhMTAuMDYgMTAuMDYgMCAxIDAtMy4yMyAzLjIzbDQuNzQgNC43NGEyLjI5IDIuMjkgMCAxIDAgMy4yMi0zLjIzem0tMTcuNDgtNS44NGE1Ljk0IDUuOTQgMCAxIDEgOC40MiAwIDYgNiAwIDAgMS04LjQyIDB6Ii8+PC9zdmc+);background-repeat:no-repeat;background-size:22px auto;background-position:15px 45%;font-size:calc(1em + .1vw);border-radius:11px;padding-top:1rem;padding-bottom:1rem;font-weight:700;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}@media all and (max-width:550px){.search .search-input{min-height:54px}}.search-button{width:0;height:0;padding:0}.enhanced .search-button{display:none}.search-input-wrapper{position:relative}.search-clear-button{background:0 0;border:none;position:absolute;right:0;top:50%;transition:opacity .2s ease-out;transform:translate(-25%,-50%);opacity:0;padding:.5em}.search-clear-button.enabled{opacity:1}.search-results{background:var(--THEME_COLOR,#d33a2c);color:#fff}.search-results img{border-radius:11px;border:4px solid #fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}.search-results img:hover{box-shadow:0 0 3px -1px rgba(50,50,93,.25),0 4px 12px -6px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.search-results ol img{min-height:100px;height:auto}.logo{font-size:1em;line-height:0;width:3em;flex-basis:3em;flex-shrink:0;position:relative;z-index:0}@media all and (min-width:1450px){.logo{width:10.5em;flex-basis:10.5em}.logo img{transform:none}}.logo a{display:block;background:0 0;outline:0;padding:0;color:transparent;text-shadow:none}.logo a picture{display:block}.logo img{height:3.5em;transform:translate(0,15%)}.cart-active .back-to-top-wrapper{display:none}a.back-to-top{display:block;background:0 0;width:50px;height:50px;opacity:.7;text-shadow:none;border-radius:11px;padding:13px;transform-origin:bottom left;will-change:transform;transform:rotate(-11deg);transition:background-color .1s ease-out,transform .2s ease-out,opacity .1s ease-out;background-color:#666}@media all and (max-width:64em){a.back-to-top{opacity:.3}}a.back-to-top:focus,a.back-to-top:hover{background-color:#282634;opacity:1}a.back-to-top svg{display:block}.back-to-top-wrapper{width:50px;height:50px;display:none;position:fixed;bottom:20px;right:20px;z-index:9;will-change:transform;backface-visibility:hidden}.back-to-top-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}@media (min-height:600px){.back-to-top-wrapper{display:block}}label{max-width:100%}.form__field__input,input[type=email],input[type=password],input[type=text],textarea{background:#effaff;font-size:1em;border:1px solid #d2dfe4;transition:box-shadow .3s ease-in-out,color .3s ease-in-out;background-position:right 1.35em center;background-size:.25em .25em;background-repeat:no-repeat;margin-bottom:5px;border-radius:11px;padding:.9em 2em .7em 1.1rem;display:block;width:100%;outline:0;box-shadow:inset 0 1px 1px 0 rgba(0,0,0,.2)}.form__field__label{display:block;margin-bottom:.5em;cursor:pointer}input{border-color:#aaa}.sponsors ul{padding-left:0;text-align:center;list-style-image:none}.sponsors__native ul.bnnr-list li a{border-radius:11px;background-color:#fff;margin-bottom:3em;position:relative;top:0;padding:0;background-image:none;text-decoration-line:underline;text-decoration-color:#006fc6!important;text-decoration-thickness:1px;display:flex;flex-direction:column}.sponsors.sponsors-leaderboard ul li a,.sponsors.sponsors__lead ul li a,.sponsors__lead ul a,.sponsors__native ul.bnnr-list li a{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03);transition:box-shadow .2s ease-in-out,top .1s ease-in-out;border-radius:11px}.sponsors.sponsors-leaderboard ul li a:hover,.sponsors.sponsors__lead ul li a:hover,.sponsors__native ul.bnnr-list li a:hover{box-shadow:0 1px 7px -5px rgba(50,50,93,.25),0 3px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.sponsors.sponsors-leaderboard ul li a:active,.sponsors.sponsors-leaderboard ul li a:focus,.sponsors.sponsors__lead ul li a:active,.sponsors.sponsors__lead ul li a:focus,.sponsors__native ul.bnnr-list li a:active,.sponsors__native ul.bnnr-list li a:focus{box-shadow:inset 0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,.03);outline-offset:.75em;top:7px}.sponsors__native ul.bnnr-list li img{max-width:none;width:100%;height:auto;display:inherit}.sponsors.sponsors__lead a{box-shadow:none}.sponsors__lead ul a:active,.sponsors__lead ul a:focus{outline-offset:.75em;position:relative;top:7px;border-radius:11px}.sponsors__lead ul a:active img,.sponsors__lead ul a:focus img{border:2px solid #fff;box-shadow:0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,.03)}img::before{height:2.5em;display:block;top:2em;content:" ";width:100%;z-index:2;left:0}img::after{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHN0eWxlPSJtYXJnaW4tcmlnaHQ6IDEwcHg7Ij4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDI4aC0yMHYtNGw2LTEwIDguMjE5IDEwIDUuNzgxLTR2OHoiPjwvcGF0aD4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDE1YzAgMS42NTctMS4zNDMgMy0zIDNzLTMtMS4zNDMtMy0zIDEuMzQzLTMgMy0zYzEuNjU3IDAgMyAxLjM0MyAzIDN6Ij48L3BhdGg+CjxwYXRoIGZpbGw9IiM3NzciIGQ9Ik0yOC42ODEgNy4xNTljLTAuNjk0LTAuOTQ3LTEuNjYyLTIuMDUzLTIuNzI0LTMuMTE2cy0yLjE2OS0yLjAzMC0zLjExNi0yLjcyNGMtMS42MTItMS4xODItMi4zOTMtMS4zMTktMi44NDEtMS4zMTloLTE1LjVjLTEuMzc4IDAtMi41IDEuMTIxLTIuNSAyLjV2MjdjMCAxLjM3OCAxLjEyMiAyLjUgMi41IDIuNWgyM2MxLjM3OCAwIDIuNS0xLjEyMiAyLjUtMi41di0xOS41YzAtMC40NDgtMC4xMzctMS4yMy0xLjMxOS0yLjg0MXpNMjQuNTQzIDUuNDU3YzAuOTU5IDAuOTU5IDEuNzEyIDEuODI1IDIuMjY4IDIuNTQzaC00LjgxMXYtNC44MTFjMC43MTggMC41NTYgMS41ODQgMS4zMDkgMi41NDMgMi4yNjh6TTI4IDI5LjVjMCAwLjI3MS0wLjIyOSAwLjUtMC41IDAuNWgtMjNjLTAuMjcxIDAtMC41LTAuMjI5LTAuNS0wLjV2LTI3YzAtMC4yNzEgMC4yMjktMC41IDAuNS0wLjUgMCAwIDE1LjQ5OS0wIDE1LjUgMHY3YzAgMC41NTIgMC40NDggMSAxIDFoN3YxOS41eiI+PC9wYXRoPgo8L3N2Zz4K) " " attr(alt);font-size:.9em;display:block;color:#666;line-height:1.5;position:absolute;font-style:italic;z-index:2;top:calc(2em - 35px);text-align:center;width:104%;left:-2%;padding:2.25em 1em;text-shadow:none;background-color:#eee;border-radius:11px}@media screen and (min-width:40em){.author__desc{margin-left:1em}}.author__desc{font-size:.8em;position:relative;font-style:normal!important;color:#333;padding:0!important}.author__desc p{margin:1em 0}.author__desc .show-more-link{display:inline}.author__desc__title{color:#666;text-transform:uppercase;letter-spacing:2px;font-size:.9em;margin:0;font-weight:400}@media (max-width:40em){.author__desc{width:100%}}.article{padding-top:calc(.5em + 2vw)}.article__summary{font-size:1.05em}.c-garfield-the-cat .article__summary{position:initial}.author__desc p{font-size:.95em}.wf-loaded-stage2 .author__desc p{font-size:1em}.article__summary{align-self:center;margin-top:0;color:#666;position:relative;padding-bottom:1.5em;margin-bottom:.5em;border-bottom:3px solid #e5e5e5;font-size:1.05em;line-height:1.55em;font-style:italic}.wf-loaded-stage2 .article__summary{font-size:1.15em}@media all and (max-width:420px){.article__content{margin-top:0}}.article__content{line-height:1.5;padding:0!important}.article__content a{color:#006fc6}.article__content .btn{color:#fff}.drop-caps+p::first-line{font-weight:700;font-variant:all-petite-caps;text-transform:lowercase;letter-spacing:.5px;font-size:1.15em}.drop-caps{width:calc(96px + 1vw);height:calc(120px + 4vw);float:left;margin-right:1.5em;position:relative;left:calc(-1.3em - .5vw);top:.5vw}@media all and (min-width:500px){.drop-caps{width:150px;height:186px;min-width:100px;margin-left:0}}@media screen and (min-width:64em){.author__desc{margin-left:0}}.drop-caps img{max-width:100%}.drop-caps img:nth-of-type(2){position:absolute;bottom:0;right:-40px;width:75%}@media all and (min-height:700px){body.articlepage{overflow:initial}}.form__field__label--extra{display:inline}@media (max-width:64em){.form__field__label--extra{display:none}}.article-header{margin:0}@media all and (max-width:1099px){.article-header--meta{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x;overflow-y:hidden}.article-header--meta::-webkit-scrollbar{display:none;width:0;background:0 0}.sponsors:not(.sponsors__lead):not(.sponsors-leaderboard):not(#sponsors-article-end):not(.sponsors__mobile){display:none}.c-garfield-aside--meta{display:none}.sponsors__mobile{display:block}.meta-box{margin:1.5em 0}.comment-count{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.article-header--comments a{color:#d33a2c;text-decoration:none;font-weight:700}.article-header--meta .article-header--meta-comments{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EArtboard 29%3C/title%3E%3Cpath class='cls-1' d='M3.29,2.73a66.7,66.7,0,0,0,3.21,9.52l6.29,1.08L8.1,15.53c2.91,5.28,7,9.09,12.14,4.55L25,24.52l.57-.52-3.83-5.48c3.6-4.32,1.74-7.76-1.93-10.36L17,13.29l-.1-6.85A43.83,43.83,0,0,0,11,4L9,7.7,9,3.39c-2.2-.65-4.07-1.08-5.08-1.3A.52.52,0,0,0,3.29,2.73Z'/%3E%3C/svg%3E");background-size:auto .75em;background-repeat:no-repeat;background-position:left 45%;padding-left:1em}}.c-garfield-the-cat .article-header--meta{display:flex;align-items:flex-end;list-style:none;padding:0;margin:0 0 .95em;height:30px}.article-header--meta li{padding:0;margin:0;min-width:max-content}.article-header--meta li::before{display:none}.article-header--meta li::after{content:"/";font-size:1em;color:#a7a7a7;display:inline-block;margin:0 .25em}.article-header--meta li:last-of-type::after{display:none}.article-header--date{color:#585858;font-family:inherit;font-size:.95em}.article-header--comments{font-size:.9em}.article-header--updated{padding:0 .8rem;color:#137d54;background-color:#d6f3e7;border:1px solid #c6f2e0;border-radius:11px;font-weight:700;text-transform:initial;font-feature-settings:normal;font-variant:none;font-size:.9em;letter-spacing:0;min-width:fit-content;margin-right:7px}.meta-box{background:#f6f6f6;padding:.6em 1em;list-style:none;width:max-content;max-width:100%;border-radius:11px;font-size:.9em;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:.5em 2em}.c-garfield-the-cat .meta-box--item{line-height:1.4;padding-left:1.5em;background-size:auto 1em;background-repeat:no-repeat;background-position:left 2px;margin-bottom:0}.meta-box li:last-child,.meta-box--item:last-child{margin-bottom:0}.meta-box--tags{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cpath fill='%23e93e32' class='cls-1' d='M12.78 22.74l1.35 1.35a2.09 2.09 0 003 0l8.12-8.15a2.09 2.09 0 000-3l-1.34-1.33zM14.71 2.51a2.09 2.09 0 00-1.52-.61l-10 .22L3 12.1a2.09 2.09 0 00.61 1.52l7.14 7.12L21.87 9.65zm-4.64 9.88a3.17 3.17 0 113.44-2.86 3.17 3.17 0 01-3.44 2.86z'/%3E%3C/svg%3E")}.meta-box--share{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M126.16 359.66c148 0 228.93-122.61 228.93-228.94 0-3.48 0-6.94-.23-10.4A163.83 163.83 0 00395 78.68a160.93 160.93 0 01-46.21 12.66 80.82 80.82 0 0035.37-44.51 161.17 161.17 0 01-51.09 19.53A80.54 80.54 0 00196 139.74 228.42 228.42 0 0130.13 55.68 80.52 80.52 0 0055 163.09 80 80 0 0118.52 153v1a80.49 80.49 0 0064.55 78.87 80.37 80.37 0 01-36.33 1.38 80.55 80.55 0 0075.17 55.87A161.38 161.38 0 0122 324.67a163.54 163.54 0 01-19.16-1.16 227.73 227.73 0 00123.33 36.08' fill='%231da1f2'/%3E%3C/svg%3E")}.meta-box--published{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32%7D%3C/style%3E%3C/defs%3E%3Crect class='cls-1' x='8.25' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Crect class='cls-1' x='17.53' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Cpath class='cls-1' d='M24.1 5.39h-2.56a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59h-4.28a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59H4.75a2.07 2.07 0 00-2.08 2.07v14.75a2.07 2.07 0 002.07 2.07H24.1a2.07 2.07 0 002.07-2.07V7.46a2.07 2.07 0 00-2.07-2.07zm-.29 16.15H5.23V8.45h18.58z'/%3E%3Cpath class='cls-1' d='M7.18 11.71h2.5v2.5h-2.5zM11.27 11.71h2.5v2.5h-2.5zM15.26 11.71h2.5v2.5h-2.5zM19.35 11.71h2.5v2.5h-2.5zM7.18 15.78h2.5v2.5h-2.5zM11.27 15.78h2.5v2.5h-2.5zM15.26 15.78h2.5v2.5h-2.5zM19.35 15.78h2.5v2.5h-2.5z'/%3E%3C/svg%3E")}.meta-box--author{background-image:url(/images/icons/author.svg)}code,pre{font-feature-settings:normal;color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Fira Code,Menlo,Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;font-variant-ligatures:none;word-wrap:normal;tab-size:4;hyphens:none}pre{padding:1rem;margin:.5rem 0;resize:both;max-width:100vw;color:#666;background:#fafafa;border:1px solid #eee;font-size:1em;border-radius:11px;min-width:250px;overflow:auto;box-shadow:0 6px 12px -17px rgba(50,50,93,.25),0 7px 6px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.code-toolbar{position:relative}li>.code-toolbar{margin-top:1em}.code-toolbar>.toolbar{position:absolute;top:.5em;right:.5em;opacity:0;transition:opacity .3s ease-in-out}.code-toolbar>.toolbar .toolbar-item{display:inline-block}code.diff-highlight{width:100%}a code{background:0;padding:0;text-decoration-line:underline}:not(pre)>code,code{background:#fff2ea;color:#333;font-size:calc(.75em + .1vw);line-height:calc(1.5em + .2vw);padding:0 .2725em;font-style:normal;display:inline-block}:not(pre)>code{white-space:normal}pre>code{line-height:calc(1.75rem + .2vw);background:0 0;white-space:break-spaces}pre[data-line]>code{white-space:pre}pre[data-line]>code>span{height:calc(1.75rem + .2vw);display:inline-block}.table,table{width:100%;border-collapse:collapse;margin-bottom:calc(2em + 2vw);clear:both}.tr,tr{border-bottom:4px solid #eee}.td,.th,td,th{padding:1em 1.5em;border:none;text-align:left}.scroll-pane{overflow-x:auto;scrollbar-color:#666 #201c29;-webkit-overflow-scrolling:touch}.scroll-pane::-webkit-scrollbar{height:.75em}.scroll-pane::-webkit-scrollbar-thumb{background:#b0b0b0;border-radius:11px}.scroll-pane table td{min-width:30vw}@media all and (min-width:650px){.scroll-pane table td{min-width:auto}}.layout-fixed{table-layout:fixed}.figure table{margin-bottom:0}.tablesaw td{line-height:165%;text-align:left;vertical-align:middle}.tablesaw td,.tablesaw th{padding:.8em 1em}tbody tr:nth-child(2n) td{background-color:#f7f7f7}.tablesaw th,table th{border-bottom:4px solid #ddd}@media screen and (max-width:767px){.tablesaw thead{display:none}.tablesaw tr{display:flex;flex-direction:column;margin-bottom:1.5em;width:100%;border-radius:11px;border:1px solid #eee}.tablesaw td:before{content:attr(data-label);display:table-cell;font-weight:700;padding:0 1em 0 0;text-align:right}.tablesaw td:last-child:after{content:'';position:absolute;left:0;right:0;bottom:0}}a.skip-main{left:-999px;position:absolute;top:auto;width:1px;height:1px;overflow:hidden;z-index:-999}a.skip-main:active,a.skip-main:focus{color:#d33a2c;background-color:#fff;left:auto;top:auto;width:auto;height:auto;overflow:auto;padding:.5em 1em;text-align:center;font-size:1.2em;z-index:999}.video-embed-container .video-embed-container--wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}.signature{margin:1.5em 0;font-size:.9em;color:silver;font-style:italic}.author .show-more-link{font-size:.9em;display:inline;color:#666;text-decoration-line:underline;text-decoration-color:currentColor;font-weight:400}.cookie-banner{background-color:#fff;border-radius:11px;position:fixed;width:calc(19em + 1vw);padding:1em 1.5em;font-size:1em;z-index:99;box-shadow:0 6px 40px rgba(0,0,0,.3);bottom:1.25em;right:1.25em}.cookie-banner p{font-size:.9em;margin-top:0}.cookie-banner__container{display:flex}.cookie-banner button{padding:.9em 1em}@media screen and (max-width:480px){.cookie-banner{right:0;left:0;width:100%;border-radius:0;bottom:0}.cookie-banner p{margin-top:1em}}@media screen and (max-width:380px){.cookie-banner p{margin-top:0}}.cookies--btn{width:100%}.mr5{margin-right:.5em}.mr0{margin-right:0!important}.btn--white{background:#fff;color:#267dcc;border:1px solid #fff}.btn--white--bordered{border:1px solid #ddd}.sponsors ul li{display:inline-block;margin-bottom:3em;font-size:.85em;padding:0;text-align:center;vertical-align:top;max-width:25rem;border-radius:11px;border:1px solid #eee;min-height:90px}.c-promo-box--ad.sponsors li{width:auto}.sponsors__native ul.bnnr-list li{border:0;width:100%;height:auto;max-width:85%;margin:0 0 2em auto}.sponsors__native ul.bnnr-list .ad__desc{padding:1em}.sponsors__native ul.bnnr-list li:only-child{padding-bottom:0}blockquote:not(.pull-quote){font-style:italic;border-left:11px solid #e6e4e1;padding:1em calc(1.5em + .5vw);color:#424242;margin-left:0;margin-right:0;font-size:1.05em;line-height:1.65em;letter-spacing:0;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0e3 0,#fff 100%)}blockquote:not(.pull-quote) p{margin:0}.btn--small.toolbar-item,.btn.btn--small{font-size:.9em;border-radius:6px;margin:0;padding:.4em 1em}.c-felix-the-cat a.btn{display:table;margin-top:1em;margin-bottom:1.5em}@media screen and (max-height:880px){.article__comments--notes{display:none}.article__comments__form__desc{margin-top:4em}}header.subnav__header{background-color:#fff;background-color:var(--headers-bg-color,#fff);padding:.2rem 0 0 0;z-index:1}.subnav__primary::-webkit-scrollbar{display:none;width:0;background:0 0}.subnav__tags li:first-child{padding-left:14px}.subnav__tags li:last-child{padding-right:.8em}.subnav__tags .subnav-item{margin-bottom:0}@media (min-width:740px){header.subnav__header{padding:.25rem 0 0 0;box-shadow:0 4px 20px 0 rgba(0,0,0,.12)}.subnav__tags li:first-child{padding-left:35px}}.subnav .nav-item-link{color:#d33a2c;text-shadow:none!important;font-weight:700;font-family:Mija;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;border-radius:11px;font-size:1rem;background-color:#ffe7e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #fee0e0}.subnav .nav-item-link:hover{text-shadow:none;font-weight:700;font-family:Mija;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.subnav-item a:active,.subnav-item a:active:hover,.subnav-item a:focus,.subnav-item a:focus:hover{box-shadow:inset 0 1px 3px 0 rgba(0,0,0,.12);background-color:#d33a2c;color:#fff!important;outline:0}.subnav-item--active a.nav-item-link,.subnav-item--active a.nav-item-link:hover{background-color:#d33a2c;color:#fff!important;border:1px solid #d33a2c}.subnav-item{display:flex;margin-right:9px;padding-left:3px}.subnav-item .nav-item-link{padding:2px 12px}.subnav a{background:0 0;font-weight:700;display:flex;align-items:center;text-decoration:none}.subnav__primary{padding:.25em 0;margin-top:.25em;margin-bottom:.35em;display:flex;position:relative;scroll-snap-type:x;scroll-padding:1rem;overflow-x:auto;scrollbar-width:none}.subnav-more-item__button{padding:.2em 1em;color:#d33a2c;border:1px solid #ddd;border-radius:11px;background:0 0;display:flex;align-items:center;justify-content:space-around;position:relative;font-size:.85em;min-width:max-content;transition:none}.hidden{display:none!important}.c-garfield-the-cat .subnav-item--green .nav-item-link{color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0}.c-garfield-the-cat .subnav-item--green .nav-item-link:hover{color:#137d54;background-color:#c8f1e0;border:1px solid #a0dcc4}.subnav .nav-item-link:hover{color:#d33a2c;text-shadow:none;font-weight:700;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.feature-panel__desc,.sponsors__desc{font-size:.75em;color:#666;padding-bottom:10px;top:-15px;position:relative}.feature-panel::before{position:absolute;left:0;transform:translate(0,-100%);top:-5px;content:"";border-bottom:8px solid #eee;width:100%}@media (min-width:1000px){.feature-panel::before{width:73%}}.feature-panel{position:relative;border-radius:11px;padding:1.25em;display:flex;flex-wrap:wrap;background-color:#f6f6f6}@media (min-width:1000px){.feature-panel{padding:2.5em}}.feature-panel-left-col,.feature-panel-right-col{flex-basis:100%;position:relative;padding:0;flex-shrink:0}.feature-panel-right-col{order:-1;display:flex;align-items:flex-start;margin-bottom:1em;justify-content:flex-start;margin-top:2em}@media (min-width:800px){.feature-panel-left-col{flex-basis:65%}.feature-panel-right-col{order:0;flex-basis:35%;margin:0;justify-content:center}}.feature-panel-description>:first-child{margin-top:0}.feature-panel-description>:last-child{margin-bottom:0}.feature-panel-image-link{position:relative;text-decoration:none;width:100%;max-width:210px;transition:scale,opacity .2s ease-out;padding-left:2.5em;background-image:none}.feature-panel-image{width:100%;max-width:14.375rem;margin:0 auto;display:block;transition:all .2s ease-out;will-change:transform;transform-origin:0 100%;transform:rotate(-11deg)}@media (min-width:1000px){.feature-panel-image-link{position:absolute;max-width:14.375rem;top:-90px;right:0}}.feature-panel-image-img{height:auto}.btn--large.toolbar-item,.btn.btn--large{font-size:calc(1em + .25vw);padding:.75em 1em}.btn .sr-only,.sr-only{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.c-garfield__nl{display:none}@media all and (min-width:1100px){.drop-caps{display:none}.l-author-bio{display:flex}.c-garfield__nl{display:block}.nl-box__form{display:flex;padding-bottom:7px;text-align:center;letter-spacing:-.5px;color:#fff;font-size:1.15em}.nl-box__desc{margin-top:10px;color:#666;font-size:80%;line-height:1.5em;text-align:center}.nl-box__form .nl-box__form--button,.nl-box__form .nl-box__form--email{flex-grow:1;flex-shrink:0;box-sizing:border-box;width:auto;margin:0;padding:.75em 1em;border:0;border-radius:11px;background:#fff;font-size:.95em}.nl-box__form--button:active,.nl-box__form--button:focus,input.nl-box__form--email:active,input.nl-box__form--email:focus{box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form--button:-ms-input-placeholder,.nl-box__form--email:-ms-input-placeholder{color:#777;font-style:italic}.nl-box__form--button::placeholder,.nl-box__form--email::placeholder{color:#777;font-style:italic}.nl-box__form .nl-box__form--button{transition:all .2s ease-in-out;color:#fff;background-color:#0168b8;font-family:Mija,-apple-system,Arial,BlinkMacSystemFont,"Roboto Slab","Droid Serif","Segoe UI",Ubuntu,Cantarell,Georgia,serif;font-weight:700;box-shadow:0 1px 1px rgba(0,0,0,.3);width:100%;border:0;border-left:1px solid #ddd;flex:2;border-top-left-radius:0;border-bottom-left-radius:0}.nl-box__form .nl-box__form--email{border-top-right-radius:0;border-bottom-right-radius:0;width:100%;flex:4}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus,.nl-box__form .nl-box__form--button:hover{cursor:pointer;color:#fff;background-color:#0168b8;border-color:#dadada;box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus{outline:0!important;text-shadow:1px 1px 1px rgba(0,0,0,.3);box-shadow:inset 0 3px 3px rgba(0,0,0,.3)}.nl-box__group{display:flex;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px}.nl-box__wrapper{display:flex;flex-direction:column;justify-content:center}.nl-box__form form{width:100%}.nl-box__form .nl-box__group{margin:0}.nl-box{margin:1.5em 0;padding:1em 0;box-shadow:none;max-width:750px;justify-self:center}}.article__content a.anchor{color:#767676;text-decoration:none;transition:color .2s ease-in-out;padding:.35em .05em}.article__content a.anchor:active,.article__content a.anchor:focus,.article__content a.anchor:hover{color:#106fc6;background-image:linear-gradient(90deg,#006fc6 0,#2ca2d3 30%,#006fc6 85%,#006fc6 100%);background-size:100%;background-repeat:repeat;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-moz-background-clip:text;-moz-text-fill-color:transparent;text-decoration:none}#promo-article-end,#sponsors-article-end,.article__comments,.main-footer{content-visibility:auto}.toc-components{box-shadow:0 9px 30px -5px rgba(50,50,83,.25),0 8px 8px -12px rgba(0,0,0,.2),0 -6px 16px -6px rgba(0,0,0,.03);border-radius:11px;padding:2em;background-color:#fff;margin:1.25em 0 3em 0;grid-column:3/13}@media screen and (min-width:500px){.toc-components{display:grid;grid-template-columns:1fr 1fr}}@media screen and (min-width:800px){.toc-components{padding:2em 3em}}.article__content .btn--white{background:#fff;color:#267dcc}
+</style>
+
+
+    
+
+    
+      <link rel="preload" href="/js/nav-v2.js" as="script" importance="high">
+<link rel="preload" href="/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2" as="font" type="font/woff2" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+<link rel="preload" href="/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2" as="font" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2"  as="font" type="font/woff2" media="(min-width: 800px)" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2" as="font" media="(min-width: 800px)" type="font/woff2" crossorigin importance="low" media="(prefers-reduced-data: no-preference)">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/js/app.js" media="(min-width: 800px)" as="script" importance="low">
+    
+
+    
+      
+  
+  
+
+  
+  
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Smashing Magazine &amp;raquo; Feed" href="https://www.smashingmagazine.com/feed/" />
+
+    
+
+    <meta name="description" content="In this episode, we’re talking about Responsible JavaScript. What does it mean for code to be responsible, and how should we approach projects differently? Drew McLellan talks to expert Jeremy Wagner to find out."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://www.smashingmagazine.com/2022/02/smashing-podcast-episode-45/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content='Smashing Podcast Episode 45 With Jeremy Wagner: What Is Reponsible JavaScript? — Smashing Magazine' />
+<meta property="og:description" content="In this episode, we’re talking about Responsible JavaScript. What does it mean for code to be responsible, and how should we approach projects differently? Drew McLellan talks to expert Jeremy Wagner to find out." />
+<meta property="og:url" content="https://www.smashingmagazine.com/2022/02/smashing-podcast-episode-45/" />
+<meta property="og:site_name" content="Smashing Magazine" />
+<meta property="article:publisher" content="https://www.facebook.com/smashmag" />
+
+	
+	<meta property="article:author" content="https://www.smashingmagazine.com/author/drew-mclellan/" />
+
+<meta property="article:tag" content="Smashing Podcast" />
+<meta property="article:section" content="General" />
+<meta property="article:published_time" content="2022-02-22 06:00:00 &#43;0000 UTC" />
+<meta property="article:modified_time" content=" 2022-02-22 06:00:00 &#43;0000 UTC" />
+<meta property="og:updated_time" content="2022-02-22 06:00:00 &#43;0000 UTC" />
+<meta property="og:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2df699d2-9db3-46f6-9d32-cc79e4ce2005/smashing-podcast-episode-45.jpg' />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="In this episode, we’re talking about Responsible JavaScript. What does it mean for code to be responsible, and how should we approach projects differently? Drew McLellan talks to expert Jeremy Wagner to find out." />
+<meta name="twitter:title" content='Smashing Podcast Episode 45 With Jeremy Wagner: What Is Reponsible JavaScript? — Smashing Magazine' />
+<meta name="twitter:site" content="@smashingmag" />
+<meta name="twitter:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2df699d2-9db3-46f6-9d32-cc79e4ce2005/smashing-podcast-episode-45.jpg' />
+
+	
+	<meta name="twitter:creator" content="@drewm" />
+
+<meta property="DC.date.issued" content="2022-02-22 06:00:00 &#43;0000 UTC" />
+<meta name="apple-itunes-app" content="app-id=1485403438" />
+
+    <meta name="theme-color" content="#d33a2c">
+    <meta property="fb:pages" content="45576747489"/>
+    
+    <meta name="google-site-verification" content="X5sd8PEDJqYLSR98RKgSozn-0RNpknXFlGoA-UXe5K0" />
+
+    <link rel="icon" href="/images/favicon/favicon.ico" />
+    <link rel="icon" href="/images/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+  </head>
+
+  <body data-instant-whitelist class='no-js no-ads no-panels  articlepage' >
+
+		
+			
+				
+
+
+
+<div data-handler="PreLoad" id="top"></div>
+<a href="#main" class="skip-main">Skip to main content</a>
+<a href="#all-topics" class="skip-main">Jump to all topics</a>
+
+  
+    <a href="#article__start" class="skip-main">Start reading the article</a>
+  
+
+<a href="/articles/" class="skip-main">Jump to list of all articles</a>
+
+<header class="global-header header">
+    <div class="logo">
+	<a href="/" title="&larr; Back to the homepage">
+		<picture>
+			<source
+				media="(max-width: 1450px)" srcset="/images/logo.svg">
+			<source
+				media="(min-width: 1450px)"
+				srcset="/images/logo--full.svg">
+			<img
+				src="/images/logo/logo.svg"
+				loading="eager" decoding="async"
+				alt="Smashing Magazine" />
+		</picture>
+	</a>
+</div>
+
+    <nav class="main-nav">
+  <ul class="main-nav__primary">
+  
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+    <li role="none" class="nav-item main-nav-more-item">
+      <button class="main-nav-more-item__button" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="menu-text--lg">More</span>
+        <span class="menu-text--lg--close">Less</span>
+        <span class="menu-text--sm">Menu</span>
+        <span class="menu-text--sm--close">Less</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+<nav class="secondary-nav">
+  <ul class="main-nav__secondary">
+    
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+  </ul>
+</nav>
+    <div class="search">
+        <form data-handler="Search" id="js-search-form" class="search-form" method="get" action="https://www.google.com/webhp?q=site:smashingmagazine.com">
+        <div class="search-input-wrapper">
+            <input  class="input search-input" inputmode="search" type="search" name="q" id="js-search-input" autocomplete="off" placeholder="Search articles..." aria-label="Search articles" />
+            <input type="hidden" name="sitesearch" value="smashingmagazine.com" />
+            <a id="js-search-clear-button" class="search-clear-button" tabindex="-1" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.35 15.36" width="16px" height="16px" tabind="-1">
+                    <title>Clear Search</title>
+                    <path fill="#e33b2a" d="M8.38 11.41c-.5-.5-.78-.52-1.33 0l-3.05 3.08c-1.18 1.18-1.7 1.18-3-.16s-1.18-2-.18-3l3.18-3.19a.69.69 0 0 0-.07-1.14l-3-3c-1-1-1.13-1.81 0-3s1.9-1.21 3.13 0l2.94 3a.66.66 0 0 0 1.11 0c.63-.65 2.49-2.51 3.28-3.35a1.46 1.46 0 0 1 2.3-.15c.24.24.47.42.89.84.86.86.94 1.57.05 2.46l-3.27 3.26c-.36.34-.52.58-.16.94l3.27 3.27c1.1 1.1 1.23 1.7.05 2.88l-.58.58a1.59 1.59 0 0 1-2.46-.21z" />
+                </svg>
+            </a>
+        </div>
+        <input type="submit" class="search-button btn" name="submit" value="Search" id="js-search-submit">
+    </form>
+</div>
+
+</header>
+<script src="/js/nav-v2.js" importance="high" defer></script>
+<div>
+  <div data-component="SearchResults" class="search-results" data-lite="true"></div>
+
+  
+</div>
+
+
+
+
+
+	<header class="subnav__header" id="all-topics">
+		<nav class="subnav" role="navigation">
+  <ul class="subnav__primary subnav__tags flex">
+  	
+
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/accessibility/">Accessibility</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/css/">CSS</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/javascript/">JavaScript</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/usability/">Usability</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/design/">Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/figma/">Figma</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/wallpapers/">Wallpapers</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/react/">React</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/vue/">Vue</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/round-ups/">Round-Ups</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/web-design/">Web Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/guides/">Guides</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/business/">Business</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/career/">Career</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/privacy/">Privacy</a></li>
+
+
+    <li role="none" class="subnav-item subnav-more-item">
+      <a class="subnav-more-item__button" href="/articles/">
+        <span class="menu-text">Jump to all articles ↬</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+	</header>
+
+
+			
+		
+
+    
+    <main id="main" tabindex="-1">
+      
+  
+  
+  <script id="gotell" type="application/json">
+    {"created_at":"2022-02-22T06:00:00Z"}
+  </script>
+
+  
+
+  <article class="block article" role="main">
+    <div class="container article-container">
+      <div class="row">
+
+        <div class="col-12 article__content" id="article__content">
+
+          <div class="c-garfield-the-cat ">
+
+            <div class="c-garfield-header">
+              
+              
+
+
+
+<header class="article-header">
+  <ul class="article-header--meta">
+		
+			<li class="article-header--meta-item article-header--meta-item__author">
+				<a class="author-post__author-title" href="/author/drew-mclellan/">Drew McLellan</a>
+        
+			</li>
+		
+    
+			
+			<li class="article-header--meta-item article-header--meta-item__date">
+				
+				<time class="article-header--date" datetime="2022-02-22">Feb 22, 2022</time></li>
+    
+
+    
+    <li class="article-header--meta-item article-header--meta-comments">
+      <span class="article-header--comments">
+        <a href="#comments-smashing-podcast-episode-45">
+          
+          <span data-component="CommentsCount" data-insert="true" data-thread="/2022/02/smashing-podcast-episode-45/" data-article="articles/2022-02-22-smashing-podcast-episode-45.md">0 <span class="comment-count">comments</span></span>
+        </a>
+      </span>
+    </li>
+    
+  </ul>
+
+  <h1 class="article-header--title">Smashing Podcast Episode 45 With Jeremy Wagner: What Is Reponsible JavaScript?</h1>
+
+  
+</header>
+
+            </div>
+
+              
+              
+
+
+<ul class="meta-box meta-box--article">
+
+  
+  <li class="meta-box--item meta-box--published">
+    39 min read
+     </li>
+
+
+
+
+  <li class="meta-box--item meta-box--tags">
+    
+    
+      
+        <a href="/category/smashing-podcast">Smashing Podcast</a>
+      
+    
+  </li>
+
+
+
+
+
+  <li class="meta-box--item meta-box--share">
+    Share on <a rel="nofollow" href="https://&#084;&#119;&#073;&#116;&#084;&#101;&#082;&#046;&#067;&#111;&#077;/intent/tweet?text=Smashing%20Podcast%20Episode%2045%20With%20Jeremy%20Wagner%3a%20What%20Is%20Reponsible%20JavaScript%3f&url=https%3A%2F%2Fwww.smashingmagazine.com%2f2022%2f02%2fsmashing-podcast-episode-45%2f&via=smashingmag">Twitter</a>,&nbsp;<a rel="nofollow" href="/api/ball?uri=//www.linkedin.com/shareArticle?url=https://www.smashingmagazine.com%2f2022%2f02%2fsmashing-podcast-episode-45%2f&title=Smashing%20Podcast%20Episode%2045%20With%20Jeremy%20Wagner%3a%20What%20Is%20Reponsible%20JavaScript%3f">LinkedIn</a>
+
+  </li>
+
+
+</ul>
+
+
+            <div class="c-garfield-aside--meta">
+
+              <div class="l-author-bio">
+
+  <div class="mobw-40 mobh-40 w-48 h-48 rounded-3xl bio-image__large mb-5 mr-3">
+    
+    
+
+
+
+<figure role="presentation" class="bio-image ">
+  
+  <a href="/author/drew-mclellan/" class="bio-image-link">
+  
+  <div class="bio-image-wrapper">
+		<picture>
+			<source type="image/avif" srcset="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAD5kAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAMgAAADIAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAD6FtZGF0EgAKChgd8fH7IEBAMIAyiB8SEAMHMKFJJAwUZNJ9c1ALGHgebvHKDoE16HID8KlHA/N5JUHnDBWWadGBfK/5C6uNsd1KNW98NCgnxLN/spJjsqQAyMx36qah3qQrLNVnGZegYfR9GpMoZOFCLce&#43;NtyWi8IaERyBoB7ldmEvSIproMYQQTjyUTv&#43;mSee7dWaO4G5x4Y3JCMtELDxoYHoAnPaiy6pVJgg2dz1ibh01mUqqls&#43;FvbHb9ov7/JQ5QWGFmr8hYexdVfzZ7LKXTDz86XB4F43e&#43;&#43;ZKWLykJL47VagizQfAUMsuj6TbZ5S&#43;zHhjFicMm3Plk9JqgxGE5Dh3gESviZnteOpWz3fWmVGBN57WnTR3SebHPIa0TpHIPOtRvKLoCrxf6PPr5yvklbJduaJ0YhPmkn5I839PHyNu&#43;dVnnzbej89Ot&#43;yWNdlQgcWg4nzF9VWcmwp5LYbTuvt38uXLdY8HdWF/2WIZBgSF1lcpP9IwhxotOwlO/SHXpLMBuTpLfW2k52TswSIyTo31aaMp54sFlSV81Ffep4M0uP8S0JDxALIQ6JEfIPFQFWhgNPPXSe0OY8epllWFc8T1DiMu6ymLYODeI2RHAzT6Tmtps08NkeAugqUrVlmqwTfQUyJxP0r7IpxAS6M6bfRXXElJBA4C8DksMjbsU&#43;ZMVshnhI5sJAt1Ohhks712TvL1HkHaKrvps9gJXmy8b0dugO6alFRtKo7jyc7dJ6qhjIjleYMYgLSIfF0xfJbeueSNNg72FLWGWqFQkqegxyFwdsBD2gKfUUizRCJ7LrCQlSeA&#43;lNrVY9KyIME9hNc3emvBSdSYDkELz7tXTGuGxgjyjY1z5Vb3bn/ME6hR3yaGUrsue4ZhsUfDB0abvdr8GQHJ4ATQpU6wqh7l0ewRIL3bU2dQJa6Po7&#43;SpfnAvvjU27lLtH3c0O34NO6I2Zw0R0KEjOFVyi4RmUBAJF/CLh0H&#43;gROvqSrtt43xOK/2NJLQCsAPtlMcsI8b/5QyspXbh8q4uIGNN4e8SyLUosjWNci3JxDCWu93a9fFHlwmx5SuDxbtiH3y7RjZqt0JfEBMZ6oWglk2SDi4xQobe5X9byu06c/RJEZLw&#43;z3Wi6L0afiIIROftHj1oXxiZxLRLoeaiIDptIOR/DaRXugN9qZJ4qbAlGxWPurI&#43;3ORi5fEyaukqo4ZT3XSRImTyoz/dUTya5PZzCd9cRfaufwM1hbTSfQpcVfGxnWeDLrjO2vzFbiSlwkEK/TKtDqKU4zsaoqwpAXcQnddeAHWy2mfsnbS2D42GNieywdQob4Jptx&#43;UvAPeVdITozOOV7LqLjWqTGmNgAUg1dclRNFKDFJ9O0vl1d8x8V1i1vAkdBplfKFNY7GVOJd66sDUHx&#43;7Ng5amW2r4a2etdRKC1AA/yDPkf7mJ6yoZdV3oFzW5R8bpeOTt0L3p4z2tuiDs9QNTl77p12BWIWPXyQKl4prdtyN4c62A0x/gKlmxTjpfBlr2qHRSUigYLSD4I&#43;Mll3j3nDWmRC4Ai0ySYI9Cr2ffXaFL1Kn3rEGAhBTn8DAm6jJHrFEnimWt9iDQs4hg9MtNvuhscFUnqifVw88dHojYg65ZL&#43;chvBAZqy4dBw8OHEmSDiAAG8iISG&#43;WwbxtSDfNwvCnWyPUECA4YpaseCxtu8OTNZTcXplVOzg4GHO&#43;tksC5GcUwXGahGhRkAIVYSSj15kn2Lyi4UUrGl2d5uqQmYXNz7Horg99evieEdbNBP8XEXOwLy0L/SNLur6XgfZs7XjBPfIsjGlQ8k3PeghUjml8VPVsx3xCYMvseEve6gfMa28bfoW&#43;ANBBGT/dxCDhfqcqZrlJ8YZAoY3OuojxRQeJ12/4XNHlMB09nxUDHpQrJ6UrkCQcjiY&#43;J7JzrwbK2g7T658IXQc2RG3B1DfPXCSXn1kXLdhoYJ3dX7zepDb&#43;G&#43;KNsOW525&#43;94si6LhK0M6Q06msbaEUSo8urlMwuVRoXRkP3OyQoZGHxXZTCFUt0DmMcf3rAFNNGTyUzGBAF0XeNfuvX6bojzuWZfj0qI0VyADdlWRbscThdX8/8K1RNMQ45j7DVyz1SL6Lwa/mUo4ixJV&#43;6LG3Gek6lPdDCpBTMpMB6IIRtro16G9m0Io4dpf&#43;Dl4Jjtqv4RshZmbZXVGJ33&#43;YjAKrLzvbvRTWjNobgzORZUdQw6sYz9H78jWFUPdYqdHSwRuRYJwLqBiBwQjEg4h7TBI2PbK2x&#43;GeHtnB9Xc94/f24XhJzcuh4jDwVOCddpl3fXohiJYhsYdiGOOX8YCZR&#43;nUWnkVmWOOlRlNp8RptopCmeE0r4Cn0fry/z9Anfp3tXb2&#43;PvoylWUX&#43;66mMtbXabY&#43;mxv8yU8s3hREkMUOta2/SWRM9mw2F1iQA3QMOwVGEoyRF/8wGZ2Bd7xzv9U0O7o8qkfqa19uZLqRVahI90u4Zr/XvuIoVsCTbB2rmAsou0tHjpkX72JKu6afYJpUqyUzONrFtHQZ0KMv6JWXaS5sKRkGUiv59AX8wtoXzWMCGAAE&#43;GTlyxK3MvxVBNPGxNBzMHIxNBmi4nc28tdmYHRuchpGA2j0kE2HD5nPKL4p/IsI2lcMnUype/riOnZEufRRCDd2mPSWWblGU/QcAMIglWwDNxjMTeOERVklBwF58RSGX3SLqe&#43;cRPYAqUB2Li5QaP3r6mKPEDRnAQ7tSK2o&#43;Q9LROAEUlftq4C3eHCxKD/&#43;m1VmhIaAY&#43;YtviRK7v5qCSVGQXctO85qRkmkTKg4EyXdCN2Ed1n5Tb8fezvXGDmJNgy9&#43;nXJfXOlfX1L6uJhduoX&#43;4HdFrR6ZaGs6GcI/XfKGhxzGxyPPIXvpaqwoRb&#43;OOl2rLRuYHuRzOQfMJdYgdfur/xSV6&#43;VPgPkOrwcLBXzFZn8iD6Bh2B4cMlqhBxSbNsmJLOLt&#43;0K7b9OzzMv61VrbwPaJ0heNQh/yYBFVNnEK7gS5/R9B6wXeb7T0eQP5WvRppym1lGuH//xZ1o3Hz1EJgDHDNjVlgWlIHr6/s9tdJYhnNcsaotx7kbk69Vm1HxJzrl8z&#43;dq1vacm2YM1jdFqIDrnTEJlXfRPjxm0cMPE&#43;WkGhi9kRfI6B1eWbvZxapU78yFSQzpS6VvbLsQ5M60aOmK4x88nkLBgLZymurgPzhOZ5XEtDAj3MPXAAVf/l2b1yrK5NzgvfG8X9RK74EY34eyELVV8dvKlcg6GDmPEmFX1Yyxf&#43;4wRGLZF&#43;HefV4KQzawKeoPFyp9u8HgiXg8QyAas5R2Gk4Tyk3nZuzHkB7JUPcLi9joTg7rK2BgKEP8B8jRAsEFpqgM9pyMxqid/62lf6EijIta4P7tHkcZ/e&#43;7fbuPxGORp0vc9O&#43;aYKQIYn4F0NI6u&#43;4zhpep9spmQ4rnLpGCJnZzh63h4JnSLMhEay14nbct9ggojWTEF11TrKhVX9di6jaGd/TLCrGCsHnAj0JVZEuCxBXXSWorj&#43;UgPjfRZv4Twx5PYHa/wmpC4Obxkbpoulmk0ycNo22gDRvkImWCG2IYiTnz9A17rttzJ5NHbGQ4DOt9I9ls6HQoB/EiAoJ5UyGeCXBG2vOZiY1C1hYIo1bXbOmwEjX064zfsgtcd7k3LU5epT5BXqzdGWd1SdczgkHeSHtwnqGTw4kxto5uJHikzZixcYFTUTwv4GiNjpwQZAkPsFV1qUaP13Yq5lI&#43;6s33OitRCoxTUmQKR4KxqbdRQQtz9Z5kVrnEEeZsh6lrSLWK9toMKOF4MTj7V1c1U0MvauQv9zfVvrM9JkzDwnOKHh7T3ayq7yUwewFSL59VO43MP3fcmAtJbIUs3EQ9PjdWAOssF1rIfMpvG3Dg1bmzqaYXSehx1mVX/aogMIQonVwsAlMScjsjBVEOYtsMNZfsyZ3I4yj1mTQ3Fy1GPUioHVl&#43;q2CiA7fq&#43;JH2ABPWIP6FUt&#43;dHITfiMa0d1gvI5&#43;5nSDn6IXU1g3gFkm9xr4pSHIm1IsDSIQuagwKuLZEJgfq4&#43;kfDUf4YbUlEsW6NMNRbHDORvQFi0zjWR68v/z8wac16/IAb6opEn&#43;sgSoflrd/UhrbO&#43;hk9RA6KvGvVeh2u6iJ&#43;p8C6VvZWM7k4lhjt8ihDEBLjiI5KjTlV5XqBUc0g3oqt7B&#43;uWxvTnTmVdeUwZcX5JWSPoCwxQlErAdfV4i7jwk7pVaNe0tO2AiKdQD2O/S1Io/yamytz1&#43;7fP8b0PpOjHEQ9pCi1kAJ&#43;nwu9BmLaPsSdOPk6fecveiUzL&#43;TfY1l&#43;PVaJXrj&#43;w32p&#43;gEcmU1dH2nueHDcPuL1aBVxB6UmmL7kN5dcqk6s&#43;DRXlOCHAIflpXJKtRD5KIpgSL1LOzTJ0/VDqGOOpmzKsDJHiFKXV88Khn8IHayD2IagSCDCps5YGhXEA&#43;LRsRmkzpW6zpE0BkgFKG5mLuWUw8T8hW3v0X2gtLq/&#43;FtzpDv5wN8SnJP1NVZ8jGTfwenx4emYdULEicH8bvT3VORpKaLDunSD7eNvqWaGiYKwirr&#43;NUXgh8RPzWonotHIVGSkSDVupaItu0z4NS3KI47FBDnK0lmcdOOC8/m9iWvm&#43;61rGfrT5yQ2n3nsTx/tC49npfHMKa3bTQF/vqnWRWiuOTytbstezJ1rpRF404nD0hNf2/rE&#43;fJQxDHzdnivF2voYhjgrudIb8ZM3Wu7mGYFtKjS&#43;kUc0DVr92m46nyeUy9tKbcHWzgGJQT2xk/a8sYbjmnMT9QKsVKEsL//hgoAlmXvpKVQqP&#43;o5lPrrUJ9GGd8m6rcUKbEsEWdCGahHjwWRoFI4HMUKSzK/P/2yVQZud533PRI5LE9Kj3MM&#43;AvQYvOP/OO5iXPN6axIWMZvs4sVs9G3cYg1LQemf8UsUuqr4VOHt29xNjhFpPlr4&#43;bojKnl3DkF7h9WSoRPMES6yj1WbvUVdqI3gv0zFuhiML0ivIiy&#43;5CWETiFMTtbMJPwyD04aiel8zIqzL0JOucd5harKXoZTmC/Yp1k699NyM2Iu1oi0&#43;Ww9GNE4evw3fDZ6GQ2e4GGtahEMD7CD&#43;EMjupcDV5hUh/rtsBkCmZV//IclqCrJpCiQdcmRkpqXgZfWivp3vq6RxijSNF2p&#43;8dQ9xTJ6/5YA0C6kc8yyBeAwX7x3fL8bdZHetJQM1cS&#43;BRtSXNIWgh5BuWylB3xJvts7o3WyUdjMkovQ4iuFQCMpWMcadHvcr5qG/KaALs3Xyybd/Wr9UCpnhW8oEaBPrvgbo5Me3q3XQmUwQZga&#43;9Z8D93A7DiQLjVGokDbaYxP6&#43;DgdPCqjx&#43;LJ5jBjr0iMSb/MJia1NS5UbcPyA">
+			<img
+				class="bio-image-image"
+					src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/36527166-76ee-41ea-be75-e09fc1070f07/drew-mclellan-200x200.jpg"
+					loading="eager" decoding="async" importance="high" width="100" height="100"
+					alt="Drew McLellan"
+				/>
+		</picture>
+  </div>
+  
+  </a>
+  
+</figure>
+  </div>
+
+  <div class="l-author-bio-content author__desc" id="author__desc">
+    <h4 class="author__desc__title">
+    About The Author
+    </h4>
+
+    <p>
+      
+        Drew is a Staff Engineer specialising in Frontend at <a href="https://snyk.io/">Snyk</a>, as well as being a co-founder of <a href="https://noti.st/">Notist</a> and the small content management system <a href="https://grabaperch.com/">Perch</a>. Prior to this, …
+      
+      <a href="/author/drew-mclellan/" class="show-more-link">More about
+          Drew&nbsp;↬</a>
+    </p>
+  </div>
+
+</div>
+
+              <div class="c-garfield__nl">
+              <h4 class="h2">Email Newsletter</h4>
+              <section class="nl-box__form"><form action="//smashingmagazine.us1.list-manage.com/subscribe/post?u=16b832d9ad4b28edf261f34df&amp;id=a1666656e0" method="post"><div class="nl-box__wrapper"><label for="mce-EMAIL-hp" class="sr-only">Your (smashing) email</label><div class="nl-box__group"><input type="email" name="EMAIL" class="nl-box__form--email" id="mce-EMAIL-hp" placeholder="Your email">
+    <input type="submit" value="Meow!" name="subscribe" class="nl-box__form--button"></div></div></form></section><p class="nl-box__desc"><em><a href="https://www.smashingmagazine.com/the-smashing-newsletter/">Weekly tips on front-end &amp; UX</a>.<br />Trusted by 190.000 folks.</em></p>
+              </div>
+
+              
+
+
+
+            </div>
+
+
+            
+
+            <div class="c-garfield-summary" id="article__start">
+              <section aria-label="quick summary" class="article__summary">
+                <span class="summary__heading">Quick summary&nbsp;↬ </span>
+                
+                  In this episode, we’re talking about Responsible JavaScript. What does it mean for code to be responsible, and how should we approach projects differently? Drew McLellan talks to expert Jeremy Wagner to find out.
+                
+              </section>
+            </div>
+
+            
+							
+<div class="sponsor-panel c-felix-the-cat">
+	<p class="sponsor-panel-content">
+		This episode has been kindly supported by our dear friends at <a href="https://www.wix.com/" style="text-shadow: none;">Wix</a>, the platform for professionals to build client sites, manage complex projects, and grow businesses online. <em>Thank you!</em>
+	</p>
+	<a class="sponsor-panel-image" href="https://www.wix.com/">
+		
+			<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc3245af-20d9-4039-9a49-8ab431a0b8fd/wix-logo.svg" loading="eager" width="200"  alt="Wix" />
+		
+	</a>
+</div>
+						
+
+            
+							
+
+
+
+						
+
+            
+
+<p>In this episode, we’re talking about Responsible JavaScript. What does it mean for code to be responsible, and how should we approach projects differently? I spoke to expert Jeremy Wagner to find out.</p>
+
+<iframe src="https://share.transistor.fm/e/fd46e186/dark" width="100%" height="180" frameborder="0" scrolling="no" seamless="true" style="width:100%; height:180px;"></iframe>
+
+<h3 id="show-notes">Show Notes</h3>
+
+<ul>
+<li><a href="https://responsiblejs.dev">Responsible JavaScript</a> website</li>
+<li>Buy the book from <a href="https://abookapart.com/products/responsible-javascript">A Book Apart</a></li>
+<li>Jeremy’s <a href="https://jlwagner.net">personal website</a></li>
+<li>Jeremy on <a href="https://twitter.com/malchata">Twitter</a></li>
+</ul>
+
+<h4 id="weekly-update">Weekly Update</h4>
+
+<ul>
+<li><a href="https://www.smashingmagazine.com/2022/02/fitts-law-touch-era/">Fitts’ Law In The Touch Era</a> written by Steven Hoober</li>
+<li><a href="https://www.smashingmagazine.com/2022/02/web-design-done-well-perfectly-pointless/">Web Design Done Well: Perfectly Pointless</a> written by Frederick O’Brien</li>
+<li><a href="https://www.smashingmagazine.com/2022/02/voice-user-interfaces-guide/">Everything You Want To Know About Creating Voice User Interfaces</a> written by Nick Babich &amp; Gleb Kuznetsov</li>
+<li><a href="https://www.smashingmagazine.com/2022/02/implications-wordpress-joining-block-protocol/">Implications Of WordPress Joining The Block Protocol</a> written by Leonardo Losoviz</li>
+<li><a href="https://www.smashingmagazine.com/2022/02/thoughts-on-markdown/">Thoughts On Markdown</a> written by Knut Melvær</li>
+</ul>
+
+<h3 id="transcript">Transcript</h3>
+
+<p><p><a href="https://twitter.com/malchata"><img style="float: right; padding: 1em;border-radius: 110px;max-width: 50%;height:auto" src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ba392061-5b71-4f6e-a0be-f8b93c685a6e/jeremy.jpeg" width="200" height="200" alt="Photo of Jeremy Wagner" /></a><span class="smashing-tv-host">Drew McLellan:</span> He’s a technical writer, web performance nerd, developer and speaker, currently working at Google. He’s written for A List Apart, CSS-Tricks and Smashing Magazine, and is the author of a new title, Responsible JavaScript for A Book Apart. So we know he’s a skilled technician and communicator, but did you know he wants circumnavigated the globe on a standup paddle board? My smashing friends, please welcome Jeremy Wagner. Hi Jeremy, how are you?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy Wagner:</span> I’m smashing. How are you?</p>
+
+<p><span class="smashing-tv-host">Drew:</span> I’m very good. Thank you. I wanted to talk to you today about this idea of Responsible JavaScript. Is this some sort of new approach or technique, or are you literally talking about using JavaScript responsibly?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I’m literally talking about using JavaScript responsibly. So per the HTTP archive, we’ve seen a nearly 58% median increase in the amount of JavaScript downloaded by mobile devices from roughly 290 kilobytes to almost 500 kilobytes in the last year.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> Wow.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> So when I talk about using JavaScript responsibly, it’s a user first sort of approach to say&hellip; to critically evaluate what is it that we’re building and is the goal of what we’re building served by modern web development practices, so to speak. And I guess that’s kind of a&hellip; maybe not tongue in cheek, but I wasn’t taking a jab at modern web development, but one byproduct of modern web development is that it’s very easy to add dependencies to projects. Everything is an MPM install away and every MPM install has a cost, that cost varies. But what we do see is that in that HTTP archive data, the 95th percentile&hellip; meaning the 5% of experiences that are the slowest&hellip; or not the slowest, but that ship the most JavaScript, that has risen in the last year by about 875 kilobytes to about 1.4 megabytes.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> Wow.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> So it’s a tremendous amount of JavaScript that gets transferred and it has both loading performance and runtime performance implications.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> So you mentioned performance there. It seems like the modern web experience from sort of my point of view is like 10% HTML and CSS and 90% JavaScript. And there has to be sort of performance considerations to that. I mean, you talked about out sort of the amount of data we’re transferring, but there’s other performance considerations on there with having a lot of JavaScript.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Right. So having a slow internet connection and you know&hellip; where I live in the United States, if you go far enough outside of a major city, it gets kind of difficult depending on where go&hellip; to just cope with how slow the internet can be in sort of these rural areas and is significant upon of people live in areas like this. And so the loading performance aspect of it is already challenging enough when you start shipping megabytes of JavaScript, but you might also be dealing with somebody who doesn’t have an iPhone&hellip; like an iPhone X or like an iPhone 13.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> They might just be on a feature phone or just kind of like a budget Android phone, just trying to navigate through life. I mean, think about things like online banking, unemployment assistance, or other government assistance, portals like that for applications. Online learning, there’s just a lot of places where excessive JavaScript can really have a detrimental effect for people who might not be fortunate enough to live in large metro areas or even in metro areas that are not well served by broadband internet and those on slower devices. I kind of think as developers, we have this tendency to look at&hellip; we buy MacBooks or these high end devices, and we sometimes don’t really see where these issues can arise when we overuse JavaScript.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> And sort of as you mentioned there, sometimes it’s the individuals who have the sort of stand the most to lose by not being able to access a service who get penalized by this sort of thing. Those people without fast data connections or without very capable devices are sometimes accessing services that mean everything to&hellip; it means everything to them that they’re able to gain access. So it becomes almost a humans rights issue in some ways.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah. I mean, we tend to see web performance get framed in terms of business value. I was a performance consultant for some e-com and like a major food company, a major e-com&hellip; like a store, like an electronics outlet and it’s very tempting to do that, right? Because when you work for a business, I mean, obviously you want financials to be healthy and web performance does play a role in that I think. I think there are a number of case studies that prove that out. However, there is that human aspect and even for businesses, like say like grocery stores and that kind of thing. Yeah, they’re revenue driven. They want to have healthy finances and so web performance is part of that, but they’re also serving a critical need, right? Like you have to eat, right?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> And like some people might be home bound for one reason or another. They might not be able to easily just get in a car. They may not have a car. So they’re relying on these services in order to get sustenance, but more than that, assistance if they need it and especially like crisis intervention and that type of thing. I don’t think it’s terribly farfetched to say that a partner who has been abused and thrown out of their home might turn to their smartphone and, and hit Google to try to find a portal for crisis intervention and assistance. And JavaScript kind of can get in the way of those types of goals and to serve those human needs. When we have a tendency to lean on it just a little too much.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> I mean, we’ve, we’ve seen a sort of glimpse of that over the last 18 months or so with COVID and people going into isolation, and as you say, needing to order groceries to be delivered. The web becomes a lifeline for them at that point. They’re feeling under the weather, not able to leave their accommodation because they’re isolating and they have to get food and they have to get essential supplies. So yeah, it’s an ever increasingly important part of just everyday life for us all, I think.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Exactly. And going back to the sort of device story, Tim Kadlec wrote an amazing piece a couple years back, I think it was two years, maybe it three years back, but it was called Prioritizing the Long Tail of Performance. And when you look at that&hellip; so in web performance parlance, we kind of talk about lab data versus field data. And lab data is like when you’re running lighthouse or you’re throwing a website at a webpage test to see how it’s doing. Those are all really useful tools, but when you look at that field data, you really start to get a larger picture and a larger view of who your audience really is. And in this article, Tim Kadlec talks about what it means to prioritize the long tail of performance. Meaning all these devices that&hellip; are maybe not as beefy and as powerful as the devices we as developers may have.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> And the idea behind that article is that if we can focus on that 90th or 95th percentile we’re&hellip; and improve that experience for those people, we’re building a faster web for everyone, including those on fast devices. And attack a data point on that in the US and this is just from like statcounter.com. Something like 28 point&hellip; around 28% of people are on an iOS device that this tool captures. And around 21% of them are Android. And Android tends to represent a good chunk of that long tail of devices, because Android’s not monolithic. Multiple device manufacturers make Android phones, but to kind of contrast that with the world, because the world is more than just the United States, it’s around 16% of people who use iOS and around like 41% of people who are on Android. So it really does pay to prioritize those slower or potentially slower experiences.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> I read in your book about device thermal throttling, which isn’t something that I’d really ever considered before. What are the concerns there?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> The concerns there, and I’m not like an expert on microprocessors by any means. I’m just the web developer who probably writes a little too much, but&hellip; so the idea behind thermal throttling and this exists in all systems, not just like phones and tablets, is that a microprocessor will&hellip; when it takes on excessive workloads or really just workloads in general, the waste product of that work is heat. And so devices have ways of mitigating this. Like your laptop has both a passive and an active cooling device.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> So like a passive cooling device is like a heat sink or some kind of heat spreader. And the active portion of that is like a fan to more efficiently disperse heat. Some like custom PC builds might use like liquid cooling, which is sort of a more relatively extreme example, but a mobile phone doesn’t have that because where are you going to really fit a fan in all that, if portability is kind of your thing, right?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> So in order for these devices to cope with these heavy workloads, they may artificially reduce the speed of the processor, like reduce the clock rate until that device enters a state in which that clock rate can be raised. And that has implications because if you’re chewing through tons and tons and tons and tons of JavaScript, you have like these big chunks coming down the wire, well that kicks off processing, right? So it’s a lot of processing through evaluation and parsing in compilation and then execution. And if you’re doing that with like a megabyte or two of JavaScript, and you have a lot of other processes going on in the background like different tabs, that type of thing that, that can put your state&hellip; that raises the likelihood that the device may enter a thermally throttled state, which means that it will be less capable of taking on that extra work.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> So it’s a sort of a negative feedback loop. Isn’t it? You give the device lots of work to do. It gets very hot and then is less capable of actually executing that work because it’s having to throttle back.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Right. And again, I’m not a microprocessor expert. I’m sure that if, if, if an engineer who was really intimately familiar with this, could probably correct me on some of the particulars, but the general idea is that yes, as that environmental pressure increases, the device is less able to cope with these heavy workloads until that pressure decreases.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> so we’re writing JavaScript for the entire sort of spectrum of devices from latest Apple M1 Max is the new processor, isn’t it? Laptops all the way through to devices that barely have enough sort of working RAM to render a webpage. But the web didn’t start off like this, younger listeners might be interested to know that we used to build interactive web experiences without any JavaScript at all. Our big, heavy framework’s going to be our undoing.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I would say that frameworks have a time and a place and those who sort of read excerpts from this book may get the idea that I’m anti-framework. And I’m definitely critical of several frameworks, but they do serve a purpose and it is possible to use them in a way that preserves a good user experience or can result in a good user experience. But what I don’t think we do enough of is sort of critically evaluate these frameworks in terms of how they harm&hellip; run time performance, right? So the type of stuff I’m talking about, where if you click a button, and it takes the device like a second maybe two to respond to that input, because there’s so much going on in the background. You have third party JavaScript stuff like gathering analytics and then you have like other things running on threads.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> And that if you don’t critically evaluate the runtime performance of a framework, you might be leaving some opportunities on the table to better serve your users. So a good example, I always like to use is react versus pre-act. I’ve been kind of banging this drum for a while. I did an article for CSS-Tricks a while back that profiled a basic click interaction for like a mobile navigation menu. And it sounds trivial, but what you find is that across all devices is that react delivers on better runtime performance, but it has basically the same API. There are differences, there are some tad differences and stuff that can be papered over with pre-act compat, but that simple&hellip; and I shouldn’t say a simple choice, but that choice, that fundamental choice can be the difference between an experience that works really well for all users or at least most users, or an experience that only works well for some. Hopefully that made some sense.]</p>
+
+<p><span class="smashing-tv-host">Drew:</span> I mean, with all the frameworks and build tools, they seem to be getting better all the time at doing things like tree shaking and optimizing the bundles that they ship and how they’re then delivered to the browser. When using big frameworks, is there a tipping point you think where you are writing such a big application, so much code of your own, that the framework is enabling you to ship less code because of all of its abstraction?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> That’s kind of a difficult question to answer. One aspect of that is that the framework itself represents an amount of code that you can never optimize away. So having like a thin framework, like pre-act or any number of like&hellip; Or like spell for example, that that helps a lot. But the problem that I’ve seen and I think the data from the HTTP archive kind of supports this point is that it seems that anytime we have these advances in microprocessors and networks getting faster is that we tend to consume that gain, right?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> We tend to just kind of be on this treadmill where we never really advance. And I don’t know, like I’m not clairvoyant about what the history of&hellip; or sorry, what the future of frameworks looks like. I’m sure that there are some efficiency gains that can be gathered. But what we see in the field in terms of how much raw JavaScript is like&hellip; just the raw amount of JavaScript is being used. Doesn’t tell me that this is a problem we can kind of automate our way out of. I think we have to&hellip; we have to be human beings and intervene and make decisions that are in the best interest of users. Otherwise, I don’t see us getting off this treadmill, not in my career maybe, but I don’t know.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> In the book you talk about websites and web apps and how understanding the difference and which one that you’re working with helps you choose your strategy for how you develop and optimize. Tell us a bit about that.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> That is a really good question. And I write about this in the eponymously titled article I wrote for A List Apart called Responsible JavaScript Part One, which is kind of the prelude to this book. Is that we sort of load a lot into this terminology. Like as a technical writer, I see the two get used kind of interchangeably. What I see is with websites, the implication is that it’s sort of a multi-age experience, right? It’s a collection of documents. Now a document&hellip; those documents may have embedded functionality like these little islands, as the term lately has kind of been, these little islands of functionality that enable people to get things done.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> But then there’s like web apps and web apps sort of have this connotation of native app like functionality. So we’re talking about single page applications, we’re talking about heavy amounts of JavaScript to drive complex interactivity. And there are times when the web app model makes sense. Like for example, Spotify’s a good example of this. That works better as a web app. You wouldn’t really want to try to use that or design that as a multipage application. Like a traditional web site, but I think it’s not a sustainable default because when your default for every project is to say, &ldquo;Well, all we need to ship a single page application, like a client side router and a heavy framework and offload all of this processing of rendering from like the server onto the client.&rdquo; I think that that is where you start to reach a point where you’re excluding users albeit unintentionally, but excluding them nonetheless.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> Is there a big chasm, do you think between the people who take the approach of we’re going to publish a website and it may have whatever interactive functionality and those who say, &ldquo;We’re a software company, we’re making a product, a software product and our platform that we’re going to deliver it via is the web, rather than native applications for multiple platforms.&rdquo; Is it likely that they’re approaching the problem in completely different ways? Are the considerations different depending on your outlook at that point?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> That’s a tough question. So-</p>
+
+<p><span class="smashing-tv-host">Drew:</span> It was tough for me to say.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I would say that a company that&hellip; so a good example would be like a news, right? They’re well served by the sort of website model, because it literally is a collection of documents, articles. And the people who develop those experiences are probably going to have a different skillset than say a company like Spotify or a company that has like a large web application like Envision or that type of thing. And so yeah, I think they’re going to come at this from different angles. The way I’ve kind of looked at it is that there’s a segment&hellip; or at least this is how I perceived the web development community at large is that there is a segment of people, of web developers who came from non-traditional software development backgrounds, right? And I’m one of these people, I was tinkering with the web when I was kind of like a kid, right?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Like in middle school and doing stupid fan pages for all like the video games at the time that I really liked. And I never had that sort of computer science education. There are computer science concepts that I’ve picked up along the way. Then there’s also a segment of developers, especially I think that have come around in the last five to 10 years who approach this in a more computer science oriented way. And I think that’s going to&hellip; those differences and experiences are going to lead each of those groups to draw their own conclusions about how best to develop for the web. But I think the only way that you can really&hellip; That you can sustainably develop for the web is to critically evaluate what it is you’re building and to try to align around an approach that best serves users of those products. And that’s sort of where the website and the web app models kind of sit in my head when I evaluate these things.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> Yeah. It interesting. I mean, in the book, you actually cite some of my work. Thank you very much. And my choice of boring technologies on noticed basically PHP Apache and a sprinkling of hand rolled JavaScript can create a very snappy user experience by default, without needing to do any particular optimization. I think that makes for a great user experience for the front end visitors coming and viewing content on the site.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> But actually, I kind of feel like that environment for authoring content sort of the flip side, once you’re logged in and your publishing stuff on the site. I think it suffers a bit from being built with a website approach, rather than a more sort of JavaScript heavy web app approach, so much so that I’m thinking&hellip; or perhaps it needs to be both. I need to continue publishing the front end in nice static HTML and CSS and tiny bits of JavaScript. But the backend where I want to provide a content authoring experience maybe a different technology choice would be better. It’s quite interesting because it doesn’t always have to be one thing or the other does it? It’s not a binary choice. It’s more of a spectrum, would yous say?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah absolutely. And I think we’re starting to see more discussion in the community about web development being a spectrum like that. To just be straight up for people who might be interested in my book, it definitely comes from the website side of the spectrum. And again, because I feel that that’s always like a good default. If you don’t know how you want to build something, it’s probably best to try to build it in a way that minimizes the use of JavaScript and minimizes pushing more work onto the client. That said, I think that noticed is an excellent experience. I think that these well worn and sort of really &ldquo;boring&rdquo; technologies really work well for the task at hand. And it does so in a way that’s like kind of open and enabling for the developer, right?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> You don’t have to have like deep knowledge of like&hellip; of state management stores or state management frameworks to really pull these kinds of things off. And I think that noticed is well served by that particular approach. But to your point, I think there are opportunities in any website to move closer toward the middle of the spectrum without going all in on all client side routing like heavy like frameworks that manage everything on the client and that type of thing. I think the island’s approach is starting to explore what that looks like. And I’ll admit, I’ve probably have unintentionally done some of the islands type thing. I think we have for quite a while, we just haven’t really put a name on it. But I think now that we’ve kind of identified that as like maybe a midpoint, we might start to see web experiences that deliver on a good user experience, but are still more interactive. Hopefully that wasn’t terribly meandering.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> It sort of harps back a little bit to the days when we would embed an island of Flash or-</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> Something in a page where this is our little interactive section, and the rest of it sort of flows around.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah Like Flash, oh my God, three iterations of my personal portfolio out of college were really crappy to advanced Flash knockoffs and like hover effects. And that stuff was really, really fun. And I miss it sometimes like there’s a whole just wealth of content that’s just going to kind of disappear because we don’t use Flash anymore. And that really sucks, but in a way it was kind of the precursor to this sort of islands thing that we’re talking about. Which is you could just have like a static webpage and everything, but then you would have this really richly interactive experience just kind of like plopped right in the middle of it.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> For a long time, progressive enhancement has been considered a best practice way to build web experiences. Is that still the case, do you think?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I would grant that it’s probably&hellip; not probably I would grant that it’s more work to do progressive enhancement because in a way, you’re kind of bifurcating your development experience. You’re trying to deliver minimum viable functionality of a website in a way that the server can handle sort of like these key interactions. But then on top of that, you’re saying, &ldquo;Okay, well now I want to facilitate this interaction to be just a little bit more smoother with JavaScript.&rdquo; I still think it’s a viable way to accomplish your goals with your website or your app or your product.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> But what I would say is that I would never recommend that every single interaction on a website has to be facilitated by this synchronous navigation sort of pattern. So like a good example might be your checkout page for your econ website should definitely have a server route. You should have a server route to add things to the cart, and then you should be able to sort of sprinkle on just enough JavaScript to make that a little bit more delightful so that things can be a little bit faster and more asynchronous.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> When it comes to measuring performance. We hear a lot about core web vitals, mainly from Google. Are those really the benchmark up that we should be measuring against? Or is that just what Google wants us to think? I now appreciate this might be a difficult question that you started working at Google.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah, yeah. You know, so I’m speaking for myself here. I think that web vitals are&hellip; the initial core web vitals are a good attempt at defining what parts of the user experience are important. I do think that metrics such as cumulative layout shift and largest Contentful paint start thinking about the experience in ways that we really hadn’t started to quantify. Before particularly cumulative layout shift, because if there’s ever been a moment where you rage tap it’s because a button likes to move around the page or something. I mean, I think that that’s a helpful thing to measure it. It is imperfect. And I think anybody who works on core web vitals would agree that improvement is desired in some of these metrics. There are other metrics that I don’t necessarily agree with entirely. Like first input delay is a metric that is kind of difficult to put a pin on.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I think it’s really useful, right? Because what you are literally saying is we want to measure the delay and interactivity on that first interaction that the user makes, but it does lack a little bit of context, right? Because some&hellip; a lot of things can affect it because it doesn’t necessarily always tie into JavaScript. First input delay could represent the delay that’s incurred by focusing form field, right? That type of thing, things in HTML. I think those metrics&hellip; such metrics like first input delay can be&hellip; they can be beneficial if you can contextualize them with things like entries out of the long task API, element timing, and those types of things. I ultimately think that the future of core web vitals will prove out that it will be helpful and instrumental in measuring what makes a good user experience. That that’s my personal opinion.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> I guess it’s, it’s one of those things that you can always measure against yourself, measure your own improvements or whether your experience has got worse if your score changes, not caring so much about the traffic lights, but caring about what you know about the context of your site and how a change has made an improvement.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I think that metrics such as cumulative layout shift are excellent, but they too could benefit from a little bit of improvement. As it stands, cumulative layout shift, mostly measures layout shifts that happen during load. And as we know, when a user visits a page and lands on a page that layout shifts can occur at any time, right? So there’s definitely work I think that that can be done to improve how we observe of that kind of phenomenon, for sure.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> I think layout stability is one of the things that’s actually a little bit more difficult to achieve when you’re working with progressive enhancement. Sometimes when you load a server rendered page and then begin enhancing it in the client, there can be a danger of creating that sort of layout shift, can’t there?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Absolutely. And that’s kind of where hydration of components becomes kind of tricky because the dimensions of that component may change for any number of reasons. Like there could be content present in the client side component that just doesn’t render on the server because of state that isn’t evaluated until it’s executed on the client. It’s an extremely difficult problem. I’m not going to sit here and pretend I have like the silver bullet for it.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> I wanted to talk a bit about sort of dynamic of imports and code splitting, both being different techniques for the problem of downloading and executing a huge bundle of JavaScript upfront at the start of the experience. Is there a risk of over optimizing with making lots of small requests, particularly on simplest smaller projects, or is it something that they’re absolutely no harm in implementing sort of from the outset preempting that you’re going to have these problems? Or should you be waiting until you actually see performance problems before thinking about those sorts of things?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> So I would recommend the tail end of what you just said is a good way to lead in with this. We shouldn’t try to prematurely optimize unless of course those optimizations can be achieved very quickly and easily, but if it takes a lot of effort to optimize early on, when there aren’t really a lot of performance issues, I would argue that code splitting is probably something that doesn’t have to happen. You can probably just load that functionality up front.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> But for example, I talk about this in the book. If you have a high value interaction that is driven by a large piece of JavaScript, and to me, a large piece of JavaScript could mean 20 kilobytes because over the wire that’s compressed and that could end up being a 60 kilobyte chunk of JavaScript. Then if you can pull that out on the main bundle or any of your myriad of bundles, your site might be shipping, you’re going to help startup performance.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> But in the book, I discuss a technique about perceiving when&hellip; or at least attempting to perceive when the user might make a high value interaction. So the example I use is a chunk of JavaScript. That’s used to validate the contents of a form because HTML form validation is great, but it’s also not styleable, and it’s pretty straightforward. There’s not tons of flexibility for things like, type equals email, right? It evaluates it a certain way. However, that validation of the form on the client is really helpful because we can also style it. And we can align the appearance of that validation to be closer to what the brand aesthetic is or what the aesthetic of the website is. And so in this example, what I did was, is I said, if a user focuses&hellip; even just focuses any of the fields in the form, that’s the point in which we preload that piece of JavaScript.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> So that hopefully by the time, and I would hope because it takes a little while to fill out a form that the network has enough time to pull that down so that when the dynamic import is called, it can just hit the cash to get what has already been preloaded. It’s something I’ve been working with a little bit here and there, and it’s difficult to do in all situations. Like for example, you can’t do this reliably all the time on hover because some devices don’t have a fine pointer. They have&hellip; they’re&hellip; it’s tap inputs, right? So a hover occurs at a different time than if you had a fine pointer, for example.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> One aspect of responsible JavaScript use is thinking about how we consume our users, available resources, be that sort of battery life or data allowance, if they’re on a data plan. Are there techniques that we can lean on here to, to help us think about those things?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah. So currently, or at least historically from the last&hellip; I don’t know exactly when this feature shipped but Chrome for Android and there used to be a Chrome extension thing for this called Save Data. And what you would do is if in your settings, in Chrome for Android you would say, &ldquo;Reduce data usage.&rdquo; I forget exactly what the label is on the check box, but you check it, you turn it on and what that does is it sends this signal as a request header. And it’s a request header that’s called save data and it only has one token and it’s just on. Because if it’s off, the header just doesn’t get sent. And you can&hellip; on the backend, at least, you can look at this header and you can decided, &ldquo;Well, do I really need to send the styles and the JavaScript for this carousel or can I render this differently?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Or maybe you start thinking about stuff outside of JavaScript where maybe you send lower quality images. There’s a lot of opportunities there to reduce data usage. This is evolving though, save data is still around. And I think it will be for the foreseeable future, but now we’re converging on a media query called prefers reduced data. So we have stuff like prefers reduced motion, prefers color scheme, it’s sort of in that vein where I anticipate that these will be operating system level settings that we can make to say, &ldquo;I really want websites or apps to use less data with this signal.&rdquo; And you can match it on the client side, with the prefers reduced data media query using match media in JavaScript.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> So then you can use that in JavaScript to say, &ldquo;maybe this functionality isn’t the most important thing. Maybe we don’t really need to load this associated video embed if the text serves the purpose.&rdquo; That type of thing, but it also converges with the save data header, at least this is what I observed is when I turn on the save data feature in Chrome for Android, the prefers reduce dat: reduced media query matches, but it also sends save data so you can still act on this on the back end or the front end.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> That’s nice. So in a sort of app context, you might feel.. rendering a big data table, you might only return some very key columns. Out of that, the most commonly referenced, rather than the full data and really sort of reduce the amount of that’s sent over the wire.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Right. Or you might say&hellip; you might pull APIs less frequently in JavaScript, that type of thing. It’s kind of a hack need phrase, but it really is limited to your imagination. There’s a huge space where I think that concept can be applied to deliver better user experiences. And I’ve used it with a client of mine in Wisconsin. In rural Wisconsin it’s just like&hellip; it is an internet dead zone. Like it’s so difficult to&hellip; I don’t know how people cope with how slow it is. Maybe it’s just because of my data plan and I might be roaming or whatever, but I’ve used this to some effect to say, &ldquo;You know, maybe they don’t need this carousel.&rdquo; Somebody who’s just kind of out there in the sticks who&hellip; there’s a lot of farmland in Wisconsin, but there’s also like a lot of forests and somebody might need some work done in logging, right? It’s a logging company. And so maybe all of these images, aren’t really crucial to that user experience. And they really just want to get to&hellip; the phone number or whatever it is, and they want to get to it as fast as possible.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> One thing many of us do is write JavaScript in sort of new shiny versions of VS script and TypeScript sometimes, and then use build tools to transfer that down to older syntax for browsers that encounter out in the wild. In some ways that feels like an excellent practice because we’re building a code base with nice more modern clean code. In the case of TypeScript, perhaps more reliable code, less bugs. But are there consequences of doing this transpilation process that we might need to be aware of?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Anytime you take a new syntax and you have to transform it so that it’s more broadly compatible, that’s going to generally&hellip; I have not done this comprehensive audit of all features, but generally I’ve observed that, that results in more JavaScript. And that makes sense because for things like default parameters on functions, which are well supported by the way, and probably you can ship&hellip; I think you could probably just ship that on transpile and be fine, but it’s a good example. When that gets transformed, it has to inject a lot of helper code in the function to look&hellip; to evaluate those defaults, right? So you get that equivalent functionality.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Now, JavaScript is evolving all the time and I think for the time being, we’re going to be coping with transpilation costs. And it definitely does have an impact. When I worked with an e-com company, we were able to reduce several of their bundles for their pages, anywhere between 10%, maybe even 5%, in some cases, to sometimes 30 or 40% when we used a technique to transpile two sets of bundles, right? I talked about this at smashing comp. The name that got kind of got tacked on it was differential serving where you say, &ldquo;I’m going to generate these transformed bundles for older browsers and serve it to them.&rdquo; And I’ll generate a different bundle for users on modern browsers or evergreen browsers that will be smaller because there will be less of that transpilation overhead. And when we use that, there was a measurable improvement in the user experience. And there were signals that that engagement was better when we did this. That said, differential serving is an interesting thing because IE11 is kind of now like fading. It’s taking time, but it’s fading.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> But Matt Hobbs who works for the UK government. I think he works on the NHS website. I think, don’t quote me on that Matt. But he sent me some data that showed that there was still a fair amount of people who were still on Internet Explorer and not just internet or 11. Like there were some columns or row in this data rather, that showed that some people were still on like IE6 or IE7. And so you have to evaluate when it makes sense to do something like that, because it is a lot of extra work and it takes a lot of effort.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> In the case of the NHS or literally any government service, I would say that it’s virtually a mandate that you have to preserve a level of functionality that serves literally everybody, because you don’t know where they’re going to be accessing the web off of, right? The constraints we develop for are incredible, it’s really, really hard. It’s thousands and thousands of different types of devices and I think it makes a in those cases, but maybe not so much for your regular web app, right? It just depends on what the purpose is.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> So keeping on top of the browsers that you need to support and the features that you need to transpile and keeping your configuration and your build tool up to date is&hellip; becomes quite important.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah, for sure. This is sort of the more technical part of how you set up tool chains to do this, but&hellip; evaluating what your user base looks like is very important, because if a browser kind of falls out of a certain threshold of usage from significant to relatively insignificant, that might be the point at which you decide to evaluate, &ldquo;Hey, maybe we need to bump things up in our browser’s list configuration, so that we’re transpiling bundles to be smaller since we don’t need to ship those transforms anymore.&rdquo; But it is kind of like another added step. And one of the approaches I talk about in the book is that you can write your JavaScript one in a couple ways.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> You could decide that your style for using JavaScript will be to rely on older language constructs that are natively well supported. Like I think constant let are supported back to IE11. So it doesn’t preclude you from using those types of things, but it allows you to ship less JavaScript. Whereas you&hellip; or you could say like the alternate approach might be that you are going to write JavaScript for newer browsers only, and accept that a segment of your users may not have functionality. But again, that depends on the purpose that your website is serving and whether or not it’s crucial, right? Or infrastructure.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> The web platform is moving on that at magnificent pace, it seems at the moment and there seem to be all sorts of things being added to CSS. For example, that offer capabilities that we previously have to lean on JavaScript for. It is one way to use JavaScript responsibly to just not use it and to lean on native browser features instead?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I think that also works for JavaScript itself where it makes sense to use an API directly rather than an abstraction of it. Definitely do that. But certainly in the case of HTML and CSS, there are things we can now do or will be able to do in CSS that we just don’t need JavaScript for. So an example of this would be&hellip; what’s the word for it? Truncation of content, right? That’s something that we can do in CSS. Whereas I’ve been in situations or in projects where I’ve seen libraries or a library get downloaded that does that. And we don’t necessarily need to really do that anymore because CSS can handle it.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Or we have access to these layout modes now where we don’t really need. If we invest the time to learn these layout modes like grid, we don’t really need to fall back on layout libraries to handle these things for us. And we can develop these experiences that are unique. And what’s great about that is with layout modes like CSS grid, if they’re abstracted, it kind of reduces what you can do with them, because you are only able to take advantage of what the abstraction offers. And if you really want to build some eye-catching layouts that really like push the boundaries of what’s possible, I always like to point to Jen Simmons, her experimental layout lab homepage.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I don’t know how you would achieve a layout like that if you abstracted it into its own sort of layout library. You almost have to use it&hellip; I would think more than almost, you would have to use CSS grid directly in order to accomplish something like that. And that is like zero JavaScript and it’s incredible and it’s really neat. And I think the web in general would benefit more if we leaned more heavily on CSS and other core web technologies, as much as we do on JavaScript, probably not possible, but one can dream.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> So the book Responsible JavaScript is out now from a book apart. And I really like it, it’s full of very practical information. It’s very to the point, you know? There’s not filler. It’s not like reading a recipe online where you have to hear about a trip to Peru before you get to the nitty gritty. It’s just like it’s all straight in there and it’s all very nicely written. Was it a challenge to put that set of information together?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> I’ll have to ask&hellip; if this is the case, but I Think Responsible JavaScript might be the longest book that A Book Apart has put out, but I would have to go and reach into the closet for my copy of a responsible responsive design to see if I beat out Scott Gel on that, because that was a bit of a book, an awesome book, by the way, it was challenging I’m&hellip; As your listeners can probably guess I’m sort of a naturally verbose person and, and, and recovering, trying to like be more succinct, but we really packed in as much as we could and kept it as straight to the point while still trying to retain some, some light lively pros. So it didn’t like sound mechanical, but the result was that the manuscript is like 42,000 words. So it’s a book, it’s a chunk of words and we had a great time working on it. People at A Book Apart were fantastic and, and really setting up those guardrails so that we would be successful.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> And it’s very much a book that you can sort of dip into various parts. You don’t need to read it cover to cover, to gain loads of helpful information. You can just sort of find the bit that’s relevant to the problem that you’re facing at the moment and dive in there. So I think that’s really great about it. So I’ve been learning all about Responsible JavaScript. And what have you been learning about lately Jeremy?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Kind of an ongoing thing that I’ve been doing since it came out is messing with the CSS paint API. I really like the paint API. I mean, it’s kind of always existed in its own&hellip;. like in its own way, since like the canvas 2D context has been a thing. Because that’s&hellip; for those who are unaware, the CSS pain API is a way in which you can embed a 2D canvas context and parameterize it and control it with CSS, which opens up a lot of really interesting possibilities, like you can animate things that you couldn’t previously animate and that type of thing.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> And recently I’ve been doing a blog refresh. That is&hellip; I’m a huge Final Fantasy geek, like Final Fantasy II I just replayed and so, there’s like 15 of them and 16 is coming out sometime, but it’s kind of a retro field. So I’ve been using the CSS paint API to generate a random over world using different tiles. So there’s like rivers and stuff that like run through and grass tiles and trees and that type of thing. And parameterizing that so like if the user visits my website in dark mode&hellip; that paint work will be rendered as though it’s night. It’ll just have like kind of an overlay on it and that type of thing.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> But the painting API is amazing. I got to give a shout out to Tim Holman. He, I saw him at JSConf Australia and he did a talk about generative artwork. That was really just, it really like got me interested. And then Sam Richard, in that at CSSConf the day before talked about the CSS painting API, when those two things came together for me, it was just like, &ldquo;Wow, this is so cool.&rdquo; And so I actually did a thing called Paintlets! It’s a Paintlets.Herokuapp.com if you visit and Chrome and you have to, unfortunately, because it’s not super well supported yet. You can see like a bunch of different, random artwork randomly generated artwork and.. yeah, I’ve just&hellip; that’s what I’ve been into, sorry. Long tale on that.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> Amazing. That sounds great.</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Yeah. Yeah.</p>
+
+<p><span class="smashing-tv-host">Drew:</span> If you, dear listener would like to hear more from Jeremy, you can find him on Twitter where he’s @malchata and find his writing presentations, videos and projects on his personal website, jeremy.codes, Responsible JavaScript is available now from A Book Apart. And you can find more information about that at responsiblejs.dev. Thanks for joining me today Jeremy, did you have any parting words?</p>
+
+<p><span class="smashing-tv-speaker">Jeremy:</span> Just go forward and build for the web the best way you can and try to keep the user in mind. That’s kind of my mantra and I’m hoping that this book makes that stick a little bit.</p>
+
+<div class="signature">
+  <img src="https://www.smashingmagazine.com/images/logo/logo--red.png" alt="Smashing Editorial" width="35" height="46" loading="lazy" decoding="async" />
+  <span>(il)</span>
+</div>
+
+
+
+						
+							<div class="category__related--alt">
+								<span class="italic grey mrs mbm block">Explore more on</span>
+								<nav class="subnav ib" role="navigation">
+									<ul class="subnav__primary subnav__subtags flex flex-wrap">
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/smashing-podcast">Smashing Podcast</a></li>
+									
+									</ul>
+								</nav>
+							</div>
+      			
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <link href="/css/non-critical-article-manual-felix.css" media="print" onload="this.media='all'" rel="stylesheet">
+      <link href="/css/article-dark-mode-v3.css" media="(prefers-color-scheme: dark)" rel="stylesheet">
+      
+
+      
+
+
+      
+
+			
+
+      
+        <div data-component="CommentsArea" id="comments-smashing-podcast-episode-45" data-thread="/2022/02/smashing-podcast-episode-45/" data-date="2022-02-22 06:00:00 &#43;0000 UTC"></div>
+
+      
+
+    </div>
+  </article>
+
+    </main>
+
+		
+			
+				
+				
+				<div data-component="CookieBanner"></div>
+
+  <div id="cart" class="cart-wrapper" data-component="MiniCart"></div>
+
+
+<footer class="main-footer">
+  <div class="container">
+
+    <div class="col-12">
+      <div class="footer__topics open">
+    <h4 class="footer__topics__title" id="topics">Browse All Smashing Magazine Topics</h4>
+    <ul class="footer__topics__list">
+      
+        <li class="footer__topics__item">
+            <a href="/category/accessibility">Accessibility</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/android">Android</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/animation">Animation</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/apps">Apps</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/css">CSS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design">Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-patterns">Design Patterns</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-systems">Design Systems</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/e-commerce">E-Commerce</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/freebies">Freebies</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/graphics">Graphics</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/html">HTML</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/illustrator">Illustrator</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/inspiration">Inspiration</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ios">iOS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/javascript">JavaScript</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/mobile">Mobile</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/pattern-libraries">Pattern Libraries</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/performance">Performance</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/photoshop">Photoshop</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/plugins">Plugins</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/react">React</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/responsive-design">Responsive Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/service-workers">Service Workers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/sketch">Sketch</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/typography">Typography</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ui">UI</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/usability">Usability</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/user-experience">User Experience</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wallpapers">Wallpapers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/web-design">Web Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wordpress">WordPress</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/workflow">Workflow</a>
+        </li>
+      
+    </ul>
+</div>
+
+    </div>
+
+    <div class="col-12">
+      <div class="footer__notes">
+        <p>With a commitment to quality content for the design community.</p>
+        <p>Founded by Vitaly Friedman and Sven Lennartz. <span class="lining-figures">2006–2022</span>.</p>
+        <p>Smashing is proudly running on <a href="https://www.netlify.com/?utm_source=link&utm_medium=parter&utm_campaign=sm-footer">Netlify</a>.</p>
+        <p>Fonts by <a href="http://latinotype.com/">Latinotype</a>.</p>
+      </div>
+
+      <ul class="footer__links">
+        <li>&#9998; <a href="/write-for-us/">Write for us</a>
+        </li>
+        <li>
+          <a href="/contact/">Contact us</a>
+        </li>
+        <li>
+          <a href="/about/">About us (Impressum)</a>
+        </li>
+        <li>
+          <a href="/privacy-policy/">Privacy policy</a>
+        </li>
+        <li>
+          <a href="/auth/">Membership login</a>
+        </li>
+        <li>
+            <a href="/delivery-times/">Delivery times</a>
+          </li>
+            <li>
+          <a href="mailto:&#097;&#100;&#118;&#101;&#114;&#116;&#105;&#115;&#105;&#110;&#103;&#064;&#115;&#109;&#097;&#115;&#104;&#105;&#110;&#103;&#109;&#097;&#103;&#097;&#122;&#105;&#110;&#101;&#046;&#099;&#111;&#109;?subject=Let’s talk about advertising">Advertise</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+<div class="back-to-top-wrapper" id="back_top">
+	<a href="#top" data-scroll="#top" class="back-to-top" title="Back to top">
+		<svg viewBox="0 0 100 100" width="25px" height="25px" tabindex="-1" role="img" aria-labelledby="title">
+			<title id="title">Back to top</title>
+			<path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"></path>
+			<image src="/images/back-to-top-arrow.png" alt="Back to top arrow" xlink:href="" width="100%" height="100%"></image>
+		</svg>
+	</a>
+</div>
+
+
+</footer>
+
+<div data-handler="PostLoad"></div>
+
+<script delay="/js/app.js" defer importance="low"></script>
+<script>
+  
+  window.PRERELEASES = {}
+  window.PAGE_TYPE = "articles"
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+
+  if ('serviceWorker' in navigator && !localStorage.getItem('no_sw')) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => {
+          window.caches
+            .open('smashing-mag-offline-articles')
+            .then(cache => cache.keys())
+            .then(keys => {
+              var savedOffline = document.querySelector('.meta-box--article')
+              if (savedOffline && keys && keys.length) {
+                var currentPageSaved = keys.find(key =>  key.url === window.location.href)
+              }
+
+              var list = document.querySelector('.offline-articles-list')
+              if (list && keys && keys.length) {
+                var listItem = document.createElement('li')
+
+                var innerList = keys
+                  .map(function(key) {
+                    return (
+                      '<li><a href="' + key.url + '">' + key.url + '</a></li>'
+                    )
+                  })
+                  .join('')
+                listItem.innerHTML =
+                  'Recently viewed aritcles: <ul>' + innerList + '</ul>'
+                list.appendChild(listItem)
+              }
+            })
+        })
+        .catch(function(err) {
+          console.error('Failed to load service worker')
+        })
+    })
+  }
+</script>
+
+<div hidden>
+
+
+</div>
+
+<link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+
+
+
+<script class="js-additional" importance="low" delay="/js/instantpage.js" type="module" defer></script>
+<script class="js-additional" importance="low" delay="/js/ga.js" defer></script>
+<script class="js-additional" importance="low" delay="https://www.google-analytics.com/analytics.js" defer></script>
+<script class="js-additional" importance="low" type="module" delay="/js/web-vitals-tracking.js"></script>
+
+<script>const autoLoadDuration=5,eventList=["keydown","mousemove","wheel","touchmove","touchstart","touchend"],autoLoadTimeout=setTimeout(runScripts,5e3);function triggerScripts(){runScripts(),clearTimeout(autoLoadTimeout),eventList.forEach(function(t){window.removeEventListener(t,triggerScripts,{passive:!0})})}function runScripts(){document.querySelectorAll("script[delay]").forEach(function(t){t.setAttribute("src",t.getAttribute("delay"))})}eventList.forEach(function(t){window.addEventListener(t,triggerScripts,{passive:!0})});</script>
+			
+		
+
+  </body>
+</html>
