@@ -1,0 +1,328 @@
+
+
+<!doctype html>
+<html lang="en-US">
+<head data-template-path="https://hacks.mozilla.org/wp-content/themes/Hax">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="w2ocEMd5yV9IsGCjhq-7ls67r4VH-Ob6oWdiZpqjN8U">
+
+  
+  <meta name="title" content="A new year, a new MDN – Mozilla Hacks - the Web developer blog">
+
+    <meta property="og:site_name" content="Mozilla Hacks &#8211; the Web developer blog">
+  <meta property="og:url" content="https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn">
+  <meta property="og:title" content="A new year, a new MDN – Mozilla Hacks - the Web developer blog">
+  <meta property="og:description" content="If you’ve accessed the MDN website today, you probably noticed that it looks quite different.">
+  <meta property="og:image" content="https://hacks.mozilla.org/files/2022/02/moz_blog_header_MDN-Intro-e1646143402836.png">
+  <meta property="og:image:width" content="845">
+  <meta property="og:image:height" content="475">
+
+    <meta property="twitter:title" content="A new year, a new MDN – Mozilla Hacks - the Web developer blog">
+  <meta property="twitter:description" content="If you’ve accessed the MDN website today, you probably noticed that it looks quite different.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://hacks.mozilla.org/files/2022/02/moz_blog_header_MDN-Intro-e1646143402836.png">
+  <meta name="twitter:site" content="@mozhacks">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
+
+  <script type="text/javascript">
+    window.hacks = {};
+    // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+    var removeUtms  =   function(){
+        var l = window.location;
+        if( l.hash.indexOf( "utm" ) != -1 ){
+            var anchor = l.hash.match(/#(?!utm)[^&]+/);
+            anchor  =   anchor? anchor[0]: '';
+            if(!anchor && window.history.replaceState){
+                history.replaceState({},'', l.pathname + l.search);
+            } else {
+                l.hash = anchor;
+            }
+        };
+    };
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35433268-8'],
+              ['_setAllowAnchor', true]);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push( removeUtms );
+    (function(d, k) {
+      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
+    })(document, 'script');
+  </script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="blog-name" content="Mozilla Hacks - the Web developer blog" />
+<link rel="alternate" hreflang="en" href="https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/" />
+<link rel="alternate" hreflang="x-default" href="https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>A new year, a new MDN - Mozilla Hacks - the Web developer blog</title>
+	<meta name="description" content="If you’ve accessed the MDN website today, you probably noticed that it looks quite different." />
+	<link rel="canonical" href="https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Hermina" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="5 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://hacks.mozilla.org/#website","url":"https://hacks.mozilla.org/","name":"Mozilla Hacks - the Web developer blog","description":"hacks.mozilla.org","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://hacks.mozilla.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/#primaryimage","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2022/02/moz_blog_header_MDN-Intro-e1646143402836.png","contentUrl":"https://hacks.mozilla.org/files/2022/02/moz_blog_header_MDN-Intro-e1646143402836.png","width":845,"height":475},{"@type":"WebPage","@id":"https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/#webpage","url":"https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/","name":"A new year, a new MDN - Mozilla Hacks - the Web developer blog","isPartOf":{"@id":"https://hacks.mozilla.org/#website"},"primaryImageOfPage":{"@id":"https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/#primaryimage"},"datePublished":"2022-03-01T14:00:24+00:00","dateModified":"2022-03-01T14:48:49+00:00","author":{"@id":"https://hacks.mozilla.org/#/schema/person/ddd8f413ccecde837319205a156bf21d"},"description":"If you\u2019ve accessed the MDN website today, you probably noticed that it looks quite different.","breadcrumb":{"@id":"https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/"]}]},{"@type":"BreadcrumbList","@id":"https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hacks.mozilla.org/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://hacks.mozilla.org/articles/"},{"@type":"ListItem","position":3,"name":"A new year, a new MDN"}]},{"@type":"Person","@id":"https://hacks.mozilla.org/#/schema/person/ddd8f413ccecde837319205a156bf21d","name":"Hermina","image":{"@type":"ImageObject","@id":"https://hacks.mozilla.org/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=96&d=mm&r=g","caption":"Hermina"},"url":"https://hacks.mozilla.org/author/hcondeimozilla-com/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//blog.mozilla.org' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Feed" href="https://hacks.mozilla.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Comments Feed" href="https://hacks.mozilla.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; A new year, a new MDN Comments Feed" href="https://hacks.mozilla.org/2022/03/a-new-year-a-new-mdn/feed/" />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wpml-legacy-post-translations-0-css'  href='//blog.mozilla.org/hacks/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-post-translations/style.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/fc-checkcomment.js?ver=5.8.3' id='checkcomments-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/analytics.js?ver=5.8.3' id='analytics-js'></script>
+<link rel="https://api.w.org/" href="https://hacks.mozilla.org/wp-json/" /><link rel="alternate" type="application/json" href="https://hacks.mozilla.org/wp-json/wp/v2/posts/47643" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hacks.mozilla.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://hacks.mozilla.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='shortlink' href='https://hacks.mozilla.org/?p=47643' />
+<link rel="alternate" type="application/json+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2022%2F03%2Fa-new-year-a-new-mdn%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2022%2F03%2Fa-new-year-a-new-mdn%2F&#038;format=xml" />
+<meta name="generator" content="WPML ver:4.5.1 stt:59,61,1,2;" />
+<link rel="shortcut icon" type="image/x-icon" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" /><style>#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}li#wp-admin-bar-site-name a { background: url( "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }
+</style></head>
+<body>
+  <div class="outer-wrapper">
+    <header class="section section--fullwidth header">
+      <div class="masthead row">
+        <div class="branding block block--3">
+          <h1>
+            <a href="https://hacks.mozilla.org">
+              <img class="branding__logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
+        </div>
+        <div class="search block block--2">
+          <form class="search__form" method="get" action="https://hacks.mozilla.org/">
+            <input type="search" name="s" class="search__input" placeholder="Search Mozilla Hacks" value="">
+            <i class="fa fa-search search__badge"></i>
+          </form>
+        </div>
+        <nav class="social">
+          <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i><span>Hacks on YouTube</span></a>
+          <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>@mozhacks on Twitter</span></a>
+          <a class="social__link rss" href="https://hacks.mozilla.org/feed/" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><span>Hacks RSS Feed</span></a>
+          <a class="fx-button" href="https://www.mozilla.org/firefox/download/thanks/?utm_source=hacks.mozilla.org&utm_medium=referral&utm_campaign=header-download-button&utm_content=header-download-button">Download Firefox</a>
+        </nav>
+      </div>
+    </header>
+
+  
+<div id="content-head" class="section">
+  <h1 class="post__title">A new year, a new MDN</h1>
+  <div class="byline">
+    <h3 class="post__author">
+                      <img alt='' src='https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>        By
+                                        <a class="url" href="https://hacks.mozilla.org/author/hcondeimozilla-com/">Hermina</a>                            </h2>
+    <div class="post__meta">
+      Posted on
+      <abbr class="published" title="2022-03-01T06:00:24-08:00">
+        March 1, 2022      </abbr>
+      <span class="entry-cat">in
+        <a href="https://hacks.mozilla.org/category/developer-tools/" rel="category tag" title="View all posts in Developer Tools" >Developer Tools</a>, <a href="https://hacks.mozilla.org/category/docs/" rel="category tag" title="View all posts in Docs" >Docs</a>, <a href="https://hacks.mozilla.org/category/featured/" rel="category tag" title="View all posts in Featured Article" >Featured Article</a>, <a href="https://hacks.mozilla.org/category/firefox/" rel="category tag" title="View all posts in Firefox" >Firefox</a>,  and <a href="https://hacks.mozilla.org/category/mdn/" rel="category tag" title="View all posts in MDN" >MDN</a>      </span>
+            <div class="socialshare" data-type="bubbles"></div>
+    </div>
+  </div>
+</div>
+
+<main id="content-main" class="section article">
+  <article class="post" role="article">
+    <p><span style="font-weight: 400;">If you’ve accessed the MDN website today, you probably noticed that it looks quite different. We hope it’s a good different. Let us explain!</span></p>
+<p><span style="font-weight: 400;">MDN has undergone many changes in its sixteen-year history from its early beginning as a wiki to the recent migration of a static site backed by GitHub. During that time MDN grew organically, with over 45,000 contributors and numerous developers and designers. It’s no surprise that the user experience became somewhat inconsistent throughout the website. </span></p>
+<p><span style="font-weight: 400;">In mid-2021 we started to think about modernizing MDN’s design, to create a clean and inviting website that makes navigating our 44,000 articles as easy as possible. We wanted to create a more holistic experience for our users, with an emphasis on improved navigability and a universal look and feel across all our pages. </span></p>
+<h2><b>A new Homepage, focused on community</b></h2>
+<p><span style="font-weight: 400;">The MDN community is the reason our content can be counted on to be both high quality and trustworthy. MDN content is scrutinized, discussed, and yes, in some cases argued about. Anyone can contribute to MDN, either by writing content, suggesting changes or fixing bugs.</span></p>
+<p><span style="font-weight: 400;">We wanted to acknowledge and celebrate our awesome community and our homepage is the perfect place to do so.</span></p>
+<p><span style="font-weight: 400;">The new homepage was built with a focus on the core concepts of community and simplicity. We made an improved search a central element on the page, while also showing users a selection of the newest and most-read articles. </span></p>
+<p><span style="font-weight: 400;">We will also show the most recent contributions to our GitHub content repo and added a contributor spotlight where we will highlight MDN contributors.</span></p>
+<p><img loading="lazy" class="alignnone wp-image-47690 size-full" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/02/moz_mdn_dark-mode.gif" alt="" width="1080" height="675" /></p>
+<h2><b>Redesigned article pages for improved navigation</b></h2>
+<p><span style="font-weight: 400;">It’s been years—</span><a href="https://hacks.mozilla.org/2017/07/the-mdn-redesign-behind-the-scenes/"><span style="font-weight: 400;">five of them, in fact</span></a><span style="font-weight: 400;">—since MDN’s core content presentation has received a comprehensive design review. In those years, MDN’s content has evolved and changed, with new </span><a href="https://hacks.mozilla.org/2018/02/mdn-browser-compatibility-data/"><span style="font-weight: 400;">ways of structuring content</span></a><span style="font-weight: 400;">, new ways to </span><a href="https://hacks.mozilla.org/2020/12/welcome-yari-mdn-web-docs-has-a-new-platform/"><span style="font-weight: 400;">build</span></a><span style="font-weight: 400;"> and </span><a href="https://github.com/mdn/content/pull/7092"><span style="font-weight: 400;">write docs</span></a><span style="font-weight: 400;">, and new </span><a href="https://github.com/mdn/content/pulse"><span style="font-weight: 400;">contributors</span></a><span style="font-weight: 400;">. Over time, the documentation’s look and feel had become increasingly disconnected from the way it’s read and written.</span></p>
+<p><span style="font-weight: 400;">While you won’t see a dizzying reinvention of what documentation is, you’ll find that most visual elements on MDN did get love and attention, creating a more coherent view of our docs. This redesign gives MDN content its due, featuring:</span></p>
+<ul>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">More consistent colors and theming</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Better signposting of major sections, such as HTML, CSS, and JavaScript</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Improved accessibility, such as increased contrast</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Added dark mode toggle for easy switching between modes</span></li>
+</ul>
+<p><img loading="lazy" class="alignnone wp-image-47694 size-full" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/02/moz_mdn_navigation.2022-02-24-13_14_00.gif" alt="" width="1080" height="675" /></p>
+<p>&nbsp;</p>
+<p><span style="font-weight: 400;">We’re especially proud of some subtle improvements and conveniences. For example, in-page navigation is always in view to show you where you are in the page as you scroll:</span></p>
+<p><img loading="lazy" class="alignnone wp-image-47698 size-full" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/02/moz_mdn_scrolling.gif" alt="" width="1080" height="675" /></p>
+<p><span style="font-weight: 400;">We’re also revisiting the way browser compatibility data appears, with better at-a-glance browser support. So you don’t have to keep version numbers in your head, we’ve put more emphasis on </span><i><span style="font-weight: 400;">yes</span></i><span style="font-weight: 400;"> and </span><i><span style="font-weight: 400;">no</span></i><span style="font-weight: 400;"> iconography for browser capabilities, with the option to view the detailed information you’ve come to expect from </span><a href="https://github.com/mdn/browser-compat-data"><span style="font-weight: 400;">our browser compatibility data</span></a><span style="font-weight: 400;">. We think you should check it out. </span></p>
+<p><span style="font-weight: 400;">And we’re not stopping there. The work we’ve done is far-reaching and there are still many opportunities to polish and improve on the design we’re shipping.</span></p>
+<h2><b>A new logo, chosen by our community</b></h2>
+<p><span style="font-weight: 400;">As we began working on both the redesign and expanding MDN beyond WebDocs we realized it was also time for a new logo. We wanted a modern and easily customizable logo that would represent what MDN is today while also strengthening its identity and making it consistent with Mozilla’s current brand.</span></p>
+<p><span style="font-weight: 400;">We worked closely with branding specialist </span><a href="https://lucdoucedame.com/"><span style="font-weight: 400;">Luc Doucedame</span></a><span style="font-weight: 400;">, narrowed down our options to eight potential logos and put out a call to our community of users to help us choose and invited folks to vote on their favorite. We received over 10,000 votes in just three days and are happy to share with you “the MDN people&#8217;s choice.”</span></p>
+<p><img loading="lazy" class="alignnone wp-image-47673 size-full" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/02/Screenshot-2022-02-24-at-10.36.21.png" alt="" width="643" height="277" srcset="https://hacks.mozilla.org/files/2022/02/Screenshot-2022-02-24-at-10.36.21.png 643w, https://hacks.mozilla.org/files/2022/02/Screenshot-2022-02-24-at-10.36.21-250x108.png 250w, https://hacks.mozilla.org/files/2022/02/Screenshot-2022-02-24-at-10.36.21-500x215.png 500w" sizes="(max-width: 643px) 100vw, 643px" /></p>
+<p><span style="font-weight: 400;">The winner was Option 4, an M monogram using underscore to convey the process of writing code. Many thanks to everyone who voted!</span></p>
+<p><img loading="lazy" class="alignnone wp-image-47669 size-full" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/02/moz_blog_header_MDN-Intro.png" alt="" width="1920" height="1080" /></p>
+<h2><b>What you can expect next with MDN</b></h2>
+<h3></h3>
+<h3><b>Bringing content to the places where you need it most</b></h3>
+<p><span style="font-weight: 400;">In recent years, MDN content has grown more sophisticated for authors, such as moving from a wiki to Git and converting from HTML to Markdown. This has been a boon to contributors, who can use more powerful and familiar tools to create more structured and consistent content.</span></p>
+<p><span style="font-weight: 400;">With better tools in place, we’re finally in a position to build more visible and systematic benefits to readers. For example, many of you probably navigate MDN via your favorite search engine, rather than MDN’s own site navigation. We get it. Historically, a wiki made large content architecture efforts impractical. But we’re now closer than ever to making site-wide improvements to structure and navigation.</span></p>
+<p><span style="font-weight: 400;">Looking forward, we have ambitious plans to take advantage of our new tools to explore improved navigation, generated standardization and support summarizes, and embedding MDN documentation in the places where developers need it most: in their IDE, browser tools, and more.</span></p>
+<h2><b>Coming soon: MDN Plus</b></h2>
+<p><span style="font-weight: 400;">MDN has built a reputation as a trusted and central resource for information about standards, codes, tools, and everything you need as a developer to create websites. In 2015, we explored ways to be more than a central resource through creating a </span><a href="https://developer.mozilla.org/en-US/docs/Learn"><span style="font-weight: 400;">Learning Area</span></a><span style="font-weight: 400;">, with the aim of providing a useful counterpart to the regular MDN reference and guide material. </span></p>
+<p><span style="font-weight: 400;">In 2020, we added the first </span><a href="https://developer.mozilla.org/en-US/docs/Learn/Front-end_web_developer"><span style="font-weight: 400;">Front-end developer learning pathway</span></a><span style="font-weight: 400;"> to it.  We saw a lot of interest and engagement from users, the learning area currently being responsible for 10% of MDN’s monthly web traffic. This started us on a path to see what more we can do in this area for our community.</span></p>
+<p><span style="font-weight: 400;">Last year we surveyed users and asked them what they wanted out of their MDN experience. The top requested features included notifications, article collections and an offline experience on MDN. The overall theme we saw was that users wanted to be able to organize MDN’s vast library in a way that worked for them. </span></p>
+<p><span style="font-weight: 400;">We are always looking for ways to meet our users&#8217; needs whether it&#8217;s through MDN’s free web documentation or personalized features. In the coming months, we’ll be expanding MDN to include a premium subscription service based on the feedback we received from web developers who want to customize their MDN experience. Stay tuned for more information on MDN Plus.</span></p>
+<p><img loading="lazy" class="alignnone wp-image-47677 size-full" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/02/Screenshot-2022-02-24-at-10.45.53.png" alt="" width="372" height="430" srcset="https://hacks.mozilla.org/files/2022/02/Screenshot-2022-02-24-at-10.45.53.png 372w, https://hacks.mozilla.org/files/2022/02/Screenshot-2022-02-24-at-10.45.53-250x289.png 250w" sizes="(max-width: 372px) 100vw, 372px" /></p>
+<h2><b>Thank you, MDN community</b></h2>
+<p><span style="font-weight: 400;">We appreciate the thousands of people who voted for the new logo as well as everyone who participated in the early beta testing phase since we started this journey. Also, many thanks to our partners from the </span><a href="https://openwebdocs.org"><span style="font-weight: 400;">Open Web Docs</span></a><span style="font-weight: 400;">, who gave us valuable feedback on the redesign and continue to make daily contributions to MDN content. Thanks to you all we could make this a reality and we will continue to invest in improving even further the experience on MDN.</span></p>
+    <section class="about">
+                                <h2 class="about__header">About
+                          Hermina                      </h3>
+                                <p><a class="url" href="https://hacks.mozilla.org/author/hcondeimozilla-com/">More articles by Hermina&hellip;</a></p>
+                  </section>
+  </article>
+  <section class="promo">
+    <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+  <h2 class="heading">Discover great resources for web development</h2>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
+  <input id="fmt" name="fmt" value="H" type="hidden">
+  <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
+
+  <div id="newsletterErrors" class="newsletter__errors"></div>
+
+  <div id="newsletterEmail" class="form__row">
+    <label for="newsletterEmailInput" class="offscreen">E-mail</label>
+    <input id="newsletterEmailInput" name="email" class="newsletter__input" required="" placeholder="you@example.com" size="30" type="email">
+  </div>
+
+  <div id="newsletterPrivacy" class="form__row form__fineprint">
+    <input id="newsletterPrivacyInput" name="privacy" required="" type="checkbox">
+    <label for="newsletterPrivacyInput">
+      I'm okay with Mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/">Privacy Policy</a>.
+    </label>
+  </div>
+  <button id="newsletter-submit" type="submit" class="button positive">Sign up now</button>
+</form>
+<div id="newsletterThanks" class="newsletter newsletter--thanks block block--1 block--polite hidden">
+  <h2 class="heading">Thanks! Please check your inbox to confirm your subscription.</h2>
+  <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us.
+  </p>
+</div>
+  </section>
+  
+
+<section class="discussion">
+  <hr class="dino">
+  <div class="comments">
+    <header class="comments__head">
+      <h3>No comments yet</h3>
+    </header>
+
+      </div>
+  <div class="response" id="respond">
+        <form id="comment-form" action="https://hacks.mozilla.org/wp-comments-post.php" method="post">
+        <h3>Post Your Comment</h3>
+        <p id="cancel-comment-reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/2022/03/a-new-year-a-new-mdn/#respond" style="display:none;">Cancel Reply</a></p>
+              <div class="field" id="cmt-name">
+          <label for="author">Your name <abbr title="(required)">*</abbr></label>
+          <input type="text" name="author" id="author" size="25" required aria-required='true'>
+        </div>
+        <div class="field" id="cmt-email">
+          <label for="email">Your e-mail <abbr title="(required)">*</abbr></label>
+          <input type="email" name="email" id="email" size="25" required aria-required='true'>
+        </div>
+        <div id="cmt-ackbar">
+          <label for="age">Spam robots, please fill in this field. Humans should leave it blank.</label>
+          <input type="text" name="age" id="age" size="4" tabindex="-1">
+        </div>
+            <div class="field" id="cmt-cmt">
+        <label for="comment">Your comment</label> <textarea name="comment" id="comment" cols="50" rows="10" required="required" aria-required="true"></textarea>
+      </div>
+      <div class="field" id="comment-submit">
+        <button name="submit" type="submit">Submit Comment</button>
+      </div>
+      <input type='hidden' name='comment_post_ID' value='47643' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+      <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="cd2cf0f275" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js" name="ak_js" value="191"/><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></div>
+    </form>
+      </div></section><script>jQuery("#comment-form").submit(function() { return fc_checkform('req'); });</script>
+
+
+</main><!-- /#content-main -->
+
+  
+
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        <p class="block block--1">
+          Except where otherwise noted, content on this site is licensed
+          under the
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
+          or any later version.
+        </p>
+        <img class="footer__logo" alt="the Mozilla dino logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/dino.svg">
+      </div>
+    </footer>
+  </div>
+  <link rel='stylesheet' id='hljstheme-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/styles/solarized-light.css?ver=0.6.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/comment-reply.min.js?ver=5.8.3' id='comment-reply-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.common.pack.js?ver=0.6.2' id='hljs_preload-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.custom.pack.js?ver=0.6.2' id='hljs-js'></script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+  <script>
+    // External links should open in a new tab.
+    (function () {
+      var postLinks = document.querySelectorAll('#content-main a');
+
+      var origin = location.origin;
+
+      for (var i = 0; i < postLinks.length; i++) {
+        var link = postLinks[i];
+        if (link.origin !== origin && !link.getAttribute('target')) {
+          link.setAttribute('target', '_blank');
+        }
+      }
+    })();
+
+    window.addEventListener('load', function () {
+      if (document.querySelector('#newsletterForm')) {
+        var script = document.createElement('script');
+        var path = document.head.getAttribute('data-template-path');
+        script.setAttribute('src', path + '/js/newsletter.js');
+        document.head.appendChild(script);
+      }
+    });
+  </script>
+</body>
+</html>
