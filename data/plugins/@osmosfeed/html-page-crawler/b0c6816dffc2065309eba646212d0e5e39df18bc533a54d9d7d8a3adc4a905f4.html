@@ -1,0 +1,2370 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+
+    
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+        <title>Building Web Layouts For Dual-Screen And Foldable Devices — Smashing Magazine</title>
+      
+      
+
+
+<link rel="preconnect" href="https://cloud.netlifyusercontent.com"/>
+<link rel="preconnect" href="https://smashingcomments.netlify.app"/>
+<link rel="preconnect" href="https://res.cloudinary.com"/>
+<link rel="preconnect" href="https://www.google-analytics.com/"/>
+<link rel="preconnect" href="https://storage.googleapis.com"/>
+
+      
+
+
+
+
+
+
+    
+
+    
+      
+
+<style>
+  @font-face{font-family:Elena;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff) format("woff")}@font-face{font-family:Elena;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff) format("woff");font-style:italic}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff) format("woff");font-weight:700}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2) format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff) format("woff");font-weight:700;font-style:italic}@font-face{font-family:Mija;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2) format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff) format("woff")}@font-face{font-family:Mija;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff) format("woff");font-weight:700}
+</style>
+
+<script>
+
+  var fontsInServiceWorker = sessionStorage.foutFontsStage1Loaded && sessionStorage.foutFontsStage2Loaded || ('serviceWorker' in navigator && navigator.serviceWorker.controller !== null && navigator.serviceWorker.controller.state === 'activated')
+  if (!fontsInServiceWorker && 'fonts' in document) {
+    function fetchFonts(fonts) {
+      return Promise.all(fonts.map(function (font) {
+        return document
+          .fonts
+          .load(font);
+      }));
+    }
+
+    if( sessionStorage.foutFontsStage2Loaded ) {
+			document.documentElement.className += " wf-loaded-stage2";
+		} else {
+      sessionStorage.foutFontsStage1Loaded = true;
+    };
+  }
+
+
+
+  if ("fonts" in document && !("connection" in navigator && navigator.connection.saveData)) {
+		
+		let font = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format('woff2')"
+		);
+		let fontBold = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+		let fontItalic = new FontFace(
+			"Elena",
+			"url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format('woff2')",
+			{ style: "italic" }
+		);
+		
+		
+		
+		
+		let font2Bold = new FontFace(
+			"Mija",
+			"url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format('woff2')",
+			{ weight: "700" }
+		);
+
+		
+		let loadedFonts = Promise.all([
+			font.load(),
+			
+			fontBold.load(),
+			font2Bold.load(),
+			fontItalic.load()
+		]).then(result => {
+			result.forEach(font => document.fonts.add(font));
+			document.documentElement.classList.add('wf-loaded-stage2');
+			sessionStorage.foutFontsStage2Loaded = true;
+		}).catch(error => {
+			throw new Error(`Error caught: ${error}`);
+		});
+
+  }
+
+  if (
+    (sessionStorage.foutFontsStage1Loaded &&
+      sessionStorage.foutFontsStage2Loaded) ||
+    ('serviceWorker' in navigator &&
+      navigator.serviceWorker.controller !== null &&
+      navigator.serviceWorker.controller.state === 'activated')
+  ) {
+    var docEl = document.documentElement
+    
+    docEl.classList.add('wf-loaded-stage2')
+  }
+
+  if (
+    !'querySelector' in document &&
+    'addEventListener' in window &&
+    'getComputedStyle' in window
+  ) {
+    window.document.documentElement.className += ' no-js'
+  }
+  window.document.documentElement.className += ' enhanced js'
+</script>
+
+
+
+<style>
+  @charset "UTF-8";@media (prefers-color-scheme:dark){:root{--article-background-color:linear-gradient(-45deg, #162c35 70%, #0c252f 100%)}}*,::after,::before{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;overflow-y:scroll}body{margin:0;display:flex;flex-direction:column;background-color:#fff;font-feature-settings:"onum" 1;color:#333;overflow:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:-apple-system,BlinkMacSystemFont,Roboto,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif;font-size:1.125em}body,html{min-height:100%;overflow-x:hidden}img{max-width:100%;position:relative;border-style:none}article,aside,figcaption,figure,footer,header,main,nav,section{display:block}:focus{outline:3px dotted var(--THEME_COLOR_HOVER,#d33a2c)!important;outline-offset:2px}article,figure,header,main,nav,section{display:block}@media (prefers-reduced-data:reduce){.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 body,.wf-loaded-stage2 h1,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 tbody td,.wf-loaded-stage2 th,.wf-loaded-stage2 time{font-family:-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif!important}}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 h1,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 th{font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 body,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 tbody td,.wf-loaded-stage2 time{font-family:Elena,-apple-system,BlinkMacSystemFont,Roboto,"Roboto Slab","Droid Serif","Segoe UI",system-ui,Arial,sans-serif}@media all and (max-width:750px){.c-garfield-the-cat{display:flex;flex-direction:column}.c-garfield-the-cat>*{margin-bottom:0}.article__image,.c-garfield-the-cat>figure{margin:1em auto .25em auto}.c-garfield-aside--meta{margin-bottom:1em}.c-garfield-the-cat>pre{margin-top:1em}.c-garfield-the-cat .code-toolbar{margin-top:1em}.c-garfield-the-cat .code-toolbar>pre{margin-top:0}.c-garfield-the-cat>pre{margin-bottom:.5rem}.c-garfield-the-cat>table{margin-top:1em;margin-bottom:1em}.c-garfield-the-cat .pull-quote__quotation{margin-top:1em}.drop-caps{display:none}}.js-show-secondary .menu-text--sm,.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}.js-show-secondary .menu-text--sm--close{display:block}@media all and (min-width:800px){.js-show-secondary .main-nav__secondary{display:block;top:50px}.js-show-secondary .menu-text--lg--close,.menu-text--lg{display:block}.js-show-secondary .menu-text--lg,.js-show-secondary .menu-text--sm--close,.menu-text--sm{display:none}}.js-show-secondary .main-nav-more-item__button:before{content:"";display:block;margin-left:.35em;width:45px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50.21 35.05'%3E%3Cellipse cx='27.8' cy='32.92' fill='rgba(60,60,60,0.5)' rx='19.64' ry='1.2'/%3E%3Cpath fill='%23fff' d='M46.48 15.53a5.2 5.2 0 00-2-.31 7 7 0 00-1.43.19 7.66 7.66 0 001.19-1.52 7.12 7.12 0 011.12-.13 5.18 5.18 0 012 .31h.05a2.82 2.82 0 011.44 1.24 2.75 2.75 0 01.18 2 2.36 2.36 0 00-.74-.46 2 2 0 01.86 1c.11.45-.23 1-.67.92a1.86 1.86 0 00-.22-1 2.65 2.65 0 00-.29-1 2.74 2.74 0 00-1.49-1.24zM16.56 28.07c.06-.21.37-1.29.19-1.47 0 0 5.18 5.08 7.22-2.7a6 6 0 001.16.62c-.75 7-6.44 3.43-6.44 3.43.22.13.14 1.25.12 1.47-.16 2.2-3 1.63-3.74.11a2.44 2.44 0 01-.14-.34 1.4 1.4 0 001.63-1.12z' class='cls-2'/%3E%3Cpath fill='%23fff' d='M1.26 14.52c.08.23.18.45.28.67v.05c1.26 2.67 3.76 5 6.81 4.61a12 12 0 003.51-1.05 8.6 8.6 0 013.64-1 7.28 7.28 0 00.1 2.65A9.82 9.82 0 0117 18.5s-.77 2.34-.41 3a1 1 0 00-.15-.18 1.28 1.28 0 00-.8-.4 1 1 0 00-.89.7c-.23.45-.24.83-.63 1.17-1 .87-2.17 2-1.79 3.47a2.64 2.64 0 002.06 1.82A1.39 1.39 0 0016 27c.06-.21.36-1.28.18-1.46 0 0 5.19 5.07 7.23-2.7a5.65 5.65 0 001.16.61c1.43.56 3.94.91 6.11-2.07a20.36 20.36 0 005.68 1.13s-1.55-.55-1.61-1.28c0 0 3.84 1 6 0l-2.43-.32a3.69 3.69 0 001.68-.42 5.24 5.24 0 012.46 0c.73.08 1.06-.31 1.54-.78a1.17 1.17 0 00.09.33 2.06 2.06 0 00.12.35 3.21 3.21 0 00.37.65 1.35 1.35 0 001.27.53.92.92 0 00.53-.28 1.2 1.2 0 00.19-1.16 2 2 0 00-.77-.94 1.85 1.85 0 011 1.76c.44.08.78-.48.67-.93a1.13 1.13 0 00-.13-.32 2.4 2.4 0 00-.72-.7 2.26 2.26 0 01.74.45 2.67 2.67 0 00.1-.64v-.3a2.59 2.59 0 00-.28-1A2.65 2.65 0 0046 16.32l-.14-.06-.08-.05h-.06a10.1 10.1 0 00-3.9-.54 6.3 6.3 0 001.59-2.45 3 3 0 01-.12.73s1.61-.69.71-2.95a1 1 0 01.63.49 4.17 4.17 0 00-1.74-2.81 2.35 2.35 0 01.88.17 3.64 3.64 0 00-1.72-1.34l-.27-2.21.88.31s0-.35-.89-.86a7.17 7.17 0 00.36-3.37C39.32 1 38.27 2.48 38 2.94a12.73 12.73 0 00-2.56.26 2.83 2.83 0 011.29-.62 3.87 3.87 0 00-3.23.94s-2.73-2-5.37-1.29c0 0-.27 1.36 1.42 4.77a6.37 6.37 0 00-2.31 2.67 7.38 7.38 0 011.63-1.59s-2.44 2.6-1.46 4.67a3.77 3.77 0 01.35-1.55c0 .4-.24 3.2 1 4.61a9.92 9.92 0 01-.32-2s.37 2.53 3.84 3.6a4.35 4.35 0 01-1.49-1.54 11.65 11.65 0 002.47 1.23c-.61.18-1 .31-1 .31l-.81.38a6.56 6.56 0 01-2.34-1.49h-.07a.58.58 0 01-.31.08.64.64 0 01-.46-.21 5.47 5.47 0 01-1.14-2.91.66.66 0 01-.33-.31 3.48 3.48 0 01-.19-2.24 6.84 6.84 0 00-6.5-.26 18.29 18.29 0 012.43.43s-4.84.26-7.22 3.71c0 0 1.93-2 2.77-1.7a8.44 8.44 0 00-2.1 3A9.13 9.13 0 0012 16c-3.7.78-5.2-1.7-5.79-3.65 0-.13-.08-.25-.11-.37a.14.14 0 000-.07v-.16a.14.14 0 010-.06q-.1-.24-.1-.47v-.05a.68.68 0 000-.14 2.4 2.4 0 010-.24v-.09a.09.09 0 000-.05v-.08a.28.28 0 010-.09v-.12c-.09-2-1.43-2.88-3-1.92C.82 9.6.44 12.35 1.26 14.52zm26.58-3.41v.05z' class='cls-2'/%3E%3C/svg%3E");order:1}.js-show-secondary .main-nav-more-item__button:after{width:15px;height:15px;order:2;background-image:url(/images/icons/close.svg)}.js-show-secondary .main-nav__secondary{display:flex}strong{font-weight:bolder;letter-spacing:0}svg:not(:root){overflow:hidden}button{text-transform:none;cursor:pointer;font:inherit;margin:0}[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}.l-author-bio{display:flex;flex-wrap:wrap;align-items:center}.l-author-bio-content{flex-grow:1;flex-shrink:1;flex-basis:300px}.bio-image__large .bio-image{--bio-image-border-width:8px}.bio-image{padding:0;margin:0;display:block;width:100%;height:100%;border-radius:inherit;position:relative}.bio-image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transform-origin:30% 50%;opacity:1;transition:opacity .3s ease-in-out}.bio-image:hover::before{opacity:0}a.bio-image-link{background:0 0;text-shadow:none;color:inherit;padding:0;display:block;border-radius:inherit;width:100%;height:100%}a.bio-image-link::before{display:block;content:'';height:120%;width:120%;position:absolute;top:-10%;left:-12%}.bio-image-wrapper{background:var(--bio-image-background-color,var(--bio-image-border-color,#d33a2c));border:solid var(--bio-image-border-width,8px) var(--bio-image-border-color,#d33a2c);border-radius:inherit;transform:scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));transform-origin:0 100%;overflow:hidden;width:100%;height:100%;transition:transform .2s ease-out}.bio-image-image{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2) rotateZ(calc(11 * 1deg));transition:transform .2s ease-out}.bio-image-link:active .bio-image-wrapper,.bio-image-link:focus .bio-image-wrapper,.bio-image:hover .bio-image-wrapper{transform:scale(.84) translateX(15%) rotateZ(0)}.bio-image-link:active .bio-image-image,.bio-image-link:focus .bio-image-image,.bio-image:hover .bio-image-image{transform:scale(1.2) rotateZ(0)}.article__content .author-post__author-title{color:#d33a2c;text-decoration-line:underline;font-weight:700;font-size:.9em}.light-grey{color:#767676!important}.rounded-3xl{border-radius:1.2em}.block{display:block}.h-48{height:12rem}.mr-3{margin-right:.75rem}.mb-5{margin-bottom:1.25rem}@media all and (max-width:600px){.mobw-40{width:8rem!important}.mobh-40{height:8rem!important}}.w-48{width:12rem}.mt-2{margin-top:.5rem}.mtn{margin-top:0!important}.mbn{margin-bottom:0!important}small{font-size:80%}.row{box-sizing:border-box;display:flex;flex:0 1 auto;flex-direction:row;flex-wrap:wrap;margin-right:-1rem;margin-left:-1rem}[class*=col-]{box-sizing:border-box;flex:0 0 auto;padding-right:1rem;padding-left:1rem}.row::after{clear:both}.col-12{flex-basis:100%;max-width:100%}@media screen and (min-width:48em){.col-12{flex-basis:100%;max-width:100%}}.container{width:calc(100% - .5em);max-width:1440px;margin:0 auto;z-index:1;position:relative}.container::after{content:"";display:table;clear:both}@media (min-width:40em){.container{width:92vw!important}}@media (min-width:48em){.container{width:85vw}}@media (min-width:64em){.container{width:68rem}}@media (min-width:75em){.container{width:79rem}}@media screen and (min-width:160em){.container{max-width:1650px}}@media (min-width:187.5em){.container{max-width:1860px}}.c-garfield-the-cat>p:first-of-type{font-size:1.1em;line-height:1.55em}.c-garfield-the-cat>p:empty{display:none}.c-felix-the-cat{background-color:#f3f3f3;border-left:11px solid #e6e4e1;padding:1em 1em 1em 1.5em;color:#424242;margin-left:0;margin-top:1em;font-size:1.05em;line-height:1.6em;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0 0,#fff 100%)}.c-felix-the-cat h4{margin-top:.5em}.sponsor-panel{display:flex;justify-content:center;align-items:center}.sponsor-panel-content{flex:3}.sponsor-panel-image{display:none}@media screen and (min-width:1100px){.sponsor-panel-image{display:block;background-image:none;margin-left:1.5em;flex:1}}@media (max-width:1024px){.col{width:100%!important;padding:0 1em}.row{margin-left:0;margin-right:0}.article__content{float:none}.article__content::before{display:none}}#main{position:relative;z-index:0;background-color:#fff}@supports (display:grid){.main-nav{display:grid;align-items:center}}.main-nav{position:relative;display:block;min-width:0;color:#fff;grid-column:span 2;font-size:1.05em}.main-nav__primary .nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav__secondary .nav-item--active{background-color:transparent;margin:0}.c-garfield-the-cat figcaption a{color:#666;text-decoration-line:underline;text-decoration-color:#666}.c-garfield-the-cat figcaption a.btn{color:#fff;text-decoration:none}@media all and (min-width:1100px){@supports (grid-row-gap:0){.c-garfield-the-cat{display:grid;grid-template-columns:0 minmax(0,.5fr) repeat(10,minmax(0,1fr)) .7fr .3fr 17rem;margin:0 auto}.c-garfield-the-cat ol,.c-garfield-the-cat ul,.c-garfield-the-cat>div,.c-garfield-the-cat>p,.c-garfield-the-cat>table{margin-bottom:1.4em}.c-garfield-the-cat>h2{margin-top:1.5em;margin-bottom:1em}.c-garfield-the-cat>h3,.c-garfield-the-cat>h4{margin-top:1.5em;margin-bottom:.65em}.c-garfield-the-cat>h5{margin-top:.65em;margin-bottom:.65em}.article__image,.c-garfield-the-cat>figure{margin:0 auto 1.4em auto;width:100%}.c-garfield-the-cat .code-toolbar pre,.c-garfield-the-cat blockquote,.c-garfield-the-cat pre,.c-garfield-the-cat>figure.video-embed-container{margin-bottom:1.7em;margin-top:.3em}.c-garfield-the-cat .code-toolbar{margin-bottom:0}.c-garfield-the-cat>*{grid-column:3/13;margin-top:0;margin-bottom:0}.c-garfield-the-cat .c-garfield-bio{grid-column:1/2;grid-row:1/4;align-self:start}.c-garfield-the-cat .c-garfield-header{grid-column-end:16}.c-garfield-the-cat .c-garfield-aside--meta{grid-column:15/16;grid-row:2/7;align-self:start;margin:0}.c-garfield-the-cat .toc-components li{margin-bottom:.75em}.c-garfield-the-cat>.break-out{grid-column:3/14;width:100%}.c-garfield-the-cat>.break-out img{margin:0 auto}.c-garfield-the-cat>.break-out figcaption{max-width:50em}.article__content .c-garfield-the-cat figcaption{margin:0 auto}.c-garfield-the-cat .c-garfield-native-panel{grid-column:15/16;grid-row:8/15;align-self:start;text-align:center;position:relative}.c-garfield-native-panel__right{grid-column:15/16;grid-row:15/22;align-self:start;text-align:center}.c-garfield-the-cat .c-garfield-native-panel__below{grid-row:19/25}.c-garfield-the-cat .c-garfield-native-panel__end{grid-row:26/33}.feature-panel-container{margin-top:6em;margin-bottom:1em}}}.no-ads .c-garfield-native-panel,.no-panels .feature-panel-container,.subscriber .c-garfield-native-panel,.subscriber .feature-panel-container{display:none!important}figcaption a{color:inherit}figcaption code,figcaption pre{font-style:normal}.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{position:relative}.feature-panel-container{grid-column:1/15;margin-top:3em;margin-bottom:1em}.article__image img,.c-garfield-the-cat>figure img{display:block;width:auto;max-width:100%;margin:0 auto;height:auto}.article__image>a,.c-garfield-the-cat>figure>a{display:block;background:0 0;position:relative;z-index:99}.article__image figcaption,.c-garfield-the-cat>figure figcaption{color:#666;font-size:.95em;font-style:italic;padding:.75em 2em .75em 0;display:table}.article__image figcaption a,.c-garfield-the-cat>figure figcaption a{color:#666}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before,.internal__page__wrapper figure:not(.bio-image) figcaption::before{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNyAxMy4wOSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNjMmMyYzI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5jYW1lcmE8L3RpdGxlPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTguNSA1LjQ0YTIuMjEgMi4yMSAwIDEgMCAyLjIxIDIuMjEgMi4yMSAyLjIxIDAgMCAwLTIuMjEtMi4yMXpNMTQuNzkgMi4yMWgtMi41NWEyLjIxIDIuMjEgMCAwIDAtMi4yNC0yLjIxaC0zYTIuMjEgMi4yMSAwIDAgMC0yLjI0IDIuMjFoLTIuNTVhMi4yMSAyLjIxIDAgMCAwLTIuMjEgMi4yMXY2LjQ2YTIuMjEgMi4yMSAwIDAgMCAyLjIxIDIuMjFoMTIuNThhMi4yMSAyLjIxIDAgMCAwIDIuMjEtMi4yMXYtNi40NmEyLjIxIDIuMjEgMCAwIDAtMi4yMS0yLjIxem0tNi4yOSA5LjM1YTMuOTEgMy45MSAwIDEgMSAzLjkxLTMuOTEgMy45MSAzLjkxIDAgMCAxLTMuOTEgMy45MXoiLz48L3N2Zz4=);height:1em;width:1.5em;padding-right:.6em;display:table-cell;vertical-align:baseline;position:relative;top:.05em}.c-garfield-the-cat>figure.article__figure figcaption::before{content:'';display:none}.hidden{display:none!important}.c-garfield-header{clear:both}.c-promo-box{font-size:.9em;border-radius:11px}.c-promo-box a:not(.btn){color:#006fc6}.c-promo-box--ad::before{display:block;white-space:pre-wrap;padding:2em 0 3em 0;font-size:.85em;font-style:italic;color:#666}.c-promo-box--ad img{border-top-left-radius:11px;border-top-right-radius:11px}.c-garfield-the-cat .author__desc{font-size:.9em;color:#555}.summary__heading{font-style:normal;font-size:1rem;letter-spacing:2px;margin:0;font-weight:700;color:#d33a2c;text-transform:uppercase}.c-promo-box--ad ul{padding-left:0;margin:0}.bnnr-list{display:flex;text-align:center;justify-content:center;flex-direction:row}.sponsors.c-promo-box:not(.c-promo-box--wide) .bnnr-list{flex-direction:column}.c-garfield-the-cat{padding:0 1em}@media screen and (min-width:80em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.4fr .6fr 21rem 1fr}}@media screen and (min-width:100em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr)) 1.9fr .4fr 21rem 1fr}}@media screen and (min-width:160em){.c-garfield-the-cat{display:grid;grid-template-columns:18.5rem repeat(11,minmax(0,1fr)) .7fr .3fr 18.5rem;grid-column-gap:1.75rem}}@media (min-width:187.5em){.c-garfield-the-cat{display:grid;grid-template-columns:20rem repeat(11,minmax(0,1fr)) .7fr .3fr 20rem;grid-column-gap:2.25rem}}.header{background:#d33a2c;background:var(--THEME_COLOR,#d33a2c);position:relative;display:grid;justify-content:flex-start;align-items:center;padding:.8em;z-index:2;grid-template-columns:min-content min-content 1fr;column-gap:5px}@media all and (min-width:31.25em){.header{grid-template-columns:-webkit-min-content -webkit-min-content 0 minmax(100px,100%);grid-template-columns:min-content min-content 0 minmax(100px,100%);column-gap:10px}}@media (min-width:700px){.header{grid-template-columns:-webkit-min-content minmax(140px,2fr) 0 minmax(100px,350px);grid-template-columns:min-content minmax(140px,2fr) 0 minmax(100px,350px)}}@media (min-width:740px){.header{padding:1rem 2em}}.search{flex-basis:100px;flex-shrink:1}@media screen and (min-width:48em){body{font-size:calc(.35842vw + .95296em)}}body .form__field__label,body li,body p{line-height:calc(1.5em + .2vw);word-break:break-word}body h1{line-height:1.2}.article--post__title a:focus,.article--post__title a:hover{color:#d33a2c}@supports (-ms-ime-align:auto){.article__image figcaption,.c-garfield-the-cat>figure figcaption{display:inline-block}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before{display:inline-block}body{font-feature-settings:normal}}::-webkit-input-placeholder{color:#666}::-moz-placeholder{color:#000}:-ms-input-placeholder{color:#666}.article-header--meta-item__date,time{color:#666;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;text-transform:lowercase;background-position:center 72%}.article-header--meta-item__date{display:flex}.wf-loaded-stage2 time{font-variant:petite-caps}.kbd,kbd{font-size:.9em;padding:.0625rem .5rem;border-radius:.125rem;border:1px solid #d33a2c;box-shadow:1px 1px 0 #d33a2c,2px 2px 0 #d33a2c;margin:0 .25rem;color:#d33a2c;font-family:monospace}figure{margin:0;padding:0}figure:after,figure:before{content:" ";display:table;clear:both}a{padding:7px 0;background-color:transparent;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;text-decoration-line:underline;color:#006fc6}.h1,h1{font-size:calc(1.625rem + 1.6vw);margin:0}.h2,.h3,.h4,.h5,h2,h3,h4,h5{color:#333}.h2,h2{font-size:calc(1.5rem + .25vw);margin:2em 0 .75em;text-transform:capitalize}.h3,h3{font-size:calc(1.125rem + .25vw);text-transform:uppercase;letter-spacing:1px;margin-top:2em;margin-bottom:1em}h4{font-size:1.1em;margin-top:2em}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{text-transform:none}@keyframes fadeOut-headings{0%{background:#ffde95;box-shadow:-10px 0 0 12px #ffde95}100%{background:#fff1d2;box-shadow:-10px 0 0 12px #fff1d2}}h2:target,h3:target,h4:target,h5:target,h6:target{border-radius:11px;animation:fadeOut-headings .4s;animation-fill-mode:forwards}.article__content h2:target a,.article__content h3:target a,.article__content h4:target a,.article__content h5:target a{color:#d33a2c}:target{scroll-margin-top:2rem}ol,ul{margin:1em 0;max-width:100%}ol{padding:0;list-style:none;counter-reset:listCounter}ol>li{padding-left:calc(1.65em + .7vw);position:relative;counter-increment:listCounter;margin-bottom:1em}ol>li::before{content:counter(listCounter,decimal-leading-zero);font-size:.7em;font-weight:700;color:#d33a2c;left:.8em;position:absolute;font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif}ul{list-style:disc}ul>li::marker{color:#d33a2c}ul>li{margin-bottom:.75em;padding-left:.15em}.rh{color:#d33a2c}.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}@media (min-width:800px){.search{flex-basis:500px}.main-nav{grid-column:auto}.menu-text--sm{display:none}.menu-text--lg{display:block}}.secondary-nav{position:relative;grid-row-start:2;grid-column:1/5}body:not(.enhanced) .main-nav{overflow-x:auto;-webkit-overflow-scrolling:touch}.main-nav__primary{display:flex;list-style:none;padding:.4em 0;margin:0;flex-wrap:nowrap;width:100%;height:100%;flex-shrink:1;min-width:0;justify-content:flex-start}.main-nav span:empty{display:none}@media all and (min-width:53.125em){.main-nav__primary{justify-content:space-between}}.nav-item{flex-grow:0;background:0 0;text-shadow:none;color:inherit;font-weight:700;display:flex;align-items:center;margin-bottom:0;padding-left:0}.nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav-more-item{position:relative;width:145px}@media (min-width:42.9375em){.main-nav-more-item{margin-left:.35em}}@media all and (max-width:52.5em){.main-nav-more-item{justify-content:center}}.main-nav-more-item__button{padding:.4em .5rem .4em 1rem;border:1px solid rgba(0,0,0,.05);color:inherit;display:flex;align-items:center;justify-content:space-around;line-height:1;position:relative;background-color:rgba(0,0,0,.2);border-radius:11px;box-shadow:0 13px 7px -15px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.main-nav-more-item__button,.nav-item-link{white-space:nowrap}.nav-item-link{padding:.35em .9rem;background:0 0;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);text-decoration:none}@media screen and (min-width:800px){.main-nav__secondary .nav-item-link{color:#d33a2c!important}}.nav-item-link:focus,.nav-item-link:hover{background-color:rgba(0,0,0,.15);border-radius:11px}.main-nav__secondary .nav-item-link:focus,.main-nav__secondary .nav-item-link:hover{background-color:transparent;box-shadow:none}.main-nav-more-item__button:active,.main-nav-more-item__button:focus,.nav-item-link:active,.nav-item-link:focus{outline-color:var(--THEME_COLOR_OUTLINE,#811d15)!important}.secondary-nav .nav-item-link:active,.secondary-nav .nav-item-link:focus{outline-color:#811d15!important}.main-nav__secondary .nav-item-link{text-shadow:none;width:100%;text-decoration:none;text-decoration-color:#d33a2c;padding:.25em .7rem}.main-nav-more-item__button:after{content:"";display:block;margin-left:9px;width:30px;height:30px;background-position:center center;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35.96 33.31'%3E%3Cellipse cx='17.98' cy='31.55' fill='rgba(60,60,60,0.3)' rx='14.75' ry='.57'/%3E%3Cpath fill='%23fff' d='M34.94 15v-.93c-.23-3-2.16-5.93-5.22-6.3-2.31-.28-3.39 1.45-2.4 3.84a.43.43 0 000 .05v.11a.14.14 0 010 .06.63.63 0 000 .09v.17c0 .08.06.18.09.29s0 0 0 .05a1 1 0 000 .17.64.64 0 010 .07c0 .18.1.38.14.6a.24.24 0 010 .08v.29c0 .03.06.33.08.5.37 2.58 0 6.27-4.73 7.37A12.74 12.74 0 0019.7 23c-.17-.65-.36-1.25-.55-1.77a5.16 5.16 0 002.05-2.56 11.26 11.26 0 01-.69 2.33c1.81-1.55 2-5.05 2-5.54a4.72 4.72 0 01.21 2c1.55-2.41-1.17-6-1.17-6a9.67 9.67 0 011.84 2.24C23 11.75 20.82 10 20.82 10c2.65-4 2.51-5.68 2.51-5.68-3.26-1.34-7 .73-7 .73a5.12 5.12 0 00-4-1.7 3.61 3.61 0 011.56 1 16.79 16.79 0 00-3.23-.74C10.41 3 9.4 1.16 6.22 1h-.58S5 3.64 5.61 5.19c-1.15.49-1.26.93-1.26.93l1.17-.25-.67 2.67a4.66 4.66 0 00-2.39 1.38 3 3 0 011.15-.07A5.11 5.11 0 001 13.05a1.32 1.32 0 01.87-.51c-1.47 2.69.49 3.76.49 3.76a3.8 3.8 0 010-.92 8.52 8.52 0 002.19 3.9 14.13 14.13 0 01-.24-1.59 5.46 5.46 0 001.93 2.7 6.25 6.25 0 01-.4-1.52 5.87 5.87 0 001.36 1.75c-.12.24-.24.47-.34.71a12 12 0 00-.7 2.13c0 .23-.09.45-.13.66a1.4 1.4 0 00-1-.31 1.4 1.4 0 00-1.09 1 3.1 3.1 0 000 1.57 9.48 9.48 0 001.8 3.92A2.92 2.92 0 004 30.06c-.56.16-1 .83-.72 1.34H22.6c.29-.51-.16-1.18-.72-1.34a2.92 2.92 0 00-1.71.24A9.48 9.48 0 0022 26.44 3.24 3.24 0 0022 25a15.89 15.89 0 012.87-.21 14.93 14.93 0 004.65-.69c3.72-1.24 5.38-5.25 5.38-9zm-12.49.42h-.05v-.07z'/%3E%3C/svg%3E")}.main-nav__secondary{display:none;color:#fff;padding:.2em 0;flex-wrap:wrap;flex-direction:column;justify-content:flex-start;align-items:flex-start;height:10em}@media all and (min-width:31.25em){.main-nav__secondary .nav-item-link{padding:.25em 1.1rem}.main-nav__secondary{padding:.2em .5em}}@media (-webkit-min-device-pixel-ratio:1.3),(min-resolution:124.8dpi){.main-nav__secondary{height:11em}}@media (min-width:800px){.secondary-nav{grid-row:auto;grid-column:auto}.main-nav__secondary{display:none;position:absolute;top:0;left:-80px;transform:translate(-50%,0);max-width:unset;background:#fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px;margin:0;padding:14px 20px 10px 10px;min-width:180px;color:#d33a2c;flex-direction:row;justify-content:space-between;align-items:center;height:auto}.main-nav__secondary:before{content:"";display:block;position:absolute;top:1px;left:50%;transform:translate(-50%,-100%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:15px solid #fff}}.nav-item-1,.nav-item-10,.nav-item-2,.nav-item-3,.nav-item-4,.nav-item-5,.nav-item-6,.nav-item-7,.nav-item-8,.nav-item-9{display:none}.main-nav__secondary .nav-item-1,.main-nav__secondary .nav-item-10,.main-nav__secondary .nav-item-2,.main-nav__secondary .nav-item-3,.main-nav__secondary .nav-item-4,.main-nav__secondary .nav-item-5,.main-nav__secondary .nav-item-6,.main-nav__secondary .nav-item-7,.main-nav__secondary .nav-item-8,.main-nav__secondary .nav-item-9{display:flex}@media (min-width:42.9375em){.nav-item-1{display:flex}.main-nav__secondary .nav-item-1{display:none}}@media (min-width:52.5em){.nav-item-2{display:flex}.main-nav__secondary .nav-item-2{display:none}}@media (min-width:56.5625em){.nav-item-3{display:flex}.main-nav__secondary .nav-item-3{display:none}}@media (min-width:70em){.nav-item-4{display:flex}.main-nav__secondary .nav-item-4{display:none}}@media (min-width:77.8125em){.nav-item-5{display:flex}.main-nav__secondary .nav-item-5{display:none}}@media (min-width:97.5em){.nav-item-6{display:flex}.main-nav__secondary .nav-item-6{display:none}}@media (min-width:108.4375em){.nav-item-7{display:flex}.main-nav__secondary .nav-item-7{display:none}}@media (min-width:120.625em){.nav-item-8{display:flex}.main-nav__secondary .nav-item-8{display:none}}@media (min-width:136.5625em){.nav-item-9{display:flex}.main-nav__secondary .nav-item-9{display:none}}@media (min-width:179.6875em){.nav-item-10{display:flex}.main-nav__secondary .nav-item-10{display:none}.main-nav-more-item{display:none}.main-nav__primary{justify-content:flex-start}.nav-item{padding:0 .65em}.header,.header.searchFocused{grid-template-columns:-webkit-min-content minmax(140px,-webkit-max-content) 0 minmax(250px,600px);grid-template-columns:min-content minmax(140px,max-content) 0 minmax(250px,600px)}}@media (max-width:480px){.header .search{grid-column:1/5;margin-top:.5em}.main-nav__primary{justify-content:flex-end}.main-nav-more-item{justify-content:flex-end}}.btn--text-shadow,a.btn.btn--text-shadow{text-shadow:1px 1px 1px rgba(0,0,0,.25)}.btn-wrapper{display:none}@media screen and (min-width:1100px){.btn-wrapper{display:block;padding:4px}}.btn,.toolbar-item{display:inline-block;border-radius:11px;text-align:center;color:#fff;text-decoration:none;border:none;font-weight:700;background:0 0;font-size:.9em;outline:0;background-color:#d33a2c;background-image:linear-gradient(to bottom,#f88040,#d33a2c)}.toolbar-item{transition:all .3s ease-in-out}.toolbar-item:active,.toolbar-item:focus{position:relative;top:3px}.btn{padding:.5em 1em}.btn.btn--green,.btn.btn--member{background-color:#41b14f;background-image:linear-gradient(#9ec14c,#41b14f);color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);transition:box-shadow .2s ease-in-out}.cta--green{display:block;padding:.5em;color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0;font-weight:700;text-decoration:none;border-radius:11px;text-align:center;font-size:.85em}.cta--green:hover{background-color:#c8f1e0;border:1px solid #a0dcc4}.cta--green:active,.cta--green:active:hover,.cta--green:focus,.cta--green:focus:hover{background-color:#137d54;color:#fff!important}a.btn--white{background:#fff;color:#267dcc;transition:color .1s ease-out}.btn--white--bordered:active,.btn--white--bordered:focus,.btn--white--bordered:hover,.toolbar-item,a.btn--white--bordered{border:1px solid #ddd}.btn span{color:#811d15;font-size:.8em;margin-left:5px;margin-top:.5em;line-height:1}.btn.btn--medium{font-size:calc(.9em + .1vw);padding:.75em 1em}@media (max-width:64em){pre{max-width:100%}}.input{border:none;display:block;color:#333;background-color:#fff;padding:.4em .75em;border-radius:5.5px;outline:0;font:inherit;margin:0;font-size:1.15rem;width:100%}.input::-webkit-input-placeholder{color:#666}.input:-ms-input-placeholder{color:#666}.input::-moz-placeholder{color:#000}.input::-ms-clear{display:none}.search .search-input{padding-left:calc(22px + 15px + 15px);background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgaGVpZ2h0PSIyNHB4IiB3aWR0aD0iMjRweCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIyMi4zMSIgeTE9IjIzLjYyIiB4Mj0iMy43MyIgeTI9IjMuMDUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNlOTM3MjIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmODZmMjUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGl0bGU+TWFnbmlmaWVyPC90aXRsZT48cGF0aCBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiIGQ9Ik0yMy4zMyAyMC4xbC00LjczLTQuNzRhMTAuMDYgMTAuMDYgMCAxIDAtMy4yMyAzLjIzbDQuNzQgNC43NGEyLjI5IDIuMjkgMCAxIDAgMy4yMi0zLjIzem0tMTcuNDgtNS44NGE1Ljk0IDUuOTQgMCAxIDEgOC40MiAwIDYgNiAwIDAgMS04LjQyIDB6Ii8+PC9zdmc+);background-repeat:no-repeat;background-size:22px auto;background-position:15px 45%;font-size:calc(1em + .1vw);border-radius:11px;padding-top:1rem;padding-bottom:1rem;font-weight:700;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}@media all and (max-width:550px){.search .search-input{min-height:54px}}.search-button{width:0;height:0;padding:0}.enhanced .search-button{display:none}.search-input-wrapper{position:relative}.search-clear-button{background:0 0;border:none;position:absolute;right:0;top:50%;transition:opacity .2s ease-out;transform:translate(-25%,-50%);opacity:0;padding:.5em}.search-clear-button.enabled{opacity:1}.search-results{background:var(--THEME_COLOR,#d33a2c);color:#fff}.search-results img{border-radius:11px;border:4px solid #fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}.search-results img:hover{box-shadow:0 0 3px -1px rgba(50,50,93,.25),0 4px 12px -6px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.search-results ol img{min-height:100px;height:auto}.logo{font-size:1em;line-height:0;width:3em;flex-basis:3em;flex-shrink:0;position:relative;z-index:0}@media all and (min-width:1450px){.logo{width:10.5em;flex-basis:10.5em}.logo img{transform:none}}.logo a{display:block;background:0 0;outline:0;padding:0;color:transparent;text-shadow:none}.logo a picture{display:block}.logo img{height:3.5em;transform:translate(0,15%)}.cart-active .back-to-top-wrapper{display:none}a.back-to-top{display:block;background:0 0;width:50px;height:50px;opacity:.7;text-shadow:none;border-radius:11px;padding:13px;transform-origin:bottom left;will-change:transform;transform:rotate(-11deg);transition:background-color .1s ease-out,transform .2s ease-out,opacity .1s ease-out;background-color:#666}@media all and (max-width:64em){a.back-to-top{opacity:.3}}a.back-to-top:focus,a.back-to-top:hover{background-color:#282634;opacity:1}a.back-to-top svg{display:block}.back-to-top-wrapper{width:50px;height:50px;display:none;position:fixed;bottom:20px;right:20px;z-index:9;will-change:transform;backface-visibility:hidden}.back-to-top-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100% auto;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}@media (min-height:600px){.back-to-top-wrapper{display:block}}label{max-width:100%}.form__field__input,input[type=email],input[type=password],input[type=text],textarea{background:#effaff;font-size:1em;border:1px solid #d2dfe4;transition:box-shadow .3s ease-in-out,color .3s ease-in-out;background-position:right 1.35em center;background-size:.25em .25em;background-repeat:no-repeat;margin-bottom:5px;border-radius:11px;padding:.9em 2em .7em 1.1rem;display:block;width:100%;outline:0;box-shadow:inset 0 1px 1px 0 rgba(0,0,0,.2)}.form__field__label{display:block;margin-bottom:.5em;cursor:pointer}input{border-color:#aaa}.sponsors ul{padding-left:0;text-align:center;list-style-image:none}.sponsors__native ul.bnnr-list li a{border-radius:11px;background-color:#fff;margin-bottom:3em;position:relative;top:0;padding:0;background-image:none;text-decoration-line:underline;text-decoration-color:#006fc6!important;text-decoration-thickness:1px;display:flex;flex-direction:column}.sponsors.sponsors-leaderboard ul li a,.sponsors.sponsors__lead ul li a,.sponsors__lead ul a,.sponsors__native ul.bnnr-list li a{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03);transition:box-shadow .2s ease-in-out,top .1s ease-in-out;border-radius:11px}.sponsors.sponsors-leaderboard ul li a:hover,.sponsors.sponsors__lead ul li a:hover,.sponsors__native ul.bnnr-list li a:hover{box-shadow:0 1px 7px -5px rgba(50,50,93,.25),0 3px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.sponsors.sponsors-leaderboard ul li a:active,.sponsors.sponsors-leaderboard ul li a:focus,.sponsors.sponsors__lead ul li a:active,.sponsors.sponsors__lead ul li a:focus,.sponsors__native ul.bnnr-list li a:active,.sponsors__native ul.bnnr-list li a:focus{box-shadow:inset 0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,.03);outline-offset:.75em;top:7px}.sponsors__native ul.bnnr-list li img{max-width:none;width:100%;height:auto;display:inherit}.sponsors.sponsors__lead a{box-shadow:none}.sponsors__lead ul a:active,.sponsors__lead ul a:focus{outline-offset:.75em;position:relative;top:7px;border-radius:11px}.sponsors__lead ul a:active img,.sponsors__lead ul a:focus img{border:2px solid #fff;box-shadow:0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,.03)}img::before{height:2.5em;display:block;top:2em;content:" ";width:100%;z-index:2;left:0}img::after{content:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzIgMzIiIHN0eWxlPSJtYXJnaW4tcmlnaHQ6IDEwcHg7Ij4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDI4aC0yMHYtNGw2LTEwIDguMjE5IDEwIDUuNzgxLTR2OHoiPjwvcGF0aD4KPHBhdGggZmlsbD0iIzc3NyIgZD0iTTI2IDE1YzAgMS42NTctMS4zNDMgMy0zIDNzLTMtMS4zNDMtMy0zIDEuMzQzLTMgMy0zYzEuNjU3IDAgMyAxLjM0MyAzIDN6Ij48L3BhdGg+CjxwYXRoIGZpbGw9IiM3NzciIGQ9Ik0yOC42ODEgNy4xNTljLTAuNjk0LTAuOTQ3LTEuNjYyLTIuMDUzLTIuNzI0LTMuMTE2cy0yLjE2OS0yLjAzMC0zLjExNi0yLjcyNGMtMS42MTItMS4xODItMi4zOTMtMS4zMTktMi44NDEtMS4zMTloLTE1LjVjLTEuMzc4IDAtMi41IDEuMTIxLTIuNSAyLjV2MjdjMCAxLjM3OCAxLjEyMiAyLjUgMi41IDIuNWgyM2MxLjM3OCAwIDIuNS0xLjEyMiAyLjUtMi41di0xOS41YzAtMC40NDgtMC4xMzctMS4yMy0xLjMxOS0yLjg0MXpNMjQuNTQzIDUuNDU3YzAuOTU5IDAuOTU5IDEuNzEyIDEuODI1IDIuMjY4IDIuNTQzaC00LjgxMXYtNC44MTFjMC43MTggMC41NTYgMS41ODQgMS4zMDkgMi41NDMgMi4yNjh6TTI4IDI5LjVjMCAwLjI3MS0wLjIyOSAwLjUtMC41IDAuNWgtMjNjLTAuMjcxIDAtMC41LTAuMjI5LTAuNS0wLjV2LTI3YzAtMC4yNzEgMC4yMjktMC41IDAuNS0wLjUgMCAwIDE1LjQ5OS0wIDE1LjUgMHY3YzAgMC41NTIgMC40NDggMSAxIDFoN3YxOS41eiI+PC9wYXRoPgo8L3N2Zz4K) " " attr(alt);font-size:.9em;display:block;color:#666;line-height:1.5;position:absolute;font-style:italic;z-index:2;top:calc(2em - 35px);text-align:center;width:104%;left:-2%;padding:2.25em 1em;text-shadow:none;background-color:#eee;border-radius:11px}@media screen and (min-width:40em){.author__desc{margin-left:1em}}.author__desc{font-size:.8em;position:relative;font-style:normal!important;color:#333;padding:0!important}.author__desc p{margin:1em 0}.author__desc .show-more-link{display:inline}.author__desc__title{color:#666;text-transform:uppercase;letter-spacing:2px;font-size:.9em;margin:0;font-weight:400}@media (max-width:40em){.author__desc{width:100%}}.article{padding-top:calc(.5em + 2vw)}.article__summary{font-size:1.05em}.c-garfield-the-cat .article__summary{position:initial}.author__desc p{font-size:.95em}.wf-loaded-stage2 .author__desc p{font-size:1em}.article__summary{align-self:center;margin-top:0;color:#666;position:relative;padding-bottom:1.5em;margin-bottom:.5em;border-bottom:3px solid #e5e5e5;font-size:1.05em;line-height:1.55em;font-style:italic}.wf-loaded-stage2 .article__summary{font-size:1.15em}@media all and (max-width:420px){.article__content{margin-top:0}}.article__content{line-height:1.5;padding:0!important}.article__content a{color:#006fc6}.article__content .btn{color:#fff}.drop-caps+p::first-line{font-weight:700;font-variant:all-petite-caps;text-transform:lowercase;letter-spacing:.5px;font-size:1.15em}.drop-caps{width:calc(96px + 1vw);height:calc(120px + 4vw);float:left;margin-right:1.5em;position:relative;left:calc(-1.3em - .5vw);top:.5vw}@media all and (min-width:500px){.drop-caps{width:150px;height:186px;min-width:100px;margin-left:0}}@media screen and (min-width:64em){.author__desc{margin-left:0}}.drop-caps img{max-width:100%}.drop-caps img:nth-of-type(2){position:absolute;bottom:0;right:-40px;width:75%}@media all and (min-height:700px){body.articlepage{overflow:initial}}.form__field__label--extra{display:inline}@media (max-width:64em){.form__field__label--extra{display:none}}.article-header{margin:0}@media all and (max-width:1099px){.article-header--meta{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x;overflow-y:hidden}.article-header--meta::-webkit-scrollbar{display:none;width:0;background:0 0}.sponsors:not(.sponsors__lead):not(.sponsors-leaderboard):not(#sponsors-article-end):not(.sponsors__mobile){display:none}.c-garfield-aside--meta{display:none}.sponsors__mobile{display:block}.meta-box{margin:1.5em 0}.comment-count{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.article-header--comments a{color:#d33a2c;text-decoration:none;font-weight:700}.article-header--meta .article-header--meta-comments{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32;%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EArtboard 29%3C/title%3E%3Cpath class='cls-1' d='M3.29,2.73a66.7,66.7,0,0,0,3.21,9.52l6.29,1.08L8.1,15.53c2.91,5.28,7,9.09,12.14,4.55L25,24.52l.57-.52-3.83-5.48c3.6-4.32,1.74-7.76-1.93-10.36L17,13.29l-.1-6.85A43.83,43.83,0,0,0,11,4L9,7.7,9,3.39c-2.2-.65-4.07-1.08-5.08-1.3A.52.52,0,0,0,3.29,2.73Z'/%3E%3C/svg%3E");background-size:auto .75em;background-repeat:no-repeat;background-position:left 45%;padding-left:1em}}.c-garfield-the-cat .article-header--meta{display:flex;align-items:flex-end;list-style:none;padding:0;margin:0 0 .95em;height:30px}.article-header--meta li{padding:0;margin:0;min-width:max-content}.article-header--meta li::before{display:none}.article-header--meta li::after{content:"/";font-size:1em;color:#a7a7a7;display:inline-block;margin:0 .25em}.article-header--meta li:last-of-type::after{display:none}.article-header--date{color:#585858;font-family:inherit;font-size:.95em}.article-header--comments{font-size:.9em}.article-header--updated{padding:0 .8rem;color:#137d54;background-color:#d6f3e7;border:1px solid #c6f2e0;border-radius:11px;font-weight:700;text-transform:initial;font-feature-settings:normal;font-variant:none;font-size:.9em;letter-spacing:0;min-width:fit-content;margin-right:7px}.meta-box{background:#f6f6f6;padding:.6em 1em;list-style:none;width:max-content;max-width:100%;border-radius:11px;font-size:.9em;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:.5em 2em}.c-garfield-the-cat .meta-box--item{line-height:1.4;padding-left:1.5em;background-size:auto 1em;background-repeat:no-repeat;background-position:left 2px;margin-bottom:0}.meta-box li:last-child,.meta-box--item:last-child{margin-bottom:0}.meta-box--tags{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cpath fill='%23e93e32' class='cls-1' d='M12.78 22.74l1.35 1.35a2.09 2.09 0 003 0l8.12-8.15a2.09 2.09 0 000-3l-1.34-1.33zM14.71 2.51a2.09 2.09 0 00-1.52-.61l-10 .22L3 12.1a2.09 2.09 0 00.61 1.52l7.14 7.12L21.87 9.65zm-4.64 9.88a3.17 3.17 0 113.44-2.86 3.17 3.17 0 01-3.44 2.86z'/%3E%3C/svg%3E")}.meta-box--share{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M126.16 359.66c148 0 228.93-122.61 228.93-228.94 0-3.48 0-6.94-.23-10.4A163.83 163.83 0 00395 78.68a160.93 160.93 0 01-46.21 12.66 80.82 80.82 0 0035.37-44.51 161.17 161.17 0 01-51.09 19.53A80.54 80.54 0 00196 139.74 228.42 228.42 0 0130.13 55.68 80.52 80.52 0 0055 163.09 80 80 0 0118.52 153v1a80.49 80.49 0 0064.55 78.87 80.37 80.37 0 01-36.33 1.38 80.55 80.55 0 0075.17 55.87A161.38 161.38 0 0122 324.67a163.54 163.54 0 01-19.16-1.16 227.73 227.73 0 00123.33 36.08' fill='%231da1f2'/%3E%3C/svg%3E")}.meta-box--published{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32%7D%3C/style%3E%3C/defs%3E%3Crect class='cls-1' x='8.25' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Crect class='cls-1' x='17.53' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Cpath class='cls-1' d='M24.1 5.39h-2.56a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59h-4.28a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59H4.75a2.07 2.07 0 00-2.08 2.07v14.75a2.07 2.07 0 002.07 2.07H24.1a2.07 2.07 0 002.07-2.07V7.46a2.07 2.07 0 00-2.07-2.07zm-.29 16.15H5.23V8.45h18.58z'/%3E%3Cpath class='cls-1' d='M7.18 11.71h2.5v2.5h-2.5zM11.27 11.71h2.5v2.5h-2.5zM15.26 11.71h2.5v2.5h-2.5zM19.35 11.71h2.5v2.5h-2.5zM7.18 15.78h2.5v2.5h-2.5zM11.27 15.78h2.5v2.5h-2.5zM15.26 15.78h2.5v2.5h-2.5zM19.35 15.78h2.5v2.5h-2.5z'/%3E%3C/svg%3E")}.meta-box--author{background-image:url(/images/icons/author.svg)}code,pre{font-feature-settings:normal;color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Fira Code,Menlo,Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;font-variant-ligatures:none;word-wrap:normal;tab-size:4;hyphens:none}pre{padding:1rem;margin:.5rem 0;resize:both;max-width:100vw;color:#666;background:#fafafa;border:1px solid #eee;font-size:1em;border-radius:11px;min-width:250px;overflow:auto;box-shadow:0 6px 12px -17px rgba(50,50,93,.25),0 7px 6px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.03)}.code-toolbar{position:relative}li>.code-toolbar{margin-top:1em}.code-toolbar>.toolbar{position:absolute;top:.5em;right:.5em;opacity:0;transition:opacity .3s ease-in-out}.code-toolbar>.toolbar .toolbar-item{display:inline-block}code.diff-highlight{width:100%}a code{background:0;padding:0;text-decoration-line:underline}:not(pre)>code,code{background:#fff2ea;color:#333;font-size:calc(.75em + .1vw);line-height:calc(1.5em + .2vw);padding:0 .2725em;font-style:normal;display:inline-block}:not(pre)>code{white-space:normal}pre>code{line-height:calc(1.75rem + .2vw);background:0 0;white-space:break-spaces}pre[data-line]>code{white-space:pre}pre[data-line]>code>span{height:calc(1.75rem + .2vw);display:inline-block}.table,table{width:100%;border-collapse:collapse;margin-bottom:calc(2em + 2vw);clear:both}.tr,tr{border-bottom:4px solid #eee}.td,.th,td,th{padding:1em 1.5em;border:none;text-align:left}.scroll-pane{overflow-x:auto;scrollbar-color:#666 #201c29;-webkit-overflow-scrolling:touch}.scroll-pane::-webkit-scrollbar{height:.75em}.scroll-pane::-webkit-scrollbar-thumb{background:#b0b0b0;border-radius:11px}.scroll-pane table td{min-width:30vw}@media all and (min-width:650px){.scroll-pane table td{min-width:auto}}.layout-fixed{table-layout:fixed}.figure table{margin-bottom:0}.tablesaw td{line-height:165%;text-align:left;vertical-align:middle}.tablesaw td,.tablesaw th{padding:.8em 1em}tbody tr:nth-child(2n) td{background-color:#f7f7f7}.tablesaw th,table th{border-bottom:4px solid #ddd}@media screen and (max-width:767px){.tablesaw thead{display:none}.tablesaw tr{display:flex;flex-direction:column;margin-bottom:1.5em;width:100%;border-radius:11px;border:1px solid #eee}.tablesaw td:before{content:attr(data-label);display:table-cell;font-weight:700;padding:0 1em 0 0;text-align:right}.tablesaw td:last-child:after{content:'';position:absolute;left:0;right:0;bottom:0}}a.skip-main{left:-999px;position:absolute;top:auto;width:1px;height:1px;overflow:hidden;z-index:-999}a.skip-main:active,a.skip-main:focus{color:#d33a2c;background-color:#fff;left:auto;top:auto;width:auto;height:auto;overflow:auto;padding:.5em 1em;text-align:center;font-size:1.2em;z-index:999}.video-embed-container .video-embed-container--wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}.signature{margin:1.5em 0;font-size:.9em;color:silver;font-style:italic}.author .show-more-link{font-size:.9em;display:inline;color:#666;text-decoration-line:underline;text-decoration-color:currentColor;font-weight:400}.cookie-banner{background-color:#fff;border-radius:11px;position:fixed;width:calc(19em + 1vw);padding:1em 1.5em;font-size:1em;z-index:99;box-shadow:0 6px 40px rgba(0,0,0,.3);bottom:1.25em;right:1.25em}.cookie-banner p{font-size:.9em;margin-top:0}.cookie-banner__container{display:flex}.cookie-banner button{padding:.9em 1em}@media screen and (max-width:480px){.cookie-banner{right:0;left:0;width:100%;border-radius:0;bottom:0}.cookie-banner p{margin-top:1em}}@media screen and (max-width:380px){.cookie-banner p{margin-top:0}}.cookies--btn{width:100%}.mr5{margin-right:.5em}.mr0{margin-right:0!important}.btn--white{background:#fff;color:#267dcc;border:1px solid #fff}.btn--white--bordered{border:1px solid #ddd}.sponsors ul li{display:inline-block;margin-bottom:3em;font-size:.85em;padding:0;text-align:center;vertical-align:top;max-width:25rem;border-radius:11px;border:1px solid #eee;min-height:90px}.c-promo-box--ad.sponsors li{width:auto}.sponsors__native ul.bnnr-list li{border:0;width:100%;height:auto;max-width:85%;margin:0 0 2em auto}.sponsors__native ul.bnnr-list .ad__desc{padding:1em}.sponsors__native ul.bnnr-list li:only-child{padding-bottom:0}blockquote:not(.pull-quote){font-style:italic;border-left:11px solid #e6e4e1;padding:1em calc(1.5em + .5vw);color:#424242;margin-left:0;margin-right:0;font-size:1.05em;line-height:1.65em;letter-spacing:0;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0e3 0,#fff 100%)}blockquote:not(.pull-quote) p{margin:0}.btn--small.toolbar-item,.btn.btn--small{font-size:.9em;border-radius:6px;margin:0;padding:.4em 1em}.c-felix-the-cat a.btn{display:table;margin-top:1em;margin-bottom:1.5em}@media screen and (max-height:880px){.article__comments--notes{display:none}.article__comments__form__desc{margin-top:4em}}header.subnav__header{background-color:#fff;background-color:var(--headers-bg-color,#fff);padding:.2rem 0 0 0;z-index:1}.subnav__primary::-webkit-scrollbar{display:none;width:0;background:0 0}.subnav__tags li:first-child{padding-left:14px}.subnav__tags li:last-child{padding-right:.8em}.subnav__tags .subnav-item{margin-bottom:0}@media (min-width:740px){header.subnav__header{padding:.25rem 0 0 0;box-shadow:0 4px 20px 0 rgba(0,0,0,.12)}.subnav__tags li:first-child{padding-left:35px}}.subnav .nav-item-link{color:#d33a2c;text-shadow:none!important;font-weight:700;font-family:Mija;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;border-radius:11px;font-size:1rem;background-color:#ffe7e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #fee0e0}.subnav .nav-item-link:hover{text-shadow:none;font-weight:700;font-family:Mija;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.subnav-item a:active,.subnav-item a:active:hover,.subnav-item a:focus,.subnav-item a:focus:hover{box-shadow:inset 0 1px 3px 0 rgba(0,0,0,.12);background-color:#d33a2c;color:#fff!important;outline:0}.subnav-item--active a.nav-item-link,.subnav-item--active a.nav-item-link:hover{background-color:#d33a2c;color:#fff!important;border:1px solid #d33a2c}.subnav-item{display:flex;margin-right:9px;padding-left:3px}.subnav-item .nav-item-link{padding:2px 12px}.subnav a{background:0 0;font-weight:700;display:flex;align-items:center;text-decoration:none}.subnav__primary{padding:.25em 0;margin-top:.25em;margin-bottom:.35em;display:flex;position:relative;scroll-snap-type:x;scroll-padding:1rem;overflow-x:auto;scrollbar-width:none}.subnav-more-item__button{padding:.2em 1em;color:#d33a2c;border:1px solid #ddd;border-radius:11px;background:0 0;display:flex;align-items:center;justify-content:space-around;position:relative;font-size:.85em;min-width:max-content;transition:none}.hidden{display:none!important}.c-garfield-the-cat .subnav-item--green .nav-item-link{color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0}.c-garfield-the-cat .subnav-item--green .nav-item-link:hover{color:#137d54;background-color:#c8f1e0;border:1px solid #a0dcc4}.subnav .nav-item-link:hover{color:#d33a2c;text-shadow:none;font-weight:700;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.feature-panel__desc,.sponsors__desc{font-size:.75em;color:#666;padding-bottom:10px;top:-15px;position:relative}.feature-panel::before{position:absolute;left:0;transform:translate(0,-100%);top:-5px;content:"";border-bottom:8px solid #eee;width:100%}@media (min-width:1000px){.feature-panel::before{width:73%}}.feature-panel{position:relative;border-radius:11px;padding:1.25em;display:flex;flex-wrap:wrap;background-color:#f6f6f6}@media (min-width:1000px){.feature-panel{padding:2.5em}}.feature-panel-left-col,.feature-panel-right-col{flex-basis:100%;position:relative;padding:0;flex-shrink:0}.feature-panel-right-col{order:-1;display:flex;align-items:flex-start;margin-bottom:1em;justify-content:flex-start;margin-top:2em}@media (min-width:800px){.feature-panel-left-col{flex-basis:65%}.feature-panel-right-col{order:0;flex-basis:35%;margin:0;justify-content:center}}.feature-panel-description>:first-child{margin-top:0}.feature-panel-description>:last-child{margin-bottom:0}.feature-panel-image-link{position:relative;text-decoration:none;width:100%;max-width:210px;transition:scale,opacity .2s ease-out;padding-left:2.5em;background-image:none}.feature-panel-image{width:100%;max-width:14.375rem;margin:0 auto;display:block;transition:all .2s ease-out;will-change:transform;transform-origin:0 100%;transform:rotate(-11deg)}@media (min-width:1000px){.feature-panel-image-link{position:absolute;max-width:14.375rem;top:-90px;right:0}}.feature-panel-image-img{height:auto}.btn--large.toolbar-item,.btn.btn--large{font-size:calc(1em + .25vw);padding:.75em 1em}.btn .sr-only,.sr-only{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.c-garfield__nl{display:none}@media all and (min-width:1100px){.drop-caps{display:none}.l-author-bio{display:flex}.c-garfield__nl{display:block}.nl-box__form{display:flex;padding-bottom:7px;text-align:center;letter-spacing:-.5px;color:#fff;font-size:1.15em}.nl-box__desc{margin-top:10px;color:#666;font-size:80%;line-height:1.5em;text-align:center}.nl-box__form .nl-box__form--button,.nl-box__form .nl-box__form--email{flex-grow:1;flex-shrink:0;box-sizing:border-box;width:auto;margin:0;padding:.75em 1em;border:0;border-radius:11px;background:#fff;font-size:.95em}.nl-box__form--button:active,.nl-box__form--button:focus,input.nl-box__form--email:active,input.nl-box__form--email:focus{box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form--button:-ms-input-placeholder,.nl-box__form--email:-ms-input-placeholder{color:#777;font-style:italic}.nl-box__form--button::placeholder,.nl-box__form--email::placeholder{color:#777;font-style:italic}.nl-box__form .nl-box__form--button{transition:all .2s ease-in-out;color:#fff;background-color:#0168b8;font-family:Mija,-apple-system,Arial,BlinkMacSystemFont,"Roboto Slab","Droid Serif","Segoe UI",Ubuntu,Cantarell,Georgia,serif;font-weight:700;box-shadow:0 1px 1px rgba(0,0,0,.3);width:100%;border:0;border-left:1px solid #ddd;flex:2;border-top-left-radius:0;border-bottom-left-radius:0}.nl-box__form .nl-box__form--email{border-top-right-radius:0;border-bottom-right-radius:0;width:100%;flex:4}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus,.nl-box__form .nl-box__form--button:hover{cursor:pointer;color:#fff;background-color:#0168b8;border-color:#dadada;box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus{outline:0!important;text-shadow:1px 1px 1px rgba(0,0,0,.3);box-shadow:inset 0 3px 3px rgba(0,0,0,.3)}.nl-box__group{display:flex;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px}.nl-box__wrapper{display:flex;flex-direction:column;justify-content:center}.nl-box__form form{width:100%}.nl-box__form .nl-box__group{margin:0}.nl-box{margin:1.5em 0;padding:1em 0;box-shadow:none;max-width:750px;justify-self:center}}.article__content a.anchor{color:#767676;text-decoration:none;transition:color .2s ease-in-out;padding:.35em .05em}.article__content a.anchor:active,.article__content a.anchor:focus,.article__content a.anchor:hover{color:#106fc6;background-image:linear-gradient(90deg,#006fc6 0,#2ca2d3 30%,#006fc6 85%,#006fc6 100%);background-size:100%;background-repeat:repeat;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-moz-background-clip:text;-moz-text-fill-color:transparent;text-decoration:none}#promo-article-end,#sponsors-article-end,.article__comments,.main-footer{content-visibility:auto}.toc-components{box-shadow:0 9px 30px -5px rgba(50,50,83,.25),0 8px 8px -12px rgba(0,0,0,.2),0 -6px 16px -6px rgba(0,0,0,.03);border-radius:11px;padding:2em;background-color:#fff;margin:1.25em 0 3em 0;grid-column:3/13}@media screen and (min-width:500px){.toc-components{display:grid;grid-template-columns:1fr 1fr}}@media screen and (min-width:800px){.toc-components{padding:2em 3em}}.article__content .btn--white{background:#fff;color:#267dcc}
+</style>
+
+
+    
+
+    
+      <link rel="preload" href="/js/nav-v2.js" as="script" importance="high">
+<link rel="preload" href="/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2" as="font" type="font/woff2" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+<link rel="preload" href="/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2" as="font" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2"  as="font" type="font/woff2" media="(min-width: 800px)" crossorigin importance="high" media="(prefers-reduced-data: no-preference)">
+
+<link rel="preload" href="/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2" as="font" media="(min-width: 800px)" type="font/woff2" crossorigin importance="low" media="(prefers-reduced-data: no-preference)">
+
+
+
+
+
+
+
+
+<link rel="preload" href="/js/app.js" media="(min-width: 800px)" as="script" importance="low">
+    
+
+    
+      
+  
+  
+
+  
+  
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="Smashing Magazine &amp;raquo; Feed" href="https://www.smashingmagazine.com/feed/" />
+
+    
+
+    <meta name="description" content="Dual-screen devices are just the next evolution in responsive design. If you have a PWA or website, the APIs available make integrating into your existing code base seamless. This article explains why it’s an exciting time for layout on the web, and how dual screens provide an opportunity to get even more creative. "/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://www.smashingmagazine.com/2022/03/building-web-layouts-dual-screen-foldable-devices/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content='Building Web Layouts For Dual-Screen And Foldable Devices — Smashing Magazine' />
+<meta property="og:description" content="Dual-screen devices are just the next evolution in responsive design. If you have a PWA or website, the APIs available make integrating into your existing code base seamless. This article explains why it’s an exciting time for layout on the web, and how dual screens provide an opportunity to get even more creative. " />
+<meta property="og:url" content="https://www.smashingmagazine.com/2022/03/building-web-layouts-dual-screen-foldable-devices/" />
+<meta property="og:site_name" content="Smashing Magazine" />
+<meta property="article:publisher" content="https://www.facebook.com/smashmag" />
+
+	
+	<meta property="article:author" content="https://www.smashingmagazine.com/author/stephanie-stimac/" />
+
+<meta property="article:tag" content="CSS" /><meta property="article:tag" content="CSS Grid" /><meta property="article:tag" content="Browsers" /><meta property="article:tag" content="Responsive Web Design" />
+<meta property="article:section" content="General" />
+<meta property="article:published_time" content="2022-03-03 10:30:00 &#43;0000 UTC" />
+<meta property="article:modified_time" content=" 2022-03-03 10:30:00 &#43;0000 UTC" />
+<meta property="og:updated_time" content="2022-03-03 10:30:00 &#43;0000 UTC" />
+<meta property="og:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f45e5695-4423-4581-862d-ce6c1f8b55ac/building-web-layouts-dual-screen-foldable-devices.jpg' />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Dual-screen devices are just the next evolution in responsive design. If you have a PWA or website, the APIs available make integrating into your existing code base seamless. This article explains why it’s an exciting time for layout on the web, and how dual screens provide an opportunity to get even more creative. " />
+<meta name="twitter:title" content='Building Web Layouts For Dual-Screen And Foldable Devices — Smashing Magazine' />
+<meta name="twitter:site" content="@smashingmag" />
+<meta name="twitter:image" content='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f45e5695-4423-4581-862d-ce6c1f8b55ac/building-web-layouts-dual-screen-foldable-devices.jpg' />
+
+	
+	<meta name="twitter:creator" content="@seaotta" />
+
+<meta property="DC.date.issued" content="2022-03-03 10:30:00 &#43;0000 UTC" />
+
+
+    <meta name="theme-color" content="#d33a2c">
+    <meta property="fb:pages" content="45576747489"/>
+    
+    <meta name="google-site-verification" content="X5sd8PEDJqYLSR98RKgSozn-0RNpknXFlGoA-UXe5K0" />
+
+    <link rel="icon" href="/images/favicon/favicon.ico" />
+    <link rel="icon" href="/images/favicon/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+
+  </head>
+
+  <body data-instant-whitelist class='no-js    articlepage' >
+
+		
+			
+				
+
+
+
+<div data-handler="PreLoad" id="top"></div>
+<a href="#main" class="skip-main">Skip to main content</a>
+<a href="#all-topics" class="skip-main">Jump to all topics</a>
+
+  
+    <a href="#article__start" class="skip-main">Start reading the article</a>
+  
+
+<a href="/articles/" class="skip-main">Jump to list of all articles</a>
+
+<header class="global-header header">
+    <div class="logo">
+	<a href="/" title="&larr; Back to the homepage">
+		<picture>
+			<source
+				media="(max-width: 1450px)" srcset="/images/logo.svg">
+			<source
+				media="(min-width: 1450px)"
+				srcset="/images/logo--full.svg">
+			<img
+				src="/images/logo/logo.svg"
+				loading="eager" decoding="async"
+				alt="Smashing Magazine" />
+		</picture>
+	</a>
+</div>
+
+    <nav class="main-nav">
+  <ul class="main-nav__primary">
+  
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+    <li role="none" class="nav-item main-nav-more-item">
+      <button class="main-nav-more-item__button" type="button" aria-haspopup="true" aria-expanded="false">
+        <span class="menu-text--lg">More</span>
+        <span class="menu-text--lg--close">Less</span>
+        <span class="menu-text--sm">Menu</span>
+        <span class="menu-text--sm--close">Less</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+<nav class="secondary-nav">
+  <ul class="main-nav__secondary">
+    
+
+
+
+
+
+
+
+
+
+<li class="nav-item nav-item-1 nav-item--active"><a data-instant class="nav-item-link" href="/articles/">Articles</a></li>
+<li class="nav-item nav-item-2 "><a data-instant class="nav-item-link" href="/guides/">Guides</a></li>
+<li class="nav-item nav-item-3 "><a data-instant class="nav-item-link" href="/printed-books/">Books</a></li>
+<li class="nav-item nav-item-4 "><a data-instant class="nav-item-link" href="/events/">Workshops</a></li>
+<li class="nav-item nav-item-5 "><a data-instant class="nav-item-link" href="/membership/">Membership</a></li>
+<li class="nav-item nav-item-6 "><a data-instant class="nav-item-link" href="/jobs/">Job Board</a></li>
+<li class="nav-item nav-item-7 "><a data-instant class="nav-item-link" href="/the-smashing-newsletter/">Newsletter</a></li>
+
+<li class="nav-item nav-item-8"><a class="nav-item-link" href="https://podcast.smashingmagazine.com">Podcasts</a></li>
+<li class="nav-item nav-item-9 "><a class="nav-item-link" href="/write-for-us/">Write for us</a></li>
+<li class="nav-item nav-item-10"><a class="nav-item-link" href="mailto:advertising@smashingmagazine.com">Advertise with us</a></li>
+
+  </ul>
+</nav>
+    <div class="search">
+        <form data-handler="Search" id="js-search-form" class="search-form" method="get" action="https://www.google.com/webhp?q=site:smashingmagazine.com">
+        <div class="search-input-wrapper">
+            <input  class="input search-input" inputmode="search" type="search" name="q" id="js-search-input" autocomplete="off" placeholder="Search articles..." aria-label="Search articles" />
+            <input type="hidden" name="sitesearch" value="smashingmagazine.com" />
+            <a id="js-search-clear-button" class="search-clear-button" tabindex="-1" role="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.35 15.36" width="16px" height="16px" tabind="-1">
+                    <title>Clear Search</title>
+                    <path fill="#e33b2a" d="M8.38 11.41c-.5-.5-.78-.52-1.33 0l-3.05 3.08c-1.18 1.18-1.7 1.18-3-.16s-1.18-2-.18-3l3.18-3.19a.69.69 0 0 0-.07-1.14l-3-3c-1-1-1.13-1.81 0-3s1.9-1.21 3.13 0l2.94 3a.66.66 0 0 0 1.11 0c.63-.65 2.49-2.51 3.28-3.35a1.46 1.46 0 0 1 2.3-.15c.24.24.47.42.89.84.86.86.94 1.57.05 2.46l-3.27 3.26c-.36.34-.52.58-.16.94l3.27 3.27c1.1 1.1 1.23 1.7.05 2.88l-.58.58a1.59 1.59 0 0 1-2.46-.21z" />
+                </svg>
+            </a>
+        </div>
+        <input type="submit" class="search-button btn" name="submit" value="Search" id="js-search-submit">
+    </form>
+</div>
+
+</header>
+<script src="/js/nav-v2.js" importance="high" defer></script>
+<div>
+  <div data-component="SearchResults" class="search-results" data-lite="true"></div>
+
+  
+</div>
+
+
+
+
+
+	<header class="subnav__header" id="all-topics">
+		<nav class="subnav" role="navigation">
+  <ul class="subnav__primary subnav__tags flex">
+  	
+
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/accessibility/">Accessibility</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/css/">CSS</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/javascript/">JavaScript</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/usability/">Usability</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/design/">Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/figma/">Figma</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/wallpapers/">Wallpapers</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/react/">React</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/vue/">Vue</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/round-ups/">Round-Ups</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/web-design/">Web Design</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/guides/">Guides</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/business/">Business</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/career/">Career</a></li>
+
+	
+
+
+
+<li class="subnav-item  "><a data-instant class="nav-item-link" href="/category/privacy/">Privacy</a></li>
+
+
+    <li role="none" class="subnav-item subnav-more-item">
+      <a class="subnav-more-item__button" href="/articles/">
+        <span class="menu-text">Jump to all articles ↬</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+	</header>
+
+
+			
+		
+
+    
+    <main id="main" tabindex="-1">
+      
+  
+  
+  <script id="gotell" type="application/json">
+    {"created_at":"2022-03-03T10:30:00Z"}
+  </script>
+
+  
+
+  <article class="block article" role="main">
+    <div class="container article-container">
+      <div class="row">
+
+        <div class="col-12 article__content" id="article__content">
+
+          <div class="c-garfield-the-cat ">
+
+            <div class="c-garfield-header">
+              
+              
+
+
+
+<header class="article-header">
+  <ul class="article-header--meta">
+		
+			<li class="article-header--meta-item article-header--meta-item__author">
+				<a class="author-post__author-title" href="/author/stephanie-stimac/">Stephanie Stimac</a>
+        
+			</li>
+		
+    
+			
+			<li class="article-header--meta-item article-header--meta-item__date">
+				
+				<time class="article-header--date" datetime="2022-03-03">Mar 3, 2022</time></li>
+    
+
+    
+    <li class="article-header--meta-item article-header--meta-comments">
+      <span class="article-header--comments">
+        <a href="#comments-building-web-layouts-dual-screen-foldable-devices">
+          
+          <span data-component="CommentsCount" data-insert="true" data-thread="/2022/03/building-web-layouts-dual-screen-foldable-devices/" data-article="articles/2022-03-03-building-web-layouts-dual-screen-foldable-devices.md">0 <span class="comment-count">comments</span></span>
+        </a>
+      </span>
+    </li>
+    
+  </ul>
+
+  <h1 class="article-header--title">Building Web Layouts For Dual-Screen And Foldable Devices</h1>
+
+  
+</header>
+
+            </div>
+
+              
+              
+
+
+<ul class="meta-box meta-box--article">
+
+  
+  <li class="meta-box--item meta-box--published">
+    16 min read
+     </li>
+
+
+
+
+  <li class="meta-box--item meta-box--tags">
+    
+    
+      
+        <a href="/category/css">CSS</a>,
+      
+    
+      
+        <a href="/category/css-grid">CSS Grid</a>,
+      
+    
+      
+        <a href="/category/browsers">Browsers</a>,
+      
+    
+      
+        <a href="/category/responsive-web-design">Responsive Web Design</a>
+      
+    
+  </li>
+
+
+
+
+
+  <li class="meta-box--item meta-box--share">
+    Share on <a rel="nofollow" href="https://&#084;&#119;&#073;&#116;&#084;&#101;&#082;&#046;&#067;&#111;&#077;/intent/tweet?text=Building%20Web%20Layouts%20For%20Dual-Screen%20And%20Foldable%20Devices&url=https%3A%2F%2Fwww.smashingmagazine.com%2f2022%2f03%2fbuilding-web-layouts-dual-screen-foldable-devices%2f&via=smashingmag">Twitter</a>,&nbsp;<a rel="nofollow" href="/api/ball?uri=//www.linkedin.com/shareArticle?url=https://www.smashingmagazine.com%2f2022%2f03%2fbuilding-web-layouts-dual-screen-foldable-devices%2f&title=Building%20Web%20Layouts%20For%20Dual-Screen%20And%20Foldable%20Devices">LinkedIn</a>
+
+  </li>
+
+
+</ul>
+
+
+            <div class="c-garfield-aside--meta">
+
+              <div class="l-author-bio">
+
+  <div class="mobw-40 mobh-40 w-48 h-48 rounded-3xl bio-image__large mb-5 mr-3">
+    
+    
+
+
+
+<figure role="presentation" class="bio-image ">
+  
+  <a href="/author/stephanie-stimac/" class="bio-image-link">
+  
+  <div class="bio-image-wrapper">
+		<picture>
+			<source type="image/avif" srcset="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAACUQAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAMgAAADIAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQAMAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAACUxtZGF0EgAKChgd8fH7IEBA0IAysxISEAIMPNFJjAwkCML2U5&#43;fQexh/&#43;2qAagvrr/6ZsxYrRey2jNwsu2bqZXO57dOnAE&#43;n5Bd20XIVvGJDr85yMZYg0sHxmQwrFJqWZk81pDoY0AhWqsANQjVyvDB6PEv5rpjwFyeWBCS0dFCAgCwaes1zDcwy9FMTx2JOZBofD1kwODp/SXmCBP9PDwclJ0dyN/pDkU&#43;U0v/45RIkeptv6zSMQO/&#43;Gfgz9kFcXU3j//TOrhotHFD77s4ZzgCEbXR&#43;YM&#43;id7eieG4kkeBSSKh5H/0mXn8k6h3AN4GeG4vEvx4lCndOryfPEupcBVG20jFRlPkTcrHBxSAS4nP5V5UiDpWfft/U3WHhiXw5OO/U9wOepc02ouwXh7v5uLU0ZNH7TY20cApd3xAnTK5vK60NpDJIfXfJFyGid/xzMMKHekJRoyH/dl0V7&#43;VBgnWieracwctItr1bAyVK2&#43;MhaQMDSqwFqHTiQnndfMHs7bBghr9kaHZnTYoXNuSjYeYj8TiYtGIFC9fv&#43;0BSkDei7&#43;jRV11tIiTLxgfRI0DNjRiYHfPv&#43;o5OFP0/Km0gmRxG0QdMYD5W0&#43;wg0xDTV8rHG/jo0QLwPG3qFXFBIJRUHKPx6SYmMykOglsKnYi29dmYhxxwto42gDBoddi0T0almXoVkwG0FSHWVhiQXohquDYsBYjWYkgr/6quDO7oGFG&#43;O8rq6BsT&#43;rG1vvxP97/9GJLQ56Vl2nd5oMq8x8SFGSbwf0CxBs&#43;NFZV4GUFW9eT4OUEhE7c1ITmeR1oPqmXEOxAFLFmti9JeSCEn0dkoWLngKqTAofysFmu/Nc2eCxlq5xfLc5JqyAz7WFsfZSGOcFd61PtFvsuPQo6h8csv2OC88fZes&#43;mSNGfqfacCGC2WGcHNIiitXo0Tl4wQvjNNoe&#43;X6fLgrW5pmhhe9nfu571zr/8zjHLb51alegghyDjeaHM8Wd1ZHIkA4H8VigJNFYW8GDVVlkpGDajHXDgSR9T6sKapEs5HUUgKb5tYe02bhRbXC3ul/nljbVc1t2GzbPaXrf&#43;Ys7sKwl0CFv4dEcGA4DXimAXmWnNNHp0e8AEYanzvaiSwNx7nbC9VyhW2sJIazD7g8JdrxsF9QZNsnBSwPBPyXrb0qi09v&#43;2AtbREMoA0Zy3zUrd5FG0380VwHv4O9C4k25h&#43;rPnmvXDAI&#43;AX7a0aHenxCfzIHOZd0BE6UWOFI&#43;ZlDi33zECQkPAmfLfWff0cdXfnccPzJULtBobvXLdTjhjezJowvxE&#43;FkcwsEYWyKir&#43;HKCYNadwfcYqOU&#43;uKX0F2LwjVljIwDwimDVPlv5Wy4qf4ktZg/n&#43;a2dnM5NCpRyXJNLq/BsfIStzsRVSy0SBP3yyNJYzyPssyKi33RCFxuXXplIl5dUvGUBGspT&#43;I26NSQjaerEUeu3fcKPxic4LCekXnGWkLsoltwXYqRwzswQgLbDAc2vhZ7jJ&#43;UTkjunNmfdX6lTfwhWjMWKeKAD/4EN8TcMacDid4l9YIOP3Hnq4iF2WSkIe5RSOCttpNy5SkzABe/druX&#43;kj0KZRF57HI5OhIsyhUQ6QqNzlX&#43;NtGVxUMAakWI8s3SxFLUSJsear3&#43;88w0Ean/XK8QiJImx6Vjx6SdSYQv&#43;X9bboSdYWabRmMSekqQhuc9d0rTLevqyJARNh53Zo5X/lnERnrsCMdHsohFdanjG6bQv5b07YtxLQRGihy/wHpzG1CkeXy9E3U5P3&#43;oWjSJitFr6086Cda4&#43;/q12ierU/WAqrKRBD/0i2UzZORdsqKAxRDPfkefN1M3lRbenazyq/QwAAkxGmKVNeboK/UFqlngF62SZBWHgX6fjoxyBiwDfOFvr2sMqa3iaYskAK68fyl0bLp7BebNNCkyAhZ/p94BrwULAlfoWwSm7YJiWDqXLLbX9tap6wvtFWjIdKHK0&#43;d09uEDW&#43;Z9twF90zoEcaEzXmuQ9zSzd/w1NTvx8b4vRPtT1zmAQDaw9wzEqMHtxBNrCAF0rMwo9oNAibinZwq69gvvq75CP6he7uAE8ndUayWY5f2KW8mbqqk1puJwt8ZuwHI9hhz58fAnJlpUC5uPy3vit7xIQr43yhJkTpOnDXumN8hnnDC9nv5n/FnhL9cUWI9MIlGnUhJsZiX1JpyBM9iMKG1wz6MCIZIxUsZUYyg1&#43;AxviVx5XXzaMunXaEpUBv8cnMxM67aKJyPfKjTsE89X3y9/2FK8/a4U0HqoWi0avixDZh5eH1Ewyc2Y0&#43;nYr&#43;a70jXyInBx4qxnjVXf9jxav8X3NYTMwcERPR8uekOnLk7SqTzVTvU4mzf75ge5YhTzjaPG2kpn3vDYXwx5txrDKz2XwCD6g3wB7pq4qFRsfsoQq&#43;5dpbOQ61yQTnLeELbU&#43;dQQuxlm6rcwi7ofWnHsWbBTH0PD&#43;IS0dfmlwU2s6QyHBpiXjMZD7v2em3Vkv9yvMjiZghMGtkdUXPqx2LcmR/sO59&#43;9Xng62W5pu3IkF5mMN&#43;gaJMwoBZ6/q7CPiSufaiZdYuiI3TdO&#43;DN7g6J5nwQbs9/BnKZzCZ2LmULFUJD9IMzy563RF5oM4Yids4ZaTQS194aEmAxIZr7HCRAqLWJbjqeSr/mqA83bhbE088mxgzLx5V4FsGB2ugfRyGO34D/ok3qSzeXKWydO4MN3xEhNds&#43;/toiBR2HZ0mCLezpmCrfc2BTeBWXNLJWINXRv4hQAXTnu25Cm0S21rED4Rlg1TY0h8GWwFgwk0YseFAkutsfsPJyVNpJsl/K7JOBqnCCEQ4oreHnJbmc0wq4K61Aru4VMnhrwL9NO&#43;tC5nxoNzJNSHE5KVKC0mMw3MWAe60NTSpjIqZBrZQhVk6OpW7H7SnbzBqKgRbRDmauQbb4sWyrWzh9bWnV6XwWKWfQy4VWarrWOzftjCvTvI4okkxkRa3NkAbm3b4/j74AdcyhFB2rhxIhArwXGv/ute9FOIKi9Bd7JP5FKg8j&#43;whxAFeCR6qNgjBy4F2I30eFIjRjbiIouiMDRXedhuZ45k79jfVE/5E2lComsv5t8qOv9Bc4a/506L8CaxLWya/P8umWpHalQ3pPFQx2LYBvxxtDGi7/lw6MejvxcuRWhySf43dRnArsQTYStxONHwcsOzRkIeA=">
+			<img
+				class="bio-image-image"
+					src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f079cd13-8e3e-4d13-9c91-9498cdffbb43/stephanie-stimac-200x200.jpg"
+					loading="eager" decoding="async" importance="high" width="100" height="100"
+					alt="Stephanie Stimac"
+				/>
+		</picture>
+  </div>
+  
+  </a>
+  
+</figure>
+  </div>
+
+  <div class="l-author-bio-content author__desc" id="author__desc">
+    <h4 class="author__desc__title">
+    About The Author
+    </h4>
+
+    <p>
+      
+        Stephanie is a design technologist with a passion for developer relations. She&rsquo;s currently a Program Manager on the Microsoft Edge Developer Experiences …
+      
+      <a href="/author/stephanie-stimac/" class="show-more-link">More about
+          Stephanie&nbsp;↬</a>
+    </p>
+  </div>
+
+</div>
+
+              <div class="c-garfield__nl">
+              <h4 class="h2">Email Newsletter</h4>
+              <section class="nl-box__form"><form action="//smashingmagazine.us1.list-manage.com/subscribe/post?u=16b832d9ad4b28edf261f34df&amp;id=a1666656e0" method="post"><div class="nl-box__wrapper"><label for="mce-EMAIL-hp" class="sr-only">Your (smashing) email</label><div class="nl-box__group"><input type="email" name="EMAIL" class="nl-box__form--email" id="mce-EMAIL-hp" placeholder="Your email">
+    <input type="submit" value="Meow!" name="subscribe" class="nl-box__form--button"></div></div></form></section><p class="nl-box__desc"><em><a href="https://www.smashingmagazine.com/the-smashing-newsletter/">Weekly tips on front-end &amp; UX</a>.<br />Trusted by 190.000 folks.</em></p>
+              </div>
+
+              
+
+
+
+            </div>
+
+
+            
+
+							
+							
+								
+							
+								
+							
+								
+							
+								
+							
+								
+									
+								
+							
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+									
+								
+							
+								
+							
+							
+
+							<div class="c-garfield-native-panel__right">
+								
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://smashingconf.com/online-workshops/workshops/vitaly-friedman-complex-ui/">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4943f99a-a211-4c03-b5fa-870ca9476a0d/sidebar8.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c06575b7-f30d-45e7-910b-38f6e0b14858/sidebar8-1.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Designing For Complex UI Masterclass</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+							</div>
+              <div class="c-garfield-native-panel">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://bit.ly/northwestern_uni_winter">
+							
+								<img src="https://res.cloudinary.com/indysigner/image/upload/v1601395101/ads/NWU_Oct.gif" loading="lazy" width="180" height="150" alt="In-demand skills with Northwestern online">
+							
+
+            <em class="ad__desc">Build in-demand skills like UX, UI and HCI — Northwestern online MS in Info. Design &amp; Strategy</em>
+						
+              </a>
+					</li>
+
+				
+			
+				
+					
+
+					<li>
+						<a href="https://smashingconf.com/online-workshops/workshops/brad-frost-apr/">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/fccd6dab-e125-4561-b130-19a4c8400797/workshop-bradfrost-winter.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c3b58ef8-b951-4eea-9972-b108b1cc1438/workshop-bradfrost-winter.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Creating and Maintaining Successful Design Systems</em>
+						
+              </a>
+					</li>
+
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__below">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+					
+
+					<li>
+						<a href="https://www.smashingmagazine.com/printed-books/checklist-cards/">
+							
+								<picture>
+                  <source type="image/avif" srcset="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/fb7308e3-a67a-49f0-a4e0-551fca543333/support-sidebar.avif" />
+							
+								<img src="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/313e7eae-9d2a-4e1d-9f10-f408ad81a006/support-sidebar.png" loading="lazy" width="300" height="250" alt="Boost your skills online, with our friendly online workshops on front-end and design.">
+							
+								</picture>
+							
+
+            <em class="ad__desc">Smart Interface Design Checklists</em>
+						
+              </a>
+					</li>
+
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+
+							<div class="c-garfield-native-panel c-garfield-native-panel__end">
+                
+	<div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience="non-subscriber" data-remove="true" data-rendered="true" data-amount="3">
+		<ul class="bnnr-list">
+			
+				
+			
+				
+			
+		</ul>
+	</div>
+
+              </div>
+            
+
+            <div class="c-garfield-summary" id="article__start">
+              <section aria-label="quick summary" class="article__summary">
+                <span class="summary__heading">Quick summary&nbsp;↬ </span>
+                
+                  Dual-screen devices have been on the market for nearly three years. In that time new web platform technologies have been built with developer feedback to enable layout on the web that adapts to these devices. These web platform capabilities integrate with existing concepts, such as the viewport and media queries, so that developers and designers can spend more time ideating about how to leverage two displays to create enhanced experiences rather than learning a new set of code to build them.
+                
+              </section>
+            </div>
+
+            
+
+            
+							
+
+
+
+						
+
+            
+
+<p>It’s now been more than two years since the Samsung Galaxy Fold and Surface Duo were introduced to the world. Since then, the Surface Duo 2, Samsung Galaxy Z Fold 3 and Galaxy Z Flip 3 have all hit the market. Foldable devices are available to purchase, and are currently being used by consumers today, and with it comes an opportunity where we, as developers, can start to explore this new class of device and the next evolution in responsive design.</p>
+
+<p>The APIs that were initially designed to solve for building layouts on dual-screen devices have gone through some revisions after feedback from developers who used the APIs in browser origin trials. The beautiful thing about these APIs is that they integrate with existing concepts, so designers and developers don’t have to spend time learning new concepts, but can think about how to build enhanced experiences for users on dual-screen devices.</p>
+
+<h2 id="detecting-foldable-devices-with-new-css-media-features">Detecting Foldable Devices With New CSS Media Features</h2>
+
+<p>Dual screen and foldable devices are just the next step in responsive design, so they’re viewed as another responsive design target that we can style for with media features. We already use media features and queries to target desktops, tablets, and mobile phones today, and now we have the CSS Viewport Segments media feature to target our foldable and dual-screen devices.</p>
+
+<h3 id="horizontal-viewport-segments"><code>horizontal-viewport-segments</code></h3>
+
+<p>The viewport segments media query can have two values. The first one is <code>horizontal-viewport-segments</code>, and this represents the state of the device when the device hinge is vertical and the viewports are split by the hardware hinge or fold into columns.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="536"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png"
+			
+			sizes="100vw"
+			alt="A foldable device illustration with displays side-by-side"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      The <code>horizonal-viewport-segment</code> targets the device when the hinge is in the vertical fold posture. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/4d9893d6-fa37-4d0a-b331-71171c035e0b/1-horizontal-viewport.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>To serve styles specifically for a foldable device in this orientation we would write the following:</p>
+
+<pre><code class="language-css">@media (horizontal-viewport-segments: 2) {
+// Styles specific to the device in this orientation
+}</code></pre>
+
+<p>The integer represents the number of viewports present in the device orientation. When the device is in the vertical fold posture like a book, we have two distinct viewports in the horizontal direction and only one viewport in the vertical direction.</p>
+
+<p>We can also combine our media queries to target dual screen devices and certain viewport widths to serve up specific styles:</p>
+
+<pre><code class="language-css">@media (horizontal-viewport-segments: 2) and (min-width: 540px) {
+    body {
+        background: yellow;
+    }
+}</code></pre>
+
+<h3 id="vertical-viewport-segments"><code>vertical-viewport-segments</code></h3>
+
+<p>Our second value for the viewport segments media feature is <code>vertical-viewport-segments</code>, and this is the state of the device when the device hinge is horizontal, and the hardware hinge splits our viewports into rows.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="565"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png"
+			
+			sizes="100vw"
+			alt="A foldable device illustration with displays stacked on top of each other"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      The <code>vertical-viewport-segments</code> targets the device in the horizontal fold posture. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/d52f0cbe-97a3-49ca-9e78-58f1d7e23ffb/2-vertical-viewport.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>To target devices that are rotated in this direction we would use the following code:</p>
+
+<pre><code class="language-css">@media (vertical-viewport-segments: 2) {
+    // Styles specific to the device in this orientation
+}</code></pre>
+
+<div data-audience="non-subscriber" data-remove="true" class="feature-panel-container"><span class="feature-panel__desc">More after jump! Continue reading below&nbsp;&darr;</span>
+<aside class="feature-panel">
+<div class="feature-panel-left-col">
+<div class="feature-panel-description"><p>Meet <strong><a data-instant href="https://www.smashingconf.com/online-workshops/">Smashing Online Workshops</a></strong> on <strong>front-end &amp; UX</strong>, with practical takeaways, live sessions, <strong>video recordings</strong> and a friendly Q&amp;A. On design systems, CSS/JS and UX. With Carie Fisher, Stefan Baumgartner and <a href="https://smashingconf.com/online-workshops/workshops">so many others</a>.</p>
+<a data-instant href="https://smashed.by/smashing-workshops" class="btn btn--green btn--large">Jump to online workshops&nbsp;↬</a></div>
+</div>
+<div class="feature-panel-right-col"><a data-instant href="https://smashed.by/smashing-workshops" class="feature-panel-image-link">
+<div class="feature-panel-image">
+<img
+    loading="lazy"
+    decoding="async"
+    class="feature-panel-image-img"
+    src="/images/smashing-cat/cat-in-a-chair--tall.svg"
+    alt="Feature Panel"
+    width="257"
+    height="355"
+/>
+
+</div>
+</a>
+</div>
+</aside>
+</div>
+
+<h2 id="using-javascript-to-detect-foldable-devices">Using JavaScript To Detect Foldable Devices</h2>
+
+<p>There are instances where you may not be able or want to use CSS media queries to detect whether your user is on a foldable device, and this is where the JavaScript API comes in. Initially, a brand-new API called Windows Segments Enumeration was proposed, but after the feedback from the developer community through origin trials, it made more sense to build off the existing <a href="https://wicg.github.io/visual-viewport/">Visual Viewport API draft specification</a>.</p>
+
+<h3 id="viewport-segments-property">Viewport Segments Property</h3>
+
+<p>Viewport segments represent the regions of the window that reside on separate displays that are adjacent to each other. To detect a dual-screen device you would query the segments property with the following code:</p>
+
+<pre><code class="language-css">const segments = window.visualViewport.segments;</code></pre>
+
+<p>The value returned from this query will be an array of <code>DOMRects</code> that indicate how many viewports there are. If there is only one viewport segment, the query will return <code>null</code>, and is implemented this way to prevent future compatibility issues, so that developers don’t start using <code>visualViewport.segments[0]</code> to target single-screen devices.</p>
+
+<p>On dual-screen devices, the query will return 2 <code>DOMRects</code>, representing the 2 viewports available when the browser window is spanning across the fold.</p>
+
+<p>This value we have stored in the segments constant is an immutable snapshot of the device state when the attribute was queried, and if the browser window is resized or the device is rotated, the viewport segments previously retrieved are no longer valid and need to be queried again through a resize or orientation event (or both).</p>
+
+<p>If you resize the browser window to span across only one display region, we’ll fire the resize event.</p>
+
+<p>If you rotate the device, this will fire both the resize and orientation event, and you can use the events to query the attribute again to get the current state of the browser display regions.</p>
+
+<pre><code class="language-css">window.addEventListener("resize", function() {
+    const segments = window.visualViewport.segments;
+    console.log(segments.length); &#42;// 1&#42;
+});</code></pre>
+
+<h3 id="when-to-use-the-javascript-api-vs-the-css-media-features-to-detect-devices">When To Use The JavaScript API vs The CSS Media Features To Detect Devices</h3>
+
+<p>Both the CSS media features and JavaScript segment property will detect a dual-screen device, but the JavaScript property is best used when there’s no CSS being used, which can happen when you’re working with objects in Canvas2D and WebGL. An example would be a game that you’re developing that could leverage both screens.</p>
+
+<h2 id="using-css-env-variables">Using CSS <code>env()</code> Variables</h2>
+
+<p>In addition to the CSS media features, six new CSS environment variables have been introduced to help developers calculate the geometry of the display regions, calculate the geometry of the hinge area when it’s being obscured by a physical hardware feature like on the Surface Duo, and they can also be used to help place content with the bounds of each display region.</p>
+
+<p>The six new environment variables are as follows:</p>
+
+<ul>
+<li><code>env(viewport-segment-width &lt;x&gt; &lt;y&gt;);</code></li>
+<li><code>env(viewport-segment-height &lt;x&gt; &lt;y&gt;);</code></li>
+<li><code>env(viewport-segment-top &lt;x&gt; &lt;y&gt;);</code></li>
+<li><code>env(viewport-segment-left &lt;x&gt; &lt;y&gt;);</code></li>
+<li><code>env(viewport-segment-bottom &lt;x&gt; &lt;y&gt;);</code></li>
+<li><code>env(viewport-segment-right &lt;x&gt; &lt;y&gt;);</code></li>
+</ul>
+
+<p>The <code>x</code> and <code>y</code> positions represent the two-dimensional grid created by hardware features that separate each viewport segment, with the coordinates <code>0,0</code> starting at the top-left segment.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="419"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png"
+			
+			sizes="100vw"
+			alt="The environment variables laid out on each display screen with the integers for each display"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      Environment variables define the position and dimensions of a logically separate region of the viewport. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/76876e68-789e-45e1-ada3-a34a5af92e54/3-env-variables.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>When you have a device that is in the vertical fold posture with the viewports side by side, the viewport segment on the left would be represented by <code>env(viewport-segment-width 0 0)</code>, and the one on the right would be represented by <code>env(viewport-segment-width 1 0)</code>. If you turned the device into the horizontal fold posture with the viewports stacked, the top would be represented by <code>env(viewport-segment-height 0 0)</code>, and the bottom viewport by <code>env(viewport-segment-height 0 1)</code>.</p>
+
+<p>When using <code>env(viewport-segment-width)</code> and <code>env(viewport-segment-width)</code>, in addition to the indices, we can set a fallback value like the following:</p>
+
+<pre><code class="language-css">env(viewport-segment-width 0 0, 100%);
+</code></pre>
+
+<p>But this additional fallback value is optional and up to the discretion of the author, if they’d like to include it.</p>
+
+<h3 id="calculate-the-hinge-width">Calculate The Hinge Width</h3>
+
+<p>When you have a device that has a hinge obscured by hardware features, you’re able to calculate it using the environment variables provided.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="552"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png"
+			
+			sizes="100vw"
+			alt="A foldable device in the horiztonal position"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      We can calculate the device hinge with the environment variables. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/0c355185-c685-42e8-9d58-1a4f62e92b15/4-calculate-hinge-width.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>In our example, we have a device in the vertical posture and want to find the hinge width, so that no content is obscured. We’ll subtract the left viewport segment of the right display from the right viewport segment of the left display:</p>
+
+<pre><code class="language-css">calc(env(viewport-segment-left 1 0) - env(viewport-segment-right 0 0));</code></pre>
+
+<h3 id="placing-content-with-the-css-env-variables">Placing Content With The CSS <code>env()</code> Variables</h3>
+
+<p>We can use the CSS environment variables to place content within the display region boundaries, and these are especially helpful if you want to place content directly against the hinge or fold.</p>
+
+<p>In our example below, we’re going to place an image directly against the hinge in the first display region on the left. This area is the right segment of the viewport, so we’ll use <code>viewport-segment-right</code> to place it with the following code:</p>
+
+<pre><code class="language-css">img {
+    max-width: 400px;
+}
+
+@media (horizontal-viewport-segments: 2) { 
+    img {
+        position: absolute;
+        left: env(viewport-segment-right 0 0);
+    }
+}</code></pre>
+
+<p>If we emulate our screen in the Edge Developer Tools in Surface Duo mode, we’ll get the following layout:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="518"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png"
+			
+			sizes="100vw"
+			alt="A Surface Duo emulated layout in the browser with an image on the right display and text on the left"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      Initially placing the image in our layout with the environment variable puts it in the wrong display region. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/127d4e09-f2bc-42a8-8040-cba6f4624106/5-emulate-surface-duo.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>This isn’t what we wanted. The image should be in the display region on the left side.</p>
+
+<p>Because the image is absolutely positioned with the <code>left</code> property, the left edge of the image ends up aligned to the <code>viewport-segment-right</code> display area.</p>
+
+<p>We then need to subtract the width of the image from our environment variable to get the image aligned to the correct hinge edge:</p>
+
+<pre><code class="language-css">img {
+    max-width: 400px;
+}
+
+@media (horizontal-viewport-segments: 2) { 
+    img {
+        position: absolute;
+        left: calc(env(viewport-segment-right 0 0) - 400px);
+    }
+}</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="521"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png"
+			
+			sizes="100vw"
+			alt="A layout in the Surface Duo emulated in the browser with text and image both in the left display"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      Subtracting the image width from the viewport segment will place it along the hinge in the left display. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/f7e621a7-c1f5-4efa-92ae-a37ae4fb163b/6-emulate-surface-duo-2.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>And now we have the image placed where we want it. For other examples on how to align items along the hinge, you can check out this simple box demo. Open the <code>Edge Developer Tools</code> &gt; <code>Device Emulation</code> and then choose <code>Surface Duo</code> and ensure your <code>Duo emulation</code> is in the correction orientation posture.</p>
+
+<div class="sponsors__lead-place"></div>
+
+<h2 id="putting-it-all-together-let-s-build-a-recipe-page-that-adapts-to-a-dual-screen-device">Putting It All Together: Let’s Build A Recipe Page That Adapts To A Dual Screen Device</h2>
+
+<p>As someone who constantly uses her phone while cooking, a recipe site that would adapt when I’m on my dual-screen device would be so helpful. Let’s walk through how to think about adapting an individual recipe page for it.</p>
+
+<p>I want to think about how I’m going to chunk out my main content. Typically, at minimum, I see a recipe title, how many servings it makes, how long it’s going to take to cook, an image or multiple images, the ingredients, and the steps to make the dish.</p>
+
+<p>When I sketch out my wireframe, I get the following:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="560"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg"
+			
+			sizes="100vw"
+			alt="A sketch of how my website should be laid out on a desktop"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      A standard layout for a recipe page on desktop. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b7cb8f0a-89b1-4d00-bdcc-a23b40baf974/7-recipe-layout.jpg'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>I want my title and the recipe details at the very top, followed by an image that’s going to take up the whole content width, then the ingredients list, and the recipe steps. I don’t want to stack the latter two content groups, because the ingredient list will have a lot of white space to the right of it if I stack them, so I want the steps to sit next to the ingredients, giving me two columns below the image.</p>
+
+<h3 id="css-grid-or-flexbox-for-layout">CSS Grid Or Flexbox For Layout?</h3>
+
+<p>I know how I want to lay this recipe out on a normal desktop screen, and there are multiple ways I can go about coding this layout and grouping content, but how I group it, and what layout I want to achieve on a dual-screen device will need to be considered before I code. Based on the sketch I did for a desktop view, I could use a combination of flexbox and CSS Grid to achieve the layout I want, where I group the ingredients and steps in a flex container. But let me sketch out how I want my page to display on a dual screen.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="544"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg"
+			
+			sizes="100vw"
+			alt="A sketch of how my website should be laid out on a dual screen device"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      The ideal layout on a foldable device in the vertical fold position splits the con-tent up by display so it isn’t obscured by the hinge. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1dc695b7-96b9-4895-b45f-9e9b93a94608/8-dual-ideal-layout.jpg'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>If I want more flexibility in layout, then I can’t group my ingredients and steps in a flex container, otherwise, there’s going to be a big gap of white space in whichever column the image doesn’t go into.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="589"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg"
+			
+			sizes="100vw"
+			alt="A sketch of how my website would be laid out if I used flexbox, creating a large gap between content on a dual screen device"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      If I only use flexbox for this layout, it’s going to create some spacing gaps I want to avoid having to hack around. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/92b01bae-f63d-4ab4-8bde-ae43a8de23d7/9-dual-screen-flex.jpg'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<h3 id="adding-our-content">Adding Our Content</h3>
+
+<p>I’m going to use nothing but CSS Grid for the desktop and dual-screen layouts. So, let’s build out our content.</p>
+
+<div class="break-out">
+<pre><code class="language-javascript">&lt;main&gt;
+    &lt;section class="recipe"&gt;
+        &lt;div class="recipe-meta"&gt;
+            … &lt;!—Contains our recipe title, yield and servings --&gt; 
+        &lt;/div&gt;
+        &lt;img src="imgs/pasta.jpg" alt="Pasta carbonara photographed from above on a rustic plate" /&gt;
+        &lt;div class="recipe-details__ingredients"&gt;
+            …&lt;!— Contains our ingredients list --&gt; 
+        &lt;/div&gt;
+        &lt;div class="recipe-details__preparation"&gt;
+            … &lt;!— Contains our list of steps to put the ingredients together --&gt;
+        &lt;/div&gt; 
+    &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+</div>
+
+<p>Next, let’s build the structure of the page. I’m going to define my grid: I only want three columns, and I want those to be an equal fraction of the container.</p>
+
+<pre><code class="language-css">.recipe {
+display: grid;
+grid-template-columns: repeat(3, 1fr);</code></pre>
+
+<p>Next, I’m going to define my rows, and I’m going to use <code>grid-auto-rows</code> with <code>minmax</code>, so that my rows are a minimum of <code>175px</code> but can grow to a max of the maximal content height.</p>
+
+<pre><code class="language-css">grid-auto-rows: minmax(175px, max-content);</code></pre>
+
+<p>Then I’m going to add a few more properties: my <code>grip-gap</code>, my max-content width, and a margin to center my layout on the page.</p>
+
+<pre><code class="language-css">grid-gap: 1rem;
+max-width: 64rem;
+margin: 0 auto;
+}</code></pre>
+
+<p>I’m then going to place my content into the grid I’ve defined:</p>
+
+<pre><code class="language-css">.recipe-meta {
+    grid-column: 1 / 4;
+}
+
+.recipe-meta p {
+    margin: 0;
+}
+
+img {
+    width: 100%;
+    grid-column: 1 / 4;
+}
+
+.recipe-details__ingredients {
+    grid-row: 3;
+}
+
+.recipe-details__preparation {
+    grid-column: 2 / 4;
+    grid-row: 3;
+}</code></pre>
+
+<p>And that’s going to give me the layout based on my sketch:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="573"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png"
+			
+			sizes="100vw"
+			alt="Screenshot of my website laid out on desktop with CSS Grid guides turned on"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      The layout renders as expected on desktop. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/13738359-57c1-4d2c-99d6-6565b5fca3ae/10-normal-site.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Great! But what about my dual-screen layout? Let’s dive in and start with our <code>horizontal-viewport</code> media feature and our grid for dual screens.</p>
+
+<h3 id="using-media-queries-and-adjusting-the-container-layout">Using Media Queries And Adjusting The Container Layout</h3>
+
+<p>First, this is what my layout looks like on a dual screen right now:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="521"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png"
+			
+			sizes="100vw"
+			alt="Screenshot of my website emulated on a Surface Duo"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      Without any dual screen code implemented, if a user wants to span the browser across two displays, this is what the page would look like. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c42a2bdd-6575-4c73-b0c2-d3c6e1e07634/11-dual-screen-site.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>And if we scroll down:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="521"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png"
+			
+			sizes="100vw"
+			alt="Screenshot of my website emulated on a Surface Duo showing content being ob-scured by the device hinge"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      The content is obscured by the hinge if a user chooses to span across both displays. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/5623a8ba-e59a-4cf7-b98b-aa9a8248acfb/12-dual-screen-site-2.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>Not great. Our content is being obscured by the hinge, so let me start redefining my grid.</p>
+
+<p>For my grid columns I’m still going to use three columns, but I want one column to take up the first viewport segment on the left, and the other two split on the right viewport segment, so I’d get to use my CSS environment variable <code>env(viewport-segment-width 0 0)</code> which tells the browser, for my first column, I want it to occupy the whole viewport of the first display region.</p>
+
+<div class="break-out">
+<pre><code class="language-css">@media (horizontal-viewport-segments: 2) { 
+
+/&#42; Body styles for smaller screens &#42;/
+body {
+        font: 1.3em/1.8 base, 'Playfair Display', serif;
+        margin: 0;
+    }
+
+.recipe {
+    grid-template-columns: env(viewport-segment-width 0 0 1fr 1fr;
+    grid-template-rows: repeat(2, 175px) minmax(175px, max-content);
+}
+
+}</code></pre>
+</div>
+
+<p>For my rows, I want a little more flexibility in the placement, so I’m going to repeat two rows of <code>175px</code>, which is about the height of the container with the recipe title, yield, and time information, and the rows after that should match what I defined in my grid originally.</p>
+
+<p>If I check my design in the DevTools, I can see that the <code>width</code> and <code>margin</code> I set on my recipe container originally are pushing the grid lines that I want to be aligned with my viewport segment into the right viewport segment.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="521"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png"
+			
+			sizes="100vw"
+			alt="Screenshot of my website on a Surface Duo with the layout split between displays, so no content is obscured"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      After adding my code, my content is no longer obscured but still needs some spacing adjustments. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/23a51914-6307-4631-ab9e-abcd349c4d71/13-dual-screen-site-3.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>To reset this, I’m going to reset my <code>margin</code> and <code>max-width</code>.</p>
+
+<div class="break-out">
+<pre><code class="language-css">@media (horizontal-viewport-segments: 2) { 
+
+.recipe {
+    grid-template-columns: env(viewport-segment-width 0 0) 1fr 1fr;
+    grid-template-rows: repeat(2, 175px) minmax(175px, max-content);
+    margin: 0;
+    max-width: 100%;
+}
+
+}</code></pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="521"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png"
+			
+			sizes="100vw"
+			alt="Screenshot of my website on a Surface Duo with margin and padding reset"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      Resetting my margin and padding obscures content in the right display. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/dbed9251-c987-4f41-a360-f99007c22708/14-site-reset.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>And now I’m going to place my content within the grid and adjust my layout.</p>
+
+<pre><code class="language-css">.recipe-meta {
+    grid-column: 1 / 2;
+    padding: 0 2rem;
+}
+
+img {
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /&#42; necessary to keep the image within the grid lines &#42;/
+}
+
+.recipe-details&#95;&#95;ingredients {
+    grid-row: 2;
+    padding: 0 2rem; 
+}
+
+.recipe-details&#95;&#95;preparation {
+    grid-column: 2 / 4;
+    grid-row: 3; 
+    padding: 0 2rem 0 3rem; 
+}</code></pre>
+
+<p>I’ve applied padding to the content except for the image which I’ve decided I want to span the whole viewport. For the content underneath the image, due to the nature of the gridline starting under the physical hinge, I want to add extra padding, so it looks like it has the same padding on the left side as the other items with padding. If I don’t add extra, it will fall too close to the hinge. Because I already have a grid-gap of <code>1rem</code> and I want to double the padding, I’ll add <code>3rem</code> instead of <code>4rem</code> which gives us our final layout on a dual-screen device:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure class="
+  
+    break-out article__image
+  
+  
+  ">
+  
+    <a href="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png">
+    
+    <img
+      loading="lazy"
+      decoding="async"
+      importance="low"
+			width="800"
+			height="523"
+			
+			srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png 400w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png 800w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png 1200w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png 1600w,
+			        https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png 2000w"
+			src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png"
+			
+			sizes="100vw"
+			alt="Final adjusted layout with padding and margin added back in to my layout for a dual screen device"
+		/>
+    
+    </a>
+  
+
+  
+    <figcaption class="op-vertical-bottom">
+      I can re-add more appropriately sized padding to display content, so it isn’t obscured on a device with a physical hinge. (<a href='https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/ce28ab33-2d90-405a-b76a-97ae229ba9c4/15-site-padding.png'>Large preview</a>)
+    </figcaption>
+  
+</figure>
+
+<p>With just some small adjustments to our CSS and the use of one of the new media features, we have a layout that adapts to a dual-screen device. To check out the experience, head to the <a href="https://www.stephaniestimac.com/demos/smashing-ds-demo/">demo site here</a> in Edge or a Chromium-based browser and open the browser developer tools to check out Surface Duo emulation. If you’re opening the site in Chrome, ensure the experimental web platform features flag is enabled under <code>chrome://flags</code>, so that the demo displays correctly.</p>
+
+<h3 id="single-screen-responsive-design-details">Single Screen Responsive Design Details</h3>
+
+<p>And just to ensure we’re taking into consideration small, single-screen devices, the code I choose for a layout on a phone uses flexbox and puts everything into a single column:</p>
+
+<pre><code class="language-css">@media (max-width: 48rem) {
+
+    body {
+        font: 1.3em/1.8 base, 'Playfair Display', serif;
+    }
+
+    .recipe-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+}</code></pre>
+
+<div class="sponsors__lead-place"></div>
+
+<h2 id="api-browser-availability-and-testing-without-a-device">API Browser Availability And Testing Without A Device</h2>
+
+<p>These dual-screen APIs are available in Microsoft Edge and Edge on Android starting in version 97 by default. These are slated to come to other Chromium browsers soon, but there is no confirmed date for when that will be. To enable these APIs in Chrome, go to <code>chrome://flags</code> and enable experimental web platform features.</p>
+
+<p>And while these are relatively new devices, many are now going into their 2nd and 3rd generations, so companies are investing in them. If you can’t get your hands on a physical device, the best way to test is in the browser developer tools. I’ve tested my site in both the emulation tool and on a Surface Duo, and the emulation tool for Duo appears to be identical. My design looks the same way on the device as it does in the DevTools. It makes building and designing for a dual-screen device just as easy as developing for desktop and single screen mobile devices.</p>
+
+<p>If you are on a desktop or a device that doesn’t support these APIs, there is a <a href="https://github.com/foldable-devices/viewportsegments-polyfill">polyfill available for the Visual Viewport segments property</a>. There is no API for the CSS Media Queries. Currently, the dual-screen devices on the market are Android-based, and these APIs are planned to be in Chromium-based browsers which are available on Android.</p>
+
+<p>If a browser on a foldable device doesn’t support these features, you can either use the polyfill or ensure your website still renders well on a small single screen, as the user has the flexibility to choose how to display a website on a dual-screen device. They can span a website across both displays, or they can choose to have it span across one display, and if they choose the latter, it will display as it would on a tablet or phone with a single screen. Even if your website doesn’t have a dual-screen implementation, users can still opt for the single display view. The dual-screen APIs offer a way to progressively enhance the experience for users who have the devices.</p>
+
+<h2 id="closing">Closing</h2>
+
+<p>Dual-screen devices are just the next evolution in responsive design. If you have a PWA or website, the APIs available make integrating into your existing code base seamless. There are also other ways to build apps for dual-screen devices, which you can check out on the <a href="https://docs.microsoft.com/en-us/dual-screen/">Surface Duo documentation</a>. It’s an exciting time for layout on the web, and dual screens provide an opportunity to get even more creative.</p>
+
+<h3 id="further-resources">Further Resources</h3>
+
+<ul>
+<li>“<a href="https://docs.microsoft.com/en-us/dual-screen/web/">Dual-Screen Web Experiences</a>,” Microsoft</li>
+<li>“<a href="https://www.w3.org/TR/mediaqueries-5/#mf-horizontal-viewport-segments">Horizontal Viewport Segments: The <code>horizontal-viewport-segments</code> Feature</a>,” Media Queries Level 5, W3C Working Draft (Dec. 2021)</li>
+<li>“<a href="https://drafts.csswg.org/css-env-1/#viewport-segments">Viewport Segment Variables</a>,” CSS Environment Variables Module Level 1, Editor’s Draft (Aug. 2021)</li>
+<li>“<a href="https://wicg.github.io/visual-viewport/">Visual Viewport API</a>,” Draft Community Group Report (Feb. 2022)</li>
+</ul>
+
+<div class="signature">
+  <img src="https://www.smashingmagazine.com/images/logo/logo--red.png" alt="Smashing Editorial" width="35" height="46" loading="lazy" decoding="async" />
+  <span>(vf, yk, il)</span>
+</div>
+
+
+
+						
+							<div class="category__related--alt">
+								<span class="italic grey mrs mbm block">Explore more on</span>
+								<nav class="subnav ib" role="navigation">
+									<ul class="subnav__primary subnav__subtags flex flex-wrap">
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/css">CSS</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/css-grid">CSS Grid</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/browsers">Browsers</a></li>
+									
+											<li class="subnav-item subnav-item--green"><a class="nav-item-link" href="/category/responsive-web-design">Responsive Web Design</a></li>
+									
+									</ul>
+								</nav>
+							</div>
+      			
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <link href="/css/non-critical-article-manual-felix.css" media="print" onload="this.media='all'" rel="stylesheet">
+      <link href="/css/article-dark-mode-v3.css" media="(prefers-color-scheme: dark)" rel="stylesheet">
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+      
+  <div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience="non-subscriber" data-remove="true" data-amount="1"></div>
+
+
+
+      
+        <div id="sponsors-article-end" data-impression="true" class="c-promo-box c-promo-box--ad c-promo-box--wide sponsors sponsors__row hidden sponsors__external" data-audience="non-subscriber" data-remove="true"></div>
+      
+
+			
+				<div id="promo-article-end hidden">
+					
+						
+
+<div class="book-grid">
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/the-smashing-newsletter/"><img loading="lazy" width="202" height="266" src="/images/smashing-cat/cat-in-a-chair--tall.svg" alt="Smashing Newsletter"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/the-smashing-newsletter/">
+				Smashing Newsletter
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Tips on front-end &amp; UX, delivered weekly in your inbox. Just the things you can actually use.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="https://www.smashingconf.com/online-workshops/"><img loading="lazy" width="202" height="266" src="https://www.smashingmagazine.com/images/smashing-cat/cat-explorer.svg" alt="Front-End &amp; UX Workshops, Online"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="https://www.smashingconf.com/online-workshops/">
+				Front-End &amp; UX Workshops, Online
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			With practical takeaways, live sessions, video recordings and a friendly Q&amp;A.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+		
+			
+<figure class="book--featured">
+	<div class="book--featured__image">
+		<a data-instant href="/printed-books/"><img loading="lazy" width="202" height="266" src="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c2f2c6d6-4e85-449a-99f5-58bd053bc846/typescript-shop-cover-opt.png" alt="TypeScript in 50 Lessons"/></a>
+	</div>
+	<figcaption>
+		<h4 class="book--featured__title">
+			<a href="/printed-books/">
+				TypeScript in 50 Lessons
+			</a>
+		</h4>
+		<p class="book--featured__desc">
+			Everything TypeScript, with code walkthroughs and examples. And other printed books.
+		</p>
+	</figcaption>
+</figure>
+
+
+
+		
+	
+</div>
+
+
+
+					
+				</div>
+			
+
+      
+        <div data-component="CommentsArea" id="comments-building-web-layouts-dual-screen-foldable-devices" data-thread="/2022/03/building-web-layouts-dual-screen-foldable-devices/" data-date="2022-03-03 10:30:00 &#43;0000 UTC"></div>
+
+      
+
+    </div>
+  </article>
+
+    </main>
+
+		
+			
+				
+				
+				<div data-component="CookieBanner"></div>
+
+  <div id="cart" class="cart-wrapper" data-component="MiniCart"></div>
+
+
+<footer class="main-footer">
+  <div class="container">
+
+    <div class="col-12">
+      <div class="footer__topics open">
+    <h4 class="footer__topics__title" id="topics">Browse All Smashing Magazine Topics</h4>
+    <ul class="footer__topics__list">
+      
+        <li class="footer__topics__item">
+            <a href="/category/accessibility">Accessibility</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/android">Android</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/animation">Animation</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/apps">Apps</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/css">CSS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design">Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-patterns">Design Patterns</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/design-systems">Design Systems</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/e-commerce">E-Commerce</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/freebies">Freebies</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/graphics">Graphics</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/html">HTML</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/illustrator">Illustrator</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/inspiration">Inspiration</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ios">iOS</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/javascript">JavaScript</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/mobile">Mobile</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/pattern-libraries">Pattern Libraries</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/performance">Performance</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/photoshop">Photoshop</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/plugins">Plugins</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/react">React</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/responsive-design">Responsive Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/service-workers">Service Workers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/sketch">Sketch</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/typography">Typography</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/ui">UI</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/usability">Usability</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/user-experience">User Experience</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wallpapers">Wallpapers</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/web-design">Web Design</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/wordpress">WordPress</a>
+        </li>
+      
+        <li class="footer__topics__item">
+            <a href="/category/workflow">Workflow</a>
+        </li>
+      
+    </ul>
+</div>
+
+    </div>
+
+    <div class="col-12">
+      <div class="footer__notes">
+        <p>With a commitment to quality content for the design community.</p>
+        <p>Founded by Vitaly Friedman and Sven Lennartz. <span class="lining-figures">2006–2022</span>.</p>
+        <p>Smashing is proudly running on <a href="https://www.netlify.com/?utm_source=link&utm_medium=parter&utm_campaign=sm-footer">Netlify</a>.</p>
+        <p>Fonts by <a href="http://latinotype.com/">Latinotype</a>.</p>
+      </div>
+
+      <ul class="footer__links">
+        <li>&#9998; <a href="/write-for-us/">Write for us</a>
+        </li>
+        <li>
+          <a href="/contact/">Contact us</a>
+        </li>
+        <li>
+          <a href="/about/">About us (Impressum)</a>
+        </li>
+        <li>
+          <a href="/privacy-policy/">Privacy policy</a>
+        </li>
+        <li>
+          <a href="/auth/">Membership login</a>
+        </li>
+        <li>
+            <a href="/delivery-times/">Delivery times</a>
+          </li>
+            <li>
+          <a href="mailto:&#097;&#100;&#118;&#101;&#114;&#116;&#105;&#115;&#105;&#110;&#103;&#064;&#115;&#109;&#097;&#115;&#104;&#105;&#110;&#103;&#109;&#097;&#103;&#097;&#122;&#105;&#110;&#101;&#046;&#099;&#111;&#109;?subject=Let’s talk about advertising">Advertise</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  
+<div class="back-to-top-wrapper" id="back_top">
+	<a href="#top" data-scroll="#top" class="back-to-top" title="Back to top">
+		<svg viewBox="0 0 100 100" width="25px" height="25px" tabindex="-1" role="img" aria-labelledby="title">
+			<title id="title">Back to top</title>
+			<path d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"></path>
+			<image src="/images/back-to-top-arrow.png" alt="Back to top arrow" xlink:href="" width="100%" height="100%"></image>
+		</svg>
+	</a>
+</div>
+
+
+</footer>
+
+<div data-handler="PostLoad"></div>
+
+<script delay="/js/app.js" defer importance="low"></script>
+<script>
+  
+  window.PRERELEASES = {}
+  window.PAGE_TYPE = "articles"
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+    
+			
+			
+    
+  
+
+  if ('serviceWorker' in navigator && !localStorage.getItem('no_sw')) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => {
+          window.caches
+            .open('smashing-mag-offline-articles')
+            .then(cache => cache.keys())
+            .then(keys => {
+              var savedOffline = document.querySelector('.meta-box--article')
+              if (savedOffline && keys && keys.length) {
+                var currentPageSaved = keys.find(key =>  key.url === window.location.href)
+              }
+
+              var list = document.querySelector('.offline-articles-list')
+              if (list && keys && keys.length) {
+                var listItem = document.createElement('li')
+
+                var innerList = keys
+                  .map(function(key) {
+                    return (
+                      '<li><a href="' + key.url + '">' + key.url + '</a></li>'
+                    )
+                  })
+                  .join('')
+                listItem.innerHTML =
+                  'Recently viewed aritcles: <ul>' + innerList + '</ul>'
+                list.appendChild(listItem)
+              }
+            })
+        })
+        .catch(function(err) {
+          console.error('Failed to load service worker')
+        })
+    })
+  }
+</script>
+
+<div hidden>
+
+
+</div>
+
+<link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+
+
+
+<script class="js-additional" importance="low" delay="/js/instantpage.js" type="module" defer></script>
+<script class="js-additional" importance="low" delay="/js/ga.js" defer></script>
+<script class="js-additional" importance="low" delay="https://www.google-analytics.com/analytics.js" defer></script>
+<script class="js-additional" importance="low" type="module" delay="/js/web-vitals-tracking.js"></script>
+
+<script>const autoLoadDuration=5,eventList=["keydown","mousemove","wheel","touchmove","touchstart","touchend"],autoLoadTimeout=setTimeout(runScripts,5e3);function triggerScripts(){runScripts(),clearTimeout(autoLoadTimeout),eventList.forEach(function(t){window.removeEventListener(t,triggerScripts,{passive:!0})})}function runScripts(){document.querySelectorAll("script[delay]").forEach(function(t){t.setAttribute("src",t.getAttribute("delay"))})}eventList.forEach(function(t){window.addEventListener(t,triggerScripts,{passive:!0})});</script>
+			
+		
+
+  </body>
+</html>
