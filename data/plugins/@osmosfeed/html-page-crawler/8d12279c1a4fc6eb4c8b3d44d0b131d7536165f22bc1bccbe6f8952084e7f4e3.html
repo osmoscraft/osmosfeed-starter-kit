@@ -1,0 +1,408 @@
+
+
+<!doctype html>
+<html lang="en-US">
+<head data-template-path="https://hacks.mozilla.org/wp-content/themes/Hax">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="w2ocEMd5yV9IsGCjhq-7ls67r4VH-Ob6oWdiZpqjN8U">
+
+  
+  <meta name="title" content="Training efficient neural network models for Firefox Translations – Mozilla Hacks - the Web developer blog">
+
+    <meta property="og:site_name" content="Mozilla Hacks &#8211; the Web developer blog">
+  <meta property="og:url" content="https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations">
+  <meta property="og:title" content="Training efficient neural network models for Firefox Translations – Mozilla Hacks - the Web developer blog">
+  <meta property="og:description" content="The Firefox Translations web extension utilizes proceedings of project Bergamot and brings local translations to Firefox.">
+  <meta property="og:image" content="https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM.png">
+  <meta property="og:image:width" content="4914">
+  <meta property="og:image:height" content="2422">
+
+    <meta property="twitter:title" content="Training efficient neural network models for Firefox Translations – Mozilla Hacks - the Web developer blog">
+  <meta property="twitter:description" content="The Firefox Translations web extension utilizes proceedings of project Bergamot and brings local translations to Firefox.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM.png">
+  <meta name="twitter:site" content="@mozhacks">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
+
+  <script type="text/javascript">
+    window.hacks = {};
+    // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+    var removeUtms  =   function(){
+        var l = window.location;
+        if( l.hash.indexOf( "utm" ) != -1 ){
+            var anchor = l.hash.match(/#(?!utm)[^&]+/);
+            anchor  =   anchor? anchor[0]: '';
+            if(!anchor && window.history.replaceState){
+                history.replaceState({},'', l.pathname + l.search);
+            } else {
+                l.hash = anchor;
+            }
+        };
+    };
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35433268-8'],
+              ['_setAllowAnchor', true]);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push( removeUtms );
+    (function(d, k) {
+      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
+    })(document, 'script');
+  </script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="blog-name" content="Mozilla Hacks - the Web developer blog" />
+<link rel="alternate" hreflang="en" href="https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/" />
+<link rel="alternate" hreflang="x-default" href="https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v18.8 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Training efficient neural network models for Firefox Translations - Mozilla Hacks - the Web developer blog</title>
+	<meta name="description" content="The Firefox Translations web extension utilizes proceedings of project Bergamot and brings local translations to Firefox." />
+	<link rel="canonical" href="https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Evgeny Pavlov" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="10 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://hacks.mozilla.org/#website","url":"https://hacks.mozilla.org/","name":"Mozilla Hacks - the Web developer blog","description":"hacks.mozilla.org","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://hacks.mozilla.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/#primaryimage","url":"https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM.png","contentUrl":"https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM.png","width":4914,"height":2422,"caption":"Training pipeline represented as a DAG"},{"@type":"WebPage","@id":"https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/#webpage","url":"https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/","name":"Training efficient neural network models for Firefox Translations - Mozilla Hacks - the Web developer blog","isPartOf":{"@id":"https://hacks.mozilla.org/#website"},"primaryImageOfPage":{"@id":"https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/#primaryimage"},"datePublished":"2022-06-07T15:25:47+00:00","dateModified":"2022-06-08T16:05:23+00:00","author":{"@id":"https://hacks.mozilla.org/#/schema/person/b9b85e455f353591b7e89b64d2bfdc68"},"description":"The Firefox Translations web extension utilizes proceedings of project Bergamot and brings local translations to Firefox.","breadcrumb":{"@id":"https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/"]}]},{"@type":"BreadcrumbList","@id":"https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hacks.mozilla.org/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://hacks.mozilla.org/articles/"},{"@type":"ListItem","position":3,"name":"Training efficient neural network models for Firefox Translations"}]},{"@type":"Person","@id":"https://hacks.mozilla.org/#/schema/person/b9b85e455f353591b7e89b64d2bfdc68","name":"Evgeny Pavlov","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://hacks.mozilla.org/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/66197b1a2b0ef180ae3097c5b02736c8?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/66197b1a2b0ef180ae3097c5b02736c8?s=96&d=mm&r=g","caption":"Evgeny Pavlov"},"description":"Evgeny is a Senior Software Engineer at Mozilla, working on Applied Machine Learning projects.","sameAs":["https://evgeny.ai"],"url":"https://hacks.mozilla.org/author/epavlovmozilla-com/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//blog.mozilla.org' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Feed" href="https://hacks.mozilla.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Comments Feed" href="https://hacks.mozilla.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Training efficient neural network models for Firefox Translations Comments Feed" href="https://hacks.mozilla.org/2022/06/training-efficient-neural-network-models-for-firefox-translations/feed/" />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='wpml-legacy-post-translations-0-css'  href='//blog.mozilla.org/hacks/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-post-translations/style.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/fc-checkcomment.js?ver=5.9.3' id='checkcomments-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/analytics.js?ver=5.9.3' id='analytics-js'></script>
+<link rel="https://api.w.org/" href="https://hacks.mozilla.org/wp-json/" /><link rel="alternate" type="application/json" href="https://hacks.mozilla.org/wp-json/wp/v2/posts/47809" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hacks.mozilla.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://hacks.mozilla.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='shortlink' href='https://hacks.mozilla.org/?p=47809' />
+<link rel="alternate" type="application/json+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2022%2F06%2Ftraining-efficient-neural-network-models-for-firefox-translations%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2022%2F06%2Ftraining-efficient-neural-network-models-for-firefox-translations%2F&#038;format=xml" />
+<meta name="generator" content="WPML ver:4.5.6 stt:59,61,1,2;" />
+<link rel="shortcut icon" type="image/x-icon" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" /><style>#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}li#wp-admin-bar-site-name a { background: url( "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }
+</style></head>
+<body>
+  <div class="outer-wrapper">
+    <header class="section section--fullwidth header">
+      <div class="masthead row">
+        <div class="branding block block--3">
+          <h1>
+            <a href="https://hacks.mozilla.org">
+              <img class="branding__logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
+        </div>
+        <div class="search block block--2">
+          <form class="search__form" method="get" action="https://hacks.mozilla.org/">
+            <input type="search" name="s" class="search__input" placeholder="Search Mozilla Hacks" value="">
+            <i class="fa fa-search search__badge"></i>
+          </form>
+        </div>
+        <nav class="social">
+          <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i><span>Hacks on YouTube</span></a>
+          <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>@mozhacks on Twitter</span></a>
+          <a class="social__link rss" href="https://hacks.mozilla.org/feed/" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><span>Hacks RSS Feed</span></a>
+          <a class="fx-button" href="https://www.mozilla.org/firefox/download/thanks/?utm_source=hacks.mozilla.org&utm_medium=referral&utm_campaign=header-download-button&utm_content=header-download-button">Download Firefox</a>
+        </nav>
+      </div>
+    </header>
+
+  
+<div id="content-head" class="section">
+  <h1 class="post__title">Training efficient neural network models for Firefox Translations</h1>
+  <div class="byline">
+    <h3 class="post__author">
+                      <img alt='' src='https://secure.gravatar.com/avatar/66197b1a2b0ef180ae3097c5b02736c8?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/66197b1a2b0ef180ae3097c5b02736c8?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>        By
+                                        <a class="url" href="https://evgeny.ai" rel="external me">Evgeny Pavlov</a>                            </h2>
+    <div class="post__meta">
+      Posted on
+      <abbr class="published" title="2022-06-07T08:25:47-07:00">
+        June 7, 2022      </abbr>
+      <span class="entry-cat">in
+        <a href="https://hacks.mozilla.org/category/featured/" rel="category tag" title="View all posts in Featured Article" >Featured Article</a>, <a href="https://hacks.mozilla.org/category/firefox/" rel="category tag" title="View all posts in Firefox" >Firefox</a>,  and <a href="https://hacks.mozilla.org/category/machine-translation/" rel="category tag" title="View all posts in Machine Translation" >Machine Translation</a>      </span>
+            <div class="socialshare" data-type="bubbles"></div>
+    </div>
+  </div>
+</div>
+
+<main id="content-main" class="section article">
+  <article class="post" role="article">
+    <p>Machine Translation is an important tool for expanding the accessibility of web content. Usually, people use cloud providers to translate web pages. State-of-the-art Neural Machine Translation (NMT) models are large and often require specialized hardware like GPUs to run inference in real-time.</p>
+<p>If people were able to run a compact Machine Translation (MT) model on their local machine CPU without sacrificing translation accuracy it would help to preserve privacy and reduce costs.</p>
+<p>The Bergamot <a href="https://browser.mt/" target="_blank" rel="noopener">project</a> is a collaboration between Mozilla, the University of Edinburgh, Charles University in Prague, the University of Sheffield, and the University of Tartu with funding from the European Union’s Horizon 2020 research and innovation programme. It brings MT to the local environment, providing small, high-quality, CPU optimized NMT models. <a href="https://github.com/mozilla/firefox-translations" target="_blank" rel="noopener">The Firefox Translations web extension</a> utilizes proceedings of project Bergamot and brings local translations to Firefox.</p>
+<p>In this article, we will discuss the components used to train our efficient NMT models. The project is open-source, so you can give it a try and train your model too!</p>
+<h2><b>Architecture</b></h2>
+<p>NMT models are trained as language pairs, translating from language A to language B. The <a href="https://github.com/mozilla/firefox-translations-training" target="_blank" rel="noopener">training pipeline</a> was designed to train translation models for a language pair end-to-end, from environment configuration to exporting the ready-to-use models. The pipeline run is completely reproducible given the same code, hardware and configuration files.</p>
+<p>The complexity of the pipeline comes from the requirement to produce an efficient model. We use Teacher-Student distillation to compress a high-quality but resource-intensive teacher model into an efficient CPU-optimized student model that still has good translation quality. We explain this further in the Compression section.</p>
+<p>The pipeline includes many steps: compiling of components, downloading and cleaning datasets, training teacher, student and backward models, decoding, quantization, evaluation etc (more details below). The pipeline can be represented as a Directly Acyclic Graph (DAG).</p>
+<p>&nbsp;</p>
+<p><img class="aligncenter wp-image-47810" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM-500x246.png" alt="Firfox Translation training pipeline DAG" width="591" height="291" srcset="https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM-500x246.png 500w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM-250x123.png 250w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM-768x379.png 768w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM-1536x757.png 1536w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-5.20.04-PM-2048x1009.png 2048w" sizes="(max-width: 591px) 100vw, 591px" /></p>
+<p>The workflow is file-based and employs self-sufficient scripts that use data on disk as input, and write intermediate and output results back to disk.</p>
+<p>We use the Marian Neural Machine Translation engine. It is written in C++ and designed to be fast. The engine is open-sourced and used by many universities and companies, including Microsoft.</p>
+<h2><b>Training a quality model</b></h2>
+<p>The first task of the pipeline is to train a high-quality model that will be compressed later. The main challenge at this stage is to find a good parallel corpus that contains translations of the same sentences in both source and target languages and then apply appropriate cleaning procedures.</p>
+<h3><b>Datasets</b></h3>
+<p>It turned out there are many open-source parallel datasets for machine translation available on the internet. The most interesting project that aggregates such datasets is <a href="https://opus.nlpl.eu/" target="_blank" rel="noopener">OPUS</a>. The Annual Conference on Machine Translation also collects and distributes some datasets for competitions, for example, <a href="https://www.statmt.org/wmt21/translation-task.html#download" target="_blank" rel="noopener">WMT21 Machine Translation of News</a>. Another great source of MT corpus is the <a href="https://paracrawl.eu/" target="_blank" rel="noopener">Paracrawl</a> project.</p>
+<p>OPUS dataset search interface:</p>
+<p><img loading="lazy" class="aligncenter wp-image-47814" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/04/Screen-Shot-2022-04-20-at-6.04.13-PM-500x403.png" alt="OPUS dataset search interface" width="591" height="476" srcset="https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-6.04.13-PM-500x403.png 500w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-6.04.13-PM-250x202.png 250w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-6.04.13-PM-768x619.png 768w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-6.04.13-PM-1536x1238.png 1536w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-20-at-6.04.13-PM.png 1992w" sizes="(max-width: 591px) 100vw, 591px" /></p>
+<p>It is possible to use any dataset on disk, but automating dataset downloading from Open source resources makes adding new language pairs easy, and whenever the data set is expanded we can then easily retrain the model to take advantage of the additional data. Make sure to check the licenses of the open-source datasets before usage.</p>
+<h3><b>Data cleaning</b></h3>
+<p>Most open-source datasets are somewhat noisy. Good examples are crawled websites and translation of subtitles. Texts from websites can be poor-quality automatic translations or contain unexpected HTML, and subtitles are often free-form translations that change the meaning of the text.</p>
+<p>It is well known in the world of Machine Learning (ML) that if we feed garbage into the model we get garbage as a result. Dataset cleaning is probably the most crucial step in the pipeline to achieving good quality.</p>
+<p>We employ some basic cleaning techniques that work for most datasets like removing too short or too long sentences and filtering the ones with an unrealistic source to target length ratio. We also use <a href="https://github.com/bitextor/bicleaner" target="_blank" rel="noopener">bicleaner</a>, a pre-trained ML classifier that attempts to indicate whether the training example in a dataset is a reversible translation. We can then remove low-scoring translation pairs that may be incorrect or otherwise add unwanted noise.</p>
+<p>Automation is necessary when your training set is large. However, it is always recommended to look at your data manually in order to tune the cleaning thresholds and add dataset-specific fixes to get the best quality.</p>
+<h3><b>Data augmentation</b></h3>
+<p>There are more than 7000 languages spoken in the world and most of them are classified as low-resource for our purposes, meaning there is little parallel corpus data available for training. In these cases, we use a popular data augmentation strategy called back-translation.</p>
+<p>Back-translation is a technique to increase the amount of training data available by adding synthetic translations. We get these synthetic examples by training a translation model from the target language to the source language. Then we use it to translate monolingual data from the target language into the source language, creating synthetic examples that are added to the training data for the model we actually want, from the source language to the target language.</p>
+<h3><b>The model</b></h3>
+<p>Finally, when we have a clean parallel corpus we train a big transformer model to reach the best quality we can.</p>
+<p>Once the model converges on the augmented dataset, we fine-tune it on the original parallel corpus that doesn’t include synthetic examples from back-translation to further improve quality.</p>
+<h2><b>Compression</b></h2>
+<p>The trained model can be 800Mb or more in size depending on configuration and requires significant computing power to perform translation (decoding). At this point, it’s generally executed on GPUs and not practical to run on most consumer laptops. In the next steps we will prepare a model that works efficiently on consumer CPUs.</p>
+<h3><b>Knowledge distillation</b></h3>
+<p>The main technique we use for compression is Teacher-Student Knowledge Distillation. The idea is to decode a lot of text from the source language into the target language using the heavy model we trained (Teacher) and then train a much smaller model with fewer parameters (Student) on these synthetic translations. The student is supposed to imitate the teacher’s behavior and demonstrate similar translation quality despite being significantly faster and more compact.</p>
+<p>We also augment the parallel corpus data with monolingual data in the source language for decoding. This improves the student by providing additional training examples of the teacher&#8217;s behavior.</p>
+<h3><b>Ensemble</b></h3>
+<p>Another trick is to use not just one teacher but an ensemble of 2-4 teachers independently trained on the same parallel corpus. It can boost quality a little bit at the cost of having to train more teachers. The pipeline supports training and decoding with an ensemble of teachers.</p>
+<h3><b>Quantization</b></h3>
+<p>One more popular technique for model compression is quantization. We use 8-bit quantization which essentially means that we store weights of the neural net as int8 instead of float32. It saves space and speeds up matrix multiplication on inference.</p>
+<h3><b>Other tricks</b></h3>
+<p>Other features worth mentioning but beyond the scope of this already lengthy article are the specialized Neural Network architecture of the student model, half-precision decoding by the teacher model to speed it up, lexical shortlists, training of word alignments, and finetuning of the quantized student.</p>
+<p>Yes, it’s a lot! Now you can see why we wanted to have an end-to-end pipeline.</p>
+<h2><b>How to learn more</b></h2>
+<p>This work is based on a lot of research. If you are interested in the science behind the training pipeline, check out reference publications listed <a href="https://github.com/mozilla/firefox-translations-training#references" target="_blank" rel="noopener">in the training pipeline repository README</a> and <a href="https://browser.mt/publications" target="_blank" rel="noopener">across the wider Bergamot project</a>. <a href="https://aclanthology.org/2020.ngt-1.26/" target="_blank" rel="noopener">Edinburgh&#8217;s Submissions to the 2020 Machine Translation Efficiency Task</a> is a good academic starting article. Check <a href="https://nbogoychev.com/efficient-machine-translation/" target="_blank" rel="noopener">this tutorial</a> by Nikolay Bogoychev for a more practical and operational explanation of the steps.</p>
+<h2><b>Results</b></h2>
+<p>The final student model is 47 times smaller and 37 times faster than the original teacher model and has only a small quality decrease!</p>
+<p>Benchmarks for en-pt model and Flores dataset:</p>
+<table style="table-layout: fixed; width: 100%;">
+<tbody>
+<tr>
+<td><b>Model</b></td>
+<td><b>Size</b></td>
+<td><b>Total number of parameters</b></td>
+<td><b>Dataset decoding time on 1 CPU core</b></td>
+<td><b>Quality, BLEU</b></td>
+</tr>
+<tr>
+<td>Teacher</td>
+<td>798Mb</td>
+<td>192.75M</td>
+<td>631s</td>
+<td>52.5</td>
+</tr>
+<tr>
+<td>Student quantized</td>
+<td>17Mb</td>
+<td>15.7M</td>
+<td>17.9s</td>
+<td>50.7</td>
+</tr>
+</tbody>
+</table>
+<p>We evaluate results using MT standard <a href="https://en.wikipedia.org/wiki/BLEU" target="_blank" rel="noopener">BLEU scores</a> that essentially represent how similar translated and reference texts are. This method is not perfect but it has been shown that BLEU scores correlate well with human judgment of translation quality.</p>
+<p>We have a <a href="https://github.com/mozilla/firefox-translations-models" target="_blank" rel="noopener">GitHub repository</a> with all the trained models and <a href="https://github.com/mozilla/firefox-translations-models/blob/main/evaluation/prod/results.md" target="_blank" rel="noopener">evaluation results</a> where we compare the accuracy of our models to popular APIs of cloud providers. We can see that some models perform similarly, or even outperform, the cloud providers which is a great result taking into account our model’s efficiency, reproducibility and open-source nature.</p>
+<p>For example, here you can see evaluation results for the English to Portuguese model trained by Mozilla using open-source data only.</p>
+<p><img loading="lazy" class="alignnone wp-image-47818" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/04/Screen-Shot-2022-04-22-at-1.28.56-PM.png" alt="Evaluation results en-pt" width="591" height="476" srcset="https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-22-at-1.28.56-PM.png 2066w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-22-at-1.28.56-PM-250x201.png 250w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-22-at-1.28.56-PM-500x403.png 500w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-22-at-1.28.56-PM-768x619.png 768w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-22-at-1.28.56-PM-1536x1237.png 1536w, https://hacks.mozilla.org/files/2022/04/Screen-Shot-2022-04-22-at-1.28.56-PM-2048x1650.png 2048w" sizes="(max-width: 591px) 100vw, 591px" /></p>
+<p>Anyone can train models and contribute them to our repo. Those contributions can be used in the <a href="https://github.com/mozilla/firefox-translations" target="_blank" rel="noopener">Firefox Translations web extension</a> and other places (see below).</p>
+<h2><b>Scaling</b></h2>
+<p>It is of course possible to run the whole pipeline on one machine, though it may take a while. Some steps of the pipeline are CPU bound and difficult to parallelize, while other steps can be offloaded to multiple GPUs. Most of the official models in the repository were trained on machines with 8 GPUs. A few steps, like teacher decoding during knowledge distillation, can take days even on well-resourced single machines. So to speed things up, we added cluster support to be able to spread different steps of the pipeline over multiple nodes.</p>
+<h3><b>Workflow manager</b></h3>
+<p>To manage this complexity we chose <a href="https://snakemake.github.io/" target="_blank" rel="noopener">Snakemake</a> which is very popular in the bioinformatics community. It uses file-based workflows, allows specifying step dependencies in Python, supports containerization and integration with different cluster software. We considered alternative solutions that focus on job scheduling, but ultimately chose Snakemake because it was more ergonomic for one-run experimentation workflows.</p>
+<p>Example of a Snakemake rule (dependencies between rules are inferred implicitly):</p>
+<pre><code class="js">rule train_teacher:
+    message: "Training teacher on all data"
+    log: f"{log_dir}/train_teacher{{ens}}.log"
+    conda: "envs/base.yml"
+    threads: gpus_num*2
+    resources: gpu=gpus_num
+    input:
+        rules.merge_devset.output, 
+        train_src=f'{teacher_corpus}.{src}.gz',
+        train_trg=f'{teacher_corpus}.{trg}.gz',
+        bin=ancient(trainer), 
+        vocab=vocab_path
+    output: model=f'{teacher_base_dir}{{ens}}/{best_model}'
+    params: 
+        prefix_train=teacher_corpus, 
+        prefix_test=f"{original}/devset", 
+        dir=directory(f'{teacher_base_dir}{{ens}}'),
+        args=get_args("training-teacher-base")
+    shell: '''bash pipeline/train/train.sh \
+                teacher train {src} {trg} "{params.prefix_train}" \
+                "{params.prefix_test}" "{params.dir}" \
+                "{input.vocab}" {params.args} &gt;&gt; {log} 2&gt;&amp;1'''</code></pre>
+<h3><b>Cluster support</b></h3>
+<p>To parallelize workflow steps across cluster nodes we use <a href="https://slurm.schedmd.com/">Slurm</a> resource manager. It is relatively simple to operate, fits well for high-performance experimentation workflows, and supports Singularity containers for easier reproducibility. Slurm is also the most popular cluster manager for High-Performance Computers (HPC) used for model training in academia, and most of the consortium partners were already using or familiar with it.</p>
+<h2><b>How to start training</b></h2>
+<p>The workflow is quite resource-intensive, so you’ll need a pretty good server machine or even a cluster. We recommend using 4-8 Nvidia 2080-equivalent or better GPUs per machine.</p>
+<p>Clone <a href="https://github.com/mozilla/firefox-translations-training" target="_blank" rel="noopener">https://github.com/mozilla/firefox-translations-training</a> and follow the instructions in the <a href="https://github.com/mozilla/firefox-translations-training/blob/main/README.md" target="_blank" rel="noopener">readme</a> for configuration.</p>
+<p>The most important part is to find parallel datasets and properly configure settings based on your available data and hardware. You can learn more about this in the readme.</p>
+<h2><b>How to use the existing models</b></h2>
+<p>The existing models are shipped with the <a href="https://github.com/mozilla/firefox-translations" target="_blank" rel="noopener">Firefox Translations web extension</a>, enabling users to translate web pages in Firefox. The models are downloaded to a local machine on demand. The web extension uses these models with the<a href="https://github.com/browsermt/bergamot-translator" target="_blank" rel="noopener"> bergamot-translator</a> Marian wrapper compiled to Web Assembly.</p>
+<p>Also, there is a playground website at <a href="https://mozilla.github.io/translate" target="_blank" rel="noopener">https://mozilla.github.io/translate</a> where you can input text and translate it right away, also locally but served as a static website instead of a browser extension.</p>
+<p>If you are interested in an efficient NMT inference on the server, you can try a prototype <a href="https://github.com/mozilla/translation-service" target="_blank" rel="noopener">HTTP service</a> that uses bergamot-translator natively compiled, instead of compiled to WASM.</p>
+<p>Or follow the build instructions in the <a href="https://github.com/browsermt/bergamot-translator#build-instructions" target="_blank" rel="noopener">bergamot-translator readme</a> to directly use the C++, JavaScript WASM, or Python bindings.</p>
+<h2><b>Conclusion</b></h2>
+<p>It is fascinating how far Machine Translation research has come in recent years. Local high-quality translations are the future and it’s becoming more and more practical for companies and researchers to train such models even without access to proprietary data or large-scale computing power.</p>
+<p>We hope that <a href="https://github.com/mozilla/firefox-translations" target="_blank" rel="noopener">Firefox Translations</a> will set a new standard of privacy-preserving, efficient, open-source machine translation accessible for all.</p>
+<h2><b>Acknowledgements</b></h2>
+<p>I would like to thank all the participants of <a href="https://browser.mt/" target="_blank" rel="noopener">the Bergamot Project</a> for making this technology possible, my teammates Andre Natal and Abhishek Aggarwal for the incredible work they have done bringing Firefox Translations to life, Lonnen for managing the project and editing this blog post and of course awesome Mozilla community for helping with localization of the web-extension and testing its early builds.</p>
+<p><i>This project has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 825303 &#x1f1ea;&#x1f1fa;</i></p>
+    <section class="about">
+                                <h2 class="about__header">About
+                          <a class="url" href="https://evgeny.ai" rel="external me">
+                Evgeny Pavlov              </a>
+                      </h3>
+                      <p>Evgeny is a Senior Software Engineer at Mozilla, working on Applied Machine Learning projects.</p>
+                    <ul class="author-meta fa-ul"><li><i class="fa-li fa fa-globe"></i><a href="https://evgeny.ai" class="website" rel="me">https://evgeny.ai</a></li></ul>            <p><a class="url" href="https://hacks.mozilla.org/author/epavlovmozilla-com/">More articles by Evgeny Pavlov&hellip;</a></p>
+                  </section>
+  </article>
+  <section class="promo">
+    <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+  <h2 class="heading">Discover great resources for web development</h2>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
+  <input id="fmt" name="fmt" value="H" type="hidden">
+  <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
+
+  <div id="newsletterErrors" class="newsletter__errors"></div>
+
+  <div id="newsletterEmail" class="form__row">
+    <label for="newsletterEmailInput" class="offscreen">E-mail</label>
+    <input id="newsletterEmailInput" name="email" class="newsletter__input" required="" placeholder="you@example.com" size="30" type="email">
+  </div>
+
+  <div id="newsletterPrivacy" class="form__row form__fineprint">
+    <input id="newsletterPrivacyInput" name="privacy" required="" type="checkbox">
+    <label for="newsletterPrivacyInput">
+      I'm okay with Mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/">Privacy Policy</a>.
+    </label>
+  </div>
+  <button id="newsletter-submit" type="submit" class="button positive">Sign up now</button>
+</form>
+<div id="newsletterThanks" class="newsletter newsletter--thanks block block--1 block--polite hidden">
+  <h2 class="heading">Thanks! Please check your inbox to confirm your subscription.</h2>
+  <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us.
+  </p>
+</div>
+  </section>
+  
+
+<section class="discussion">
+  <hr class="dino">
+  <div class="comments">
+    <header class="comments__head">
+      <h3>No comments yet</h3>
+    </header>
+
+      </div>
+  <div class="response" id="respond">
+        <form id="comment-form" action="https://hacks.mozilla.org/wp-comments-post.php" method="post">
+        <h3>Post Your Comment</h3>
+        <p id="cancel-comment-reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/2022/06/training-efficient-neural-network-models-for-firefox-translations/#respond" style="display:none;">Cancel Reply</a></p>
+              <div class="field" id="cmt-name">
+          <label for="author">Your name <abbr title="(required)">*</abbr></label>
+          <input type="text" name="author" id="author" size="25" required aria-required='true'>
+        </div>
+        <div class="field" id="cmt-email">
+          <label for="email">Your e-mail <abbr title="(required)">*</abbr></label>
+          <input type="email" name="email" id="email" size="25" required aria-required='true'>
+        </div>
+        <div id="cmt-ackbar">
+          <label for="age">Spam robots, please fill in this field. Humans should leave it blank.</label>
+          <input type="text" name="age" id="age" size="4" tabindex="-1">
+        </div>
+            <div class="field" id="cmt-cmt">
+        <label for="comment">Your comment</label> <textarea name="comment" id="comment" cols="50" rows="10" required="required" aria-required="true"></textarea>
+      </div>
+      <div class="field" id="comment-submit">
+        <button name="submit" type="submit">Submit Comment</button>
+      </div>
+      <input type='hidden' name='comment_post_ID' value='47809' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+      <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="4f5661e051" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="116"/><script>document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></div>
+    </form>
+      </div></section><script>jQuery("#comment-form").submit(function() { return fc_checkform('req'); });</script>
+
+
+</main><!-- /#content-main -->
+
+  
+
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        <p class="block block--1">
+          Except where otherwise noted, content on this site is licensed
+          under the
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
+          or any later version.
+        </p>
+        <img class="footer__logo" alt="the Mozilla dino logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/dino.svg">
+      </div>
+    </footer>
+  </div>
+  <link rel='stylesheet' id='hljstheme-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/styles/solarized-light.css?ver=0.6.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/comment-reply.min.js?ver=5.9.3' id='comment-reply-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.common.pack.js?ver=0.6.2' id='hljs_preload-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.custom.pack.js?ver=0.6.2' id='hljs-js'></script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+  <script>
+    // External links should open in a new tab.
+    (function () {
+      var postLinks = document.querySelectorAll('#content-main a');
+
+      var origin = location.origin;
+
+      for (var i = 0; i < postLinks.length; i++) {
+        var link = postLinks[i];
+        if (link.origin !== origin && !link.getAttribute('target')) {
+          link.setAttribute('target', '_blank');
+        }
+      }
+    })();
+
+    window.addEventListener('load', function () {
+      if (document.querySelector('#newsletterForm')) {
+        var script = document.createElement('script');
+        var path = document.head.getAttribute('data-template-path');
+        script.setAttribute('src', path + '/js/newsletter.js');
+        document.head.appendChild(script);
+      }
+    });
+  </script>
+</body>
+</html>
