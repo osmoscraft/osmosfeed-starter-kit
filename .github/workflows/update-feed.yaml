@@ -27,6 +27,9 @@ jobs:
           node-version: "18"
       - run: npm i
       - run: npm run build
+        env:
+          # The token allows build script to read repo metadata via github API
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           git config --global user.email "no-reply@osmosfeed.org"
           git config --global user.name "osmosfeed bot"
