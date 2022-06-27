@@ -16,12 +16,15 @@ on:
 
 jobs:
   build:
+    # Do not run inside the starter kit template
+    if: ${{ github.repository != 'osmoscraft/osmosfeed-starter-kit' }}
     runs-on: ubuntu-latest
 
     steps:
-      - if: ${{ github.repository != 'osmoscraft/osmosfeed-starter-kit' }}
+      # Create github page on first run. Additional runs have no effect
+      - name: ensure GitNub Pages
         run: |
-          curl --location --request POST 'https://api.github.com/repos/chuanqisun/delete/pages' \
+          curl --location --request POST 'https://api.github.com/repos/${{ github.repository }}/pages' \
           --header 'Accept: application/vnd.github.v3+json' \
           --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
           --header 'Content-Type: application/json' \
