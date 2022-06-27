@@ -2,16 +2,16 @@
    <feed xmlns="http://www.w3.org/2005/Atom">
  
  
-   <title>osmos::feed</title>
+   <title>osmosfeed starter</title>
    <link href="http://localhost"/>
-   <updated>2022-06-27T03:27:30.059Z</updated>
+   <updated>2022-06-27T03:40:04.833Z</updated>
    <id>http://localhost</id>
    <generator uri="https://github.com/osmoscraft/osmosfeed" version="0.0.4">osmosfeed</generator>
  
      <entry>
        <title>Mobile-First CSS: Is It Time for a Rethink?</title>
          <link href="https://alistapart.com/article/mobile-first-css-is-it-time-for-a-rethink/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">The mobile-first design methodology is great—it focuses on what really matters to the user, it’s well-practiced, and it’s been a common design pattern for years. So developing your CSS mobile-first should also be great, too…right? 
  
  
@@ -272,7 +272,7 @@
      <entry>
        <title>Designers, (Re)define Success First</title>
          <link href="https://alistapart.com/article/redefine-success-first/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">About two and a half years ago, I introduced the idea of daily ethical design. It was born out of my frustration with the many obstacles to achieving design that’s usable and equitable; protects people’s privacy, agency, and focus; benefits society; and restores nature. I argued that we need to overcome the inconveniences that prevent us from acting ethically and that we need to elevate design ethics to a more practical level by structurally integrating it into our daily work, processes, and tools.
  
  
@@ -551,7 +551,7 @@
      <entry>
        <title>Breaking Out of the Box</title>
          <link href="https://alistapart.com/article/breaking-out-of-the-box/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">CSS is about styling boxes. In fact, the whole web is made of boxes, from the browser viewport to elements on a page. But every once in a while a new feature comes along that makes us rethink our design approach.
  
  
@@ -1031,7 +1031,7 @@
      <entry>
        <title>How to Sell UX Research with Two Simple Questions</title>
          <link href="https://alistapart.com/article/how-to-sell-ux-research/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Do you find yourself designing screens with only a vague idea of how the things on the screen relate to the things elsewhere in the system? Do you leave stakeholder meetings with unclear directives that often seem to contradict previous conversations? You know a better understanding of user needs would help the team get clear on what you are actually trying to accomplish, but time and budget for research is tight. When it comes to asking for more direct contact with your users, you might feel like poor Oliver Twist, timidly asking, “Please, sir, I want some more.” 
  
  
@@ -1494,7 +1494,7 @@
      <entry>
        <title>A Content Model Is Not a Design System</title>
          <link href="https://alistapart.com/article/a-content-model-is-not-a-design-system/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Do you remember when having a great website was enough? Now, people are getting answers from Siri, Google search snippets, and mobile apps, not just our websites. Forward-thinking organizations have adopted an omnichannel content strategy, whose mission is to reach audiences across multiple digital channels and platforms.
  
  
@@ -1613,7 +1613,7 @@
      <entry>
        <title>Design for Safety, An Excerpt</title>
          <link href="https://alistapart.com/article/design-for-safety-excerpt/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Antiracist economist Kim Crayton says that “intention without strategy is chaos.” We’ve discussed how our biases, assumptions, and inattention toward marginalized and vulnerable groups lead to dangerous and unethical tech—but what, specifically, do we need to do to fix it? The intention to make our tech safer is not enough; we need a strategy.
  
  
@@ -1848,7 +1848,7 @@
      <entry>
        <title>Sustainable Web Design, An Excerpt</title>
          <link href="https://alistapart.com/article/sustainable-web-design-excerpt/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">In the 1950s, many in the elite running community had begun to believe it wasn’t possible to run a mile in less than four minutes. Runners had been attempting it since the late 19th century and were beginning to draw the conclusion that the human body simply wasn’t built for the task. 
  
  
@@ -2031,7 +2031,7 @@
      <entry>
        <title>Voice Content and Usability</title>
          <link href="https://alistapart.com/article/voice-content-and-usability/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">We’ve been having conversations for thousands of years. Whether to convey information, conduct transactions, or simply to check in on one another, people have yammered away, chattering and gesticulating, through spoken conversation for countless generations. Only in the last few millennia have we begun to commit our conversations to writing, and only in the last few decades have we begun to outsource them to the computer, a machine that shows much more affinity for written correspondence than for the slangy vagaries of spoken language.
  
  
@@ -2238,7 +2238,7 @@
      <entry>
        <title>Designing for the Unexpected</title>
          <link href="https://alistapart.com/article/designing-for-the-unexpected/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">I’m not sure when I first heard this quote, but it’s something that has stayed with me over the years. How do you create services for situations you can’t imagine? Or design products that work on devices yet to be invented?
  
  
@@ -2890,7 +2890,7 @@
      <entry>
        <title>Asynchronous Design Critique: Getting Feedback</title>
          <link href="https://alistapart.com/article/asynchronous-design-critique-giving-feedback-part2/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">“Any comment?” is probably one of the worst ways to ask for feedback. It’s vague and open ended, and it doesn’t provide any indication of what we’re looking for. Getting good feedback starts earlier than we might expect: it starts with the request. 
  
  
@@ -3097,7 +3097,7 @@
      <entry>
        <title>Asynchronous Design Critique: Giving Feedback</title>
          <link href="https://alistapart.com/article/async-design-critique-giving-feedback/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Feedback, in whichever form it takes, and whatever it may be called, is one of the most effective soft skills that we have at our disposal to collaboratively get our designs to a better place while growing our own skills and perspectives.
  
  
@@ -3324,7 +3324,7 @@
      <entry>
        <title>That’s Not My Burnout</title>
          <link href="https://alistapart.com/article/thats-not-my-burnout/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Are you like me, reading about people fading away as they burn out, and feeling unable to relate? Do you feel like your feelings are invisible to the world because you’re experiencing burnout differently? When burnout starts to push down on us, our core comes through more. Beautiful, peaceful souls get quieter and fade into that distant and distracted burnout we’ve all read about. But some of us, those with fires always burning on the edges of our core, get hotter. In my heart I am fire. When I face burnout I double down, triple down, burning hotter and hotter to try to best the challenge. I don’t fade—I am engulfed in a zealous burnout. 
  
  
@@ -3559,7 +3559,7 @@
      <entry>
        <title>Beware the Cut ‘n’ Paste Persona</title>
          <link href="https://alistapart.com/article/beware-the-cut-n-paste-persona/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">This Person Does Not Exist is a website that generates human faces with a machine learning algorithm. It takes real portraits and recombines them into fake human faces. We recently scrolled past a LinkedIn post stating that this website could be useful “if you are developing a persona and looking for a photo.” 
  
  
@@ -3826,7 +3826,7 @@
      <entry>
        <title>Immersive Content Strategy</title>
          <link href="https://alistapart.com/article/immersive-content-strategy/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Beyond the severe toll of the coronavirus pandemic, perhaps no other disruption has transformed user experiences quite like how the tethers to our formerly web-biased era of content have frayed. We’re transitioning to a new world of remote work and digital content. We’re also experimenting with unprecedented content channels that, not too long ago, elicited chuckles at the watercooler, like voice interfaces, digital signage, augmented reality, and virtual reality.
  
  
@@ -4117,7 +4117,7 @@
      <entry>
        <title>Do You Need to Localize Your Website?</title>
          <link href="https://alistapart.com/article/do-you-need-to-localize-your-website/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Global markets give you access to new customers. All you need to do is inform potential buyers about your product or service. 
  
  
@@ -4384,7 +4384,7 @@
      <entry>
        <title>Human-Readable JavaScript: A Tale of Two Experts</title>
          <link href="https://alistapart.com/article/human-readable-javascript/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Everyone wants to be an expert. But what does that even mean? Over the years I’ve seen two types of people who are referred to as “experts.” Expert 1 is someone who knows every tool in the language and makes sure to use every bit of it, whether it helps or not. Expert 2 also knows every piece of syntax, but they’re pickier about what they employ to solve problems, considering a number of factors, both code-related and not. 
  
  
@@ -4620,7 +4620,7 @@
      <entry>
        <title>Now THAT’S What I Call Service Worker!</title>
          <link href="https://alistapart.com/article/now-thats-what-i-call-service-worker/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">The Service Worker API is the Dremel of the web platform. It offers incredibly broad utility while also yielding resiliency and better performance. If you’ve not used Service Worker yet—and you couldn’t be blamed if so, as it hasn’t seen wide adoption as of 2020—it goes something like this:
  
  
@@ -5123,7 +5123,7 @@
      <entry>
        <title>Keeping Your Design Mind New and Fresh</title>
          <link href="https://alistapart.com/article/keeping-a-fresh-design-mind/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">“Only a fool knows everything.”— African Proverb
  
  
@@ -5222,7 +5222,7 @@
      <entry>
        <title>How to Get a Dysfunctional Team Back on Track</title>
          <link href="https://alistapart.com/article/dysfunctional-teams-back-on-track/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">Maybe you’ve been part of a team that you’ve seen slowly slide into a rut. You didn’t notice it happen, but you’re now not shipping anything, no one’s talking to each other, and the management’s Eye of Sauron has cast its gaze upon you.
  
  
@@ -5581,7 +5581,7 @@
      <entry>
        <title>The Future of Web Software Is HTML-over-WebSockets</title>
          <link href="https://alistapart.com/article/the-future-of-web-software-is-html-over-websockets/"/>
-       <updated>2022-06-27T03:27:27.182Z</updated>
+       <updated>2022-06-27T03:40:03.575Z</updated>
        <content type="text">The future of web-based software architectures is already taking form, and this time it’s server-rendered (again). Papa’s got a brand new bag: HTML-over-WebSockets and broadcast everything all the time.
  
  
@@ -5808,7 +5808,7 @@
      <entry>
        <title>Faster page loads using server think-time with Early Hints</title>
          <link href="https://developer.chrome.com/en/blog/early-hints/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text"># What is Early Hints?
  Websites have become more sophisticated over time. As such, it&#x27;s not unusual that a server needs to perform non-trivial work (for example, access to databases, or CDNs accessing the origin server) to produce the HTML for the requested page. Unfortunately, this &quot;server think-time&quot; results in extra latency before the browser can start rendering the page. Indeed, the connection effectively goes idle for as long as it takes the server to prepare the response.
  
@@ -5883,7 +5883,7 @@
      <entry>
        <title>Deprecations and removals in Chrome 104</title>
          <link href="https://developer.chrome.com/en/blog/deps-rems-104/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">
  Visit ChromeStatus.com for lists of current deprecations and previous removals.
  
@@ -5931,7 +5931,7 @@
      <entry>
        <title>Attribution Reporting updates in June 2022</title>
          <link href="https://developer.chrome.com/en/blog/attribution-reporting-updates-june-2022/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">The Attribution Reporting proposal is changing for Chrome version 104,
  with new API mechanisms, functionality, and updates to the aggregation service.
  To get the latest information on versions, sign up for Chrome OS release
@@ -6034,7 +6034,7 @@
      <entry>
        <title>New in Chrome 103</title>
          <link href="https://developer.chrome.com/en/blog/new-in-chrome-103/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">
    
  
@@ -6142,7 +6142,7 @@
      <entry>
        <title>New syntax for range media queries in Chrome 104</title>
          <link href="https://developer.chrome.com/en/blog/media-query-range-syntax/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">Media Queries enabled responsive design, and the range features that enable testing the minimum and maximum size of the viewport are used by around 80% of sites that use media queries. The Media Queries Level 4 specification includes a new syntax for these range queries.
  The new syntax has been available in Firefox since Firefox 63, and will be available in Chrome from 104. Let’s take a look at how it can streamline your queries.
  A typical media query testing for a minimum viewport width, would be written as follows:
@@ -6165,7 +6165,7 @@
      <entry>
        <title>What&#x27;s New In DevTools (Chrome 103)</title>
          <link href="https://developer.chrome.com/en/blog/new-in-devtools-103/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">
  Interested in helping improve DevTools? Sign up to participate in Google User Research here.
  
@@ -6814,7 +6814,7 @@
      <entry>
        <title>New in Chrome 102</title>
          <link href="https://developer.chrome.com/en/blog/new-in-chrome-102/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">
    
  
@@ -6907,7 +6907,7 @@
      <entry>
        <title>Generate summary reports with the aggregation service</title>
          <link href="https://developer.chrome.com/en/blog/generate-summary-reports/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">You can now experiment and participate in an origin
  trial for Attribution
  Reporting. There are a number of available developer resources and code samples
@@ -7001,7 +7001,7 @@
      <entry>
        <title>Deprecations and removals in Chrome 103</title>
          <link href="https://developer.chrome.com/en/blog/deps-rems-103/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">
  Visit ChromeStatus.com for lists of current deprecations and previous removals.
  
@@ -7053,7 +7053,7 @@
      <entry>
        <title>Cookies Having Independent State (CHIPS) origin trial extended</title>
          <link href="https://developer.chrome.com/en/blog/chips-origin-trial-extended/"/>
-       <updated>2022-06-27T03:27:26.649Z</updated>
+       <updated>2022-06-27T03:40:03.300Z</updated>
        <content type="text">CHIPS is a Privacy
  Sandbox proposal that introduces a mechanism to opt-in to having third-party
  cookies partitioned by top-level site using a new cookie attribute,
