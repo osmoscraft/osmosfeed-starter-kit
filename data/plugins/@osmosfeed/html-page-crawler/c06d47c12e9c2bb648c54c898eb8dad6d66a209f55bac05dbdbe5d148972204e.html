@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="robots" content="noodp">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, viewport-fit=cover">
+
+    <title>  Non-interactive Elements with the inert attribute | WebKit</title>
+
+    <meta name="application-name" content="WebKit">
+
+    <link rel="stylesheet" type="text/css" href="https://webkit.org/wp-content/themes/webkit/style.css?20200127" media="all">
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?families=SF+Pro,v1" type="text/css">
+    <link rel="stylesheet" href="https://www.apple.com/wss/fonts?families=SF+Mono,v2" type="text/css">
+    <meta name="supported-color-schemes" content="light dark">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="https://webkit.org/feed/">
+    <link rel="alternate" type="text/xml" title="RSS .92" href="https://webkit.org/feed/rss/">
+    <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="https://webkit.org/feed/atom/">
+    <link rel="pingback" href="https://webkit.org/wp/xmlrpc.php">
+
+    <link rel="shortcut icon" sizes="32x32" type="image/x-icon" href="/favicon.ico">
+
+    <meta name='robots' content='max-image-preview:large' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://webkit.org/wp/wp-includes/css/dist/block-library/style.min.css?ver=5.9.3' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://webkit.org/wp/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://webkit.org/wp/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.9.3" />
+<link rel="canonical" href="https://webkit.org/blog/12578/non-interactive-elements-with-the-inert-attribute/" />
+<link rel='shortlink' href='https://webkit.org/?p=12578' />
+<link rel="alternate" type="application/json+oembed" href="https://webkit.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebkit.org%2Fblog%2F12578%2Fnon-interactive-elements-with-the-inert-attribute%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://webkit.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwebkit.org%2Fblog%2F12578%2Fnon-interactive-elements-with-the-inert-attribute%2F&#038;format=xml" />
+
+    <!-- Schema.org markup -->
+    <meta itemprop="name" content="Non-interactive Elements with the inert attribute">
+    <meta itemprop="description" content="Learn how the inert attribute provides an efficient way to hide elements from assistive technology and disable element interactions such as being focused, clicked, edited, or selected.">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:site" content="@webkit">
+    <meta name="twitter:title" content="Non-interactive Elements with the inert attribute">
+    <meta name="twitter:description" content="Learn how the inert attribute provides an efficient way to hide elements from assistive technology and disable element interactions such as being focused, clicked, edited, or selected.">
+    <meta name="twitter:creator" content="@therealntim">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Non-interactive Elements with the inert attribute">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://webkit.org/blog/12578/non-interactive-elements-with-the-inert-attribute/">
+    <meta property="og:description" content="Learn how the inert attribute provides an efficient way to hide elements from assistive technology and disable element interactions such as being focused, clicked, edited, or selected.">
+    <meta property="og:site_name" content="WebKit">
+    <meta property="article:published_time" content="2022-04-26T10:21:18-07:00">
+    <meta property="article:modified_time" content="2022-04-26T16:24:36-07:00">
+    <meta property="article:section" content="Standards">
+    <meta property="fb:admins" content="1085088865">
+<style type="text/css">.jsfiddle {
+    display: block;
+    width: calc(100% + 6rem);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid hsl(0, 0%, 90.6%);
+    border-color: var(--code-border-color);
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-left: -3rem;
+}
+
+.jsfiddle::empty {
+    display: none;
+}
+
+.jsfiddle iframe {
+   display: block;
+}</style><script type="text/javascript">document.addEventListener('DOMContentLoaded', (event) => {
+    let matchMedia = window?.matchMedia('(prefers-color-scheme: dark)');
+    if (typeof matchMedia === undefined) return;
+
+    const figures = document.getElementsByClassName('jsfiddle');
+
+    matchMedia.addEventListener('change', (event) => {
+        for (let figure of figures) {
+            let src = figure.getAttribute('data-url');
+            console.log(src);
+
+            if (matchMedia.matches) 
+                src += 'js,html,css,result/dark/';
+            let script = document.createElement('script');
+            script.setAttribute('async', '');
+            script.setAttribute('src', src);
+            figure.innerHTML = '';
+            figure.appendChild(script);
+        }
+
+    });
+    let changeEvent = new Event('change');
+    matchMedia.dispatchEvent(changeEvent);
+
+});</script></head>
+<body class="post-template-default single single-post postid-12578 single-format-standard">
+    <!-- Copyright © 2020 Apple Inc. All rights reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg">
+	<style> svg { display: block; width: 0; height: 0; } </style>
+    <filter id="invertLightness" x="0" y="0" style="color-interpolation-filters: sRGB">
+        <feColorMatrix type="matrix" in="SourceGraphic" result="red" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1" />
+        <feColorMatrix type="matrix" in="SourceGraphic" result="green" values="0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1" />
+        <feColorMatrix type="matrix" in="SourceGraphic" result="blue" values="0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 1" />
+        <feBlend in="red" in2="green" mode="lighten" result="maxyellow" />
+        <feBlend in="maxyellow" in2="blue" mode="lighten" result="max" />
+        <feBlend in="red" in2="green" mode="darken" result="minyellow" />
+        <feBlend in="minyellow" in2="blue" mode="darken" result="min" />
+        <feComponentTransfer result="adjustment" in="min">
+            <feFuncR type="linear" intercept="1" slope="-1" />
+            <feFuncG type="linear" intercept="1" slope="-1" />
+            <feFuncB type="linear" intercept="1" slope="-1" />
+        </feComponentTransfer>
+        <feComposite operator="arithmetic" in="SourceGraphic" in2="adjustment" k1="0" k2="1" k3="1" k4="-1" result="channelAdjustment" />
+        <feComposite operator="arithmetic" in="channelAdjustment" in2="max" k1="0" k2="1" k3="-1" k4="1" result="finalColors" />
+        <feComposite operator="in" in="finalColors" in2="SourceAlpha" />
+    </filter>
+</svg>    <header aria-label="WebKit.org Header" id="header">
+        <div class="page-width">
+        <a href="/"><div id="logo" class="site-logo">WebKit</div></a>
+        <nav id="site-nav" aria-label="Site Menu">
+<div class="menu-main-menu-container"><input type="checkbox" id="menu-main-menu-toggle" class="menu-toggle" /><label for="menu-main-menu-toggle" class="label-toggle main-menu" data-open="Main Menu" data-close="Close Menu"></label><ul id="menu-main-menu" class="menu" role="menubar"><li id="menu-item-4270" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-4270"><a href="https://webkit.org/blog/" role="menuitem">Blog</a></li>
+<li id="menu-item-6091" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6091"><a href="https://webkit.org/downloads/" role="menuitem">Downloads</a></li>
+<li id="menu-item-4272" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4272"><a href="https://webkit.org/status/" role="menuitem">Feature Status</a></li>
+<li id="menu-item-9988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-9988"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="#nav-sub-menu" role="menuitem" aria-haspopup="true" aria-owns="sub-menu-for-9988" aria-controls="sub-menu-for-9988" aria-expanded="true"><label for="toggle-9988" class="label-toggle">Documentation</label></a>
+<ul class="sub-menu sub-menu-layer" role="menu" id="sub-menu-for-9988">
+	<li id="menu-item-4273" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4273"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="https://webkit.org/reporting-bugs/" role="menuitem">How to Report Bugs</a></li>
+	<li id="menu-item-9989" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9989"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="/web-inspector" role="menuitem">Web Inspector</a></li>
+	<li id="menu-item-10868" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10868"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><a href="https://webkit.org/tracking-prevention/" role="menuitem">Tracking Prevention</a></li>
+</ul>
+</li>
+<li id="menu-item-4274" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4274"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="#nav-sub-menu" role="menuitem" aria-haspopup="true" aria-owns="sub-menu-for-4274" aria-controls="sub-menu-for-4274" aria-expanded="true"><label for="toggle-4274" class="label-toggle">Contribute</label></a>
+<ul class="sub-menu sub-menu-layer" role="menu" id="sub-menu-for-4274">
+	<li id="menu-item-10037" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10037"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/project/" role="menuitem">Project Goals</a></li>
+	<li id="menu-item-4277" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4277"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/getting-started/" role="menuitem">Getting Started</a></li>
+	<li id="menu-item-4284" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4284"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/contributing-code/" role="menuitem">Contributing Code</a></li>
+	<li id="menu-item-4281" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4281"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/testing-contributions/" role="menuitem">Testing Contributions</a></li>
+	<li id="menu-item-4282" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4282"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="https://webkit.org/policy-and-guidelines/" role="menuitem">Policy and Guidelines</a></li>
+	<li id="menu-item-4278" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4278"><input type="checkbox" id="toggle-9988" class="menu-toggle" /><input type="checkbox" id="toggle-4274" class="menu-toggle" /><a href="http://trac.webkit.org" role="menuitem">Trac Timeline</a></li>
+</ul>
+</li>
+</ul></div></nav>
+        </div>
+    </header>
+
+<main id="content">
+    <div class="page-width">
+    
+        <article class="post-12578 post type-post status-publish format-standard hentry category-standards" id="post-12578">
+            <h1><a href="https://webkit.org/blog/12578/non-interactive-elements-with-the-inert-attribute/" rel="bookmark" title="Permanent Link: Non-interactive Elements with the inert attribute">Non-interactive Elements with the inert attribute</a></h1>
+            <div class="byline">
+                <p class="date">Apr 26, 2022</p>
+                <p class="author">by <span>Tim Nguyen</span></p>
+                                <p class="twitter"><a href="https://twitter.com/therealntim" target="_blank">@therealntim</a></p>
+                            </div>
+
+            <div class="bodycopy">
+                                
+                <p>Elements are interactive in multiple ways; they can be focused, clicked, edited or selected. Assistive technologies such as screen readers also interact with them. What if you wanted to disable all these interactions for a section of your webpage? The inert attribute covers this.</p>
+<h2>Pre-existing Solutions</h2>
+<p>The most basic way to disable all interactions is the <code>disabled</code> HTML attribute, it prevents focus, clicks, edition or selection. However, it only works on form controls, and does not necessarily hide the control from assistive technologies. What if you wanted to do this on elements other than form controls?</p>
+<p>To prevent focus, <code>tabindex="-1"</code> is a popular option, but it isn’t ideal because setting the attribute on a container element will not prevent its children from being focused, and it also does not prevent click-focus with a mouse. If you want to prevent keyboard focus on a whole section, every single focusable element in the section needs the attribute set.</p>
+<p>To prevent clicks, the <code>pointer-events: none</code> CSS property may be an option although, unless you’ve put <code>tabindex="-1"</code>  on the element as well, tabbing to the element and interacting with it is still possible.</p>
+<p>To prevent selection, the <code>user-select: none</code> CSS property is the most common option.</p>
+<p>To prevent editing, if you’re using <code>contenteditable</code>, you would need to manually remove the <code>contenteditable</code> attribute. If it’s a form control, you need to manually set the <code>disabled</code> attribute.</p>
+<p>All of this is heavy and also does not allow you to hide the section from assistive tools, which may be appropriate when making a whole section non-interactive. It is currently possible to do this by setting  <code>aria-hidden="true"</code>  on the relevant section.</p>
+<p>This is why the <code>inert</code> attribute was added to HTML, it is an efficient way to disable all of the interactions above and hide elements from assistive technology.</p>
+<h2>What is the inert attribute?</h2>
+<p>The <code>inert</code> attribute was originally specified in the context of the <code>element</code> <a href="https://github.com/whatwg/html/commit/2fb24fcf">about 10 years ago</a>, where the main use-case was making the content behind a modal dialog non-interactive. It was later removed due to a lack of adoption. Recent developer requests lead it to be <a href="https://github.com/whatwg/html/pull/4288">re-proposed a few years later</a>. However, the main issue with that definition was complexity in interaction with modal dialogs and performance. This is why changes have been made to the standard to <a href="https://github.com/whatwg/html/issues/5650">use a CSS-based approach</a> to define inert nodes.</p>
+<p>According to the <a href="https://html.spec.whatwg.org/multipage/interaction.html#inert-subtrees">HTML specification</a>, when a node is inert:</p>
+<ul>
+<li>Hit-testing must act as if the <a href="https://drafts.csswg.org/css-ui-4/#pointer-events-control">&#8216;pointer-events’</a> CSS property were set to &#8216;none&#8217;.</li>
+<li>Text selection functionality must act as if the <a href="https://drafts.csswg.org/css-ui-4/#content-selection">&#8216;user-select’</a> CSS property were set to &#8216;none&#8217;.</li>
+<li>If it is <a href="https://w3c.github.io/editing/docs/execCommand/#editable">editable</a>, the node behaves as if it were non-editable.</li>
+</ul>
+<p>In addition to the above:</p>
+<ul>
+<li>It is not focusable.</li>
+<li>It behaves similarly to <code>aria-hidden="true"</code>  for assistive technologies</li>
+</ul>
+<h2>Example Usage: A Carousel</h2>
+<p>Let’s build a carousel with multiple pages:</p>
+<figure class="jsfiddle" data-url="https://jsfiddle.net/ntim/cL3mv1ok/embed/"></figure>
+<p>You will notice that you can still interact with links/inputs/etc. from inactive pages. This is undesirable behaviour that can be prevented with the inert attribute. In the <code>switchToIndex</code> method which changes the active page, we can add 2 lines of code that fix this.</p>
+<p><code>this.items</code> being an array of HTML elements representing each slide, the first line makes every slide inert, and the second line makes the active one non-inert.</p>
+<pre><code class="js">  <span class="identifier">switchToIndex</span>(<span class="identifier">index</span>) {
+    [...]
+    <span class="keyword">this</span>.<span class="identifier">items</span>.<span class="identifier">forEach</span>(<span class="identifier">item</span> <span class="operator">=</span><span class="operator">&gt;</span> <span class="identifier">item</span>.<span class="identifier">inert</span> <span class="operator">=</span> <span class="keyword literal">true</span>);
+    <span class="keyword">this</span>.<span class="identifier">items</span>[<span class="identifier">index</span>].<span class="identifier">inert</span> <span class="operator">=</span> <span class="keyword literal">false</span>;
+  }
+</code></pre>
+<p>Notice that we have used the <code>inert</code> DOM property. When set to a value, it is equivalent to <code>element.toggleAttribute("inert", value)</code> .</p>
+<p>For support for in older browsers, you may want to use a <a href="https://github.com/WICG/inert">polyfill</a> until the <code>inert</code> attribute is widely supported.</p>
+<p>Finally it is recommended to add a visual cue that a certain element is inert. Let’s make inactive slides less opaque:</p>
+<pre><code class="css"><span class="keyword builtin">.carousel-item</span>[<span class="identifier">inert</span>] {
+  <span class="attribute">opacity</span>: <span class="number">0.6</span>;
+}
+</code></pre>
+<p>Here is the final result in action:</p>
+<figure class="jsfiddle" data-url="https://jsfiddle.net/ntim/z79euyjp/embed/"></figure>
+<p>As you can see above, inactive slides are no longer interactive but they are still visible.</p>
+<h2>Browser support</h2>
+<ul>
+<li>Safari 15.5 and <a href="https://developer.apple.com/safari/download/">Safari Technology Preview</a> 143</li>
+<li>Chrome 102</li>
+<li>Firefox Nightly</li>
+</ul>
+<h2>Additional resources</h2>
+<p>In this post, we gave an overview of the new inert attribute. Here are some interesting additional resources you might want to check:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/inert">MDN documentation</a></li>
+<li><a href="https://css-tricks.com/focus-management-and-inert/">CSS Tricks: Focus management and inert</a></li>
+<li><a href="https://html.spec.whatwg.org/multipage/interaction.html#the-inert-attribute">HTML specification</a></li>
+<li><a href="https://robdodson.me/posts/building-better-accessibility-primitives/">Building better accessibility primitives by Rob Dodson</a></li>
+<li><a href="https://wicg.github.io/inert/explainer.html">Original inert explainer</a></li>
+</ul>
+<p>Feel free to reach out to <a href="https://twitter.com/therealntim">@therealntim</a> on Twitter for any questions. To report any issues, please <a href="http://bugs.webkit.org/">file a bug</a> blocking <a href="https://bugs.webkit.org/show_bug.cgi?id=165279">bug 165279</a>.</p>
+
+                            </div>
+        </article>
+
+        <aside class="nextrouter" aria-label="Next/Previous posts">
+            <div class="bodycopy">
+                                    </div>
+        </aside>
+        <aside class="nextrouter previous" aria-label="Next/Previous posts">
+            <div class="bodycopy">
+            <a class="page-numbers prev-post" href="https://webkit.org/blog/12566/private-click-measurement-conversion-fraud-prevention-and-replacement-for-tracking-pixels/" rel="prev"><div class="nextrouter-copy"><span class="label">Previously</span><span class="title">Private Click Measurement: <br>Conversion Fraud Prevention and Replacement For Tracking Pixels</span><span class="link">Learn more</span></div></a>            </div>
+        </aside>
+
+    
+    
+    </div><!--.page-width-->
+</main><!-- #content -->
+
+<footer>
+    <div class="page-width">
+        <nav id="footer-nav" aria-label="Footer menu"><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-7617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7617"><a href="https://twitter.com/webkit">@webkit</a></li>
+<li id="menu-item-5365" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5365"><a href="https://webkit.org/sitemap/">Site Map</a></li>
+<li id="menu-item-4185" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4185"><a href="http://www.apple.com/legal/privacy/">Privacy Policy</a></li>
+<li id="menu-item-4287" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4287"><a href="https://webkit.org/licensing-webkit/">Licensing WebKit</a></li>
+<li id="menu-item-4187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4187"><a href="https://webkit.org/terms-of-use/">WebKit and the WebKit logo are trademarks of Apple Inc.</a></li>
+</ul></div></nav>
+    </div>
+</footer>
+
+
+<script type='text/javascript' src='https://webkit.org/wp-content/themes/webkit/scripts/global.js?ver=1.0' id='theme-global-js'></script>
+</body>
+</html>
+<!-- Dynamic page generated in 0.223 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2022-04-26 17:24:49 -->
+
+<!-- super cache -->

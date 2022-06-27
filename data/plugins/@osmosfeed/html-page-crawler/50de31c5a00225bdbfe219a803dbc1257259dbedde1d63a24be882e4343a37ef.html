@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	
+
+
+<style itemscope itemtype="https://schema.org/WebSite" itemref="schema_name schema_description schema_image"></style>
+
+
+  <title>WDRL 298: Email tech stacks, less CSS duplicates, simple color systems, a custom highlight API, UUID6 and more. - WDRL – Web Development Reading List</title>
+  <meta id="schema_name" itemprop="name" content="WDRL 298: Email tech stacks, less CSS duplicates, simple color systems, a custom highlight API, UUID6 and more. - WDRL – Web Development Reading List">
+
+
+<meta name="description" content="if you read this email, it’ll be technically different from the previous. When I recently updated my newsletter service server software nearly everything broke into pieces. So now I switched and hopefully also fixed a couple of issues you faced in the old templates…">
+<meta id="schema_description" itemprop="description" content="if you read this email, it’ll be technically different from the previous. When I recently updated my newsletter service server software nearly everything broke into pieces. So now I switched and hopefully also fixed a couple of issues you faced in the old templates…">
+
+
+  <link rel="canonical" href="https://wdrl.info/archive/298" />
+
+
+
+
+  <meta id="schema_image" itemprop="image" content="https://wdrl.info/media/pages/archive/298/d7007ded05-1649338702/screenshot-2022-04-07-at-15.37.40.png">
+
+
+<meta name="author" content="Anselm Hannemann">
+
+
+<meta name="date" content="2022-04-07">
+
+
+<meta property="og:title" content="WDRL 297: Carbon footprint of ads, JS sorting, PHP the right way and using what we have.">
+
+<meta property="og:description" content="if you read this email, it’ll be technically different from the previous. When I recently updated my newsletter service server software nearly everything broke into pieces. So now I switched and hopefully also fixed a couple of issues you faced in the old templates…">
+
+  <meta property="og:image" content="https://wdrl.info/media/pages/archive/298/d7007ded05-1649338702/screenshot-2022-04-07-at-15-37-40-1200x630-crop-1-q80.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+<meta property="og:site_name" content="WDRL – Web Development Reading List">
+
+<meta property="og:url" content="https://wdrl.info/archive/298">
+
+<meta property="og:type" content="article">
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="WDRL 298: Email tech stacks, less CSS duplicates, simple color systems, a custom highlight API, UUID6 and more.">
+
+<meta name="twitter:description" content="if you read this email, it’ll be technically different from the previous. When I recently updated my newsletter service server software nearly everything broke into pieces. So now I switched and hopefully also fixed a couple of issues you faced in the old templates…">
+
+  <meta name="twitter:image" content="https://wdrl.info/media/pages/archive/298/d7007ded05-1649338702/screenshot-2022-04-07-at-15-37-40-1200x675-crop-1-q80.png">
+
+<meta name="twitter:site" content="wdrlinfo">
+
+<meta name="twitter:creator" content="helloanselm">
+	
+
+<meta name="robots" content="" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="WDRL,Web Development,Newsletter,HTML,JavaScript,CSS,SVG,updates">
+	<meta name="theme-color" content="#10b981">
+
+	<link rel="apple-touch-icon" sizes="57x57" href="https://wdrl.info/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="https://wdrl.info/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="https://wdrl.info/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="https://wdrl.info/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="https://wdrl.info/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="https://wdrl.info/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="https://wdrl.info/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="https://wdrl.info/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="https://wdrl.info/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="https://wdrl.info/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="https://wdrl.info/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="https://wdrl.info/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="https://wdrl.info/favicon-16x16.png">
+	<link rel="favicon" href="https://wdrl.info/favicon.ico">
+
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for Web Development Reading List" href="https://wdrl.info/feed/xml"/>
+
+	<link rel="next" href="/https://wdrl.info/archive/298">
+
+	<link rel="preload" href="https://wdrl.info/assets/build/4.0.18/main.min.css" as="style">
+	<link rel="preload" href="https://wdrl.info/assets/build/4.0.18/head.js" as="script">
+	<link rel="preload" href="https://wdrl.info/assets/build/4.0.18/main.js" as="script">
+
+	<link rel="prerender" href="/https://wdrl.info/archive/298">
+
+	<link rel="search" type="application/opensearchdescription+xml" title="WDRL Search" href="https://wdrl.info/opensearch.xml">
+	<link href="https://wdrl.info/assets/build/4.0.18/main.min.css" rel="stylesheet"><script async src="https://wdrl.info/assets/build/4.0.18/head.js"></script></head>
+<body class="">
+
+<div class="bg-gradient-to-r from-green-600 to-green-500">
+	<div class="max-w-7xl mx-auto">
+		<div class="relative z-10 pb-6 lg:w-full">
+			<div class="relative pt-6 px-4 sm:px-6 lg:px-8">
+				<nav class="" aria-label="Global">
+					<a href="https://wdrl.info" class="flex self-center justify-center tracking-tight font-extrabold text-2xl md:text-6xl text-white">
+						wdrl.
+					</a>
+					<div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0 overflow-x-auto">
+						<nav role="navigation" class="navigation lg:w-full text-lg lg:mt-8">
+
+	<ul class="navigation-list flex flex-row">
+		<li class="inline-block m-2 p-1">
+			<a class="font-medium tracking-normal text-white hover:border-b-2 hover:border-white border-b-2 border-white" href="https://wdrl.info/archive/298">Latest</a>
+		</li>
+				<li class="inline-block m-2 p-1">
+			<a class="font-medium tracking-normal text-white hover:border-b-2 hover:border-white border-b-2 border-white" href="https://wdrl.info/archive">Archive</a>
+		</li>
+				<li class="inline-block m-2 p-1">
+			<a class="font-medium tracking-normal text-white hover:border-b-2 hover:border-white" href="https://wdrl.info/evergreen">Evergreen</a>
+		</li>
+				<li class="inline-block m-2 p-1">
+			<a class="font-medium tracking-normal text-white hover:border-b-2 hover:border-white" href="https://wdrl.info/about">About</a>
+		</li>
+				<li class="inline-block m-2 p-1">
+			<a class="font-medium tracking-normal text-white hover:border-b-2 hover:border-white" href="https://wdrl.info/donate">Contribute</a>
+		</li>
+				<li class="inline-block transform -translate-y-2 p-1 navigation-item__search my-1 ml-auto mr-0">
+			<form class="form-one-row search-field" action="https://wdrl.info/search" method="GET">
+				<input class="text-black bg-white px-4 py-1 rounded" type="search" name="q" value="" placeholder="Search…">
+			</form>
+		</li>
+	</ul>
+
+</nav>
+					</div>
+				</nav>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-28 mt-8 max-w-7xl px-4 sm:mt-10 sm:px-6 md:mt-14 lg:mt-16 lg:px-8 xl:mt-20">
+				<div class="">
+					<div class="sm:text-center lg:text-left">
+						<h1 class="text-3xl tracking-tight font-extrabold text-white text-opacity-80 sm:text-4xl md:text-5xl">
+															<span class="text-3xl">
+									WDRL 298									<time class="font-light" datetime="07.04.2022" pubdate="pubdate"> from 7.4.2022</time>
+								</span>
+													</h1>
+												<h2 class="md:text-5xl text-white font-semibold mt-2 mb-8">Email tech stacks, less CSS duplicates, simple color systems, a custom highlight API, UUID6 and more.</h2>
+											</div>
+				</div>
+				<div class="flex items-start justify-end">
+									<figure class="inline-flex items-center m-0 p-0 bg-white rounded-md shadow-xl">
+						<figcaption class="p-4">
+							<p class="text-base">
+								Hi, I’m <a class="underline font-semibold" href="https://helloanselm.com/">Anselm Hannemann</a>.  
+Freelance webdesigner, frontend engineer, advisor. Curating WDRL, growing vegetables <a href="https://schaufelundgabel.de" target="_blank" class="underline">on a market garden farm</a>.							</p>
+						</figcaption>
+						<img src="https://wdrl.info/media/users/7wRCmlgN/43e15ee0c2-1646734449/profile-480x-crop.jpg" class="p-4 w-40 h-40 cover rounded-full" alt="Profile photo of the author, Anselm Hannemann">
+					</figure>
+								</div>
+			</div>
+	</div>
+</div>
+<div class="-mt-12 xl:-mt-24 2xl:-mt-[18rem]">
+		<svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+			<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+				<g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
+					<path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
+					<path d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z" opacity="0.100000001"></path>
+					<path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" id="Path-4" opacity="0.200000003"></path>
+				</g>
+				<g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
+					<path d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"></path>
+				</g>
+			</g>
+		</svg>
+	</div>
+</div>
+<main class="mx-auto mt-8 mb-24 max-w-7xl px-4 sm:px-6 lg:px-8">	<article class="text mt-8 mb-3 max-w-3xl prose prose-lg">
+		<p>Hey,</p>
+
+<p>if you read this email, it’ll be technically different from the previous. When I recently updated my newsletter service server software nearly everything broke into pieces. I was using <a href="https://github.com/Mailtrain-org/mailtrain">mailtrain v1</a> for a long time now but it’s deprecated and using old node versions. Upgrading to v2 wasn’t easy enough for me and I also wanted to have an easier to maintain mailer anyway. The new email is sent via <a href="https://mailcoach.app">Spatie&rsquo;s Laravel Mailcoach</a>. So far it’s a pretty manual process again since it doesn’t support RSS-campaigns. At some point in future I want to publish the newsletter via <a href="https://getkirby.com">Kirby</a> to the Mailcoach API.</p>
+<p>But at this point I now changed my template as well to a modern <a href="https://mjml.io">MJML based template code</a>. This should hopefully fix all the rendering issues you reported to me recently. I tried to support light and dark mode in the emails but that utterly failed and the new template does not support it, too. It’s a bit sad but mail clients once again do what they believe is right, leading to white on white text in some cases. It’s a good reminder to <a href="https://www.caniemail.com">caniemail</a> and that email templating isn’t coding for a browser.</p>
+<p>Please report any issues to me if you find one. Now enjoy the new content:</p>
+<h3 class="mt-4 font-bold text-xl">News</h3>
+<ul id="news">
+	<li id="uuid6" class="relative "><a href="https://uuid6.github.io/uuid6-ietf-draft/">UUID6-8 will be a standard soon for unique identifiers</a>, solving a lot of the common issues with UUID formats (e.g. UUIDv4). Quite nice options ahead!</li>
+	<li id="speed-boost-achievement-unlocked-on-docker-desktop-4-6-for-mac" class="relative ">If macOS is your operating system of choice and if you use Docker for your local development environment, there might be good news. The Docker team finally reports <a href="https://www.docker.com/blog/speed-boost-achievement-unlocked-on-docker-desktop-4-6-for-mac/">promising performance improvements</a> for file synchronization.</li>
+</ul>
+<h3 class="mt-4 font-bold text-xl">Generic</h3>
+<ul id="general">
+	<li id="why-we-don-t-use-a-staging-environment" class="relative ">When creating websites and web applications, we have to define deployment and integration processes, think about different environments, and learn more about tooling. The internet is full of complex methods and heavy approaches. Therefore it is nice to read about an alternative. Lewis Monteith writes about why he is <a href="https://squeaky.ai/blog/development/why-we-dont-use-a-staging-environment">not using staging environments</a>.</li>
+</ul>
+<h3 class="mt-4 font-bold text-xl">UI/UX</h3>
+<ul id="concept-design">
+	<li id="simple-color-system-for-complex-digital-interfaces" class="relative "><a href="https://www.opensourcecolorsystem.design/">The Open Source Color System</a> is a nice preset for web apps.</li>
+</ul>
+<h3 class="mt-4 font-bold text-xl">HTML & SVG</h3>
+<ul id="htmlsvg">
+	<li id="picture-perfect-images-with-the-modern-img-element" class="relative -mx-4 p-2 bg-green-100 rounded">»You may not think about images as part of your web dev work, but they can affect your web app's performance more than any other part of your code«, says Addy Osmani in <a href="https://stackoverflow.blog/2022/03/28/picture-perfect-images-with-the-modern-element/">Picture perfect images with the modern <code>&lt;img&gt;</code> element</a>. A great summary of what and how to optimize delivery of image content on the web.</li>
+	<li id="those-html-attributes-you-never-use" class="relative ">There is so much we can do by just using HTML. Louis Lazaris created a list with a lot of lesser-known but <a href="https://www.smashingmagazine.com/2022/03/html-attributes-you-never-use/">awesome HTML attributes</a>.</li>
+</ul>
+<h3 class="mt-4 font-bold text-xl">JavaScript</h3>
+<ul id="javascript">
+	<li id="horizontal-scrolling-nav" class="relative ">Mark shares a nice example of how to build a <a href="https://markdotto.com/2022/03/10/horizontal-scrolling-nav/">mobile scroll navigation that automatically scrolls active links into view</a>. A menu principle I’ve been using more often lately as it’s super simple and effective.</li>
+	<li id="css-custom-highlight-api" class="relative -mx-4 p-2 bg-green-100 rounded">The <a href="https://css-tricks.com/css-custom-highlight-api-early-loo/">CSS Custom Highlight API</a> which will be a webstandard soon makes it possible to style arbitrary text ranges from JavaScript. Pretty cool to highlight dynamic search results or similar things.</li>
+</ul>
+<h3 class="mt-4 font-bold text-xl">CSS</h3>
+<ul id="css">
+	<li id="css-checker-less-is-more" class="relative "><a href="https://github.com/ruilisi/css-checker">css-checker</a> checks your css for duplications to avoid redundant css.</li>
+	<li id="css-quick-tip-animating-in-a-newly-added-element" class="relative ">Stephanie Eckles shares <a href="https://thinkdobecreate.com/articles/css-animating-newly-added-element/">how we can animate a newly added element with CSS</a>. And since we cannot animate easily a dynamic height just with CSS, Stephanie has a nice design hack for this to make it look like that.</li>
+	<li id="understanding-layout-algorithms" class="relative ">The more experienced we get, the deeper we can dive. Josh Comeau writes about <a href="https://www.joshwcomeau.com/css/understanding-layout-algorithms/">CSS layout algorithms</a>, and there is a lot to learn from him.</li>
+</ul>
+<h3 class="mt-4 font-bold text-xl">Go beyond…</h3>
+<ul id="gobeyond">
+	<li id="why-do-we-want-problems-to-be-someone-s-fault" class="relative -mx-4 p-2 bg-green-100 rounded">David Cain elaborates on <a href="https://www.raptitude.com/2022/03/why-do-we-want-problems-to-be-someones-fault/">why we want problems to be someone else’s fault</a> and why it’s natural for humans to think like that, yet not always the best thing to do. Knowing about it definitely helps reconsidering it and stop doing it all the time.</li>
+</ul>
+
+<p><strong>If you like this newsletter, <a href="https://wdrl.info/donate">you can contribute here</a>. Thank you!</strong></p><p>Anselm</p>
+
+	</article>
+
+	<nav class="nextprev cf mt-3" role="navigation">
+				<a class="prev" href="https://wdrl.info/archive/297">&larr; previous Edition</a>
+					</nav>
+
+	<script 0="defer" src="https://wdrl.info/assets/build/4.0.18/main.js"></script></main>
+<section class="newsletter-signup max-w-full w-full sticky bottom-1 left-0 right-0 z-10 drop-shadow-lgReverse bg-white bg-opacity-95 backdrop-blur-sm shadow-xl translate-y-4 px-4 py-8 overflow-hidden xl:px-10 xl:py-12">
+  <details open class="relative pb-2">
+    <summary class="absolute inline-block top-0 right-0 lg:right-8" title="Minimize this overlay item on the bottom for now"></summary>
+    <div class="newsletter-signup-form">
+      <h2 class="max-w-xl mx-auto text-center text-lg font-semibold font-display text-gray-800">
+        <span class="inline lg:hidden">
+          <span class="inline-block animate-hello hover:animate-pause focus:animate-pause motion-reduce:animate-pause">👋</span> Hi, <span class="text-green-500">get the mails</span>:
+        </span>
+        <span class="hidden lg:inline">
+        <span class="inline-block animate-hello hover:animate-pause focus:animate-pause motion-reduce:animate-pause">👋</span> Hi, I’m Anselm, the author. You can <span class="text-green-500">subscribe for free</span> and get this newsletter directly into your inbox each month.
+        </span>
+      </h2>
+
+      <div class="mt-5 max-w-xl mx-auto newsletter-form">
+        <form class="form" method="POST" action="https://mailer.wdrl.info/subscribe/a50d50fb-b917-4490-a843-f9eed0c92ee9">
+          <div>
+              <div class="form-group email">
+                <label for="email" class="hidden">Email:</label>
+                <input class="w-full" type="email" name="email" id="email" placeholder="hi@gmail.com" value="" required="">
+              </div>
+          </div>
+          <input type="hidden" name="redirect_after_subscribed" value="https://wdrl.info/mailings/subscribed"  />
+          <input type="hidden" name="redirect_after_already_subscribed" value="https://wdrl.info/mailings/already-subscribed"  />
+          <input type="hidden" name="redirect_after_subscription_pending" value="https://wdrl.info/mailings/confirm-subscription"  />
+        
+          <div>
+            <button class="w-full" type="submit">Subscribe</button>    
+          </div>
+        </form>
+      </div>
+    </details>
+    <div class="max-w-2xl mx-auto">
+      <h4 class="text-center font-semibold mb-2 text-gray-400">Contribute and support my work:</h4>
+<aside id="contribute" class="flex flex-auto gap-2 flex-wrap justify-center">
+	<a class="rounded-md bg-green-500 text-white p-2 px-5" href="https://buy.stripe.com/6oEcOW4Zr2RRenS7st" target="_blank" rel="noopener"><strong>5€</strong><span class="hidden lg:inline"> / month</span></a>
+	<a class="rounded-md bg-green-500 text-white p-2 px-5" href="https://buy.stripe.com/9AQbKSbnP4ZZcfKfYY" target="_blank" rel="noopener"><strong>10€</strong><span class="hidden lg:inline"> once</span></a>
+	<a class="rounded-md bg-green-500 text-white p-2 px-5" href="https://www.paypal.me/anselm/" target="_blank" rel="noopener">PayPal</a>
+</aside>
+    </div>
+  </div>
+</section><footer class="w-full bg-gray-900 text-white" role="contentinfo">
+	<div class="max-w-7xl mx-auto">
+		<div class="relative z-10 pt-8 pb-8 sm:pt-8 sm:pb-8 md:pt-12 md:pb-12 lg:w-full lg:pt-14 lg:pb-14 xl:pt-16 xl:pb-16 grid grid-cols-1 md:grid-cols-4 gap-8">
+
+		<div class="">
+						<img class="rounded w-48" src="https://wdrl.info/media/users/7wRCmlgN/43e15ee0c2-1646734449/profile-300x-crop.jpg" class="about__profile-image" alt="Profile photo of the author, Anselm Hannemann">
+					</div>
+
+		<div>
+			<p class="mb-4 -ml-3 bg-white bg-opacity-10 text-white pt-1 pb-1 pr-3 pl-3 rounded font-bold">Other projects</p>
+			<ul>
+				<li class="mb-2"><a href="https://helloanselm.com/">Freelance Portfolio</a></li>
+				<li class="mb-2"><a href="https://schaufelundgabel.de">Food producer CSA</a></li>
+				<li class="mb-2"><a href="https://colloq.io/">Colloq Event Platform</a></li>
+				<li class="mb-2"><a href="http://workingdraft.de/">Workingdraft Podcast</a></li>
+				<li class="mb-2"><a href="https://nightlybuild.io/">Nightlybuild Conference</a></li>
+			</ul>
+		</div>
+		<div class="footer-links">
+			<p class="mb-4 -ml-3 bg-white bg-opacity-10 text-white pt-1 pb-1 pr-3 pl-3 rounded font-bold">Sitemap</p>
+			<ul>
+				<li class="mb-2"><a href="https://wdrl.info/privacy">Privacy Policy</a></li>
+				<li class="mb-2"><a href="https://wdrl.info/feed/xml" title="Subscribe to WDRL’s RSS Feed">RSS</a></li>
+				<li class="mb-2"><a href="https://wdrl.info/donate">Donate</a></li>
+				<li class="mb-2"><a href="https://wdrl.info/about">About</a></li>
+				<li class="mb-2"><a href="https://wdrl.info/quotes">Testimonials</a></li>
+			</ul>
+		</div>
+		<div class="footer-legal">
+			<p class="mb-4 -ml-3 bg-white bg-opacity-10 text-white pt-1 pb-1 pr-3 pl-3 rounded font-bold">Legal</p>
+			<p>
+				<small>
+				&copy; 2022 and made by <br>
+				Anselm Hannemann<br>
+				Hofmark 14<br>
+				82393 Iffeldorf<br>
+				Germany<br>
+				mail@wdrl.info
+				</small>
+			</p>
+		</div>
+	</footer>
+</body>
+</html>

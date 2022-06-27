@@ -1,0 +1,311 @@
+
+
+<!doctype html>
+<html lang="en-US">
+<head data-template-path="https://hacks.mozilla.org/wp-content/themes/Hax">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="w2ocEMd5yV9IsGCjhq-7ls67r4VH-Ob6oWdiZpqjN8U">
+
+  
+  <meta name="title" content="Introducing MDN Plus: Make MDN your own – Mozilla Hacks - the Web developer blog">
+
+    <meta property="og:site_name" content="Mozilla Hacks &#8211; the Web developer blog">
+  <meta property="og:url" content="https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own">
+  <meta property="og:title" content="Introducing MDN Plus: Make MDN your own – Mozilla Hacks - the Web developer blog">
+  <meta property="og:description" content="Today, we are launching MDN Plus, our first step to providing a personalized and more powerful experience while continuing to invest in our always free and open webdocs.">
+  <meta property="og:image" content="https://hacks.mozilla.org/wp-content/themes/Hax/img/hacks-meta-image.jpg">
+
+    <meta property="twitter:title" content="Introducing MDN Plus: Make MDN your own – Mozilla Hacks - the Web developer blog">
+  <meta property="twitter:description" content="Today, we are launching MDN Plus, our first step to providing a personalized and more powerful experience while continuing to invest in our always free and open webdocs.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:image" content="https://hacks.mozilla.org/wp-content/themes/Hax/img/hacks-meta-image.jpg">
+  <meta name="twitter:site" content="@mozhacks">
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/style.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/8.6.0/styles/solarized_light.min.css">
+
+  <script type="text/javascript">
+    window.hacks = {};
+    // http://cfsimplicity.com/61/removing-analytics-clutter-from-campaign-urls
+    var removeUtms  =   function(){
+        var l = window.location;
+        if( l.hash.indexOf( "utm" ) != -1 ){
+            var anchor = l.hash.match(/#(?!utm)[^&]+/);
+            anchor  =   anchor? anchor[0]: '';
+            if(!anchor && window.history.replaceState){
+                history.replaceState({},'', l.pathname + l.search);
+            } else {
+                l.hash = anchor;
+            }
+        };
+    };
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35433268-8'],
+              ['_setAllowAnchor', true]);
+    _gaq.push (['_gat._anonymizeIp']);
+    _gaq.push(['_trackPageview']);
+    _gaq.push( removeUtms );
+    (function(d, k) {
+      var ga = d.createElement(k); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = 'https://ssl.google-analytics.com/ga.js';
+      var s = d.getElementsByTagName(k)[0]; s.parentNode.insertBefore(ga, s);
+    })(document, 'script');
+  </script>
+
+  <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<meta name="blog-name" content="Mozilla Hacks - the Web developer blog" />
+<link rel="alternate" hreflang="en" href="https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/" />
+<link rel="alternate" hreflang="x-default" href="https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v17.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Introducing MDN Plus: Make MDN your own - Mozilla Hacks - the Web developer blog</title>
+	<meta name="description" content="Today, we are launching MDN Plus, our first step to providing a personalized and more powerful experience while continuing to invest in our always free and open webdocs." />
+	<link rel="canonical" href="https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Hermina" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="4 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://hacks.mozilla.org/#website","url":"https://hacks.mozilla.org/","name":"Mozilla Hacks - the Web developer blog","description":"hacks.mozilla.org","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://hacks.mozilla.org/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/#primaryimage","inLanguage":"en-US","url":"https://hacks.mozilla.org/files/2022/03/image-14.png","contentUrl":"https://hacks.mozilla.org/files/2022/03/image-14.png","width":2400,"height":1400,"caption":"Screenshot of a list of notifications on mdn plus"},{"@type":"WebPage","@id":"https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/#webpage","url":"https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/","name":"Introducing MDN Plus: Make MDN your own - Mozilla Hacks - the Web developer blog","isPartOf":{"@id":"https://hacks.mozilla.org/#website"},"primaryImageOfPage":{"@id":"https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/#primaryimage"},"datePublished":"2022-03-24T16:00:29+00:00","dateModified":"2022-03-24T16:00:29+00:00","author":{"@id":"https://hacks.mozilla.org/#/schema/person/ddd8f413ccecde837319205a156bf21d"},"description":"Today, we are launching MDN Plus, our first step to providing a personalized and more powerful experience while continuing to invest in our always free and open webdocs.","breadcrumb":{"@id":"https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/"]}]},{"@type":"BreadcrumbList","@id":"https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hacks.mozilla.org/"},{"@type":"ListItem","position":2,"name":"Articles","item":"https://hacks.mozilla.org/articles/"},{"@type":"ListItem","position":3,"name":"Introducing MDN Plus: Make MDN your own"}]},{"@type":"Person","@id":"https://hacks.mozilla.org/#/schema/person/ddd8f413ccecde837319205a156bf21d","name":"Hermina","image":{"@type":"ImageObject","@id":"https://hacks.mozilla.org/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=96&d=mm&r=g","caption":"Hermina"},"description":"Hermina is Head of Product for MDN, at Mozilla, leading the MDN content, engineering and product teams. She is based in Paris, France.","url":"https://hacks.mozilla.org/author/hcondeimozilla-com/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//blog.mozilla.org' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Feed" href="https://hacks.mozilla.org/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Comments Feed" href="https://hacks.mozilla.org/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Mozilla Hacks - the Web developer blog &raquo; Introducing MDN Plus: Make MDN your own Comments Feed" href="https://hacks.mozilla.org/2022/03/introducing-mdn-plus-make-mdn-your-own/feed/" />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/css/dist/block-library/style.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.16' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-mediaelement-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=5.8.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wpml-legacy-post-translations-0-css'  href='//blog.mozilla.org/hacks/wp-content/plugins/sitepress-multilingual-cms/templates/language-switchers/legacy-post-translations/style.min.css?ver=1' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/fc-checkcomment.js?ver=5.8.3' id='checkcomments-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/js/analytics.js?ver=5.8.3' id='analytics-js'></script>
+<link rel="https://api.w.org/" href="https://hacks.mozilla.org/wp-json/" /><link rel="alternate" type="application/json" href="https://hacks.mozilla.org/wp-json/wp/v2/posts/47744" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://hacks.mozilla.org/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://hacks.mozilla.org/wp-includes/wlwmanifest.xml" /> 
+<link rel='shortlink' href='https://hacks.mozilla.org/?p=47744' />
+<link rel="alternate" type="application/json+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2022%2F03%2Fintroducing-mdn-plus-make-mdn-your-own%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://hacks.mozilla.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhacks.mozilla.org%2F2022%2F03%2Fintroducing-mdn-plus-make-mdn-your-own%2F&#038;format=xml" />
+<meta name="generator" content="WPML ver:4.5.1 stt:59,61,1,2;" />
+<link rel="shortcut icon" type="image/x-icon" href="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" /><style>#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}li#wp-admin-bar-site-name a { background: url( "https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }
+</style></head>
+<body>
+  <div class="outer-wrapper">
+    <header class="section section--fullwidth header">
+      <div class="masthead row">
+        <div class="branding block block--3">
+          <h1>
+            <a href="https://hacks.mozilla.org">
+              <img class="branding__logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/mdn-logo-mono.svg">
+              <img class="branding__wordmark" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/wordmark.svg" alt="Mozilla">
+              <span class="branding__title">Hac<span class="logo-askew">k</span>s</span>
+            </a>
+          </h1>
+        </div>
+        <div class="search block block--2">
+          <form class="search__form" method="get" action="https://hacks.mozilla.org/">
+            <input type="search" name="s" class="search__input" placeholder="Search Mozilla Hacks" value="">
+            <i class="fa fa-search search__badge"></i>
+          </form>
+        </div>
+        <nav class="social">
+          <a class="social__link youtube" href="http://www.youtube.com/user/mozhacks" title="YouTube"><i class="fa fa-youtube" aria-hidden="true"></i><span>Hacks on YouTube</span></a>
+          <a class="social__link twitter" href="https://twitter.com/mozhacks" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>@mozhacks on Twitter</span></a>
+          <a class="social__link rss" href="https://hacks.mozilla.org/feed/" title="RSS Feed"><i class="fa fa-rss" aria-hidden="true"></i><span>Hacks RSS Feed</span></a>
+          <a class="fx-button" href="https://www.mozilla.org/firefox/download/thanks/?utm_source=hacks.mozilla.org&utm_medium=referral&utm_campaign=header-download-button&utm_content=header-download-button">Download Firefox</a>
+        </nav>
+      </div>
+    </header>
+
+  
+<div id="content-head" class="section">
+  <h1 class="post__title">Introducing MDN Plus: Make MDN your own</h1>
+  <div class="byline">
+    <h3 class="post__author">
+                      <img alt='' src='https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=64&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/7ddf5d0424fe2fe70e31d6ef817ebeae?s=128&#038;d=mm&#038;r=g 2x' class='avatar avatar-64 photo' height='64' width='64' loading='lazy'/>        By
+                                        <a class="url" href="https://hacks.mozilla.org/author/hcondeimozilla-com/">Hermina</a>                            </h2>
+    <div class="post__meta">
+      Posted on
+      <abbr class="published" title="2022-03-24T09:00:29-07:00">
+        March 24, 2022      </abbr>
+      <span class="entry-cat">in
+        <a href="https://hacks.mozilla.org/category/mdn/" rel="category tag" title="View all posts in MDN" >MDN</a>      </span>
+            <div class="socialshare" data-type="bubbles"></div>
+    </div>
+  </div>
+</div>
+
+<main id="content-main" class="section article">
+  <article class="post" role="article">
+    
+<p>MDN is one of the most trusted resources for information about web standards, code samples, tools, and everything you need as a developer to create websites. In 2015, we explored how we could expand beyond documentation to provide a structured learning experience. Our first foray was the <a href="https://developer.mozilla.org/en-US/docs/Learn">Learning Area</a>, with the goal of providing a useful addition to the regular MDN reference and guide material. In 2020, we added the first <a href="https://developer.mozilla.org/en-US/docs/Learn/Front-end_web_developer">Front-end developer learning pathway</a>. We saw a lot of interest and engagement from users, and the learning area contributed to about 10% of MDN’s monthly web traffic. These two initiatives were the start of our exploration into  how we could offer more learning resources to our community. Today, we are launching MDN Plus, our first step to providing a personalized and more powerful experience while continuing to invest in our always free and open webdocs.</p>
+
+<p><iframe loading="lazy" title="YouTube video player" src="https://www.youtube.com/embed/OBv9qnCesaQ" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe></p>
+<h2>Build your own MDN Experience with MDN Plus</h2>
+<p>In 2020 and 2021 we surveyed over 60,000 MDN users and learned that many of the respondents  wanted a customized MDN experience. They wanted to organize MDN’s vast library in a way that worked for them. For today’s premium subscription service, MDN Plus, we are releasing three new features that begin to address this need: Notifications, Collections and MDN Offline. More details about the features are listed below:</p>
+<ul>
+<li><b><i>Notifications: </i></b>Technology is ever changing, and we know how important it is to stay on top of the latest updates and developments. From tutorial pages to API references, you can now get notifications for the latest developments on MDN. When you follow a page, you’ll get notified when the documentation changes, CSS features launch, and APIs ship. Now, you can get a notification for significant events relating to the pages you want to follow. <a href="https://developer.mozilla.org/en-US/plus/docs/features/notifications">Read more about it here</a>.</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-large wp-image-47750" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/03/image-14-500x292.png" alt="Screenshot of a list of notifications on mdn plus" width="500" height="292" srcset="https://hacks.mozilla.org/files/2022/03/image-14-500x292.png 500w, https://hacks.mozilla.org/files/2022/03/image-14-250x146.png 250w, https://hacks.mozilla.org/files/2022/03/image-14-768x448.png 768w, https://hacks.mozilla.org/files/2022/03/image-14-1536x896.png 1536w, https://hacks.mozilla.org/files/2022/03/image-14-2048x1195.png 2048w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<ul>
+<li><b><i>Collections:</i></b> Find what you need fast with our new collections feature. Not only can you pick the MDN articles you want to save, we also automatically save the pages you visit frequently. Collections help you quickly access the articles that matter the most to you and your work. <a href="https://developer.mozilla.org/en-US/plus/docs/features/collections">Read more about it here</a>.</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-large wp-image-47746" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/03/image-13-500x292.png" alt="Screenshot of a collections list on mdn plus" width="500" height="292" srcset="https://hacks.mozilla.org/files/2022/03/image-13-500x292.png 500w, https://hacks.mozilla.org/files/2022/03/image-13-250x146.png 250w, https://hacks.mozilla.org/files/2022/03/image-13-768x448.png 768w, https://hacks.mozilla.org/files/2022/03/image-13-1536x896.png 1536w, https://hacks.mozilla.org/files/2022/03/image-13-2048x1195.png 2048w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<ul>
+<li><b><i>MDN offline</i></b>: Sometimes you need to access MDN but don’t have an internet connection. MDN offline leverages a Progressive Web Application (PWA) to give you access to MDN Web Docs even when you lack internet access so you can continue your work without any interruptions. Plus, with MDN offline you can have a faster experience while saving data. <a href="https://developer.mozilla.org/en-US/plus/docs/features/offline">Read more about it here</a>.</li>
+</ul>
+<p><img loading="lazy" class="alignnone wp-image-47760 size-large" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/files/2022/03/image1-500x299.png" alt="Screenshot of offline settings on mdn plus" width="500" height="299" srcset="https://hacks.mozilla.org/files/2022/03/image1-500x299.png 500w, https://hacks.mozilla.org/files/2022/03/image1-250x150.png 250w, https://hacks.mozilla.org/files/2022/03/image1-768x460.png 768w, https://hacks.mozilla.org/files/2022/03/image1.png 1507w" sizes="(max-width: 500px) 100vw, 500px" /></p>
+<p>Today, MDN Plus is available in the US and Canada. In the coming months, we will expand to other countries including France, Germany, Italy, Spain, Belgium, Austria, the Netherlands, Ireland, United Kingdom, Switzerland, Malaysia, New Zealand and Singapore. </p>
+<h2>Find the right MDN Plus plan for you</h2>
+<p>MDN is part of the daily life of millions of web developers. For many of us MDN helped with getting that first job or helped land a promotion. During our research we found many of these users, users who felt so much value from MDN that they wanted to contribute financially. We were both delighted and humbled by this feedback. To provide folks with a few options, we are launching MDN Plus with three plans including a supporter plan for those that want to spend a little extra. Here are the details of those plans:</p>
+<ul>
+<li aria-level="1"><b><i>MDN Core</i></b>: For those who want to do a test drive before purchasing a plan, we created an option that lets you try a limited version for free.  </li>
+<li aria-level="1"><b><i>MDN Plus 5</i></b>:  Offers unlimited access to notifications, collections, and MDN offline with new features added all the time. $5 a month or an annual subscription of $50.</li>
+<li aria-level="1"><b><i>MDN Supporter 10</i></b>:  For MDN’s loyal supporters the supporter plan gives you everything under MDN Plus 5 plus early access to new features and a direct feedback channel to  the MDN team. It’s $10 a month or $100 for an annual subscription.  </li>
+</ul>
+<p>Additionally, we will offer a 20% discount if you subscribe to one of the annual subscription plans.</p>
+<p>We invite you to try the free trial version or sign up today for a subscription plan that’s right for you.</p>
+<p>&nbsp;</p>    <section class="about">
+                                <h2 class="about__header">About
+                          Hermina                      </h3>
+                      <p>Hermina is Head of Product for MDN, at Mozilla, leading the MDN content, engineering and product teams. She is based in Paris, France.</p>
+                                <p><a class="url" href="https://hacks.mozilla.org/author/hcondeimozilla-com/">More articles by Hermina&hellip;</a></p>
+                  </section>
+  </article>
+  <section class="promo">
+    <form id="newsletterForm" name="newsletter-form" class="newsletter block block--1 block--polite" action="https://www.mozilla.org/en-US/newsletter/" method="post">
+  <h2 class="heading">Discover great resources for web development</h2>
+  <p class="newsletter__description">Sign up for the Mozilla Developer Newsletter:</p>
+  <input id="fmt" name="fmt" value="H" type="hidden">
+  <input id="newsletterNewslettersInput" name="newsletters" value="app-dev" type="hidden">
+
+  <div id="newsletterErrors" class="newsletter__errors"></div>
+
+  <div id="newsletterEmail" class="form__row">
+    <label for="newsletterEmailInput" class="offscreen">E-mail</label>
+    <input id="newsletterEmailInput" name="email" class="newsletter__input" required="" placeholder="you@example.com" size="30" type="email">
+  </div>
+
+  <div id="newsletterPrivacy" class="form__row form__fineprint">
+    <input id="newsletterPrivacyInput" name="privacy" required="" type="checkbox">
+    <label for="newsletterPrivacyInput">
+      I'm okay with Mozilla handling my info as explained in this <a href="https://www.mozilla.org/privacy/">Privacy Policy</a>.
+    </label>
+  </div>
+  <button id="newsletter-submit" type="submit" class="button positive">Sign up now</button>
+</form>
+<div id="newsletterThanks" class="newsletter newsletter--thanks block block--1 block--polite hidden">
+  <h2 class="heading">Thanks! Please check your inbox to confirm your subscription.</h2>
+  <p>If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us.
+  </p>
+</div>
+  </section>
+  
+
+<section class="discussion">
+  <hr class="dino">
+  <div class="comments">
+    <header class="comments__head">
+      <h3>No comments yet</h3>
+    </header>
+
+      </div>
+  <div class="response" id="respond">
+        <form id="comment-form" action="https://hacks.mozilla.org/wp-comments-post.php" method="post">
+        <h3>Post Your Comment</h3>
+        <p id="cancel-comment-reply"><a rel="nofollow" id="cancel-comment-reply-link" href="/2022/03/introducing-mdn-plus-make-mdn-your-own/#respond" style="display:none;">Cancel Reply</a></p>
+              <div class="field" id="cmt-name">
+          <label for="author">Your name <abbr title="(required)">*</abbr></label>
+          <input type="text" name="author" id="author" size="25" required aria-required='true'>
+        </div>
+        <div class="field" id="cmt-email">
+          <label for="email">Your e-mail <abbr title="(required)">*</abbr></label>
+          <input type="email" name="email" id="email" size="25" required aria-required='true'>
+        </div>
+        <div id="cmt-ackbar">
+          <label for="age">Spam robots, please fill in this field. Humans should leave it blank.</label>
+          <input type="text" name="age" id="age" size="4" tabindex="-1">
+        </div>
+            <div class="field" id="cmt-cmt">
+        <label for="comment">Your comment</label> <textarea name="comment" id="comment" cols="50" rows="10" required="required" aria-required="true"></textarea>
+      </div>
+      <div class="field" id="comment-submit">
+        <button name="submit" type="submit">Submit Comment</button>
+      </div>
+      <input type='hidden' name='comment_post_ID' value='47744' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+      <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6efc76efb9" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js" name="ak_js" value="43"/><script>document.getElementById( "ak_js" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></div>
+    </form>
+      </div></section><script>jQuery("#comment-form").submit(function() { return fc_checkform('req'); });</script>
+
+
+</main><!-- /#content-main -->
+
+  
+
+    <footer class="footer section section--fullwidth">
+      <div class="row">
+        <p class="block block--1">
+          Except where otherwise noted, content on this site is licensed
+          under the
+          <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license external">Creative Commons Attribution Share-Alike License v3.0</a>
+          or any later version.
+        </p>
+        <img class="footer__logo" alt="the Mozilla dino logo" src="https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/themes/Hax/img/dino.svg">
+      </div>
+    </footer>
+  </div>
+  <link rel='stylesheet' id='hljstheme-css'  href='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/styles/solarized-light.css?ver=0.6.2' type='text/css' media='all' />
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/comment-reply.min.js?ver=5.8.3' id='comment-reply-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-includes/js/wp-embed.min.js?ver=5.8.3' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.common.pack.js?ver=0.6.2' id='hljs_preload-js'></script>
+<script type='text/javascript' src='https://2r4s9p1yi1fa2jd7j43zph8r-wpengine.netdna-ssl.com/wp-content/plugins/wp-code-highlightjs/highlight.custom.pack.js?ver=0.6.2' id='hljs-js'></script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+  <script>
+    // External links should open in a new tab.
+    (function () {
+      var postLinks = document.querySelectorAll('#content-main a');
+
+      var origin = location.origin;
+
+      for (var i = 0; i < postLinks.length; i++) {
+        var link = postLinks[i];
+        if (link.origin !== origin && !link.getAttribute('target')) {
+          link.setAttribute('target', '_blank');
+        }
+      }
+    })();
+
+    window.addEventListener('load', function () {
+      if (document.querySelector('#newsletterForm')) {
+        var script = document.createElement('script');
+        var path = document.head.getAttribute('data-template-path');
+        script.setAttribute('src', path + '/js/newsletter.js');
+        document.head.appendChild(script);
+      }
+    });
+  </script>
+</body>
+</html>

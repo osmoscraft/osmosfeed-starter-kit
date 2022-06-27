@@ -1,0 +1,744 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>CTA Modal: How To Build A Web Component — Smashing Magazine</title><link rel=preconnect href=https://cloud.netlifyusercontent.com><link rel=preconnect href=https://smashingcomments.netlify.app crossorigin><link rel=preconnect href=https://res.cloudinary.com><link rel=preconnect href=https://www.google-analytics.com/><link rel=preconnect href=https://storage.googleapis.com><style>@font-face{font-family:Elena;src:url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2)format("woff2"),url(/fonts/ElenaWebRegular/ElenaWebRegular.woff)format("woff")}@font-face{font-family:Elena;src:url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2)format("woff2"),url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic.woff)format("woff");font-style:italic}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2)format("woff2"),url(/fonts/ElenaWebBold/ElenaWebBold.woff)format("woff");font-weight:700}@font-face{font-family:Elena;src:url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic-subset.woff2)format("woff2"),url(/fonts/ElenaWebBoldItalic/ElenaWebBoldItalic.woff)format("woff");font-weight:700;font-style:italic}@font-face{font-family:Mija;src:url(/fonts/MijaRegular/Mija_Regular-webfont-subset.woff2)format("woff2"),url(/fonts/MijaRegular/Mija_Regular-webfont.woff)format("woff")}@font-face{font-family:Mija;src:url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2)format("woff2"),url(/fonts/MijaBold/Mija_Bold-webfont.woff)format("woff");font-weight:700}</style><script>var fontsInServiceWorker=sessionStorage.foutFontsStage1Loaded&&sessionStorage.foutFontsStage2Loaded||'serviceWorker'in navigator&&navigator.serviceWorker.controller!==null&&navigator.serviceWorker.controller.state==='activated',docEl;if(!fontsInServiceWorker&&'fonts'in document){function fetchFonts(a){return Promise.all(a.map(function(a){return document.fonts.load(a)}))}sessionStorage.foutFontsStage2Loaded?document.documentElement.className+=" wf-loaded-stage2":sessionStorage.foutFontsStage1Loaded=!0}if("fonts"in document&&!("connection"in navigator&&navigator.connection.saveData)){let a=new FontFace("Elena","url(/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2) format('woff2')"),b=new FontFace("Elena","url(/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2) format('woff2')",{weight:"700"}),c=new FontFace("Elena","url(/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2) format('woff2')",{style:"italic"}),d=new FontFace("Mija","url(/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2) format('woff2')",{weight:"700"}),e=Promise.all([a.load(),b.load(),d.load(),c.load()]).then(a=>{a.forEach(a=>document.fonts.add(a)),document.documentElement.classList.add('wf-loaded-stage2'),sessionStorage.foutFontsStage2Loaded=!0}).catch(a=>{throw new Error(`Error caught: ${a}`)})}(sessionStorage.foutFontsStage1Loaded&&sessionStorage.foutFontsStage2Loaded||'serviceWorker'in navigator&&navigator.serviceWorker.controller!==null&&navigator.serviceWorker.controller.state==='activated')&&(docEl=document.documentElement,docEl.classList.add('wf-loaded-stage2')),!1 in document&&'addEventListener'in window&&'getComputedStyle'in window&&(window.document.documentElement.className+=' no-js'),window.document.documentElement.className+=' enhanced js'</script><style>@charset "UTF-8";@media(prefers-color-scheme:dark){:root{--article-background-color:linear-gradient(-45deg, #162c35 70%, #0c252f 100%)}}*,::after,::before{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;overflow-y:scroll}body{margin:0;display:flex;flex-direction:column;background-color:#fff;font-feature-settings:"onum" 1;color:#333;overflow:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:-apple-system,BlinkMacSystemFont,Roboto,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif;font-size:1.125em}body,html{min-height:100%;overflow-x:hidden}img{max-width:100%;position:relative;border-style:none}article,aside,figcaption,figure,footer,header,main,nav,section{display:block}:focus{outline:3px dotted var(--THEME_COLOR_HOVER,#d33a2c)!important;outline-offset:2px}article,figure,header,main,nav,section{display:block}@media(prefers-reduced-data:reduce){.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 body,.wf-loaded-stage2 h1,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 tbody td,.wf-loaded-stage2 th,.wf-loaded-stage2 time{font-family:-apple-system,BlinkMacSystemFont,Roboto,roboto slab,droid serif,segoe ui,system-ui,Arial,sans-serif!important}}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article-header--updated,.wf-loaded-stage2 .author-post__author-title,.wf-loaded-stage2 .btn,.wf-loaded-stage2 .cta--green,.wf-loaded-stage2 .feature-panel::before,.wf-loaded-stage2 .feature-panel__desc,.wf-loaded-stage2 .form__field__input,.wf-loaded-stage2 .h1,.wf-loaded-stage2 .h4,.wf-loaded-stage2 .header__search-results .h2,.wf-loaded-stage2 .header__search-results h2,.wf-loaded-stage2 .nav-item,.wf-loaded-stage2 .search .search-input,.wf-loaded-stage2 .subnav a,.wf-loaded-stage2 .tablesaw td:before,.wf-loaded-stage2 h1,.wf-loaded-stage2 h4,.wf-loaded-stage2 input[type=email],.wf-loaded-stage2 th{font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto,roboto slab,droid serif,segoe ui,system-ui,Arial,sans-serif}.wf-loaded-stage2 .article-header--meta,.wf-loaded-stage2 .article__summary::before,.wf-loaded-stage2 .author__desc,.wf-loaded-stage2 .author__desc__title,.wf-loaded-stage2 .drop-caps+p::first-line,.wf-loaded-stage2 .h2,.wf-loaded-stage2 .h3,.wf-loaded-stage2 .meta-box--item,.wf-loaded-stage2 .nl-box__group input[type=email],.wf-loaded-stage2 .sponsors ul li a,.wf-loaded-stage2 body,.wf-loaded-stage2 h2,.wf-loaded-stage2 h3,.wf-loaded-stage2 tbody td,.wf-loaded-stage2 time{font-family:Elena,-apple-system,BlinkMacSystemFont,Roboto,roboto slab,droid serif,segoe ui,system-ui,Arial,sans-serif}@media all and (max-width:750px){.c-garfield-the-cat{display:flex;flex-direction:column}.c-garfield-the-cat>*{margin-bottom:0}.article__image,.c-garfield-the-cat>figure{margin:1em auto .25em}.c-garfield-aside--meta{margin-bottom:1em}.c-garfield-the-cat>pre{margin-top:1em}.c-garfield-the-cat .code-toolbar{margin-top:1em}.c-garfield-the-cat .code-toolbar>pre{margin-top:0}.c-garfield-the-cat>pre{margin-bottom:.5rem}.c-garfield-the-cat>table{margin-top:1em;margin-bottom:1em}.c-garfield-the-cat .pull-quote__quotation{margin-top:1em}.drop-caps{display:none}}.js-show-secondary .menu-text--sm,.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}.js-show-secondary .menu-text--sm--close{display:block}@media all and (min-width:800px){.js-show-secondary .main-nav__secondary{display:block;top:50px}.js-show-secondary .menu-text--lg--close,.menu-text--lg{display:block}.js-show-secondary .menu-text--lg,.js-show-secondary .menu-text--sm--close,.menu-text--sm{display:none}}.js-show-secondary .main-nav-more-item__button:before{content:"";display:block;margin-left:.35em;width:45px;height:30px;background-position:50%;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50.21 35.05'%3E%3Cellipse cx='27.8' cy='32.92' fill='rgba(60,60,60,0.5)' rx='19.64' ry='1.2'/%3E%3Cpath fill='%23fff' d='M46.48 15.53a5.2 5.2 0 00-2-.31 7 7 0 00-1.43.19 7.66 7.66 0 001.19-1.52 7.12 7.12 0 011.12-.13 5.18 5.18 0 012 .31h.05a2.82 2.82 0 011.44 1.24 2.75 2.75 0 01.18 2 2.36 2.36 0 00-.74-.46 2 2 0 01.86 1c.11.45-.23 1-.67.92a1.86 1.86 0 00-.22-1 2.65 2.65 0 00-.29-1 2.74 2.74 0 00-1.49-1.24zM16.56 28.07c.06-.21.37-1.29.19-1.47 0 0 5.18 5.08 7.22-2.7a6 6 0 001.16.62c-.75 7-6.44 3.43-6.44 3.43.22.13.14 1.25.12 1.47-.16 2.2-3 1.63-3.74.11a2.44 2.44 0 01-.14-.34 1.4 1.4 0 001.63-1.12z' class='cls-2'/%3E%3Cpath fill='%23fff' d='M1.26 14.52c.08.23.18.45.28.67v.05c1.26 2.67 3.76 5 6.81 4.61a12 12 0 003.51-1.05 8.6 8.6 0 013.64-1 7.28 7.28 0 00.1 2.65A9.82 9.82 0 0117 18.5s-.77 2.34-.41 3a1 1 0 00-.15-.18 1.28 1.28 0 00-.8-.4 1 1 0 00-.89.7c-.23.45-.24.83-.63 1.17-1 .87-2.17 2-1.79 3.47a2.64 2.64 0 002.06 1.82A1.39 1.39 0 0016 27c.06-.21.36-1.28.18-1.46 0 0 5.19 5.07 7.23-2.7a5.65 5.65 0 001.16.61c1.43.56 3.94.91 6.11-2.07a20.36 20.36 0 005.68 1.13s-1.55-.55-1.61-1.28c0 0 3.84 1 6 0l-2.43-.32a3.69 3.69 0 001.68-.42 5.24 5.24 0 012.46 0c.73.08 1.06-.31 1.54-.78a1.17 1.17 0 00.09.33 2.06 2.06 0 00.12.35 3.21 3.21 0 00.37.65 1.35 1.35 0 001.27.53.92.92 0 00.53-.28 1.2 1.2 0 00.19-1.16 2 2 0 00-.77-.94 1.85 1.85 0 011 1.76c.44.08.78-.48.67-.93a1.13 1.13 0 00-.13-.32 2.4 2.4 0 00-.72-.7 2.26 2.26 0 01.74.45 2.67 2.67 0 00.1-.64v-.3a2.59 2.59 0 00-.28-1A2.65 2.65 0 0046 16.32l-.14-.06-.08-.05h-.06a10.1 10.1 0 00-3.9-.54 6.3 6.3 0 001.59-2.45 3 3 0 01-.12.73s1.61-.69.71-2.95a1 1 0 01.63.49 4.17 4.17 0 00-1.74-2.81 2.35 2.35 0 01.88.17 3.64 3.64 0 00-1.72-1.34l-.27-2.21.88.31s0-.35-.89-.86a7.17 7.17 0 00.36-3.37C39.32 1 38.27 2.48 38 2.94a12.73 12.73 0 00-2.56.26 2.83 2.83 0 011.29-.62 3.87 3.87 0 00-3.23.94s-2.73-2-5.37-1.29c0 0-.27 1.36 1.42 4.77a6.37 6.37 0 00-2.31 2.67 7.38 7.38 0 011.63-1.59s-2.44 2.6-1.46 4.67a3.77 3.77 0 01.35-1.55c0 .4-.24 3.2 1 4.61a9.92 9.92 0 01-.32-2s.37 2.53 3.84 3.6a4.35 4.35 0 01-1.49-1.54 11.65 11.65 0 002.47 1.23c-.61.18-1 .31-1 .31l-.81.38a6.56 6.56 0 01-2.34-1.49h-.07a.58.58 0 01-.31.08.64.64 0 01-.46-.21 5.47 5.47 0 01-1.14-2.91.66.66 0 01-.33-.31 3.48 3.48 0 01-.19-2.24 6.84 6.84 0 00-6.5-.26 18.29 18.29 0 012.43.43s-4.84.26-7.22 3.71c0 0 1.93-2 2.77-1.7a8.44 8.44 0 00-2.1 3A9.13 9.13 0 0012 16c-3.7.78-5.2-1.7-5.79-3.65 0-.13-.08-.25-.11-.37a.14.14 0 000-.07v-.16a.14.14 0 010-.06q-.1-.24-.1-.47v-.05a.68.68 0 000-.14 2.4 2.4 0 010-.24v-.09a.09.09 0 000-.05v-.08a.28.28 0 010-.09v-.12c-.09-2-1.43-2.88-3-1.92C.82 9.6.44 12.35 1.26 14.52zm26.58-3.41v.05z' class='cls-2'/%3E%3C/svg%3E");order:1}.js-show-secondary .main-nav-more-item__button:after{width:15px;height:15px;order:2;background-image:url(/images/icons/close.svg)}.js-show-secondary .main-nav__secondary{display:flex}strong{font-weight:bolder;letter-spacing:0}svg:not(:root){overflow:hidden}button{text-transform:none;cursor:pointer;font:inherit;margin:0}[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}.l-author-bio{display:flex;flex-wrap:wrap;align-items:center}.l-author-bio-content{flex-grow:1;flex-shrink:1;flex-basis:300px}.bio-image__large .bio-image{--bio-image-border-width:8px}.bio-image{padding:0;margin:0;display:block;width:100%;height:100%;border-radius:inherit;position:relative}.bio-image::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100%;background-repeat:no-repeat;top:89%;left:-30%;right:0;transform-origin:30% 50%;opacity:1;transition:opacity .3s ease-in-out}.bio-image:hover::before{opacity:0}a.bio-image-link{background:0 0;text-shadow:none;color:inherit;padding:0;display:block;border-radius:inherit;width:100%;height:100%}a.bio-image-link::before{display:block;content:'';height:120%;width:120%;position:absolute;top:-10%;left:-12%}.bio-image-wrapper{background:var(--bio-image-background-color,var(--bio-image-border-color,#d33a2c));border:solid var(--bio-image-border-width,8px)var(--bio-image-border-color,#d33a2c);border-radius:inherit;transform:scale(.84)translateX(15%)rotateZ(calc(-1 * (11 * 1deg)));transform-origin:0 100%;overflow:hidden;width:100%;height:100%;transition:transform .2s ease-out}.bio-image-image{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2)rotateZ(calc(11 * 1deg));transition:transform .2s ease-out}.bio-image-link:active .bio-image-wrapper,.bio-image-link:focus .bio-image-wrapper,.bio-image:hover .bio-image-wrapper{transform:scale(.84)translateX(15%)rotateZ(0)}.bio-image-link:active .bio-image-image,.bio-image-link:focus .bio-image-image,.bio-image:hover .bio-image-image{transform:scale(1.2)rotateZ(0)}.article__content .author-post__author-title{color:#d33a2c;text-decoration-line:underline;font-weight:700;font-size:.9em}.light-grey{color:#767676!important}.rounded-3xl{border-radius:1.2em}.block{display:block}.h-48{height:12rem}.mr-3{margin-right:.75rem}.mb-5{margin-bottom:1.25rem}@media all and (max-width:600px){.mobw-40{width:8rem!important}.mobh-40{height:8rem!important}}.w-48{width:12rem}.mt-2{margin-top:.5rem}.mtn{margin-top:0!important}.mbn{margin-bottom:0!important}small{font-size:80%}.row{box-sizing:border-box;display:flex;flex:initial;flex-direction:row;flex-wrap:wrap;margin-right:-1rem;margin-left:-1rem}[class*=col-]{box-sizing:border-box;flex:none;padding-right:1rem;padding-left:1rem}.row::after{clear:both}.col-12{flex-basis:100%;max-width:100%}@media screen and (min-width:48em){.col-12{flex-basis:100%;max-width:100%}}.container{width:calc(100% - .5em);max-width:1440px;margin:0 auto;z-index:1;position:relative}.container::after{content:"";display:table;clear:both}@media(min-width:40em){.container{width:92vw!important}}@media(min-width:48em){.container{width:85vw}}@media(min-width:64em){.container{width:68rem}}@media(min-width:75em){.container{width:79rem}}@media screen and (min-width:160em){.container{max-width:1650px}}@media(min-width:187.5em){.container{max-width:1860px}}.c-garfield-the-cat>p:first-of-type{font-size:1.1em;line-height:1.55em}.c-garfield-the-cat>p:empty{display:none}.c-felix-the-cat{background-color:#f3f3f3;border-left:11px solid #e6e4e1;padding:1em 1em 1em 1.5em;color:#424242;margin-left:0;margin-top:1em;font-size:1.05em;line-height:1.6em;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0 0,#fff 100%)}.c-felix-the-cat h4{margin-top:.5em}.sponsor-panel{display:flex;justify-content:center;align-items:center}.sponsor-panel-content{flex:3}.sponsor-panel-image{display:none}@media screen and (min-width:1100px){.sponsor-panel-image{display:block;background-image:none;margin-left:1.5em;flex:1}}@media(max-width:1024px){.col{width:100%!important;padding:0 1em}.row{margin-left:0;margin-right:0}.article__content{float:none}.article__content::before{display:none}}#main{position:relative;z-index:0;background-color:#fff}@supports(display:grid){.main-nav{display:grid;align-items:center}}.main-nav{position:relative;display:block;min-width:0;color:#fff;grid-column:span 2;font-size:1.05em}.main-nav__primary .nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav__secondary .nav-item--active{background-color:transparent;margin:0}.c-garfield-the-cat figcaption a{color:#666;text-decoration-line:underline;text-decoration-color:#666}.c-garfield-the-cat figcaption a.btn{color:#fff;text-decoration:none}@media all and (min-width:1100px){@supports(grid-row-gap:0){.c-garfield-the-cat{display:grid;grid-template-columns:0 minmax(0,.5fr)repeat(10,minmax(0,1fr)).7fr .3fr 17rem;margin:0 auto}.c-garfield-the-cat ol,.c-garfield-the-cat ul,.c-garfield-the-cat>div,.c-garfield-the-cat>p,.c-garfield-the-cat>table{margin-bottom:1.4em}.c-garfield-the-cat>h2{margin-top:1.5em;margin-bottom:1em}.c-garfield-the-cat>h3,.c-garfield-the-cat>h4{margin-top:1.5em;margin-bottom:.65em}.c-garfield-the-cat>h5{margin-top:.65em;margin-bottom:.65em}.article__image,.c-garfield-the-cat>figure{margin:0 auto 1.4em;width:100%}.c-garfield-the-cat .code-toolbar pre,.c-garfield-the-cat blockquote,.c-garfield-the-cat pre,.c-garfield-the-cat>figure.video-embed-container{margin-bottom:1.7em;margin-top:.3em}.c-garfield-the-cat .code-toolbar{margin-bottom:0}.c-garfield-the-cat>*{grid-column:3/13;margin-top:0;margin-bottom:0}.c-garfield-the-cat .c-garfield-bio{grid-column:1/2;grid-row:1/4;align-self:start}.c-garfield-the-cat .c-garfield-header{grid-column-end:16}.c-garfield-the-cat .c-garfield-aside--meta{grid-column:15/16;grid-row:2/7;align-self:start;margin:0}.c-garfield-the-cat .toc-components li{margin-bottom:.75em}.c-garfield-the-cat>.break-out{grid-column:3/14;width:100%}.c-garfield-the-cat>.break-out img{margin:0 auto}.c-garfield-the-cat>.break-out figcaption{max-width:50em}.article__content .c-garfield-the-cat figcaption{margin:0 auto}.c-garfield-the-cat .c-garfield-native-panel{grid-column:15/16;grid-row:8/15;align-self:start;text-align:center;position:relative}.c-garfield-native-panel__right{grid-column:15/16;grid-row:15/22;align-self:start;text-align:center}.c-garfield-the-cat .c-garfield-native-panel__below{grid-row:19/25}.c-garfield-the-cat .c-garfield-native-panel__end{grid-row:26/33}.feature-panel-container{margin-top:6em;margin-bottom:1em}}}.no-ads .c-garfield-native-panel,.no-panels .feature-panel-container,.subscriber .c-garfield-native-panel,.subscriber .feature-panel-container{display:none!important}figcaption a{color:inherit}figcaption code,figcaption pre{font-style:normal}.article h1,.article h2,.article h3,.article h4,.article h5,.article h6{position:relative}.feature-panel-container{grid-column:1/15;margin-top:3em;margin-bottom:1em}.article__image img,.c-garfield-the-cat>figure img{display:block;width:auto;max-width:100%;margin:0 auto;height:auto}.article__image>a,.c-garfield-the-cat>figure>a{display:block;background:0 0;position:relative;z-index:99}.article__image figcaption,.c-garfield-the-cat>figure figcaption{color:#666;font-size:.95em;font-style:italic;padding:.75em 2em .75em 0;display:table}.article__image figcaption a,.c-garfield-the-cat>figure figcaption a{color:#666}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before,.internal__page__wrapper figure:not(.bio-image) figcaption::before{content:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 17 13.09%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23c2c2c2%7D%3C/style%3E%3C/defs%3E%3Ctitle%3Ecamera%3C/title%3E%3Cpath class=%22cls-1%22 d=%22M8.5 5.44a2.21 2.21.0 102.21 2.21A2.21 2.21.0 008.5 5.44zm6.29-3.23h-2.55A2.21 2.21.0 0010 0H7A2.21 2.21.0 004.76 2.21H2.21a2.21 2.21.0 00-2.21 2.21v6.46a2.21 2.21.0 002.21 2.21h12.58A2.21 2.21.0 0017 10.88V4.42a2.21 2.21.0 00-2.21-2.21zM8.5 11.56a3.91 3.91.0 113.91-3.91A3.91 3.91.0 018.5 11.56z%22/%3E%3C/svg%3E");height:1em;width:1.5em;padding-right:.6em;display:table-cell;vertical-align:baseline;position:relative;top:.05em}.c-garfield-the-cat>figure.article__figure figcaption::before{content:'';display:none}.hidden{display:none!important}.c-garfield-header{clear:both}.c-promo-box{font-size:.9em;border-radius:11px}.c-promo-box a:not(.btn){color:#006fc6}.c-promo-box--ad::before{display:block;white-space:pre-wrap;padding:2em 0 3em;font-size:.85em;font-style:italic;color:#666}.c-promo-box--ad img{border-top-left-radius:11px;border-top-right-radius:11px}.c-garfield-the-cat .author__desc{font-size:.9em;color:#555}.summary__heading{font-style:normal;font-size:1rem;letter-spacing:2px;margin:0;font-weight:700;color:#d33a2c;text-transform:uppercase}.c-promo-box--ad ul{padding-left:0;margin:0}.bnnr-list{display:flex;text-align:center;justify-content:center;flex-direction:row}.sponsors.c-promo-box:not(.c-promo-box--wide) .bnnr-list{flex-direction:column}.c-garfield-the-cat{padding:0 1em}@media screen and (min-width:80em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr))1.4fr .6fr 21rem 1fr}}@media screen and (min-width:100em){.c-garfield-the-cat{display:grid;grid-template-columns:0 repeat(11,minmax(0,1fr))1.9fr .4fr 21rem 1fr}}@media screen and (min-width:160em){.c-garfield-the-cat{display:grid;grid-template-columns:18.5rem repeat(11,minmax(0,1fr)).7fr .3fr 18.5rem;grid-column-gap:1.75rem}}@media(min-width:187.5em){.c-garfield-the-cat{display:grid;grid-template-columns:20rem repeat(11,minmax(0,1fr)).7fr .3fr 20rem;grid-column-gap:2.25rem}}.header{background:#d33a2c;background:var(--THEME_COLOR,#d33a2c);position:relative;display:grid;justify-content:flex-start;align-items:center;padding:.8em;z-index:2;grid-template-columns:min-content min-content 1fr;column-gap:5px}@media all and (min-width:31.25em){.header{grid-template-columns:-webkit-min-content -webkit-min-content 0 minmax(100px,100%);grid-template-columns:min-content min-content 0 minmax(100px,100%);column-gap:10px}}@media(min-width:700px){.header{grid-template-columns:-webkit-min-content minmax(140px,2fr)0 minmax(100px,350px);grid-template-columns:min-content minmax(140px,2fr)0 minmax(100px,350px)}}@media(min-width:740px){.header{padding:1rem 2em}}.search{flex-basis:100px;flex-shrink:1}@media screen and (min-width:48em){body{font-size:calc(.35842vw + .95296em)}}body .form__field__label,body li,body p{line-height:calc(1.5em + .2vw);word-break:break-word}body h1{line-height:1.2}.article--post__title a:focus,.article--post__title a:hover{color:#d33a2c}@supports(-ms-ime-align:auto){.article__image figcaption,.c-garfield-the-cat>figure figcaption{display:inline-block}.article__image figcaption::before,.c-garfield-the-cat>figure figcaption::before{display:inline-block}body{font-feature-settings:normal}}::-webkit-input-placeholder{color:#666}::-moz-placeholder{color:#000}:-ms-input-placeholder{color:#666}.article-header--meta-item__date,time{color:#666;font-feature-settings:"smcp" 1,"c2sc" 1;letter-spacing:1px;text-transform:lowercase;background-position:50% 72%}.article-header--meta-item__date{display:flex}.wf-loaded-stage2 time{font-variant:petite-caps}.kbd,kbd{font-size:.9em;padding:.0625rem .5rem;border-radius:.125rem;border:1px solid #d33a2c;box-shadow:1px 1px #d33a2c,2px 2px #d33a2c;margin:0 .25rem;color:#d33a2c;font-family:monospace}figure{margin:0;padding:0}figure:after,figure:before{content:" ";display:table;clear:both}a{padding:7px 0;background-color:transparent;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;text-decoration-line:underline;color:#006fc6}.h1,h1{font-size:calc(1.625rem + 1.6vw);margin:0}.h2,.h3,.h4,.h5,h2,h3,h4,h5{color:#333}.h2,h2{font-size:calc(1.5rem + .25vw);margin:2em 0 .75em;text-transform:capitalize}.h3,h3{font-size:calc(1.125rem + .25vw);text-transform:uppercase;letter-spacing:1px;margin-top:2em;margin-bottom:1em}h4{font-size:1.1em;margin-top:2em}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{text-transform:none}@keyframes fadeOut-headings{0%{background:#ffde95;box-shadow:-10px 0 0 12px #ffde95}100%{background:#fff1d2;box-shadow:-10px 0 0 12px #fff1d2}}h2:target,h3:target,h4:target,h5:target,h6:target{border-radius:11px;animation:fadeOut-headings .4s;animation-fill-mode:forwards}.article__content h2:target a,.article__content h3:target a,.article__content h4:target a,.article__content h5:target a{color:#d33a2c}:target{scroll-margin-top:2rem}ol,ul{margin:1em 0;max-width:100%}ol{padding:0;list-style:none;counter-reset:listCounter}ol>li{padding-left:calc(1.65em + .7vw);position:relative;counter-increment:listCounter;margin-bottom:1em}ol>li::before{content:counter(listCounter,decimal-leading-zero);font-size:.7em;font-weight:700;color:#d33a2c;left:.8em;position:absolute;font-family:Mija,-apple-system,BlinkMacSystemFont,Roboto Slab,Droid Serif,Segoe UI,system-ui,Arial,sans-serif}ul{list-style:disc}ul>li::marker{color:#d33a2c}ul>li{margin-bottom:.75em;padding-left:.15em}.rh{color:#d33a2c}.menu-text--lg,.menu-text--lg--close,.menu-text--sm--close{display:none}@media(min-width:800px){.search{flex-basis:500px}.main-nav{grid-column:auto}.menu-text--sm{display:none}.menu-text--lg{display:block}}.secondary-nav{position:relative;grid-row-start:2;grid-column:1/5}body:not(.enhanced) .main-nav{overflow-x:auto;-webkit-overflow-scrolling:touch}.main-nav__primary{display:flex;list-style:none;padding:.4em 0;margin:0;flex-wrap:nowrap;width:100%;height:100%;flex-shrink:1;min-width:0;justify-content:flex-start}.main-nav span:empty{display:none}@media all and (min-width:53.125em){.main-nav__primary{justify-content:space-between}}.nav-item{flex-grow:0;background:0 0;text-shadow:none;color:inherit;font-weight:700;display:flex;align-items:center;margin-bottom:0;padding-left:0}.nav-item--active{background:rgba(0,0,0,.1);border-radius:11px}.main-nav-more-item{position:relative;width:145px}@media(min-width:42.9375em){.main-nav-more-item{margin-left:.35em}}@media all and (max-width:52.5em){.main-nav-more-item{justify-content:center}}.main-nav-more-item__button{padding:.4em .5rem .4em 1rem;border:1px solid rgba(0,0,0,5%);color:inherit;display:flex;align-items:center;justify-content:space-around;line-height:1;position:relative;background-color:rgba(0,0,0,.2);border-radius:11px;box-shadow:0 13px 7px -15px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.main-nav-more-item__button,.nav-item-link{white-space:nowrap}.nav-item-link{padding:.35em .9rem;background:0 0;color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);text-decoration:none}@media screen and (min-width:800px){.main-nav__secondary .nav-item-link{color:#d33a2c!important}}.nav-item-link:focus,.nav-item-link:hover{background-color:rgba(0,0,0,.15);border-radius:11px}.main-nav__secondary .nav-item-link:focus,.main-nav__secondary .nav-item-link:hover{background-color:transparent;box-shadow:none}.main-nav-more-item__button:active,.main-nav-more-item__button:focus,.nav-item-link:active,.nav-item-link:focus{outline-color:var(--THEME_COLOR_OUTLINE,#811d15)!important}.secondary-nav .nav-item-link:active,.secondary-nav .nav-item-link:focus{outline-color:#811d15!important}.main-nav__secondary .nav-item-link{text-shadow:none;width:100%;text-decoration:none;text-decoration-color:#d33a2c;padding:.25em .7rem}.main-nav-more-item__button:after{content:"";display:block;margin-left:9px;width:30px;height:30px;background-position:50%;background-repeat:no-repeat;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35.96 33.31'%3E%3Cellipse cx='17.98' cy='31.55' fill='rgba(60,60,60,0.3)' rx='14.75' ry='.57'/%3E%3Cpath fill='%23fff' d='M34.94 15v-.93c-.23-3-2.16-5.93-5.22-6.3-2.31-.28-3.39 1.45-2.4 3.84a.43.43 0 000 .05v.11a.14.14 0 010 .06.63.63 0 000 .09v.17c0 .08.06.18.09.29s0 0 0 .05a1 1 0 000 .17.64.64 0 010 .07c0 .18.1.38.14.6a.24.24 0 010 .08v.29c0 .03.06.33.08.5.37 2.58 0 6.27-4.73 7.37A12.74 12.74 0 0019.7 23c-.17-.65-.36-1.25-.55-1.77a5.16 5.16 0 002.05-2.56 11.26 11.26 0 01-.69 2.33c1.81-1.55 2-5.05 2-5.54a4.72 4.72 0 01.21 2c1.55-2.41-1.17-6-1.17-6a9.67 9.67 0 011.84 2.24C23 11.75 20.82 10 20.82 10c2.65-4 2.51-5.68 2.51-5.68-3.26-1.34-7 .73-7 .73a5.12 5.12 0 00-4-1.7 3.61 3.61 0 011.56 1 16.79 16.79 0 00-3.23-.74C10.41 3 9.4 1.16 6.22 1h-.58S5 3.64 5.61 5.19c-1.15.49-1.26.93-1.26.93l1.17-.25-.67 2.67a4.66 4.66 0 00-2.39 1.38 3 3 0 011.15-.07A5.11 5.11 0 001 13.05a1.32 1.32 0 01.87-.51c-1.47 2.69.49 3.76.49 3.76a3.8 3.8 0 010-.92 8.52 8.52 0 002.19 3.9 14.13 14.13 0 01-.24-1.59 5.46 5.46 0 001.93 2.7 6.25 6.25 0 01-.4-1.52 5.87 5.87 0 001.36 1.75c-.12.24-.24.47-.34.71a12 12 0 00-.7 2.13c0 .23-.09.45-.13.66a1.4 1.4 0 00-1-.31 1.4 1.4 0 00-1.09 1 3.1 3.1 0 000 1.57 9.48 9.48 0 001.8 3.92A2.92 2.92 0 004 30.06c-.56.16-1 .83-.72 1.34H22.6c.29-.51-.16-1.18-.72-1.34a2.92 2.92 0 00-1.71.24A9.48 9.48 0 0022 26.44 3.24 3.24 0 0022 25a15.89 15.89 0 012.87-.21 14.93 14.93 0 004.65-.69c3.72-1.24 5.38-5.25 5.38-9zm-12.49.42h-.05v-.07z'/%3E%3C/svg%3E")}.main-nav__secondary{display:none;color:#fff;padding:.2em 0;flex-wrap:wrap;flex-direction:column;justify-content:flex-start;align-items:flex-start;height:10em}@media all and (min-width:31.25em){.main-nav__secondary .nav-item-link{padding:.25em 1.1rem}.main-nav__secondary{padding:.2em .5em}}@media(-webkit-min-device-pixel-ratio:1.3),(min-resolution:124.8dpi){.main-nav__secondary{height:11em}}@media(min-width:800px){.secondary-nav{grid-row:auto;grid-column:auto}.main-nav__secondary{display:none;position:absolute;top:0;left:-80px;transform:translate(-50%,0);max-width:unset;background:#fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px;margin:0;padding:14px 20px 10px 10px;min-width:180px;color:#d33a2c;flex-direction:row;justify-content:space-between;align-items:center;height:auto}.main-nav__secondary:before{content:"";display:block;position:absolute;top:1px;left:50%;transform:translate(-50%,-100%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:15px solid #fff}}.nav-item-1,.nav-item-10,.nav-item-2,.nav-item-3,.nav-item-4,.nav-item-5,.nav-item-6,.nav-item-7,.nav-item-8,.nav-item-9{display:none}.main-nav__secondary .nav-item-1,.main-nav__secondary .nav-item-10,.main-nav__secondary .nav-item-2,.main-nav__secondary .nav-item-3,.main-nav__secondary .nav-item-4,.main-nav__secondary .nav-item-5,.main-nav__secondary .nav-item-6,.main-nav__secondary .nav-item-7,.main-nav__secondary .nav-item-8,.main-nav__secondary .nav-item-9{display:flex}@media(min-width:42.9375em){.nav-item-1{display:flex}.main-nav__secondary .nav-item-1{display:none}}@media(min-width:52.5em){.nav-item-2{display:flex}.main-nav__secondary .nav-item-2{display:none}}@media(min-width:56.5625em){.nav-item-3{display:flex}.main-nav__secondary .nav-item-3{display:none}}@media(min-width:70em){.nav-item-4{display:flex}.main-nav__secondary .nav-item-4{display:none}}@media(min-width:77.8125em){.nav-item-5{display:flex}.main-nav__secondary .nav-item-5{display:none}}@media(min-width:97.5em){.nav-item-6{display:flex}.main-nav__secondary .nav-item-6{display:none}}@media(min-width:108.4375em){.nav-item-7{display:flex}.main-nav__secondary .nav-item-7{display:none}}@media(min-width:120.625em){.nav-item-8{display:flex}.main-nav__secondary .nav-item-8{display:none}}@media(min-width:136.5625em){.nav-item-9{display:flex}.main-nav__secondary .nav-item-9{display:none}}@media(min-width:179.6875em){.nav-item-10{display:flex}.main-nav__secondary .nav-item-10{display:none}.main-nav-more-item{display:none}.main-nav__primary{justify-content:flex-start}.nav-item{padding:0 .65em}.header,.header.searchFocused{grid-template-columns:-webkit-min-content minmax(140px,-webkit-max-content)0 minmax(250px,600px);grid-template-columns:min-content minmax(140px,max-content)0 minmax(250px,600px)}}@media(max-width:480px){.header .search{grid-column:1/5;margin-top:.5em}.main-nav__primary{justify-content:flex-end}.main-nav-more-item{justify-content:flex-end}}.btn--text-shadow,a.btn.btn--text-shadow{text-shadow:1px 1px 1px rgba(0,0,0,.25)}.btn-wrapper{display:none}@media screen and (min-width:1100px){.btn-wrapper{display:block;padding:4px}}.btn,.toolbar-item{display:inline-block;border-radius:11px;text-align:center;color:#fff;text-decoration:none;border:none;font-weight:700;background:0 0;font-size:.9em;outline:0;background-color:#d33a2c;background-image:linear-gradient(to bottom,#f88040,#d33a2c);position:relative;top:-2px;transition:top .1s ease-in-out,box-shadow .1s ease-in-out}.toolbar-item{box-shadow:0 4px #dedada}.toolbar-item{transition:all .3s ease-in-out}.toolbar-item:active,.toolbar-item:focus{position:relative;top:3px}.btn{padding:.5em 1em}.btn.btn--green,.btn.btn--member{background-color:#41b14f;background-image:linear-gradient(#9ec14c,#41b14f);color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.25);box-shadow:0 4px #2d8f39;position:relative}.btn,.btn--blue,.btn--green{position:relative}.btn--blue:focus,.btn--green:focus,.btn:focus{top:3px;box-shadow:0 4px transparent}.cta--green{display:block;padding:.5em;color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0;font-weight:700;text-decoration:none;border-radius:11px;text-align:center;font-size:.85em}.cta--green:hover{background-color:#c8f1e0;border:1px solid #a0dcc4}.cta--green:active,.cta--green:active:hover,.cta--green:focus,.cta--green:focus:hover{background-color:#137d54;color:#fff!important}.btn--white{background:#fff;color:#267dcc;transition:color .1s ease-out;box-shadow:0 4px transparent}.btn--white--bordered,.btn--white--bordered:active,.btn--white--bordered:focus,.btn--white--bordered:hover,.toolbar-item{border:1px solid #ddd}.btn span{color:#811d15;font-size:.8em;margin-left:5px;margin-top:.5em;line-height:1}.btn.btn--medium{font-size:calc(.9em + .1vw);padding:.75em 1em}@media(max-width:64em){pre{max-width:100%}}.input{border:none;display:block;color:#333;background-color:#fff;padding:.4em .75em;border-radius:5.5px;outline:0;font:inherit;margin:0;font-size:1.15rem;width:100%}.input::-webkit-input-placeholder{color:#666}.input:-ms-input-placeholder{color:#666}.input::-moz-placeholder{color:#000}.input::-ms-clear{display:none}.search .search-input{padding-left:calc(22px + 15px + 15px);background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 height=%2224%22 width=%2224%22%3E%3Cdefs%3E%3ClinearGradient id=%22linear-gradient%22 x1=%2222.31%22 y1=%2223.62%22 x2=%223.73%22 y2=%223.05%22 gradientUnits=%22userSpaceOnUse%22%3E%3Cstop offset=%220%22 stop-color=%22%23e93722%22/%3E%3Cstop offset=%221%22 stop-color=%22%23f86f25%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctitle%3EMagnifier%3C/title%3E%3Cpath fill=%22url(%23linear-gradient)%22 d=%22M23.33 20.1l-4.73-4.74a10.06 10.06.0 10-3.23 3.23l4.74 4.74a2.29 2.29.0 103.22-3.23zM5.85 14.26a5.94 5.94.0 118.42.0 6 6 0 01-8.42.0z%22/%3E%3C/svg%3E");background-repeat:no-repeat;background-size:22px;background-position:15px 45%;font-size:calc(1em + .1vw);border-radius:11px;padding-top:1rem;padding-bottom:1rem;font-weight:700;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}@media all and (max-width:550px){.search .search-input{min-height:54px}}.search-button{width:0;height:0;padding:0}.enhanced .search-button{display:none}.search-input-wrapper{position:relative}.search-clear-button{background:0 0;border:none;position:absolute;right:0;top:50%;transition:opacity .2s ease-out;transform:translate(-25%,-50%);opacity:0;padding:.5em}.search-clear-button.enabled{opacity:1}.search-results{background:var(--THEME_COLOR,#d33a2c);color:#fff}.search-results img{border-radius:11px;border:4px solid #fff;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);transition:all .2s ease-in-out}.search-results img:hover{box-shadow:0 0 3px -1px rgba(50,50,93,.25),0 4px 12px -6px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025)}.search-results ol img{min-height:100px;height:auto}.logo{font-size:1em;line-height:0;width:3em;flex-basis:3em;flex-shrink:0;position:relative;z-index:0}@media all and (min-width:1450px){.logo{width:10.5em;flex-basis:10.5em}.logo img{transform:none}}.logo a{display:block;background:0 0;outline:0;padding:0;color:transparent;text-shadow:none}.logo a picture{display:block}.logo img{height:3.5em;transform:translate(0,15%)}.cart-active .back-to-top-wrapper{display:none}a.back-to-top{display:block;background:0 0;width:50px;height:50px;opacity:.7;text-shadow:none;border-radius:11px;padding:13px;transform-origin:bottom left;will-change:transform;transform:rotate(-11deg);transition:background-color .1s ease-out,transform .2s ease-out,opacity .1s ease-out;background-color:#666}@media all and (max-width:64em){a.back-to-top{opacity:.3}}a.back-to-top:focus,a.back-to-top:hover{background-color:#282634;opacity:1}a.back-to-top svg{display:block}.back-to-top-wrapper{width:50px;height:50px;display:none;position:fixed;bottom:20px;right:20px;z-index:9;will-change:transform;backface-visibility:hidden}.back-to-top-wrapper::before{display:block;content:"";height:90%;width:160%;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI8AAAASCAYAAABim40OAAACuElEQVRogc1XUZJjIQjEzN7/yMl8ucP0dkNjXrKh6pWAqERaICveR+vD96vo8cazOvoYX54NwOl6Z52ycc907E4C4a45DfKrwHH5vpPgd7aTYKNOyUvYKL7zRZG6WNRP5cne7pxrMwHLEbCqS3aDMglwpcvjMmTGVz4wejQ86lDfjZ0OeSY/az/VMaJ2XQZA/QQQChSKV99N8OpjvuHvUsGt+ErX2bI9q7Hy0dE580pnZ0R1uTi/eSVX2SLrbmKeAeQG34qIL2KDozo/kwosBv4Ouk5WOheMyrfK5t1Z8K++Ak9XVjK/ZRW8LnMgYDZQtpx5lBFoERxI//z40EFmQLgn2R27PZkP0fDVGmaj5thdoE7JEREPBR6nFJ1+CCAFgq9mVF91dhUcBRgGHMWjju0TZN7xi+nVGmaH8wG2IeaUHH+ibyqRTuxZCVGyAhgrZQi0KrtlYgHYAV1JXvET8IjfF7jnb4mPpMtg2TZbr0rpSnwQO9SzjLAauxV83Zj2j1FU9QtX0fQMfD1VM6zWn9D00agz3fOr866OwRF1mUe9EmaDL8d9HflF5jS/M8Yd1rHzsWzt87HMdr0D+sB6HixPXV/EyqH6QvCqBOE9qPXMTsmMqI3TMG9eNc7P9EJYYvK/KdUsZz0raZF06Hu+DCxBD+BZv1L1RKeAcXsZpnNtgtiEmEOeyRHx0zBvchtnHBWAUFa66q86ggltuj5HZU73pVdAcMHhAEX5xHys/Ge/j43IO/IvfZdxmM4FVDdOs1X1Twr3YWciTYPjZopXZILOxgWElVGIjs5V/Yw752QrxU/A1fGdL4yciz551U45qILa+fbsOmeutekud2I7BeJJhmPr3L07KlN0Y/eMzpmb2JzYntgfXfIr9nLWXgl0RuPLO1xzxdqPOPNK8FxJn+rXhP4HON5K31PHDhmjlm6fAAAAAElFTkSuQmCC);background-size:100%;background-repeat:no-repeat;top:89%;left:-30%;right:0;transition:all .1s ease-out;transform-origin:30% 50%;pointer-events:none}@media(min-height:600px){.back-to-top-wrapper{display:block}}label{max-width:100%}.form__field__input,input[type=email],input[type=password],input[type=text],textarea{background:#effaff;font-size:1em;border:1px solid #d2dfe4;transition:box-shadow .3s ease-in-out,color .3s ease-in-out;background-position:right 1.35em center;background-size:.25em .25em;background-repeat:no-repeat;margin-bottom:5px;border-radius:11px;padding:.9em 2em .7em 1.1rem;display:block;width:100%;outline:0;box-shadow:inset 0 1px 1px rgba(0,0,0,.2)}.form__field__label{display:block;margin-bottom:.5em;cursor:pointer}input{border-color:#aaa}.sponsors ul{padding-left:0;text-align:center;list-style-image:none}.sponsors__native ul.bnnr-list li a{border-radius:11px;background-color:#fff;margin-bottom:3em;position:relative;top:0;padding:0;background-image:none;text-decoration-line:underline;text-decoration-color:#006fc6!important;text-decoration-thickness:1px;display:flex;flex-direction:column}.sponsors.sponsors-leaderboard ul li a,.sponsors.sponsors__lead ul li a,.sponsors__lead ul a,.sponsors__native ul.bnnr-list li a{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,3%);transition:box-shadow .2s ease-in-out,top .1s ease-in-out;border-radius:11px}.sponsors.sponsors-leaderboard ul li a:hover,.sponsors.sponsors__lead ul li a:hover,.sponsors__native ul.bnnr-list li a:hover{box-shadow:0 1px 7px -5px rgba(50,50,93,.25),0 3px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,3%)}.sponsors.sponsors-leaderboard ul li a:active,.sponsors.sponsors-leaderboard ul li a:focus,.sponsors.sponsors__lead ul li a:active,.sponsors.sponsors__lead ul li a:focus,.sponsors__native ul.bnnr-list li a:active,.sponsors__native ul.bnnr-list li a:focus{box-shadow:inset 0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,3%);outline-offset:.75em;top:7px}.sponsors__native ul.bnnr-list li img{max-width:none;width:100%;height:auto;display:inherit}.sponsors.sponsors__lead a{box-shadow:none}.sponsors__lead ul a:active,.sponsors__lead ul a:focus{outline-offset:.75em;position:relative;top:7px;border-radius:11px}.sponsors__lead ul a:active img,.sponsors__lead ul a:focus img{border:2px solid #fff;box-shadow:0 1px 7px -1px rgba(50,50,93,.25),inset 0 3px 6px -4px rgba(0,0,0,.3),inset 0 -6px 16px -6px rgba(0,0,0,3%)}img::before{height:2.5em;display:block;top:2em;content:" ";width:100%;z-index:2;left:0}img::after{content:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221em%22 height=%221em%22 viewBox=%220 0 32 32%22 style=%22margin-right:10px%22%3E%3Cpath fill=%22%23777%22 d=%22M26 28H6v-4l6-10 8.219 10L26 20v8z%22/%3E%3Cpath fill=%22%23777%22 d=%22M26 15c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z%22/%3E%3Cpath fill=%22%23777%22 d=%22M28.681 7.159c-.694-.947-1.662-2.053-2.724-3.116s-2.169-2.03-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319H4.5c-1.378.0-2.5 1.121-2.5 2.5v27C2 30.878 3.122 32 4.5 32h23c1.378.0 2.5-1.122 2.5-2.5V10c0-.448-.137-1.23-1.319-2.841zM24.543 5.457c.959.959 1.712 1.825 2.268 2.543H22V3.189c.718.556 1.584 1.309 2.543 2.268zM28 29.5c0 .271-.229.5-.5.5h-23c-.271.0-.5-.229-.5-.5v-27c0-.271.229-.5.5-.5.0.0 15.499.0 15.5.0v7c0 .552.448 1 1 1h7v19.5z%22/%3E%3C/svg%3E")" " attr(alt);font-size:.9em;display:block;color:#666;line-height:1.5;position:absolute;font-style:italic;z-index:2;top:calc(2em - 35px);text-align:center;width:104%;left:-2%;padding:2.25em 1em;text-shadow:none;background-color:#eee;border-radius:11px}@media screen and (min-width:40em){.author__desc{margin-left:1em}}.author__desc{font-size:.8em;position:relative;font-style:normal!important;color:#333;padding:0!important}.author__desc p{margin:1em 0}.author__desc .show-more-link{display:inline}.author__desc__title{color:#666;text-transform:uppercase;letter-spacing:2px;font-size:.9em;margin:0;font-weight:400}@media(max-width:40em){.author__desc{width:100%}}.article{padding-top:calc(.5em + 2vw)}.article__summary{font-size:1.05em}.c-garfield-the-cat .article__summary{position:initial}.author__desc p{font-size:.95em}.wf-loaded-stage2 .author__desc p{font-size:1em}.article__summary{align-self:center;margin-top:0;color:#666;position:relative;padding-bottom:1.5em;margin-bottom:.5em;border-bottom:3px solid #e5e5e5;font-size:1.05em;line-height:1.55em;font-style:italic}.wf-loaded-stage2 .article__summary{font-size:1.15em}@media all and (max-width:420px){.article__content{margin-top:0}}.article__content{line-height:1.5;padding:0!important}.article__content a{color:#006fc6}.article__content .btn{color:#fff}.drop-caps+p::first-line{font-weight:700;font-variant:all-petite-caps;text-transform:lowercase;letter-spacing:.5px;font-size:1.15em}.drop-caps{width:calc(96px + 1vw);height:calc(120px + 4vw);float:left;margin-right:1.5em;position:relative;left:calc(-1.3em - .5vw);top:.5vw}@media all and (min-width:500px){.drop-caps{width:150px;height:186px;min-width:100px;margin-left:0}}@media screen and (min-width:64em){.author__desc{margin-left:0}}.drop-caps img{max-width:100%}.drop-caps img:nth-of-type(2){position:absolute;bottom:0;right:-40px;width:75%}@media all and (min-height:700px){body.articlepage{overflow:initial}}.form__field__label--extra{display:inline}@media(max-width:64em){.form__field__label--extra{display:none}}.article-header{margin:0}@media all and (max-width:1099px){.article-header--meta{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x;overflow-y:hidden}.article-header--meta::-webkit-scrollbar{display:none;width:0;background:0 0}.sponsors:not(.sponsors__lead):not(.sponsors-leaderboard):not(#sponsors-article-end):not(.sponsors__mobile){display:none}.c-garfield-aside--meta{display:none}.sponsors__mobile{display:block}.meta-box{margin:1.5em 0}.comment-count{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.article-header--comments a{color:#d33a2c;text-decoration:none;font-weight:700}.article-header--meta .article-header--meta-comments{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 28.84 26.6%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32%7D%3C/style%3E%3C/defs%3E%3Ctitle%3EArtboard 29%3C/title%3E%3Cpath class=%22cls-1%22 d=%22M3.29 2.73a66.7 66.7.0 003.21 9.52l6.29 1.08-4.69 2.2c2.91 5.28 7 9.09 12.14 4.55L25 24.52l.57-.52-3.83-5.48c3.6-4.32 1.74-7.76-1.93-10.36L17 13.29l-.1-6.85A43.83 43.83.0 0011 4L9 7.7V3.39c-2.2-.65-4.07-1.08-5.08-1.3a.52.52.0 00-.63.64z%22/%3E%3C/svg%3E");background-size:auto .75em;background-repeat:no-repeat;background-position:0 45%;padding-left:1em}}.c-garfield-the-cat .article-header--meta{display:flex;align-items:flex-end;list-style:none;padding:0;margin:0 0 .95em;height:30px}.article-header--meta li{padding:0;margin:0;min-width:max-content}.article-header--meta li::before{display:none}.article-header--meta li::after{content:"/";font-size:1em;color:#a7a7a7;display:inline-block;margin:0 .25em}.article-header--meta li:last-of-type::after{display:none}.article-header--date{color:#585858;font-family:inherit;font-size:.95em}.article-header--comments{font-size:.9em}.article-header--updated{padding:0 .8rem;color:#137d54;background-color:#d6f3e7;border:1px solid #c6f2e0;border-radius:11px;font-weight:700;text-transform:initial;font-feature-settings:normal;font-variant:none;font-size:.9em;letter-spacing:0;min-width:fit-content;margin-right:7px}.meta-box{background:#f6f6f6;padding:.6em 1em;list-style:none;width:max-content;max-width:100%;border-radius:11px;font-size:.9em;display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:.5em 2em}.c-garfield-the-cat .meta-box--item{line-height:1.4;padding-left:1.5em;background-size:auto 1em;background-repeat:no-repeat;background-position:0 2px;margin-bottom:0}.meta-box li:last-child,.meta-box--item:last-child{margin-bottom:0}.meta-box--tags{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cpath fill='%23e93e32' class='cls-1' d='M12.78 22.74l1.35 1.35a2.09 2.09 0 003 0l8.12-8.15a2.09 2.09 0 000-3l-1.34-1.33zM14.71 2.51a2.09 2.09 0 00-1.52-.61l-10 .22L3 12.1a2.09 2.09 0 00.61 1.52l7.14 7.12L21.87 9.65zm-4.64 9.88a3.17 3.17 0 113.44-2.86 3.17 3.17 0 01-3.44 2.86z'/%3E%3C/svg%3E")}.meta-box--share{background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 400%22%3E%3Cpath d=%22M126.16 359.66c148 0 228.93-122.61 228.93-228.94.0-3.48.0-6.94-.23-10.4A163.83 163.83.0 00395 78.68a160.93 160.93.0 01-46.21 12.66 80.82 80.82.0 0035.37-44.51 161.17 161.17.0 01-51.09 19.53A80.54 80.54.0 00196 139.74 228.42 228.42.0 0130.13 55.68 80.52 80.52.0 0055 163.09 80 80 0 0118.52 153v1a80.49 80.49.0 0064.55 78.87 80.37 80.37.0 01-36.33 1.38 80.55 80.55.0 0075.17 55.87A161.38 161.38.0 0122 324.67a163.54 163.54.0 01-19.16-1.16 227.73 227.73.0 00123.33 36.08%22 fill=%22%231da1f2%22/%3E%3C/svg%3E")}.meta-box--published{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28.84 26.6'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23e93e32%7D%3C/style%3E%3C/defs%3E%3Crect class='cls-1' x='8.25' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Crect class='cls-1' x='17.53' y='2.31' width='3.06' height='3.66' rx='1.03' ry='1.03'/%3E%3Cpath class='cls-1' d='M24.1 5.39h-2.56a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59h-4.28a2 2 0 01-2 1.59h-1a2 2 0 01-2-1.59H4.75a2.07 2.07 0 00-2.08 2.07v14.75a2.07 2.07 0 002.07 2.07H24.1a2.07 2.07 0 002.07-2.07V7.46a2.07 2.07 0 00-2.07-2.07zm-.29 16.15H5.23V8.45h18.58z'/%3E%3Cpath class='cls-1' d='M7.18 11.71h2.5v2.5h-2.5zM11.27 11.71h2.5v2.5h-2.5zM15.26 11.71h2.5v2.5h-2.5zM19.35 11.71h2.5v2.5h-2.5zM7.18 15.78h2.5v2.5h-2.5zM11.27 15.78h2.5v2.5h-2.5zM15.26 15.78h2.5v2.5h-2.5zM19.35 15.78h2.5v2.5h-2.5z'/%3E%3C/svg%3E")}.meta-box--author{background-image:url(/images/icons/author.svg)}code,pre{font-feature-settings:normal;color:#000;background:0 0;text-shadow:0 1px #fff;font-family:Fira Code,Menlo,Consolas,Monaco,andale mono,ubuntu mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;font-variant-ligatures:none;word-wrap:normal;tab-size:4;hyphens:none}pre{padding:1rem;margin:.5rem 0;resize:both;max-width:100vw;color:#666;background:#fafafa;border:1px solid #eee;font-size:1em;border-radius:11px;min-width:250px;overflow:auto;box-shadow:0 6px 12px -17px rgba(50,50,93,.25),0 7px 6px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,3%)}.code-toolbar{position:relative}li>.code-toolbar{margin-top:1em}.code-toolbar>.toolbar{position:absolute;top:.5em;right:.5em;opacity:0;transition:opacity .3s ease-in-out}.code-toolbar>.toolbar .toolbar-item{display:inline-block}code.diff-highlight{width:100%}a code{background:0;padding:0;text-decoration-line:underline}:not(pre)>code,code{background:#fff2ea;color:#333;font-size:calc(.75em + .1vw);line-height:calc(1.5em + .2vw);padding:0 .2725em;font-style:normal;display:inline-block}:not(pre)>code{white-space:normal}pre>code{line-height:calc(1.75rem + .2vw);background:0 0;white-space:break-spaces}pre[data-line]>code{white-space:pre}pre[data-line]>code>span{height:calc(1.75rem + .2vw);display:inline-block}.table,table{width:100%;border-collapse:collapse;margin-bottom:calc(2em + 2vw);clear:both}.tr,tr{border-bottom:4px solid #eee}.td,.th,td,th{padding:1em 1.5em;border:none;text-align:left}.scroll-pane{overflow-x:auto;scrollbar-color:#666 #201c29;-webkit-overflow-scrolling:touch}.scroll-pane::-webkit-scrollbar{height:.75em}.scroll-pane::-webkit-scrollbar-thumb{background:#b0b0b0;border-radius:11px}.scroll-pane table td{min-width:30vw}@media all and (min-width:650px){.scroll-pane table td{min-width:auto}}.layout-fixed{table-layout:fixed}.figure table{margin-bottom:0}.tablesaw td{line-height:165%;text-align:left;vertical-align:middle}.tablesaw td,.tablesaw th{padding:.8em 1em}tbody tr:nth-child(2n) td{background-color:#f7f7f7}.tablesaw th,table th{border-bottom:4px solid #ddd}@media screen and (max-width:767px){.tablesaw thead{display:none}.tablesaw tr{display:flex;flex-direction:column;margin-bottom:1.5em;width:100%;border-radius:11px;border:1px solid #eee}.tablesaw td:before{content:attr(data-label);display:table-cell;font-weight:700;padding:0 1em 0 0;text-align:right}.tablesaw td:last-child:after{content:'';position:absolute;left:0;right:0;bottom:0}}a.skip-main{left:-999px;position:absolute;top:auto;width:1px;height:1px;overflow:hidden;z-index:-999}a.skip-main:active,a.skip-main:focus{color:#d33a2c;background-color:#fff;left:auto;top:auto;width:auto;height:auto;overflow:auto;padding:.5em 1em;text-align:center;font-size:1.2em;z-index:999}.video-embed-container .video-embed-container--wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}.signature{margin:1.5em 0;font-size:.9em;color:silver;font-style:italic}.author .show-more-link{font-size:.9em;display:inline;color:#666;text-decoration-line:underline;text-decoration-color:initial;font-weight:400}.cookie-banner{background-color:#fff;border-radius:11px;position:fixed;width:calc(19em + 1vw);padding:1em 1.5em;font-size:1em;z-index:99;box-shadow:0 6px 40px rgba(0,0,0,.3);bottom:1.25em;right:1.25em}.cookie-banner p{font-size:.9em;margin-top:0}.cookie-banner__container{display:flex}.cookie-banner button{padding:.9em 1em}@media screen and (max-width:480px){.cookie-banner{right:0;left:0;width:100%;border-radius:0;bottom:0}.cookie-banner p{margin-top:1em}}@media screen and (max-width:380px){.cookie-banner p{margin-top:0}}.cookies--btn{width:100%}.mr5{margin-right:.5em}.mr0{margin-right:0!important}.btn--white{background:#fff;color:#267dcc;border:1px solid #fff}.btn--white--bordered{border:1px solid #ddd}.sponsors ul li{display:inline-block;margin-bottom:3em;font-size:.85em;padding:0;text-align:center;vertical-align:top;max-width:25rem;border-radius:11px;border:1px solid #eee;min-height:90px}.c-promo-box--ad.sponsors li{width:auto}.sponsors__native ul.bnnr-list li{border:0;width:100%;height:auto;max-width:85%;margin:0 0 2em auto}.sponsors__native ul.bnnr-list .ad__desc{padding:1em}.sponsors__native ul.bnnr-list li:only-child{padding-bottom:0}blockquote:not(.pull-quote){font-style:italic;border-left:11px solid #e6e4e1;padding:1em calc(1.5em + .5vw);color:#424242;margin-left:0;margin-right:0;font-size:1.05em;line-height:1.65em;letter-spacing:0;border-radius:11px;background:linear-gradient(to bottom right,#f5f2f0e3 0,#fff 100%)}blockquote:not(.pull-quote) p{margin:0}.btn--small.toolbar-item,.btn.btn--small{font-size:.9em;border-radius:6px;margin:0;padding:.4em 1em}.c-felix-the-cat a.btn{display:table;margin-top:1em;margin-bottom:1.5em}@media screen and (max-height:880px){.article__comments--notes{display:none}.article__comments__form__desc{margin-top:4em}}header.subnav__header{background-color:#fff;background-color:var(--headers-bg-color,#fff);padding:.2rem 0 0;z-index:1}.subnav__primary::-webkit-scrollbar{display:none;width:0;background:0 0}.subnav__tags li:first-child{padding-left:14px}.subnav__tags li:last-child{padding-right:.8em}.subnav__tags .subnav-item{margin-bottom:0}@media(min-width:740px){header.subnav__header{padding:.25rem 0 0;box-shadow:0 4px 20px rgba(0,0,0,.12)}.subnav__tags li:first-child{padding-left:35px}}.subnav .nav-item-link{color:#d33a2c;text-shadow:none!important;font-weight:700;font-family:Mija;text-decoration-skip-ink:auto;text-decoration-thickness:1px;text-underline-offset:1px;border-radius:11px;font-size:1rem;background-color:#ffe7e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #fee0e0}.subnav .nav-item-link:hover{text-shadow:none;font-weight:700;font-family:Mija;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.subnav-item a:active,.subnav-item a:active:hover,.subnav-item a:focus,.subnav-item a:focus:hover{box-shadow:inset 0 1px 3px rgba(0,0,0,.12);background-color:#d33a2c;color:#fff!important;outline:0}.subnav-item--active a.nav-item-link,.subnav-item--active a.nav-item-link:hover{background-color:#d33a2c;color:#fff!important;border:1px solid #d33a2c}.subnav-item{display:flex;margin-right:9px;padding-left:3px}.subnav-item .nav-item-link{padding:2px 12px}.subnav a{background:0 0;font-weight:700;display:flex;align-items:center;text-decoration:none}.subnav__primary{padding:.25em 0;margin-top:.25em;margin-bottom:.35em;display:flex;position:relative;scroll-snap-type:x;scroll-padding:1rem;overflow-x:auto;scrollbar-width:none}.subnav-more-item__button{padding:.2em 1em;color:#d33a2c;border:1px solid #ddd;border-radius:11px;background:0 0;display:flex;align-items:center;justify-content:space-around;position:relative;font-size:.85em;min-width:max-content;transition:none}.hidden{display:none!important}.c-garfield-the-cat .subnav-item--green .nav-item-link{color:#137d54!important;background-color:#d6f3e7;transition:.2s border ease-in-out,.2s box-shadow ease-in-out;border:1px solid #c6f2e0}.c-garfield-the-cat .subnav-item--green .nav-item-link:hover{color:#137d54!important;background-color:#c8f1e0;border:1px solid #a0dcc4}.subnav .nav-item-link:hover{color:#d33a2c;text-shadow:none;font-weight:700;border-radius:11px;background-color:#ffe3e3;border:1px solid #faa4a4}.feature-panel__desc,.sponsors__desc{font-size:.75em;color:#666;padding-bottom:10px;top:-15px;position:relative}.feature-panel::before{position:absolute;left:0;transform:translate(0,-100%);top:-5px;content:"";border-bottom:8px solid #eee;width:100%}@media(min-width:1000px){.feature-panel::before{width:73%}}.feature-panel{position:relative;border-radius:11px;padding:1.25em;display:flex;flex-wrap:wrap;background-color:#f6f6f6}@media(min-width:1000px){.feature-panel{padding:2.5em}}.feature-panel-left-col,.feature-panel-right-col{flex-basis:100%;position:relative;padding:0;flex-shrink:0}.feature-panel-right-col{order:-1;display:flex;align-items:flex-start;margin-bottom:1em;justify-content:flex-start;margin-top:2em}@media(min-width:800px){.feature-panel-left-col{flex-basis:65%}.feature-panel-right-col{order:0;flex-basis:35%;margin:0;justify-content:center}}.feature-panel-description>:first-child{margin-top:0}.feature-panel-description>:last-child{margin-bottom:0}.feature-panel-image-link{position:relative;text-decoration:none;width:100%;max-width:210px;transition:scale,opacity .2s ease-out;padding-left:2.5em;background-image:none}.feature-panel-image{width:100%;max-width:14.375rem;margin:0 auto;display:block;transition:all .2s ease-out;will-change:transform;transform-origin:0 100%;transform:rotate(-11deg)}@media(min-width:1000px){.feature-panel-image-link{position:absolute;max-width:14.375rem;top:-90px;right:0}}.feature-panel-image-img{height:auto}.btn--large.toolbar-item,.btn.btn--large{font-size:calc(1em + .25vw);padding:.75em 1em}.btn .sr-only,.sr-only{position:absolute;display:inline-block;height:0;width:0;line-height:0;overflow:hidden}.c-garfield__nl{display:none}@media all and (min-width:1100px){.drop-caps{display:none}.l-author-bio{display:flex}.c-garfield__nl{display:block}.nl-box__form{display:flex;padding-bottom:7px;text-align:center;letter-spacing:-.5px;color:#fff;font-size:1.15em}.nl-box__desc{margin-top:10px;color:#666;font-size:80%;line-height:1.5em;text-align:center}.nl-box__form .nl-box__form--button,.nl-box__form .nl-box__form--email{flex-grow:1;flex-shrink:0;box-sizing:border-box;width:auto;margin:0;padding:.75em 1em;border:0;border-radius:11px;background:#fff;font-size:.95em}.nl-box__form--button:active,.nl-box__form--button:focus,input.nl-box__form--email:active,input.nl-box__form--email:focus{box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form--button:-ms-input-placeholder,.nl-box__form--email:-ms-input-placeholder{color:#777;font-style:italic}.nl-box__form--button::placeholder,.nl-box__form--email::placeholder{color:#777;font-style:italic}.nl-box__form .nl-box__form--button{transition:all .2s ease-in-out;color:#fff;background-color:#0168b8;font-family:Mija,-apple-system,Arial,BlinkMacSystemFont,roboto slab,droid serif,segoe ui,Ubuntu,Cantarell,Georgia,serif;font-weight:700;box-shadow:0 1px 1px rgba(0,0,0,.3);width:100%;border:0;border-left:1px solid #ddd;flex:2;border-top-left-radius:0;border-bottom-left-radius:0}.nl-box__form .nl-box__form--email{border-top-right-radius:0;border-bottom-right-radius:0;width:100%;flex:4}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus,.nl-box__form .nl-box__form--button:hover{cursor:pointer;color:#fff;background-color:#0168b8;border-color:#dadada;box-shadow:0 1px 1px rgba(0,0,0,.3)}.nl-box__form .nl-box__form--button:active,.nl-box__form .nl-box__form--button:focus{outline:0!important;text-shadow:1px 1px 1px rgba(0,0,0,.3);box-shadow:inset 0 3px 3px rgba(0,0,0,.3)}.nl-box__group{display:flex;box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3),0 -6px 16px -6px rgba(0,0,0,.025);border-radius:11px}.nl-box__wrapper{display:flex;flex-direction:column;justify-content:center}.nl-box__form form{width:100%}.nl-box__form .nl-box__group{margin:0}.nl-box{margin:1.5em 0;padding:1em 0;box-shadow:none;max-width:750px;justify-self:center}}.article__content a.anchor{color:#767676;text-decoration:none;transition:color .2s ease-in-out;padding:.35em .05em}.article__content a.anchor:active,.article__content a.anchor:focus,.article__content a.anchor:hover{color:#106fc6;background-image:linear-gradient(90deg,#006fc6 0,#2ca2d3 30%,#006fc6 85%,#006fc6 100%);background-size:100%;background-repeat:repeat;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-moz-background-clip:text;-moz-text-fill-color:transparent;text-decoration:none}#promo-article-end,#sponsors-article-end,.article__comments,.main-footer{content-visibility:auto}.toc-components{box-shadow:0 9px 30px -5px rgba(50,50,83,.25),0 8px 8px -12px rgba(0,0,0,.2),0 -6px 16px -6px rgba(0,0,0,3%);border-radius:11px;padding:2em;background-color:#fff;margin:1.25em 0 3em;grid-column:3/13}@media screen and (min-width:500px){.toc-components{display:grid;grid-template-columns:1fr 1fr}}@media screen and (min-width:800px){.toc-components{padding:2em 3em}}.article__content .btn--white{background:#fff;color:#267dcc}</style><link rel=preload href=/js/nav-v2.js as=script fetchpriority=high><link rel=preload href=/fonts/MijaBold/Mija_Bold-webfont-subset-v2.woff2 as=font type=font/woff2 crossorigin fetchpriority=high media="(prefers-reduced-data: no-preference)"><link rel=preload href=/fonts/ElenaWebRegular/ElenaWebRegular-subset-v2.woff2 as=font crossorigin fetchpriority=high media="(prefers-reduced-data: no-preference)"><link rel=preload href=/fonts/ElenaWebBold/ElenaWebBold-subset-v2.woff2 as=font type=font/woff2 media="(min-width: 800px)" crossorigin fetchpriority=high media="(prefers-reduced-data: no-preference)"><link rel=preload href=/fonts/ElenaWebRegularItalic/ElenaWebRegularItalic-subset-v2.woff2 as=font media="(min-width: 800px)" type=font/woff2 crossorigin fetchpriority=low media="(prefers-reduced-data: no-preference)"><link rel=alternate type=application/rss+xml title="Smashing Magazine &amp;raquo; Feed" href=https://www.smashingmagazine.com/feed/><meta name=description content="In this article, Nathan Smith explains how to create modal dialog windows with rich interaction that will only require authoring HTML in order to be used. They are based on Web Components that are currently supported by every major browser."><meta name=robots content="noodp"><link rel=canonical href=https://www.smashingmagazine.com/2022/04/cta-modal-build-web-component/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="CTA Modal: How To Build A Web Component — Smashing Magazine"><meta property="og:description" content="In this article, Nathan Smith explains how to create modal dialog windows with rich interaction that will only require authoring HTML in order to be used. They are based on Web Components that are currently supported by every major browser."><meta property="og:url" content="https://www.smashingmagazine.com/2022/04/cta-modal-build-web-component/"><meta property="og:site_name" content="Smashing Magazine"><meta property="article:publisher" content="https://www.facebook.com/smashmag"><meta property="article:author" content="https://www.smashingmagazine.com/author/nathan-smith/"><meta property="article:tag" content="Apps"><meta property="article:tag" content="HTML"><meta property="article:tag" content="Browsers"><meta property="article:tag" content="JavaScript"><meta property="article:section" content="General"><meta property="article:published_time" content="2022-04-28 09:30:00 +0000 UTC"><meta property="article:modified_time" content=" 2022-04-28 09:30:00 +0000 UTC"><meta property="og:updated_time" content="2022-04-28 09:30:00 +0000 UTC"><meta property="og:image" content="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2bbadf16-a6e1-4d24-ba72-77cc51e3cc4e/cta-modal-build-web-component.jpg"><meta name=twitter:card content="summary_large_image"><meta name=twitter:description content="In this article, Nathan Smith explains how to create modal dialog windows with rich interaction that will only require authoring HTML in order to be used. They are based on Web Components that are currently supported by every major browser."><meta name=twitter:title content="CTA Modal: How To Build A Web Component — Smashing Magazine"><meta name=twitter:site content="@smashingmag"><meta name=twitter:image content="https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/2bbadf16-a6e1-4d24-ba72-77cc51e3cc4e/cta-modal-build-web-component.jpg"><meta property="DC.date.issued" content="2022-04-28 09:30:00 +0000 UTC"><meta name=theme-color content="#d33a2c"><meta property="fb:pages" content="45576747489"><meta name=google-site-verification content="X5sd8PEDJqYLSR98RKgSozn-0RNpknXFlGoA-UXe5K0"><link rel=icon href=/images/favicon/favicon.ico><link rel=icon href=/images/favicon/favicon.svg type=image/svg+xml><link rel=apple-touch-icon href=/images/favicon/apple-touch-icon.png><link rel=manifest href=/manifest.json></head><body data-instant-whitelist class="no-js articlepage"><div data-handler=PreLoad id=top></div><a href=#main class=skip-main>Skip to main content</a>
+<a href=#all-topics class=skip-main>Jump to all topics</a>
+<a href=#article__start class=skip-main>Start reading the article</a>
+<a href=/articles/ class=skip-main>Jump to list of all articles</a><header class="global-header header"><div class=logo><a href=/ title="&larr; Back to the homepage"><picture><source media="(max-width: 1450px)" srcset=/images/logo.svg><source media="(min-width: 1450px)" srcset=/images/logo--full.svg><img src=/images/logo/logo.svg loading=eager decoding=async alt="Smashing Magazine"></picture></a></div><nav class=main-nav><ul class=main-nav__primary><li class="nav-item nav-item-1 nav-item--active"><a data-instant class=nav-item-link href=/articles/>Articles</a></li><li class="nav-item nav-item-2"><a data-instant class=nav-item-link href=/guides/>Guides</a></li><li class="nav-item nav-item-3"><a data-instant class=nav-item-link href=/printed-books/>Books</a></li><li class="nav-item nav-item-4"><a data-instant class=nav-item-link href=/events/>Events</a></li><li class="nav-item nav-item-5"><a data-instant class=nav-item-link href=/membership/>Membership</a></li><li class="nav-item nav-item-6"><a data-instant class=nav-item-link href=/jobs/>Job Board</a></li><li class="nav-item nav-item-7"><a data-instant class=nav-item-link href=/the-smashing-newsletter/>Newsletter</a></li><li class="nav-item nav-item-8"><a class=nav-item-link href=https://podcast.smashingmagazine.com>Podcasts</a></li><li class="nav-item nav-item-9"><a class=nav-item-link href=/write-for-us/>Write for us</a></li><li class="nav-item nav-item-10"><a class=nav-item-link href=mailto:advertising@smashingmagazine.com>Advertise with us</a></li><li role=none class="nav-item main-nav-more-item"><button class=main-nav-more-item__button type=button aria-haspopup=true aria-expanded=false>
+<span class=menu-text--lg>More</span>
+<span class=menu-text--lg--close>Less</span>
+<span class=menu-text--sm>Menu</span>
+<span class=menu-text--sm--close>Less</span></button></li></ul></nav><nav class=secondary-nav><ul class=main-nav__secondary><li class="nav-item nav-item-1 nav-item--active"><a data-instant class=nav-item-link href=/articles/>Articles</a></li><li class="nav-item nav-item-2"><a data-instant class=nav-item-link href=/guides/>Guides</a></li><li class="nav-item nav-item-3"><a data-instant class=nav-item-link href=/printed-books/>Books</a></li><li class="nav-item nav-item-4"><a data-instant class=nav-item-link href=/events/>Events</a></li><li class="nav-item nav-item-5"><a data-instant class=nav-item-link href=/membership/>Membership</a></li><li class="nav-item nav-item-6"><a data-instant class=nav-item-link href=/jobs/>Job Board</a></li><li class="nav-item nav-item-7"><a data-instant class=nav-item-link href=/the-smashing-newsletter/>Newsletter</a></li><li class="nav-item nav-item-8"><a class=nav-item-link href=https://podcast.smashingmagazine.com>Podcasts</a></li><li class="nav-item nav-item-9"><a class=nav-item-link href=/write-for-us/>Write for us</a></li><li class="nav-item nav-item-10"><a class=nav-item-link href=mailto:advertising@smashingmagazine.com>Advertise with us</a></li></ul></nav><div class=search><form data-handler=Search id=js-search-form class=search-form method=get action="https://www.google.com/webhp?q=site:smashingmagazine.com"><div class=search-input-wrapper><input class="input search-input" inputmode=search type=search name=q id=js-search-input autocomplete=off placeholder="Search articles..." aria-label="Search articles">
+<input type=hidden name=sitesearch value=smashingmagazine.com>
+<a id=js-search-clear-button class=search-clear-button tabindex=-1 role=button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.35 15.36" width="16" height="16" tabind="-1"><title>Clear Search</title><path fill="#e33b2a" d="M8.38 11.41c-.5-.5-.78-.52-1.33.0L4 14.49c-1.18 1.18-1.7 1.18-3-.16s-1.18-2-.18-3L4 8.14A.69.69.0 003.93 7l-3-3c-1-1-1.13-1.81.0-3s1.9-1.21 3.13.0L7 4a.66.66.0 001.11.0c.63-.65 2.49-2.51 3.28-3.35a1.46 1.46.0 012.3-.15c.24.24.47.42.89.84.86.86.94 1.57.05 2.46l-3.27 3.26c-.36.34-.52.58-.16.94l3.27 3.27c1.1 1.1 1.23 1.7.05 2.88l-.58.58a1.59 1.59.0 01-2.46-.21z"/></svg></a></div><input type=submit class="search-button btn" name=submit value=Search id=js-search-submit></form></div></header><script src=/js/nav-v2.js fetchpriority=high defer></script><div><div data-component=SearchResults class=search-results data-lite=true></div></div><header class=subnav__header id=all-topics><nav class=subnav role=navigation><ul class="subnav__primary subnav__tags flex"><li class=subnav-item><a data-instant class=nav-item-link href=/category/accessibility/>Accessibility</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/ux/>UX</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/css/>CSS</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/javascript/>JavaScript</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/performance/>Performance</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/design/>Design</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/figma/>Figma</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/wallpapers/>Wallpapers</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/react/>React</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/vue/>Vue</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/round-ups/>Round-Ups</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/web-design/>Web Design</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/guides/>Guides</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/business/>Business</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/career/>Career</a></li><li class=subnav-item><a data-instant class=nav-item-link href=/category/privacy/>Privacy</a></li><li role=none class="subnav-item subnav-more-item"><a class=subnav-more-item__button href=/articles/><span class=menu-text>Jump to all articles ↬</span></a></li></ul></nav></header><main id=main tabindex=-1><script id=gotell type=application/json>{"created_at":"2022-04-28T09:30:00Z"}</script><article class="block article" role=main><div class="container article-container"><div class=row><div class="col-12 article__content" id=article__content><div class=c-garfield-the-cat><div class=c-garfield-header><header class=article-header><ul class=article-header--meta><li class="article-header--meta-item article-header--meta-item__author"><a class=author-post__author-title href=/author/nathan-smith/>Nathan Smith</a></li><li class="article-header--meta-item article-header--meta-item__date"><time class=article-header--date datetime=2022-04-28>Apr 28, 2022</time></li><li class="article-header--meta-item article-header--meta-comments"><span class=article-header--comments><a href=#comments-cta-modal-build-web-component><span data-component=CommentsCount data-insert=true data-thread=/2022/04/cta-modal-build-web-component/ data-article=articles/2022-04-28-cta-modal-build-web-component.md>0 <span class=comment-count>comments</span></span></a></span></li></ul><h1 class=article-header--title>CTA Modal: How To Build A Web Component</h1></header></div><ul class="meta-box meta-box--article"><li class="meta-box--item meta-box--published">23 min read</li><li class="meta-box--item meta-box--tags"><a href=/category/apps>Apps</a>,
+<a href=/category/html>HTML</a>,
+<a href=/category/browsers>Browsers</a>,
+<a href=/category/javascript>JavaScript</a></li><li class="meta-box--item meta-box--share">Share on <a rel=nofollow href="https://TwItTeR.CoM/intent/tweet?text=CTA%20Modal%3a%20How%20To%20Build%20A%20Web%20Component&url=https%3A%2F%2Fwww.smashingmagazine.com%2f2022%2f04%2fcta-modal-build-web-component%2f&via=smashingmag">Twitter</a>,&nbsp;<a rel=nofollow href="/api/ball?uri=//www.linkedin.com/shareArticle?url=https://www.smashingmagazine.com%2f2022%2f04%2fcta-modal-build-web-component%2f&title=CTA%20Modal%3a%20How%20To%20Build%20A%20Web%20Component">LinkedIn</a></li></ul><div class=c-garfield-aside--meta><div class=l-author-bio><div class="mobw-40 mobh-40 w-48 h-48 rounded-3xl bio-image__large mb-5 mr-3"><figure role=presentation class=bio-image><a href=/author/nathan-smith/ class=bio-image-link><div class=bio-image-wrapper><picture><source type=image/avif srcset="data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAACKgAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAMgAAADIAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQAMAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAACLBtZGF0EgAKChgd8fH7IEBA0IAylxESEAEPENFKggzgEPX4zdyaVrNBWr2LyZGpGKPsIQrlSkeeghJTq00lMjEOr02elWYutS+dUKPlRHihPPzb/CscyJ4uYESCHN+E6CK/2zAg7Usx7h/L+5RvpQz7M5gJNEuFH0mYcLdwJOqHrlM5e4ISZ7mmH2vylHy6RZqxq2Rn4skITKDvhRnO966HkJrw2xRbkoVjEs7sn3z/TDzRck3d0zSJWc/WG8zz3rA83Xr810M8OVaHGo00Ly0vHh1rYzr8lWV2N/BcYJcbvKckV6AmT7u06O1mWWow/frxKK2QdshQjqJh9pc0eYUKdhB/6Q+6R07ZwPsDYX+GApWq0Fr7lt1AlSf4B6PHQpolCO63UcPt1BCh2ODpNm+01WG+vqnx2kS1yA+43YskIKP7G/4e7nt+QI3qb8b8nb0et0A9SUIJOtyjClJiKivSTEbxPHkbWWu1OmeUG3iMo1pw0PvIGEtTqpEvCzYSxPrv7kQDS/2Ai+CniYwi3tb7LiglBtY4/MVAcngZWxED4vsh19aMdSuFUqOogDBbPNyfU5+SQ5FQWt2kQqnPcdTiowOQsTgrucWmn1Qcnlx+QNEX4RU0fVT4EuVYmRlsoLNidZehvzH4Y7vzdObAKa3Fug8aA4jUh1E5hM2pgZVhTEugrotKuWAyDaSSbXsCmxlZ00p9al99txv6C0qhyUhyByY4AzlOmF/fqHQYvqvfYUySy9WSlooWLRxAU7akxfm7qP7fE+HIHM+IDTdhKaSYnZnRn2e4+S0RQcWPbznHNz3NaNeSMY6dmY9LiftLQzt1EE0dqoDmOI2kVfCqzqQzeD36FM4x1Q90aREbQCVqtZNTTIDYvB1HgjnIZQ+cHMEKzsyEyWfh3VzJDxmwx4lUbbqXXzaD0iKgQAa9+IJTqsGOMF7wmM33Bo009deo1Ok5DPenWUwpr7ZhM5yXUf+ewaaEQD5hB/Ba3jbVy1GqLvsJih1yFE2ynk+bc4L05+gQvix7jAnsia/G+Uec6NLFuWiv9EauGL9c7fnjfFNatGmNzm+SnERzdfedAdwMNS05UP8MwgYu7/pgRInO31W5P8mKZD6eOb9nxUob4oWQfNag7/PGFJFCmtU1n7sRs4dAlS5BH7lUhYwnZK9cgiTAFHl5skAWFYhUJh4qzFD1s4Jc3c+/ucK/uiEDDjTJBKgNwTzVVY2j4YbYvpxWxdhAtiMrGpGXUJ2hYvVI0Y1lkPPCRlCfpX13TGI8G1eNAjQAYurQKEUus5rFP+yQfoy6yVqyf1U1Hv4/TWgtvUXiK1+nin6fGu9U5Af9HyyKLS+D41cXwIprjEas3v6YLRj64w0W3eKuyRa6203QuTX6cYXWjTuolyjcstV7EiZ2uHeBBqJq7+iWZJjZGGaFhN0tKOukIquCL1pw3UZQIjpQ+3ccz4cPKVzkR1jWNezPrNXyX7y+KItwCM7ANHsV8M1rLp4kQp673Wo3IsHGN6/khJGmOxlA1W8f7LWplLGiBB60SZ8YHMWRgJ5vGNaOsTGTlc4bT3p4UbCV4soaF8dkNkPDvHBWdikjbCfsTnwEkyFwwCzgQ5pOCO1FGbClnYTb34GUlhmNiMReQuHjFxJSBkUbUsVBNlsIfdb/ZOuyavePkyf7aHsIeDWzdEdmm88H6TgxR6uwd+6ffpemf899sB3eHpGWj/hplTA2iXHf9nHZfH8Zfig9yRFYZzCnejng4lfMwicT7HUKtIqvXolcjfY7w/HmHXxNe4ZQxUBoqK4SW+I5HBevKCsPhEDQcUpTCZuWfHbgJHhFtlSCjQf3ZOMZnnN4fD5CsXz7o38lavZv0seBgJV4oB9NbbmTGNZmlePo8+of66F2u4f1/lMTqZekoB4XwR0wgf+4hLxYSSo6g6VPMdgW5ngcUg5d9tYpo32FHIgmLWtw9qTPnBaG+WI4ozOmswX2QufFnYbxV3PQX6mClxh5oJfckDKO6LlG93A+qQtdsMgdf2Uo/vQJqzhHlLOxJI2eXUFgdn8NJuDuNbwkwe8D2zjUvkNdDxXuUHXj1e8H6ASl3sDNspWzJicmoUj4xsJBoJ/4F/iXP/Ds5sXB0G+jLSUZHiE7D9xFbXZMkYOYMIS3Cj3GnoHFjqDAhXHjlTuUBuahCi5B0Lt9DSIO4AdOAActgV2pb00eIpfKzvqLGr1NpC6/VWsgFGqOShGYI2djS2wVGbalgs5Y0Mjg8bZw8LDily77BlpYlsPGu4wq0Z4Anm+z1yumusEI2X5sMz6b1NVmmkuQBW+vtd24j0AgJNwTaju59TFOyp1Tv838PFzROM1dAvzoDg3M8GYA1GqTLzNq/qsnqB/iPL65MG2RNgHQtBooChlcJGXyHvpWfwdTCVE/VrNok+nipSkLiltKE+cS6D0PbNYoTVSS4DYPZsJ5imZz9r8rF7F7wXBRop0nCIkoYXqFljciPenUWjr7jjE8gMYPIselIh9O8dQs+txrMg9R2Ewnb3myOmosbJHYIIJ3USo7101j9bqINT8oRnXEM/dsJgvdx2i5977InqYaKMxXPvI34JjerApbrMYWJpl8j8QQM66VLBikQKNnLOFmy8j5IG44HiCEuagyJW5YnxlXK3p16iFcidugHxPrj0T5a5HLzlS42OEktblxp7/wdfYEQdJZYOmxzwZlfF2VkvWktoA8aBn/dy1uIJ+XBOqQn1jtkH6Px6EzLkN8OLR40ho7zB+VVDusuenHa0x6BP9KlxhygrzqvFN9wysmsRhVs9DrW7/7V8sxsQO8E9XilFMMMCWtpBGthXGW3HaYHUiKKjJcZfyTXZb/a+fOKDi6WimXckm01mKKi9ZBZZXsdE3qidwFeOMEoDwh1VxIQHZIWUBuYnjMKEaGrFOyf0CY5YBUOHplod87sscJrqptkfp6XYa/6jeYqOesOM3mWsA="><img class=bio-image-image src=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/926fcac8-4bd7-486b-89a3-fa04d91877cc/nathan-bio-photo-200x200.jpg loading=eager decoding=async fetchpriority=high width=100 height=100 alt="Nathan Smith"></picture></div></a></figure></div><div class="l-author-bio-content author__desc" id=author__desc><h4 class=author__desc__title>About The Author</h4><p>Nathan Smith is a principal software engineer at Microsoft where he builds incubation projects for the Office of the CTO. He primarily works with CSS, Node, and …
+<a href=/author/nathan-smith/ class=show-more-link>More about
+Nathan&nbsp;↬</a></p></div></div><div class=c-garfield__nl><h4 class=h2>Email Newsletter</h4><section class=nl-box__form><form action="//smashingmagazine.us1.list-manage.com/subscribe/post?u=16b832d9ad4b28edf261f34df&id=a1666656e0" method=post><div class=nl-box__wrapper><label for=mce-EMAIL-hp class=sr-only>Your (smashing) email</label><div class=nl-box__group><input type=email name=EMAIL class=nl-box__form--email id=mce-EMAIL-hp placeholder="Your email">
+<input type=submit value=Meow! name=subscribe class=nl-box__form--button></div></div></form></section><p class=nl-box__desc><em><a href=https://www.smashingmagazine.com/the-smashing-newsletter/>Weekly tips on front-end & UX</a>.<br>Trusted by 176.000 folks.</em></p></div></div><div class=c-garfield-native-panel__right><div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience=non-subscriber data-remove=true data-rendered=true data-amount=3><ul class=bnnr-list><li><a href=https://bit.ly/belmont_university><img src=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/44d7fcc3-8852-4be6-8040-f6c158ae6a57/watki-addy-awards.jpg loading=lazy width=300 height=250 alt="See student work here">
+<em class=ad__desc>See student work here</em></a></li></ul></div></div><div class=c-garfield-native-panel><div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience=non-subscriber data-remove=true data-rendered=true data-amount=3><ul class=bnnr-list><li><a href=https://www.smashingmagazine.com/printed-books/checklist-cards/><picture><source type=image/avif srcset=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/fb7308e3-a67a-49f0-a4e0-551fca543333/support-sidebar.avif><img src=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/313e7eae-9d2a-4e1d-9f10-f408ad81a006/support-sidebar.png loading=lazy width=300 height=250 alt="Boost your skills online, with our friendly online workshops on front-end and design."></picture>
+<em class=ad__desc>Smart Interface Design Checklists</em></a></li><li><a href=https://smashingconf.com/online-workshops/workshops/amelia-wattenberger/><picture><source type=image/avif srcset=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/8b45e04c-f8d4-420c-9013-b4ba837950bf/amelia-wattenberger.avif><img src=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/1f73fa23-eb0f-4697-b65b-95dd2c495e0e/amelia-wattenberger.png loading=lazy width=300 height=250 alt="Boost your skills online, with our friendly online workshops on front-end and design."></picture>
+<em class=ad__desc>Data Visualization Masterclass</em></a></li></ul></div></div><div class="c-garfield-native-panel c-garfield-native-panel__below"><div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience=non-subscriber data-remove=true data-rendered=true data-amount=3><ul class=bnnr-list><li><a href=https://bit.ly/uxcel_22><img src=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/26ebf9c8-5854-4fb8-9262-d08b1e31921e/uxcel-skills.jpg loading=lazy width=300 height=250 alt="Build in-demand job skills you can put to work as a UX Design professional.">
+<em class=ad__desc>Build in-demand job skills you can put to work as a UX Design professional.</em></a></li><li><a href=https://smashingconf.com/online-workshops/workshops/stefan-baumgartner-apr/><picture><source type=image/avif srcset=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/907129af-5b24-4f0e-8240-aa42e095b0ee/stefan-baumgartner.avif><img src=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/a5a02384-638a-4bf5-8b6b-78b1355ece7b/stefan-baumgartner.png loading=lazy width=300 height=250 alt="Boost your skills online, with our friendly online workshops on front-end and design."></picture>
+<em class=ad__desc>The TypeScript Masterclass</em></a></li></ul></div></div><div class="c-garfield-native-panel c-garfield-native-panel__end"><div class="c-promo-box c-promo-box--ad sponsors sponsors__native hidden" data-audience=non-subscriber data-remove=true data-rendered=true data-amount=3><ul class=bnnr-list></ul></div></div><div class=c-garfield-summary id=article__start><section aria-label="quick summary" class=article__summary><span class=summary__heading>Quick summary&nbsp;↬</span>
+In this article, Nathan Smith explains how to create modal dialog windows with rich interaction that will only require authoring HTML in order to be used. They are based on Web Components that are currently supported by every major browser.</section></div><p>I have a confession to make &mdash; I am not overly fond of modal dialogs (or just “modals” for short). “Hate” would be too strong a word to use, but let’s say that nothing is more of a turnoff when starting to read an article than being “slapped in the face” with a modal window before I have even begun to comprehend what I am looking at.</p><p>Or, if I could <a href=https://twitter.com/andybudd/status/1477634654429663237>quote Andy Budd</a>:</p><blockquote class=twitter-tweet><p lang=en dir=ltr>A typical website visit in 2022<br><br>1. Figure out how to decline all but essential cookies<br>2. Close the support widget asking if I need help<br>3. Stop the auto-playing video<br>4. Close the “subscribe to our newsletter” pop-up<br>5. Try and remember why I came here in the first place</p>&mdash; Andy Budd (@andybudd) <a href="https://twitter.com/andybudd/status/1477634654429663237?ref_src=twsrc%5Etfw">January 2, 2022</a></blockquote><p>That said, modals are <strong>everywhere</strong> among us. They are a user interface paradigm that we cannot simply disinvent. When used <em>tastefully</em> and <em>wisely</em>, I dare say they can even help add more context to a document or to an app.</p><p>Throughout my career, I have written my fair share of modals. I have built bespoke implementations using vanilla JavaScript, jQuery, and more recently &mdash; <a href=https://reactjs.org/>React</a>. If you have ever struggled to build a modal, then you will know what I mean when I say: It is easy to get them wrong. Not only from a visual standpoint but there are plenty of tricky user interactions that need to be accounted for as well.</p><p>I am the type of person who likes to “go deep” on topics that vex me &mdash; especially if I find the topic resurfacing &mdash; hopefully in an effort to avoid revisiting them ever again. When I started to get more into <a href=https://developer.mozilla.org/en-US/docs/Web/Web_Components>Web Components</a>, I had an “a-ha!” moment. Now that Web Components are widely supported by every major browser (RIP, <a href=https://en.wikipedia.org/wiki/Internet_Explorer_11>IE11</a>), this opens up a whole new door of opportunity. I thought to myself:</p><blockquote>“What if it were possible to build a modal that, as a developer authoring a page or app, I would not have to fuss with any additional JavaScript config?”</blockquote><p>Write once and run everywhere, so to speak, or at least that was my lofty aspiration. Good news. It is indeed possible to build a modal with rich interaction that only requires authoring HTML to use.</p><p><strong>Note:</strong> <em>In order to benefit from this article and code examples you will need some basic familiarity with HTML, CSS, and JavaScript.</em></p><figure class="break-out article__image"><a href=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png><img loading=lazy decoding=async fetchpriority=low width=800 height=514 srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png 400w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png 800w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png 1200w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png 1600w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png 2000w" src=https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png sizes=100vw alt="A screenshot of the CTA Modal dialog displaying a form."></a><figcaption class=op-vertical-bottom>CTA Modal &mdash; displaying a form. (<a href=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/cc511cb3-91ff-4aac-8034-859479befd27/3-cta-modal-build-web-component.png>Large preview</a>)</figcaption></figure><figure class="break-out article__image"><a href=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png><img loading=lazy decoding=async fetchpriority=low width=800 height=501 srcset="https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png 400w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_800/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png 800w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1200/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png 1200w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_1600/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png 1600w,
+https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png 2000w" src=https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png sizes=100vw alt="A screenshot of the CTA Modal dialog displaying a scrollable piece of content."></a><figcaption class=op-vertical-bottom>CTA Modal &mdash; scrollable content. (<a href=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/401ad39a-7403-4b76-83ec-cc303494ae27/1-cta-modal-build-web-component.png>Large preview</a>)</figcaption></figure><h3 id=before-we-even-begin>Before We Even Begin</h3><p>If you are tight on time and just want to see the finished product, check it out here:</p><ul><li>CTA Modal <a href=https://host.sonspring.com/cta-modal>Demo page</a></li><li>CTA Modal <a href=https://github.com/nathansmith/cta-modal>Git repo</a></li></ul><h2 id=use-the-platform>Use The Platform</h2><p>Now that we have covered the “why” of scratching this particular itch, throughout the rest of this article I will explain the “how” of building it.</p><p>First, a quick crash course on Web Components. They are bundled snippets of HTML, CSS, and JavaScript that encapsulate scope. Meaning, no styles from outside of a component will affect within, nor vice versa. Think of it like a hermetically sealed “<a href=https://en.wikipedia.org/wiki/Cleanroom>clean room</a>” of UI design.</p><p>At first blush, this may seem nonsensical. Why would we want a chunk of UI that we cannot control externally via CSS? Hang onto that thought, because we will come back to it soon.</p><p>The best explanation is reusability. Building a component in this manner means we are not beholden to any particular JS framework <em>du jour</em>. One common phrase that gets bandied about in conversations around web standards is “<a href=https://timkadlec.com/remembers/2019-10-21-using-the-platform/>use the platform</a>.” Now more than ever, the platform itself has superb <a href=https://www.ravedigital.agency/blog/cross-browser-compatibility/>cross-browser support</a>.</p><h2 id=deep-dive>Deep Dive</h2><p><em>For reference, I will be referring to this code example &mdash; <a href=https://github.com/nathansmith/cta-modal/blob/main/src/assets/ts/cta-modal.ts><code>cta-modal.ts</code></a>.</em></p><p><strong>Note:</strong> <em>I am using <a href=https://www.typescriptlang.org/>TypeScript</a> here, but you absolutely do</em> <strong><em>not</em></strong> <em>need any additional tooling to create a Web Component. In fact, I wrote my initial proof-of-concept in vanilla JS. I added TypeScript later, to bolster confidence in others using it as an NPM package.</em></p><p>The <code>cta-modal.ts</code> file is chunked apart into several sections:</p><ol><li><a href=#conditional-wrapper>Conditional wrapper</a>;</li><li>Constants:<ul><li><a href=#reusable-variables>Reusable variables</a>,</li><li><a href=#component-styles>Component styles</a>,</li><li><a href=#component-markup>Component markup</a>;</li></ul></li><li><code>CtaModal</code> class:<ul><li><a href=#constructor>Constructor</a>,</li><li><a href=#binding-this-context>Binding <code>this</code> context</a>,</li><li><a href=#lifecycle-methods>Lifecycle methods</a>,</li><li><a href=#adding-and-removing-events>Adding and removing events</a>,</li><li><a href=#detecting-attribute-changes>Detecting attribute changes</a>,</li><li><a href=#focusing-specific-elements>Focusing specific elements</a>,</li><li><a href=#detecting-outside-modal>Detecting “outside” modal</a>,</li><li><a href=#detecting-motion-preference>Detecting motion preference</a>,</li><li><a href=#toggling-modal-show-hide>Toggling modal show/hide</a>,</li><li>Handle event: <a href=#handle-event-click-overlay>click overlay</a>,</li><li>Handle event: <a href=#handle-event-click-toggle>click toggle</a>,</li><li>Handle event: <a href=#handle-event-focus-element>focus element</a>,</li><li>Handle event: <a href=#handle-event-keyboard>keyboard</a>;</li></ul></li><li><a href=#dom-loaded-callback>DOM loaded callback</a>:<ul><li>Waits for the page to be ready,</li><li>Registers the <code>&lt;cta-modal></code> tag.<br></li></ul></li></ol><div data-audience=non-subscriber data-remove=true class=feature-panel-container><span class=feature-panel__desc>More after jump! Continue reading below&nbsp;&darr;</span><aside class=feature-panel><div class=feature-panel-left-col><div class=feature-panel-description><p>Meet <strong><a href=https://www.smashingmagazine.com/printed-books/touch-design-for-mobile-interfaces/>“Touch Design for Mobile Interfaces”</a></strong>, our <strong>brand-new Smashing Book</strong> on designing for mobile with proven, universal, human-centric guidelines. 400 pages, jam-packed with <strong>in-depth user research and guidelines</strong> you can apply immediately. Shipping starts early January 2022.</p><a data-instant href=https://www.smashingmagazine.com/printed-books/touch-design-for-mobile-interfaces/ class="btn btn--green btn--large">Jump to table of contents&nbsp;↬</a></div></div><div class=feature-panel-right-col><a data-instant href=https://www.smashingmagazine.com/printed-books/touch-design-for-mobile-interfaces/ class=feature-panel-image-link><div class=feature-panel-image><picture><source type=image/avif srcset=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/15b0d42f-1e44-4f9b-a533-4a98854939c7/touch-design-book-shop-opt.avif><img loading=lazy decoding=async class=feature-panel-image-img src=https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/b14658fc-bb2d-41a6-8d1a-70eaaf1b8ec8/touch-design-book-shop-opt.png alt="Feature Panel" width=479 height=696></picture></div></a></div></aside></div><h3 id=conditional-wrapper>Conditional Wrapper</h3><p>There is a single, top level <code>if</code> that wraps the entirety of the file’s code:</p><pre><code class=language-javascript>// ===========================
+// START: if "customElements".
+// ===========================
+
+if ('customElements' in window) {
+  /&#42; NOTE: LINES REMOVED, FOR BREVITY. &#42;/
+}
+
+// =========================
+// END: if "customElements".
+// =========================</code></pre><p>The reason for this is twofold. We want to ensure that there is <a href=https://caniuse.com/custom-elementsv1>browser support</a> for <code>window.customElements</code>. If so, this gives us a handy way to maintain variable scope. Meaning, that when declaring variables via <code>const</code> or <code>let</code>, they do not “leak” outside of the <code>if {…}</code> block. Whereas using an old school <code>var</code> would be problematic, inadvertently creating several global variables.</p><h3 id=reusable-variables>Reusable Variables</h3><p><strong>Note:</strong> <em>A JavaScript <code>class Foo {…}</code> differs from an HTML or CSS <code>class="foo"</code>.</em></p><p>Think of it simply as: “A group of functions, bundled together.”</p><p>This section of the file contains <a href=https://developer.mozilla.org/en-US/docs/Glossary/Primitive>primitive</a> values that I intend to reuse throughout my JS <a href=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>class</a> declaration. I will call out a few of them as being particularly interesting.</p><pre><code class=language-javascript>// ==========
+// Constants.
+// ==========
+
+/&#42; NOTE: LINES REMOVED, FOR BREVITY. &#42;/
+
+const ANIMATION&#95;DURATION = 250;
+const DATA&#95;HIDE = 'data-cta-modal-hide';
+const DATA&#95;SHOW = 'data-cta-modal-show';
+const PREFERS&#95;REDUCED&#95;MOTION = '(prefers-reduced-motion: reduce)';
+
+const FOCUSABLE&#95;SELECTORS = [
+  '[contenteditable]',
+  '[tabindex="0"]:not([disabled])',
+  'a[href]',
+  'audio[controls]',
+  'button:not([disabled])',
+  'iframe',
+  "input:not([disabled]):not([type='hidden'])",
+  'select:not([disabled])',
+  'summary',
+  'textarea:not([disabled])',
+  'video[controls]',
+].join(',');</code></pre><ul><li><code>ANIMATION_DURATION</code><br>Specifies how long my CSS animations will take. I also reuse this later within a <code>setTimeout</code> to keep my CSS and JS in sync. It is set to <code>250</code> milliseconds, which is a quarter of a second.<br>While CSS allows us to specify <code>animation-duration</code> in whole seconds (or milliseconds), JS uses increments of milliseconds. Going with this value allows me to use it for both.</li><li><code>DATA_SHOW</code> and <code>DATA_HIDE</code><br>These are strings for the HTML data attributes <code>'data-cta-modal-show'</code> and <code>'data-cta-modal-hide'</code> that are used to control the show/hide of modal, as well as adjust animation timing in CSS. They are used later in conjunction with <code>ANIMATION_DURATION</code>.</li><li><code>PREFERS_REDUCED_MOTION</code><br>A media query that determines whether or not a user has set their operating system’s preference to <code>reduce</code> for <code>prefers-reduced-motion</code>. I look at this value in both CSS and JS to determine whether to turn off animations.</li><li><code>FOCUSABLE_SELECTORS</code><br>Contains CSS selectors for all elements that could be considered focusable within a modal. It is used later more than once, via <code>querySelectorAll</code>. I have declared it here to help with readability, rather than adding clutter to a function body.</li></ul><p>It equates to this string:</p><div class=break-out><pre><code class=language-markup>[contenteditable], [tabindex="0"]:not([disabled]), a[href], audio[controls], button:not([disabled]), iframe, input:not([disabled]):not([type='hidden']), select:not([disabled]), summary, textarea:not([disabled]), video[controls]</code></pre></div><p>Yuck, right!? You can see why I wanted to break that into multiple lines.</p><p>As an astute reader, you may have noticed <code>type='hidden'</code> and <code>tabindex="0"</code> are using different quotation marks. That is purposeful, and we will revisit the reasoning later on.</p><h3 id=component-styles>Component Styles</h3><p>This section contains a multiline string with a <code>&lt;style></code> tag. As mentioned before, styles contained within a Web Component do not affect the rest of the page. It is worth noting how I am using embedded variables <code>${etc}</code> via string interpolation.</p><ul><li>We reference our variable <code>PREFERS_REDUCED_MOTION</code> to forcibly set animations to <code>none</code> for users who prefer reduced motion.</li><li>We reference <code>DATA_SHOW</code> and <code>DATA_HIDE</code> along with <code>ANIMATION_DURATION</code> to allow shared control over CSS animations. Note the use of the <code>ms</code> suffix for milliseconds, since that is the lingua franca of CSS and JS.</li></ul><pre><code class=language-javascript>// ======
+// Style.
+// ======
+
+const STYLE = `
+  &lt;style&gt;
+    /&#42; NOTE: LINES REMOVED, FOR BREVITY. &#42;/
+
+    @media ${PREFERS_REDUCED_MOTION} {
+      &#42;,
+      &#42;:after,
+      &#42;:before {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    [${DATA&#95;SHOW}='true'] .cta-modal&#95;&#95;overlay {
+      animation-duration: ${ANIMATION&#95;DURATION}ms;
+      animation-name: SHOW-OVERLAY;
+    }
+
+    [${DATA&#95;SHOW}='true'] .cta-modal&#95;&#95;dialog {
+      animation-duration: ${ANIMATION&#95;DURATION}ms;
+      animation-name: SHOW-DIALOG;
+    }
+
+    [${DATA&#95;HIDE}='true'] .cta-modal&#95;&#95;overlay {
+      animation-duration: ${ANIMATION_DURATION}ms;
+      animation-name: HIDE-OVERLAY;
+      opacity: 0;
+    }
+
+    [${DATA_HIDE}='true'] .cta-modal&#95;&#95;dialog {
+      animation-duration: ${ANIMATION_DURATION}ms;
+      animation-name: HIDE-DIALOG;
+      transform: scale(0.95);
+    }
+  &lt;/style&gt;
+`;</code></pre><h3 id=component-markup>Component Markup</h3><p>The markup for the modal is the most straightforward part. These are the essential aspects that make up the modal:</p><ul><li>slots,</li><li>scrollable area,</li><li>focus traps,</li><li>semi-transparent overlay,</li><li>dialog window,</li><li>close button.</li></ul><p>When making use of a <code>&lt;cta-modal></code> tag in one’s page, there are two insertion points for content. Placing elements inside these areas cause them to appear as part of the modal:</p><ul><li><code>&lt;div slot="button"></code> maps to <code>&lt;slot name='button'></code>,</li><li><code>&lt;div slot="modal"></code> maps to <code>&lt;slot name='modal'></code>.</li></ul><p>You might be wondering what “focus traps” are, and why we need them. These exist to snag focus when a user attempts to tab forwards (or backwards) outside of the modal dialog. If either of these receives focus, they will place the browser’s focus back inside.</p><p>Additionally, we give these attributes to the div we want to serve as our modal dialog element. This tells the browser that the <code>&lt;div></code> is semantically significant. It also allows us to place focus on the element via JS:</p><ul><li><code>aria-modal='true'</code>,</li><li><code>role='dialog'</code>,</li><li><code>tabindex'-1'</code>.</li></ul><div class=break-out><pre><code class=language-javascript>// =========
+// Template.
+// =========
+
+const FOCUS_TRAP = &#96;
+  &lt;span
+    aria-hidden='true'
+    class='cta-modal&#95;&#95;focus-trap'
+    tabindex='0'
+  &gt;&lt;/span&gt;
+&#96;;
+
+const MODAL = &#96;
+  &lt;slot name='button'&gt;&lt;/slot&gt;
+
+  &lt;div class='cta-modal&#95;&#95;scroll' style='display:none'&gt;
+    ${FOCUS_TRAP}
+
+    &lt;div class='cta-modal&#95;&#95;overlay'&gt;
+      &lt;div
+        aria-modal='true'
+        class='cta-modal&#95;&#95;dialog'
+        role='dialog'
+        tabindex='-1'
+      &gt;
+        &lt;button
+          class='cta-modal&#95;&#95;close'
+          type='button'
+        &gt;&times;&lt;/button&gt;
+
+        &lt;slot name='modal'&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    ${FOCUS_TRAP}
+  &lt;/div&gt;
+&#96;;
+
+// Get markup.
+const markup = [STYLE, MODAL].join(EMPTY_STRING).trim().replace(SPACE_REGEX, SPACE);
+
+// Get template.
+const template = document.createElement(TEMPLATE);
+template.innerHTML = markup;</code></pre></div><p>You may be wondering: “Why not use the <code>dialog</code> tag?” Good question. At the time of this writing, it still has some cross-browser quirks. For more on that, read this article by <a href=https://www.scottohara.me/blog/2019/03/05/open-dialog.html>Scott O’hara</a>. Also, according to the <a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog>Mozilla documentation</a>, <code>dialog</code> is not allowed to have a <code>tabindex</code> attribute, which we need to put focus on our modal.</p><h3 id=constructor>Constructor</h3><p>Whenever a JS class is instantiated, its <code>constructor</code> function is called. That is just a fancy term that means an <em>instance</em> of the <code>CtaModal</code> class is being created. In the case of our Web Component, this instantiation happens automatically whenever a <code>&lt;cta-modal></code> is encountered in a page’s HTML.</p><p>Within the <code>constructor</code> we call <code>super</code> which tells the <code>HTMLElement</code> class (which we are <code>extend</code>-ing) to call its own <code>constructor</code>. Think of it like glue code, to make sure we tap into some of the default lifecycle methods.</p><p>Next, we call <code>this._bind()</code> which we will cover a bit more later. Then we attach the “shadow DOM” to our class instance and add the markup that we created as a multiline string earlier.</p><p>After that, we get all the elements &mdash; from within the aforementioned <em>component markup</em> section &mdash; for use in later function calls. Lastly, we call a few helper methods that read attributes from the corresponding <code>&lt;cta-modal></code> tag.</p><div class=break-out><pre><code class=language-javascript>// =======================
+// Lifecycle: constructor.
+// =======================
+
+constructor() {
+  // Parent constructor.
+  super();
+
+  // Bind context.
+  this.&#95;bind();
+
+  // Shadow DOM.
+  this.&#95;shadow = this.attachShadow({ mode: 'closed' });
+
+  // Add template.
+  this.&#95;shadow.appendChild(
+    // Clone node.
+    template.content.cloneNode(true)
+  );
+
+  // Get slots.
+  this.&#95;slotForButton = this.querySelector("[slot='button']");
+  this.&#95;slotForModal = this.querySelector("[slot='modal']");
+
+  // Get elements.
+  this.&#95;heading = this.querySelector('h1, h2, h3, h4, h5, h6');
+
+  // Get shadow elements.
+  this.&#95;buttonClose = this.&#95;shadow.querySelector('.cta-modal&#95;&#95;close') as HTMLElement;
+  this.&#95;focusTrapList = this.&#95;shadow.querySelectorAll('.cta-modal&#95;&#95;focus-trap');
+  this.&#95;modal = this.&#95;shadow.querySelector('.cta-modal&#95;&#95;dialog') as HTMLElement;
+  this.&#95;modalOverlay = this.&#95;shadow.querySelector('.cta-modal&#95;&#95;overlay') as HTMLElement;
+  this.&#95;modalScroll = this.&#95;shadow.querySelector('.cta-modal&#95;&#95;scroll') as HTMLElement;
+
+  // Missing slot?
+  if (!this.&#95;slotForModal) {
+    window.console.error('Required [slot="modal"] not found inside cta-modal.');
+  }
+
+  // Set animation flag.
+  this.&#95;setAnimationFlag();
+
+  // Set close title.
+  this.&#95;setCloseTitle();
+
+  // Set modal label.
+  this.&#95;setModalLabel();
+
+  // Set static flag.
+  this.&#95;setStaticFlag();
+
+  /&#42;
+  =====
+  NOTE:
+  =====
+
+    We set this flag last because the UI visuals within
+    are contingent on some of the other flags being set.
+  &#42;/
+
+  // Set active flag.
+  this.&#95;setActiveFlag();
+}</code></pre></div><h3 id=binding-this-context>Binding <code>this</code> Context</h3><p>This is a bit of JS wizardry that saves us from having to type tedious code needlessly elsewhere. When working with <a href=https://en.wikipedia.org/wiki/DOM_events>DOM events</a> the context of <code>this</code> can change, depending on what element is being interacted with within the page.</p><p>One way to ensure that <code>this</code> always means the instance of our class is to specifically call <code>bind</code>. Essentially, this function makes it, so that it is handled automatically. That means we do not have to type things like this everywhere.</p><pre><code class=language-javascript>/&#42; NOTE: Just an example, we don't need this. &#42;/
+this.someFunctionName1 = this.someFunctionName1.bind(this);
+this.someFunctionName2 = this.someFunctionName2.bind(this);</code></pre><p>Instead of typing that snippet above, every time we add a new function, a handy <code>this._bind()</code> call in the <code>constructor</code> takes care of any/all functions we might have. This loop grabs every class property that is a <code>function</code> and binds it automatically.</p><pre><code class=language-javascript>// ============================
+// Helper: bind `this` context.
+// ============================
+
+&#95;bind() {
+  // Get property names.
+  const propertyNames = Object.getOwnPropertyNames(
+    // Get prototype.
+    Object.getPrototypeOf(this)
+  ) as (keyof CtaModal)[];
+
+  // Loop through.
+  propertyNames.forEach((name) =&gt; {
+    // Bind functions.
+    if (typeof this[name] === FUNCTION) {
+      /&#42;
+      =====
+      NOTE:
+      =====
+
+        Why use "@ts-expect-error" here?
+
+        Calling `&#42;.bind(this)` is a standard practice
+        when using JavaScript classes. It is necessary
+        for functions that might change context because
+        they are interacting directly with DOM elements.
+
+        Basically, I am telling TypeScript:
+
+        "Let me live my life!"
+
+        😎
+      &#42;/
+
+      // @ts-expect-error bind
+      this[name] = this[name].bind(this);
+    }
+  });
+}</code></pre><h3 id=lifecycle-methods>Lifecycle Methods</h3><p>By nature of this line, where we <code>extend</code> from <code>HTMLElement</code>, we get a few built-in function calls for “free.” As long as we name our functions by these names they will be called at the appropriate time within the lifecycle of our <code>&lt;cta-modal></code> component.</p><pre><code class=language-javascript>// ==========
+// Component.
+// ==========
+
+class CtaModal extends HTMLElement {
+  /&#42; NOTE: LINES REMOVED, FOR BREVITY. &#42;/
+}</code></pre><ul><li><code>observedAttributes</code><br>This tells the browser which attributes we are watching for changes.</li><li><code>attributeChangedCallback</code><br>If any of those attributes change, this callback will be invoked. Depending on which attribute changed, we call a function to read the attribute.</li><li><code>connectedCallback</code><br>This is called when a <code>&lt;cta-modal></code> tag is registered with the page. We use this opportunity to add all our event handlers.<br>If you are familiar with <a href=https://reactjs.org/>React</a>, this is similar to the <code>componentDidMount</code> lifecycle event.</li><li><code>disconnectedCallback</code><br>This is called when a <code>&lt;cta-modal></code> tag is removed from the page. Likewise, we remove all obsolete event handlers when/if this occurs.<br>It is similar to the <code>componentWillUnmount</code> lifecycle event in React.</li></ul><p><strong>Note:</strong> <em>It is worth pointing out that these are the only functions within our class that are not prefixed by an underscore (<code>_</code>). Though not strictly necessary, the reason for this is twofold. One, it makes it obvious which functions we have created for our new <code>&lt;cta-modal></code> and which are native lifecycle events of the <code>HTMLElement</code> class. Two, when we minify our code later the prefix denotes they can be mangled. Whereas the native lifecycle methods need to retain their names verbatim.</em></p><pre><code class=language-javascript>// ============================
+// Lifecycle: watch attributes.
+// ============================
+
+static get observedAttributes() {
+  return [ACTIVE, ANIMATED, CLOSE, STATIC];
+}
+
+// ==============================
+// Lifecycle: attributes changed.
+// ==============================
+
+attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  // Different old/new values?
+  if (oldValue !== newValue) {
+    // Changed [active="…"] value?
+    if (name === ACTIVE) {
+      this.&#95;setActiveFlag();
+    }
+
+    // Changed [animated="…"] value?
+    if (name === ANIMATED) {
+      this.&#95;setAnimationFlag();
+    }
+
+    // Changed [close="…"] value?
+    if (name === CLOSE) {
+      this.&#95;setCloseTitle();
+    }
+
+    // Changed [static="…"] value?
+    if (name === STATIC) {
+      this.&#95;setStaticFlag();
+    }
+  }
+}
+
+// ===========================
+// Lifecycle: component mount.
+// ===========================
+
+connectedCallback() {
+  this.&#95;addEvents();
+}
+
+// =============================
+// Lifecycle: component unmount.
+// =============================
+
+disconnectedCallback() {
+  this.&#95;removeEvents();
+}</code></pre><h3 id=adding-and-removing-events>Adding And Removing Events</h3><p>These functions register (and remove) callbacks for various element and page-level events:</p><ul><li>buttons clicked,</li><li>elements focused,</li><li>keyboard pressed,</li><li>overlay clicked.</li></ul><div class=break-out><pre><code class=language-javascript>// ===================
+// Helper: add events.
+// ===================
+
+&#95;addEvents() {
+  // Prevent doubles.
+  this.&#95;removeEvents();
+
+  document.addEventListener(FOCUSIN, this.&#95;handleFocusIn);
+  document.addEventListener(KEYDOWN, this.&#95;handleKeyDown);
+
+  this.&#95;buttonClose.addEventListener(CLICK, this.&#95;handleClickToggle);
+  this.&#95;modalOverlay.addEventListener(CLICK, this.&#95;handleClickOverlay);
+
+  if (this.&#95;slotForButton) {
+    this.&#95;slotForButton.addEventListener(CLICK, this.&#95;handleClickToggle);
+    this.&#95;slotForButton.addEventListener(KEYDOWN, this.&#95;handleClickToggle);
+  }
+
+  if (this.&#95;slotForModal) {
+    this.&#95;slotForModal.addEventListener(CLICK, this.&#95;handleClickToggle);
+    this.&#95;slotForModal.addEventListener(KEYDOWN, this.&#95;handleClickToggle);
+  }
+}
+
+// ======================
+// Helper: remove events.
+// ======================
+
+&#95;removeEvents() {
+  document.removeEventListener(FOCUSIN, this.&#95;handleFocusIn);
+  document.removeEventListener(KEYDOWN, this.&#95;handleKeyDown);
+
+  this.&#95;buttonClose.removeEventListener(CLICK, this.&#95;handleClickToggle);
+  this.&#95;modalOverlay.removeEventListener(CLICK, this.&#95;handleClickOverlay);
+
+  if (this.&#95;slotForButton) {
+    this.&#95;slotForButton.removeEventListener(CLICK, this.&#95;handleClickToggle);
+    this.&#95;slotForButton.removeEventListener(KEYDOWN, this.&#95;handleClickToggle);
+  }
+
+  if (this.&#95;slotForModal) {
+    this.&#95;slotForModal.removeEventListener(CLICK, this.&#95;handleClickToggle);
+    this.&#95;slotForModal.removeEventListener(KEYDOWN, this.&#95;handleClickToggle);
+  }
+}</code></pre></div><div class=sponsors__lead-place></div><h3 id=detecting-attribute-changes>Detecting Attribute Changes</h3><p>These functions handle reading attributes from a <code>&lt;cta-modal></code> tag and setting various flags as a result:</p><ul><li>Setting an <code>_isAnimated</code> boolean on our class instance.</li><li>Setting <code>title</code> and <code>aria-label</code> attributes on our close button.</li><li>Setting an <code>aria-label</code> for our modal dialog, based on heading text.</li><li>Setting an <code>_isActive</code> boolean on our class instance.</li><li>Setting an <code>_isStatic</code> boolean on our class instance.</li></ul><p>You may be wondering why we are using <code>aria-label</code> to relate the modal to its heading text (if it exists). At the time of this writing, browsers are not currently able to correlate an <code>aria-labelledby="…"</code> attribute &mdash; within the shadow DOM &mdash; to an <code>id="…"</code> that is located in the standard (aka “light”) DOM.</p><p>I will not go into great detail about that, but you can read more here:</p><ul><li><a href=https://w3c.github.io/webcomponents-cg/#cross-root-aria>W3C: cross-root ARIA</a></li><li><a href=https://github.com/whatwg/html/issues/6063>WHATWG: element reflection ticket</a></li></ul><pre><code class=language-javascript>// ===========================
+// Helper: set animation flag.
+// ===========================
+
+&#95;setAnimationFlag() {
+  this.&#95;isAnimated = this.getAttribute(ANIMATED) !== FALSE;
+}
+
+// =======================
+// Helper: add close text.
+// =======================
+
+&#95;setCloseTitle() {
+  // Get title.
+  const title = this.getAttribute(CLOSE) || CLOSE&#95;TITLE;
+
+  // Set title.
+  this.&#95;buttonClose.title = title;
+  this.&#95;buttonClose.setAttribute(ARIA&#95;LABEL, title);
+}
+
+// ========================
+// Helper: add modal label.
+// ========================
+
+&#95;setModalLabel() {
+  // Set later.
+  let label = MODAL&#95;LABEL&#95;FALLBACK;
+
+  // Heading exists?
+  if (this.&#95;heading) {
+    // Get text.
+    label = this.&#95;heading.textContent || label;
+    label = label.trim().replace(SPACE&#95;REGEX, SPACE);
+  }
+
+  // Set label.
+  this.&#95;modal.setAttribute(ARIA&#95;LABEL, label);
+}
+
+// ========================
+// Helper: set active flag.
+// ========================
+
+&#95;setActiveFlag() {
+  // Get flag.
+  const isActive = this.getAttribute(ACTIVE) === TRUE;
+
+  // Set flag.
+  this.&#95;isActive = isActive;
+
+  // Set display.
+  this.&#95;toggleModalDisplay(() =&gt; {
+    // Focus modal?
+    if (this.&#95;isActive) {
+      this.&#95;focusModal();
+    }
+  });
+}
+
+// ========================
+// Helper: set static flag.
+// ========================
+
+&#95;setStaticFlag() {
+  this.&#95;isStatic = this.getAttribute(STATIC) === TRUE;
+}</code></pre><h3 id=focusing-specific-elements>Focusing Specific Elements</h3><p>The <code>_focusElement</code> function allows us to focus an element that may have been active before a modal became active. Whereas the <code>_focusModal</code> function will place focus on the modal dialog itself and will ensure that the modal backdrop is scrolled to the top.</p><pre><code class=language-javascript>// ======================
+// Helper: focus element.
+// ======================
+
+&#95;focusElement(element: HTMLElement) {
+  window.requestAnimationFrame(() =&gt; {
+    if (typeof element.focus === FUNCTION) {
+      element.focus();
+    }
+  });
+}
+
+// ====================
+// Helper: focus modal.
+// ====================
+
+&#95;focusModal() {
+  window.requestAnimationFrame(() =&gt; {
+    this.&#95;modal.focus();
+    this.&#95;modalScroll.scrollTo(0, 0);
+  });
+}</code></pre><h3 id=detecting-outside-modal>Detecting “Outside” Modal</h3><p>This function is handy to know if an element resides outside the parent <code>&lt;cta-modal></code> tag. It returns a boolean, which we can use to take appropriate action. Namely, tab trapping navigation inside the modal while it is active.</p><div class=break-out><pre><code class=language-javascript>// =============================
+// Helper: detect outside modal.
+// =============================
+
+&#95;isOutsideModal(element?: HTMLElement) {
+  // Early exit.
+  if (!this.&#95;isActive || !element) {
+    return false;
+  }
+
+  // Has element?
+  const hasElement = this.contains(element) || this.&#95;modal.contains(element);
+
+  // Get boolean.
+  const bool = !hasElement;
+
+  // Expose boolean.
+  return bool;
+}</code></pre></div><h3 id=detecting-motion-preference>Detecting Motion Preference</h3><p>Here, we reuse our variable from before (also used in our CSS) to detect if a user is okay with motion. That is, they have not explicitly set <code>prefers-reduced-motion</code> to <code>reduce</code> via their operating system preferences.</p><p>The returned boolean is a combination of that check, plus the <code>animated="false"</code> flag not being set on <code>&lt;cta-modal></code>.</p><pre><code class=language-javascript>// ===========================
+// Helper: detect motion pref.
+// ===========================
+
+&#95;isMotionOkay() {
+  // Get pref.
+  const { matches } = window.matchMedia(PREFERS_REDUCED_MOTION);
+
+  // Expose boolean.
+  return this.&#95;isAnimated && !matches;
+}</code></pre><h3 id=toggling-modal-show-hide>Toggling Modal Show/Hide</h3><p>There is quite a bit going on in this function, but in essence, it is pretty simple.</p><ul><li><strong>If the modal is not active, show it.</strong> If animation is allowed, animate it into place.</li><li><strong>If the modal is active, hide it.</strong> If animation is allowed, animate it disappearing.</li></ul><p>We also cache the currently active element, so that when the modal closes we can restore focus.</p><p>The variables used in our CSS earlier are also used here:</p><ul><li><code>ANIMATION_DURATION</code>,</li><li><code>DATA_SHOW</code>,</li><li><code>DATA_HIDE</code>.</li></ul><div class=break-out><pre><code class=language-javascript>// =====================
+// Helper: toggle modal.
+// =====================
+
+&#95;toggleModalDisplay(callback: () =&gt; void) {
+  // @ts-expect-error boolean
+  this.setAttribute(ACTIVE, this.&#95;isActive);
+
+  // Get booleans.
+  const isModalVisible = this.&#95;modalScroll.style.display === BLOCK;
+  const isMotionOkay = this.&#95;isMotionOkay();
+
+  // Get delay.
+  const delay = isMotionOkay ? ANIMATION&#95;DURATION : 0;
+
+  // Get scrollbar width.
+  const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+  // Get active element.
+  const activeElement = document.activeElement as HTMLElement;
+
+  // Cache active element?
+  if (this.&#95;isActive && activeElement) {
+    this.&#95;activeElement = activeElement;
+  }
+
+  // =============
+  // Modal active?
+  // =============
+
+  if (this.&#95;isActive) {
+    // Show modal.
+    this.&#95;modalScroll.style.display = BLOCK;
+
+    // Hide scrollbar.
+    document.documentElement.style.overflow = HIDDEN;
+
+    // Add placeholder?
+    if (scrollbarWidth) {
+      document.documentElement.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    // Set flag.
+    if (isMotionOkay) {
+      this.&#95;isHideShow = true;
+      this.&#95;modalScroll.setAttribute(DATA&#95;SHOW, TRUE);
+    }
+
+    // Fire callback.
+    callback();
+
+    // Await CSS animation.
+    this.&#95;timerForShow = window.setTimeout(() =&gt; {
+      // Clear.
+      clearTimeout(this.&#95;timerForShow);
+
+      // Remove flag.
+      this.&#95;isHideShow = false;
+      this.&#95;modalScroll.removeAttribute(DATA&#95;SHOW);
+
+      // Delay.
+    }, delay);
+
+    /&#42;
+    =====
+    NOTE:
+    =====
+
+      We want to ensure that the modal is currently
+      visible because we do not want to put scroll
+      back on the `&lt;html&gt;` element unnecessarily.
+
+      The reason is that another `&lt;cta-modal&gt;` in
+      the page might have been pre-rendered with an
+      [active="true"] attribute. If so, we want to
+      leave the page's overflow value alone.
+    &#42;/
+  } else if (isModalVisible) {
+    // Set flag.
+    if (isMotionOkay) {
+      this.&#95;isHideShow = true;
+      this.&#95;modalScroll.setAttribute(DATA&#95;HIDE, TRUE);
+    }
+
+    // Fire callback?
+    callback();
+
+    // Await CSS animation.
+    this.&#95;timerForHide = window.setTimeout(() =&gt; {
+      // Clear.
+      clearTimeout(this.&#95;timerForHide);
+
+      // Remove flag.
+      this.&#95;isHideShow = false;
+      this.&#95;modalScroll.removeAttribute(DATA&#95;HIDE);
+
+      // Hide modal.
+      this.&#95;modalScroll.style.display = NONE;
+
+      // Show scrollbar.
+      document.documentElement.style.overflow = EMPTY&#95;STRING;
+
+      // Remove placeholder.
+      document.documentElement.style.paddingRight = EMPTY&#95;STRING;
+
+      // Delay.
+    }, delay);
+  }
+}</code></pre></div><h3 id=handle-event-click-overlay>Handle Event: Click Overlay</h3><p>When clicking on the semi-transparent overlay, assuming that <code>static="true"</code> is not set on the <code>&lt;cta-modal></code> tag, we close the modal.</p><pre><code class=language-javascript>// =====================
+// Event: overlay click.
+// =====================
+
+&#95;handleClickOverlay(event: MouseEvent) {
+  // Early exit.
+  if (this.&#95;isHideShow || this.&#95;isStatic) {
+    return;
+  }
+
+  // Get layer.
+  const target = event.target as HTMLElement;
+
+  // Outside modal?
+  if (target.classList.contains('cta-modal&#95;&#95;overlay')) {
+    this.&#95;handleClickToggle();
+  }
+}</code></pre><h3 id=handle-event-click-toggle>Handle Event: Click Toggle</h3><p>This function uses <a href=https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_delegation>event delegation</a> on the <code>&lt;div slot="button"></code> and <code>&lt;div slot="modal"></code> elements. Whenever a child element with the class <code>cta-modal-toggle</code> is triggered, it will cause the active state of the modal to change.</p><p>This includes listening for various events that are considered activating a button:</p><ul><li>mouse clicks,</li><li>pressing the <code>enter</code> key,</li><li>pressing the <code>spacebar</code> key.</li></ul><div class=break-out><pre><code class=language-javascript>// ====================
+// Event: toggle modal.
+// ====================
+
+&#95;handleClickToggle(event?: MouseEvent | KeyboardEvent) {
+  // Set later.
+  let key = EMPTY_STRING;
+  let target = null;
+
+  // Event exists?
+  if (event) {
+    if (event.target) {
+      target = event.target as HTMLElement;
+    }
+
+    // Get key.
+    if ((event as KeyboardEvent).key) {
+      key = (event as KeyboardEvent).key;
+      key = key.toLowerCase();
+    }
+  }
+
+  // Set later.
+  let button;
+
+  // Target exists?
+  if (target) {
+    // Direct click.
+    if (target.classList.contains('cta-modal&#95;&#95;close')) {
+      button = target as HTMLButtonElement;
+
+      // Delegated click.
+    } else if (typeof target.closest === FUNCTION) {
+      button = target.closest('.cta-modal-toggle') as HTMLButtonElement;
+    }
+  }
+
+  // Get booleans.
+  const isValidEvent = event && typeof event.preventDefault === FUNCTION;
+  const isValidClick = button && isValidEvent && !key;
+  const isValidKey = button && isValidEvent && [ENTER, SPACE].includes(key);
+
+  const isButtonDisabled = button && button.disabled;
+  const isButtonMissing = isValidEvent && !button;
+  const isWrongKeyEvent = key && !isValidKey;
+
+  // Early exit.
+  if (isButtonDisabled || isButtonMissing || isWrongKeyEvent) {
+    return;
+  }
+
+  // Prevent default?
+  if (isValidKey || isValidClick) {
+    event.preventDefault();
+  }
+
+  // Set flag.
+  this.&#95;isActive = !this.&#95;isActive;
+
+  // Set display.
+  this.&#95;toggleModalDisplay(() =&gt; {
+    // Focus modal?
+    if (this.&#95;isActive) {
+      this.&#95;focusModal();
+
+      // Return focus?
+    } else if (this.&#95;activeElement) {
+      this.&#95;focusElement(this.&#95;activeElement);
+    }
+  });
+}</code></pre></div><div class=sponsors__lead-place></div><h3 id=handle-event-focus-element>Handle Event: Focus Element</h3><p>This function is triggered whenever an element receives <code>focus</code> on the page. Depending on the state of the modal, and which element was focused, we can trap tab navigation within the modal dialog. This is where our <code>FOCUSABLE_SELECTORS</code> from early comes into play.</p><div class=break-out><pre><code class=language-javascript>// =========================
+// Event: focus in document.
+// =========================
+
+&#95;handleFocusIn() {
+  // Early exit.
+  if (!this.&#95;isActive) {
+    return;
+  }
+
+  // prettier-ignore
+  const activeElement = (
+    // Get active element.
+    this.&#95;shadow.activeElement ||
+    document.activeElement
+  ) as HTMLElement;
+
+  // Get booleans.
+  const isFocusTrap1 = activeElement === this.&#95;focusTrapList[0];
+  const isFocusTrap2 = activeElement === this.&#95;focusTrapList[1];
+
+  // Set later.
+  let focusListReal: HTMLElement[] = [];
+
+  // Slot exists?
+  if (this.&#95;slotForModal) {
+    // Get "real" elements.
+    focusListReal = Array.from(
+      this.&#95;slotForModal.querySelectorAll(FOCUSABLE&#95;SELECTORS)
+    ) as HTMLElement[];
+  }
+
+  // Get "shadow" elements.
+  const focusListShadow = Array.from(
+    this.&#95;modal.querySelectorAll(FOCUSABLE&#95;SELECTORS)
+  ) as HTMLElement[];
+
+  // Get "total" elements.
+  const focusListTotal = focusListShadow.concat(focusListReal);
+
+  // Get first & last items.
+  const focusItemFirst = focusListTotal[0];
+  const focusItemLast = focusListTotal[focusListTotal.length - 1];
+
+  // Focus trap: above?
+  if (isFocusTrap1 && focusItemLast) {
+    this.&#95;focusElement(focusItemLast);
+
+    // Focus trap: below?
+  } else if (isFocusTrap2 && focusItemFirst) {
+    this.&#95;focusElement(focusItemFirst);
+
+    // Outside modal?
+  } else if (this.&#95;isOutsideModal(activeElement)) {
+    this.&#95;focusModal();
+  }
+}</code></pre></div><h3 id=handle-event-keyboard>Handle Event: Keyboard</h3><p>If a modal is active when the <code>escape</code> key is pressed, it will be closed. If the <code>tab</code> key is pressed, we evaluate whether or not we need to adjust which element is focused.</p><pre><code class=language-javascript>// =================
+// Event: key press.
+// =================
+
+&#95;handleKeyDown({ key }: KeyboardEvent) {
+  // Early exit.
+  if (!this.&#95;isActive) {
+    return;
+  }
+
+  // Get key.
+  key = key.toLowerCase();
+
+  // Escape key?
+  if (key === ESCAPE && !this.&#95;isHideShow && !this.&#95;isStatic) {
+    this.&#95;handleClickToggle();
+  }
+
+  // Tab key?
+  if (key === TAB) {
+    this.&#95;handleFocusIn();
+  }
+}</code></pre><h3 id=dom-loaded-callback>DOM Loaded Callback</h3><p>This event listener tells the window to wait for the DOM (HTML page) to be loaded, and then parses it for any instances of <code>&lt;cta-modal></code> and attaches our JS interactivity to it. Essentially, we have created a new HTML tag and now the browser knows how to use it.</p><pre><code class=language-javascript>// ===============
+// Define element.
+// ===============
+
+window.addEventListener('DOMContentLoaded', () =&gt; {
+  window.customElements.define('cta-modal', CtaModal);
+});</code></pre><h2 id=build-time-optimization>Build Time Optimization</h2><p>I will not go into great detail about this aspect, but I think it is worth calling out.</p><p>After transpiling from TypeScript to JavaScript, I run <a href=https://terser.org/>Terser</a> against the JS output. All the aforementioned functions that begin with an underscore (<code>_</code>) are marked as safe to mangle. That is, they go from being named <code>_bind</code> and <code>_addEvents</code> to single letters instead.</p><p>That step brings the file size down considerably. Then I run the minified output through a <a href=https://github.com/nathansmith/cta-modal/blob/main/scripts/minifyWebComponent.js>minifyWebComponent.js</a> process that I created, which compresses the embedded <code>&lt;style></code> and markup even further.</p><p>For example, class names and other attributes (and selectors) are minified. This happens in the CSS and HTML.</p><ul><li><code>class='cta-modal__overlay'</code> becomes <code>class=o</code>. The quotes are removed as well because the browser does not technically need them to understand the intent.</li><li>The one CSS selector that is left untouched is <code>[tabindex="0"]</code>, because removing the quotes from around the <code>0</code> seemingly makes it invalid when parsed by <code>querySelectorAll</code>. However, it is safe to minify within HTML from <code>tabindex='0'</code> to <code>tabindex=0</code>.</li></ul><p>When it is all said and done, the file size reduction looks like this (in bytes):</p><ul><li>un-minified: 16,849,</li><li>terser minify: 10,230,</li><li>and my script: 7,689.</li></ul><p>To put that into perspective, the <code>favicon.ico</code> file on Smashing Magazine is 4,286 bytes. So, we are not really adding much overhead at all, for a lot of functionality that only requires writing HTML to use.</p><h2 id=conclusion>Conclusion</h2><p>If you have read this far, thanks for sticking with me. I hope that I have at least piqued your interest in Web Components!</p><p>I know we covered quite a bit, but the good news is: That is all there is to it. There are no frameworks to learn unless you want to. Realistically, you can get started writing your own Web Components using vanilla JS without a build process.</p><p>There really has never been a better time to <code>#UseThePlatform</code>. I look forward to seeing what you imagine.</p><h3 id=further-reading>Further Reading</h3><p>I would be remiss if I did not mention that there are a myriad of other modal options out there.</p><p>While I am biased and feel my approach brings something unique to the table &mdash; otherwise I would not have tried to “reinvent the wheel” &mdash; you may find that one of these will better suit your needs.</p><p>The following examples differ from CTA Modal in that they all require at least <strong><em>some</em></strong> additional JavaScript to be written by the end-user developer. Whereas with CTA Modal, all you have to author is the HTML code.</p><p><strong>Flat HTML & JS:</strong></p><ul><li><a href=https://a11y-dialog.netlify.app>a11y-dialog</a></li><li><a href=https://getbootstrap.com/docs/5.1/components/modal>Bootstrap modal</a></li><li><a href=https://micromodal.vercel.app>Micromodal</a></li></ul><p><strong>Web Components:</strong></p><ul><li><a href=https://keiya01.github.io/aria-modal-doc/top>aria-modal</a></li><li><a href=https://github.com/andreasbm/web-dialog>web-dialog</a> with <a href=https://appnest-demo.firebaseapp.com/focus-trap>@a11y/focus-trap</a></li></ul><p><strong>jQuery:</strong></p><ul><li><a href=https://jquerymodal.com>jQuery Modal</a></li><li><a href=https://lokeshdhakar.com/projects/lightbox2>Lightbox</a></li><li><a href=http://codylindley.com/thickbox>Thickbox</a></li></ul><p><strong>React:</strong></p><ul><li><a href=https://reactcommunity.org/react-modal>React Modal</a></li></ul><p><strong>Vue:</strong></p><ul><li><a href=http://vue-js-modal.yev.io>Vue.js Modal</a></li></ul><script async src=https://platform.twitter.com/widgets.js></script><div class=signature><img src=https://www.smashingmagazine.com/images/logo/logo--red.png alt="Smashing Editorial" width=35 height=46 loading=lazy decoding=async>
+<span>(mb, vf, yk, il)</span></div><div class=category__related--alt><span class="italic grey mrs mbm block">Explore more on</span><nav class="subnav ib" role=navigation><ul class="subnav__primary subnav__subtags flex flex-wrap"><li class="subnav-item subnav-item--green"><a class=nav-item-link href=/category/apps>Apps</a></li><li class="subnav-item subnav-item--green"><a class=nav-item-link href=/category/html>HTML</a></li><li class="subnav-item subnav-item--green"><a class=nav-item-link href=/category/browsers>Browsers</a></li><li class="subnav-item subnav-item--green"><a class=nav-item-link href=/category/javascript>JavaScript</a></li></ul></nav></div></div></div></div><link href=/css/non-critical-article-manual-felix.css media=print onload="this.media='all'" rel=stylesheet><link href=/css/article-dark-mode-v3.css media="(prefers-color-scheme: dark)" rel=stylesheet><div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience=non-subscriber data-remove=true data-amount=1></div><div class="c-promo-box sponsors sponsors__lead hidden sponsors__external" data-audience=non-subscriber data-remove=true data-amount=1></div><div id=sponsors-article-end data-impression=true class="c-promo-box c-promo-box--ad c-promo-box--wide sponsors sponsors__row hidden sponsors__external" data-audience=non-subscriber data-remove=true></div><div id="promo-article-end hidden"><div class=book-grid><figure class=book--featured><div class=book--featured__image><a data-instant href=/the-smashing-newsletter/><img loading=lazy width=202 height=266 src=/images/smashing-cat/cat-in-a-chair--tall.svg alt="Smashing Newsletter"></a></div><figcaption><h4 class=book--featured__title><a href=/the-smashing-newsletter/>Smashing Newsletter</a></h4><p class=book--featured__desc>Tips on front-end & UX, delivered weekly in your inbox. Just the things you can actually use.</p></figcaption></figure><figure class=book--featured><div class=book--featured__image><a data-instant href=https://www.smashingconf.com/online-workshops/><img loading=lazy width=202 height=266 src=https://www.smashingmagazine.com/images/smashing-cat/cat-explorer.svg alt="Front-End & UX Workshops, Online"></a></div><figcaption><h4 class=book--featured__title><a href=https://www.smashingconf.com/online-workshops/>Front-End & UX Workshops, Online</a></h4><p class=book--featured__desc>With practical takeaways, live sessions, video recordings and a friendly Q&A.</p></figcaption></figure><figure class=book--featured><div class=book--featured__image><a data-instant href=/printed-books/><img loading=lazy width=202 height=266 src=https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_400/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/c2f2c6d6-4e85-449a-99f5-58bd053bc846/typescript-shop-cover-opt.png alt="TypeScript in 50 Lessons"></a></div><figcaption><h4 class=book--featured__title><a href=/printed-books/>TypeScript in 50 Lessons</a></h4><p class=book--featured__desc>Everything TypeScript, with code walkthroughs and examples. And other printed books.</p></figcaption></figure></div></div><div data-component=CommentsArea id=comments-cta-modal-build-web-component data-thread=/2022/04/cta-modal-build-web-component/ data-date="2022-04-28 09:30:00 +0000 UTC"></div></div></article></main><div data-component=CookieBanner></div><div id=cart class=cart-wrapper data-component=MiniCart></div><footer class=main-footer><div class=container><div class=col-12><div class="footer__topics open"><h4 class=footer__topics__title id=topics>Browse All Smashing Magazine Topics</h4><ul class=footer__topics__list><li class=footer__topics__item><a href=/category/accessibility>Accessibility</a></li><li class=footer__topics__item><a href=/category/android>Android</a></li><li class=footer__topics__item><a href=/category/animation>Animation</a></li><li class=footer__topics__item><a href=/category/apps>Apps</a></li><li class=footer__topics__item><a href=/category/css>CSS</a></li><li class=footer__topics__item><a href=/category/design>Design</a></li><li class=footer__topics__item><a href=/category/design-patterns>Design Patterns</a></li><li class=footer__topics__item><a href=/category/design-systems>Design Systems</a></li><li class=footer__topics__item><a href=/category/e-commerce>E-Commerce</a></li><li class=footer__topics__item><a href=/category/freebies>Freebies</a></li><li class=footer__topics__item><a href=/category/graphics>Graphics</a></li><li class=footer__topics__item><a href=/category/html>HTML</a></li><li class=footer__topics__item><a href=/category/illustrator>Illustrator</a></li><li class=footer__topics__item><a href=/category/inspiration>Inspiration</a></li><li class=footer__topics__item><a href=/category/ios>iOS</a></li><li class=footer__topics__item><a href=/category/javascript>JavaScript</a></li><li class=footer__topics__item><a href=/category/mobile>Mobile</a></li><li class=footer__topics__item><a href=/category/pattern-libraries>Pattern Libraries</a></li><li class=footer__topics__item><a href=/category/performance>Performance</a></li><li class=footer__topics__item><a href=/category/photoshop>Photoshop</a></li><li class=footer__topics__item><a href=/category/plugins>Plugins</a></li><li class=footer__topics__item><a href=/category/react>React</a></li><li class=footer__topics__item><a href=/category/responsive-design>Responsive Design</a></li><li class=footer__topics__item><a href=/category/service-workers>Service Workers</a></li><li class=footer__topics__item><a href=/category/sketch>Sketch</a></li><li class=footer__topics__item><a href=/category/typography>Typography</a></li><li class=footer__topics__item><a href=/category/ui>UI</a></li><li class=footer__topics__item><a href=/category/usability>Usability</a></li><li class=footer__topics__item><a href=/category/user-experience>User Experience</a></li><li class=footer__topics__item><a href=/category/wallpapers>Wallpapers</a></li><li class=footer__topics__item><a href=/category/web-design>Web Design</a></li><li class=footer__topics__item><a href=/category/wordpress>WordPress</a></li><li class=footer__topics__item><a href=/category/workflow>Workflow</a></li></ul></div></div><div class=col-12><div class=footer__notes><p>With a commitment to quality content for the design community.</p><p>Founded by Vitaly Friedman and Sven Lennartz. <span class=lining-figures>2006–2022</span>.</p><p>Smashing is proudly running on <a href="https://www.netlify.com/?utm_source=link&utm_medium=parter&utm_campaign=sm-footer">Netlify</a>.</p><p>Fonts by <a href=http://latinotype.com/>Latinotype</a>.</p></div><ul class=footer__links><li>&#9998; <a href=/write-for-us/>Write for us</a></li><li><a href=/contact/>Contact us</a></li><li><a href=/about/>About us (Impressum)</a></li><li><a href=/privacy-policy/>Privacy policy</a></li><li><a href=/auth/>Membership login</a></li><li><a href=/delivery-times/>Delivery times</a></li><li><a href="mailto:advertising@smashingmagazine.com?subject=Let’s talk about advertising">Advertise</a></li></ul></div></div><div class=back-to-top-wrapper id=back_top><a href=#top data-scroll=#top class=back-to-top title="Back to top"><svg viewBox="0 0 100 100" width="25" height="25" tabindex="-1" role="img" aria-labelledby="title"><title id="title">Back to top</title><path d="M10 50l50 50L70 90 30 50 70 10 60 0z" transform="translate(0 0) rotate(90 50 50)" fill="#fff" stroke="#fff"/><image src="/images/back-to-top-arrow.png" alt="Back to top arrow" width="100%" height="100%"/></svg></a></div></footer><div data-handler=PostLoad></div><script delay=/js/app.js defer fetchpriority=low></script><script>window.PRERELEASES={},window.PAGE_TYPE="articles",'serviceWorker'in navigator&&!localStorage.getItem('no_sw')&&window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').then(()=>{window.caches.open('smashing-mag-offline-articles').then(a=>a.keys()).then(a=>{var d=document.querySelector('.meta-box--article'),f,b,c,e;d&&a&&a.length&&(f=a.find(a=>a.url===window.location.href)),b=document.querySelector('.offline-articles-list'),b&&a&&a.length&&(c=document.createElement('li'),e=a.map(function(a){return'<li><a href="'+a.url+'">'+a.url+'</a></li>'}).join(''),c.innerHTML='Recently viewed aritcles: <ul>'+e+'</ul>',b.appendChild(c))})}).catch(function(a){console.error('Failed to load service worker')})})</script><div hidden></div><link rel=stylesheet href=/css/print.css type=text/css media=print><script class=js-additional fetchpriority=low delay=/js/instantpage.js type=module defer></script><script class=js-additional fetchpriority=low delay=/js/ga.js defer></script><script class=js-additional fetchpriority=low delay=https://www.google-analytics.com/analytics.js defer></script><script class=js-additional fetchpriority=low type=module delay=/js/web-vitals-tracking.js></script><script>const autoLoadDuration=5,eventList=["keydown","mousemove","wheel","touchmove","touchstart","touchend"],autoLoadTimeout=setTimeout(runScripts,5e3);function triggerScripts(){runScripts(),clearTimeout(autoLoadTimeout),eventList.forEach(function(a){window.removeEventListener(a,triggerScripts,{passive:!0})})}function runScripts(){document.querySelectorAll("script[delay]").forEach(function(a){a.setAttribute("src",a.getAttribute("delay"))})}eventList.forEach(function(a){window.addEventListener(a,triggerScripts,{passive:!0})})</script></body></html>

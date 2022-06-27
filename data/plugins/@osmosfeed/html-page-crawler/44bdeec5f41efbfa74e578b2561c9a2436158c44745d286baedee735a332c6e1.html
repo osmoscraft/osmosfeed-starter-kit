@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+	<html dir="ltr" lang="en-US"> 
+	<head> 
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Noise Pattern Reconstruction from Monopo Studio - Codrops</title>
+				<meta name="author" content="Team Codrops">
+		<link rel="stylesheet" type="text/css" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/css/main.css?v=1645490075" />
+		<link rel="stylesheet" type="text/css" media="print" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/css/main_print.css?v6" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<!-- Favicon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/apple-touch-icon.png?v=2">
+		<link rel="icon" type="image/png" sizes="32x32" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/favicon-32x32.png?v=2">
+		<link rel="icon" type="image/png" sizes="16x16" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/favicon-16x16.png?v=2">
+		<link rel="manifest" href="/codrops/wp-content/themes/codropstheme03/favicons/site.webmanifest?v=2">
+		<link rel="mask-icon" href="/codrops/wp-content/themes/codropstheme03/favicons/safari-pinned-tab.svg?v=2" color="#5bbad5">
+		<link rel="shortcut icon" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/favicons/favicon.ico?v=2">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="theme-color" content="#ffffff">
+		<!-- /end Favicon -->
+
+		<!-- Web Fonts -->
+	    <link rel="preload" href="/codrops/wp-content/themes/codropstheme03/fonts/Inter-upright.var.woff2" as="font" type="font/woff2" crossorigin />
+	    <link rel="preload" href="/codrops/wp-content/themes/codropstheme03/fonts/Inter-italic.var.woff2" as="font" type="font/woff2" crossorigin />
+	    <style>
+	    @font-face {
+	        font-family: 'Inter var';
+	        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+	        font-weight: 100 900;
+	        font-display: swap;
+	        font-style: normal;
+	        font-named-instance: 'Regular';
+	        src: url("/codrops/wp-content/themes/codropstheme03/fonts/Inter-upright.var.woff2") format("woff2");
+	    }
+
+	    @font-face {
+	        font-family: 'Inter var';
+	        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+	        font-weight: 100 900;
+	        font-display: swap;
+	        font-style: italic;
+	        font-named-instance: 'Italic';
+	        src: url("/codrops/wp-content/themes/codropstheme03/fonts/Inter-italic.var.woff2") format("woff2");
+	    }
+	    </style>
+
+
+			   
+		<script>window.koko_analytics = {"tracker_url":"https:\/\/tympanus.net\/codrops\/koko-analytics-collect.php","post_id":58749,"use_cookie":1,"cookie_path":"\/codrops","honor_dnt":true};</script><meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v18.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<meta name="description" content="In this coding tutorial you learn how to recreate the noise pattern seen on the Monopo Studio website using Three.js" />
+	<link rel="canonical" href="https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Noise Pattern Reconstruction from Monopo Studio - Codrops" />
+	<meta property="og:description" content="In this coding tutorial you learn how to recreate the noise pattern seen on the Monopo Studio website using Three.js" />
+	<meta property="og:url" content="https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/" />
+	<meta property="og:site_name" content="Codrops" />
+	<meta property="article:publisher" content="https://www.facebook.com/codrops/" />
+	<meta property="article:author" content="https://facebook.com/akella" />
+	<meta property="article:published_time" content="2022-02-21T13:41:53+00:00" />
+	<meta property="article:modified_time" content="2022-02-21T13:41:54+00:00" />
+	<meta property="og:image" content="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2022/02/noisemonopo.jpg" />
+	<meta property="og:image:width" content="800" />
+	<meta property="og:image:height" content="600" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="Yuriy Artyukh" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="1 minute" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://tympanus.net/codrops/#organization","name":"Codrops","url":"https://tympanus.net/codrops/","sameAs":["https://www.facebook.com/codrops/","https://www.instagram.com/codropsss/","https://www.linkedin.com/company-beta/1067493/","https://www.pinterest.pt/codrops/","https://twitter.com/codrops"],"logo":{"@type":"ImageObject","@id":"https://tympanus.net/codrops/#logo","inLanguage":"en-US","url":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2020/06/codrops-logo_300x300.png","contentUrl":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2020/06/codrops-logo_300x300.png","width":300,"height":300,"caption":"Codrops"},"image":{"@id":"https://tympanus.net/codrops/#logo"}},{"@type":"WebSite","@id":"https://tympanus.net/codrops/#website","url":"https://tympanus.net/codrops/","name":"Codrops","description":"Creative front-end resources and inspiration for web professionals","publisher":{"@id":"https://tympanus.net/codrops/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://tympanus.net/codrops/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#primaryimage","inLanguage":"en-US","url":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2022/02/noisemonopo.jpg","contentUrl":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2022/02/noisemonopo.jpg","width":800,"height":600},{"@type":"WebPage","@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#webpage","url":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/","name":"Noise Pattern Reconstruction from Monopo Studio - Codrops","isPartOf":{"@id":"https://tympanus.net/codrops/#website"},"primaryImageOfPage":{"@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#primaryimage"},"datePublished":"2022-02-21T13:41:53+00:00","dateModified":"2022-02-21T13:41:54+00:00","description":"In this coding tutorial you learn how to recreate the noise pattern seen on the Monopo Studio website using Three.js","breadcrumb":{"@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/"]}]},{"@type":"BreadcrumbList","@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tympanus.net/codrops/"},{"@type":"ListItem","position":2,"name":"Noise Pattern Reconstruction from Monopo Studio"}]},{"@type":"Article","@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#article","isPartOf":{"@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#webpage"},"author":{"@id":"https://tympanus.net/codrops/#/schema/person/4936639cd2bdbb23d8e10471359c2d1f"},"headline":"Noise Pattern Reconstruction from Monopo Studio","datePublished":"2022-02-21T13:41:53+00:00","dateModified":"2022-02-21T13:41:54+00:00","mainEntityOfPage":{"@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#webpage"},"wordCount":72,"publisher":{"@id":"https://tympanus.net/codrops/#organization"},"image":{"@id":"https://tympanus.net/codrops/2022/02/21/noise-pattern-reconstruction-from-monopo-studio/#primaryimage"},"thumbnailUrl":"https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2022/02/noisemonopo.jpg","keywords":["glsl","interactive","noise","postprocessing","three.js","webgl"],"articleSection":["Videos"],"inLanguage":"en-US"},{"@type":"Person","@id":"https://tympanus.net/codrops/#/schema/person/4936639cd2bdbb23d8e10471359c2d1f","name":"Yuriy Artyukh","image":{"@type":"ImageObject","@id":"https://tympanus.net/codrops/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/f12aa14a797e70bb8a80148552869cce?s=96&d=retro&r=g","contentUrl":"https://secure.gravatar.com/avatar/f12aa14a797e70bb8a80148552869cce?s=96&d=retro&r=g","caption":"Yuriy Artyukh"},"description":"Yuriy is a developer from Kyiv, Ukraine. Leading a small frontend agency riverco.de, also speaking at conferences, and open for freelance projects. Curious about CSS and shaders. Loves to learn every day.","sameAs":["http://cssing.org.ua","https://facebook.com/akella","https://twitter.com/akella"],"url":"https://tympanus.net/codrops/author/akella/"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/block-library/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='prismatic-blocks-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/prismatic/css/styles-blocks.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-components-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/components/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-editor-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/block-editor/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-nux-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/nux/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-editor-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-includes/css/dist/editor/style.min.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='simple-iframe-style-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/simple-iframe/dist/blocks.style.build.css?ver=5.7.5' type='text/css' media='all' />
+<link rel='stylesheet' id='avatar-manager-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/avatar-manager/assets/css/avatar-manager.min.css?ver=1.2.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-law-info-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/webtoffee-gdpr-cookie-consent/public/css/cookie-law-info-public.css?ver=2.3.4' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-law-info-gdpr-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/webtoffee-gdpr-cookie-consent/public/css/cookie-law-info-gdpr.css?ver=2.3.4' type='text/css' media='all' />
+<style id='cookie-law-info-gdpr-inline-css' type='text/css'>
+.cli-modal-content, .cli-tab-content { background-color: #ffffff; }.cli-privacy-content-text, .cli-modal .cli-modal-dialog, .cli-tab-container p, a.cli-privacy-readmore { color: #000000; }.cli-tab-header { background-color: #f2f2f2; }.cli-tab-header, .cli-tab-header a.cli-nav-link,span.cli-necessary-caption,.cli-switch .cli-slider:after { color: #000000; }.cli-switch .cli-slider:before { background-color: #ffffff; }.cli-switch input:checked + .cli-slider:before { background-color: #ffffff; }.cli-switch .cli-slider { background-color: #e3e1e8; }.cli-switch input:checked + .cli-slider { background-color: #28a745; }.cli-modal-close svg { fill: #000000; }.cli-tab-footer .wt-cli-privacy-accept-all-btn { background-color: #00acad; color: #ffffff}.cli-tab-footer .wt-cli-privacy-accept-btn { background-color: #00acad; color: #ffffff}.cli-tab-header a:before{ border-right: 1px solid #000000; border-bottom: 1px solid #000000; }
+</style>
+<link rel='stylesheet' id='wp_typeahead_css-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/wp-typeahead/css/typeahead.css?ver=5.7.5' type='text/css' media='all' />
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/87193.js"></script>
+
+
+
+<script type='text/javascript' id='cookie-law-info-js-extra'>
+/* <![CDATA[ */
+var Cli_Data = {"nn_cookie_ids":["ak_bmsc","_mcid","_abck","bm_sz","test_cookie","IDE","__utma","__utmc","__utmz","__utmt","__utmb"],"non_necessary_cookies":{"necessary":["cookielawinfo-checkbox-necessary","cookielawinfo-checkbox-performance","cookielawinfo-checkbox-analytics","cookielawinfo-checkbox-advertisement","_abck","bm_sz"],"performance":["__utma","__utmc","__utmz","__utmt","__utmb"],"advertisement":["test_cookie","IDE"],"others":["cookielawinfo-checkbox-others","ak_bmsc","_mcid","cookielawinfo-checkbox-functional"]},"cookielist":{"necessary":{"id":15831,"status":true,"priority":0,"title":"Necessary","strict":true,"default_state":true,"ccpa_optout":false,"loadonstart":false},"functional":{"id":15832,"status":true,"priority":5,"title":"Functional","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"performance":{"id":15833,"status":true,"priority":4,"title":"Performance","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"analytics":{"id":15834,"status":true,"priority":3,"title":"Analytics","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"advertisement":{"id":15835,"status":true,"priority":2,"title":"Advertisement","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false},"others":{"id":15836,"status":true,"priority":1,"title":"Others","strict":false,"default_state":false,"ccpa_optout":false,"loadonstart":false}},"ajax_url":"https:\/\/tympanus.net\/codrops\/wp-admin\/admin-ajax.php","current_lang":"en","security":"c86d78e379","eu_countries":["GB"],"geoIP":"enabled","use_custom_geolocation_api":"","custom_geolocation_api":"https:\/\/geoip.cookieyes.com\/geoip\/checker\/result.php","consentVersion":"1","strictlyEnabled":["necessary","obligatoire"],"cookieDomain":"","privacy_length":"250","ccpaEnabled":"1","ccpaRegionBased":"1","ccpaBarEnabled":"1","ccpaType":"ccpa_gdpr","triggerDomRefresh":"","secure_cookies":""};
+var log_object = {"ajax_url":"https:\/\/tympanus.net\/codrops\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/99abe.js"></script>
+
+<script type='text/javascript' id='cookie-law-info-ccpa-js-extra'>
+/* <![CDATA[ */
+var ccpa_data = {"opt_out_prompt":"Do you really wish to opt out?","opt_out_confirm":"Confirm","opt_out_cancel":"Cancel"};
+/* ]]> */
+</script>
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/0c6a9.js"></script>
+
+
+
+
+
+<link rel="https://api.w.org/" href="https://tympanus.net/codrops/wp-json/" /><link rel="alternate" type="application/json" href="https://tympanus.net/codrops/wp-json/wp/v2/posts/58749" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://tympanus.net/codrops/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://tympanus.net/codrops/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.7.5" />
+<link rel='shortlink' href='https://tympanus.net/codrops/?p=58749' />
+<link rel="alternate" type="application/json+oembed" href="https://tympanus.net/codrops/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftympanus.net%2Fcodrops%2F2022%2F02%2F21%2Fnoise-pattern-reconstruction-from-monopo-studio%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://tympanus.net/codrops/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftympanus.net%2Fcodrops%2F2022%2F02%2F21%2Fnoise-pattern-reconstruction-from-monopo-studio%2F&#038;format=xml" />
+<style type="text/css">
+.sfs-subscriber-count, .sfs-count, .sfs-count span, .sfs-stats { -webkit-box-sizing: initial; -moz-box-sizing: initial; box-sizing: initial; }
+.sfs-subscriber-count { width: 88px; overflow: hidden; height: 26px; color: #424242; font: 9px Verdana, Geneva, sans-serif; letter-spacing: 1px; }
+.sfs-count { width: 86px; height: 17px; line-height: 17px; margin: 0 auto; background: #ccc; border: 1px solid #909090; border-top-color: #fff; border-left-color: #fff; }
+.sfs-count span { display: inline-block; height: 11px; line-height: 12px; margin: 2px 1px 2px 2px; padding: 0 2px 0 3px; background: #e4e4e4; border: 1px solid #a2a2a2; border-bottom-color: #fff; border-right-color: #fff; }
+.sfs-stats { font-size: 6px; line-height: 6px; margin: 1px 0 0 1px; word-spacing: 2px; text-align: center; text-transform: uppercase; }
+</style>
+<script type="text/javascript">document.documentElement.className += " js";</script>
+		<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/3981a.js"></script>
+
+		
+		<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-7243260-2']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+
+			  function recordOutboundLink(link, category, action) {
+				_gat._getTrackerByName()._trackEvent(category, action);
+				setTimeout('document.location = "' + link.href + '"', 100);
+			}
+		</script>
+		<noscript>
+			<link rel="stylesheet" href="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/themes/codropstheme03/css/noscript.css"/>
+		</noscript>
+		<script type="application/ld+json">
+		{
+		  "@context": "http://schema.org",
+		  "@type": "WebSite",
+		  "url": "https://tympanus.net/codrops/",
+		  "potentialAction": {
+		    "@type": "SearchAction",
+		    "target": "https://tympanus.net/codrops/?s={search_term_string}",
+		    "query-input": "required name=search_term_string"
+		  }
+		}
+		</script>
+		<script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+	</head>
+	<body id="codrops-body">
+				<!-- BuySellAds.com Ad Code -->
+		<script type="text/javascript">
+			(function(){
+				var bsa = document.createElement('script');
+				bsa.type = 'text/javascript';
+				bsa.async = true;
+				bsa.src = '//s3.buysellads.com/ac/bsa.js';
+				(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+			})();
+		</script>
+		<!-- END BuySellAds.com Ad Code -->	
+				<div class="ct-container">
+			<header class="ct-header">
+				<div class="ct-inner">
+
+											<div class="ct-branding">
+							<a class="ct-logo" href="/codrops" rel="home"><img class="ct-logo-img" src="/codrops/wp-content/themes/codropstheme03/images/codrops-logo-1.svg" alt="Codrops logo" /></a>
+						</div>
+					
+					<div class="ct-nav-wrapper">
+						<nav class="ct-nav-main">
+						   <ul>
+								<li><a href="/codrops/category/tutorials/">Tutorials</a></li>
+								<li><a href="/codrops/category/playground/">Playground</a></li>
+								<li><a href="/codrops/category/articles/">Articles</a></li>
+								<li><a href="/codrops/collective/">Collective</a></li>
+								<li><a href="/codrops/css_reference/">CSS Reference</a></li>
+							</ul>
+						</nav>
+					</div>
+
+					<div class="ct-header-items-right ct-cf">
+						<div class="ct-search" id="ct-search">
+							<form method="get" id="searchform" action="https://tympanus.net/codrops/">
+								<div class="ct-search-input-wrap">
+									<input class="ct-search-input" placeholder="Search on Codrops..." type="text" value="" name="s" id="s"/>
+								</div>
+								<input type="hidden" name="search-type" value="posts" />
+								<input class="ct-search-submit" type="submit" id="go" value="">
+								<span class="ct-icon-search"><img src="/codrops/wp-content/themes/codropstheme03/images/search.svg" alt="Search icon" /></span>
+							</form>
+						</div>
+						<ul class="ct-connect">
+							<li><a href="http://www.twitter.com/codrops"><span aria-label="Codrops on Twitter">Tw</span></a></li>
+							<li><a href="http://www.facebook.com/pages/Codrops/159107397912"><span aria-label="Codrops on Facebook">Fb</span></a></li>
+							<li><a href="https://github.com/codrops"><span aria-label="Codrops on GitHub">Gh</span></a></li>
+							<li><a href="https://instagram.com/codropsss"><span aria-label="Codrops on Instagram">In</span></a></li>
+							<li><a href="https://tympanus.net/codrops/feed/"><span aria-label="RSS Feed">Rss</span></a></li>
+						</ul>
+					</div><!--/ct-header-items-right-->
+
+				</div><!-- ct-inner -->
+			</header><div class="ct-content">
+    <div class="ct-inner">		
+		
+				
+								
+				<div class="ct-main ct-main-post" id="ct-main" role="main">
+					<div class="ct-post">
+						<article id="post-58749" class="post-58749 post type-post status-publish format-standard has-post-thumbnail hentry category-videos tag-glsl tag-interactive tag-noise tag-postprocessing tag-three-js tag-webgl">
+							<header>
+								<h1 class="ct-h-shd entry-title">
+									Noise Pattern Reconstruction from Monopo Studio									
+																	</h1>
+								<div class="ct-post-excerpt">In this coding tutorial you learn how to recreate the noise pattern seen on the Monopo Studio website using Three.js</div>								<div class="ct-subline entry-meta ">
+									<div class="ct-subline__author">
+																																	<span class="byline author vcard">
+													By 
+													<a href="https://tympanus.net/codrops/author/akella/" title="Posts by Yuriy Artyukh" class="author url fn" rel="author">Yuriy Artyukh</a>												</span>
+																															in
+										<a href="https://tympanus.net/codrops/category/videos/">Videos</a> on 
+											
+
+										<time class="ct-subline__pubtime" pubdate="pubdate">February 21, 2022</time>
+
+																			</div>
+								</div>
+							</header>		
+							<div class="ct-post-content">
+								
+
+								
+																
+
+																
+								
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe loading="lazy" title="Beautiful noise with three.js from monopo.vn #1" width="500" height="281" src="https://www.youtube.com/embed/sPBb-0al7Y0?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></figure>
+
+
+
+<p>In this new <a href="https://www.youtube.com/user/flintyara/featured">ALL YOUR HTML</a> coding session we&#8217;ll be reconstructing the beautiful noise pattern from <a href="https://monopo.vn/">Monopo Studio&#8217;s</a> website using Three.js and GLSL and some postprocessing. </p>
+
+
+
+<p>Monopo Studio: <a href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqbEotbmF6M3VVN1hSRHZUeUhXSDJ1OEt0SDl0UXxBQ3Jtc0tsSEIydDZHSWFrdmM1TzZISndBekwzR213d0VtV0xEM0E0d1ZfS3lYX1MwZ0xyNS1lNG51UGhPdWg0TzFiMnlLaGc3SW5TQjc2WXdQNTJjN2wxZHNCLTNJSkRybW4tMm5XMWZTSlA0b2N6a2IySEhiTQ&amp;q=https%3A%2F%2Ftwitter.com%2Fmonopo_en&amp;v=sPBb-0al7Y0" rel="noreferrer noopener" target="_blank">https://twitter.com/monopo_en</a> </p>
+
+
+
+<p>Developer: <a href="https://www.youtube.com/redirect?event=video_description&amp;redir_token=QUFFLUhqa2tpMC1TTTN5Vmpqa2Z2aXdqaXVzTGdIQ1c2Z3xBQ3Jtc0tta2QtR3dGYk1pSzllTUFaUTF2NkJXYmZiazk4bXhSY1pwdW4wLUZQcHVCUG9CalZtdzBJTDJheXNqeXJyNXkyVjhlc1Y3NE5takFBaVJNU0J3blVGdTc1QmttN2Flcm91bXlybzRhV2FIeVRKZXprbw&amp;q=https%3A%2F%2Ftwitter.com%2Fbramichou&amp;v=sPBb-0al7Y0" rel="noreferrer noopener" target="_blank">https://twitter.com/bramichou</a></p>
+
+
+
+<p>This coding session was streamed live on February 20, 2022.</p>
+
+
+
+<!--div class="box-highlight"><p><strong>Check out the <a href="https://dnacapitalreplica.netlify.app/">live demo</a>.</strong></p></div-->
+
+
+
+<p>Support: <a href="https://www.patreon.com/allyourhtml" target="_blank" rel="noreferrer noopener">https://www.patreon.com/allyourhtml</a> </p>
+
+
+
+<p>Setup: <a href="https://gist.github.com/akella/a19954c9ee42e3ae85b76d0e06977535" target="_blank" rel="noreferrer noopener">https://gist.github.com/akella/a19954&#8230;</a> </p>
+
+								
+																																
+																	<div class="ct-post-nav">
+										<div class="ct-post-prev">        
+											<a href="https://tympanus.net/codrops/2022/02/18/inspirational-websites-roundup-34/" rel="prev">Inspirational Websites Roundup #34</a> 
+										</div>
+										<div class="ct-post-next">
+											 
+										</div>
+										<div class="clr"></div>
+									</div> <!-- ct-post-nav -->
+																
+							</div>
+						</article>
+						<p class="ct-tags">
+							Tagged with: <a href="https://tympanus.net/codrops/tag/glsl/" rel="tag">glsl</a> <a href="https://tympanus.net/codrops/tag/interactive/" rel="tag">interactive</a> <a href="https://tympanus.net/codrops/tag/noise/" rel="tag">noise</a> <a href="https://tympanus.net/codrops/tag/postprocessing/" rel="tag">postprocessing</a> <a href="https://tympanus.net/codrops/tag/three-js/" rel="tag">three.js</a> <a href="https://tympanus.net/codrops/tag/webgl/" rel="tag">webgl</a>						</p>
+						<div class="clr"></div>
+					</div>
+
+																							
+											            <div class="ct-author-info ct-box">
+					                <div class="ct-author-avatar">
+					                    <img alt='' src='https://secure.gravatar.com/avatar/f12aa14a797e70bb8a80148552869cce?s=80&#038;d=retro&#038;r=g' srcset="https://secure.gravatar.com/avatar/f12aa14a797e70bb8a80148552869cce?s=160&#038;d=retro&#038;r=g 2x" class='avatar avatar-80 photo' height='80' width='80' loading='lazy'/>					                </div><!-- .author-avatar -->
+
+					                <div class="ct-author-page-desc">
+					                    <h3><a href="https://tympanus.net/codrops/author/akella/">Yuriy Artyukh</a></h3>
+					                    <p>Yuriy is a developer from Kyiv, Ukraine. Leading a small frontend agency <a href="http://riverco.de">riverco.de</a>, also speaking at conferences, and open for freelance projects. Curious about CSS and shaders. Loves to learn every day.</p>
+					                    																				<p class="ct-author-page-url">
+											<a href="http://cssing.org.ua" target="_blank">http://cssing.org.ua</a>
+										</p>
+																				<div>
+											<ul class="ct-social-profiles">
+																																					<li><a class="ct-social-twitter" href="https://twitter.com/akella"><span>Twitter</span></a></li>
+																																																	<li><a class="ct-social-instagram" href="http://instagram.com/akella_"><span>Instagram</span></a></li>
+																																					<li><a class="ct-social-facebook" href="https://facebook.com/akella"><span>Facebook</span></a></li>
+																																																	<li><a class="ct-social-github" href="https://github.com/akella"><span>Github</span></a></li>
+																																																																																			</ul>
+										</div>
+					                </div>
+					            </div>
+					        
+						<!-- Related posts -->
+												<div class="ct-related-post">
+							
+									<div class="ct-related-item">
+										<div class="ct-latest-thumb-related">
+											<a href="https://tympanus.net/codrops/2021/02/23/creating-an-infinite-circular-gallery-using-webgl-with-ogl-and-glsl-shaders/">
+												<img width="400" height="300" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/CircularInfiniteWebglgallery-400x300.jpg" class="attachment-medium size-medium wp-post-image" alt="" loading="lazy" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/CircularInfiniteWebglgallery-400x300.jpg 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/CircularInfiniteWebglgallery-768x576.jpg 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/CircularInfiniteWebglgallery.jpg 800w" sizes="(max-width: 400px) 100vw, 400px" />											</a>
+										</div>
+										<h4><a href="https://tympanus.net/codrops/2021/02/23/creating-an-infinite-circular-gallery-using-webgl-with-ogl-and-glsl-shaders/">Creating an Infinite Circular Gallery using WebGL with OGL and GLSL Shaders</a></h4>
+									</div>
+												
+								
+									<div class="ct-related-item">
+										<div class="ct-latest-thumb-related">
+											<a href="https://tympanus.net/codrops/2021/02/03/rotating-loading-animation-of-3d-shapes-with-three-js/">
+												<img width="400" height="300" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/rotated3dshape-400x300.jpg" class="attachment-medium size-medium wp-post-image" alt="" loading="lazy" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/rotated3dshape-400x300.jpg 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/rotated3dshape-768x576.jpg 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/02/rotated3dshape.jpg 800w" sizes="(max-width: 400px) 100vw, 400px" />											</a>
+										</div>
+										<h4><a href="https://tympanus.net/codrops/2021/02/03/rotating-loading-animation-of-3d-shapes-with-three-js/">Rotating Loading Animation of 3D Shapes with Three.js</a></h4>
+									</div>
+												
+								
+									<div class="ct-related-item">
+										<div class="ct-latest-thumb-related">
+											<a href="https://tympanus.net/codrops/2021/08/02/magical-marbles-in-three-js/">
+												<img width="400" height="300" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble-400x300.jpg" class="attachment-medium size-medium wp-post-image" alt="" loading="lazy" srcset="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble-400x300.jpg 400w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble-768x576.jpg 768w, https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/08/marble.jpg 800w" sizes="(max-width: 400px) 100vw, 400px" />											</a>
+										</div>
+										<h4><a href="https://tympanus.net/codrops/2021/08/02/magical-marbles-in-three-js/">Magical Marbles in Three.js</a></h4>
+									</div>
+												
+														</div>
+																						<div class="ct-row">
+						
+<div class="ct-sharing ct-box">
+	<!-- Begin Mailchimp Signup Form -->
+	<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		#mc_embed_signup{background: transparent; clear:left; width:100%; text-align: left;}
+		/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+		   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+	</style>
+	<style type="text/css">
+		#mc_embed_signup form { text-align: left; padding: 0;}
+		#mc-embedded-subscribe-form input[type=checkbox]{vertical-align: top;display: inline; width: auto;margin-right: 5px;}
+		#mergeRow-gdpr {margin-top: 20px;}
+		#mergeRow-gdpr fieldset label {font-weight: normal;}
+		#mc-embedded-subscribe-form .mc_fieldset{border:none;min-height: 0px;padding-bottom:0px;}
+		#mc_embed_signup input.email {width: 100%;margin: 0 auto 1rem; box-shadow:none;padding:5px 10px;height:50px;font-size: 0.9rem;border-radius:0;font-family:inherit;font-weight:bold;color: #000;border:0;}
+		#mc_embed_signup input.email:focus {border-color: #66afe9; box-shadow: none;outline:none;}
+		#mc_embed_signup label {padding: 0;}    
+		#mc_embed_signup .button {background: #000;color:#fff;border-radius:0;transition:none;height:auto; padding:10px 20px;font-size:0.9rem; line-height:inherit;}
+		#mc_embed_signup .button:hover {background: #333;}
+	</style>
+	<div id="mc_embed_signup">
+		<form action="https://tympanus.us10.list-manage.com/subscribe/post?u=10ffec652b0f54fe5d8682ac0&amp;id=a9cab6dcf0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+		    <div id="mc_embed_signup_scroll">
+			<label for="mce-EMAIL"><h3>Subscribe for the latest frontend news</h3></label>
+			<p>Stay up to date with the latest web design and development news and relevant updates from Codrops.</p>
+			<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+		    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+		    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_10ffec652b0f54fe5d8682ac0_a9cab6dcf0" tabindex="-1" value=""></div>
+		    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+		    </div>
+		</form>
+	</div>
+</div>
+
+
+
+						<div class="ct-bottom-ads ct-box">
+							<h5>From our sponsor</h5>
+							<a class="cos" href="https://www.elegantthemes.com/affiliates/idevaffiliate.php?id=17972_5_1_19" target="_blank" rel="nofollow sponsored">
+								<img class="cos__img" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2022/02/divi-startup-layout-pack-featured-image-e1644446062475.jpg" alt="Divi" width="300px" height="250px"/>
+								<div class="cos__text cos__text--nobg">
+									<strong>Create websites rapidly</strong><br/>
+									With the Divi Layout Packs you'll get more than 800 world-class designs ready to be used for your client projects. <strong>Try it for free &rarr;</strong>
+								</div>
+							</a>
+							
+							<!--<h3>CSS Reference</h3>
+							<p>Learn about all important CSS properties from the basics with our extensive and easy-to-read CSS Reference.</p><p>It doesn't matter if you are a beginner or intermediate, <a href="/codrops/css_reference/">start learning CSS now</a>.</p>-->
+						</div>
+					</div>
+						<section id="comments" class="ct-comments">
+	
+		
+			<p class="ct-nocomments"></p>
+		<div class="ct-comment-form">	
+				<div class="clr"></div>
+	</div>
+
+</section><!-- #comments -->
+				</div>
+				<aside class="ct-sidebar">		
+	<div class="ct-pat">
+		<div id="coswrap" class="coswrap">
+			
+			 
+					<a class="cos" href="https://ad.doubleclick.net/ddm/trackclk/N1224323.3091281BUYSELLADS/B25600467.326925177;dc_trk_aid=519643689;dc_trk_cid=157532779;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=" target="_blank" rel="nofollow sponsored">
+						<img class="cos__img" src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/09/Mailchimp_V2.jpg" alt="Mailchimp" width="300px" height="250px"/>
+						<img src="https://ad.doubleclick.net/ddm/trackimp/N1224323.3091281BUYSELLADS/B25600467.326925177;dc_trk_aid=519643689;dc_trk_cid=157532779;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;ltd=?" style="position:absolute;width:1px;height:1px;opacity:0;"/>
+						<div class="cos__text">Drive better results with a smart marketing platform. Try Mailchimp today.</div>
+					</a>
+				        	</div>
+		<!-- 125x125 -->
+		<div id="bsap_1243201" class="bsarocks bsap_af25dfd2f1908889af7a1aa5f4dcbd9e"></div>
+	</div>
+
+	<div class="ct-pat">
+		<div id="bsap_1298539" class="bsarocks bsap_af25dfd2f1908889af7a1aa5f4dcbd9e"></div>
+	</div>
+    		
+    
+    <div class="ct-pat ct-sticky">
+    	<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CKYIK53I&placement=codrops" id="_carbonads_js"></script>
+    </div>
+	<div class="clr"></div>
+</aside>
+
+				<div class="clr"></div>
+			    </div>
+</div>
+		<footer class="ct-footer">
+			<div class="ct-inner">
+				<nav>
+					<ul>
+						<li><a href="/codrops/about/">About</a></li>
+						<li><a href="/codrops/contact/">Contact</a></li>
+						<li><a href="/codrops/advertise/">Advertise</a></li>
+						<li><a href="/codrops/privacy-policy/">Privacy Policy</a></li>
+						<li><a href="/codrops/licensing/">License</a></li>
+					</ul>
+					<ul>
+						<li><a href="/codrops/category/tutorials/">Tutorials</a></li>
+						<li><a href="/codrops/category/articles/">Articles</a></li>
+						<li><a href="/codrops/category/playground/">Playground</a></li>
+						<li><a href="/codrops/category/blueprints/">Blueprints</a></li>
+						<li><a href="/codrops/category/freebies/">Freebies</a></li>
+					</ul>
+					<ul>
+						<li><a href="/codrops/css_reference/">CSS Reference</a></li>
+						<li><a href="/codrops/collective/">Collective</a></li>
+						<li><a href="/codrops/newsletter/">Newsletter</a></li>
+					</ul>
+					<a class="ct-footer__farm" href="https://tympanus.net/codrops/project-nusa-portugal/"><img src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/uploads/2021/05/farm.jpg" alt="Want to help Codrops build a sustainable permaculture farm in Portugal?" /></a>
+					<ul>
+						<li>Content delivered by <a href="https://www.stackpath.com/" title="Content Distribution Network" target="blank">StackPath</a></li>
+						<li>&copy; Codrops 2022</li>
+					</ul>
+				</nav>
+			</div>
+		</footer>
+		<div class="wt-cli-cookie-bar-container" data-nosnippet="true"><!--googleoff: all--><div id="cookie-law-info-bar" role="dialog" aria-live="polite" aria-label="cookieconsent" aria-describedby="wt-cli-cookie-banner" data-cli-geo-loc="0" style="" class="wt-cli-cookie-bar"><div class="cli-wrapper"><span id="wt-cli-cookie-banner"><div class="cli-bar-container cli-style-v2"><div class="cli-bar-message" style="width: auto !important">We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking “Okay”, you consent to the use of all cookies.</br><div class="wt-cli-ccpa-element"> <a href="javascript:void(0)" style="color:#606060;" role="button" class="wt-cli-ccpa-opt-out">Do not sell my personal information</a>.</div></div><div class="cli-bar-btn_container"><a id="wt-cli-settings-btn" tabindex="0" role='button' style="margin:0px 10px 0px 5px;" class="wt-cli-element small cli-plugin-button cli-plugin-main-button cli_settings_button" >Settings</a> <a id="wt-cli-accept-btn" tabindex="0" role='button' style="" data-cli_action="accept"  class="wt-cli-element small cli-plugin-button cli-plugin-main-button cookie_action_close_header cli_action_button" >Okay</a></div></div></span></div></div><div tabindex="0" id="cookie-law-info-again" style="display:none;"><span id="cookie_hdr_showagain">Privacy & Cookies Policy</span></div><div class="cli-modal" id="cliSettingsPopup" role="dialog" aria-labelledby="wt-cli-privacy-title" tabindex="-1" aria-hidden="true">
+  <div class="cli-modal-dialog" role="document">
+    <div class="cli-modal-content cli-bar-popup">
+      <button aria-label="Close" type="button" class="cli-modal-close" id="cliModalClose">
+      <svg class="" viewBox="0 0 24 24"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z"></path><path d="M0 0h24v24h-24z" fill="none"></path></svg>
+      <span class="wt-cli-sr-only">Close</span>
+      </button>
+        <div class="cli-modal-body">
+
+    <div class="wt-cli-element cli-container-fluid cli-tab-container">
+        <div class="cli-row">
+                            <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+                    <div class="cli-privacy-overview">
+                        <h4 id='wt-cli-privacy-title'>Privacy Overview</h4>                        <div class="cli-privacy-content">
+                            <div class="cli-privacy-content-text">This website uses cookies to improve your experience while you navigate through the website. Out of these cookies, the cookies that are categorized as necessary are stored on your browser as they are essential for the working of basic functionalities of the website. We also use third-party cookies that help us analyze and understand how you use this website. These cookies will be stored in your browser only with your consent. You also have the option to opt-out of these cookies. But opting out of some of these cookies may have an effect on your browsing experience.</div>
+                        </div>
+                        <a id="wt-cli-privacy-readmore"  tabindex="0" role="button" class="cli-privacy-readmore" data-readmore-text="Show more" data-readless-text="Show less"></a>                    </div>
+                </div>
+                        <div class="cli-col-12 cli-align-items-stretch cli-px-0 cli-tab-section-container">
+
+                
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-necessary" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-necessary" aria-controls="wt-cli-tab-necessary" class="cli-nav-link cli-settings-mobile" data-target="necessary" data-toggle="cli-toggle-tab">
+                                Necessary                            </a>
+                                                                                        <div class="wt-cli-necessary-checkbox">
+                                    <input type="checkbox" class="cli-user-preference-checkbox" id="wt-cli-checkbox-necessary" aria-label="Necessary" data-id="checkbox-necessary" checked="checked" />
+                                    <label class="form-check-label" for="wt-cli-checkbox-necessary"> Necessary </label>
+                                </div>
+                                <span class="cli-necessary-caption">
+                                    Always Enabled                                </span>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-necessary" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-necessary" class="cli-tab-pane cli-fade" data-id="necessary">
+                                <p>Necessary cookies are absolutely essential for the website to function properly. This category only includes cookies that ensures basic functionalities and security features of the website. These cookies do not store any personal information.</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-functional" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-functional" aria-controls="wt-cli-tab-functional" class="cli-nav-link cli-settings-mobile" data-target="functional" data-toggle="cli-toggle-tab">
+                                Functional                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-functional" aria-label="functional" data-id="checkbox-functional" role="switch" aria-controls="wt-cli-tab-link-functional" aria-labelledby="wt-cli-tab-link-functional"  />
+                                    <label for="wt-cli-checkbox-functional" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">functional</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-functional" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-functional" class="cli-tab-pane cli-fade" data-id="functional">
+                                <p>Functional cookies help to perform certain functionalities like sharing the content of the website on social media platforms, collect feedbacks, and other third-party features.
+</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-performance" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-performance" aria-controls="wt-cli-tab-performance" class="cli-nav-link cli-settings-mobile" data-target="performance" data-toggle="cli-toggle-tab">
+                                Performance                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-performance" aria-label="performance" data-id="checkbox-performance" role="switch" aria-controls="wt-cli-tab-link-performance" aria-labelledby="wt-cli-tab-link-performance"  />
+                                    <label for="wt-cli-checkbox-performance" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">performance</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-performance" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-performance" class="cli-tab-pane cli-fade" data-id="performance">
+                                <p>Performance cookies are used to understand and analyze the key performance indexes of the website which helps in delivering a better user experience for the visitors.
+<table class="wt-cli-element cookielawinfo-row-cat-table cookielawinfo-winter"><thead><tr><th scope="col" class="cookielawinfo-column-1">Cookie</th><th scope="col" class="cookielawinfo-column-3">Duration</th><th scope="col" class="cookielawinfo-column-4">Description</th></tr></thead><tbody><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utma</td><td class="cookielawinfo-column-3">2 years</td><td class="cookielawinfo-column-4">This cookie is set by Google Analytics and is used to distinguish users and sessions. The cookie is created when the JavaScript library executes and there are no existing __utma cookies. The cookie is updated every time data is sent to Google Analytics.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmb</td><td class="cookielawinfo-column-3">30 minutes</td><td class="cookielawinfo-column-4">The cookie is set by Google Analytics. The cookie is used to determine new sessions/visits. The cookie is created when the JavaScript library executes and there are no existing __utma cookies. The cookie is updated every time data is sent to Google Analytics.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmc</td><td class="cookielawinfo-column-3">session</td><td class="cookielawinfo-column-4">The cookie is set by Google Analytics and is deleted when the user closes the browser. The cookie is not used by ga.js. The cookie is used to enable interoperability with urchin.js which is an older version of Google analytics and used in conjunction with the __utmb cookie to determine new sessions/visits.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmt</td><td class="cookielawinfo-column-3">10 minutes</td><td class="cookielawinfo-column-4">The cookie is set by Google Analytics and is used to throttle request rate.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">__utmz</td><td class="cookielawinfo-column-3">6 months</td><td class="cookielawinfo-column-4">This cookie is set by Google analytics and is used to store the traffic source or campaign through which the visitor reached your site.</td></tr></tbody></table></p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-analytics" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-analytics" aria-controls="wt-cli-tab-analytics" class="cli-nav-link cli-settings-mobile" data-target="analytics" data-toggle="cli-toggle-tab">
+                                Analytics                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-analytics" aria-label="analytics" data-id="checkbox-analytics" role="switch" aria-controls="wt-cli-tab-link-analytics" aria-labelledby="wt-cli-tab-link-analytics"  />
+                                    <label for="wt-cli-checkbox-analytics" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">analytics</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-analytics" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-analytics" class="cli-tab-pane cli-fade" data-id="analytics">
+                                <p>Analytical cookies are used to understand how visitors interact with the website. These cookies help provide information on metrics the number of visitors, bounce rate, traffic source, etc.
+</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-advertisement" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-advertisement" aria-controls="wt-cli-tab-advertisement" class="cli-nav-link cli-settings-mobile" data-target="advertisement" data-toggle="cli-toggle-tab">
+                                Advertisement                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-advertisement" aria-label="advertisement" data-id="checkbox-advertisement" role="switch" aria-controls="wt-cli-tab-link-advertisement" aria-labelledby="wt-cli-tab-link-advertisement"  />
+                                    <label for="wt-cli-checkbox-advertisement" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">advertisement</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-advertisement" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-advertisement" class="cli-tab-pane cli-fade" data-id="advertisement">
+                                <p>Advertisement cookies are used to provide visitors with relevant ads and marketing campaigns. These cookies track visitors across websites and collect information to provide customized ads.
+<table class="wt-cli-element cookielawinfo-row-cat-table cookielawinfo-winter"><thead><tr><th scope="col" class="cookielawinfo-column-1">Cookie</th><th scope="col" class="cookielawinfo-column-3">Duration</th><th scope="col" class="cookielawinfo-column-4">Description</th></tr></thead><tbody><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">IDE</td><td class="cookielawinfo-column-3">1 year 24 days</td><td class="cookielawinfo-column-4">Used by Google DoubleClick and stores information about how the user uses the website and any other advertisement before visiting the website. This is used to present users with ads that are relevant to them according to the user profile.</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">test_cookie</td><td class="cookielawinfo-column-3">15 minutes</td><td class="cookielawinfo-column-4">This cookie is set by doubleclick.net. The purpose of the cookie is to determine if the user's browser supports cookies.</td></tr></tbody></table></p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="cli-tab-section">
+                        <div class="cli-tab-header">
+                            <a id="wt-cli-tab-link-others" tabindex="0" role="tab" aria-expanded="false" aria-describedby="wt-cli-tab-others" aria-controls="wt-cli-tab-others" class="cli-nav-link cli-settings-mobile" data-target="others" data-toggle="cli-toggle-tab">
+                                Others                            </a>
+                                                                                        <div class="cli-switch">
+                                    <input type="checkbox" class="cli-user-preference-checkbox"  id="wt-cli-checkbox-others" aria-label="others" data-id="checkbox-others" role="switch" aria-controls="wt-cli-tab-link-others" aria-labelledby="wt-cli-tab-link-others"  />
+                                    <label for="wt-cli-checkbox-others" class="cli-slider" data-cli-enable="Enabled" data-cli-disable="Disabled"><span class="wt-cli-sr-only">others</span></label>
+                                </div>
+                                                    </div>
+                        <div class="cli-tab-content">
+                            <div id="wt-cli-tab-others" tabindex="0" role="tabpanel" aria-labelledby="wt-cli-tab-link-others" class="cli-tab-pane cli-fade" data-id="others">
+                                <p>Other uncategorized cookies are those that are being analyzed and have not been classified into a category as yet.
+<table class="wt-cli-element cookielawinfo-row-cat-table cookielawinfo-winter"><thead><tr><th scope="col" class="cookielawinfo-column-1">Cookie</th><th scope="col" class="cookielawinfo-column-3">Duration</th><th scope="col" class="cookielawinfo-column-4">Description</th></tr></thead><tbody><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">_mcid</td><td class="cookielawinfo-column-3">1 year</td><td class="cookielawinfo-column-4">No description</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">ak_bmsc</td><td class="cookielawinfo-column-3">2 hours</td><td class="cookielawinfo-column-4">No description</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-functional</td><td class="cookielawinfo-column-3">1 year</td><td class="cookielawinfo-column-4">The cookie is set by GDPR cookie consent to record the user consent for the cookies in the category "Functional".</td></tr><tr class="cookielawinfo-row"><td class="cookielawinfo-column-1">cookielawinfo-checkbox-others</td><td class="cookielawinfo-column-3">1 year</td><td class="cookielawinfo-column-4">No description</td></tr></tbody></table></p>
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cli-modal-footer">
+    <div class="wt-cli-element cli-container-fluid cli-tab-container">
+        <div class="cli-row">
+            <div class="cli-col-12 cli-align-items-stretch cli-px-0">
+                <div class="cli-tab-footer wt-cli-privacy-overview-actions">
+                    
+                        
+                                                    <a id="wt-cli-privacy-save-btn" role="button" tabindex="0" data-cli-action="accept" class="wt-cli-privacy-btn cli_setting_save_button wt-cli-privacy-accept-btn cli-btn">Save & Accept</a>
+                                                                    
+                </div>
+                            </div>
+        </div>
+    </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<!--googleon: all--></div>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			cli_cookiebar_settings='{"animate_speed_hide":"500","animate_speed_show":"500","background":"#ffffff","border":"#444","border_on":false,"button_1_button_colour":"#000000","button_1_button_hover":"#000000","button_1_link_colour":"#fff","button_1_as_button":true,"button_1_new_win":false,"button_2_button_colour":"#333","button_2_button_hover":"#292929","button_2_link_colour":"#0099cc","button_2_as_button":false,"button_2_hidebar":false,"button_2_nofollow":false,"button_3_button_colour":"#000","button_3_button_hover":"#000000","button_3_link_colour":"#fff","button_3_as_button":true,"button_3_new_win":false,"button_4_button_colour":"#000","button_4_button_hover":"#000000","button_4_link_colour":"#fff","button_4_as_button":true,"button_7_button_colour":"#0099cc","button_7_button_hover":"#007aa3","button_7_link_colour":"#fff","button_7_as_button":true,"button_7_new_win":false,"font_family":"inherit","header_fix":false,"notify_animate_hide":false,"notify_animate_show":false,"notify_div_id":"#cookie-law-info-bar","notify_position_horizontal":"right","notify_position_vertical":"bottom","scroll_close":false,"scroll_close_reload":false,"accept_close_reload":false,"reject_close_reload":false,"showagain_tab":false,"showagain_background":"#fff","showagain_border":"#000","showagain_div_id":"#cookie-law-info-again","showagain_x_position":"100px","text":"#0a0a0a","show_once_yn":false,"show_once":"10000","logging_on":false,"as_popup":false,"popup_overlay":true,"bar_heading_text":"","cookie_bar_as":"banner","cookie_setting_popup":true,"accept_all":true,"js_script_blocker":false,"popup_showagain_position":"bottom-right","widget_position":"left","button_1_style":"Array","button_2_style":"Array","button_3_style":"Array","button_4_style":[["margin","0px 10px 0px 5px"]],"button_5_style":[],"button_7_style":[],"accept_close_page_navigation":false}';
+		/* ]]> */
+		</script>
+		<link rel='stylesheet' id='cookie-law-info-table-css'  href='https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/plugins/webtoffee-gdpr-cookie-consent/public/css/cookie-law-info-table.css?ver=2.3.4' type='text/css' media='all' />
+
+<script  defer src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/10312.js"></script>
+
+
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/c00e6.js"></script>
+
+<script type='text/javascript' id='typeahead_wp_plugin-js-extra'>
+/* <![CDATA[ */
+var wp_typeahead = {"ajaxurl":"https:\/\/tympanus.net\/codrops\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+
+
+<script  src="https://i7x7p5b7.stackpathcdn.com/codrops/wp-content/cache/minify/906ad.js"></script>
+
+		</div><!--ct-container-->
+	</body>
+</html>
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Object Caching 113/230 objects using disk
+Page Caching using disk: enhanced (SSL caching disabled) 
+Content Delivery Network via i7x7p5b7.stackpathcdn.com
+Minified using disk
+
+Served from: tympanus.net @ 2022-02-22 00:34:35 by W3 Total Cache
+-->

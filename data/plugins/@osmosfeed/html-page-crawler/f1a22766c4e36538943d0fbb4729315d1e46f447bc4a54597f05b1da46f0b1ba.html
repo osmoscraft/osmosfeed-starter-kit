@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<!-- You found a secret link. Nice work! https://gomakethings.com/fun/ -->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>How I create my JavaScript books and courses | Go Make Things</title>
+		<meta name="description" content="Over the last two weeks, I release a new course on accessible components and a new course on native web components, and completely redid my course on writing JavaScript libraries.
+Today, I wanted to talk about how I create my courses and ebooks.
+This article is focused on the actual content and finished books/videos. If you want to learn more about how I sell and deliver them, I wrote about the tech behind my learning platform a few years ago.">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		
+		<meta property="og:title" content="How I create my JavaScript books and courses">
+		<meta property="og:description" content="Over the last two weeks, I release a new course on accessible components and a new course on native web components, and completely redid my course on writing JavaScript libraries.
+Today, I wanted to talk about how I create my courses and ebooks.
+This article is focused on the actual content and finished books/videos. If you want to learn more about how I sell and deliver them, I wrote about the tech behind my learning platform a few years ago.">
+		<meta property="og:url" content="/how-i-create-my-javascript-books-and-courses/">
+		<meta property="og:type" content="website">
+		<meta property="og:image" content='https://gomakethings.com/img/og.png'>
+		<meta property="og:image:alt" content="Go Make Things">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@ChrisFerdinandi">
+		<meta name="twitter:description" content="Over the last two weeks, I release a new course on accessible components and a new course on native web components, and completely redid my course on writing JavaScript libraries.
+Today, I wanted to talk about how I create my courses and ebooks.
+This article is focused on the actual content and finished books/videos. If you want to learn more about how I sell and deliver them, I wrote about the tech behind my learning platform a few years ago.">
+		<meta name="twitter:image" content='https://gomakethings.com/img/og.png'>
+
+		
+		
+		<link rel="shortcut icon" href="https://gomakethings.com/img/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32" href="https://gomakethings.com/img/favicon.ico">
+
+		<link rel="alternate" type="application/rss+xml" title="Go Make Things RSS Feed" href="https://gomakethings.com/feed/index.xml">
+		<link rel="feed" type="application/rss+xml" title="Go Make Things RSS Feed" href="https://gomakethings.com/feed/index.xml">
+		<style type="text/css">
+			/*! gmt-theme v2.6.0 | (c) 2021 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/gmt-theme */
+/* pt-serif-regular - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Serif";
+	font-style: normal;
+	font-weight: 400;
+	src: local("PT Serif"), local("PTSerif-Regular"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-regular.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-regular.woff") format("woff");
+}
+/* pt-serif-italic - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Serif";
+	font-style: italic;
+	font-weight: 400;
+	src: local("PT Serif Italic"), local("PTSerif-Italic"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-italic.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-italic.woff") format("woff");
+}
+/* pt-serif-700 - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Serif";
+	font-style: normal;
+	font-weight: 700;
+	src: local("PT Serif Bold"), local("PTSerif-Bold"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-700.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-700.woff") format("woff");
+}
+/* pt-serif-700italic - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Serif";
+	font-style: italic;
+	font-weight: 700;
+	src: local("PT Serif Bold Italic"), local("PTSerif-BoldItalic"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-700italic.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-serif-v11-latin-700italic.woff") format("woff");
+}
+/* pt-sans-regular - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Sans";
+	font-style: normal;
+	font-weight: 400;
+	src: local("PT Sans"), local("PTSerif-Regular"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-regular.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-regular.woff") format("woff");
+}
+/* pt-sans-italic - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Sans";
+	font-style: italic;
+	font-weight: 400;
+	src: local("PT Sans Italic"), local("PTSerif-Italic"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-italic.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-italic.woff") format("woff");
+}
+/* pt-sans-700 - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Sans";
+	font-style: normal;
+	font-weight: 700;
+	src: local("PT Sans Bold"), local("PTSerif-Bold"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-700.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-700.woff") format("woff");
+}
+/* pt-sans-700italic - latin */
+@font-face {
+	font-display: swap;
+	font-family: "PT Sans";
+	font-style: italic;
+	font-weight: 700;
+	src: local("PT Sans Bold Italic"), local("PTSerif-BoldItalic"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-700italic.woff2") format("woff2"), url("https://gomakethings.com/fonts/pt-sans-v12-latin-700italic.woff") format("woff");
+}
+			/*! gmt-theme v2.8.0 | (c) 2022 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/gmt-theme */
+﻿a,button,input,select,textarea,label,summary{touch-action:manipulation}button,[type=submit]{-webkit-appearance:none}*,*:before,*:after{box-sizing:border-box}html{overflow-y:scroll;text-size-adjust:100%}body{margin:0;min-height:100vh}img,video{max-width:100%;height:auto}iframe,object,embed{max-width:100%}audio{width:100%}[tabindex="-1"]:focus{outline:none}.container{margin-left:auto;margin-right:auto;max-width:38em;width:88%}.container-large{max-width:60em}@media(min-width: 38em){.row{display:flex;margin-left:-1.4%;margin-right:-1.4%;justify-content:space-between}.row-reverse{flex-direction:row-reverse}.grid-auto,.grid-fourth,.grid-third,.grid-two-thirds,.grid-half,.grid-three-fourths{margin-left:1.4%;margin-right:1.4%}.grid-auto{flex:1 1}.grid-fifth{width:20%}.grid-fourth{width:25%}.grid-third{width:33.33333%}.grid-two-thirds{width:66.66666%}.grid-half{width:50%}.grid-three-fourths{width:75%}.grid-four-fifths{width:80%}}@media(min-width: 38em){.list-columns{column-count:2}}html{scroll-behavior:smooth}body{background:#fff;border-top:.5em solid #e5e5e5;color:#272727;font-family:"PT Sans",sans-serif;font-size:112.5%;line-height:1.5}@media(min-width: 38em){body{line-height:1.5625em}}@media(prefers-color-scheme: dark){body{background:#1f252f;border-top-color:gray;color:#fff}}p{margin:0 0 1.5625em}a{color:#08c;text-decoration-skip-ink:auto;word-wrap:break-word}a:active,a:focus,a:hover{color:#005580}main a:not(.btn):visited{color:purple}@media(prefers-color-scheme: dark){a{color:#73cffa}a:active,a:focus,a:hover{color:#29b6f7}main a:not(.btn):visited{color:#debfde}}.link-no-underline,.nav-secondary a{text-decoration:none}.link-no-underline:active,.nav-secondary a:active,.link-no-underline:focus,.nav-secondary a:focus,.link-no-underline:hover,.nav-secondary a:hover{text-decoration:underline}.link-plain,.link-plain:visited{color:#272727;text-decoration:none}@media(prefers-color-scheme: dark){.link-plain,.link-plain:visited{color:#fff}}.link-plain:active,.link-plain:focus,.link-plain:hover{color:#08c}@media(prefers-color-scheme: dark){.link-plain:active,.link-plain:focus,.link-plain:hover{color:#73cffa}}ul,ol{margin:0 0 1.5625em 2em;padding:0}ul ul,ul ol,ol ol,ol ul{margin-bottom:0}li{margin-bottom:.5em}@media(min-width: 38em){li{margin-bottom:.25em}}.list-spaced li{margin-bottom:1.5625em}@media(min-width: 38em){.list-spaced li{margin-bottom:1em}}.list-spaced-small li{margin-bottom:1.125em}@media(min-width: 38em){.list-spaced-small li{margin-bottom:.6875em}}dl,dd{margin:0;padding:0}dd{margin-bottom:1.5625em}dt{font-weight:bold}.list-inline,.nav,.list-unstyled{list-style:none;margin-left:0}.list-inline>li::before,.nav>li::before,.list-unstyled>li::before{content:"​";position:absolute}.list-unstyled{margin-left:0}.list-inline,.nav{margin-left:-0.5em;margin-right:-0.5em;padding:0}.list-inline>li,.nav>li{display:inline-block;margin-left:.5em;margin-right:.5em}@media(max-width: 38em){.list-inline.list-inline-responsive>li,.list-inline-responsive.nav>li{display:block}}.list-inline-spaced{margin-left:-1.3125em;margin-right:-1.3125em}.list-inline-spaced>li{margin-left:1.3125em;margin-right:1.3125em}.list-inline-compact{margin-left:-0.25em;margin-right:-0.25em}.list-inline-compact li{margin-left:.25em;margin-right:.25em}h1,h2,h3,h4,h5,h6{font-family:"PT Serif",sans-serif;line-height:1.2;margin:0 0 1em;padding:0;word-wrap:break-word}h1,.h1{font-size:1.5em;padding-top:.5em}@media(min-width: 38em){h1,.h1{font-size:1.75em}}h2,.h2{font-size:1.3125em;padding-top:1em}h3,.h3{font-size:1.1875em}h4,h5,h6,.h4,.h5,.h6{font-size:1em}h4,.h4{font-size:.8125em;text-transform:uppercase}hr{border:0;border-top:1px solid #e5e5e5;margin:2em auto}@media(prefers-color-scheme: dark){hr{border-top-color:gray}}.line-secondary{width:50%}.line-clear{border-top-color:transparent}.line-overlay{margin-top:-2.8em}.line-overlay>strong{background-color:#fff;display:inline-block;padding:0 1em}@media(min-width: 38em){.line-overlay>strong{padding:0 2em}}@media(prefers-color-scheme: dark){.line-overlay>strong{background-color:#1f252f}}mark{background:#fbf9c9;color:#272727}@media(prefers-color-scheme: dark){mark{background:transparent;color:#fff}}blockquote{border-left:.25em solid #e5e5e5;font-style:italic;margin:0 0 1.5625em;padding-left:1em;padding-right:1em}blockquote pre{font-style:normal}cite{color:gray;display:block;font-size:.9375em;padding-top:1em}@media(prefers-color-scheme: dark){cite{color:#e5e5e5}}code,kbd,pre,samp{font-family:Menlo,Monaco,"Courier New",monospace;font-size:.875em}code{color:#d14;word-wrap:break-word}@media(prefers-color-scheme: dark){code{color:#ded7d9}}pre{background-color:#f7f7f7;display:block;line-height:1.5;margin:0 0 1.5625em;overflow:auto;padding:.8125em;tab-size:2;white-space:pre-wrap;word-break:break-all}@media(min-width: 38em){pre{tab-size:4}}@media(prefers-color-scheme: dark){pre{background-color:#343d4d}}pre code{color:inherit;font-size:1em}@media screen{.chroma .err,.chroma .kc,.chroma .no,.chroma .py,.chroma .nt,.chroma .ss,.chroma .m,.chroma .mb,.chroma .mf,.chroma .mh,.chroma .mi,.chroma .il,.chroma .mo{color:#905}}@media screen and (prefers-color-scheme: dark){.chroma .err,.chroma .kc,.chroma .no,.chroma .py,.chroma .nt,.chroma .ss,.chroma .m,.chroma .mb,.chroma .mf,.chroma .mh,.chroma .mi,.chroma .il,.chroma .mo{color:#cfcfcf}}@media screen{.chroma .k,.chroma .kd,.chroma .kn,.chroma .kp,.chroma .kr,.chroma .kt,.chroma .nb,.chroma .s{color:#07a}}@media screen and (prefers-color-scheme: dark){.chroma .k,.chroma .kd,.chroma .kn,.chroma .kp,.chroma .kr,.chroma .kt,.chroma .nb,.chroma .s{color:#95dbfb}}@media screen{.chroma .n,.chroma .na,.chroma .nc,.chroma .ne,.chroma .l,.chroma .ld,.chroma .sa,.chroma .sb,.chroma .sc,.chroma .dl,.chroma .s1,.chroma .s2,.chroma .se,.chroma .sh,.chroma .si,.chroma .sx{color:#690}}@media screen and (prefers-color-scheme: dark){.chroma .n,.chroma .na,.chroma .nc,.chroma .ne,.chroma .l,.chroma .ld,.chroma .sa,.chroma .sb,.chroma .sc,.chroma .dl,.chroma .s1,.chroma .s2,.chroma .se,.chroma .sh,.chroma .si,.chroma .sx{color:#c5d99c}}@media screen{.chroma .bp,.chroma .nd,.chroma .nl,.chroma .sd,.chroma .p,.chroma .c,.chroma .ch,.chroma .cm,.chroma .c1,.chroma .cs,.chroma .cp,.chroma .cpf{color:#708090}}@media screen and (prefers-color-scheme: dark){.chroma .bp,.chroma .nd,.chroma .nl,.chroma .sd,.chroma .p,.chroma .c,.chroma .ch,.chroma .cm,.chroma .c1,.chroma .cs,.chroma .cp,.chroma .cpf{color:#e5e5e5}}@media screen{.chroma .ni,.chroma .o{color:#a67f59;background:rgba(255,255,255,.5)}}@media screen and (prefers-color-scheme: dark){.chroma .ni,.chroma .o{background:transparent;color:#e5e5e5}}@media screen{.chroma .nf,.chroma .fm,.chroma .ow{color:#dd4a68}}@media screen and (prefers-color-scheme: dark){.chroma .nf,.chroma .fm,.chroma .ow{color:#deb6be}}@media screen{.chroma .nv,.chroma .vc,.chroma .vg,.chroma .vi,.chroma .vm,.chroma .sr{color:#e90}}@media screen and (prefers-color-scheme: dark){.chroma .nv,.chroma .vc,.chroma .vg,.chroma .vi,.chroma .vm,.chroma .sr{color:#ede1ca}}@media screen{.chroma .nn{opacity:.7}}@media screen{.chroma .ge{font-style:italic}}@media screen{.chroma .gs{font-weight:bold}}.btn{background-color:#f7272f;border:.125em solid #f7272f;display:inline-block;font-size:.9375em;font-weight:normal;line-height:1.2;margin-right:.3125em;margin-bottom:.3125em;padding:.5em .6875em}.btn,.btn:focus{color:#fff}@media(prefers-color-scheme: dark){.btn,.btn:focus{background-color:#fdd4d5;border-color:#fdd4d5;color:#000}}.btn:hover,.btn:active{background-color:#cb070e;border-color:#cb070e;color:#fff}@media(prefers-color-scheme: dark){.btn:hover,.btn:active{background-color:#fdbbbd;border-color:#fdbbbd;color:#000}}a.btn{text-decoration:none}.btn-secondary{background-color:#343d4d;border-color:#343d4d}@media(prefers-color-scheme: dark){.btn-secondary{background-color:#d2d7e1;border-color:#d2d7e1;color:#000}}.btn-secondary:hover,.btn-secondary:active,.btn-secondary.active{background-color:#15191f;border-color:#15191f}@media(prefers-color-scheme: dark){.btn-secondary:hover,.btn-secondary:active,.btn-secondary.active{background-color:#c3cad6;border-color:#c3cad6;color:#000}}.btn-tertiary{background-color:#08c;border-color:#08c}@media(prefers-color-scheme: dark){.btn-tertiary{background-color:#cef;border-color:#cef;color:#000}}.btn-tertiary:hover,.btn-tertiary:active,.btn-tertiary.active{background-color:#005580;border-color:#005580}@media(prefers-color-scheme: dark){.btn-tertiary:hover,.btn-tertiary:active,.btn-tertiary.active{background-color:#b3e6ff;border-color:#b3e6ff;color:#000}}.btn:active{box-shadow:inset 0 .15625em .25em rgba(0,0,0,.15),0 1px .15625em rgba(0,0,0,.05);outline:0}.btn[disabled],[data-submitting] .btn{box-shadow:none;cursor:not-allowed;opacity:.5;pointer-events:none}.btn-large{font-size:1em;line-height:normal;padding:.6875em .9375em}.btn-block{display:block;margin-right:0;padding-right:0;padding-left:0;width:100%}.btn,button,html input[type=button],input[type=reset],input[type=submit]{cursor:pointer;text-align:center;vertical-align:middle}.btn:last-child,input.btn{margin-right:0}form,fieldset{margin-bottom:1.5625em}fieldset{border:0;padding:0}legend,label{display:block;margin:0 0 .3125em;padding:0}button,input,optgroup,select,textarea{color:#555;font:inherit;margin:0;padding:.3125em}@media(prefers-color-scheme: dark){button,input,optgroup,select,textarea{background-color:#e5e5e5;color:#272727}}input,textarea,select{border:1px solid #b8b8b8;display:block;line-height:1.5;margin-bottom:1.1875em;width:100%}@media(min-width: 38em){input,textarea,select{line-height:1.5625}}@media(prefers-color-scheme: dark){input,textarea,select{border-color:gray}}form button,form .btn{margin-bottom:1.1875em}textarea{height:8em;overflow:auto;resize:vertical}[type=image],[type=checkbox],[type=radio]{cursor:pointer;display:inline-block;height:auto;margin-bottom:.3125em;padding:0;width:auto}[type=checkbox],[type=radio]{margin-right:.25em}input:focus,textarea:focus{border-color:rgba(82,168,236,.8)}.input-inline{display:inline-block;vertical-align:middle;width:auto}.input-condensed{line-height:1;padding-top:.125em;padding-bottom:.125em;vertical-align:top}.input-search{width:85%;padding-left:.9375em;padding-right:2.5em;border-radius:1.3125em}.btn-search{display:inline;color:gray;border:none;background:none;margin-left:-2.5em;margin-bottom:0}.btn-search:hover{color:#5a5a5a}.error{border-color:#e30810}@media(prefers-color-scheme: dark){.error{border-color:#fdbbbd}}.success-message,.error-message{font-style:italic}.error-message{color:#e30810;margin-bottom:1em}@media(prefers-color-scheme: dark){.error-message{color:#fdbbbd}}figure{margin:0 0 1.5625em;padding:0}figcaption{font-size:.9375em;font-style:italic;color:gray;padding-top:.5em;text-align:center}@media(prefers-color-scheme: dark){figcaption{color:#e5e5e5}}.img-border{border:1px solid #ccc}.img-circle{border-radius:50%}.img-center,.img-left{display:block;text-align:center;margin-left:auto;margin-right:auto}@media(min-width: 28em){.img-left{float:left;margin-right:1em}}@media(prefers-color-scheme: dark){svg path[fill="#272727"]{fill:#fff}svg path[fill="#808080"]{fill:#e5e5e5}svg path[fill="#f7272f"]{fill:#fdd4d5}svg path[fill="#2cad4e"]{fill:#a6e8b9}svg path[fill="#800080"]{fill:#ff4dff}svg path[fill="#ffffff"]{fill:#1f252f}.company-logo path{fill:#fff}}iframe{aspect-ratio:16/9;background-color:#f7f7f7;height:100%;margin-bottom:1.5625em;width:100%}.callout{background-color:#f7f7f7;border:1px solid #e5e5e5;margin-bottom:1.5625em;padding:1em 1.5em}@media(prefers-color-scheme: dark){.callout{background-color:#171b22;border-color:gray}}.tarpit{display:none}table{border-collapse:collapse;border-spacing:0;margin-bottom:1.5625em;max-width:100%;width:100%}th,td{text-align:left;padding:.5em}th{border-bottom:.125em solid #e5e5e5;font-weight:bold;vertical-align:bottom}td{border-top:1px solid #e5e5e5;vertical-align:top}.table-striped tbody tr:nth-child(odd){background-color:#f7f7f7}.nav-wrap{padding-top:1em;padding-bottom:.5em;text-align:center}@media(min-width: 60em){.nav-wrap{display:flex;justify-content:space-between}}.logo{display:inline-block;font-family:"PT Serif",sans-serif;font-size:1.2em;font-weight:bold;line-height:1.2;margin-bottom:.3125em;text-decoration:none}@media(min-width: 60em){.logo{margin-bottom:0}}.logo,.logo:focus{color:#272727}@media(prefers-color-scheme: dark){.logo,.logo:focus{color:#fff}}.logo:active,.logo:hover{color:#08c}@media(prefers-color-scheme: dark){.logo:active,.logo:hover{color:#73cffa}}.nav{margin-bottom:0}.nav a{color:gray;text-decoration:none}@media(prefers-color-scheme: dark){.nav a{color:#e5e5e5}}.nav a:hover,.nav a:active,.nav a:focus,.nav .active a,.nav [aria-current=page]{border-bottom:.125em solid #fa7176;color:#272727}@media(prefers-color-scheme: dark){.nav a:hover,.nav a:active,.nav a:focus,.nav .active a,.nav [aria-current=page]{color:#fff}}.text-small{font-size:.9375em}.text-large,.text-xlarge{font-size:1.1875em;line-height:1.4}@media(min-width: 38em){.text-large,.text-xlarge{font-size:1.3125em}}.text-xlarge{font-size:1.7em}@media(min-width: 38em){.text-xlarge{font-size:2em}}.text-muted{color:gray}@media(prefers-color-scheme: dark){.text-muted{color:#e5e5e5}}.text-muted-light,.btn del{color:#b2b2b2}.text-normal{font-weight:normal;font-style:normal}.text-capitalize{text-transform:capitalize}.text-sans{font-family:"PT Sans",sans-serif}.text-serif{font-family:"PT Serif",sans-serif}.text-center{text-align:center}.text-right{text-align:right}@media(min-width: 38em){.text-right-large{text-align:right}}.no-margin-top{margin-top:0}.no-margin-bottom{margin-bottom:0}.margin-top{margin-top:1.5625em}.margin-bottom,audio{margin-bottom:1.5625em}.margin-bottom-small{margin-bottom:.5em}.margin-bottom-medium{margin-bottom:1.1875em}.margin-bottom-large{margin-bottom:2em}.margin-bottom-negative{margin-bottom:-1.75em}.margin-right{margin-right:.25em}.no-padding-top{padding-top:0}.no-padding-bottom{padding-bottom:0}.padding-top{padding-top:1.5625em}.padding-top-xsmall{padding-top:.25em}.padding-top-small{padding-top:.5em}.padding-top-medium{padding-top:1em}.padding-top-large{padding-top:2em}.padding-top-xlarge{padding-top:3em}.padding-bottom{padding-bottom:1.5625em}.padding-bottom-small{padding-bottom:.5em}.padding-bottom-large{padding-bottom:2em}.padding-bottom-xlarge{padding-bottom:3em}.screen-reader{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;white-space:nowrap;width:1px}.screen-reader-focusable:active,.screen-reader-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;white-space:inherit;width:auto}@media(prefers-reduced-motion: reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}.clearfix:before,.container:before,.clearfix:after,.container:after{display:table;content:" "}.clearfix:after,.container:after{clear:both}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}@page{margin:.5cm}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}a[href^="#"]:after{content:""}p,h1,h2,h3{orphans:3;widows:3}h1,h2,h3{page-break-after:avoid}pre,blockquote{border-color:#999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}header .nav,footer,main aside form{display:none}body{border-top:none}}
+		</style>
+	</head>
+
+	<body class="type-articles page-single" id="page-a31b7685932082c920e0e164bf45b370">
+
+		<div class="container container-large">
+
+	
+	<a class="screen-reader screen-reader-focusable" href="#main">Skip to main content</a>
+
+	
+	<a class="screen-reader screen-reader-focusable" href="mailto:&#099;&#104;&#114;&#105;&#115;&#064;&#103;&#111;&#109;&#097;&#107;&#101;&#116;&#104;&#105;&#110;&#103;&#115;&#046;&#099;&#111;&#109;?subject=Go%20Make%20Things:%20Accessibility%20Feedback">Accessibility Feedback</a>
+
+</div>
+
+		<header class="container container-large margin-bottom-large">
+	<nav class="nav-wrap">
+		<a class="logo" href="https://gomakethings.com">
+			<svg xmlns="http://www.w3.org/2000/svg" style="height:.8em;width:.8em" height="1em" width="1em" viewBox="0 0 16 16"><title></title><path fill="currentColor" d="M14 9v2.066c-1.258 1.285-3.016 2.526-5 2.852V8.001h3v-1L9 5.83A3.001 3.001 0 0 0 8 .001 3 3 0 0 0 7 5.83L4 7.001v1h3v5.917c-1.984-.326-3.742-1.567-5-2.852V9H0v1c0 2 4 6 8 6s8-4 8-6V9h-2zM9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+			Go Make Things
+		</a>
+		<div class="nav-menu" id="nav-menu">
+			<ul class="nav">
+				<li><a href="https://gomakethings.com/about">About</a></li><li><a aria-current="page"  href="https://gomakethings.com/articles">Daily Tips</a></li><li><a href="https://gomakethings.com/resources">Resources</a></li>
+			</ul>
+			
+		</div>
+	</nav>
+</header>
+
+		<main id="main" tabindex="-1">
+
+			<div class="container">
+
+	<article>
+
+		<header>
+
+			<aside class="text-muted">
+				<time datetime="2022-06-23 10:30:00 -0400 EDT" pubdate>June 23, 2022</time>
+			</aside>
+
+			<h1 class="no-padding-top">
+				How I create my JavaScript books and courses
+			</h1>
+
+		</header>
+
+		
+
+<p>Over the last two weeks, I release <a href="https://vanillajsguides.com/accessible-components/">a new course on accessible components</a> and <a href="https://vanillajsguides.com/web-components/">a new course on native web components</a>, and <a href="https://vanillajsguides.com/writing-js-libraries/">completely redid my course on writing JavaScript libraries</a>.</p>
+
+<p>Today, I wanted to talk about how I create my courses and ebooks.</p>
+
+<p>This article is focused on the actual content and finished books/videos. If you want to learn more about how I sell and deliver them, I wrote about <a href="https://gomakethings.com/the-tech-behind-my-javascript-education-platform/">the tech behind my learning platform</a> a few years ago.</p>
+
+<p>Let&rsquo;s dig in!</p>
+
+<h2 id="the-process">The process</h2>
+
+<p>Every pocket guide I create follows the same process&hellip;</p>
+
+<ol>
+<li>Learn how to do a thing</li>
+<li>Outline the stuff you need to know: the basics, some advanced topics, and weird gotchas or edge cases that most tutorials miss</li>
+<li>Write the ebook</li>
+<li>Create source code from the ebook</li>
+<li>Use the source code to create the video course</li>
+<li>Create the book cover and course image</li>
+<li>Convert the ebook into PDF, EPUB, MOBI, and HTML formats</li>
+<li>Upload the videos to a streaming service and get them captioned</li>
+<li>Sell the course!</li>
+</ol>
+
+<p>Let&rsquo;s look at each step in more detail.</p>
+
+<h2 id="learn-how-to-do-a-thing">Learn how to do a thing</h2>
+
+<p><a href="https://vanillajsguides.com">My pocket guides</a> are short and focused. Every one starts off as a narrow topic that I&rsquo;m personally interested in or learning about.</p>
+
+<p>My code base was getting unruly, so <a href="https://vanillajsguides.com/es-modules/">I learned about ES modules</a>. I wanted to improve the resilience and offline capabilities of my sites, so <a href="https://vanillajsguides.com/service-workers/">I learned about Service Workers</a>.</p>
+
+<p>The process for me always starts by Duck Duck Going a whole bunch, reading a bunch of tutorials, and trying to implement what I&rsquo;ve read into a simple working project.</p>
+
+<p>There&rsquo;s almost always a bunch of assumed knowledge in the tutorials, or edge cases they don&rsquo;t mention, or gotchas or weird bugs that pop up that weren&rsquo;t discussed. This is the kind of stuff that makes self-taught learning so hard, and one of the reasons I started creating courses in the first place.</p>
+
+<p>After I&rsquo;ve built a few small projects, I have a pretty good grasp on how things work. But I&rsquo;m also close enough to &ldquo;being a new learner&rdquo; that the pain points and &ldquo;oh, I wish someone had told me that!&rdquo; stuff is still really fresh in my mind.</p>
+
+<p>This is the perfect time to start actually writing the course.</p>
+
+<h2 id="outline-the-stuff-that-you-need-to-know">Outline the stuff that you need to know</h2>
+
+<p>I find most tutorials on the web fall into one of two categories:</p>
+
+<ol>
+<li>Hand wave over some essential knowledge and jump right into the interesting stuff.</li>
+<li>Go into way too much detail about every aspect of a topic.</li>
+</ol>
+
+<p>Both approaches suck, for different reasons.</p>
+
+<p>The <em>hand-wavy tutorials</em> are impossible for beginners, because you can never get started. There&rsquo;s all this stuff you need to know first that&rsquo;s not mentioned or covered.</p>
+
+<p>The <em>too much detail</em> tutorials can be confusing and overwhelming. They often cover stuff that&rsquo;s not likely to come up, or not important at first (but good to know later). They&rsquo;re hard for beginners, too, mostly because they overload you with information.</p>
+
+<p>I like to break my outline into a few common parts:</p>
+
+<ol>
+<li>The essential stuff you need to start doing the thing.</li>
+<li>Advanced topics. After you&rsquo;ve got the essentials down, <em>now</em> lets talk about those advanced features, edge-cases, and so on.</li>
+<li>A project. I&rsquo;ve found that for most folks, learning doesn&rsquo;t really stick until you apply it. I include a project in every course, because it dramatically improves learning retention.</li>
+</ol>
+
+<h2 id="writing-the-ebook">Writing the ebook</h2>
+
+<p>I start with the ebook, because it&rsquo;s easier for me to write and edit and clarify my thoughts in text first.</p>
+
+<p>I write my ebooks as a collection of markdown files. Each chapter gets its own file.</p>
+
+<p>Markdown works really well for me because my books include a lot of code snippets, and being able to create highlighted code blocks is much easier in markdown than with other tools I&rsquo;ve tried (like MS Word or Apple Pages).</p>
+
+<p>There&rsquo;s no real trick here.</p>
+
+<p>I tend to write like I talk, and I talk very directly. That seems to work well for a lot of people. I&rsquo;ve also got years of experience writing about technical topics, so I&rsquo;ve become really efficient at it.</p>
+
+<h2 id="creating-source-code-from-the-ebook">Creating source code from the ebook</h2>
+
+<p>Next, I got through every chapter of the ebook and create source code from it.</p>
+
+<p>Every chapter gets its own directory, and every section or snippet gets its own HTML file with the code able to be run live in a browser.</p>
+
+<p>When I&rsquo;m done, the entire directory gets put up on GitHub for easy access and version control. Yes, that means anyone can view it. I don&rsquo;t think it&rsquo;s nearly as useful without the explanations around it, so I&rsquo;m not particularly worried.</p>
+
+<h2 id="using-the-source-code-to-create-the-video-course">Using the source code to create the video course</h2>
+
+<p>The video course versions of my pocket guides are me talking about and explaining the source code.</p>
+
+<p>I copy/paste the text from the ebook into an email and pull it up on my phone as rough notes about the topics I&rsquo;m supposed to follow. I used to try to follow a very precise script, but found students like it better when I&rsquo;m a bit more casual in my videos.</p>
+
+<p>So now, I pull up the source code and record myself explaining how it works. <a href="https://www.telestream.net/screenflow/overview.htm">I use Screenflow for this.</a></p>
+
+<p>Occasionally, I&rsquo;ll have a section that doesn&rsquo;t have any code.</p>
+
+<p>When that&rsquo;s the case, I grab <a href="https://unsplash.com/">a few relevant images from Unsplash</a> or put one or two big, relevant words on a slide in Keynote. Then I use Screenflow to record myself giving a short presentation.</p>
+
+<p>My videos are typically two to five minutes in length.</p>
+
+<h2 id="creating-the-book-cover-and-course-image">Creating the book cover and course image</h2>
+
+<p>I use the same cover for every book&hellip; almost.</p>
+
+<p>Every pocket guide cover has the same exact layout. I use a different background color based on the bundle the book is part of (blue for beginner, greenish for advanced, and purple for expert).</p>
+
+<p>I also include a nautical creature or artifact of some kind on the cover. I try to make it somewhat relevant, when I can. For example, the <a href="https://vanillajsguides.com/accessible-components/">accessible components guide</a> has a starfish, which looks a little bit like the &ldquo;arms out person&rdquo; icon often used as the A11Y logo.</p>
+
+<p><a href="https://thenounproject.com/">I get the icons from the Noun Project.</a> I purchase the one-time, royalty-free license.</p>
+
+<p>Even though everyone&rsquo;s moved on to Figma or whatever, I still <a href="https://www.sketch.com/">design my covers in Sketch</a>. I also use Sketch and the cover image to create the graphic that appears at the top of the sales page for the course on the website.</p>
+
+<h2 id="converting-the-ebook-into-pdf-epub-mobi-and-html-formats">Converting the ebook into PDF, EPUB, MOBI, and HTML formats</h2>
+
+<p>So, I&rsquo;ve got a bunch of markdown files, and I&rsquo;ve got a cover image. How do I make them into an actual ebook?</p>
+
+<p>I built my own command line tool using <a href="http://pandoc.org/">Pandoc</a>, <a href="http://wkhtmltopdf.org/">wkhtmltopdf</a>, and <a href="https://calibre-ebook.com/">Calibre</a>. <a href="https://github.com/cferdinandi/ebook-boilerplate">I have an open sourced version of it available here</a> (it&rsquo;s probably in need of some dependency updates).</p>
+
+<p>The version I use is customized a bit to reuse certain files (like my &ldquo;about the author&rdquo; page) across all of the books, and can batch compile multiple books at once.</p>
+
+<h2 id="uploading-the-videos-to-a-streaming-service-and-get-them-captioned">Uploading the videos to a streaming service and get them captioned</h2>
+
+<p><a href="https://vimeo.com/professionals">I host my videos on Vimeo Pro.</a></p>
+
+<p>Vimeo handles bandwidth aware streaming far better than I ever could. They let me customize the appearance of the embedded video player. They let me control where my videos can be embedded. They support closed captions. They support downloading.</p>
+
+<p>Vimeo is one of the easiest no-brainer business expenses I have.</p>
+
+<p>They have a cheaper &ldquo;Vimeo Plus&rdquo; plan with many of the same features, but it doesn&rsquo;t support business users. If you&rsquo;re selling paid content or creating business content, you need at least a Pro subscription.</p>
+
+<p><a href="https://www.rev.com/">I use Rev for my captions.</a></p>
+
+<p>They&rsquo;re affordable, have a quick turnaround, and are relatively accurate. Best of all for me, they have Vimeo API integration.</p>
+
+<p>This means I can log in to Rev and just select the videos I want captioned from a list. Rev automatically uploads and activates the captions to the videos for me. I used to have to manually upload each file to the matching video, and that sucked.</p>
+
+<h2 id="selling-the-course">Selling the course!</h2>
+
+<p>Honestly, for me, the marketing aspect of an education business is far harder than the course creation.</p>
+
+<p>I spend a lot of my time writing articles like this, answering questions on Twitter, chatting with students, and appearing on podcasts. I don&rsquo;t &ldquo;buy ads.&rdquo; I think that&rsquo;s a waste of money.</p>
+
+<p>Most of my sales come from people who subscribe to my newsletter, like what I have to say, and eventually buy a course or ten.</p>
+
+
+	</article>
+
+	<br>
+<aside>
+	
+<p><mark>🎉 <em><strong>New Courses!</strong> Dig into new guides on <a href="https://vanillajsguides.com/accessible-components/">web accessibility</a> and <a href="https://vanillajsguides.com/web-components/">creating custom web components</a>. Get both with the <a href="https://vanillajsguides.com/expert-bundle/">expert bundle</a> and save big.</em></mark></p>
+<p><em><strong>Hate the complexity of modern front‑end web development?</strong> I send out a short email each weekday on how to build a simpler, more resilient web. Join over 13k others.</em></p>
+	<form action="https://gomakethings.com/api/subscribe.php" method="post" data-form="convertkit">
+	<div class="tarpit">
+		<label for="first_name">If you're human, leave this blank</label>
+		<input name="first_name" id="first_name" type="text" autocomplete="off">
+	</div>
+	<div class="row">
+		<div class="grid-two-thirds">
+			<label class="screen-reader" for="email" hidden>Enter your email address to get Daily Developer Tips emails</label>
+			<input name="email" id="email" placeholder="Your email address..." type="email">
+		</div>
+		<input type="hidden" name="form" value="newsletter">
+		<input type="hidden" name="TbVktzD9dNZiQyZQ3Dk64w6L" value="WqJELdqqHHFTLUrEWJLu4DspKjeoBawWdWnZVVwti7RYpCyLr8WoWtm7UozshPy6">
+		<div class="grid-third">
+			<button data-processing="Signing Up..." class="btn btn-block">Get Daily Developer Tips</button>
+		</div>
+	</div>
+	<div data-status role="status"></div>
+</form>
+</aside>
+
+			</div>
+		</main>
+
+		<footer class="container container-large">
+			<hr class="margin-bottom">
+			<nav class="tabindex nav-secondary" id="nav-secondary" tabindex="-1">
+	<ul class="list-inline list-inline-responsive">
+		<li><a href="https://gomakethings.com/about">About</a></li><li><a href="https://gomakethings.com/articles">Daily Tips</a></li><li><a href="https://gomakethings.com/resources">Resources</a></li><li><a href="https://gomakethings.com/search">Search</a></li>
+	</ul>
+</nav>
+			<p class="text-small">Made with ❤️ in Massachusetts. Unless otherwise noted, all code is free to use under the <a href="https://gomakethings.com/mit">MIT License</a>. I also very irregularly share non-coding&nbsp;<a href="https://gomakethings.com/notes">thoughts</a>.</p>
+		</footer>
+
+		<script>
+			/*! gmt v2.0.0 | (c) 2022 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/go-make-things | Credits: https://github.com/toddmotto/fluidvids */
+!function(){"use strict";document.querySelectorAll(".edd-buy-now-button").length>0&&document.addEventListener("click",(function(e){e.target.classList.contains("edd-buy-now-button")&&(0!==e.button||e.metaKey||e.ctrlKey||(e.target.innerHTML="Adding to cart...",e.target.classList.add("disabled")))})),function(e){let t=document.querySelector('[data-form="convertkit"]');if(!t)return;let x=t.querySelector("#email");if(!x)return;let n=t.querySelector("[data-status]"),a=t.querySelector("[data-processing]"),s="Please provide an email address.",c="Please use a valid email address.";function r(e,t){n&&(n.textContent=e,t?(n.classList.add("success-message"),n.classList.remove("error-message"),x.classList.remove("error")):(n.classList.add("error-message"),n.classList.remove("success-message"),x.classList.add("error")))}function i(){return x.value.length<1?(r(s),!1):!!/^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$/.test(x.value)||(r(c),!1)}t.addEventListener("submit",(function(e){e.preventDefault(),t.hasAttribute("data-submitting")||(r(a.getAttribute("data-processing"),!0),i()&&(t.setAttribute("data-submitting",""),fetch(t.action,{method:"POST",body:new FormData(t),headers:{Accept:"application/json"}}).then((function(e){if(e.ok)return e.json();throw e})).then((function(e){r(e.msg,!0),e.redirect&&(window.location.href=e.redirect)})).catch((function(e){e.json().then((function(e){r(e.msg)}))})).finally((function(){t.removeAttribute("data-submitting")}))))})),t.setAttribute("novalidate","")}(),document.body.matches(".type-articles.page-single, .type-notes.page-single, [data-heading-links]")&&function(e,t,x){if(!e)return;let n=document.querySelectorAll(e),a=document.createElement("a");a.textContent=t||"#",a.className=x||"anchor-link";for(let e of n){if(!e.id)continue;let t=a.cloneNode(!0);t.href="#"+e.id,e.append(" ",t)}}("h2, h3, h4, h5, h6","#","link-no-underline")}();
+
+			
+			
+			/*! gmt v2.0.0 | (c) 2022 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/go-make-things | Credits: https://github.com/toddmotto/fluidvids */
+!function(){"use strict";navigator&&navigator.serviceWorker&&navigator.serviceWorker.register("/sw.js"),navigator.serviceWorker.controller&&window.addEventListener("load",(function(){navigator.serviceWorker.controller.postMessage("cleanUp")}))}();
+
+		</script>
+	</body>
+</html>
