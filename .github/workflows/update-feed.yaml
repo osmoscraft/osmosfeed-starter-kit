@@ -9,6 +9,7 @@ on:
     # are changed by the workflow itself
     paths:
       - "osmosfeed.yaml"
+      - "osmosfeed.yml"
       - "package.json"
       - ".github/workflows/**"
   schedule:
