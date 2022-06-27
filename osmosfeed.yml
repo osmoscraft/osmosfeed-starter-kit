@@ -1,3 +1,4 @@
+siteTitle: osmosfeed starter
 feeds:
   - url: https://christianheilmann.com/feed/
   - url: https://daverupert.com/atom.xml
