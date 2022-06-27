@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: "18"
       - run: npm install
-      - run: npm list
+      - run: npm list --depth=1
       - run: npm run build
         env:
           # The token allows build script to read repo metadata via github API
