@@ -205,6 +205,5 @@
     }
   ],
   "description": "The personal blog of Dave Rupert, web developer and podcaster from Austin, TX.",
-  "home_page_url": "https://daverupert.com",
-  "_extGeneratorVersion": "0.0.4"
+  "home_page_url": "https://daverupert.com"
 }

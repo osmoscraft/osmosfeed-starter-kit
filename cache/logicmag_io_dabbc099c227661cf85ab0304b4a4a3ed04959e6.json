@@ -116,6 +116,5 @@
   ],
   "description": "Logic is a new magazine devoted to deepening the discourse around technology. We publish three times per year in print and digital formats.",
   "home_page_url": "https://logicmag.io",
-  "icon": "https://logicmag.io/images/rss-icon.jpeg",
-  "_extGeneratorVersion": "0.0.4"
+  "icon": "https://logicmag.io/images/rss-icon.jpeg"
 }

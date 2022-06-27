@@ -446,6 +446,5 @@
   ],
   "description": "Recent content in Articles on Smashing Magazine — For Web Designers And Developers",
   "home_page_url": "https://www.smashingmagazine.com/",
-  "icon": "https://www.smashingmagazine.com/images/favicon/app-icon-512x512.png",
-  "_extGeneratorVersion": "0.0.4"
+  "icon": "https://www.smashingmagazine.com/images/favicon/app-icon-512x512.png"
 }

@@ -204,6 +204,5 @@
     }
   ],
   "description": "A digital magazine about how teams build and operate software systems at scale.",
-  "home_page_url": "https://increment.com",
-  "_extGeneratorVersion": "0.0.4"
+  "home_page_url": "https://increment.com"
 }

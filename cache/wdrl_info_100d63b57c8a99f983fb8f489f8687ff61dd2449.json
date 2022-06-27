@@ -205,6 +205,5 @@
     }
   ],
   "description": "Read the latest WDRL newsletter editions in your feedreader.",
-  "home_page_url": "https://wdrl.info/archive",
-  "_extGeneratorVersion": "0.0.4"
+  "home_page_url": "https://wdrl.info/archive"
 }

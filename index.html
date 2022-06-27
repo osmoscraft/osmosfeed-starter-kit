@@ -14,13 +14,1299 @@
   <body>
     <header>
       osmosfeed starter
-      <time datetime="2022-06-27T03:40:04.833Z">2022-06-27T03:40:04.833Z</time>
+      <time datetime="2022-06-27T03:41:46.928Z">2022-06-27T03:41:46.928Z</time>
     </header>
       <section class="">
         <h2 class="">
-          <time class="" data-offset-date=2022-06-27 datetime="2022-06-27T03:40:03.575Z">2022-06-27</time>
+          <time class="" data-offset-date=2022-06-27 datetime="2022-06-27T03:41:45.726Z">2022-06-27</time>
         </h2>
         <ul class="">
+            <li class="">
+              <section class="">
+                <h3 class="">Chrome Developers - Blog</h3>
+                <a class="" href=""></a>
+                <section class="">
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Faster page loads using server think-time with Early Hints</a>
+                        </h4>
+                        <span># What is Early Hints?
+Websites have become more sophisticated over time. As such, it&#x27;s not unusual that a server needs to perform non-trivial work (for example, access to databases, or CDNs accessing the origin server) to produce the HTML for the requested page. Unfortunately, this &quot;server think-time&quot; results in extra latency before the browser can start rendering the page. Indeed, the connection effectively goes idle for as long as it takes the server to prepare the response.
+
+
+Without Early Hints: everything is blocked on the server determining how to respond for the main resource.
+
+Early Hints is an HTTP status code (103 Early Hints) used to send a preliminary HTTP response ahead of a final response. This allows a server to send hints to the browser about critical sub-resources (for example,  stylesheet for the page, critical JavaScript) or origins that will be likely used by the page, while the server is busy generating the main resource. The browser can use those hints to warm up connections, and request sub-resources, while waiting for the main resource. In other words, Early Hints helps the browser take advantage of such &quot;server think-time&quot; by doing some work in advance, thereby speeding up page loads.
+
+
+With Early Hints: the server can serve a partial response with resource hints while it determines the final response
+
+In some cases, the performance improvement to the Largest Contentful Paint can go from several hundred milliseconds, as observed by Shopify and by Cloudflare, and up to a second faster, as seen in this before/after comparison:
+
+
+Before/After comparison of Early Hints on a test website done with WebPageTest (Moto G4 - DSL)
+
+# Implementing Early Hints
+Early Hints is available from Chrome version 103, as a response to navigation requests, or user interactions that change the url in the status bar, with support for both preconnect and preload hints.
+Before going deep into the topic, please note that Early Hints are not useful if your server can send a 200 (or other final responses) right away. Instead, consider using the regular link rel&#x3D;preload or link rel&#x3D;preconnect on the main response (Link rel HTTP header), or in the main response (&lt;link&gt;  elements), in such situations. For the cases where your server needs a little time to generate the main response, read on!
+The first step to take advantage of Early Hints consists of identifying the top landing pages, that is, the pages where your users typically start when they visit your website. This could be the homepage, or popular product listing pages if you have lots of users coming from other websites. The reason these entry points matter more than other pages is because Early Hints&#x27; usefulness decreases as the user navigates around your website (that is, the browser is more likely to have all the sub-resources it needs on the second or third subsequent navigation). It&#x27;s also always a good idea to deliver a great first impression!
+Now that you have this prioritized list of landing pages, the next step consists of identifying which origins or sub-resources would be good candidates for preconnect or preload hints, as a first approximation. Typically, those would be origins and sub-resources that contribute the most to key user metrics such as Largest Contentful Paint, or First Contentful Paint. More concretely, look for render-blocking sub-resources such as synchronous JavaScript, stylesheets, or even web fonts. Similarly, look for origins that host sub-resources that contribute a lot to key user metrics. Note: if your main resources are already using  or , you may consider these  origins or resources among the candidates for Early Hints. See this article for more details.
+While this represents a decent starting point, it&#x27;s not necessarily sufficient. The second step consists of minimizing the risk of using Early Hints on resources or origins that might be obsolete, or no longer used by the main resource. For instance, resources that are frequently updated and versioned (for example,  example.com/css/main.fa231e9c.css) may not be the best choice.  Note that this concern isn&#x27;t specific to Early Hints, it applies to any link rel&#x3D;preload or rel&#x3D;preconnect wherever they might be present. This is the sort of detail that&#x27;s best dealt with automation or templating (for example, a manual process is more likely to lead to mismatched hash or version urls between link rel&#x3D;preload and the actual HTML tag using the resource).
+As an example, consider the following flow:
+GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]
+The server predicts that main.abcd100.css will be needed, and suggests preloading it via Early Hints:
+103 Early HintsLink: &lt;/main.abcd100.css&gt;; rel&#x3D;preload; as&#x3D;style[...]
+A few moments later, the webpage, including the linked CSS is served. Unfortunately, this CSS resource is frequently updated, and the main resource is already five versions ahead (abcd105) of the predicted CSS resource (abcd100).
+200 OK[...]&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.abcd105.css&quot;&gt;
+In general, aim for resources and origins that are fairly stable, and largely independent of the outcome for the main resource. If necessary, you may consider splitting your key resources in two: a stable part designed to be used with Early Hints, and a more dynamic part left to be fetched after the main resource is received by the browser:
+&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;
+Finally, on the server side, look for main resource requests sent by browsers known to support Early Hints, and respond immediately with 103 Early Hints. In the 103 response, include the relevant preconnect and preload hints. Once the main resource is ready, follow up with the usual response (for example, 200 OK if successful). For backward compatibility, it&#x27;s good practice to also include LINK HTTP headers in the final response, perhaps even augmenting with critical resources that became evident as part of generating the main resource (for example, the dynamic part of a key resource if you followed the &quot;split in two&quot; suggestion). Here is what this would look like:
+GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]103 Early HintsLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;script
+A few moments later:
+200 OKContent-Length: 7531Content-Type: text/html; charset&#x3D;UTF-8Content-encoding: brLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;scriptLink: &lt;/experimental.3eab3290.css&gt;; rel&#x3D;preload; as&#x3D;style&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;   &lt;script src&#x3D;&quot;/common.js&quot;&gt;&lt;/script&gt;   &lt;link rel&#x3D;&quot;preconnect&quot; href&#x3D;&quot;https://fonts.googleapis.com&quot;&gt;
+# Support for Early Hints by HTTP server software
+Here is a quick summary of the level of support for Early Hints among popular OSS HTTP server software:
+
+Apache: supported via mod_http2.
+H2O: supported.
+NGINX: experimental module.
+Node: not yet supported by core. Available as a draft plugin for Fastify.
+
+# Enabling Early Hints, the easy way
+If you are using one of the following CDNs or platforms, you may not need to manually implement Early Hints. Refer to your solution provider&#x27;s online documentation to find out if it supports Early Hints, or refer to the non-exhaustive list here:
+
+Early Hints at Cloudflare
+Early Hints at Fastly.
+
+# Advanced pattern
+If you have fully applied Early Hints to your key landing pages and find yourself looking for more opportunities, you might be interested in the following advanced pattern.
+For visitors who are on their nth page request as part of a typical user journey, you may want to adapt the Early Hints response to content that is lower and deeper in the page, in other words using Early Hints on lower priority resources. This may sound counter-intuitive given that we recommended focussing on high priority, render-blocking sub-resources or origins. However, by the time a visitor has navigated for a while, it&#x27;s very likely that their browser already has all the critical resources. From there on, it might make sense to switch your attention toward lower priority resources. For instance, this could mean using Early Hints to load product images, or additional JS/CSS that are only needed for less common user interactions.
+# Current limitations
+Here are the limitations of Early Hints as implemented in Chrome 103 and future releases until further notice:
+
+Only available for navigation requests (that is,. main resource for the top level document).
+Only supports preconnect and preload (that is, prefetch isn&#x27;t supported).
+Early Hint followed by a cross-origin redirect on the final response will result in Chrome dropping the resources and connections it obtained via Early Hints.
+
+# What&#x27;s next?
+Depending on interest from the community, we may augment our implementation of Early Hints with the following capabilities:
+
+Early Hints sent on sub-resource requests.
+Early Hints sent on iframe main resource requests.
+Support for prefetch in Early Hints.
+
+We welcome your input on which aspects to prioritize, and how to further improve Early Hints.
+# Relationship to H2/Push
+If you are familiar with the deprecated HTTP2/Push feature, you may wonder how Early Hints differs. While Early Hints requires a round trip for the browser to start fetching critical sub-resources, with HTTP2/Push the server could start pushing sub-resources alongside the response. While this sounds amazing, this resulted in a key structural downside. Indeed, with HTTP2/Push it was extremely hard to avoid pushing sub-resources that the browser already had. This &quot;over-pushing&quot; effect resulted in a less efficient usage of the network bandwidth, which significantly hindered the performance benefits. Overall, Chrome data showed that HTTP2/Push was in fact a net negative for performance across the web.
+By contrast, Early Hints performs better in practice because it combines the ability to send a preliminary response with hints that leave the browser in charge of fetching, or connecting to, what it actually needs. While Early Hints doesn&#x27;t cover all the use cases that HTTP2/Push could address in theory, we believe that Early Hints is a more practical solution for speeding up navigations.
+Hero image by Pierre Bamin.</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Deprecations and removals in Chrome 104</a>
+                        </h4>
+                        <span>
+Visit ChromeStatus.com for lists of current deprecations and previous removals.
+
+Chrome 104 beta was released on June 23, 2022 and is expected to become the
+stable version in early August, 2022.
+# Block third-party contexts navigating to filesystem URLs
+iframes can no longer navigate to filesystem URLs. Top frame support for navigating to filesystem URLs was dropped in Chrome 68.
+# Remove non-standard client hint mode
+Four client hints (dpr, width, viewport-width, and device-memory) have a default allowlist of self but behave as though they have a default allowlist of * on Android, contrary to the spec. This is now fixed, increasing privacy on Android by requiring explicit delegation of these hints.
+# Remove U2F API (cryptotoken)
+Chrome&#x27;s legacy U2F API for interacting with security keys is no longer supported. U2F security keys themselves are not deprecated and will continue to work.
+Affected sites should migrate to the Web Authentication API. Credentials that were originally registered via the U2F API can be challenged via web authentication. USB security keys that are supported by the U2F API are also supported by the Web Authentication API.
+U2F is Chrome&#x27;s original security key API. It allows sites to register public key credentials on USB security keys and challenge them for building phishing-resistant two-factor authentication systems. U2F never became an open web standard and was subsumed by the Web Authentication API (launched in Chrome 67). Chrome never directly supported the FIDO U2F JavaScript API, but rather shipped a component extension called cryptotoken, which exposes an equivalent chrome.runtime.sendMessage() method. U2F and Cryptotoken are firmly in maintenance mode and have encouraged sites to migrate to the Web Authentication API for the last two years.
+# Deprecation policy
+To keep the platform healthy, we sometimes remove APIs from the Web Platform
+which have run their course. There can be many reasons why we would remove an
+API, such as:
+
+They are superseded by newer APIs.
+They are updated to reflect changes to specifications to bring alignment and
+consistency with other browsers.
+They are early experiments that never came to fruition in other browsers and
+thus can increase the burden of support for web developers.
+
+Some of these changes will have an effect on a very small number of sites. To
+mitigate issues ahead of time, we try to give developers advanced notice so they
+can make the required changes to keep their sites running.
+Chrome currently has a process for deprecations and removals of
+API&#x27;s,
+essentially:
+
+Announce on the
+blink-dev
+mailing list.
+Set warnings and give time scales in the Chrome DevTools Console when usage
+is detected on the page.
+Wait, monitor, and then remove the feature as usage drops.
+
+You can find a list of all deprecated features on chromestatus.com using the
+deprecated filter and
+removed features by applying the removed
+filter. We will also try to
+summarize some of the changes, reasoning, and migration paths in these posts.</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Attribution Reporting updates in June 2022</a>
+                        </h4>
+                        <span>The Attribution Reporting proposal is changing for Chrome version 104,
+with new API mechanisms, functionality, and updates to the aggregation service.
+To get the latest information on versions, sign up for Chrome OS release
+notifications.
+# Who are these updates for?
+These updates are for you if:
+
+You already are familiar with the API—for example, if you&#x27;ve been observing
+or participating in the discussions on the WICG repository and want to
+understand the changes made to the API.
+You&#x27;re using the Attribution Reporting API in a demo or plan to test in the
+origin trial.
+
+If you&#x27;re just getting started with this API and/or have not experimented with
+it yet, go directly to the introduction to the
+API instead.
+
+The Google Chrome team will host developer office
+hours,
+where developers who are testing and integrating the Privacy Sandbox
+technologies can learn more about Attribution Reporting in Chrome&#x27;s Privacy
+Sandbox.
+
+# Attribution Reporting API updates
+The API handbook
+and Attribution Reporting demo
+have been updated to reflect the latest changes to the Attribution Reporting
+client-side API.
+Most changes don&#x27;t require action. Those that do require updates for your
+implementation have been highlighted below.
+# (Action required) unified headers for registration
+The headers have been unified. There is now just one header for sources and one
+for triggers, formatted in JSON.
+
+To register attribution sources, you can respond to registration requests
+with the header Attribution-Reporting-Register-Source.
+To complete trigger registration, set the
+Attribution-Reporting-Register-Trigger header.
+
+This change requires action. Refer to the
+API handbook
+for more information.
+# (Action required) aggregation keys are now a dictionary
+To register attribution sources,
+continue to use aggregation_keys, but now stored as a JSON dictionary instead
+of a list.
+For example:
+&quot;aggregation_keys&quot;: {    // Generate a &quot;0x159&quot; key piece for the key named &quot;campaignCounts&quot;.    &quot;campaignCounts&quot;: &quot;0x159&quot;, // User saw ad from campaign 345 (out of 511)    // Generates a &quot;0x5&quot; key piece (low order bits of the key) for     // the key named &quot;geoValue&quot;.    &quot;geoValue&quot;: &quot;0x5&quot; // Source-side geo region &#x3D; 5 (US), out of a possible ~100 regions }
+This change requires action. Refer to the
+API handbook
+for more information.
+# Report generation
+You can choose to generate only aggregatable reports, which can be aggregated
+into summary reports. If your filters don&#x27;t match any event triggers, then no
+event-level reports will be generated.
+# Unified debug key setting
+The debug key should now be set in the source and trigger headers, instead of
+with separate headers. Learn more about how to debug
+reports.
+# Register attribution sources
+Script tags can now be used to register attribution sources, similar to support
+for the &lt;img&gt; tag.
+# More API updates
+Other changes that have been made and cited in the API handbook include:
+
+Sources can be registered with JavaScript request APIs.
+window.registerSource was removed.
+It is now optional to include a value for attributionsrc when registering
+sources.
+Attribution-Reporting-Eligible header added to incoming source
+registration requests.
+There was a minor change to encodeURIComponent.
+The privacy budget key was removed
+from the shared_info field in aggregatable reports.
+
+# Support for the Aggregation Service
+In Chrome 104, we intend to update the format of some information inside of
+aggregatable reports. We are currently building support for this change in the
+Aggregation Service. This document will be updated, as well the
+changelog,
+after the changes are shipped.
+We&#x27;ve gathered a document of practical tips and strategies to generate summary
+reports.
+There are a number of insights, including:
+
+Overview of noise in summary report generation
+A detailed explanation of dimensions, keys, and values
+Aggregation keys in practice, including a key structure map
+Aggregatable values in practice, and implications of the contribution budget
+Guide to experimenting with epsilon
+
+# Read more about the updates
+
+Read the API handbook.
+Read What you should know about the API.
+Read Experiment with Attribution Reporting: Strategy and tips for summary reports.
+
+The header image is from Diana Polekhina on Unsplash.</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">New in Chrome 103</a>
+                        </h4>
+                        <span>
+  
+
+Here&#x27;s what you need to know:
+
+There&#x27;s a new HTTP 103 status code that helps the browser
+decide what content to preload before the page has even started to arrive.
+The Local Font Access API gives web applications the ability
+to enumerate and use fonts installed on the user&#x27;s computer.
+AbortSignal.timeout() is an easier way to implement
+timeouts on asynchronous APIs.
+And there&#x27;s plenty more.
+
+I&#x27;m Pete LePage. Let&#x27;s dive in and
+see what&#x27;s new for developers in Chrome 103.
+# HTTP 103 status code 103 - early hints
+One way you can improve page performance is to use resource hints. They give
+the browser &quot;hints&quot; about what stuff it might need later. For example,
+preloading files, or connecting to a different server.
+&lt;link as&#x3D;&quot;font&quot; crossorigin&#x3D;&quot;anonymous&quot;      href&#x3D;&quot;...&quot; rel&#x3D;&quot;preload&quot;&gt;&lt;link as&#x3D;&quot;font&quot; crossorigin&#x3D;&quot;anonymous&quot;      href&#x3D;&quot;...&quot; rel&#x3D;&quot;preload&quot;&gt;&lt;link href&#x3D;&quot;https://web-dev.imgix.net&quot;      rel&#x3D;&quot;preconnect&quot;&gt;
+But the browser can&#x27;t act on those hints until the server sends at least
+part of the page.
+Imagine the browser requests a page, but the server requires a few hundred
+milliseconds to generate it. Until the browser starts to receive the page,
+it just sits there and waits. But, if the server knows the page will always
+need a certain set of subresources, for example, a CSS file, some JavaScript,
+and a few images, it can immediately respond with the new HTTP 103
+Early Hints status code, and ask the browser to preload those subresources.
+Then, once the server has generated the page, it can send it with the normal
+HTTP 200 response. As the page comes in, the browser has already started
+loading the required resources.
+Since this is a new HTTP status code, using it requires updates to your server.
+Get started with HTTP 103 Early hints:
+
+Explainer for Early Hints
+Apache 2 Early Hints configuration
+Using Early Hints on Cloudflare
+Fastly Beyond Server Push: The 103 Early Hints Status Code
+
+# Local Font Access API
+Fonts on the web have always been a challenge, and especially so for apps
+that let users create their own graphics and designs. Until now, web apps
+could only really use web fonts. There was no way to get a list of fonts the user had installed on their
+computer. And, there was no way to access the full font table data, critical
+if you need to implement your own custom text stack.
+The new Local Font Access API gives web applications the ability to enumerate
+the local fonts on the user&#x27;s device, and provides access to the font table data.
+To get a list of fonts installed on the device, you&#x27;ll first need to request
+permission.
+// Ask for permission to use the APItry {  const status &#x3D; await navigator.permissions.request({    name: &#x27;local-fonts&#x27;,  });  if (status.state !&#x3D;&#x3D; &#x27;granted&#x27;) {    throw new Error(&#x27;No Permission.&#x27;);  }} catch (err) {  if (err.name !&#x3D;&#x3D; &#x27;TypeError&#x27;) {    throw err;  }}
+Then, call window.queryLocalFonts(). It returns an array of all the fonts
+installed on the users device.
+const opts &#x3D; {};const pickedFonts &#x3D; await self.queryLocalFonts();for (const fontData of pickedFonts) {  console.log(fontData.postscriptName);  console.log(fontData.fullName);  console.log(fontData.family);  console.log(fontData.style);}
+If you&#x27;re only interested in a subset of fonts, you can filter them by adding
+a postscriptNames parameter.
+const opts &#x3D; {  postscriptNames: [    &#x27;Verdana&#x27;,    &#x27;Verdana-Bold&#x27;,    &#x27;Verdana-Italic&#x27;,  ],};const pickedFonts &#x3D; await self.queryLocalFonts(opts);
+Check out Tom&#x27;s article Use advanced typography with local fonts
+on web.dev for complete details.
+# Easier Timeouts with AbortSignal.timeout()
+In JavaScript, AbortController and AbortSignal are used to cancel an
+asynchronous call.
+For example, when making a fetch() request, you can create an
+AbortSignal, and pass it to fetch(). If you want to cancel the fetch()
+before it returns, call abort() on the instance of the AbortSignal. Up
+until now, if you wanted it to abort after a specific amount of time, you&#x27;d
+need to wrap it in a setTimeout().
+const controller &#x3D; new AbortController();const signal &#x3D; controller.signal;const resp &#x3D; fetch(url, { signal });setTimeout(() &#x3D;&gt; {  // abort the fetch after 6 seconds  controller.abort();}, 6000);
+Thankfully, that just got easier with a new timeout() static method on
+AbortSignal. It returns an AbortSignal object that is automatically
+aborted after the given number of milliseconds. What used to be a handful of
+lines of code, is now just one.
+const signal &#x3D; AbortSignal.timeout(6000);const resp &#x3D; fetch(url, { signal });
+AbortSignal.timeout()
+is supported in Chrome 103, and is already in Firefox, and Safari.
+# And more!
+Of course there&#x27;s plenty more.
+
+The avif image file format is now sharable by Web Share
+Chromium now matches Firefox by firing popstate immediately after URL
+changes. The order of events is now: popstate then hashchange on both
+platforms.
+And Element.isVisible() tells you whether an element is visible or not.
+
+
+In the video, I mentioned Element.isVisible() is available in stable, but
+it is currently only available behind a feature flag.
+
+# Further reading
+This covers only some of the key highlights. Check the links below for
+additional changes in Chrome 103.
+
+What&#x27;s new in Chrome DevTools (103)
+Chrome 103 deprecations and removals
+ChromeStatus.com updates for Chrome 103
+Chromium source repository change list
+Chrome release calendar
+
+# Subscribe
+To stay up to date, subscribe to the
+Chrome Developers YouTube channel,
+and you&#x27;ll get an email notification whenever we launch a new video.
+I&#x27;m Pete LePage, and as soon as Chrome 104 is released, I&#x27;ll be right here to
+tell you what&#x27;s new in Chrome!</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">New syntax for range media queries in Chrome 104</a>
+                        </h4>
+                        <span>Media Queries enabled responsive design, and the range features that enable testing the minimum and maximum size of the viewport are used by around 80% of sites that use media queries. The Media Queries Level 4 specification includes a new syntax for these range queries.
+The new syntax has been available in Firefox since Firefox 63, and will be available in Chrome from 104. Let’s take a look at how it can streamline your queries.
+A typical media query testing for a minimum viewport width, would be written as follows:
+@media (min-width: 400px) {  // Styles for viewports with a width of 400 pixels or greater.}
+The new syntax allows for the use of a comparison operator:
+@media (width &gt;&#x3D; 400px) {  // Styles for viewports with a width of 400 pixels or greater.}
+Testing for a maximum width:
+@media (max-width: 30em) {  // Styles for viewports with a width of 30em or less.}
+And, the version using the level 4 syntax:
+@media (width &lt;&#x3D; 30em) {  // Styles for viewports with a width of 30em or less.}
+This syntax has the potential to streamline queries, in particular when testing between two widths. In the following example, the media query tests for a viewport with a minimum width of 400px, and a maximum width of 600px.
+@media (min-width: 400px) and (max-width: 600px) {  // Styles for viewports between 400px and 600px.}
+This can be rewritten in the new syntax as:
+@media (400px &lt;&#x3D; width &lt;&#x3D; 600px )  {  // Styles for viewports between 400px and 600px.}
+The feature that you are testing, in this case width, goes between the two values.
+In addition to making media queries less verbose, the new syntax has the advantage of accuracy. The min- and max- queries are inclusive of the specified values, for example min-width: 400px tests for a width of 400px or greater. The new syntax allows you to be more explicit about what you mean and avoid the potential of clashing queries.
+To use the new range syntax while accounting for browsers that have not yet implemented it, there is a PostCSS plugin that will rewrite the new syntax to the old in your stylesheets.
+Hero image by William Warby.</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">What&#x27;s New In DevTools (Chrome 103)</a>
+                        </h4>
+                        <span>
+Interested in helping improve DevTools? Sign up to participate in Google User Research here.
+
+
+  
+
+# Capture double-click and right-click events in the Recorder panel
+The Recorder panel can now capture double-click and right-click events.
+
+In this example, start a recording and try to perform the following steps:
+
+Double-click the card to enlarge it
+Right-click the card and select an action from the context menu
+
+To understand how Recorder captured these events, expand the steps:
+
+Double-click is captured as type: doubleClick.
+Right-click event is captured as type: click but with the button property is set to secondary. The button value of a normal mouse click is primary.
+
+Chromium issues: 1300839, 1322879, 1299701, 1323688
+# New timespan and snapshot mode in the Lighthouse panel
+You can now use Lighthouse to measure your website’s performance beyond page load.
+
+The Lighthouse panel now supports 3 modes of user flow measurement:
+
+Navigation reports analyze a single page load. Navigation is the most common report type. All Lighthouse reports before the current version are navigation reports.
+Timespans reports analyze an arbitrary time period, typically containing user interactions.
+Snapshots reports analyze the page in a particular state, typically after the user has interacted with it.
+
+For example, let’s measure the performance of adding items to cart on this demo page. Select the Timespan mode and click Start timespan. Scroll and add a few items to the cart. Once you are done, click on End timespan to generate a Lighthouse report of the user interactions.
+
+See User flows in Lighthouse to learn about the unique use cases, benefits, and limitations of each mode.
+Chromium issue: 1291284
+# Performance Insights updates
+# Improved zoom control in the Performance Insights panel
+DevTools will now zoom in based on your mouse cursor rather than the playhead position.With the latest cursor-based zoom, you can move your mouse to anywhere in the track, and zoom in to the desired area right away.
+          
+See Performance Insights to learn how to get actionable insights and improve your website’s performance with the panel.
+Chromium issue: 1313382
+# Confirm to delete a performance recording
+DevTools now shows a confirmation dialog before deleting a performance recording.
+
+Chromium issue: 1318087
+# Reorder panes in the Elements panel
+You can now reorder panes in the Elements panel based on your preference.
+For example, when you open DevTools on a narrow screen, the Accessibility pane is hidden under the Show more button. If you frequently debug accessibility issues, you can now drag the pane to the front for easier access.
+
+Chromium issue: 1146146
+# Picking a color outside of the browser
+DevTools now supports picking a color outside of the browser. Previously, you could only pick a color within the browser.
+In the Styles pane, click on any color preview to open a color picker. Use the eyedropper to pick color from anywhere.
+
+Chromium issue: 1245191
+# Improved inline value preview during debugging
+The debugger now shows the inline values preview correctly.
+In this example, the double function has an input parameter  a and a variable x. Put a breakpoint at the return line and run the code. The inline preview shows values a and x correctly. Previously, the debugger did not show the value x in the inline preview.
+
+Chromium issue: 1316340
+# Support large blobs for virtual authenticators
+The WebAuthn tab now has the new Supports large blob checkbox for virtual authenticators.
+This checkbox is disabled by default. You can enable it only for the authenticators with ctap2 protocol that support resident keys.
+
+Chromium issue: 1321803
+# New keyboard shortcuts in the Sources panel
+Two new keyboard shortcuts are now available in the  Sources panel:
+
+Toggle navigation sidebar (left) with Control / Command + Shift + Y
+Toggle debugger sidebar (right) with Control / Command + Shift + H
+
+
+Chromium issues: 1226363
+# Sourcemaps improvements
+Previously, developers experience random failure during:
+
+Debugging with Codepen example
+Identifying source location of performance issues in a Codepen example
+Missing Component tab when React DevTools is enabled
+
+Here are a few fixes on sourcemaps to improve the overall debugging experience:
+
+Correct mapping between location and offset for inline scripts and source location
+Use fallback information for frame’s text location
+Properly resolve relative urls with frame&#x27;s URL
+
+Chromium issues: 1319828, 1318635, 1305475
+# Download the preview channels
+Consider using the Chrome Canary, Dev or Beta as your default development browser. These preview channels give you access to the latest DevTools features, test cutting-edge web platform APIs, and find issues on your site before your users do!
+# Getting in touch with the Chrome DevTools team
+Use the following options to discuss the new features and changes in the post, or anything else related to DevTools.
+
+Submit a suggestion or feedback to us via crbug.com.
+Report a DevTools issue using the More options      &gt; Help &gt; Report a DevTools issues in DevTools.
+Tweet at @ChromeDevTools.
+Leave comments on our What&#x27;s new in DevTools YouTube videos.
+
+# What&#x27;s New in DevTools
+A list of everything that has been covered in the What&#x27;s New In DevTools series.
+# Chrome 103
+
+Capture double-click and right-click events in the Recorder panel
+New timespan and snapshot mode in the Lighthouse panel
+Improved zoom control in the Performance Insights panel
+Confirm to delete a performance recording
+Picking a color outside of the browser
+Improved inline value preview during debugging
+Support large blobs for virtual authenticators
+New keyboard shortcuts in the Sources panel
+Sourcemaps improvements
+
+# Chrome 102
+
+Preview feature: New Performance insights panel
+New shortcuts to emulate light and dark themes
+Improved security on the Network Preview tab
+Improved reloading at breakpoint
+Console updates
+Cancel user flow recording at the start
+Display inherited highlight pseudo-elements in the Styles pane
+Miscellaneous highlights
+[Experimental] Copy CSS changes
+[Experimental] Picking color outside of browser
+
+# Chrome 101
+
+Import and export recorded user flows as a JSON file
+View cascade layers in the Styles pane
+Support for the hwb() color function
+Improved the display of private properties
+Miscellaneous highlights
+[Experimental] New timespan and snapshot mode in the Lighthouse panel
+
+# Chrome 100
+
+View and edit @supports at rules in the Styles pane
+Support common selectors by default
+Customize the recording’s selector
+Rename a recording
+Preview class/function properties on hover
+Partially presented frames in the Performance panel
+Miscellaneous highlights
+
+# Chrome 99
+
+Throttling WebSocket requests
+New Reporting API pane in the Application panel
+Support wait until element is visible/clickable in the Recorder panel
+Better console styling, formatting and filtering
+Debug Chrome extension with sourcemap files
+Improved source folder tree in the Sources panel
+Display worker source files in the Sources panel
+Chrome’s Auto Dark Theme updates
+Touch-friendly color-picker and split pane
+Miscellaneous highlights
+
+# Chrome 98
+
+Preview feature: Full-page accessibility tree
+More precise changes in the Changes tab
+Set longer timeout for user flow recording
+Ensure your pages are cacheable with the Back/forward cache tab
+New Properties pane filter
+Emulate the CSS forced-colors media feature
+Show rulers on hover command
+Support row-reverse and column-reverse in the Flexbox editor
+New keyboard shortcuts to replay XHR and expand all search results
+Lighthouse 9 in the Lighthouse panel
+Improved Sources panel
+Miscellaneous highlights
+[Experimental] Endpoints in the Reporting API pane
+
+# Chrome 97
+
+Preview feature: New Recorder panel
+Refresh device list in Device Mode
+Autocomplete with Edit as HTML
+Improved code debugging experience
+Syncing DevTools settings across devices
+
+# Chrome 96
+
+Preview feature: New CSS Overview panel
+Restored and improved CSS length edit and copy experince
+Emulate the CSS prefers-contrast media feature
+Emulate the Chrome’s Auto Dark Theme feature
+Copy declarations as JavaScript in the Styles pane
+New Payload tab in the Network panel
+Improved the display of properties in the Properties pane
+Option to hide CORS errors in the Console
+Proper Intl objects preview and evaluation in the Console
+Consistent async stack traces
+Retain the Console sidebar
+Deprecated Application cache pane in the Application panel
+[Experimental] New Reporting API pane in the Application panel
+
+# Chrome 95
+
+New CSS length authoring tools
+Hide issues in the Issues tab
+Improved the display of properties
+Lighthouse 8.4 in the Lighthouse panel
+Sort snippets in the Sources panel
+New links to translated release notes and report a translation bug
+Improved UI for DevTools command menu
+
+# Chrome 94
+
+Use DevTools in your preferred language
+New Nest Hub devices in the Device list
+Origin trials in the Frame details view
+New CSS container queries badge
+New checkbox to invert the network filters
+Upcoming deprecation of the Console sidebar
+Display raw Set-Cookies headers in the Issues tab and Network panel
+Consistent display native accessors as own properties in the Console
+Proper error stack traces for inline scripts with #sourceURL
+Change color format in the Computed pane
+Replace custom tooltips with native HTML tooltips
+[Experimental] Hide issues in the Issues tab
+
+# Chrome 93
+
+Editable CSS container queries  in the Styles pane
+Web bundle preview in the Network panel
+Attribution Reporting API debugging
+Better string handling in the Console
+Improved CORS debugging
+Lighthouse 8.1
+New note URL in the Manifest pane
+Fixed CSS matching selectors
+Pretty-printing JSON responses in the Network panel
+
+# Chrome 92
+
+CSS grid editor
+Support for const redeclarations in the Console
+Source order viewer
+New shortcut to view frame details
+Enhanced CORS debugging support
+Rename XHR label to Fetch/XHR
+Filter Wasm resource type in the Network panel
+User-Agent Client Hints for devices in the Network conditions tab
+Report Quirks mode issues in the Issues tab
+Include Compute Intersections in the Performance panel
+Lighthouse 7.5 in the Lighthouse panel
+Deprecated &quot;Restart frame&quot; context menu in the call stack
+[Experimental] Protocol monitor
+[Experimental] Puppeteer Recorder
+
+# Chrome 91
+
+Web Vitals information pop up
+New Memory inspector
+Visualize CSS scroll-snap
+New badge settings pane
+Enhanced image preview with aspect ratio information
+New network conditions button with options to configure Content-Encodings
+shortcut to view computed value
+accent-color keyword
+Categorize issue types with colors and icons
+Delete Trust tokens
+Blocked features in the Frame details view
+Filter experiments in the Experiments setting
+New Vary Header column in the Cache storage pane
+Support JavaScript private brand check
+Enhanced support for breakpoints debugging
+Support hover preview with [] notation
+Improved outline of HTML files
+Proper error stack traces for Wasm debugging
+
+# Chrome 90
+
+New CSS flexbox debugging tools
+New Core Web Vitals overlay
+Moved issue count to the Console status bar
+Report Trusted Web Activity issues
+Format strings as (valid) JavaScript string literals in the Console
+New Trust Tokens pane in the Application panel
+Emulate the CSS color-gamut media feature
+Improved Progressive Web Apps tooling
+New Remote Address Space column in the Network panel
+Performance improvements
+Display allowed/disallowed features in the Frame details view
+New SameParty column in the Cookies pane
+Deprecated non-standard fn.displayName support
+Deprecation of Don&#x27;t show Chrome Data Saver warning in the Settings menu
+[Experimental] Automatic low-contrast issue reporting in the Issues tab
+[Experimental] Full accessibility tree view in the Elements panel
+
+# Chrome 89
+
+Debugging support for Trusted Types violations
+Capture node screenshot beyond viewport
+New Trust Tokens tab for network requests
+Lighthouse 7 in the Lighthouse panel
+Support forcing the CSS :target state
+New shortcut to duplicate element
+Color pickers for custom CSS properties
+New shortcuts to copy CSS properties
+New option to show URL-decoded cookies
+Clear only visible cookies
+New option to clear third-party cookies in the Storage pane
+Edit User-Agent Client Hints for custom devices
+Persist &quot;record network log&quot; setting
+View WebTransport connections in the Network panel
+&quot;Online&quot; renamed to &quot;No throttling&quot;
+New copy options in the Console, Sources panel, and Styles pane
+New Service Workers information in the Frame details view
+Measure Memory information in the Frame details view
+Provide feedback from the Issues tab
+Dropped frames in the Performance panel
+Emulate foldable and dual-screen in Device Mode
+[Experimental] Automate browser testing with Puppeteer Recorder
+[Experimental] Font editor in the Styles pane
+[Experimental] CSS flexbox debugging tools
+[Experimental] New CSP Violations tab
+[Experimental] New color contrast calculation - Advanced Perceptual Contrast Algorithm (APCA)
+
+# Chrome 88
+
+Faster DevTools startup
+New CSS angle visualization tools
+Emulate unsupported image types
+Simulate storage quota size in the Storage pane
+New Web Vitals lane in the Performance panel
+Report CORS errors in the Network panel
+Cross-origin isolation information in the Frame details view
+New Web Workers information in the Frame details view
+Display opener frame details for opened windows
+Open Network panel from the Service Workers pane
+Copy property value
+Copy stacktrace for network initiator
+Preview Wasm variable value on mouseover
+Evaluate Wasm variable in the Console
+Consistent units of measurement for file/memory sizes
+Highlight pseudo elements in the Elements panel
+[Experimental] CSS Flexbox debugging tools
+[Experimental] Customize chords keyboard shortcuts
+
+# Chrome 87
+
+New CSS Grid debugging tools
+New WebAuthn tab
+Move tools between top and bottom panel
+New Computed sidebar pane in the Styles pane
+Grouping CSS properties in the Computed pane
+Lighthouse 6.3 in the Lighthouse panel
+performance.mark() events in the Timings section
+New resource-type and url filters in the Network panel
+Frame details view updates
+Deprecation of Settings in the More tools menu
+[Experimental] View and fix color contrast issues in the CSS Overview panel
+[Experimental] Customize keyboard shortcuts in DevTools
+
+# Chrome 86
+
+New Media panel
+Capture node screenshots via Elements panel context menu
+Issues tab updates
+Emulate missing local fonts
+Emulate inactive users
+Emulate prefers-reduced-data
+Support for new JavaScript features
+Lighthouse 6.2 in the Lighthouse panel
+Deprecation of &quot;other origins&quot; listing in the Service Workers pane
+Show coverage summary for filtered items
+New frame details view in Application panel
+Accessible color suggestion in the Styles pane
+Reinstate Properties pane in the Elements panel
+Human-readable X-Client-Data header values in the Network panel
+Auto-complete custom fonts in the Styles pane
+Consistently display resource type in Network panel
+Clear buttons in the Elements and Network panels
+
+# Chrome 85
+
+Style editing for CSS-in-JS frameworks
+Lighthouse 6 in the Lighthouse panel
+First Meaningful Paint (FMP) deprecation
+Support for new JavaScript features
+New app shortcut warnings in the Manifest pane
+Service worker respondWith events in the Timing tab
+Consistent display of the Computed pane
+Bytecode offsets for WebAssembly files
+Line-wise copy and cut in Sources Panel
+Console settings updates
+Performance panel updates
+New icons for breakpoints, conditional breakpoints, and logpoints
+
+# Chrome 84
+
+Fix site issues with the new Issues tab
+View accessibility information in the Inspect Mode tooltip
+Performance panel updates
+More accurate promise terminology in the Console
+Styles pane updates
+Deprecation of the Properties pane in the Elements panel
+App shortcuts support in the Manifest pane
+
+# Chrome 83
+
+Emulate vision deficiencies
+Emulate locales
+Cross-Origin Embedder Policy (COEP) debugging
+New icons for breakpoints, conditional breakpoints, and logpoints
+View network requests that set a specific cookie
+Dock to left from the Command Menu
+The Settings option in the Main Menu has moved
+The Audits panel is now the Lighthouse panel
+Delete all Local Overrides in a folder
+Updated Long Tasks UI
+Maskable icon support in the Manifest pane
+
+# Chrome 82
+Chrome 82 was cancelled.
+# Chrome 81
+
+Moto G4 support in Device Mode
+Cookie-related updates
+More accurate web app manifest icons
+Hover over CSS content properties to see unescaped values
+Source map errors in the Console
+Setting for disabling scrolling past the end of a file
+
+# Chrome 80
+
+Support for let and class redeclarations in the Console
+Improved WebAssembly debugging
+Request Initiator Chains in the Initiator tab
+Highlight the selected network request in the Overview
+URL and path columns in the Network panel
+Updated User-Agent strings
+New Audits panel configuration UI
+Per-function or per-block code coverage modes
+Code coverage must now be initiated by a page reload
+
+# Chrome 79
+
+Debug why a cookie was blocked
+View cookie values
+Simulate different prefers-color-scheme and prefers-reduced-motion preferences
+Code coverage updates
+Debug why a network resource was requested
+Console and Sources panels respect indentation preferences again
+New shortcuts for cursor navigation
+
+# Chrome 78
+
+Multi-client support in the Audits panel
+Payment Handler debugging
+Lighthouse 5.2 in the Audits panel
+Largest Contentful Paint in the Performance panel
+File DevTools issues from the Main Menu
+
+# Chrome 77
+
+Copy element styles
+Visualize layout shifts
+Lighthouse 5.1 in the Audits panel
+OS theme syncing
+Keyboard shortcut for opening the Breakpoint Editor
+Prefetch cache in the Network panel
+Private properties when viewing objects
+Notifications and push messages in the Application panel
+
+# Chrome 76
+
+Autocomplete with CSS values
+A new UI for network settings
+WebSocket messages in HAR exports
+HAR import and export buttons
+Real-time memory usage
+Service worker registration port numbers
+Inspect Background Fetch and Background Sync events
+Puppeteer for Firefox
+
+# Chrome 75
+
+Meaningful presets when autocompleting CSS functions
+Clear site data from the Command Menu
+View all IndexedDB databases
+View a resource&#x27;s uncompressed size on hover
+Inline breakpoints in the Breakpoints pane
+IndexedDB and Cache resource counts
+Setting for disabling the detailed Inspect tooltip
+Setting for toggling tab indentation in the Editor
+
+# Chrome 74
+
+Highlight all nodes affected by CSS property
+Lighthouse v4 in the Audits panel
+WebSocket binary message viewer
+Capture area screenshot in the Command Menu
+Service worker filters in the Network panel
+Performance panel updates
+Long tasks in Performance panel recordings
+First Paint in the Timing section
+Bonus tip: Shortcut for viewing RGB and HSL color codes (video)
+
+# Chrome 73
+
+Logpoints
+Detailed tooltips in Inspect Mode
+Export code coverage data
+Navigate the Console with a keyboard
+AAA contrast ratio line in the Color Picker
+Save custom geolocation overrides
+Code folding
+Frames tab renamed to Messages tab
+Bonus tip: Network panel filtering by property (video)
+
+# Chrome 72
+
+Visualize performance metrics in the Performance panel
+Highlight text nodes in the DOM Tree
+Copy the JS path to a DOM node
+Audits panel updates, including a new audit
+that detects JS libraries and new keywords for accessing the Audits panel from the Command Menu
+Bonus tip: Use Device Mode to inspect media queries (video)
+
+# Chrome 71
+
+Hover over a Live Expression result to highlight a DOM node
+Store DOM nodes as global variables
+Initiator and priority information now in HAR imports and exports
+Access the Command Menu from the Main Menu
+Picture-in-Picture breakpoints
+Bonus tip: Use monitorEvents() to log a node&#x27;s fired events in the
+Console (video)
+
+# Chrome 70
+
+Live Expressions in the Console
+Highlight DOM nodes during Eager Evaluation
+Performance panel optimizations
+More reliable debugging
+Enable network throttling from the Command Menu
+Autocomplete Conditional Breakpoints
+Break on AudioContext events
+Debug Node.js apps with ndb
+Bonus tip: Measure real world user interactions with the User Timing API
+
+# Chrome 68
+
+Eager Evaluation
+Argument hints
+Function autocompletion
+ES2017 keywords
+Lighthouse 3.0 in the Audits panel
+BigInt support
+Adding property paths to the Watch pane
+&quot;Show timestamps&quot; moved to Settings
+Bonus tip: Lesser-known Console methods (video)
+
+# Chrome 67
+
+Search across all network headers
+CSS variable value previews
+Copy as fetch
+New audits, desktop configuration options, and viewing traces
+Stop infinite loops
+User Timing in the Performance tabs
+JavaScript VM instances clearly listed in the Memory panel
+Network tab renamed to Page tab
+Dark theme updates
+Certificate transparency information in the Security panel
+Site isolation features in the Performance panel
+Bonus tip: Layers panel + Animations Inspector (video)
+
+# Chrome 66
+
+Blackboxing in the Network panel
+Auto-adjust zooming in Device Mode
+Pretty-printing in the Preview and Response tabs
+Previewing HTML content in the Preview tab
+Local Overrides support for styles inside of HTML
+Bonus tip: Blackbox framework scripts to make Event Listener Breakpoints more useful
+
+# Chrome 65
+
+Local Overrides
+New accessibility tools
+The Changes tab
+New SEO and performance audits
+Multiple recordings in the Performance panel
+Reliable code stepping with workers in async code
+Bonus tip: Automate DevTools actions with Puppeteer (video)
+
+# Chrome 64
+
+Performance Monitor
+Console Sidebar
+Group similar Console messages
+Bonus tip: Toggle hover pseudo-class (video)
+
+# Chrome 63
+
+Multi-client remote debugging support
+Workspaces 2.0
+4 new audits
+Simulate push notifications with custom data
+Trigger background sync events with custom tags
+Bonus tip: Event listener breakpoints (video)
+
+# Chrome 62
+
+Top-level await in the Console
+New screenshot workflows
+CSS Grid highlighting
+A new Console API for querying objects
+New Console filters
+HAR imports in the Network panel
+Previewable cache resources
+More predictable cache debugging
+Block-level code coverage
+
+# Chrome 61
+
+Mobile device throttling simulation
+View storage usage
+View when a service worker cached responses
+Enable the FPS meter from the Command Menu
+Set mousewheel behavior to zoom or scroll
+Debugging support for ES6 modules
+
+# Chrome 60
+
+New Audits panel
+3rd-Party Badges
+A new gesture for Continue To Here
+Step into async
+More informative object previews in the Console
+More informative context selection in the Console
+Real-time updates in the Coverage tab
+Simpler network throttling options
+Async stacks on by default
+
+# Chrome 59
+
+CSS and JS code coverage
+Full-page screenshots
+Block requests
+Step over async await
+Unified Command Menu
+</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">New in Chrome 102</a>
+                        </h4>
+                        <span>
+  
+
+Here&#x27;s what you need to know:
+
+Installed PWAs can register as file handlers, making it
+easy for users to open files directly from disk.
+The inert attribute allows you to mark parts of the DOM as inert.
+The Navigation API makes it easier for single page apps
+to handle navigation and updates to the URL
+And there&#x27;s plenty more.
+
+I&#x27;m Pete LePage. Let&#x27;s dive in and
+see what&#x27;s new for developers in Chrome 102.
+# File Handling API
+The File Handling API allows installed PWAs to register with the OS as a file
+handler. Once registered, a user can click on a file to open it with the
+installed PWA. This is perfect for PWAs that interact with files, for example,
+image editors, IDEs, text editors, and so on.
+To add file handling functionality to your PWA, you&#x27;ll need to update your
+web app manifest, adding a file_handlers array with details about the types
+of files your PWA can handle. You&#x27;ll need to specify the URL to open, the
+mime types, an icon for the file type, and the launch type. The launch type
+defines whether multiple files should be opened in a single client, or in
+multiple clients.
+&quot;file_handlers&quot;: [  {    &quot;action&quot;: &quot;/open-csv&quot;,    &quot;accept&quot;: {&quot;text/csv&quot;: [&quot;.csv&quot;]},    &quot;icons&quot;: [      {        &quot;src&quot;: &quot;csv-icon.png&quot;,        &quot;sizes&quot;: &quot;256x256&quot;,        &quot;type&quot;: &quot;image/png&quot;      }    ],    &quot;launch_type&quot;: &quot;single-client&quot;  }]
+Then, to access those files when the PWA is launched, you need to specify a
+consumer for the launchQueue object. Launches are queued until they are
+handled by the consumer.
+// Access from Window.launchQueue.launchQueue.setConsumer((launchParams) &#x3D;&gt; {  if (!launchParams.files.length) {    // Nothing to do when the queue is empty.    return;  }  for (const fileHandle of launchParams.files) {    // Handle the file.    openFile(fileHandle);  }});
+Check out Let installed web applications be file handlers
+for all the details.
+# The inert property
+The inert property is a global HTML attribute that tells the browser to
+ignore user input events for an element, including focus events, and events
+from assistive technologies.
+This can be useful when building UIs. For example, with a modal dialog, you
+want to &quot;trap&quot; the focus inside the modal when it&#x27;s visible. Or, for a drawer
+that is not always visible to the user, adding inert ensures that while
+the drawer is offscreen, a keyboard user cannot accidentally interact with it.
+&lt;div&gt;  &lt;label for&#x3D;&quot;button1&quot;&gt;Button 1&lt;/label&gt;  &lt;button id&#x3D;&quot;button1&quot;&gt;I am not inert&lt;/button&gt;&lt;/div&gt;&lt;div inert&gt;  &lt;label for&#x3D;&quot;button2&quot;&gt;Button 2&lt;/label&gt;  &lt;button id&#x3D;&quot;button2&quot;&gt;I am inert&lt;/button&gt;&lt;/div&gt;
+Here, inert has been declared on the second &lt;div&gt; element, so all content
+contained within, including the &lt;button&gt; and &lt;label&gt;, cannot receive
+focus or be clicked.
+inert is supported in Chrome 102, and is coming to both Firefox and Safari.
+Check out Introducing inert for more details.
+# Navigation API
+Many web apps depend on the ability to update the URL without a page
+navigation. Today, we use the History API, but it&#x27;s clunky and
+doesn&#x27;t always work as expected. Rather than trying to patch the History API&#x27;s
+rough edges, the Navigation API completely overhauls this space.
+To use the Navigation API, add a navigate listener on the global navigation
+object.
+navigation.addEventListener(&#x27;navigate&#x27;, (navigateEvent) &#x3D;&gt; {  switch (navigateEvent.destination.url) {    case &#x27;https://example.com/&#x27;:      navigateEvent.transitionWhile(loadIndexPage());      break;    case &#x27;https://example.com/cats&#x27;:      navigateEvent.transitionWhile(loadCatsPage());      break;  }});
+The event is fundamentally centralized and it will fire for all types of
+navigations, whether the user performed an action, such as clicking a link,
+submitting a form, or going back and forward, even when navigation is
+triggered programmatically. In most cases, it lets your code override the
+browser&#x27;s default behavior for that action.
+
+  
+
+Check out the Modern client-side routing: the Navigation API
+for complete details and a demo you can try out.
+# And more!
+Of course there&#x27;s plenty more.
+
+The new Sanitizer API aims to build a robust processor for arbitrary strings
+to be safely inserted into a page.
+The hidden&#x3D;until-found attribute makes it possible for the browser to
+search text in hidden regions, and reveal that section if a match is found.
+
+# Further reading
+This covers only some of the key highlights. Check the links below for
+additional changes in Chrome 102.
+
+What&#x27;s new in Chrome DevTools (102)
+Chrome 102 deprecations and removals
+ChromeStatus.com updates for Chrome 102
+Chromium source repository change list
+Chrome release calendar
+
+# Subscribe
+To stay up to date, subscribe to the
+Chrome Developers YouTube channel,
+and you&#x27;ll get an email notification whenever we launch a new video.
+I&#x27;m Pete LePage, and as soon as Chrome 103 is released, I&#x27;ll be right here to
+tell you what&#x27;s new in Chrome!</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Generate summary reports with the aggregation service</a>
+                        </h4>
+                        <span>You can now experiment and participate in an origin
+trial for Attribution
+Reporting. There are a number of available developer resources and code samples
+to get started.
+To generate summary reports in the origin trial, you&#x27;ll first need to set up
+the aggregation service. This blog post gives an overview of those steps.
+
+If you ran an origin trial with this API in 2021, follow the migration
+guide
+to prepare for the latest origin trial.
+
+# Key terms
+If you haven&#x27;t already, we recommend you read the overview of Attribution
+Reporting and more
+about summary reports
+before learning about the aggregation service set up.
+
+A summary report is a compiled output for the Attribution Reporting API,
+which aggregates information about a group of users. Summary reports offer
+detailed conversion data, such as purchase value and cart contents, with flexibility for click and view data.
+An aggregatable report is an encrypted report, generated by an individual
+user&#x27;s browser. These contain data about individual conversions and
+associated metrics, as defined by the advertiser or adtech. Learn more about
+aggregatable reports.
+The aggregation service processes data from aggregatable reports to
+create a summary report.
+
+# Set up the aggregation service
+The aggregation service
+proposal
+asks each adtech provider to operate their own instance of the aggregation
+service in a Trusted Execution Environment (TEE) deployed on a cloud service
+that supports needed security features.
+For the initial implementation and origin trial, adtechs can set up
+local testing
+or test in TEEs with Amazon Web Services (AWS):
+
+Register for the Privacy Sandbox Relevance and Measurement origin trial (OT).
+Create or have an Amazon Web Services account.
+Complete the aggregation service
+onboarding form. After filling out
+this form we will send a verification email and instructions for how to set
+up the aggregation service.
+
+Both the local testing tool and the aggregation service running on AWS expect
+aggregatable reports to be batched in the
+Apache Avro format.
+Review code snippets
+which demonstrate how to collect and batch aggregatable reports.
+# Generate summary reports with TEEs on AWS
+
+This is a general overview of how to generate summary reports in TEEs. Read the
+detailed developer documentation on testing the aggregation service with
+AWS.
+
+To generate summary reports, you&#x27;ll need to set up the aggregation service in
+AWS with Terraform. Terraform will help provision,
+manage, and decommission the aggregation service on AWS
+Nitro Enclave instances.
+
+Install
+and set up
+the latest AWS client.
+Set up Terraform.
+Download the aggregation service
+dependencies.
+Set up a deployment
+environment.
+Test your
+system.
+
+# Get support
+For more support with the Attribution Reporting API:
+
+Open a new Issue on the Privacy Sandbox Developer Support GitHub
+repository.
+Select the Issue template for Attribution Reporting.
+Or join the Attribution Reporting mailing list for
+developers
+and ask there.
+
+If you notice any unexpected behavior:
+
+View Chrome
+issues reported for the API implementation.
+Open a Chrome bug.
+Raise a new Issue for the Trusted Execution Aggregation
+Service.
+</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Deprecations and removals in Chrome 103</a>
+                        </h4>
+                        <span>
+Visit ChromeStatus.com for lists of current deprecations and previous removals.
+
+Chrome 103 beta was released on May 26, 2022 and is expected to become the
+stable version in late June, 2022.
+# Block external protocol in sandboxed iframes
+Sandboxed iframes are not blocked from opening external applications. Currently, developers sandbox untrusted content and block user navigation. Blocking probably should have also included links to external apps or to the Play store. This has now been fixed.
+Sites that need navigation can add the following values to the &lt;iframe&gt; element&#x27;s sandbox property:
+
+allow-popups
+allow-top-navigation
+allow-top-navigation-with-user-activation
+
+# Remove Battery Status API on insecure origins
+The Battery Status API is no longer supported on insecure contexts, specifically HTTP pages and HTTPS iframes embedded in HTTP pages. This is being removed in accordance with our policy of deprecating powerful features on insecure origins, This also follows a spec change.
+# Remove  element
+Given the removal of plugins from the web platform, and the relative lack of use of &lt;param&gt;, it is being removed from the web platform.
+# Deprecation policy
+To keep the platform healthy, we sometimes remove APIs from the Web Platform
+which have run their course. There can be many reasons why we would remove an
+API, such as:
+
+They are superseded by newer APIs.
+They are updated to reflect changes to specifications to bring alignment and
+consistency with other browsers.
+They are early experiments that never came to fruition in other browsers and
+thus can increase the burden of support for web developers.
+
+Some of these changes will have an effect on a very small number of sites. To
+mitigate issues ahead of time, we try to give developers advanced notice so they
+can make the required changes to keep their sites running.
+Chrome currently has a process for deprecations and removals of
+API&#x27;s,
+essentially:
+
+Announce on the
+blink-dev
+mailing list.
+Set warnings and give time scales in the Chrome DevTools Console when usage
+is detected on the page.
+Wait, monitor, and then remove the feature as usage drops.
+
+You can find a list of all deprecated features on chromestatus.com using the
+deprecated filter and
+removed features by applying the removed
+filter. We will also try to
+summarize some of the changes, reasoning, and migration paths in these posts.</span>
+                        </a>
+                    </article>
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Cookies Having Independent State (CHIPS) origin trial extended</a>
+                        </h4>
+                        <span>CHIPS is a Privacy
+Sandbox proposal that introduces a mechanism to opt-in to having third-party
+cookies partitioned by top-level site using a new cookie attribute,
+Partitioned.
+The experiment started in Chrome 100 on March 29, 2022 and was scheduled to run
+until June 14, 2022.
+To give developers more time to test the feature and gather more feedback, an
+extension to the experiment will run through Chrome 104 until the release of Chrome 105, on August 30, 2022.
+Starting in version 103, Chrome will include an alternative CHIPS origin trial design for HTTP
+cookies, which should enable an opt-in mechanism that will make deployment
+easier for large organizations.
+In the new design, sending Accept-CH: Sec-CH-Partitioned-Cookies header will
+no longer be required to enroll in the origin trial. Sites will only need to
+send the Origin-Trial header with their CHIPS origin trial token when they are sending
+responses that include the Set-Cookie header with the Partitioned
+attribute.
+To enroll in the origin trial and start experimenting, head over to
+CHIPS origin trial instructions.</span>
+                        </a>
+                    </article>
+                </section>
+              </section>
+            </li>
             <li class="">
               <section class="">
                 <h3 class="">A List Apart: The Full Feed</h3>
@@ -5841,1292 +7127,6 @@ Don’t call it a comeback, because Rails has been here for years. With this new
 
 Reactive Rails, with StimulusReflex and friends, is a must-look for anyone exhausted from toiling with JSON endpoints or JSX, and I’m super excited to see the new crop of apps that it enables.
 </span>
-                        </a>
-                    </article>
-                </section>
-              </section>
-            </li>
-            <li class="">
-              <section class="">
-                <h3 class="">Chrome Developers - Blog</h3>
-                <a class="" href=""></a>
-                <section class="">
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Faster page loads using server think-time with Early Hints</a>
-                        </h4>
-                        <span># What is Early Hints?
-Websites have become more sophisticated over time. As such, it&#x27;s not unusual that a server needs to perform non-trivial work (for example, access to databases, or CDNs accessing the origin server) to produce the HTML for the requested page. Unfortunately, this &quot;server think-time&quot; results in extra latency before the browser can start rendering the page. Indeed, the connection effectively goes idle for as long as it takes the server to prepare the response.
-
-
-Without Early Hints: everything is blocked on the server determining how to respond for the main resource.
-
-Early Hints is an HTTP status code (103 Early Hints) used to send a preliminary HTTP response ahead of a final response. This allows a server to send hints to the browser about critical sub-resources (for example,  stylesheet for the page, critical JavaScript) or origins that will be likely used by the page, while the server is busy generating the main resource. The browser can use those hints to warm up connections, and request sub-resources, while waiting for the main resource. In other words, Early Hints helps the browser take advantage of such &quot;server think-time&quot; by doing some work in advance, thereby speeding up page loads.
-
-
-With Early Hints: the server can serve a partial response with resource hints while it determines the final response
-
-In some cases, the performance improvement to the Largest Contentful Paint can go from several hundred milliseconds, as observed by Shopify and by Cloudflare, and up to a second faster, as seen in this before/after comparison:
-
-
-Before/After comparison of Early Hints on a test website done with WebPageTest (Moto G4 - DSL)
-
-# Implementing Early Hints
-Early Hints is available from Chrome version 103, as a response to navigation requests, or user interactions that change the url in the status bar, with support for both preconnect and preload hints.
-Before going deep into the topic, please note that Early Hints are not useful if your server can send a 200 (or other final responses) right away. Instead, consider using the regular link rel&#x3D;preload or link rel&#x3D;preconnect on the main response (Link rel HTTP header), or in the main response (&lt;link&gt;  elements), in such situations. For the cases where your server needs a little time to generate the main response, read on!
-The first step to take advantage of Early Hints consists of identifying the top landing pages, that is, the pages where your users typically start when they visit your website. This could be the homepage, or popular product listing pages if you have lots of users coming from other websites. The reason these entry points matter more than other pages is because Early Hints&#x27; usefulness decreases as the user navigates around your website (that is, the browser is more likely to have all the sub-resources it needs on the second or third subsequent navigation). It&#x27;s also always a good idea to deliver a great first impression!
-Now that you have this prioritized list of landing pages, the next step consists of identifying which origins or sub-resources would be good candidates for preconnect or preload hints, as a first approximation. Typically, those would be origins and sub-resources that contribute the most to key user metrics such as Largest Contentful Paint, or First Contentful Paint. More concretely, look for render-blocking sub-resources such as synchronous JavaScript, stylesheets, or even web fonts. Similarly, look for origins that host sub-resources that contribute a lot to key user metrics. Note: if your main resources are already using  or , you may consider these  origins or resources among the candidates for Early Hints. See this article for more details.
-While this represents a decent starting point, it&#x27;s not necessarily sufficient. The second step consists of minimizing the risk of using Early Hints on resources or origins that might be obsolete, or no longer used by the main resource. For instance, resources that are frequently updated and versioned (for example,  example.com/css/main.fa231e9c.css) may not be the best choice.  Note that this concern isn&#x27;t specific to Early Hints, it applies to any link rel&#x3D;preload or rel&#x3D;preconnect wherever they might be present. This is the sort of detail that&#x27;s best dealt with automation or templating (for example, a manual process is more likely to lead to mismatched hash or version urls between link rel&#x3D;preload and the actual HTML tag using the resource).
-As an example, consider the following flow:
-GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]
-The server predicts that main.abcd100.css will be needed, and suggests preloading it via Early Hints:
-103 Early HintsLink: &lt;/main.abcd100.css&gt;; rel&#x3D;preload; as&#x3D;style[...]
-A few moments later, the webpage, including the linked CSS is served. Unfortunately, this CSS resource is frequently updated, and the main resource is already five versions ahead (abcd105) of the predicted CSS resource (abcd100).
-200 OK[...]&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.abcd105.css&quot;&gt;
-In general, aim for resources and origins that are fairly stable, and largely independent of the outcome for the main resource. If necessary, you may consider splitting your key resources in two: a stable part designed to be used with Early Hints, and a more dynamic part left to be fetched after the main resource is received by the browser:
-&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;
-Finally, on the server side, look for main resource requests sent by browsers known to support Early Hints, and respond immediately with 103 Early Hints. In the 103 response, include the relevant preconnect and preload hints. Once the main resource is ready, follow up with the usual response (for example, 200 OK if successful). For backward compatibility, it&#x27;s good practice to also include LINK HTTP headers in the final response, perhaps even augmenting with critical resources that became evident as part of generating the main resource (for example, the dynamic part of a key resource if you followed the &quot;split in two&quot; suggestion). Here is what this would look like:
-GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]103 Early HintsLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;script
-A few moments later:
-200 OKContent-Length: 7531Content-Type: text/html; charset&#x3D;UTF-8Content-encoding: brLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;scriptLink: &lt;/experimental.3eab3290.css&gt;; rel&#x3D;preload; as&#x3D;style&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;   &lt;script src&#x3D;&quot;/common.js&quot;&gt;&lt;/script&gt;   &lt;link rel&#x3D;&quot;preconnect&quot; href&#x3D;&quot;https://fonts.googleapis.com&quot;&gt;
-# Support for Early Hints by HTTP server software
-Here is a quick summary of the level of support for Early Hints among popular OSS HTTP server software:
-
-Apache: supported via mod_http2.
-H2O: supported.
-NGINX: experimental module.
-Node: not yet supported by core. Available as a draft plugin for Fastify.
-
-# Enabling Early Hints, the easy way
-If you are using one of the following CDNs or platforms, you may not need to manually implement Early Hints. Refer to your solution provider&#x27;s online documentation to find out if it supports Early Hints, or refer to the non-exhaustive list here:
-
-Early Hints at Cloudflare
-Early Hints at Fastly.
-
-# Advanced pattern
-If you have fully applied Early Hints to your key landing pages and find yourself looking for more opportunities, you might be interested in the following advanced pattern.
-For visitors who are on their nth page request as part of a typical user journey, you may want to adapt the Early Hints response to content that is lower and deeper in the page, in other words using Early Hints on lower priority resources. This may sound counter-intuitive given that we recommended focussing on high priority, render-blocking sub-resources or origins. However, by the time a visitor has navigated for a while, it&#x27;s very likely that their browser already has all the critical resources. From there on, it might make sense to switch your attention toward lower priority resources. For instance, this could mean using Early Hints to load product images, or additional JS/CSS that are only needed for less common user interactions.
-# Current limitations
-Here are the limitations of Early Hints as implemented in Chrome 103 and future releases until further notice:
-
-Only available for navigation requests (that is,. main resource for the top level document).
-Only supports preconnect and preload (that is, prefetch isn&#x27;t supported).
-Early Hint followed by a cross-origin redirect on the final response will result in Chrome dropping the resources and connections it obtained via Early Hints.
-
-# What&#x27;s next?
-Depending on interest from the community, we may augment our implementation of Early Hints with the following capabilities:
-
-Early Hints sent on sub-resource requests.
-Early Hints sent on iframe main resource requests.
-Support for prefetch in Early Hints.
-
-We welcome your input on which aspects to prioritize, and how to further improve Early Hints.
-# Relationship to H2/Push
-If you are familiar with the deprecated HTTP2/Push feature, you may wonder how Early Hints differs. While Early Hints requires a round trip for the browser to start fetching critical sub-resources, with HTTP2/Push the server could start pushing sub-resources alongside the response. While this sounds amazing, this resulted in a key structural downside. Indeed, with HTTP2/Push it was extremely hard to avoid pushing sub-resources that the browser already had. This &quot;over-pushing&quot; effect resulted in a less efficient usage of the network bandwidth, which significantly hindered the performance benefits. Overall, Chrome data showed that HTTP2/Push was in fact a net negative for performance across the web.
-By contrast, Early Hints performs better in practice because it combines the ability to send a preliminary response with hints that leave the browser in charge of fetching, or connecting to, what it actually needs. While Early Hints doesn&#x27;t cover all the use cases that HTTP2/Push could address in theory, we believe that Early Hints is a more practical solution for speeding up navigations.
-Hero image by Pierre Bamin.</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Deprecations and removals in Chrome 104</a>
-                        </h4>
-                        <span>
-Visit ChromeStatus.com for lists of current deprecations and previous removals.
-
-Chrome 104 beta was released on June 23, 2022 and is expected to become the
-stable version in early August, 2022.
-# Block third-party contexts navigating to filesystem URLs
-iframes can no longer navigate to filesystem URLs. Top frame support for navigating to filesystem URLs was dropped in Chrome 68.
-# Remove non-standard client hint mode
-Four client hints (dpr, width, viewport-width, and device-memory) have a default allowlist of self but behave as though they have a default allowlist of * on Android, contrary to the spec. This is now fixed, increasing privacy on Android by requiring explicit delegation of these hints.
-# Remove U2F API (cryptotoken)
-Chrome&#x27;s legacy U2F API for interacting with security keys is no longer supported. U2F security keys themselves are not deprecated and will continue to work.
-Affected sites should migrate to the Web Authentication API. Credentials that were originally registered via the U2F API can be challenged via web authentication. USB security keys that are supported by the U2F API are also supported by the Web Authentication API.
-U2F is Chrome&#x27;s original security key API. It allows sites to register public key credentials on USB security keys and challenge them for building phishing-resistant two-factor authentication systems. U2F never became an open web standard and was subsumed by the Web Authentication API (launched in Chrome 67). Chrome never directly supported the FIDO U2F JavaScript API, but rather shipped a component extension called cryptotoken, which exposes an equivalent chrome.runtime.sendMessage() method. U2F and Cryptotoken are firmly in maintenance mode and have encouraged sites to migrate to the Web Authentication API for the last two years.
-# Deprecation policy
-To keep the platform healthy, we sometimes remove APIs from the Web Platform
-which have run their course. There can be many reasons why we would remove an
-API, such as:
-
-They are superseded by newer APIs.
-They are updated to reflect changes to specifications to bring alignment and
-consistency with other browsers.
-They are early experiments that never came to fruition in other browsers and
-thus can increase the burden of support for web developers.
-
-Some of these changes will have an effect on a very small number of sites. To
-mitigate issues ahead of time, we try to give developers advanced notice so they
-can make the required changes to keep their sites running.
-Chrome currently has a process for deprecations and removals of
-API&#x27;s,
-essentially:
-
-Announce on the
-blink-dev
-mailing list.
-Set warnings and give time scales in the Chrome DevTools Console when usage
-is detected on the page.
-Wait, monitor, and then remove the feature as usage drops.
-
-You can find a list of all deprecated features on chromestatus.com using the
-deprecated filter and
-removed features by applying the removed
-filter. We will also try to
-summarize some of the changes, reasoning, and migration paths in these posts.</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Attribution Reporting updates in June 2022</a>
-                        </h4>
-                        <span>The Attribution Reporting proposal is changing for Chrome version 104,
-with new API mechanisms, functionality, and updates to the aggregation service.
-To get the latest information on versions, sign up for Chrome OS release
-notifications.
-# Who are these updates for?
-These updates are for you if:
-
-You already are familiar with the API—for example, if you&#x27;ve been observing
-or participating in the discussions on the WICG repository and want to
-understand the changes made to the API.
-You&#x27;re using the Attribution Reporting API in a demo or plan to test in the
-origin trial.
-
-If you&#x27;re just getting started with this API and/or have not experimented with
-it yet, go directly to the introduction to the
-API instead.
-
-The Google Chrome team will host developer office
-hours,
-where developers who are testing and integrating the Privacy Sandbox
-technologies can learn more about Attribution Reporting in Chrome&#x27;s Privacy
-Sandbox.
-
-# Attribution Reporting API updates
-The API handbook
-and Attribution Reporting demo
-have been updated to reflect the latest changes to the Attribution Reporting
-client-side API.
-Most changes don&#x27;t require action. Those that do require updates for your
-implementation have been highlighted below.
-# (Action required) unified headers for registration
-The headers have been unified. There is now just one header for sources and one
-for triggers, formatted in JSON.
-
-To register attribution sources, you can respond to registration requests
-with the header Attribution-Reporting-Register-Source.
-To complete trigger registration, set the
-Attribution-Reporting-Register-Trigger header.
-
-This change requires action. Refer to the
-API handbook
-for more information.
-# (Action required) aggregation keys are now a dictionary
-To register attribution sources,
-continue to use aggregation_keys, but now stored as a JSON dictionary instead
-of a list.
-For example:
-&quot;aggregation_keys&quot;: {    // Generate a &quot;0x159&quot; key piece for the key named &quot;campaignCounts&quot;.    &quot;campaignCounts&quot;: &quot;0x159&quot;, // User saw ad from campaign 345 (out of 511)    // Generates a &quot;0x5&quot; key piece (low order bits of the key) for     // the key named &quot;geoValue&quot;.    &quot;geoValue&quot;: &quot;0x5&quot; // Source-side geo region &#x3D; 5 (US), out of a possible ~100 regions }
-This change requires action. Refer to the
-API handbook
-for more information.
-# Report generation
-You can choose to generate only aggregatable reports, which can be aggregated
-into summary reports. If your filters don&#x27;t match any event triggers, then no
-event-level reports will be generated.
-# Unified debug key setting
-The debug key should now be set in the source and trigger headers, instead of
-with separate headers. Learn more about how to debug
-reports.
-# Register attribution sources
-Script tags can now be used to register attribution sources, similar to support
-for the &lt;img&gt; tag.
-# More API updates
-Other changes that have been made and cited in the API handbook include:
-
-Sources can be registered with JavaScript request APIs.
-window.registerSource was removed.
-It is now optional to include a value for attributionsrc when registering
-sources.
-Attribution-Reporting-Eligible header added to incoming source
-registration requests.
-There was a minor change to encodeURIComponent.
-The privacy budget key was removed
-from the shared_info field in aggregatable reports.
-
-# Support for the Aggregation Service
-In Chrome 104, we intend to update the format of some information inside of
-aggregatable reports. We are currently building support for this change in the
-Aggregation Service. This document will be updated, as well the
-changelog,
-after the changes are shipped.
-We&#x27;ve gathered a document of practical tips and strategies to generate summary
-reports.
-There are a number of insights, including:
-
-Overview of noise in summary report generation
-A detailed explanation of dimensions, keys, and values
-Aggregation keys in practice, including a key structure map
-Aggregatable values in practice, and implications of the contribution budget
-Guide to experimenting with epsilon
-
-# Read more about the updates
-
-Read the API handbook.
-Read What you should know about the API.
-Read Experiment with Attribution Reporting: Strategy and tips for summary reports.
-
-The header image is from Diana Polekhina on Unsplash.</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">New in Chrome 103</a>
-                        </h4>
-                        <span>
-  
-
-Here&#x27;s what you need to know:
-
-There&#x27;s a new HTTP 103 status code that helps the browser
-decide what content to preload before the page has even started to arrive.
-The Local Font Access API gives web applications the ability
-to enumerate and use fonts installed on the user&#x27;s computer.
-AbortSignal.timeout() is an easier way to implement
-timeouts on asynchronous APIs.
-And there&#x27;s plenty more.
-
-I&#x27;m Pete LePage. Let&#x27;s dive in and
-see what&#x27;s new for developers in Chrome 103.
-# HTTP 103 status code 103 - early hints
-One way you can improve page performance is to use resource hints. They give
-the browser &quot;hints&quot; about what stuff it might need later. For example,
-preloading files, or connecting to a different server.
-&lt;link as&#x3D;&quot;font&quot; crossorigin&#x3D;&quot;anonymous&quot;      href&#x3D;&quot;...&quot; rel&#x3D;&quot;preload&quot;&gt;&lt;link as&#x3D;&quot;font&quot; crossorigin&#x3D;&quot;anonymous&quot;      href&#x3D;&quot;...&quot; rel&#x3D;&quot;preload&quot;&gt;&lt;link href&#x3D;&quot;https://web-dev.imgix.net&quot;      rel&#x3D;&quot;preconnect&quot;&gt;
-But the browser can&#x27;t act on those hints until the server sends at least
-part of the page.
-Imagine the browser requests a page, but the server requires a few hundred
-milliseconds to generate it. Until the browser starts to receive the page,
-it just sits there and waits. But, if the server knows the page will always
-need a certain set of subresources, for example, a CSS file, some JavaScript,
-and a few images, it can immediately respond with the new HTTP 103
-Early Hints status code, and ask the browser to preload those subresources.
-Then, once the server has generated the page, it can send it with the normal
-HTTP 200 response. As the page comes in, the browser has already started
-loading the required resources.
-Since this is a new HTTP status code, using it requires updates to your server.
-Get started with HTTP 103 Early hints:
-
-Explainer for Early Hints
-Apache 2 Early Hints configuration
-Using Early Hints on Cloudflare
-Fastly Beyond Server Push: The 103 Early Hints Status Code
-
-# Local Font Access API
-Fonts on the web have always been a challenge, and especially so for apps
-that let users create their own graphics and designs. Until now, web apps
-could only really use web fonts. There was no way to get a list of fonts the user had installed on their
-computer. And, there was no way to access the full font table data, critical
-if you need to implement your own custom text stack.
-The new Local Font Access API gives web applications the ability to enumerate
-the local fonts on the user&#x27;s device, and provides access to the font table data.
-To get a list of fonts installed on the device, you&#x27;ll first need to request
-permission.
-// Ask for permission to use the APItry {  const status &#x3D; await navigator.permissions.request({    name: &#x27;local-fonts&#x27;,  });  if (status.state !&#x3D;&#x3D; &#x27;granted&#x27;) {    throw new Error(&#x27;No Permission.&#x27;);  }} catch (err) {  if (err.name !&#x3D;&#x3D; &#x27;TypeError&#x27;) {    throw err;  }}
-Then, call window.queryLocalFonts(). It returns an array of all the fonts
-installed on the users device.
-const opts &#x3D; {};const pickedFonts &#x3D; await self.queryLocalFonts();for (const fontData of pickedFonts) {  console.log(fontData.postscriptName);  console.log(fontData.fullName);  console.log(fontData.family);  console.log(fontData.style);}
-If you&#x27;re only interested in a subset of fonts, you can filter them by adding
-a postscriptNames parameter.
-const opts &#x3D; {  postscriptNames: [    &#x27;Verdana&#x27;,    &#x27;Verdana-Bold&#x27;,    &#x27;Verdana-Italic&#x27;,  ],};const pickedFonts &#x3D; await self.queryLocalFonts(opts);
-Check out Tom&#x27;s article Use advanced typography with local fonts
-on web.dev for complete details.
-# Easier Timeouts with AbortSignal.timeout()
-In JavaScript, AbortController and AbortSignal are used to cancel an
-asynchronous call.
-For example, when making a fetch() request, you can create an
-AbortSignal, and pass it to fetch(). If you want to cancel the fetch()
-before it returns, call abort() on the instance of the AbortSignal. Up
-until now, if you wanted it to abort after a specific amount of time, you&#x27;d
-need to wrap it in a setTimeout().
-const controller &#x3D; new AbortController();const signal &#x3D; controller.signal;const resp &#x3D; fetch(url, { signal });setTimeout(() &#x3D;&gt; {  // abort the fetch after 6 seconds  controller.abort();}, 6000);
-Thankfully, that just got easier with a new timeout() static method on
-AbortSignal. It returns an AbortSignal object that is automatically
-aborted after the given number of milliseconds. What used to be a handful of
-lines of code, is now just one.
-const signal &#x3D; AbortSignal.timeout(6000);const resp &#x3D; fetch(url, { signal });
-AbortSignal.timeout()
-is supported in Chrome 103, and is already in Firefox, and Safari.
-# And more!
-Of course there&#x27;s plenty more.
-
-The avif image file format is now sharable by Web Share
-Chromium now matches Firefox by firing popstate immediately after URL
-changes. The order of events is now: popstate then hashchange on both
-platforms.
-And Element.isVisible() tells you whether an element is visible or not.
-
-
-In the video, I mentioned Element.isVisible() is available in stable, but
-it is currently only available behind a feature flag.
-
-# Further reading
-This covers only some of the key highlights. Check the links below for
-additional changes in Chrome 103.
-
-What&#x27;s new in Chrome DevTools (103)
-Chrome 103 deprecations and removals
-ChromeStatus.com updates for Chrome 103
-Chromium source repository change list
-Chrome release calendar
-
-# Subscribe
-To stay up to date, subscribe to the
-Chrome Developers YouTube channel,
-and you&#x27;ll get an email notification whenever we launch a new video.
-I&#x27;m Pete LePage, and as soon as Chrome 104 is released, I&#x27;ll be right here to
-tell you what&#x27;s new in Chrome!</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">New syntax for range media queries in Chrome 104</a>
-                        </h4>
-                        <span>Media Queries enabled responsive design, and the range features that enable testing the minimum and maximum size of the viewport are used by around 80% of sites that use media queries. The Media Queries Level 4 specification includes a new syntax for these range queries.
-The new syntax has been available in Firefox since Firefox 63, and will be available in Chrome from 104. Let’s take a look at how it can streamline your queries.
-A typical media query testing for a minimum viewport width, would be written as follows:
-@media (min-width: 400px) {  // Styles for viewports with a width of 400 pixels or greater.}
-The new syntax allows for the use of a comparison operator:
-@media (width &gt;&#x3D; 400px) {  // Styles for viewports with a width of 400 pixels or greater.}
-Testing for a maximum width:
-@media (max-width: 30em) {  // Styles for viewports with a width of 30em or less.}
-And, the version using the level 4 syntax:
-@media (width &lt;&#x3D; 30em) {  // Styles for viewports with a width of 30em or less.}
-This syntax has the potential to streamline queries, in particular when testing between two widths. In the following example, the media query tests for a viewport with a minimum width of 400px, and a maximum width of 600px.
-@media (min-width: 400px) and (max-width: 600px) {  // Styles for viewports between 400px and 600px.}
-This can be rewritten in the new syntax as:
-@media (400px &lt;&#x3D; width &lt;&#x3D; 600px )  {  // Styles for viewports between 400px and 600px.}
-The feature that you are testing, in this case width, goes between the two values.
-In addition to making media queries less verbose, the new syntax has the advantage of accuracy. The min- and max- queries are inclusive of the specified values, for example min-width: 400px tests for a width of 400px or greater. The new syntax allows you to be more explicit about what you mean and avoid the potential of clashing queries.
-To use the new range syntax while accounting for browsers that have not yet implemented it, there is a PostCSS plugin that will rewrite the new syntax to the old in your stylesheets.
-Hero image by William Warby.</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">What&#x27;s New In DevTools (Chrome 103)</a>
-                        </h4>
-                        <span>
-Interested in helping improve DevTools? Sign up to participate in Google User Research here.
-
-
-  
-
-# Capture double-click and right-click events in the Recorder panel
-The Recorder panel can now capture double-click and right-click events.
-
-In this example, start a recording and try to perform the following steps:
-
-Double-click the card to enlarge it
-Right-click the card and select an action from the context menu
-
-To understand how Recorder captured these events, expand the steps:
-
-Double-click is captured as type: doubleClick.
-Right-click event is captured as type: click but with the button property is set to secondary. The button value of a normal mouse click is primary.
-
-Chromium issues: 1300839, 1322879, 1299701, 1323688
-# New timespan and snapshot mode in the Lighthouse panel
-You can now use Lighthouse to measure your website’s performance beyond page load.
-
-The Lighthouse panel now supports 3 modes of user flow measurement:
-
-Navigation reports analyze a single page load. Navigation is the most common report type. All Lighthouse reports before the current version are navigation reports.
-Timespans reports analyze an arbitrary time period, typically containing user interactions.
-Snapshots reports analyze the page in a particular state, typically after the user has interacted with it.
-
-For example, let’s measure the performance of adding items to cart on this demo page. Select the Timespan mode and click Start timespan. Scroll and add a few items to the cart. Once you are done, click on End timespan to generate a Lighthouse report of the user interactions.
-
-See User flows in Lighthouse to learn about the unique use cases, benefits, and limitations of each mode.
-Chromium issue: 1291284
-# Performance Insights updates
-# Improved zoom control in the Performance Insights panel
-DevTools will now zoom in based on your mouse cursor rather than the playhead position.With the latest cursor-based zoom, you can move your mouse to anywhere in the track, and zoom in to the desired area right away.
-          
-See Performance Insights to learn how to get actionable insights and improve your website’s performance with the panel.
-Chromium issue: 1313382
-# Confirm to delete a performance recording
-DevTools now shows a confirmation dialog before deleting a performance recording.
-
-Chromium issue: 1318087
-# Reorder panes in the Elements panel
-You can now reorder panes in the Elements panel based on your preference.
-For example, when you open DevTools on a narrow screen, the Accessibility pane is hidden under the Show more button. If you frequently debug accessibility issues, you can now drag the pane to the front for easier access.
-
-Chromium issue: 1146146
-# Picking a color outside of the browser
-DevTools now supports picking a color outside of the browser. Previously, you could only pick a color within the browser.
-In the Styles pane, click on any color preview to open a color picker. Use the eyedropper to pick color from anywhere.
-
-Chromium issue: 1245191
-# Improved inline value preview during debugging
-The debugger now shows the inline values preview correctly.
-In this example, the double function has an input parameter  a and a variable x. Put a breakpoint at the return line and run the code. The inline preview shows values a and x correctly. Previously, the debugger did not show the value x in the inline preview.
-
-Chromium issue: 1316340
-# Support large blobs for virtual authenticators
-The WebAuthn tab now has the new Supports large blob checkbox for virtual authenticators.
-This checkbox is disabled by default. You can enable it only for the authenticators with ctap2 protocol that support resident keys.
-
-Chromium issue: 1321803
-# New keyboard shortcuts in the Sources panel
-Two new keyboard shortcuts are now available in the  Sources panel:
-
-Toggle navigation sidebar (left) with Control / Command + Shift + Y
-Toggle debugger sidebar (right) with Control / Command + Shift + H
-
-
-Chromium issues: 1226363
-# Sourcemaps improvements
-Previously, developers experience random failure during:
-
-Debugging with Codepen example
-Identifying source location of performance issues in a Codepen example
-Missing Component tab when React DevTools is enabled
-
-Here are a few fixes on sourcemaps to improve the overall debugging experience:
-
-Correct mapping between location and offset for inline scripts and source location
-Use fallback information for frame’s text location
-Properly resolve relative urls with frame&#x27;s URL
-
-Chromium issues: 1319828, 1318635, 1305475
-# Download the preview channels
-Consider using the Chrome Canary, Dev or Beta as your default development browser. These preview channels give you access to the latest DevTools features, test cutting-edge web platform APIs, and find issues on your site before your users do!
-# Getting in touch with the Chrome DevTools team
-Use the following options to discuss the new features and changes in the post, or anything else related to DevTools.
-
-Submit a suggestion or feedback to us via crbug.com.
-Report a DevTools issue using the More options      &gt; Help &gt; Report a DevTools issues in DevTools.
-Tweet at @ChromeDevTools.
-Leave comments on our What&#x27;s new in DevTools YouTube videos.
-
-# What&#x27;s New in DevTools
-A list of everything that has been covered in the What&#x27;s New In DevTools series.
-# Chrome 103
-
-Capture double-click and right-click events in the Recorder panel
-New timespan and snapshot mode in the Lighthouse panel
-Improved zoom control in the Performance Insights panel
-Confirm to delete a performance recording
-Picking a color outside of the browser
-Improved inline value preview during debugging
-Support large blobs for virtual authenticators
-New keyboard shortcuts in the Sources panel
-Sourcemaps improvements
-
-# Chrome 102
-
-Preview feature: New Performance insights panel
-New shortcuts to emulate light and dark themes
-Improved security on the Network Preview tab
-Improved reloading at breakpoint
-Console updates
-Cancel user flow recording at the start
-Display inherited highlight pseudo-elements in the Styles pane
-Miscellaneous highlights
-[Experimental] Copy CSS changes
-[Experimental] Picking color outside of browser
-
-# Chrome 101
-
-Import and export recorded user flows as a JSON file
-View cascade layers in the Styles pane
-Support for the hwb() color function
-Improved the display of private properties
-Miscellaneous highlights
-[Experimental] New timespan and snapshot mode in the Lighthouse panel
-
-# Chrome 100
-
-View and edit @supports at rules in the Styles pane
-Support common selectors by default
-Customize the recording’s selector
-Rename a recording
-Preview class/function properties on hover
-Partially presented frames in the Performance panel
-Miscellaneous highlights
-
-# Chrome 99
-
-Throttling WebSocket requests
-New Reporting API pane in the Application panel
-Support wait until element is visible/clickable in the Recorder panel
-Better console styling, formatting and filtering
-Debug Chrome extension with sourcemap files
-Improved source folder tree in the Sources panel
-Display worker source files in the Sources panel
-Chrome’s Auto Dark Theme updates
-Touch-friendly color-picker and split pane
-Miscellaneous highlights
-
-# Chrome 98
-
-Preview feature: Full-page accessibility tree
-More precise changes in the Changes tab
-Set longer timeout for user flow recording
-Ensure your pages are cacheable with the Back/forward cache tab
-New Properties pane filter
-Emulate the CSS forced-colors media feature
-Show rulers on hover command
-Support row-reverse and column-reverse in the Flexbox editor
-New keyboard shortcuts to replay XHR and expand all search results
-Lighthouse 9 in the Lighthouse panel
-Improved Sources panel
-Miscellaneous highlights
-[Experimental] Endpoints in the Reporting API pane
-
-# Chrome 97
-
-Preview feature: New Recorder panel
-Refresh device list in Device Mode
-Autocomplete with Edit as HTML
-Improved code debugging experience
-Syncing DevTools settings across devices
-
-# Chrome 96
-
-Preview feature: New CSS Overview panel
-Restored and improved CSS length edit and copy experince
-Emulate the CSS prefers-contrast media feature
-Emulate the Chrome’s Auto Dark Theme feature
-Copy declarations as JavaScript in the Styles pane
-New Payload tab in the Network panel
-Improved the display of properties in the Properties pane
-Option to hide CORS errors in the Console
-Proper Intl objects preview and evaluation in the Console
-Consistent async stack traces
-Retain the Console sidebar
-Deprecated Application cache pane in the Application panel
-[Experimental] New Reporting API pane in the Application panel
-
-# Chrome 95
-
-New CSS length authoring tools
-Hide issues in the Issues tab
-Improved the display of properties
-Lighthouse 8.4 in the Lighthouse panel
-Sort snippets in the Sources panel
-New links to translated release notes and report a translation bug
-Improved UI for DevTools command menu
-
-# Chrome 94
-
-Use DevTools in your preferred language
-New Nest Hub devices in the Device list
-Origin trials in the Frame details view
-New CSS container queries badge
-New checkbox to invert the network filters
-Upcoming deprecation of the Console sidebar
-Display raw Set-Cookies headers in the Issues tab and Network panel
-Consistent display native accessors as own properties in the Console
-Proper error stack traces for inline scripts with #sourceURL
-Change color format in the Computed pane
-Replace custom tooltips with native HTML tooltips
-[Experimental] Hide issues in the Issues tab
-
-# Chrome 93
-
-Editable CSS container queries  in the Styles pane
-Web bundle preview in the Network panel
-Attribution Reporting API debugging
-Better string handling in the Console
-Improved CORS debugging
-Lighthouse 8.1
-New note URL in the Manifest pane
-Fixed CSS matching selectors
-Pretty-printing JSON responses in the Network panel
-
-# Chrome 92
-
-CSS grid editor
-Support for const redeclarations in the Console
-Source order viewer
-New shortcut to view frame details
-Enhanced CORS debugging support
-Rename XHR label to Fetch/XHR
-Filter Wasm resource type in the Network panel
-User-Agent Client Hints for devices in the Network conditions tab
-Report Quirks mode issues in the Issues tab
-Include Compute Intersections in the Performance panel
-Lighthouse 7.5 in the Lighthouse panel
-Deprecated &quot;Restart frame&quot; context menu in the call stack
-[Experimental] Protocol monitor
-[Experimental] Puppeteer Recorder
-
-# Chrome 91
-
-Web Vitals information pop up
-New Memory inspector
-Visualize CSS scroll-snap
-New badge settings pane
-Enhanced image preview with aspect ratio information
-New network conditions button with options to configure Content-Encodings
-shortcut to view computed value
-accent-color keyword
-Categorize issue types with colors and icons
-Delete Trust tokens
-Blocked features in the Frame details view
-Filter experiments in the Experiments setting
-New Vary Header column in the Cache storage pane
-Support JavaScript private brand check
-Enhanced support for breakpoints debugging
-Support hover preview with [] notation
-Improved outline of HTML files
-Proper error stack traces for Wasm debugging
-
-# Chrome 90
-
-New CSS flexbox debugging tools
-New Core Web Vitals overlay
-Moved issue count to the Console status bar
-Report Trusted Web Activity issues
-Format strings as (valid) JavaScript string literals in the Console
-New Trust Tokens pane in the Application panel
-Emulate the CSS color-gamut media feature
-Improved Progressive Web Apps tooling
-New Remote Address Space column in the Network panel
-Performance improvements
-Display allowed/disallowed features in the Frame details view
-New SameParty column in the Cookies pane
-Deprecated non-standard fn.displayName support
-Deprecation of Don&#x27;t show Chrome Data Saver warning in the Settings menu
-[Experimental] Automatic low-contrast issue reporting in the Issues tab
-[Experimental] Full accessibility tree view in the Elements panel
-
-# Chrome 89
-
-Debugging support for Trusted Types violations
-Capture node screenshot beyond viewport
-New Trust Tokens tab for network requests
-Lighthouse 7 in the Lighthouse panel
-Support forcing the CSS :target state
-New shortcut to duplicate element
-Color pickers for custom CSS properties
-New shortcuts to copy CSS properties
-New option to show URL-decoded cookies
-Clear only visible cookies
-New option to clear third-party cookies in the Storage pane
-Edit User-Agent Client Hints for custom devices
-Persist &quot;record network log&quot; setting
-View WebTransport connections in the Network panel
-&quot;Online&quot; renamed to &quot;No throttling&quot;
-New copy options in the Console, Sources panel, and Styles pane
-New Service Workers information in the Frame details view
-Measure Memory information in the Frame details view
-Provide feedback from the Issues tab
-Dropped frames in the Performance panel
-Emulate foldable and dual-screen in Device Mode
-[Experimental] Automate browser testing with Puppeteer Recorder
-[Experimental] Font editor in the Styles pane
-[Experimental] CSS flexbox debugging tools
-[Experimental] New CSP Violations tab
-[Experimental] New color contrast calculation - Advanced Perceptual Contrast Algorithm (APCA)
-
-# Chrome 88
-
-Faster DevTools startup
-New CSS angle visualization tools
-Emulate unsupported image types
-Simulate storage quota size in the Storage pane
-New Web Vitals lane in the Performance panel
-Report CORS errors in the Network panel
-Cross-origin isolation information in the Frame details view
-New Web Workers information in the Frame details view
-Display opener frame details for opened windows
-Open Network panel from the Service Workers pane
-Copy property value
-Copy stacktrace for network initiator
-Preview Wasm variable value on mouseover
-Evaluate Wasm variable in the Console
-Consistent units of measurement for file/memory sizes
-Highlight pseudo elements in the Elements panel
-[Experimental] CSS Flexbox debugging tools
-[Experimental] Customize chords keyboard shortcuts
-
-# Chrome 87
-
-New CSS Grid debugging tools
-New WebAuthn tab
-Move tools between top and bottom panel
-New Computed sidebar pane in the Styles pane
-Grouping CSS properties in the Computed pane
-Lighthouse 6.3 in the Lighthouse panel
-performance.mark() events in the Timings section
-New resource-type and url filters in the Network panel
-Frame details view updates
-Deprecation of Settings in the More tools menu
-[Experimental] View and fix color contrast issues in the CSS Overview panel
-[Experimental] Customize keyboard shortcuts in DevTools
-
-# Chrome 86
-
-New Media panel
-Capture node screenshots via Elements panel context menu
-Issues tab updates
-Emulate missing local fonts
-Emulate inactive users
-Emulate prefers-reduced-data
-Support for new JavaScript features
-Lighthouse 6.2 in the Lighthouse panel
-Deprecation of &quot;other origins&quot; listing in the Service Workers pane
-Show coverage summary for filtered items
-New frame details view in Application panel
-Accessible color suggestion in the Styles pane
-Reinstate Properties pane in the Elements panel
-Human-readable X-Client-Data header values in the Network panel
-Auto-complete custom fonts in the Styles pane
-Consistently display resource type in Network panel
-Clear buttons in the Elements and Network panels
-
-# Chrome 85
-
-Style editing for CSS-in-JS frameworks
-Lighthouse 6 in the Lighthouse panel
-First Meaningful Paint (FMP) deprecation
-Support for new JavaScript features
-New app shortcut warnings in the Manifest pane
-Service worker respondWith events in the Timing tab
-Consistent display of the Computed pane
-Bytecode offsets for WebAssembly files
-Line-wise copy and cut in Sources Panel
-Console settings updates
-Performance panel updates
-New icons for breakpoints, conditional breakpoints, and logpoints
-
-# Chrome 84
-
-Fix site issues with the new Issues tab
-View accessibility information in the Inspect Mode tooltip
-Performance panel updates
-More accurate promise terminology in the Console
-Styles pane updates
-Deprecation of the Properties pane in the Elements panel
-App shortcuts support in the Manifest pane
-
-# Chrome 83
-
-Emulate vision deficiencies
-Emulate locales
-Cross-Origin Embedder Policy (COEP) debugging
-New icons for breakpoints, conditional breakpoints, and logpoints
-View network requests that set a specific cookie
-Dock to left from the Command Menu
-The Settings option in the Main Menu has moved
-The Audits panel is now the Lighthouse panel
-Delete all Local Overrides in a folder
-Updated Long Tasks UI
-Maskable icon support in the Manifest pane
-
-# Chrome 82
-Chrome 82 was cancelled.
-# Chrome 81
-
-Moto G4 support in Device Mode
-Cookie-related updates
-More accurate web app manifest icons
-Hover over CSS content properties to see unescaped values
-Source map errors in the Console
-Setting for disabling scrolling past the end of a file
-
-# Chrome 80
-
-Support for let and class redeclarations in the Console
-Improved WebAssembly debugging
-Request Initiator Chains in the Initiator tab
-Highlight the selected network request in the Overview
-URL and path columns in the Network panel
-Updated User-Agent strings
-New Audits panel configuration UI
-Per-function or per-block code coverage modes
-Code coverage must now be initiated by a page reload
-
-# Chrome 79
-
-Debug why a cookie was blocked
-View cookie values
-Simulate different prefers-color-scheme and prefers-reduced-motion preferences
-Code coverage updates
-Debug why a network resource was requested
-Console and Sources panels respect indentation preferences again
-New shortcuts for cursor navigation
-
-# Chrome 78
-
-Multi-client support in the Audits panel
-Payment Handler debugging
-Lighthouse 5.2 in the Audits panel
-Largest Contentful Paint in the Performance panel
-File DevTools issues from the Main Menu
-
-# Chrome 77
-
-Copy element styles
-Visualize layout shifts
-Lighthouse 5.1 in the Audits panel
-OS theme syncing
-Keyboard shortcut for opening the Breakpoint Editor
-Prefetch cache in the Network panel
-Private properties when viewing objects
-Notifications and push messages in the Application panel
-
-# Chrome 76
-
-Autocomplete with CSS values
-A new UI for network settings
-WebSocket messages in HAR exports
-HAR import and export buttons
-Real-time memory usage
-Service worker registration port numbers
-Inspect Background Fetch and Background Sync events
-Puppeteer for Firefox
-
-# Chrome 75
-
-Meaningful presets when autocompleting CSS functions
-Clear site data from the Command Menu
-View all IndexedDB databases
-View a resource&#x27;s uncompressed size on hover
-Inline breakpoints in the Breakpoints pane
-IndexedDB and Cache resource counts
-Setting for disabling the detailed Inspect tooltip
-Setting for toggling tab indentation in the Editor
-
-# Chrome 74
-
-Highlight all nodes affected by CSS property
-Lighthouse v4 in the Audits panel
-WebSocket binary message viewer
-Capture area screenshot in the Command Menu
-Service worker filters in the Network panel
-Performance panel updates
-Long tasks in Performance panel recordings
-First Paint in the Timing section
-Bonus tip: Shortcut for viewing RGB and HSL color codes (video)
-
-# Chrome 73
-
-Logpoints
-Detailed tooltips in Inspect Mode
-Export code coverage data
-Navigate the Console with a keyboard
-AAA contrast ratio line in the Color Picker
-Save custom geolocation overrides
-Code folding
-Frames tab renamed to Messages tab
-Bonus tip: Network panel filtering by property (video)
-
-# Chrome 72
-
-Visualize performance metrics in the Performance panel
-Highlight text nodes in the DOM Tree
-Copy the JS path to a DOM node
-Audits panel updates, including a new audit
-that detects JS libraries and new keywords for accessing the Audits panel from the Command Menu
-Bonus tip: Use Device Mode to inspect media queries (video)
-
-# Chrome 71
-
-Hover over a Live Expression result to highlight a DOM node
-Store DOM nodes as global variables
-Initiator and priority information now in HAR imports and exports
-Access the Command Menu from the Main Menu
-Picture-in-Picture breakpoints
-Bonus tip: Use monitorEvents() to log a node&#x27;s fired events in the
-Console (video)
-
-# Chrome 70
-
-Live Expressions in the Console
-Highlight DOM nodes during Eager Evaluation
-Performance panel optimizations
-More reliable debugging
-Enable network throttling from the Command Menu
-Autocomplete Conditional Breakpoints
-Break on AudioContext events
-Debug Node.js apps with ndb
-Bonus tip: Measure real world user interactions with the User Timing API
-
-# Chrome 68
-
-Eager Evaluation
-Argument hints
-Function autocompletion
-ES2017 keywords
-Lighthouse 3.0 in the Audits panel
-BigInt support
-Adding property paths to the Watch pane
-&quot;Show timestamps&quot; moved to Settings
-Bonus tip: Lesser-known Console methods (video)
-
-# Chrome 67
-
-Search across all network headers
-CSS variable value previews
-Copy as fetch
-New audits, desktop configuration options, and viewing traces
-Stop infinite loops
-User Timing in the Performance tabs
-JavaScript VM instances clearly listed in the Memory panel
-Network tab renamed to Page tab
-Dark theme updates
-Certificate transparency information in the Security panel
-Site isolation features in the Performance panel
-Bonus tip: Layers panel + Animations Inspector (video)
-
-# Chrome 66
-
-Blackboxing in the Network panel
-Auto-adjust zooming in Device Mode
-Pretty-printing in the Preview and Response tabs
-Previewing HTML content in the Preview tab
-Local Overrides support for styles inside of HTML
-Bonus tip: Blackbox framework scripts to make Event Listener Breakpoints more useful
-
-# Chrome 65
-
-Local Overrides
-New accessibility tools
-The Changes tab
-New SEO and performance audits
-Multiple recordings in the Performance panel
-Reliable code stepping with workers in async code
-Bonus tip: Automate DevTools actions with Puppeteer (video)
-
-# Chrome 64
-
-Performance Monitor
-Console Sidebar
-Group similar Console messages
-Bonus tip: Toggle hover pseudo-class (video)
-
-# Chrome 63
-
-Multi-client remote debugging support
-Workspaces 2.0
-4 new audits
-Simulate push notifications with custom data
-Trigger background sync events with custom tags
-Bonus tip: Event listener breakpoints (video)
-
-# Chrome 62
-
-Top-level await in the Console
-New screenshot workflows
-CSS Grid highlighting
-A new Console API for querying objects
-New Console filters
-HAR imports in the Network panel
-Previewable cache resources
-More predictable cache debugging
-Block-level code coverage
-
-# Chrome 61
-
-Mobile device throttling simulation
-View storage usage
-View when a service worker cached responses
-Enable the FPS meter from the Command Menu
-Set mousewheel behavior to zoom or scroll
-Debugging support for ES6 modules
-
-# Chrome 60
-
-New Audits panel
-3rd-Party Badges
-A new gesture for Continue To Here
-Step into async
-More informative object previews in the Console
-More informative context selection in the Console
-Real-time updates in the Coverage tab
-Simpler network throttling options
-Async stacks on by default
-
-# Chrome 59
-
-CSS and JS code coverage
-Full-page screenshots
-Block requests
-Step over async await
-Unified Command Menu
-</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">New in Chrome 102</a>
-                        </h4>
-                        <span>
-  
-
-Here&#x27;s what you need to know:
-
-Installed PWAs can register as file handlers, making it
-easy for users to open files directly from disk.
-The inert attribute allows you to mark parts of the DOM as inert.
-The Navigation API makes it easier for single page apps
-to handle navigation and updates to the URL
-And there&#x27;s plenty more.
-
-I&#x27;m Pete LePage. Let&#x27;s dive in and
-see what&#x27;s new for developers in Chrome 102.
-# File Handling API
-The File Handling API allows installed PWAs to register with the OS as a file
-handler. Once registered, a user can click on a file to open it with the
-installed PWA. This is perfect for PWAs that interact with files, for example,
-image editors, IDEs, text editors, and so on.
-To add file handling functionality to your PWA, you&#x27;ll need to update your
-web app manifest, adding a file_handlers array with details about the types
-of files your PWA can handle. You&#x27;ll need to specify the URL to open, the
-mime types, an icon for the file type, and the launch type. The launch type
-defines whether multiple files should be opened in a single client, or in
-multiple clients.
-&quot;file_handlers&quot;: [  {    &quot;action&quot;: &quot;/open-csv&quot;,    &quot;accept&quot;: {&quot;text/csv&quot;: [&quot;.csv&quot;]},    &quot;icons&quot;: [      {        &quot;src&quot;: &quot;csv-icon.png&quot;,        &quot;sizes&quot;: &quot;256x256&quot;,        &quot;type&quot;: &quot;image/png&quot;      }    ],    &quot;launch_type&quot;: &quot;single-client&quot;  }]
-Then, to access those files when the PWA is launched, you need to specify a
-consumer for the launchQueue object. Launches are queued until they are
-handled by the consumer.
-// Access from Window.launchQueue.launchQueue.setConsumer((launchParams) &#x3D;&gt; {  if (!launchParams.files.length) {    // Nothing to do when the queue is empty.    return;  }  for (const fileHandle of launchParams.files) {    // Handle the file.    openFile(fileHandle);  }});
-Check out Let installed web applications be file handlers
-for all the details.
-# The inert property
-The inert property is a global HTML attribute that tells the browser to
-ignore user input events for an element, including focus events, and events
-from assistive technologies.
-This can be useful when building UIs. For example, with a modal dialog, you
-want to &quot;trap&quot; the focus inside the modal when it&#x27;s visible. Or, for a drawer
-that is not always visible to the user, adding inert ensures that while
-the drawer is offscreen, a keyboard user cannot accidentally interact with it.
-&lt;div&gt;  &lt;label for&#x3D;&quot;button1&quot;&gt;Button 1&lt;/label&gt;  &lt;button id&#x3D;&quot;button1&quot;&gt;I am not inert&lt;/button&gt;&lt;/div&gt;&lt;div inert&gt;  &lt;label for&#x3D;&quot;button2&quot;&gt;Button 2&lt;/label&gt;  &lt;button id&#x3D;&quot;button2&quot;&gt;I am inert&lt;/button&gt;&lt;/div&gt;
-Here, inert has been declared on the second &lt;div&gt; element, so all content
-contained within, including the &lt;button&gt; and &lt;label&gt;, cannot receive
-focus or be clicked.
-inert is supported in Chrome 102, and is coming to both Firefox and Safari.
-Check out Introducing inert for more details.
-# Navigation API
-Many web apps depend on the ability to update the URL without a page
-navigation. Today, we use the History API, but it&#x27;s clunky and
-doesn&#x27;t always work as expected. Rather than trying to patch the History API&#x27;s
-rough edges, the Navigation API completely overhauls this space.
-To use the Navigation API, add a navigate listener on the global navigation
-object.
-navigation.addEventListener(&#x27;navigate&#x27;, (navigateEvent) &#x3D;&gt; {  switch (navigateEvent.destination.url) {    case &#x27;https://example.com/&#x27;:      navigateEvent.transitionWhile(loadIndexPage());      break;    case &#x27;https://example.com/cats&#x27;:      navigateEvent.transitionWhile(loadCatsPage());      break;  }});
-The event is fundamentally centralized and it will fire for all types of
-navigations, whether the user performed an action, such as clicking a link,
-submitting a form, or going back and forward, even when navigation is
-triggered programmatically. In most cases, it lets your code override the
-browser&#x27;s default behavior for that action.
-
-  
-
-Check out the Modern client-side routing: the Navigation API
-for complete details and a demo you can try out.
-# And more!
-Of course there&#x27;s plenty more.
-
-The new Sanitizer API aims to build a robust processor for arbitrary strings
-to be safely inserted into a page.
-The hidden&#x3D;until-found attribute makes it possible for the browser to
-search text in hidden regions, and reveal that section if a match is found.
-
-# Further reading
-This covers only some of the key highlights. Check the links below for
-additional changes in Chrome 102.
-
-What&#x27;s new in Chrome DevTools (102)
-Chrome 102 deprecations and removals
-ChromeStatus.com updates for Chrome 102
-Chromium source repository change list
-Chrome release calendar
-
-# Subscribe
-To stay up to date, subscribe to the
-Chrome Developers YouTube channel,
-and you&#x27;ll get an email notification whenever we launch a new video.
-I&#x27;m Pete LePage, and as soon as Chrome 103 is released, I&#x27;ll be right here to
-tell you what&#x27;s new in Chrome!</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Generate summary reports with the aggregation service</a>
-                        </h4>
-                        <span>You can now experiment and participate in an origin
-trial for Attribution
-Reporting. There are a number of available developer resources and code samples
-to get started.
-To generate summary reports in the origin trial, you&#x27;ll first need to set up
-the aggregation service. This blog post gives an overview of those steps.
-
-If you ran an origin trial with this API in 2021, follow the migration
-guide
-to prepare for the latest origin trial.
-
-# Key terms
-If you haven&#x27;t already, we recommend you read the overview of Attribution
-Reporting and more
-about summary reports
-before learning about the aggregation service set up.
-
-A summary report is a compiled output for the Attribution Reporting API,
-which aggregates information about a group of users. Summary reports offer
-detailed conversion data, such as purchase value and cart contents, with flexibility for click and view data.
-An aggregatable report is an encrypted report, generated by an individual
-user&#x27;s browser. These contain data about individual conversions and
-associated metrics, as defined by the advertiser or adtech. Learn more about
-aggregatable reports.
-The aggregation service processes data from aggregatable reports to
-create a summary report.
-
-# Set up the aggregation service
-The aggregation service
-proposal
-asks each adtech provider to operate their own instance of the aggregation
-service in a Trusted Execution Environment (TEE) deployed on a cloud service
-that supports needed security features.
-For the initial implementation and origin trial, adtechs can set up
-local testing
-or test in TEEs with Amazon Web Services (AWS):
-
-Register for the Privacy Sandbox Relevance and Measurement origin trial (OT).
-Create or have an Amazon Web Services account.
-Complete the aggregation service
-onboarding form. After filling out
-this form we will send a verification email and instructions for how to set
-up the aggregation service.
-
-Both the local testing tool and the aggregation service running on AWS expect
-aggregatable reports to be batched in the
-Apache Avro format.
-Review code snippets
-which demonstrate how to collect and batch aggregatable reports.
-# Generate summary reports with TEEs on AWS
-
-This is a general overview of how to generate summary reports in TEEs. Read the
-detailed developer documentation on testing the aggregation service with
-AWS.
-
-To generate summary reports, you&#x27;ll need to set up the aggregation service in
-AWS with Terraform. Terraform will help provision,
-manage, and decommission the aggregation service on AWS
-Nitro Enclave instances.
-
-Install
-and set up
-the latest AWS client.
-Set up Terraform.
-Download the aggregation service
-dependencies.
-Set up a deployment
-environment.
-Test your
-system.
-
-# Get support
-For more support with the Attribution Reporting API:
-
-Open a new Issue on the Privacy Sandbox Developer Support GitHub
-repository.
-Select the Issue template for Attribution Reporting.
-Or join the Attribution Reporting mailing list for
-developers
-and ask there.
-
-If you notice any unexpected behavior:
-
-View Chrome
-issues reported for the API implementation.
-Open a Chrome bug.
-Raise a new Issue for the Trusted Execution Aggregation
-Service.
-</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Deprecations and removals in Chrome 103</a>
-                        </h4>
-                        <span>
-Visit ChromeStatus.com for lists of current deprecations and previous removals.
-
-Chrome 103 beta was released on May 26, 2022 and is expected to become the
-stable version in late June, 2022.
-# Block external protocol in sandboxed iframes
-Sandboxed iframes are not blocked from opening external applications. Currently, developers sandbox untrusted content and block user navigation. Blocking probably should have also included links to external apps or to the Play store. This has now been fixed.
-Sites that need navigation can add the following values to the &lt;iframe&gt; element&#x27;s sandbox property:
-
-allow-popups
-allow-top-navigation
-allow-top-navigation-with-user-activation
-
-# Remove Battery Status API on insecure origins
-The Battery Status API is no longer supported on insecure contexts, specifically HTTP pages and HTTPS iframes embedded in HTTP pages. This is being removed in accordance with our policy of deprecating powerful features on insecure origins, This also follows a spec change.
-# Remove  element
-Given the removal of plugins from the web platform, and the relative lack of use of &lt;param&gt;, it is being removed from the web platform.
-# Deprecation policy
-To keep the platform healthy, we sometimes remove APIs from the Web Platform
-which have run their course. There can be many reasons why we would remove an
-API, such as:
-
-They are superseded by newer APIs.
-They are updated to reflect changes to specifications to bring alignment and
-consistency with other browsers.
-They are early experiments that never came to fruition in other browsers and
-thus can increase the burden of support for web developers.
-
-Some of these changes will have an effect on a very small number of sites. To
-mitigate issues ahead of time, we try to give developers advanced notice so they
-can make the required changes to keep their sites running.
-Chrome currently has a process for deprecations and removals of
-API&#x27;s,
-essentially:
-
-Announce on the
-blink-dev
-mailing list.
-Set warnings and give time scales in the Chrome DevTools Console when usage
-is detected on the page.
-Wait, monitor, and then remove the feature as usage drops.
-
-You can find a list of all deprecated features on chromestatus.com using the
-deprecated filter and
-removed features by applying the removed
-filter. We will also try to
-summarize some of the changes, reasoning, and migration paths in these posts.</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Cookies Having Independent State (CHIPS) origin trial extended</a>
-                        </h4>
-                        <span>CHIPS is a Privacy
-Sandbox proposal that introduces a mechanism to opt-in to having third-party
-cookies partitioned by top-level site using a new cookie attribute,
-Partitioned.
-The experiment started in Chrome 100 on March 29, 2022 and was scheduled to run
-until June 14, 2022.
-To give developers more time to test the feature and gather more feedback, an
-extension to the experiment will run through Chrome 104 until the release of Chrome 105, on August 30, 2022.
-Starting in version 103, Chrome will include an alternative CHIPS origin trial design for HTTP
-cookies, which should enable an opt-in mechanism that will make deployment
-easier for large organizations.
-In the new design, sending Accept-CH: Sec-CH-Partitioned-Cookies header will
-no longer be required to enroll in the origin trial. Sites will only need to
-send the Origin-Trial header with their CHIPS origin trial token when they are sending
-responses that include the Set-Cookie header with the Partitioned
-attribute.
-To enroll in the origin trial and start experimenting, head over to
-CHIPS origin trial instructions.</span>
                         </a>
                     </article>
                 </section>
@@ -42978,10 +42978,10 @@ The solution was of course to go through every part of the Mavo code that genera
         </ul>
       </section>
       <footer>
-        <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed-starter-kit/actions/runs/2566619392">
-          <time id="build-timestamp" datetime="2022-06-27T03:40:04.833Z">2022-06-27T03:40:04.833Z</time>
+        <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed-starter-kit/actions/runs/2566624527">
+          <time id="build-timestamp" datetime="2022-06-27T03:41:46.928Z">2022-06-27T03:41:46.928Z</time>
         </a>
-        <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 0.0.4</a>
+        <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 0.0.6</a>
       </footer>  </body>
 
 </html>

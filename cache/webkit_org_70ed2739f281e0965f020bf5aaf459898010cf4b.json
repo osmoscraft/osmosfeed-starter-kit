@@ -105,6 +105,5 @@
     }
   ],
   "description": "Open Source Web Browser Engine",
-  "home_page_url": "https://webkit.org",
-  "_extGeneratorVersion": "0.0.4"
+  "home_page_url": "https://webkit.org"
 }
