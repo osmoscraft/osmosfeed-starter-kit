@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    # CAUTION
-    # Risk of infinite workflow loop if the watched files
-    # are changed by the workflow itself
 
   schedule:
     # Adjust refresh schedule here. By default, it runs once per day.
@@ -39,7 +36,9 @@ jobs:
         env:
           # The token allows build script to read repo metadata via github API
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
+      - name: commit build output
+        if: success()
+        run: |
           git config --global user.email "no-reply@osmosfeed.org"
           git config --global user.name "osmosfeed bot"
           git add -A
