@@ -7,7 +7,7 @@ on:
     # CAUTION
     # Risk of infinite workflow loop if the watched files
     # are changed by the workflow itself
-  
+
   schedule:
     # Adjust refresh schedule here. By default, it runs once per day.
     # Syntax reference: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#schedule
@@ -19,6 +19,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - if: ${{ github.repository != 'osmoscraft/osmosfeed-starter-kit' }}
+        run: |
+          curl --location --request POST 'https://api.github.com/repos/chuanqisun/delete/pages' \
+          --header 'Accept: application/vnd.github.v3+json' \
+          --header 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'Content-Type: application/json' \
+          --data-raw '{"source":{"branch":"main","path":"/docs"}}'
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
