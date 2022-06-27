@@ -14,11 +14,11 @@
   <body>
     <header>
       osmos::feed
-      <time datetime="2022-06-27T02:30:42.856Z">2022-06-27T02:30:42.856Z</time>
+      <time datetime="2022-06-27T03:27:30.059Z">2022-06-27T03:27:30.059Z</time>
     </header>
       <section class="">
         <h2 class="">
-          <time class="" data-offset-date=2022-06-27 datetime="2022-06-27T02:30:42.117Z">2022-06-27</time>
+          <time class="" data-offset-date=2022-06-27 datetime="2022-06-27T03:27:27.182Z">2022-06-27</time>
         </h2>
         <ul class="">
             <li class="">
@@ -26,6 +26,268 @@
                 <h3 class="">A List Apart: The Full Feed</h3>
                 <a class="" href=""></a>
                 <section class="">
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Mobile-First CSS: Is It Time for a Rethink?</a>
+                        </h4>
+                        <span>The mobile-first design methodology is great—it focuses on what really matters to the user, it’s well-practiced, and it’s been a common design pattern for years. So developing your CSS mobile-first should also be great, too…right? 
+
+
+
+Well, not necessarily. Classic mobile-first CSS development is based on the principle of overwriting style declarations: you begin your CSS with default style declarations, and overwrite and/or add new styles as you add breakpoints with min-width media queries for larger viewports (for a good overview see “What is Mobile First CSS and Why Does It Rock?”). But all those exceptions create complexity and inefficiency, which in turn can lead to an increased testing effort and a code base that’s harder to maintain. Admit it—how many of us willingly want that?
+
+
+
+On your own projects, mobile-first CSS may yet be the best tool for the job, but first you need to evaluate just how appropriate it is in light of the visual design and user interactions you’re working on. To help you get started, here’s how I go about tackling the factors you need to watch for, and I’ll discuss some alternate solutions if mobile-first doesn’t seem to suit your project.
+
+
+
+Advantages of mobile-first
+
+
+
+Some of the things to like with mobile-first CSS development—and why it’s been the de facto development methodology for so long—make a lot of sense:
+
+
+
+Development hierarchy. One thing you undoubtedly get from mobile-first is a nice development hierarchy—you just focus on the mobile view and get developing. 
+
+
+
+Tried and tested. It’s a tried and tested methodology that’s worked for years for a reason: it solves a problem really well.
+
+
+
+Prioritizes the mobile view. The mobile view is the simplest and arguably the most important, as it encompasses all the key user journeys, and often accounts for a higher proportion of user visits (depending on the project). 
+
+
+
+Prevents desktop-centric development. As development is done using desktop computers, it can be tempting to initially focus on the desktop view. But thinking about mobile from the start prevents us from getting stuck later on; no one wants to spend their time retrofitting a desktop-centric site to work on mobile devices!
+
+
+
+Disadvantages of mobile-first
+
+
+
+Setting style declarations and then overwriting them at higher breakpoints can lead to undesirable ramifications:
+
+
+
+More complexity. The farther up the breakpoint hierarchy you go, the more unnecessary code you inherit from lower breakpoints. 
+
+
+
+Higher CSS specificity. Styles that have been reverted to their browser default value in a class name declaration now have a higher specificity. This can be a headache on large projects when you want to keep the CSS selectors as simple as possible.
+
+
+
+Requires more regression testing. Changes to the CSS at a lower view (like adding a new style) requires all higher breakpoints to be regression tested.
+
+
+
+The browser can’t prioritize CSS downloads. At wider breakpoints, classic mobile-first min-width media queries don’t leverage the browser’s capability to download CSS files in priority order.
+
+
+
+The problem of property value overrides
+
+
+
+There is nothing inherently wrong with overwriting values; CSS was designed to do just that. Still, inheriting incorrect values is unhelpful and can be burdensome and inefficient. It can also lead to increased style specificity when you have to overwrite styles to reset them back to their defaults, something that may cause issues later on, especially if you are using a combination of bespoke CSS and utility classes. We won’t be able to use a utility class for a style that has been reset with a higher specificity.
+
+
+
+With this in mind, I’m developing CSS with a focus on the default values much more these days. Since there’s no specific order, and no chains of specific values to keep track of, this frees me to develop breakpoints simultaneously. I concentrate on finding common styles and isolating the specific exceptions in closed media query ranges (that is, any range with a max-width set). 
+
+
+
+This approach opens up some opportunities, as you can look at each breakpoint as a clean slate. If a component’s layout looks like it should be based on Flexbox at all breakpoints, it’s fine and can be coded in the default style sheet. But if it looks like Grid would be much better for large screens and Flexbox for mobile, these can both be done entirely independently when the CSS is put into closed media query ranges. Also, developing simultaneously requires you to have a good understanding of any given component in all breakpoints up front. This can help surface issues in the design earlier in the development process. We don’t want to get stuck down a rabbit hole building a complex component for mobile, and then get the designs for desktop and find they are equally complex and incompatible with the HTML we created for the mobile view! 
+
+
+
+Though this approach isn’t going to suit everyone, I encourage you to give it a try. There are plenty of tools out there to help with concurrent development, such as Responsively App, Blisk, and many others. 
+
+
+
+Having said that, I don’t feel the order itself is particularly relevant. If you are comfortable with focusing on the mobile view, have a good understanding of the requirements for other breakpoints, and prefer to work on one device at a time, then by all means stick with the classic development order. The important thing is to identify common styles and exceptions so you can put them in the relevant stylesheet—a sort of manual tree-shaking process! Personally, I find this a little easier when working on a component across breakpoints, but that’s by no means a requirement.
+
+
+
+Closed media query ranges in practice 
+
+
+
+In classic mobile-first CSS we overwrite the styles, but we can avoid this by using media query ranges. To illustrate the difference (I’m using SCSS for brevity), let’s assume there are three visual designs: 
+
+
+
+smaller than 768from 768 to below 10241024 and anything larger 
+
+
+
+Take a simple example where a block-level element has a default padding of “20px,” which is overwritten at tablet to be “40px” and set back to “20px” on desktop.
+
+
+
+
+
+
+Classic min-width mobile-first
+.my-block {
+  padding: 20px;
+  @media (min-width: 768px) {
+    padding: 40px;
+  }
+  @media (min-width: 1024px) {
+    padding: 20px;
+  }
+}
+Closed media query range
+.my-block {
+  padding: 20px;
+  @media (min-width: 768px) and (max-width: 1023.98px) {
+    padding: 40px;
+  }
+}
+
+
+
+
+
+
+The subtle difference is that the mobile-first example sets the default padding to “20px” and then overwrites it at each breakpoint, setting it three times in total. In contrast, the second example sets the default padding to “20px” and only overrides it at the relevant breakpoint where it isn’t the default value (in this instance, tablet is the exception).
+
+
+
+The goal is to: 
+
+
+
+Only set styles when needed. Not set them with the expectation of overwriting them later on, again and again. 
+
+
+
+To this end, closed media query ranges are our best friend. If we need to make a change to any given view, we make it in the CSS media query range that applies to the specific breakpoint. We’ll be much less likely to introduce unwanted alterations, and our regression testing only needs to focus on the breakpoint we have actually edited. 
+
+
+
+Taking the above example, if we find that .my-block spacing on desktop is already accounted for by the margin at that breakpoint, and since we want to remove the padding altogether, we could do this by setting the mobile padding in a closed media query range.
+
+
+
+
+.my-block {
+  @media (max-width: 767.98px) {
+    padding: 20px;
+  }
+  @media (min-width: 768px) and (max-width: 1023.98px) {
+    padding: 40px;
+  }
+}
+
+
+
+
+The browser default padding for our block is “0,” so instead of adding a desktop media query and using unset or “0” for the padding value (which we would need with mobile-first), we can wrap the mobile padding in a closed media query (since it is now also an exception) so it won’t get picked up at wider breakpoints. At the desktop breakpoint, we won’t need to set any padding style, as we want the browser default value.
+
+
+
+Bundling versus separating the CSS
+
+
+
+Back in the day, keeping the number of requests to a minimum was very important due to the browser’s limit of concurrent requests (typically around six). As a consequence, the use of image sprites and CSS bundling was the norm, with all the CSS being downloaded in one go, as one stylesheet with highest priority. 
+
+
+
+With HTTP/2 and HTTP/3 now on the scene, the number of requests is no longer the big deal it used to be. This allows us to separate the CSS into multiple files by media query. The clear benefit of this is the browser can now request the CSS it currently needs with a higher priority than the CSS it doesn’t. This is more performant and can reduce the overall time page rendering is blocked.
+
+
+
+Which HTTP version are you using?
+
+
+
+To determine which version of HTTP you’re using, go to your website and open your browser’s dev tools. Next, select the Network tab and make sure the Protocol column is visible. If “h2” is listed under Protocol, it means HTTP/2 is being used. 
+
+
+
+Note: to view the Protocol in your browser’s dev tools, go to the Network tab, reload your page, right-click any column header (e.g., Name), and check the Protocol column.
+
+
+
+Note: for a summarized comparison, see ImageKit’s “HTTP/2 vs. HTTP/1.”
+
+
+
+Also, if your site is still using HTTP/1...WHY?!! What are you waiting for? There is excellent user support for HTTP/2.
+
+
+
+Splitting the CSS
+
+
+
+Separating the CSS into individual files is a worthwhile task. Linking the separate CSS files using the relevant media attribute allows the browser to identify which files are needed immediately (because they’re render-blocking) and which can be deferred. Based on this, it allocates each file an appropriate priority.
+
+
+
+In the following example of a website visited on a mobile breakpoint, we can see the mobile and default CSS are loaded with “Highest” priority, as they are currently needed to render the page. The remaining CSS files (print, tablet, and desktop) are still downloaded in case they’ll be needed later, but with “Lowest” priority. 
+
+
+
+
+
+
+
+With bundled CSS, the browser will have to download the CSS file and parse it before rendering can start.While, as noted, with the CSS separated into different files linked and marked up with the relevant media attribute, the browser can prioritize the files it currently needs. Using closed media query ranges allows the browser to do this at all widths, as opposed to classic mobile-first min-width queries, where the desktop browser would have to download all the CSS with Highest priority. We can’t assume that desktop users always have a fast connection. For instance, in many rural areas, internet connection speeds are still slow. 
+
+
+
+The media queries and number of separate CSS files will vary from project to project based on project requirements, but might look similar to the example below.
+
+
+
+
+
+
+
+Bundled CSS
+&lt;link href&#x3D;&quot;site.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;
+This single file contains all the CSS, including all media queries, and it will be downloaded with Highest priority.
+
+
+Separated CSS
+&lt;link href&#x3D;&quot;default.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;mobile.css&quot; media&#x3D;&quot;screen and (max-width: 767.98px)&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;tablet.css&quot; media&#x3D;&quot;screen and (min-width: 768px) and (max-width: 1083.98px)&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;desktop.css&quot; media&#x3D;&quot;screen and (min-width: 1084px)&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;print.css&quot; media&#x3D;&quot;print&quot; rel&#x3D;&quot;stylesheet&quot;&gt;
+Separating the CSS and specifying a media attribute value on each link tag allows the browser to prioritize what it currently needs. Out of the five files listed above, two will be downloaded with Highest priority: the default file, and the file that matches the current media query. The others will be downloaded with Lowest priority.
+
+
+
+
+
+
+
+Depending on the project’s deployment strategy, a change to one file (mobile.css, for example) would only require the QA team to regression test on devices in that specific media query range. Compare that to the prospect of deploying the single bundled site.css file, an approach that would normally trigger a full regression test.
+
+
+
+Moving on
+
+
+
+The uptake of mobile-first CSS was a really important milestone in web development; it has helped front-end developers focus on mobile web applications, rather than developing sites on desktop and then attempting to retrofit them to work on other devices.
+
+
+
+I don’t think anyone wants to return to that development model again, but it’s important we don’t lose sight of the issue it highlighted: that things can easily get convoluted and less efficient if we prioritize one particular device—any device—over others. For this reason, focusing on the CSS in its own right, always mindful of what is the default setting and what’s an exception, seems like the natural next step. I’ve started noticing small simplifications in my own CSS, as well as other developers’, and that testing and maintenance work is also a bit more simplified and productive. 
+
+
+
+In general, simplifying CSS rule creation whenever we can is ultimately a cleaner approach than going around in circles of overrides. But whichever methodology you choose, it needs to suit the project. Mobile-first may—or may not—turn out to be the best choice for what’s involved, but first you need to solidly understand the trade-offs you’re stepping into.
+</span>
+                        </a>
+                    </article>
                     <article>
                         <h4 class="">
                           <a class="" href="">Designers, (Re)define Success First</a>
@@ -5581,268 +5843,6 @@ Reactive Rails, with StimulusReflex and friends, is a must-look for anyone exhau
 </span>
                         </a>
                     </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Mobile-First CSS: Is It Time for a Rethink?</a>
-                        </h4>
-                        <span>The mobile-first design methodology is great—it focuses on what really matters to the user, it’s well-practiced, and it’s been a common design pattern for years. So developing your CSS mobile-first should also be great, too…right? 
-
-
-
-Well, not necessarily. Classic mobile-first CSS development is based on the principle of overwriting style declarations: you begin your CSS with default style declarations, and overwrite and/or add new styles as you add breakpoints with min-width media queries for larger viewports (for a good overview see “What is Mobile First CSS and Why Does It Rock?”). But all those exceptions create complexity and inefficiency, which in turn can lead to an increased testing effort and a code base that’s harder to maintain. Admit it—how many of us willingly want that?
-
-
-
-On your own projects, mobile-first CSS may yet be the best tool for the job, but first you need to evaluate just how appropriate it is in light of the visual design and user interactions you’re working on. To help you get started, here’s how I go about tackling the factors you need to watch for, and I’ll discuss some alternate solutions if mobile-first doesn’t seem to suit your project.
-
-
-
-Advantages of mobile-first
-
-
-
-Some of the things to like with mobile-first CSS development—and why it’s been the de facto development methodology for so long—make a lot of sense:
-
-
-
-Development hierarchy. One thing you undoubtedly get from mobile-first is a nice development hierarchy—you just focus on the mobile view and get developing. 
-
-
-
-Tried and tested. It’s a tried and tested methodology that’s worked for years for a reason: it solves a problem really well.
-
-
-
-Prioritizes the mobile view. The mobile view is the simplest and arguably the most important, as it encompasses all the key user journeys, and often accounts for a higher proportion of user visits (depending on the project). 
-
-
-
-Prevents desktop-centric development. As development is done using desktop computers, it can be tempting to initially focus on the desktop view. But thinking about mobile from the start prevents us from getting stuck later on; no one wants to spend their time retrofitting a desktop-centric site to work on mobile devices!
-
-
-
-Disadvantages of mobile-first
-
-
-
-Setting style declarations and then overwriting them at higher breakpoints can lead to undesirable ramifications:
-
-
-
-More complexity. The farther up the breakpoint hierarchy you go, the more unnecessary code you inherit from lower breakpoints. 
-
-
-
-Higher CSS specificity. Styles that have been reverted to their browser default value in a class name declaration now have a higher specificity. This can be a headache on large projects when you want to keep the CSS selectors as simple as possible.
-
-
-
-Requires more regression testing. Changes to the CSS at a lower view (like adding a new style) requires all higher breakpoints to be regression tested.
-
-
-
-The browser can’t prioritize CSS downloads. At wider breakpoints, classic mobile-first min-width media queries don’t leverage the browser’s capability to download CSS files in priority order.
-
-
-
-The problem of property value overrides
-
-
-
-There is nothing inherently wrong with overwriting values; CSS was designed to do just that. Still, inheriting incorrect values is unhelpful and can be burdensome and inefficient. It can also lead to increased style specificity when you have to overwrite styles to reset them back to their defaults, something that may cause issues later on, especially if you are using a combination of bespoke CSS and utility classes. We won’t be able to use a utility class for a style that has been reset with a higher specificity.
-
-
-
-With this in mind, I’m developing CSS with a focus on the default values much more these days. Since there’s no specific order, and no chains of specific values to keep track of, this frees me to develop breakpoints simultaneously. I concentrate on finding common styles and isolating the specific exceptions in closed media query ranges (that is, any range with a max-width set). 
-
-
-
-This approach opens up some opportunities, as you can look at each breakpoint as a clean slate. If a component’s layout looks like it should be based on Flexbox at all breakpoints, it’s fine and can be coded in the default style sheet. But if it looks like Grid would be much better for large screens and Flexbox for mobile, these can both be done entirely independently when the CSS is put into closed media query ranges. Also, developing simultaneously requires you to have a good understanding of any given component in all breakpoints up front. This can help surface issues in the design earlier in the development process. We don’t want to get stuck down a rabbit hole building a complex component for mobile, and then get the designs for desktop and find they are equally complex and incompatible with the HTML we created for the mobile view! 
-
-
-
-Though this approach isn’t going to suit everyone, I encourage you to give it a try. There are plenty of tools out there to help with concurrent development, such as Responsively App, Blisk, and many others. 
-
-
-
-Having said that, I don’t feel the order itself is particularly relevant. If you are comfortable with focusing on the mobile view, have a good understanding of the requirements for other breakpoints, and prefer to work on one device at a time, then by all means stick with the classic development order. The important thing is to identify common styles and exceptions so you can put them in the relevant stylesheet—a sort of manual tree-shaking process! Personally, I find this a little easier when working on a component across breakpoints, but that’s by no means a requirement.
-
-
-
-Closed media query ranges in practice 
-
-
-
-In classic mobile-first CSS we overwrite the styles, but we can avoid this by using media query ranges. To illustrate the difference (I’m using SCSS for brevity), let’s assume there are three visual designs: 
-
-
-
-smaller than 768from 768 to below 10241024 and anything larger 
-
-
-
-Take a simple example where a block-level element has a default padding of “20px,” which is overwritten at tablet to be “40px” and set back to “20px” on desktop.
-
-
-
-
-
-
-Classic min-width mobile-first
-.my-block {
-  padding: 20px;
-  @media (min-width: 768px) {
-    padding: 40px;
-  }
-  @media (min-width: 1024px) {
-    padding: 20px;
-  }
-}
-Closed media query range
-.my-block {
-  padding: 20px;
-  @media (min-width: 768px) and (max-width: 1023.98px) {
-    padding: 40px;
-  }
-}
-
-
-
-
-
-
-The subtle difference is that the mobile-first example sets the default padding to “20px” and then overwrites it at each breakpoint, setting it three times in total. In contrast, the second example sets the default padding to “20px” and only overrides it at the relevant breakpoint where it isn’t the default value (in this instance, tablet is the exception).
-
-
-
-The goal is to: 
-
-
-
-Only set styles when needed. Not set them with the expectation of overwriting them later on, again and again. 
-
-
-
-To this end, closed media query ranges are our best friend. If we need to make a change to any given view, we make it in the CSS media query range that applies to the specific breakpoint. We’ll be much less likely to introduce unwanted alterations, and our regression testing only needs to focus on the breakpoint we have actually edited. 
-
-
-
-Taking the above example, if we find that .my-block spacing on desktop is already accounted for by the margin at that breakpoint, and since we want to remove the padding altogether, we could do this by setting the mobile padding in a closed media query range.
-
-
-
-
-.my-block {
-  @media (max-width: 767.98px) {
-    padding: 20px;
-  }
-  @media (min-width: 768px) and (max-width: 1023.98px) {
-    padding: 40px;
-  }
-}
-
-
-
-
-The browser default padding for our block is “0,” so instead of adding a desktop media query and using unset or “0” for the padding value (which we would need with mobile-first), we can wrap the mobile padding in a closed media query (since it is now also an exception) so it won’t get picked up at wider breakpoints. At the desktop breakpoint, we won’t need to set any padding style, as we want the browser default value.
-
-
-
-Bundling versus separating the CSS
-
-
-
-Back in the day, keeping the number of requests to a minimum was very important due to the browser’s limit of concurrent requests (typically around six). As a consequence, the use of image sprites and CSS bundling was the norm, with all the CSS being downloaded in one go, as one stylesheet with highest priority. 
-
-
-
-With HTTP/2 and HTTP/3 now on the scene, the number of requests is no longer the big deal it used to be. This allows us to separate the CSS into multiple files by media query. The clear benefit of this is the browser can now request the CSS it currently needs with a higher priority than the CSS it doesn’t. This is more performant and can reduce the overall time page rendering is blocked.
-
-
-
-Which HTTP version are you using?
-
-
-
-To determine which version of HTTP you’re using, go to your website and open your browser’s dev tools. Next, select the Network tab and make sure the Protocol column is visible. If “h2” is listed under Protocol, it means HTTP/2 is being used. 
-
-
-
-Note: to view the Protocol in your browser’s dev tools, go to the Network tab, reload your page, right-click any column header (e.g., Name), and check the Protocol column.
-
-
-
-Note: for a summarized comparison, see ImageKit’s “HTTP/2 vs. HTTP/1.”
-
-
-
-Also, if your site is still using HTTP/1...WHY?!! What are you waiting for? There is excellent user support for HTTP/2.
-
-
-
-Splitting the CSS
-
-
-
-Separating the CSS into individual files is a worthwhile task. Linking the separate CSS files using the relevant media attribute allows the browser to identify which files are needed immediately (because they’re render-blocking) and which can be deferred. Based on this, it allocates each file an appropriate priority.
-
-
-
-In the following example of a website visited on a mobile breakpoint, we can see the mobile and default CSS are loaded with “Highest” priority, as they are currently needed to render the page. The remaining CSS files (print, tablet, and desktop) are still downloaded in case they’ll be needed later, but with “Lowest” priority. 
-
-
-
-
-
-
-
-With bundled CSS, the browser will have to download the CSS file and parse it before rendering can start.While, as noted, with the CSS separated into different files linked and marked up with the relevant media attribute, the browser can prioritize the files it currently needs. Using closed media query ranges allows the browser to do this at all widths, as opposed to classic mobile-first min-width queries, where the desktop browser would have to download all the CSS with Highest priority. We can’t assume that desktop users always have a fast connection. For instance, in many rural areas, internet connection speeds are still slow. 
-
-
-
-The media queries and number of separate CSS files will vary from project to project based on project requirements, but might look similar to the example below.
-
-
-
-
-
-
-
-Bundled CSS
-&lt;link href&#x3D;&quot;site.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;
-This single file contains all the CSS, including all media queries, and it will be downloaded with Highest priority.
-
-
-Separated CSS
-&lt;link href&#x3D;&quot;default.css&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;mobile.css&quot; media&#x3D;&quot;screen and (max-width: 767.98px)&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;tablet.css&quot; media&#x3D;&quot;screen and (min-width: 768px) and (max-width: 1083.98px)&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;desktop.css&quot; media&#x3D;&quot;screen and (min-width: 1084px)&quot; rel&#x3D;&quot;stylesheet&quot;&gt;&lt;link href&#x3D;&quot;print.css&quot; media&#x3D;&quot;print&quot; rel&#x3D;&quot;stylesheet&quot;&gt;
-Separating the CSS and specifying a media attribute value on each link tag allows the browser to prioritize what it currently needs. Out of the five files listed above, two will be downloaded with Highest priority: the default file, and the file that matches the current media query. The others will be downloaded with Lowest priority.
-
-
-
-
-
-
-
-Depending on the project’s deployment strategy, a change to one file (mobile.css, for example) would only require the QA team to regression test on devices in that specific media query range. Compare that to the prospect of deploying the single bundled site.css file, an approach that would normally trigger a full regression test.
-
-
-
-Moving on
-
-
-
-The uptake of mobile-first CSS was a really important milestone in web development; it has helped front-end developers focus on mobile web applications, rather than developing sites on desktop and then attempting to retrofit them to work on other devices.
-
-
-
-I don’t think anyone wants to return to that development model again, but it’s important we don’t lose sight of the issue it highlighted: that things can easily get convoluted and less efficient if we prioritize one particular device—any device—over others. For this reason, focusing on the CSS in its own right, always mindful of what is the default setting and what’s an exception, seems like the natural next step. I’ve started noticing small simplifications in my own CSS, as well as other developers’, and that testing and maintenance work is also a bit more simplified and productive. 
-
-
-
-In general, simplifying CSS rule creation whenever we can is ultimately a cleaner approach than going around in circles of overrides. But whichever methodology you choose, it needs to suit the project. Mobile-first may—or may not—turn out to be the best choice for what’s involved, but first you need to solidly understand the trade-offs you’re stepping into.
-</span>
-                        </a>
-                    </article>
                 </section>
               </section>
             </li>
@@ -5851,6 +5851,82 @@ In general, simplifying CSS rule creation whenever we can is ultimately a cleane
                 <h3 class="">Chrome Developers - Blog</h3>
                 <a class="" href=""></a>
                 <section class="">
+                    <article>
+                        <h4 class="">
+                          <a class="" href="">Faster page loads using server think-time with Early Hints</a>
+                        </h4>
+                        <span># What is Early Hints?
+Websites have become more sophisticated over time. As such, it&#x27;s not unusual that a server needs to perform non-trivial work (for example, access to databases, or CDNs accessing the origin server) to produce the HTML for the requested page. Unfortunately, this &quot;server think-time&quot; results in extra latency before the browser can start rendering the page. Indeed, the connection effectively goes idle for as long as it takes the server to prepare the response.
+
+
+Without Early Hints: everything is blocked on the server determining how to respond for the main resource.
+
+Early Hints is an HTTP status code (103 Early Hints) used to send a preliminary HTTP response ahead of a final response. This allows a server to send hints to the browser about critical sub-resources (for example,  stylesheet for the page, critical JavaScript) or origins that will be likely used by the page, while the server is busy generating the main resource. The browser can use those hints to warm up connections, and request sub-resources, while waiting for the main resource. In other words, Early Hints helps the browser take advantage of such &quot;server think-time&quot; by doing some work in advance, thereby speeding up page loads.
+
+
+With Early Hints: the server can serve a partial response with resource hints while it determines the final response
+
+In some cases, the performance improvement to the Largest Contentful Paint can go from several hundred milliseconds, as observed by Shopify and by Cloudflare, and up to a second faster, as seen in this before/after comparison:
+
+
+Before/After comparison of Early Hints on a test website done with WebPageTest (Moto G4 - DSL)
+
+# Implementing Early Hints
+Early Hints is available from Chrome version 103, as a response to navigation requests, or user interactions that change the url in the status bar, with support for both preconnect and preload hints.
+Before going deep into the topic, please note that Early Hints are not useful if your server can send a 200 (or other final responses) right away. Instead, consider using the regular link rel&#x3D;preload or link rel&#x3D;preconnect on the main response (Link rel HTTP header), or in the main response (&lt;link&gt;  elements), in such situations. For the cases where your server needs a little time to generate the main response, read on!
+The first step to take advantage of Early Hints consists of identifying the top landing pages, that is, the pages where your users typically start when they visit your website. This could be the homepage, or popular product listing pages if you have lots of users coming from other websites. The reason these entry points matter more than other pages is because Early Hints&#x27; usefulness decreases as the user navigates around your website (that is, the browser is more likely to have all the sub-resources it needs on the second or third subsequent navigation). It&#x27;s also always a good idea to deliver a great first impression!
+Now that you have this prioritized list of landing pages, the next step consists of identifying which origins or sub-resources would be good candidates for preconnect or preload hints, as a first approximation. Typically, those would be origins and sub-resources that contribute the most to key user metrics such as Largest Contentful Paint, or First Contentful Paint. More concretely, look for render-blocking sub-resources such as synchronous JavaScript, stylesheets, or even web fonts. Similarly, look for origins that host sub-resources that contribute a lot to key user metrics. Note: if your main resources are already using  or , you may consider these  origins or resources among the candidates for Early Hints. See this article for more details.
+While this represents a decent starting point, it&#x27;s not necessarily sufficient. The second step consists of minimizing the risk of using Early Hints on resources or origins that might be obsolete, or no longer used by the main resource. For instance, resources that are frequently updated and versioned (for example,  example.com/css/main.fa231e9c.css) may not be the best choice.  Note that this concern isn&#x27;t specific to Early Hints, it applies to any link rel&#x3D;preload or rel&#x3D;preconnect wherever they might be present. This is the sort of detail that&#x27;s best dealt with automation or templating (for example, a manual process is more likely to lead to mismatched hash or version urls between link rel&#x3D;preload and the actual HTML tag using the resource).
+As an example, consider the following flow:
+GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]
+The server predicts that main.abcd100.css will be needed, and suggests preloading it via Early Hints:
+103 Early HintsLink: &lt;/main.abcd100.css&gt;; rel&#x3D;preload; as&#x3D;style[...]
+A few moments later, the webpage, including the linked CSS is served. Unfortunately, this CSS resource is frequently updated, and the main resource is already five versions ahead (abcd105) of the predicted CSS resource (abcd100).
+200 OK[...]&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.abcd105.css&quot;&gt;
+In general, aim for resources and origins that are fairly stable, and largely independent of the outcome for the main resource. If necessary, you may consider splitting your key resources in two: a stable part designed to be used with Early Hints, and a more dynamic part left to be fetched after the main resource is received by the browser:
+&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;
+Finally, on the server side, look for main resource requests sent by browsers known to support Early Hints, and respond immediately with 103 Early Hints. In the 103 response, include the relevant preconnect and preload hints. Once the main resource is ready, follow up with the usual response (for example, 200 OK if successful). For backward compatibility, it&#x27;s good practice to also include LINK HTTP headers in the final response, perhaps even augmenting with critical resources that became evident as part of generating the main resource (for example, the dynamic part of a key resource if you followed the &quot;split in two&quot; suggestion). Here is what this would look like:
+GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]103 Early HintsLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;script
+A few moments later:
+200 OKContent-Length: 7531Content-Type: text/html; charset&#x3D;UTF-8Content-encoding: brLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;scriptLink: &lt;/experimental.3eab3290.css&gt;; rel&#x3D;preload; as&#x3D;style&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;   &lt;script src&#x3D;&quot;/common.js&quot;&gt;&lt;/script&gt;   &lt;link rel&#x3D;&quot;preconnect&quot; href&#x3D;&quot;https://fonts.googleapis.com&quot;&gt;
+# Support for Early Hints by HTTP server software
+Here is a quick summary of the level of support for Early Hints among popular OSS HTTP server software:
+
+Apache: supported via mod_http2.
+H2O: supported.
+NGINX: experimental module.
+Node: not yet supported by core. Available as a draft plugin for Fastify.
+
+# Enabling Early Hints, the easy way
+If you are using one of the following CDNs or platforms, you may not need to manually implement Early Hints. Refer to your solution provider&#x27;s online documentation to find out if it supports Early Hints, or refer to the non-exhaustive list here:
+
+Early Hints at Cloudflare
+Early Hints at Fastly.
+
+# Advanced pattern
+If you have fully applied Early Hints to your key landing pages and find yourself looking for more opportunities, you might be interested in the following advanced pattern.
+For visitors who are on their nth page request as part of a typical user journey, you may want to adapt the Early Hints response to content that is lower and deeper in the page, in other words using Early Hints on lower priority resources. This may sound counter-intuitive given that we recommended focussing on high priority, render-blocking sub-resources or origins. However, by the time a visitor has navigated for a while, it&#x27;s very likely that their browser already has all the critical resources. From there on, it might make sense to switch your attention toward lower priority resources. For instance, this could mean using Early Hints to load product images, or additional JS/CSS that are only needed for less common user interactions.
+# Current limitations
+Here are the limitations of Early Hints as implemented in Chrome 103 and future releases until further notice:
+
+Only available for navigation requests (that is,. main resource for the top level document).
+Only supports preconnect and preload (that is, prefetch isn&#x27;t supported).
+Early Hint followed by a cross-origin redirect on the final response will result in Chrome dropping the resources and connections it obtained via Early Hints.
+
+# What&#x27;s next?
+Depending on interest from the community, we may augment our implementation of Early Hints with the following capabilities:
+
+Early Hints sent on sub-resource requests.
+Early Hints sent on iframe main resource requests.
+Support for prefetch in Early Hints.
+
+We welcome your input on which aspects to prioritize, and how to further improve Early Hints.
+# Relationship to H2/Push
+If you are familiar with the deprecated HTTP2/Push feature, you may wonder how Early Hints differs. While Early Hints requires a round trip for the browser to start fetching critical sub-resources, with HTTP2/Push the server could start pushing sub-resources alongside the response. While this sounds amazing, this resulted in a key structural downside. Indeed, with HTTP2/Push it was extremely hard to avoid pushing sub-resources that the browser already had. This &quot;over-pushing&quot; effect resulted in a less efficient usage of the network bandwidth, which significantly hindered the performance benefits. Overall, Chrome data showed that HTTP2/Push was in fact a net negative for performance across the web.
+By contrast, Early Hints performs better in practice because it combines the ability to send a preliminary response with hints that leave the browser in charge of fetching, or connecting to, what it actually needs. While Early Hints doesn&#x27;t cover all the use cases that HTTP2/Push could address in theory, we believe that Early Hints is a more practical solution for speeding up navigations.
+Hero image by Pierre Bamin.</span>
+                        </a>
+                    </article>
                     <article>
                         <h4 class="">
                           <a class="" href="">Deprecations and removals in Chrome 104</a>
@@ -7051,82 +7127,6 @@ responses that include the Set-Cookie header with the Partitioned
 attribute.
 To enroll in the origin trial and start experimenting, head over to
 CHIPS origin trial instructions.</span>
-                        </a>
-                    </article>
-                    <article>
-                        <h4 class="">
-                          <a class="" href="">Faster page loads using server think-time with Early Hints</a>
-                        </h4>
-                        <span># What is Early Hints?
-Websites have become more sophisticated over time. As such, it&#x27;s not unusual that a server needs to perform non-trivial work (for example, access to databases, or CDNs accessing the origin server) to produce the HTML for the requested page. Unfortunately, this &quot;server think-time&quot; results in extra latency before the browser can start rendering the page. Indeed, the connection effectively goes idle for as long as it takes the server to prepare the response.
-
-
-Without Early Hints: everything is blocked on the server determining how to respond for the main resource.
-
-Early Hints is an HTTP status code (103 Early Hints) used to send a preliminary HTTP response ahead of a final response. This allows a server to send hints to the browser about critical sub-resources (for example,  stylesheet for the page, critical JavaScript) or origins that will be likely used by the page, while the server is busy generating the main resource. The browser can use those hints to warm up connections, and request sub-resources, while waiting for the main resource. In other words, Early Hints helps the browser take advantage of such &quot;server think-time&quot; by doing some work in advance, thereby speeding up page loads.
-
-
-With Early Hints: the server can serve a partial response with resource hints while it determines the final response
-
-In some cases, the performance improvement to the Largest Contentful Paint can go from several hundred milliseconds, as observed by Shopify and by Cloudflare, and up to a second faster, as seen in this before/after comparison:
-
-
-Before/After comparison of Early Hints on a test website done with WebPageTest (Moto G4 - DSL)
-
-# Implementing Early Hints
-Early Hints is available from Chrome version 103, as a response to navigation requests, or user interactions that change the url in the status bar, with support for both preconnect and preload hints.
-Before going deep into the topic, please note that Early Hints are not useful if your server can send a 200 (or other final responses) right away. Instead, consider using the regular link rel&#x3D;preload or link rel&#x3D;preconnect on the main response (Link rel HTTP header), or in the main response (&lt;link&gt;  elements), in such situations. For the cases where your server needs a little time to generate the main response, read on!
-The first step to take advantage of Early Hints consists of identifying the top landing pages, that is, the pages where your users typically start when they visit your website. This could be the homepage, or popular product listing pages if you have lots of users coming from other websites. The reason these entry points matter more than other pages is because Early Hints&#x27; usefulness decreases as the user navigates around your website (that is, the browser is more likely to have all the sub-resources it needs on the second or third subsequent navigation). It&#x27;s also always a good idea to deliver a great first impression!
-Now that you have this prioritized list of landing pages, the next step consists of identifying which origins or sub-resources would be good candidates for preconnect or preload hints, as a first approximation. Typically, those would be origins and sub-resources that contribute the most to key user metrics such as Largest Contentful Paint, or First Contentful Paint. More concretely, look for render-blocking sub-resources such as synchronous JavaScript, stylesheets, or even web fonts. Similarly, look for origins that host sub-resources that contribute a lot to key user metrics. Note: if your main resources are already using  or , you may consider these  origins or resources among the candidates for Early Hints. See this article for more details.
-While this represents a decent starting point, it&#x27;s not necessarily sufficient. The second step consists of minimizing the risk of using Early Hints on resources or origins that might be obsolete, or no longer used by the main resource. For instance, resources that are frequently updated and versioned (for example,  example.com/css/main.fa231e9c.css) may not be the best choice.  Note that this concern isn&#x27;t specific to Early Hints, it applies to any link rel&#x3D;preload or rel&#x3D;preconnect wherever they might be present. This is the sort of detail that&#x27;s best dealt with automation or templating (for example, a manual process is more likely to lead to mismatched hash or version urls between link rel&#x3D;preload and the actual HTML tag using the resource).
-As an example, consider the following flow:
-GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]
-The server predicts that main.abcd100.css will be needed, and suggests preloading it via Early Hints:
-103 Early HintsLink: &lt;/main.abcd100.css&gt;; rel&#x3D;preload; as&#x3D;style[...]
-A few moments later, the webpage, including the linked CSS is served. Unfortunately, this CSS resource is frequently updated, and the main resource is already five versions ahead (abcd105) of the predicted CSS resource (abcd100).
-200 OK[...]&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.abcd105.css&quot;&gt;
-In general, aim for resources and origins that are fairly stable, and largely independent of the outcome for the main resource. If necessary, you may consider splitting your key resources in two: a stable part designed to be used with Early Hints, and a more dynamic part left to be fetched after the main resource is received by the browser:
-&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;
-Finally, on the server side, look for main resource requests sent by browsers known to support Early Hints, and respond immediately with 103 Early Hints. In the 103 response, include the relevant preconnect and preload hints. Once the main resource is ready, follow up with the usual response (for example, 200 OK if successful). For backward compatibility, it&#x27;s good practice to also include LINK HTTP headers in the final response, perhaps even augmenting with critical resources that became evident as part of generating the main resource (for example, the dynamic part of a key resource if you followed the &quot;split in two&quot; suggestion). Here is what this would look like:
-GET /main.htmlHost: example.comUser-Agent: [....] Chrome/103.0.0.0 [...]103 Early HintsLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;script
-A few moments later:
-200 OKContent-Length: 7531Content-Type: text/html; charset&#x3D;UTF-8Content-encoding: brLink: &lt;https://fonts.google.com&gt;; rel&#x3D;preconnectLink: &lt;/main.css&gt;; rel&#x3D;preload; as&#x3D;styleLink: &lt;/common.js&gt;; rel&#x3D;preload; as&#x3D;scriptLink: &lt;/experimental.3eab3290.css&gt;; rel&#x3D;preload; as&#x3D;style&lt;HTML&gt;&lt;head&gt;   &lt;title&gt;Example&lt;/title&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/main.css&quot;&gt;   &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;/experimental.3eab3290.css&quot;&gt;   &lt;script src&#x3D;&quot;/common.js&quot;&gt;&lt;/script&gt;   &lt;link rel&#x3D;&quot;preconnect&quot; href&#x3D;&quot;https://fonts.googleapis.com&quot;&gt;
-# Support for Early Hints by HTTP server software
-Here is a quick summary of the level of support for Early Hints among popular OSS HTTP server software:
-
-Apache: supported via mod_http2.
-H2O: supported.
-NGINX: experimental module.
-Node: not yet supported by core. Available as a draft plugin for Fastify.
-
-# Enabling Early Hints, the easy way
-If you are using one of the following CDNs or platforms, you may not need to manually implement Early Hints. Refer to your solution provider&#x27;s online documentation to find out if it supports Early Hints, or refer to the non-exhaustive list here:
-
-Early Hints at Cloudflare
-Early Hints at Fastly.
-
-# Advanced pattern
-If you have fully applied Early Hints to your key landing pages and find yourself looking for more opportunities, you might be interested in the following advanced pattern.
-For visitors who are on their nth page request as part of a typical user journey, you may want to adapt the Early Hints response to content that is lower and deeper in the page, in other words using Early Hints on lower priority resources. This may sound counter-intuitive given that we recommended focussing on high priority, render-blocking sub-resources or origins. However, by the time a visitor has navigated for a while, it&#x27;s very likely that their browser already has all the critical resources. From there on, it might make sense to switch your attention toward lower priority resources. For instance, this could mean using Early Hints to load product images, or additional JS/CSS that are only needed for less common user interactions.
-# Current limitations
-Here are the limitations of Early Hints as implemented in Chrome 103 and future releases until further notice:
-
-Only available for navigation requests (that is,. main resource for the top level document).
-Only supports preconnect and preload (that is, prefetch isn&#x27;t supported).
-Early Hint followed by a cross-origin redirect on the final response will result in Chrome dropping the resources and connections it obtained via Early Hints.
-
-# What&#x27;s next?
-Depending on interest from the community, we may augment our implementation of Early Hints with the following capabilities:
-
-Early Hints sent on sub-resource requests.
-Early Hints sent on iframe main resource requests.
-Support for prefetch in Early Hints.
-
-We welcome your input on which aspects to prioritize, and how to further improve Early Hints.
-# Relationship to H2/Push
-If you are familiar with the deprecated HTTP2/Push feature, you may wonder how Early Hints differs. While Early Hints requires a round trip for the browser to start fetching critical sub-resources, with HTTP2/Push the server could start pushing sub-resources alongside the response. While this sounds amazing, this resulted in a key structural downside. Indeed, with HTTP2/Push it was extremely hard to avoid pushing sub-resources that the browser already had. This &quot;over-pushing&quot; effect resulted in a less efficient usage of the network bandwidth, which significantly hindered the performance benefits. Overall, Chrome data showed that HTTP2/Push was in fact a net negative for performance across the web.
-By contrast, Early Hints performs better in practice because it combines the ability to send a preliminary response with hints that leave the browser in charge of fetching, or connecting to, what it actually needs. While Early Hints doesn&#x27;t cover all the use cases that HTTP2/Push could address in theory, we believe that Early Hints is a more practical solution for speeding up navigations.
-Hero image by Pierre Bamin.</span>
                         </a>
                     </article>
                 </section>
@@ -42978,8 +42978,8 @@ The solution was of course to go through every part of the Mavo code that genera
         </ul>
       </section>
       <footer>
-        <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed-starter-kit/actions/runs/2566410205">
-          <time id="build-timestamp" datetime="2022-06-27T02:30:42.856Z">2022-06-27T02:30:42.856Z</time>
+        <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed-starter-kit/actions/runs/2566574855">
+          <time id="build-timestamp" datetime="2022-06-27T03:27:30.059Z">2022-06-27T03:27:30.059Z</time>
         </a>
         <a class="footer-link" href="https://github.com/osmoscraft/osmosfeed">osmosfeed 0.0.4</a>
       </footer>  </body>
