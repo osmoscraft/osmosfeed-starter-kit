@@ -10,6 +10,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@osmosfeed/cli": "0.0.1-alpha.2"
+    "@osmosfeed/cli": "2.0.0-alpha.0"
   }
 }

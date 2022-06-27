@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    # CAUTION
+    # Risk of infinite workflow loop if the watched files
+    # are changed by the workflow itself
+    paths:
+      - "osmosfeed.yaml"
+      - "package.json"
   schedule:
     # Adjust refresh schedule here. By default, it runs once per day.
     # Syntax reference: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#schedule
@@ -15,17 +21,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.1.4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: "16"
-      - name: Install dependencies
-        run: npm i
-      - name: Build the feed
-        run: npm run build
-      - name: Commit changes to main branch
-        run: |
+          node-version: "18"
+      - run: npm i
+      - run: npm run build
+      - run: |
           git config --global user.email "no-reply@osmosfeed.org"
           git config --global user.name "osmosfeed bot"
           git add -A
